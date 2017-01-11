@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage{amsmath}
+\title{Assignment 1}
+\author{Ross Weir --- 20282025}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+	\item{\em What is the formula for compound interest?}\\
+		$$P' = P(1+\frac{r}{n})^{nt}$$
+
+		Where:
+		\par$P$ is the starting balance
+		\par$P'$ is the resulting balance
+		\par$r$ is the interest rate for a given period of time
+		\par$n$ is the number of compounding intervals per rate
+		\par$t$ is the number of time periods total.\\
+
+		Ex: if r is 5\% annually, then n would be the number of compounding periods within a year (such as one per month = 12), and t would be the number of years.
+
+		As such, a $P=\$1000$ loan at $r=5\%$ per annum, with $n=12$ compounding periods and no loan payments for $t=4$ years would have a balance of:
+		
+		\begin{align*}
+		P'&= 1000\times(1+\frac{0.05}{12}) ^ {12\times4} \\
+		P'&=\$1220.90
+		\end{align*}
+
+	\item{\em What is the derivative of $e^x$?}\\
+		$$\frac{d}{dx} e^x = e^x$$
+\end{enumerate}
+\end{document}
