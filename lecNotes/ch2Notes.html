@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-01-11 Wed 13:04 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ch2Notes</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Britt Anderson" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">ch2Notes</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org545e63c">1. Overview</a></li>
+<li><a href="#orgd098b8e">2. Questions?</a></li>
+<li><a href="#org2d8d6d8">3. What is a DE?</a>
+<ul>
+<li><a href="#orge4cfe89">3.1. Questions</a></li>
+<li><a href="#org779335f">3.2. Answers&#xa0;&#xa0;&#xa0;<span class="tag"><span class="noexport">noexport</span></span></a></li>
+</ul>
+</li>
+<li><a href="#org9f21560">4. Programming and DE's - An Introduction</a>
+<ul>
+<li><a href="#org7bf99d2">4.1. Comments&#xa0;&#xa0;&#xa0;<span class="tag"><span class="noexport">noexport</span></span></a></li>
+<li><a href="#orgfc236c6">4.2. Questions</a></li>
+<li><a href="#orgeb82a01">4.3. Answers&#xa0;&#xa0;&#xa0;<span class="tag"><span class="noexport">noexport</span></span></a></li>
+<li><a href="#explorations">4.4. Explorations</a></li>
+<li><a href="#org1311013">4.5. A freestanding version</a></li>
+</ul>
+</li>
+<li><a href="#org14b617b">5. Intermission Github</a>
+<ul>
+<li><a href="#org9035384">5.1. A way to share code or anything - e.g. text/doc files</a></li>
+</ul>
+</li>
+<li><a href="#orga82e22b">6. Using a Differential Equation to Iterate</a>
+<ul>
+<li><a href="#orgb402790">6.1. Springs</a>
+<ul>
+<li><a href="#orgdff2c4d">6.1.1. Begin with a spreadsheet</a></li>
+<li><a href="#org574526c">6.1.2. Try it with code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org54e2b77">7. Assignment</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org545e63c" class="outline-2">
+<h2 id="org545e63c"><span class="section-number-2">1</span> Overview</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A short file for guiding the discussion on Chapter 2 of the book. Usually occurs in the second class session after the first, organizational, meeting.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd098b8e" class="outline-2">
+<h2 id="orgd098b8e"><span class="section-number-2">2</span> Questions?</h2>
+</div>
+
+<div id="outline-container-org2d8d6d8" class="outline-2">
+<h2 id="org2d8d6d8"><span class="section-number-2">3</span> What is a DE?</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+A couple of orienting questions and answers, and then some examples.
+</p>
+</div>
+
+<div id="outline-container-orge4cfe89" class="outline-3">
+<h3 id="orge4cfe89"><span class="section-number-3">3.1</span> Questions</h3>
+<div class="outline-text-3" id="text-3-1">
+<ol class="org-ol">
+<li>What does the abbreviation stand for?</li>
+<li>What are they?</li>
+<li>What good are they?</li>
+<li>What are the notations for a <b>derivative</b>?</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org779335f" class="outline-3">
+<h3 id="org779335f"><span class="section-number-3">3.2</span> Answers&#xa0;&#xa0;&#xa0;<span class="tag"><span class="noexport">noexport</span></span></h3>
+<div class="outline-text-3" id="text-3-2">
+<ol class="org-ol">
+<li>Differential Equations</li>
+<li>An equation with a derivative</li>
+<li><p>
+Use the example of speed and distance. If you are 100 km from Toronto and you are travelling at 100 km/hr how far will you be in half an hour? You can use the <b>rate of change</b> to impute a future value. 
+</p>
+
+<p>
+Maybe a good idea to have them try to write this as an equation to get a feel for units and notation.
+</p></li>
+<li>Notations
+<ul class="org-ul">
+<li>\(\frac{dy}{dx}\)</li>
+<li>\(\dot{x}\)</li>
+<li>\(x'\)</li>
+<li>\(f'(x)\)</li>
+</ul></li>
+</ol>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org9f21560" class="outline-2">
+<h2 id="org9f21560"><span class="section-number-2">4</span> Programming and DE's - An Introduction</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-org7bf99d2" class="outline-3">
+<h3 id="org7bf99d2"><span class="section-number-3">4.1</span> Comments&#xa0;&#xa0;&#xa0;<span class="tag"><span class="noexport">noexport</span></span></h3>
+<div class="outline-text-3" id="text-4-1">
+<ol class="org-ol">
+<li>I want them to see how programming is about more than "understanding." Even if you know what the principal is there is a lot of work sometimes to get things to work.</li>
+<li>Also, programming can be a route to understanding. By being forced to be concrete you can't shield the fuzzy areas of your knowledge.</li>
+<li>It is also in the same way a way to learn what it is you don't understand.</li>
+<li>Simple exercises can help you expand your computational vocabulary. If you can do something in one language, then try to translate it to another. Teach them the use of the verb <b>to port</b> in this context. Also note the word has other meanings in computing field as a noun.</li>
+<li>Walk them through the questions below.</li>
+<li>One of the values of models is to <b>explore</b> so let's <a href="#explorations">explore</a>.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgfc236c6" class="outline-3">
+<h3 id="orgfc236c6"><span class="section-number-3">4.2</span> Questions</h3>
+<div class="outline-text-3" id="text-4-2">
+<ol class="org-ol">
+<li>What is a cube root?</li>
+<li>In your head guess the square root of 128.</li>
+<li>Write a formula that would allow me to compute the error (or how far off you were).</li>
+<li>How much should you adjust your guess to get closer to the correct answer?</li>
+<li>What is the derivative of \(x^3\)? Use the formula.</li>
+<li>Using this derivative make an estimate of how much you need to change your guess, and give a reason why this should work graphically.</li>
+<li>What happens to the sign of the "adjustment" when our guesses go from giving us to big an answer to too little an answer.</li>
+</ol>
+</div>
+</div>
+
+
+<div id="outline-container-orgeb82a01" class="outline-3">
+<h3 id="orgeb82a01"><span class="section-number-3">4.3</span> Answers&#xa0;&#xa0;&#xa0;<span class="tag"><span class="noexport">noexport</span></span></h3>
+<div class="outline-text-3" id="text-4-3">
+<ol class="org-ol">
+<li><p>
+The solution to \(y = x^3\).
+</p>
+
+<p>
+This is what I will have them code, but for the example might be better to stick with what is in the book. Might talk about what it means to be a "solution." And also might point out the similarity to regression equations and dependent and independent variables. Helps them see they sort of already "know" this stuff. Could try to elicit this as a question. For answers they could talk about fixing "y" or we could see how we want the two sides to be equal, and this means if we subtract one from the other the difference (sounds like differential; sounds like derivative) should be zero.
+</p>
+<ul class="org-ul">
+<li>Terminology
+<ul class="org-ul">
+<li>finding the roots</li>
+<li>finding the zeros</li>
+</ul></li>
+</ul></li>
+
+<li></li>
+
+
+<li>\(\mbox{Error} = \mbox{(my guess)}^2 - \mbox{128}\); get someone to come write it up on the board.</li>
+
+<li><p>
+test
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">import</span> matplotlib, numpy
+<span style="color: #a0522d;">a</span> = numpy.linspace(-4,6,num=120)
+<span style="color: #a0522d;">b</span> = [x**3 <span style="color: #a020f0;">for</span> x <span style="color: #a020f0;">in</span> a];<span style="color: #b22222;">#</span><span style="color: #b22222;">list comprehension</span>
+matplotlib.use(<span style="color: #8b2252;">'SVG'</span>)
+<span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> p
+<span style="color: #a0522d;">fig</span> = p.figure(figsize=(4,4))
+p.plot(a,b)
+p.plot([2,2],[-100,8], <span style="color: #8b2252;">'k-'</span>,lw=2)
+p.plot([-4,2],[8,8], <span style="color: #8b2252;">'k-'</span>,lw=2)
+p.plot([4,4],[64,-100], <span style="color: #8b2252;">'k-'</span>,lw=2)
+p.plot([-4,6],[-64,56], <span style="color: #8b2252;">'r-'</span>,lw=2)
+p.plot([-4,4],[64,64], <span style="color: #8b2252;">'k-'</span>,lw=2)
+p.plot([4,6],[64,64], <span style="color: #8b2252;">'k--'</span>,lw=2)
+p.plot([2,4],[8,64], <span style="color: #8b2252;">'k-'</span>,lw=2)
+fig.tight_layout()
+p.savefig(<span style="color: #8b2252;">'./x3plot.svg'</span>)
+<span style="color: #a020f0;">return</span> <span style="color: #8b2252;">'./x3plot.svg'</span>
+</pre>
+</div>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./x3plot.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div></li>
+
+<li>Need them to see it as slope. Rise over run. Can now try to help them see how if you shrink the run to 0 you get the slope at a point. This gives us a way to compute derivatives.</li>
+
+<li></li>
+
+
+<li>\(\frac{\Delta~\mbox{Error}}{\Delta~\mbox{Guess}} = \frac{\mbox{Error(Guess1) - Error(Guess0)}}{\mbox{Guess1} - \mbox{Guess0}}\)</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org2273bdd" class="outline-3">
+<h3 id="explorations"><a id="org2273bdd"></a><span class="section-number-3">4.4</span> Explorations</h3>
+<div class="outline-text-3" id="text-explorations">
+<ol class="org-ol">
+<li>Explorations can often start by drawing or sketching. Never underestimate the utility of trying to graph or visualize the problem.</li>
+<li>Open up <a href="ch2Explore.ods">spreadsheet</a></li>
+<li><p>
+Insert a formula for error of square root of 128
+</p>
+
+<p>
+How to specify a formula
+</p>
+
+<p>
+<code>$</code> freezes column and row references.
+</p>
+
+<p>
+How you get more flexibility by using references (variables) rather than <code>hard coding</code>.
+</p></li>
+
+<li>Class activity. Make a spreadsheet that finds the cube root of any number.</li>
+
+<li>Same thing in Python</li>
+</ol>
+
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a0522d;">guesses</span> = [5.0]
+<span style="color: #a0522d;">errors</span> = [10000]
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">cube</span> (x):
+    <span style="color: #a020f0;">return</span> x**3
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">derivCube</span> (x):
+    <span style="color: #a020f0;">return</span> 3*x**2
+
+<span style="color: #a0522d;">tolerance</span> = 0.01
+
+<span style="color: #a020f0;">while</span> (errors[-1] &gt; tolerance):
+    errors.append(128 - cube(guesses[-1]))
+    guesses.append(errors[-1]/derivCube(guesses[-1]) + guesses[-1])
+
+(errors,guesses)
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">10000</td>
+<td class="org-right">3.0</td>
+<td class="org-right">-0.024064000000009855</td>
+</tr>
+
+<tr>
+<td class="org-right">5.0</td>
+<td class="org-right">5.04</td>
+<td class="org-right">5.039684219366759</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org1311013" class="outline-3">
+<h3 id="org1311013"><span class="section-number-3">4.5</span> A freestanding version</h3>
+<div class="outline-text-3" id="text-4-5">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">def</span> <span style="color: #0000ff;">cube</span> (x):
+    <span style="color: #a020f0;">return</span> x**3
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">derivCube</span> (x):
+    <span style="color: #a020f0;">return</span> 3*x**2
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">cubeRoot</span>(n,initGuess = 5.0):
+    <span style="color: #a0522d;">guesses</span> = [initGuess]
+    <span style="color: #a0522d;">errors</span> = [10000.0]
+    <span style="color: #a0522d;">tolerance</span> = 0.01
+    <span style="color: #a0522d;">i</span> = 0
+<span style="color: #b22222;">#    </span><span style="color: #b22222;">while not (errors[-1] &lt; tolerance):</span>
+    <span style="color: #a020f0;">while</span> (<span style="color: #483d8b;">abs</span>(errors[-1]) &gt; tolerance):
+        <span style="color: #a0522d;">curError</span> = n - cube(guesses[-1])
+<span style="color: #b22222;">#        </span><span style="color: #b22222;">print("curError = %f" % curError)</span>
+        errors.append(curError)
+        <span style="color: #a0522d;">newGuess</span> = errors[-1]/derivCube(guesses[-1]) + guesses[-1]
+<span style="color: #b22222;">#       </span><span style="color: #b22222;">print ("newGuess = %f" % newGuess)</span>
+        guesses.append(newGuess)
+
+    <span style="color: #a020f0;">return</span>(guesses[-1])
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">main</span>():
+    <span style="color: #a0522d;">testNum</span> = <span style="color: #483d8b;">input</span>(<span style="color: #8b2252;">"Cube root of ?\n"</span>)
+    <span style="color: #a020f0;">print</span> (<span style="color: #8b2252;">"Answer is: %f\n"</span> % cubeRoot(<span style="color: #483d8b;">float</span>(testNum)))
+
+<span style="color: #a020f0;">if</span> <span style="color: #483d8b;">__name__</span> == <span style="color: #8b2252;">"__main__"</span>:
+    main()
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org14b617b" class="outline-2">
+<h2 id="org14b617b"><span class="section-number-2">5</span> Intermission Github</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-org9035384" class="outline-3">
+<h3 id="org9035384"><span class="section-number-3">5.1</span> A way to share code or anything - e.g. text/doc files</h3>
+<div class="outline-text-3" id="text-5-1">
+<ol class="org-ol">
+<li>No cost if public. For private you might have to pay.</li>
+<li>Uses <code>git</code>. Don't have to use <a href="https://github.com/">github</a> to use <a href="https://www.atlassian.com/git/tutorials/">git</a> (note Bitbucket is another option for free hosting). I mostly use a machine in my office as the main site of my repositories, e.g. for these notes, and then I just <code>clone</code> them on to a new laptop if needed.</li>
+<li>There are other programs for doing this.</li>
+<li>Let's get everyone's feet wet.</li>
+<li>You can have your own website there using <a href="http://jekyllrb.com/">Jekyll</a></li>
+<li>Again, you don't have to use github to use Jekyll. I use Jekyll for the <a href="https://brittlab.uwaterloo.ca">lab website</a> which is hosted on a University computer.</li>
+<li>There can be a steep learning curve, but it is hard to do any permanent damage. Sometimes files look like they disappear, but they are still there. In fact it is harder to irreversibly delete stuff from a git repo than on a regular set up, and if you have a repo you have a back-up.</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga82e22b" class="outline-2">
+<h2 id="orga82e22b"><span class="section-number-2">6</span> Using a Differential Equation to Iterate</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>Harken back to the travel example. To know where I will be I can estimate from where I am now and how fast my position is changing.</li>
+<li>A derivative is a rate of change. See the derivative from the cube root example. We can see how the error is changing as we change the independent variable, and use that to help us find out where we want to be.</li>
+</ul>
+</div>
+
+<div id="outline-container-orgb402790" class="outline-3">
+<h3 id="orgb402790"><span class="section-number-3">6.1</span> Springs</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+Before we go to the more advanced usage of the spiking models. Let's try something where me might have a little more physical intuition. 
+</p>
+
+<p>
+The equation <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> for the spring came from empirical observations. Just as the Hodgkin-Huxley model of the neuron that we will work up to. 
+</p>
+
+\begin{equation} 
+\frac{d^2s}{dt} = -Ps(t) 
+\end{equation}
+</div>
+
+<div id="outline-container-orgdff2c4d" class="outline-4">
+<h4 id="orgdff2c4d"><span class="section-number-4">6.1.1</span> Begin with a spreadsheet</h4>
+</div>
+
+<div id="outline-container-org574526c" class="outline-4">
+<h4 id="org574526c"><span class="section-number-4">6.1.2</span> Try it with code</h4>
+<div class="outline-text-4" id="text-6-1-2">
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #a020f0;">import</span> <span style="color: #228b22;">Graphics.EasyPlot</span>
+
+<span style="color: #0000ff;">k</span> <span style="color: #a0522d;">=</span> 2.0
+<span style="color: #0000ff;">tstep</span> <span style="color: #a0522d;">=</span> 0.1
+<span style="color: #0000ff;">initV</span> <span style="color: #a0522d;">=</span> 0.0
+<span style="color: #0000ff;">initPos</span> <span style="color: #a0522d;">=</span> 10.0
+
+
+<span style="color: #0000ff;">upd</span>  old changeRate <span style="color: #a0522d;">=</span> old <span style="color: #a0522d;">+</span> changeRate<span style="color: #a0522d;">*</span>tstep
+<span style="color: #0000ff;">accel</span> k s <span style="color: #a0522d;">=</span> (<span style="color: #a0522d;">-</span>1)<span style="color: #a0522d;">*</span> k <span style="color: #a0522d;">*</span>s
+
+
+<span style="color: #0000ff;">myiter</span> (f1,f2) (a,v,s) <span style="color: #a0522d;">=</span> (a,v,s) <span style="color: #228b22;">:</span> myiter (f1,f2) (a',v',s')
+   <span style="color: #a020f0;">where</span> a' <span style="color: #a0522d;">=</span> f2 s
+         s' <span style="color: #a0522d;">=</span> f1 s v'
+         v' <span style="color: #a0522d;">=</span> f1 v a'
+
+
+<span style="color: #0000ff;">main</span> <span style="color: #a0522d;">=</span> plot (<span style="color: #228b22;">PNG</span> <span style="color: #8b2252;">"spring.png"</span>) <span style="color: #a0522d;">$</span> <span style="color: #228b22;">Data2D</span> [<span style="color: #228b22;">Style</span> <span style="color: #228b22;">Lines</span>] <span style="color: #228b22;">[]</span>  <span style="color: #a0522d;">$</span>
+         zipWith <span style="color: #228b22;">(,)</span> [0.0,0.1 <span style="color: #a0522d;">..</span>] <span style="color: #a0522d;">$</span>map (<span style="color: #a0522d;">\</span>(a,b,c) <span style="color: #a0522d;">-&gt;</span> c) <span style="color: #a0522d;">$</span>
+           take 1000 <span style="color: #a0522d;">$</span> myiter (upd,( accel k )) ((accel k initPos),initV,initPos)
+
+
+<span style="color: #8b2252;">{-|</span>
+<span style="color: #8b2252;">usage examples</span>
+
+<span style="color: #8b2252;">map (\(a,b,c) -&gt; c) $ take 100 $ myiter (upd,( accel k )) ((accel k initPos),initV,initPos)</span>
+
+<span style="color: #8b2252;">plot X11 $ zipWith (,) [0.0,0.1 ..] $map (\(a,b,c) -&gt; c) $ take 1000 $ myiter (upd,( accel k )) ((accel k initPos),initV,initPos)</span>
+
+<span style="color: #8b2252;">plot X11 $ Data2D [Style Lines] []  $ zipWith (,) [0.0,0.1 ..] $map (\(a,b,c) -&gt; c) $ take 1000 $ myiter (upd,( accel k )) ((accel k initPos),initV,initPos)</span>
+
+<span style="color: #8b2252;">-}</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-sh">runhaskell ./spring.hs
+</pre>
+</div>
+
+
+
+<div id="org4e68ba1" class="figure">
+<p><img src="./spring.png" alt="spring.png" />
+</p>
+<p><span class="figure-number">Figure 2: </span>Oscillation output of Haskell Spring Code</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org54e2b77" class="outline-2">
+<h2 id="org54e2b77"><span class="section-number-2">7</span> Assignment</h2>
+<div class="outline-text-2" id="text-7">
+<ol class="org-ol">
+<li>Sign-up for a github account</li>
+<li>Clone the course repo.</li>
+<li>Submit (in the dropbox to be created) a screenshot or some documentation that you did the above.</li>
+<li>If you submit something to the repository, a recipie for how to do something, a snippet of code that works, a list of links to helpful sites, anything that you think might help me or your classmates, and I accept it, then I will give you some extra-credit.</li>
+<li>Submit into the dropbox <i>either</i> a spreadsheet program to compute the solution for \(x^3 + x^2\) or a small computer program in any language of your choice.</li>
+</ol>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+Note this is <b>not</b> s multiplied by t, but s as a function of t.
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Date: \today</p>
+<p class="author">Author: Britt Anderson</p>
+<p class="date">Created: 2017-01-11 Wed 13:04</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
