@@ -2,7 +2,7 @@
 
 #Equations for y=x^2+x^3 and derivative:
 #These functions take in your guess, and the value (val) that you 
-#	want to find the cube root for:
+#	want to find the solution for:
 def error(guess,val):
 	return (guess**2+guess**3)-val
 
