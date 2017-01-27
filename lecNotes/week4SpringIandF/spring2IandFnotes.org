@@ -1,0 +1,171 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:t todo:t |:t
+#+TITLE: Notes for Class
+#+DATE: <2017-01-24 Tue>
+#+AUTHOR: Britt Anderson
+#+EMAIL: britt@uwaterloo.ca
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 25.1.1 (Org mode 9.0.3)
+
+* Homework Springs
+
+** Example Spreadsheet
+
+   [[./accelerationFixedFinal-student.xlsx]]
+
+** Example Code
+
+*** R
+    
+  #+BEGIN_SRC R :results output graphics :tangle no :exports both :file r.png
+  #Spring oscillator
+  #Let t be time, s be position wrt equilibrium, v be velocity, a be acceleration and p be a constant where a = -ps(t)
+  t <- 0
+  t_column <- c()
+  s <- 10
+  s_column <- c()
+  v <- 0
+  v_column <- c()
+  p <- 1.5
+  a <- -1*p*s
+  a_column <- c()
+  #loop
+  while (t < 20){
+
+    t_column<-c(t_column,t)
+    t <- t+0.2
+  
+    s_column<-c(s_column,s)
+    s <- s+(v*0.2)
+
+    a_column<-c(a_column,a)
+    a <- -1*p*s
+
+    v_column<-c(v_column,v)
+    v <- v+(a*0.2)
+  
+  }
+  print(t_column)
+  print(s_column)
+  print(a_column)
+  print(v_column)
+  plot(t_column,a_column,type = "l",lty = 2,col="blue")
+  lines(t_column,v_column,lty = 4,col="green")
+  lines(t_column,s_column,lty = 1,col = "black")
+  #+END_SRC
+
+  #+RESULTS:
+  [[file:r.png]]
+
+*** Python
+
+**** Harmonic Oscillator
+ #+BEGIN_SRC python :results file :exports both
+   P = -10
+   Q = -2
+   dt = 0.05
+   s = 1
+   vInit = 0.0
+   t = [0.0]
+   dist = [s]
+   veloc = [vInit]
+   accel = [P*s]
+   for n in range(1,150):
+      accel.append(dist[-1]*P)
+      veloc.append(accel[-1]*dt + veloc[-1])
+      dist.append(veloc[-1]*dt + dist[-1])
+      t.append(n * dt)
+   import matplotlib
+   matplotlib.use('SVG')
+   import matplotlib.pyplot as p
+   fig = p.figure(figsize=(3,3))
+   p.plot(t,dist)
+   p.savefig('./pyH.svg')
+   return './pyH.svg'
+ #+END_SRC
+
+ #+RESULTS:
+ [[file:./pyH.svg]]
+
+**** Damped Oscillator
+    
+ #+BEGIN_SRC python :results file :exports both
+   P = -10
+   Q = -2
+   dt = 0.05
+   s = 1
+   vInit = 0.0
+   t = [0.0]
+   dist = [s]
+   veloc = [vInit]
+   #accel = [P*s]
+   accel = [P*s + Q*veloc[-1]]
+   for n in range(1,150):
+      #accel.append(dist[-1]*P)
+      accel.append(dist[-1]*P + veloc[-1]*Q)
+      veloc.append(accel[-1]*dt + veloc[-1])
+      dist.append(veloc[-1]*dt + dist[-1])
+      t.append(n * dt)
+   import matplotlib
+   matplotlib.use('SVG')
+   import matplotlib.pyplot as p
+   fig = p.figure(figsize=(3,3))
+   p.plot(t,dist)
+   p.savefig('./pyD.svg')
+   return './pyD.svg'
+ #+END_SRC
+  
+   #+RESULTS:
+   [[file:./py.svg]]
+
+*** Racket (a lisp dialect)
+#+Include "./springRacket.rkt
+* Github Update
+  1. Fork/Clone
+  2. Set upstream for tracking changes
+  3. Merging
+  4. Branches
+  5. Committing and Pushing
+  6. Pull Request
+* Integrate and Fire Neurons
+** General Background
+   1. What is an action potential?
+   2. What electrolyte provides the resting potential? Why?
+   3. What explains the action potential? Why?
+   4. Repolarization? How?
+   5. How does this relate to the computing metaphor?
+   6. What is the difference between a "rate" code and a "timing" code?
+** Circuit Background
+   Divide into groups:
+   1. Present [[https://en.wikipedia.org/wiki/Ohm's_law][Ohm's]] Law. What is it? Where did it come from?
+   2. Present [[https://en.wikipedia.org/wiki/Kirchhoff's_circuit_laws][Kirchoff's]] Law. What is it? Where did it come from?
+   3. Present the notation of electrical circuits. How can we include these in Word and [[http://www.texample.net/tikz/examples/area/electrical-engineering/][LaTeX]] documents?
+   4. What is a capacitance? What is a resistance/conductance? How is resistance affected by being in parallel or in series?
+   5. What is the history ([[http://homepages.inf.ed.ac.uk/mvanross/reprints/lapicque_trans.pdf][pdf]]) of the integrate and fire neuron model? Early uses? Why is it called, what it is? /Integrate/ and /Fire/?
+   6. Why is this circuit stuff relevant to the I&F neuron?
+** Build the Model
+   :Properties:
+   :CUSTOM_ID: eqn-iandf
+   :End:
+   The formula for the voltage of the model is:
+   \begin{equation}
+   \tau \frac{dV(t)}{dt} = RI(t) - V(t)
+   \end{equation}
+*** Preliminaries and questions:
+    1. What is R?
+    2. What is tau?
+    3. What might you choose as their values to get going?
+    4. How do you use this formula to plot the time varying voltage of the neuron?
+    5. If you could solve this formula analytically what mathematical "friend" do you think you would find and why?
+    6. Does this model have a refractory period? Should it? If it doesn't, can you give it one?
+** Spreadsheet Example
+   Link to [[./../IandF/iAndF.xls][Spreadsheet]]
+* Hodgkin-Huxley
+  [[./../HandH/hhIntroPD.org][Link]] to org file
+* Assignment 
+  TBD
