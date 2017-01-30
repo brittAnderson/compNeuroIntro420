@@ -66,7 +66,6 @@ Note: the remote-name can be whatever you like. Your current "remote" is the one
 \end{enumerate}
 
 \textbf{\item Add any new files to be tracked and commit those changes}\\
-
 \textit{If you have added a new file to the repository, you will need to add it to start tracking it, however, if you have just made changes to an existing file you do not have to re-add that file. Type the following to see the status of the tracked and untracked files in your repo:}
 
 \begin{center} \verb|git status| \end{center} 
@@ -74,11 +73,10 @@ Note: the remote-name can be whatever you like. Your current "remote" is the one
 \item Type the following into the command line to add a file to be tracked in your repository:
 \begin{center} \verb|git add file-name| \end{center} 
 \item Type the following into the command line to commit the changes from all the tracked files and to add a message describing what kind of changes went into the commit
-\begin{center} \verb|git commit -m "Your commit message here"| \end{center} 
-
+\begin{center} \verb|git commit -a -m "Your commit message here"| \end{center} 
+Note: \verb|-a| means to commit all files changed (you can also just put the filename you'd like changed instead), \verb|-m| is shorthand to indicate the commit message is coming up.
 \end{enumerate}
 \textbf{\item Push the changes into your forked repository}\\
-
 \textit{This will push whatever changes you have committed on your machine to the forked repository on the web.}
 \begin{enumerate}
 \item Type the following into the command line:
