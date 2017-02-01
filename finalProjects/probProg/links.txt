@@ -1,0 +1,5 @@
+Probabilistic programming in python
+
+http://nbviewer.jupyter.org/github/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/blob/master/Chapter2_MorePyMC/Ch2_MorePyMC_PyMC2.ipynb
+
+https://probmods.org/generative-models.html

@@ -1,0 +1,7 @@
+Models of memory
+
+https://memory.psych.mun.ca/models/simple/simple.shtml
+
+http://homepages.warwick.ac.uk/staff/G.D.A.Brown/simple/
+
+http://www.pymvpa.org/examples/som.html

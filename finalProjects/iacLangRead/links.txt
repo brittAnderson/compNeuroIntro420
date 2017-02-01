@@ -1,0 +1,7 @@
+Interactive Activation Model of Word Reading (PDP) and Natural Language Processing
+
+https://web.stanford.edu/group/pdplab/originalpdphandbook/Chapter%207.pdf
+
+http://web.stanford.edu/group/pdplab/pdphandbook/handbookch3.html#x7-320002.3
+
+http://www.nltk.org/book/ch01.html
