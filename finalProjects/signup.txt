@@ -4,9 +4,9 @@ Instructions: Look at some of the links in the individual project subfolders to 
 
 IACLangRead
 1.
-2.
+2. 
 3.
-4.
+4. Sayana Izmailova
 5.
 
 Agents
@@ -17,7 +17,7 @@ Agents
 5.
 
 ProbProg
-1.
+1. 
 2.
 3.
 4.
