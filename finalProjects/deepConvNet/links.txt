@@ -1,0 +1,4 @@
+Theano logistic regression digits
+
+http://deeplearning.net/tutorial/logreg.htm
+
