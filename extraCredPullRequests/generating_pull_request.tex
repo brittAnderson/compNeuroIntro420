@@ -1,0 +1,107 @@
+\documentclass[11pt]{article}
+\title{Generating a Pull Request}
+\author{Grace Sim}
+\date{}
+
+\usepackage{geometry}
+\geometry{a4paper, portrait, margin=1in}
+
+\usepackage{graphicx}
+\graphicspath{ {./Latex_images/} }
+
+\begin{document}
+\maketitle
+\section*{What is Git?}
+In short, Git is a system used to share code or documents and is useful for version control. It's like a supercharged version of Google Drive, that allows people to have their own copies of repositories (i.e., repo; essentially, folders) which they can edit without having fear of ruining someone else's work. \textsc{GitHub} is one of many web-based Git systems and is what we will be using.
+
+\section*{Pull Request}
+The following steps will help you do a pull request to a repository. This assumes you already have Git installed on your machine and already have a \textsc{GitHub} account.
+
+\begin{enumerate}
+
+\item \textbf{Find the repo you would like to work off of}
+
+ \includegraphics[width=\textwidth]{repo}
+
+\textbf{\item Fork the repo into your own account}
+
+\includegraphics{fork}	
+
+		\textit{This will create a copy of the repo into your \textsc{GitHub} web account}
+	
+\textbf{\item Clone the repo onto your machine}
+
+\includegraphics[scale=0.8]{clone}
+
+\textit{This will create a copy of the forked repo onto your machine so that you can easily make changes}
+
+\begin{enumerate}
+\item Copy the URL under "Clone with HTTPS" 
+\item In your terminal enter the following code within the directory you would like the repo to reside in: 
+
+\center \verb|git clone enter-URL-here|
+
+\end{enumerate}
+	
+\textbf{\item Create a remote to the original repo so that you can track all changes from it}\\
+
+\textit{This allows you to track whatever changes happen in the original repo that you have forked off of so that you don't miss anything}
+\begin{enumerate}
+\item In your terminal enter the following code within your Git connected directory\\
+
+Note: the remote-name can be whatever you like. Your current "remote" is the one that you have cloned onto your machine and is likely called 'origin' if you have not renamed it. So call it something other than origin. The "original-repo-URL" is the same HTTPS URL you used to clone the repository
+
+\begin{center} 
+\verb|git remote add remote-name original-repo-URL| 
+\end{center}
+\item You can check that you've done this correctly by typing the following in your command line. If you see your two remotes, origin and remote-name, you've done it!
+
+\center \verb|git remote|
+
+\end{enumerate}
+	
+\textbf{\item Make changes in your machine's Git repository}
+\begin{enumerate}
+\item Add a file that you would like to see on the master branch of the repo so that you can share your work with others
+\end{enumerate}
+
+\textbf{\item Add any new files to be tracked and commit those changes}\\
+\textit{If you have added a new file to the repository, you will need to add it to start tracking it, however, if you have just made changes to an existing file you do not have to re-add that file. Type the following to see the status of the tracked and untracked files in your repo:}
+
+\begin{center} \verb|git status| \end{center} 
+\begin{enumerate}
+\item Type the following into the command line to add a file to be tracked in your repository:
+\begin{center} \verb|git add file-name| \end{center} 
+\item Type the following into the command line to commit the changes from all the tracked files and to add a message describing what kind of changes went into the commit
+\begin{center} \verb|git commit -a -m "Your commit message here"| \end{center} 
+Note: \verb|-a| means to commit all files changed (you can also just put the filename you'd like changed instead), \verb|-m| is shorthand to indicate the commit message is coming up.
+\end{enumerate}
+\textbf{\item Push the changes into your forked repository}\\
+\textit{This will push whatever changes you have committed on your machine to the forked repository on the web.}
+\begin{enumerate}
+\item Type the following into the command line:
+\begin{center} \verb|git push origin| \end{center} 
+
+
+\end{enumerate}
+\textbf{\item Generate a pull request}\\
+\textit{A pull request will be sent to the owner of the original repository and the changes may be merged into the new repository, if they allow it}
+
+\begin{enumerate}
+\item On your forked repo on the GitHub website, click "New Pull Request" and it will take you to a page that looks like this:\\\\
+\includegraphics[width=\textwidth]{pullrequest}\\
+\item Create the pull request
+\end{enumerate}
+\end{enumerate}
+
+\noindent \Large{Note: If the following error appears, set up your email and username:}\\\\
+\includegraphics[width=\textwidth]{error}\\
+\begin{verbatim}
+git config --global user.email "your-email@email.com"
+git config --global user.name "your-git-username"
+\end{verbatim}
+
+
+
+\end{document}
+\pdflatex
