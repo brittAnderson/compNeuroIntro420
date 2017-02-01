@@ -25,14 +25,14 @@ ProbProg
 6.
 
 Memory
-1.
+1. Grace Sim
 2.
 3.
 4.
 5.
 
 DeepConvNet
-1.
+1.Chris Malecki
 2.
 3.
 4.
