@@ -1,0 +1,40 @@
+Sign-up List
+
+Instructions: Look at some of the links in the individual project subfolders to give yourself an idea of what a project could look like, and a bit of an idea of the topic. Then add your name with a pull request. DO NOT change the number of available members for each project. Get with your group as soon as possible to map out a general idea/plan and run it by me to make sure it is okay. Any material you want other students to have you can put in the subfolders here. Ultimately you will have to make a 30 minute presentation to the class giving some background, some code, and some statement of purpose. 
+
+IACLangRead
+1. Sebastien Lauzon
+2. 
+3. Amanda Assi
+4. Sayana Izmailova
+5.
+
+Agents
+1.Justin Leung
+2.Martin Turpin
+3.
+4.
+5.
+
+ProbProg
+1. Moeza Merchant 
+2.
+3.
+4.
+5.
+6.
+
+Memory
+1. Grace Sim
+2.
+3.
+4.
+5.
+
+DeepConvNet
+1.Chris Malecki
+2.
+3.
+4.
+5.
+6.
