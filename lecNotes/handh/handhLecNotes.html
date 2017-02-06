@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-02-01 Wed 19:22 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title></title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Britt Anderson" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org1b403c0">1. Notes from week prior</a>
+<ul>
+<li><a href="#org41c86a0">1.1. Integrate and Fire Models are still current research</a></li>
+<li><a href="#orgbb0d398">1.2. Collaboration</a></li>
+<li><a href="#org32c3044">1.3. Commenting Code</a></li>
+</ul>
+</li>
+<li><a href="#org4040cf9">2. Who were Hodgkin and Huxley</a>
+<ul>
+<li><a href="#org2d64576">2.1. Alan Lloyd Hodgkin</a></li>
+<li><a href="#orgfdd2676">2.2. Andrew F. Huxley</a></li>
+</ul>
+</li>
+<li><a href="#orge86c573">3. The Hodgkin - Huxley Model</a>
+<ul>
+<li><a href="#orge140062">3.1. Empirical Routes</a>
+<ul>
+<li><a href="#org63dd708">3.1.1. How they did it</a></li>
+<li><a href="#org53fd58c">3.1.2. Further background</a></li>
+<li><a href="#orgb5c8812">3.1.3. Recall the I and F</a></li>
+<li><a href="#org6e499c0">3.1.4. Now look at the equation</a></li>
+<li><a href="#orgee54950">3.1.5. Why Care?</a></li>
+<li><a href="#org86ca5e7">3.1.6. Nuances</a></li>
+<li><a href="#org17ee01f">3.1.7. Trying it out</a></li>
+<li><a href="#org0aa27bf">3.1.8. Encouragement</a></li>
+<li><a href="#org0307ca9">3.1.9. A helpful resource</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgba256d3">4. Assignment</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1b403c0" class="outline-2">
+<h2 id="org1b403c0"><span class="section-number-2">1</span> Notes from week prior</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-org41c86a0" class="outline-3">
+<h3 id="org41c86a0"><span class="section-number-3">1.1</span> Integrate and Fire Models are still current research</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+<a href="http://biorxiv.org/content/early/2017/01/31/104703?rss=1#abstract-1">http://biorxiv.org/content/early/2017/01/31/104703?rss=1#abstract-1</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgbb0d398" class="outline-3">
+<h3 id="orgbb0d398"><span class="section-number-3">1.2</span> Collaboration</h3>
+<div class="outline-text-3" id="text-1-2">
+<ol class="org-ol">
+<li>You learn by teaching</li>
+<li>Research is collaboration</li>
+<li>Teams are smarter than individuals</li>
+<li>The good life is not lived on Survivor Island</li>
+<li>Team Assignments</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org32c3044" class="outline-3">
+<h3 id="org32c3044"><span class="section-number-3">1.3</span> Commenting Code</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> plt
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Define all of our time variables</span>
+<span style="color: #a0522d;">delta_t</span> = 0.1
+<span style="color: #a0522d;">t</span> = 0.0
+<span style="color: #a0522d;">t_refractory</span> = 3    <span style="color: #b22222;"># </span><span style="color: #b22222;">Refractory period after a spike has occurred</span>
+<span style="color: #a0522d;">t_rest</span> = -1         <span style="color: #b22222;"># </span><span style="color: #b22222;">The current rest time</span>
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Define variables for the integrate and fire equation</span>
+<span style="color: #a0522d;">voltage</span> = 0.0
+<span style="color: #a0522d;">resistance</span> = 5
+<span style="color: #a0522d;">tau</span> = 10
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Define variables for the spike and threshold</span>
+<span style="color: #a0522d;">threshold</span> = 4
+<span style="color: #a0522d;">spike</span> = 2
+<span style="color: #a0522d;">spiking</span> = <span style="color: #008b8b;">False</span>     <span style="color: #b22222;"># </span><span style="color: #b22222;">Whether or not we are currently spiking</span>
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Initialization of our arrays</span>
+<span style="color: #a0522d;">voltages</span> = [voltage]
+<span style="color: #a0522d;">times</span> = [t]
+<span style="color: #a0522d;">current</span> = []
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Setup some default currents. We append some zeroes to the beginning to offset the graph</span>
+<span style="color: #a020f0;">for</span> y <span style="color: #a020f0;">in</span> <span style="color: #483d8b;">range</span>(0, 500):
+    <span style="color: #a020f0;">if</span> y &gt; 50:
+        current.append(1)
+    <span style="color: #a020f0;">else</span>:
+        current.append(0)
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Loop through the function</span>
+<span style="color: #a020f0;">for</span> z <span style="color: #a020f0;">in</span> <span style="color: #483d8b;">range</span>(1, 500):
+    <span style="color: #b22222;"># </span><span style="color: #b22222;">If we are not in a resting time (after a spike), calculate the next voltage,</span>
+    <span style="color: #b22222;"># </span><span style="color: #b22222;">otherwise use the voltage from the previous step (0)</span>
+    <span style="color: #a020f0;">if</span> t &gt; t_rest:
+        <span style="color: #a0522d;">voltage</span> = voltages[z-1] + (((resistance * current[z-1]) - voltages[z-1]) / tau) * delta_t
+    <span style="color: #a020f0;">else</span>:
+        <span style="color: #a0522d;">voltage</span> = voltages[z-1]
+
+    <span style="color: #b22222;"># </span><span style="color: #b22222;">If the voltage is above our threshold, check if we are already spiking. If we are,</span>
+    <span style="color: #b22222;"># </span><span style="color: #b22222;">set the voltage back to zero, say that we are no longer spiking, and set a resting period</span>
+    <span style="color: #b22222;"># </span><span style="color: #b22222;">during which the voltage will not change. Otherwise, if we are not already spiking but we</span>
+    <span style="color: #b22222;"># </span><span style="color: #b22222;">are above the threshold, and the spike voltage, then indicate we are spiking</span>
+    <span style="color: #a020f0;">if</span> voltage &gt; threshold:
+        <span style="color: #a020f0;">if</span> spiking:
+            <span style="color: #a0522d;">voltage</span> = 0
+            <span style="color: #a0522d;">spiking</span> = <span style="color: #008b8b;">False</span>
+            <span style="color: #a0522d;">t_rest</span> = t + t_refractory
+        <span style="color: #a020f0;">else</span>:
+            <span style="color: #a0522d;">voltage</span> += spike
+            <span style="color: #a0522d;">spiking</span> = <span style="color: #008b8b;">True</span>
+
+    <span style="color: #b22222;"># </span><span style="color: #b22222;">Append the new voltage to the array</span>
+    voltages.append(voltage)
+
+    <span style="color: #b22222;"># </span><span style="color: #b22222;">Calculate the new time and append it to our time array</span>
+    <span style="color: #a0522d;">t</span> = times[z-1] + delta_t
+    times.append(t)
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">Plot the results</span>
+plt.plot(times, voltages)
+plt.axis([0, t, -1, 7])
+plt.xlabel(<span style="color: #8b2252;">'Time'</span>)
+plt.ylabel(<span style="color: #8b2252;">'Voltage'</span>)
+plt.show()
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org4040cf9" class="outline-2">
+<h2 id="org4040cf9"><span class="section-number-2">2</span> Who were Hodgkin and Huxley</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-org2d64576" class="outline-3">
+<h3 id="org2d64576"><span class="section-number-3">2.1</span> Alan Lloyd Hodgkin</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>(1914 - 1998)</li>
+<li>1939 begins collaboration with Huxley (most of the war worked on radar)</li>
+<li>Work was published in the early 50's and received Nobel 1963</li>
+<li>Bio 
+Hodgkin Father died during WWI. At 18 he entered Trinity College, Cambridge. He had family that were historians and he wavered between history and science. Began his studies of electrophysiology with the shore crab. Learned to dissect squid axons at Woods Hole. Brief anecdotal digression here about Woods Hole.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfdd2676" class="outline-3">
+<h3 id="orgfdd2676"><span class="section-number-3">2.2</span> Andrew F. Huxley</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>1917</li>
+<li>Attended Westminster School and then Trinity College, Cambridge.</li>
+<li>Went to Cambridge with a concentration in Physical Sciences</li>
+<li>Rules required him to take a natural science course and he chose physiology.</li>
+<li>Thought about changing to medicine.</li>
+<li>When war began, switched from medical to operational research in gunnery.</li>
+<li>Bio 
+Huxley Father was Thomas Huxley, children of his first marriage included Julian Huxley and Aldous Huxley. Had started in classics before converting to science.</li>
+<li>Important Points
+Emphasize Emphasize the cross disciplinary nature of both of their training. Also, how they did not just stay camped out at Cambridge, but traveled to learn new skills and techniques. Note also that the new technological developments played a key role in their progress and approach. Neither was trained as a neurophysiologist. They learned what they needed to learn.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orge86c573" class="outline-2">
+<h2 id="orge86c573"><span class="section-number-2">3</span> The Hodgkin - Huxley Model</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orge140062" class="outline-3">
+<h3 id="orge140062"><span class="section-number-3">3.1</span> Empirical Routes</h3>
+<div class="outline-text-3" id="text-3-1">
+</div><div id="outline-container-org63dd708" class="outline-4">
+<h4 id="org63dd708"><span class="section-number-4">3.1.1</span> How they did it</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+<a href="./squidHodgkin.mov">./squidHodgkin.mov</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org53fd58c" class="outline-4">
+<h4 id="org53fd58c"><span class="section-number-4">3.1.2</span> Further background</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+Calculators are Human Too. It took them only a month, in a laboratory damaged by air raids in 1941 but subsequently repaired, to record all the data that they used for their five key papers. Took them two years to settle on the equations and parameters that they were going to use. They generated their fits from the resting state, and then "applied" a stimulus to see if it generated an action potential.
+</p>
+
+<p>
+H and H had hoped to used the EDSAC, one of the first electronic computers in England, but it was undergoing major modifications, so they solved the equations numerically with a mechanical Brunsviga desk calculator. This meant that each calculation took a matter of days. For action potentials it was a matter of weeks.
+</p>
+
+<p>
+Moral: data is critical, but the amount of time spent in planning for its collection and analyzing it usually far exceeds the actual collection time.
+</p>
+
+<p>
+Moral: test with a subset of data and using remaining data as a test of the model.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb5c8812" class="outline-4">
+<h4 id="orgb5c8812"><span class="section-number-4">3.1.3</span> Recall the I and F</h4>
+<div class="outline-text-4" id="text-3-1-3">
+<p>
+The Hodgkin and Huxley Model Recall our integrate and fire model: \[I_{total}(t) = I_{c}(t) + \sum_i I_i (t),\] where the \(i\) refers to all other sources of current.
+</p>
+
+<p>
+The $i$'s reflect Na, K, and a "Leak" (or fudge factor).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6e499c0" class="outline-4">
+<h4 id="org6e499c0"><span class="section-number-4">3.1.4</span> Now look at the equation</h4>
+<div class="outline-text-4" id="text-3-1-4">
+<p>
+\[\sum_i I(t) = \bar{g}_{Na} m^3 h (V(t) - E_{Na}) + \bar{g}_{K} n^4 (V(t) - E_{K}) + \bar{g}_{L} (V(t) - E_{L})\]
+</p>
+
+<p>
+Comments on H&amp;H Note that the equations are explicitly time varying. Question: What is the alternative way of expressing the capacitive current that we have learned? 
+</p>
+
+<p>
+Answer: $= C\frac{dV}{dt}.$
+</p>
+
+<p>
+Using Ohm's law (Question: What is Ohm's Law? Answer: $V=IR.$) we can restate the currents in terms of conductances (inverse of resistance) and voltage. Note that the equations become complex because each of the currents is voltage dependent; the currents change depending on the voltage, because the conductances change based on the voltage.
+</p>
+
+<p>
+\(g\) is the conventional abbreviation for conductance. The common way to write the model is by using \(\bar{g}\) 's, which are the conductances at maximum. Question: What do the \(E_{\cdot}\) 's represent? May have to try and lead them to this by having them consider what happens to the sign of each term when the \(E>V(t)\) Answer: Ion dependent reversal potential.
+</p>
+
+<p>
+What are the \(m\) 's, \(n\) 's, and \(h\) 's?
+</p>
+
+<ul class="org-ul">
+<li>Hypothesized to represent the probability of channel opening.</li>
+<li>The actual numbers came from data fitting.</li>
+<li>Each of the \(m\), \(n\), and \(h\) has its own differential equation.</li>
+<li>\(\dot{m} = \alpha_m (V)(1 - m) - \beta_m (V) m\)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgee54950" class="outline-4">
+<h4 id="orgee54950"><span class="section-number-4">3.1.5</span> Why Care?</h4>
+<div class="outline-text-4" id="text-3-1-5">
+<p>
+<b>Predictive Power</b>
+</p>
+
+<p>
+When the sodium and potassium channels where finally sequenced how many subunits were they discovered to have? Answer: 4.
+</p>
+
+<p>
+Moral: If you can predict something before you know it, then you have a powerful model.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org86ca5e7" class="outline-4">
+<h4 id="org86ca5e7"><span class="section-number-4">3.1.6</span> Nuances</h4>
+<div class="outline-text-4" id="text-3-1-6">
+<p>
+Question: What does the dot over the \(m\) mean? Answer: derivative with respect to time.
+</p>
+
+<p>
+Each of the \(m\), \(n\), and \(h\) have the identical formula. Just substitute the proper subscripts. The values of the $&alpha;$'s and $ &beta; $'s are, again, empirically, determined.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org17ee01f" class="outline-4">
+<h4 id="org17ee01f"><span class="section-number-4">3.1.7</span> Trying it out</h4>
+<div class="outline-text-4" id="text-3-1-7">
+<p>
+The Hodgkin - Huxley Model in Action
+</p>
+<ul class="org-ul">
+<li><a href="http://fodorwebsite.appspot.com//HHModel.htm">http://fodorwebsite.appspot.com//HHModel.htm</a></li>
+<li>Classroom assignment:
+<ul class="org-ul">
+<li>Play with it anyway you want.</li>
+<li>Open options panel and decrease the Sodium channels to 35%. What
+happens to the action potential? Why? What happens to the
+Potassium current? Why?</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0aa27bf" class="outline-4">
+<h4 id="org0aa27bf"><span class="section-number-4">3.1.8</span> Encouragement</h4>
+<div class="outline-text-4" id="text-3-1-8">
+<p>
+Modeling
+</p>
+<ul class="org-ul">
+<li>You will make mistakes. Check your numbers carefully.</li>
+<li>You will make mistakes. Check your cell references carefully.</li>
+<li>You will make mistakes. The HH model is very finicky about the numbers. If you get it to work, try changing a few.</li>
+<li>This is a hard algorithm to code, because everything depends on something else.</li>
+</ul>
+
+<p>
+How do you know where to start?
+</p>
+<ul class="org-ul">
+<li>If you allow \(t \rightarrow \infty \mbox{, then } \frac{dV}{dt}=\)?</li>
+<li>You assume that it goes to zero; that is, you reach steady state. Then you can solve for some of the constants.</li>
+<li>Where do the constants come from?</li>
+<li>They come from experiments, and you use what you are given.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0307ca9" class="outline-4">
+<h4 id="org0307ca9"><span class="section-number-4">3.1.9</span> A helpful resource</h4>
+<div class="outline-text-4" id="text-3-1-9">
+<p>
+The Chapter in Gerstner's textbook is where I got most of my details. It provides many helpful ideas as you work to implement this model. Find a link to the pertinent chapter <a href="http://neuronaldynamics.epfl.ch/online/Ch2.S2.html">here</a>.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgba256d3" class="outline-2">
+<h2 id="orgba256d3"><span class="section-number-2">4</span> Assignment</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Go to the spreadsheet assignment and review with them what is expected. They are welcome to work from a template if they desire, but I tried to work with someone else's and I never got things to work right. It seemed better to start from scratch. Especially, when I had to change things; I knew what columns went with what. I found the most helpful resource the Gerstner chapter.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Britt Anderson</p>
+<p class="date">Created: 2017-02-01 Wed 19:22</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
