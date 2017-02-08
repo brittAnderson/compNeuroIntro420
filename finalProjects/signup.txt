@@ -35,6 +35,6 @@ DeepConvNet
 1.Chris Malecki
 2.Akshaya Suresh
 3.Caidence Paleske
-4.
+4.Winnie Tran
 5.
 6.
