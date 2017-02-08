@@ -10,8 +10,8 @@ IACLangRead
 5.
 
 Agents
-1.Justin Leung
-2.Martin Turpin
+1. Justin Leung
+2. Martin Turpin
 3.
 4.
 5.
@@ -32,9 +32,9 @@ Memory
 5. Hanbin Go
 
 DeepConvNet
-1.Chris Malecki
-2.Akshaya Suresh
-3.Caidence Paleske
-4.Winnie Tran
-5.
+1. Chris Malecki
+2. Akshaya Suresh
+3. Caidence Paleske
+4. Winnie Tran
+5. Ross Weir
 6.
