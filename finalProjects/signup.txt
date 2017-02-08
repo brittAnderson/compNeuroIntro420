@@ -34,7 +34,7 @@ Memory
 DeepConvNet
 1.Chris Malecki
 2.
-3.
+3. Ross Weir
 4.
 5.
 6.
