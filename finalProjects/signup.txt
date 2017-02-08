@@ -21,7 +21,7 @@ ProbProg
 2. Jatheesh Srikantharajah
 3.
 4.
-5.
+5. Colin Whaley
 6.
 
 Memory
