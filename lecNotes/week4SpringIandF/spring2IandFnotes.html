@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-01-27 Fri 09:54 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Notes for Class</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Britt Anderson" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Notes for Class</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orga9a49e5">1. Homework Springs</a>
+<ul>
+<li><a href="#orge94a942">1.1. Example Spreadsheet</a></li>
+<li><a href="#orgcfb7a0c">1.2. Example Code</a>
+<ul>
+<li><a href="#org22d2ebb">1.2.1. R</a></li>
+<li><a href="#orge5742b3">1.2.2. Python</a></li>
+<li><a href="#org45e52f4">1.2.3. Racket (a lisp dialect)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org4afd7ce">2. Github Update</a></li>
+<li><a href="#org6f6e400">3. Integrate and Fire Neurons</a>
+<ul>
+<li><a href="#org60b3a98">3.1. General Background</a></li>
+<li><a href="#orgd0618ae">3.2. Circuit Background</a></li>
+<li><a href="#eqn-iandf">3.3. Build the Model</a>
+<ul>
+<li><a href="#orgb5dbe50">3.3.1. Preliminaries and questions:</a></li>
+</ul>
+</li>
+<li><a href="#org5f3ef6a">3.4. Spreadsheet Example</a></li>
+</ul>
+</li>
+<li><a href="#org153f0df">4. Hodgkin-Huxley</a></li>
+<li><a href="#org4fc6a30">5. Assignment</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga9a49e5" class="outline-2">
+<h2 id="orga9a49e5"><span class="section-number-2">1</span> Homework Springs</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orge94a942" class="outline-3">
+<h3 id="orge94a942"><span class="section-number-3">1.1</span> Example Spreadsheet</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+<a href="./accelerationFixedFinal-student.xlsx">./accelerationFixedFinal-student.xlsx</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcfb7a0c" class="outline-3">
+<h3 id="orgcfb7a0c"><span class="section-number-3">1.2</span> Example Code</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-org22d2ebb" class="outline-4">
+<h4 id="org22d2ebb"><span class="section-number-4">1.2.1</span> R</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<div class="org-src-container">
+<pre class="src src-R"><span style="color: #b22222;">#</span><span style="color: #b22222;">Spring oscillator</span>
+<span style="color: #b22222;">#</span><span style="color: #b22222;">Let t be time, s be position wrt equilibrium, v be velocity, a be acceleration and p be a constant where a = -ps(t)</span>
+t <span style="color: #008b8b;">&lt;-</span> 0
+t_column <span style="color: #008b8b;">&lt;-</span> c()
+s <span style="color: #008b8b;">&lt;-</span> 10
+s_column <span style="color: #008b8b;">&lt;-</span> c()
+v <span style="color: #008b8b;">&lt;-</span> 0
+v_column <span style="color: #008b8b;">&lt;-</span> c()
+p <span style="color: #008b8b;">&lt;-</span> 1.5
+a <span style="color: #008b8b;">&lt;-</span> -1*p*s
+a_column <span style="color: #008b8b;">&lt;-</span> c()
+<span style="color: #b22222;">#</span><span style="color: #b22222;">loop</span>
+<span style="color: #a020f0;">while</span> (t &lt; 20){
+
+  t_column<span style="color: #008b8b;">&lt;-</span>c(t_column,t)
+  t <span style="color: #008b8b;">&lt;-</span> t+0.2
+
+  s_column<span style="color: #008b8b;">&lt;-</span>c(s_column,s)
+  s <span style="color: #008b8b;">&lt;-</span> s+(v*0.2)
+
+  a_column<span style="color: #008b8b;">&lt;-</span>c(a_column,a)
+  a <span style="color: #008b8b;">&lt;-</span> -1*p*s
+
+  v_column<span style="color: #008b8b;">&lt;-</span>c(v_column,v)
+  v <span style="color: #008b8b;">&lt;-</span> v+(a*0.2)
+
+}
+print(t_column)
+print(s_column)
+print(a_column)
+print(v_column)
+plot(t_column,a_column,type = <span style="color: #8b2252;">"l"</span>,lty = 2,col=<span style="color: #8b2252;">"blue"</span>)
+lines(t_column,v_column,lty = 4,col=<span style="color: #8b2252;">"green"</span>)
+lines(t_column,s_column,lty = 1,col = <span style="color: #8b2252;">"black"</span>)
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="r.png" alt="r.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge5742b3" class="outline-4">
+<h4 id="orge5742b3"><span class="section-number-4">1.2.2</span> Python</h4>
+<div class="outline-text-4" id="text-1-2-2">
+</div><ol class="org-ol"><li><a id="org25f8ee4"></a>Harmonic Oscillator<br  /><div class="outline-text-5" id="text-1-2-2-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a0522d;">P</span> = -10
+<span style="color: #a0522d;">Q</span> = -2
+<span style="color: #a0522d;">dt</span> = 0.05
+<span style="color: #a0522d;">s</span> = 1
+<span style="color: #a0522d;">vInit</span> = 0.0
+<span style="color: #a0522d;">t</span> = [0.0]
+<span style="color: #a0522d;">dist</span> = [s]
+<span style="color: #a0522d;">veloc</span> = [vInit]
+<span style="color: #a0522d;">accel</span> = [P*s]
+<span style="color: #a020f0;">for</span> n <span style="color: #a020f0;">in</span> <span style="color: #483d8b;">range</span>(1,150):
+   accel.append(dist[-1]*P)
+   veloc.append(accel[-1]*dt + veloc[-1])
+   dist.append(veloc[-1]*dt + dist[-1])
+   t.append(n * dt)
+<span style="color: #a020f0;">import</span> matplotlib
+matplotlib.use(<span style="color: #8b2252;">'SVG'</span>)
+<span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> p
+<span style="color: #a0522d;">fig</span> = p.figure(figsize=(3,3))
+p.plot(t,dist)
+p.savefig(<span style="color: #8b2252;">'./pyH.svg'</span>)
+<span style="color: #a020f0;">return</span> <span style="color: #8b2252;">'./pyH.svg'</span>
+</pre>
+</div>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./pyH.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+</div></li>
+
+<li><a id="orgfdff97b"></a>Damped Oscillator<br  /><div class="outline-text-5" id="text-1-2-2-2">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a0522d;">P</span> = -10
+<span style="color: #a0522d;">Q</span> = -2
+<span style="color: #a0522d;">dt</span> = 0.05
+<span style="color: #a0522d;">s</span> = 1
+<span style="color: #a0522d;">vInit</span> = 0.0
+<span style="color: #a0522d;">t</span> = [0.0]
+<span style="color: #a0522d;">dist</span> = [s]
+<span style="color: #a0522d;">veloc</span> = [vInit]
+<span style="color: #b22222;">#</span><span style="color: #b22222;">accel = [P*s]</span>
+<span style="color: #a0522d;">accel</span> = [P*s + Q*veloc[-1]]
+<span style="color: #a020f0;">for</span> n <span style="color: #a020f0;">in</span> <span style="color: #483d8b;">range</span>(1,150):
+   <span style="color: #b22222;">#</span><span style="color: #b22222;">accel.append(dist[-1]*P)</span>
+   accel.append(dist[-1]*P + veloc[-1]*Q)
+   veloc.append(accel[-1]*dt + veloc[-1])
+   dist.append(veloc[-1]*dt + dist[-1])
+   t.append(n * dt)
+<span style="color: #a020f0;">import</span> matplotlib
+matplotlib.use(<span style="color: #8b2252;">'SVG'</span>)
+<span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> p
+<span style="color: #a0522d;">fig</span> = p.figure(figsize=(3,3))
+p.plot(t,dist)
+p.savefig(<span style="color: #8b2252;">'./pyD.svg'</span>)
+<span style="color: #a020f0;">return</span> <span style="color: #8b2252;">'./pyD.svg'</span>
+</pre>
+</div>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./pyD.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+</div></li></ol>
+</div>
+
+<div id="outline-container-org45e52f4" class="outline-4">
+<h4 id="org45e52f4"><span class="section-number-4">1.2.3</span> Racket (a lisp dialect)</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+#+Include "./springRacket.rkt
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org4afd7ce" class="outline-2">
+<h2 id="org4afd7ce"><span class="section-number-2">2</span> Github Update</h2>
+<div class="outline-text-2" id="text-2">
+<ol class="org-ol">
+<li>Fork/Clone</li>
+<li>Set upstream for tracking changes</li>
+<li>Merging</li>
+<li>Branches</li>
+<li>Committing and Pushing</li>
+<li>Pull Request</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org6f6e400" class="outline-2">
+<h2 id="org6f6e400"><span class="section-number-2">3</span> Integrate and Fire Neurons</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-org60b3a98" class="outline-3">
+<h3 id="org60b3a98"><span class="section-number-3">3.1</span> General Background</h3>
+<div class="outline-text-3" id="text-3-1">
+<ol class="org-ol">
+<li>What is an action potential?</li>
+<li>What electrolyte provides the resting potential? Why?</li>
+<li>What explains the action potential? Why?</li>
+<li>Repolarization? How?</li>
+<li>How does this relate to the computing metaphor?</li>
+<li>What is the difference between a "rate" code and a "timing" code?</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgd0618ae" class="outline-3">
+<h3 id="orgd0618ae"><span class="section-number-3">3.2</span> Circuit Background</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Divide into groups:
+</p>
+<ol class="org-ol">
+<li>Present <a href="https://en.wikipedia.org/wiki/Ohm's_law">Ohm's</a> Law. What is it? Where did it come from?</li>
+<li>Present <a href="https://en.wikipedia.org/wiki/Kirchhoff's_circuit_laws">Kirchoff's</a> Law. What is it? Where did it come from?</li>
+<li>Present the notation of electrical circuits. How can we include these in Word and <a href="http://www.texample.net/tikz/examples/area/electrical-engineering/">LaTeX</a> documents?</li>
+<li>What is a capacitance? What is a resistance/conductance? How is resistance affected by being in parallel or in series?</li>
+<li>What is the history (<a href="http://homepages.inf.ed.ac.uk/mvanross/reprints/lapicque_trans.pdf">pdf</a>) of the integrate and fire neuron model? Early uses? Why is it called, what it is? <i>Integrate</i> and <i>Fire</i>?</li>
+<li>Why is this circuit stuff relevant to the I&amp;F neuron?</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org56dda7e" class="outline-3">
+<h3 id="eqn-iandf"><a id="org56dda7e"></a><span class="section-number-3">3.3</span> Build the Model</h3>
+<div class="outline-text-3" id="text-eqn-iandf">
+<p>
+The formula for the voltage of the model is:
+</p>
+\begin{equation}
+\tau \frac{dV(t)}{dt} = RI(t) - V(t)
+\end{equation}
+</div>
+<div id="outline-container-orgb5dbe50" class="outline-4">
+<h4 id="orgb5dbe50"><span class="section-number-4">3.3.1</span> Preliminaries and questions:</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<ol class="org-ol">
+<li>What is R?</li>
+<li>What is tau?</li>
+<li>What might you choose as their values to get going?</li>
+<li>How do you use this formula to plot the time varying voltage of the neuron?</li>
+<li>If you could solve this formula analytically what mathematical "friend" do you think you would find and why?</li>
+<li>Does this model have a refractory period? Should it? If it doesn't, can you give it one?</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org5f3ef6a" class="outline-3">
+<h3 id="org5f3ef6a"><span class="section-number-3">3.4</span> Spreadsheet Example</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+Link to <a href="./../IandF/iAndF.xls">Spreadsheet</a>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org153f0df" class="outline-2">
+<h2 id="org153f0df"><span class="section-number-2">4</span> Hodgkin-Huxley</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+<a href="./../HandH/hhIntroPD.html">Link</a> to org file
+</p>
+</div>
+</div>
+<div id="outline-container-org4fc6a30" class="outline-2">
+<h2 id="org4fc6a30"><span class="section-number-2">5</span> Assignment</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+TBD
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2017-01-24 Tue 00:00</p>
+<p class="author">Author: Britt Anderson</p>
+<p class="date">Created: 2017-01-27 Fri 09:54</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
