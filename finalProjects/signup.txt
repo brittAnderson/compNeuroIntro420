@@ -34,7 +34,7 @@ Memory
 DeepConvNet
 1.Chris Malecki
 2.
-3.
+3.Caidence Paleske
 4.
 5.
 6.
