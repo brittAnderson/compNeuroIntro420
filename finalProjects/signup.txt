@@ -33,7 +33,7 @@ Memory
 
 DeepConvNet
 1.Chris Malecki
-2.
+2.Kristin Leis
 3.
 4.
 5.
