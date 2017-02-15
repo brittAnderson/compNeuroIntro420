@@ -4,7 +4,7 @@ Instructions: Look at some of the links in the individual project subfolders to 
 
 IACLangRead
 1. Sebastien Lauzon
-2. 
+2. Navdeep Sahota
 3. Amanda Assi
 4. Sayana Izmailova
 5.
@@ -12,7 +12,7 @@ IACLangRead
 Agents
 1. Justin Leung
 2. Martin Turpin
-3.
+3. Marina Vrebac
 4.
 5.
 
@@ -20,9 +20,9 @@ ProbProg
 1. Moeza Merchant 
 2. Jatheesh Srikantharajah
 3. Matthew Moody
-4.
-5. Colin Whaley
-6.
+4. Colin Whaley
+5. Garrett Shay
+6. 
 
 Memory
 1. Grace Sim
