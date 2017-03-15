@@ -1,0 +1,982 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-03-08 Wed 12:34 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Backpropagation</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Britt Anderson" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style> blockquote {background:#EEEEEE; padding: 3px 13px}</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Backpropagation</h1>
+
+<div id="outline-container-org746139a" class="outline-2">
+<h2 id="org746139a"><span class="section-number-2">1</span> Road map going forward (2017)</h2>
+<div class="outline-text-2" id="text-1">
+<ol class="org-ol">
+<li>Backprop today and probably next week</li>
+<li>One week off for preparation</li>
+<li>Presentations
+<ol class="org-ol">
+<li>You chose what you will talk about and how.</li>
+<li>Everyone doesn't have to talk, but everyone should participate in the preparation.</li>
+<li>Do you need to code? Not necessarily, that depends on the expertise and interest of your group.</li>
+<li>This is a chance to learn an advanced topic, share that topic, and practice other professional skills: presentational skills; committee work; operationalizing a broad mandate.</li>
+<li>You (the group members) are responsible for organizing yourselves.</li>
+<li>Like most things in life - you get out what you put in, and the best way to learn is to teach.</li>
+</ol></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgc7e8e4b" class="outline-2">
+<h2 id="orgc7e8e4b"><span class="section-number-2">2</span> Topic oveview: backpropagation</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-org2a9ae9f" class="outline-3">
+<h3 id="org2a9ae9f"><span class="section-number-3">2.1</span> Warm up questions</h3>
+<div class="outline-text-3" id="text-2-1">
+<ol class="org-ol">
+<li>What is a neural network?</li>
+<li>What is the difference between supervised and unsupervised learning? Give an example of each? Does anyone know an example other than what we have discussed in class for unsupervised learning?</li>
+<li>What is the activation function we have used for the perceptron and delta rule networks?</li>
+<li>What role does "error" play in the perceptron and delta learning rules?</li>
+<li>For a multilayer network how do you know how much of the "error" to pass back into the deeper layers of the network?</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org4fec2e1" class="outline-2">
+<h2 id="org4fec2e1"><span class="section-number-2">3</span> Sigmoid Functions</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Our prior networks have been forms of threshold units. Check to see if our activation cleared a certain hurdle, and if so set its value to 1 or -1. But it is more common to scale the output continuously between a lower and upper bound. One of the intuitions is that this is like a probability that the neuron might fire.
+</p>
+</div>
+
+<div id="outline-container-org8a1edec" class="outline-3">
+<h3 id="org8a1edec"><span class="section-number-3">3.1</span> An aside: literate programming</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Human readable code. One of the many contributions from <a href="http://www-cs-faculty.stanford.edu/~knuth/">Don Knuth</a> (along with Tex/LaTeX and the Computer Modern font). Noweb is a tool for this is still maintained and is used in these next snippets of code. 
+</p>
+</div>
+<div id="outline-container-org2d6face" class="outline-4">
+<h4 id="org2d6face"><span class="section-number-4">3.1.1</span> Tools for literate programming</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+The tools are usually language specific. Here is a general <a href="http://www.literateprogramming.com/">website</a>.
+</p>
+
+<p>
+For python something sort of like this are Jupyter notebooks (also availabe for R), and for R and R markdown file (RMD). 
+</p>
+
+<ol class="org-ol">
+<li>Org Babel (emacs specific) 
+<a href="http://orgmode.org/worg/org-contrib/babel/intro.html">http://orgmode.org/worg/org-contrib/babel/intro.html</a></li>
+<li>Jupyter Notebooks
+<a href="http://jupyter.org/about.html">http://jupyter.org/about.html</a></li>
+<li>Noweb
+<a href="https://www.cs.tufts.edu/~nr/noweb/">https://www.cs.tufts.edu/~nr/noweb/</a></li>
+<li>Knitr (R tool)
+<a href="https://yihui.name/knitr/">https://yihui.name/knitr/</a></li>
+<li>Haskell
+<a href="https://wiki.haskell.org/Literate_programming">https://wiki.haskell.org/Literate_programming</a></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org4364c37" class="outline-3">
+<h3 id="org4364c37"><span class="section-number-3">3.2</span> What is a sigmoid function and what does it look like?</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+<pre class="src src-python" id="orga4a6f39"><span style="color: #a020f0;">def</span> <span style="color: #0000ff;">sig</span> (z): <span style="color: #a020f0;">return</span> 1.0/(1 + np.exp(-1*z))
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">import</span> numpy <span style="color: #a020f0;">as</span> np
+<span style="color: #a020f0;">import</span> matplotlib
+matplotlib.use(<span style="color: #8b2252;">"Agg"</span>)
+<span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> pyp
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">sig</span> (z): <span style="color: #a020f0;">return</span> 1.0/(1 + np.exp(-1*z))
+<span style="color: #a0522d;">xs</span> = np.linspace(-5,5,101)
+<span style="color: #a0522d;">ys</span> = <span style="color: #483d8b;">map</span>(sig,xs)
+pyp.plot(xs,ys)
+pyp.savefig(<span style="color: #8b2252;">"./sig.png"</span>)
+<span style="color: #a020f0;">return</span>(<span style="color: #8b2252;">"./sig.png"</span>)
+</pre>
+</div>
+
+<p>
+\(\hspace{0.1cm}\)
+</p>
+
+<div class="figure">
+<p><img src="./sig.png" alt="sig.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Plot of the Sigmoid Function \(\frac{1}{1+e^{-z}}\).</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbfb6f86" class="outline-3">
+<h3 id="orgbfb6f86"><span class="section-number-3">3.3</span> A few questions</h3>
+<div class="outline-text-3" id="text-3-3">
+<ol class="org-ol">
+<li>Why is it called "sigmoid?"</li>
+<li>What advantage does it offer over a threshold function?</li>
+<li>Is it the only "sigmoid" function? Does it have other names?</li>
+<li>Can you guess an an advantage to this particular form of the equation?</li>
+<li>How do use this with a neural network, i.e. what is \(z\)?</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6410528" class="outline-2">
+<h2 id="org6410528"><span class="section-number-2">4</span> How we use it</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Have to input the activation of the neuron into the \(z\) of the sigmoid function. That is we need, \[\frac{1}{1+e^{-(\sum_i xw)}}\] <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
+</p>
+</div>
+
+<div id="outline-container-org47a56bd" class="outline-3">
+<h3 id="org47a56bd"><span class="section-number-3">4.1</span> Think about equations qualitatively.</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Remember from our introduction. One of the goals of computational modelling is to get insights into the implications of our ideas and theories. Sometimes this means running a model to see what comes out of it. But it can also mean that we look at the equations that go into the model and think about their "behavior" to get some sense of how things will behave that have particular functional forms. 
+</p>
+
+<p>
+How might you do that here? Think about how it is the same and differnt from the threshold version. Think about extreme values: what happens at the extremes? Where is the derivative most extreme?  What happens if the dot product of a weight vector and input vector are large? Or very small (and what does small mean here)? What about negative extremes and positive extremes. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0075c3e" class="outline-3">
+<h3 id="org0075c3e"><span class="section-number-3">4.2</span> Why are we starting this discussion of the backpropagation algorithim with all this discussion of activation functions?</h3>
+<div class="outline-text-3" id="text-4-2">
+<ol class="org-ol">
+<li>What is being backpropagated?</li>
+<li>What is it we want our network to do?</li>
+<li>How do we guide it?</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org49ac115" class="outline-2">
+<h2 id="org49ac115"><span class="section-number-2">5</span> What is the cost?</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Why use a cost instead of a single classification of right or wrong like we had been doing?
+</p>
+
+<p>
+Many networks have a cost function. We may want to know more than just whether you were right or wrong, but how wrong? In a continuous case being "right" might not even really be possible - what is the value of $&pi;" ? Our computers cannot give render sufficient precision. There is not "right" cost function either, but what might you suggest that we use, and why?
+</p>
+
+<p>
+What would you suggest as the cost function?
+</p>
+</div>
+<div id="outline-container-org7d20585" class="outline-3">
+<h3 id="org7d20585"><span class="section-number-3">5.1</span> Mean Squared Error</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+It's always a good guess and a resonable starting point
+</p>
+
+<p>
+\[C(\mathbf{w}) = \frac{1}{2\mathrm{n}}\sum_\mathbf{x} \|\mathbf{y}(\mathbf{x}) - \mathbf{a}\|^2.\]
+</p>
+
+<p>
+Why isn't this a function of \(\mathbf{x}\) and \(\mathbf{y}\) too?
+</p>
+
+<p>
+What is the <i>dimensionality</i> of the part of the equation inside the double lines? 
+</p>
+
+<p>
+What do you call the operation characterized by the double lines?<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>
+</p>
+
+<p>
+Why is adjusting weights for a multilayer network hard?
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org1061582" class="outline-2">
+<h2 id="org1061582"><span class="section-number-2">6</span> Backpropagation</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-orgd3080f5" class="outline-3">
+<h3 id="orgd3080f5"><span class="section-number-3">6.1</span> What do we want? How do we get it?</h3>
+<div class="outline-text-3" id="text-6-1">
+<ol class="org-ol">
+<li>What do we want? 
+To make our network get better; that is to come closer to the "right" answer. Right is in quotes because what is right may be different in different circumstances. This is operator determined.</li>
+<li>How do we get it?
+<ol class="org-ol">
+<li>What is free for us to change?</li>
+<li>How do we determine if our change is for the better?</li>
+<li>Can we determine a way to do it that will just work? 
+We will return to this question shortly.</li>
+</ol></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgfca8ba8" class="outline-3">
+<h3 id="orgfca8ba8"><span class="section-number-3">6.2</span> Why can't we just do gradient descent?</h3>
+<div class="outline-text-3" id="text-6-2">
+</div>
+</div>
+<div id="outline-container-org6570b40" class="outline-3">
+<h3 id="org6570b40"><span class="section-number-3">6.3</span> Classic Publication</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+<a href="http://www.nature.com/nature/journal/v323/n6088/pdf/323533a0.pdf">http://www.nature.com/nature/journal/v323/n6088/pdf/323533a0.pdf</a>
+</p>
+
+<p>
+Note that you can read this article. You have all the notation, language, and concepts. Note that the abstract makes sense to you. 
+</p>
+</div>
+</div>
+<div id="outline-container-orgd6e6db2" class="outline-3">
+<h3 id="orgd6e6db2"><span class="section-number-3">6.4</span> Explain backpropagation in words.</h3>
+<div class="outline-text-3" id="text-6-4">
+</div>
+</div>
+<div id="outline-container-orga74bdd1" class="outline-3">
+<h3 id="orga74bdd1"><span class="section-number-3">6.5</span> Is backpropagation biologically plausible?</h3>
+</div>
+<div id="outline-container-org2fda262" class="outline-3">
+<h3 id="org2fda262"><span class="section-number-3">6.6</span> Some notation</h3>
+<div class="outline-text-3" id="text-6-6">
+<p>
+\(w_{jk}^l\) is the weight between the \(kth\) neuron in the \(l-1\) layer to the \(jth\) neuron in the \(lth\) layer. 
+</p>
+
+<p>
+Note the ordering of \(j's\) and \(k's\). It may be backwards from your intuition. 
+</p>
+
+<p>
+So, how would you write as an equation with the "sigma" summation sign the value activation of a single <i>arbitrary</i> neuron in an <i>arbitrary</i> layer of a multi-layer network?
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5be8534" class="outline-3">
+<h3 id="org5be8534"><span class="section-number-3">6.7</span> Getting the activation</h3>
+<div class="outline-text-3" id="text-6-7">
+<p>
+\[a^l_j = \sigma \left ( \sum_k w_{jk}^l~a^{l-1}_k \right ) \]
+</p>
+</div>
+
+
+<div id="outline-container-orgf9d9af8" class="outline-4">
+<h4 id="orgf9d9af8"><span class="section-number-4">6.7.1</span> Explain what this means in words.</h4>
+<div class="outline-text-4" id="text-6-7-1">
+<p>
+Especially the \(\sigma\).
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf789cd9" class="outline-4">
+<h4 id="orgf789cd9"><span class="section-number-4">6.7.2</span> Explain what this means with a picture.</h4>
+</div>
+<div id="outline-container-orgc13812a" class="outline-4">
+<h4 id="orgc13812a"><span class="section-number-4">6.7.3</span> Use translation (code:words:pictures) to develop and test your understanding.</h4>
+</div>
+</div>
+
+<div id="outline-container-org9342df5" class="outline-3">
+<h3 id="org9342df5"><span class="section-number-3">6.8</span> Rewrite this equation as a matrix equation</h3>
+<div class="outline-text-3" id="text-6-8">
+<p>
+\(\sigma(\mathbf{W^l}\vec{a^{l-1}})\) Notice that I am "hiding" the bias inside this equation. You have to always have that extra weight and the fixed input activation of \(1\) for the bias. 
+</p>
+
+<p>
+What is the dimension of this "output" and what is the interpretation of the \(\sigma\)? What is <b>vectorizing</b>? From this expression why does it make sense to put the \(j\) and \(k\) backwards?
+</p>
+
+<p>
+Think of the dot product, column vectors, and the way rows and columns match up. All the odd writing is just to make is consistent with compact matrix notation. 
+</p>
+</div>
+
+<div id="outline-container-org0ebc631" class="outline-4">
+<h4 id="org0ebc631"><span class="section-number-4">6.8.1</span> In class activity (maybe homework).</h4>
+<div class="outline-text-4" id="text-6-8-1">
+<ol class="org-ol">
+<li><b>Write a function to do this operation.</b></li>
+<li><b>Write a function to output the derivative of the weighted input.</b></li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5e24514" class="outline-3">
+<h3 id="org5e24514"><span class="section-number-3">6.9</span> Python code examples</h3>
+<div class="outline-text-3" id="text-6-9">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">import</span> numpy <span style="color: #a020f0;">as</span> np
+<span style="color: #a020f0;">import</span> matplotlib
+matplotlib.use(<span style="color: #8b2252;">"Agg"</span>)
+<span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> pyp
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">sig</span> (z): <span style="color: #a020f0;">return</span> 1.0/(1 + np.exp(-1*z))
+<span style="color: #a0522d;">a</span> = np.array([0.9,0.8])
+<span style="color: #a0522d;">ab</span> = np.append(a,1.0)
+<span style="color: #b22222;">#</span><span style="color: #b22222;">what is going on in the line above?</span>
+<span style="color: #a0522d;">w</span> = np.array([[0.1,-0.2,0.3],[-.4,0.2,0.2],[1.2,2.3,0.03]])
+<span style="color: #b22222;">#</span><span style="color: #b22222;">how many neurons are in this layer?</span>
+<span style="color: #a0522d;">newa</span> = sig(np.dot(w,ab))
+<span style="color: #a0522d;">newa_alt</span> = <span style="color: #483d8b;">map</span>(sig, np.dot(w,ab))
+<span style="color: #a020f0;">return</span>(newa,newa_alt)
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">array</td>
+<td class="org-left">((0.55724785 0.5 0.95026349))</td>
+<td class="org-left">(0.5572478545985555 0.5 0.9502634884414431)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-org0f9fbc2" class="outline-4">
+<h4 id="org0f9fbc2"><span class="section-number-4">6.9.1</span> Questions</h4>
+<div class="outline-text-4" id="text-6-9-1">
+<ol class="org-ol">
+<li>What is the difference between the <code>newa</code> and  <code>newa_alt</code> line?</li>
+<li>Why should you care?</li>
+</ol>
+</div>
+
+<ol class="org-ol"><li><a id="org6878e53"></a>Functional links<br /><div class="outline-text-5" id="text-6-9-1-1">
+<dl class="org-dl">
+<dt>General</dt><dd><ol class="org-ol">
+<li>A stackoverflow <a href="http://stackoverflow.com/questions/36504/why-functional-languages">discussion</a>.</li>
+<li>And my favorite example: <a href="https://wiki.haskell.org/Functional_programming">Haskell</a>.</li>
+</ol></dd>
+<dt>Python</dt><dd><ol class="org-ol">
+<li>A simple <a href="https://maryrosecook.com/blog/post/a-practical-introduction-to-functional-programming">introduction</a> in python.</li>
+<li>A functional <a href="https://github.com/pytoolz/toolz">library</a> for python and some <a href="https://toolz.readthedocs.io/en/latest/">documentation</a>.</li>
+</ol></dd>
+<dt>R</dt><dd><ol class="org-ol">
+<li>A blog <a href="http://adv-r.had.co.nz/Functional-programming.html">post</a></li>
+<li>A <a href="https://leanpub.com/functional_programming_in_R">book</a>. And code <a href="https://github.com/mailund/functional-programming-in-R">repository</a> on github.</li>
+</ol></dd>
+</dl>
+</div></li></ol>
+</div>
+</div>
+<div id="outline-container-org4401841" class="outline-3">
+<h3 id="org4401841"><span class="section-number-3">6.10</span> Remembering "costs"</h3>
+<div class="outline-text-3" id="text-6-10">
+<p>
+\[ C = \frac{1}{2n} \sum_x \|y(x) - a^L(x)\|^2\]
+</p>
+
+<p>
+The \(L\) became capitalized because this is the "last" layer of a multilayer network. Why are we summing over \(x\)? What are the \(x's\)? What does the "norm" mean again? Size. Think Euclidean. 
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org68f5f75" class="outline-2">
+<h2 id="org68f5f75"><span class="section-number-2">7</span> Backpropagation: A pseudo code account</h2>
+<div class="outline-text-2" id="text-7">
+<ol class="org-ol">
+<li>Fix the inputs of the first layer to the input pattern \(x\).</li>
+<li>Compute the weighted input to each neuron of the next layer using the input, weights and biases.</li>
+<li>Compute the weighted cost function error vector for the last layer.</li>
+<li>Backpropagate the error</li>
+<li>Use the backpropagated error to update the weights</li>
+</ol>
+</div>
+
+<div id="outline-container-orgb9df110" class="outline-3">
+<h3 id="orgb9df110"><span class="section-number-3">7.1</span> Feedforward Stage</h3>
+</div>
+
+<div id="outline-container-org77bee9c" class="outline-3">
+<h3 id="org77bee9c"><span class="section-number-3">7.2</span> Backward Pass Stage</h3>
+</div>
+
+<div id="outline-container-org186f05d" class="outline-3">
+<h3 id="org186f05d"><span class="section-number-3">7.3</span> Weight Updating Stage</h3>
+</div>
+
+<div id="outline-container-org5e58fb8" class="outline-3">
+<h3 id="org5e58fb8"><span class="section-number-3">7.4</span> Warning</h3>
+<div class="outline-text-3" id="text-7-4">
+<p>
+Just like we had to watch the parameters carefully in the H and H model, here the trick is to track the dimensions and orientation of your data objects. 
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6ace964" class="outline-2">
+<h2 id="org6ace964"><span class="section-number-2">8</span> Why does it work?</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Solving for the right way to adjust the weights. 
+</p>
+</div>
+
+
+<div id="outline-container-orgde10823" class="outline-3">
+<h3 id="orgde10823"><span class="section-number-3">8.1</span> What is it we want to change? What are we free to change?</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+Right an equation
+</p>
+</div>
+
+<div id="outline-container-org697f08d" class="outline-4">
+<h4 id="org697f08d"><span class="section-number-4">8.1.1</span> First step</h4>
+<div class="outline-text-4" id="text-8-1-1">
+<p>
+\(\frac{\partial{C_x}}{\partial{W^{L}_{ji}}}\)
+</p>
+
+<p>
+Translate this into words. How would we use this if we knew what it was?
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge1f25c6" class="outline-4">
+<h4 id="orge1f25c6"><span class="section-number-4">8.1.2</span> Second step</h4>
+<div class="outline-text-4" id="text-8-1-2">
+<p>
+Substitute and keep doing the chain rule - forever. 
+</p>
+
+<p>
+\(\frac{\partial{1/2(y - \hat{y})^2}}{\partial{W^{L}_{ij}}}\) What part of this is a function of \(W\)? Only the \(\hat{y}\) (it is common to use a "hat" to reflect that one variable is an estimate of the variable under the hat) depends on the weights, and we use the chain rule.
+</p>
+
+<p>
+\(\frac{\partial{1/2(y - \hat{y})^2}}{\partial{\hat{y}}} \frac{\partial{\hat{y}}}{\partial{W^{L}_{ij}}}\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org984ece0" class="outline-4">
+<h4 id="org984ece0"><span class="section-number-4">8.1.3</span> Third step</h4>
+<div class="outline-text-4" id="text-8-1-3">
+<p>
+To be systematic, let's only consider the last, terminal, also called output layer and denote it \(L\).
+</p>
+
+<p>
+\(\frac{\partial{1/2(y - \hat{y})^2}}{\partial{\hat{y}}} \frac{\partial{\sigma(z^L_i)}}{\partial{z^L_i}}\frac{\partial{z^L_i}}{\partial{W^{L}_{ij}}}\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf3911e7" class="outline-4">
+<h4 id="orgf3911e7"><span class="section-number-4">8.1.4</span> Fourth step</h4>
+<div class="outline-text-4" id="text-8-1-4">
+<p>
+What is \(z^L\)?
+</p>
+
+<p>
+\(\frac{\partial{1/2(y - \hat{y})^2}}{\partial{\hat{y}}} \frac{\partial{\sigma(z^L_i)}}{\partial{z^L_i}}\frac{\partial{\sum_kW^{L}_ik~a^{L-1}_k}}{\partial{W^{L}_{ij}}}\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org79c3acc" class="outline-4">
+<h4 id="org79c3acc"><span class="section-number-4">8.1.5</span> Fifth step - simplify</h4>
+<div class="outline-text-4" id="text-8-1-5">
+<p>
+\(\frac{\partial{C_x}}{\partial{W^{L}_{ji}}} = (\hat{y} - y)\sigma^\prime(z^L_i)a^{L-1}_j\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org953f7bd" class="outline-4">
+<h4 id="org953f7bd"><span class="section-number-4">8.1.6</span> More notation</h4>
+<div class="outline-text-4" id="text-8-1-6">
+<p>
+What part of the above formula is common to all synapses of the output neuron and which is unique for each synapse to the output neuron? Let's denote the common part with a common label \(\delta\).
+</p>
+
+<p>
+\(\frac{\partial{C_x}}{\partial{W^{L}_{i}}} = \delta^L_i a^{{L-1}^T}\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1c27ae2" class="outline-4">
+<h4 id="org1c27ae2"><span class="section-number-4">8.1.7</span> And do the same for the next layer</h4>
+<div class="outline-text-4" id="text-8-1-7">
+<p>
+Trying this derivation will be an optional homework problem. 
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9666248" class="outline-2">
+<h2 id="org9666248"><span class="section-number-2">9</span> Making the pieces to solve the XOR problem</h2>
+<div class="outline-text-2" id="text-9">
+</div><div id="outline-container-org259b03c" class="outline-3">
+<h3 id="org259b03c"><span class="section-number-3">9.1</span> The key equations</h3>
+<div class="outline-text-3" id="text-9-1">
+<blockquote>
+\begin{equation}
+\delta^{\mbox{Last Layer}} = \nabla_a C \circ \sigma^{\prime}(\mbox{weighted inputs}) 
+\end{equation}
+
+\begin{equation}
+\delta^{\mbox{allOtherLayers}} = (\mbox{weights}^{nextLayer})^T \delta^{\mbox{nextLayer}} \circ \sigma^{\prime}(\mbox{weighted inputs})^{\mbox{currentLayer}}
+\end{equation}
+
+<p>
+Memory Hint:    \(a_{in} \delta^{out}\) 
+</p>
+
+\begin{equation}
+\frac{\partial{C}}{\partial{W_{jk}^l}} = a^{l-1}_k\delta^l_j
+\end{equation}
+
+<p>
+Watch the dimensions and the subscripts.
+</p>
+</blockquote>
+
+<p>
+We will start here and continue next week working on these steps in class in python or r. 
+</p>
+
+<p>
+As we come up with good examples, push your code to the backpropagation lumbar room<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>.
+</p>
+
+<ol class="org-ol">
+<li>We will use two inputs, at least three hidden units, and one output unit.</li>
+<li>Create an input that has each possible input and the proper "class".</li>
+<li><p>
+Initiate a random weight matrix.
+How do you determine the size?
+</p>
+
+<p>
+How do you represent this in your code? There are matrices and arrays - each has potential advantages.
+</p></li>
+<li>Calculate cost</li>
+<li>Calculate the derivative of the cost.</li>
+<li>Calculate sigmoid</li>
+<li>Calculate derivative of the sigmoid.</li>
+<li>Write a function for the forward pass.</li>
+<li>Write a function for the backward pass.</li>
+<li>Write a function to update the weights.</li>
+<li>Write a function to go through the above for a long time or until you get a good enough approximation.</li>
+<li>Rewrite your code to be more general and accept different size inputs and outputs, and to allow for different size hidden layers (and maybe even more hidden layers).</li>
+<li>Solve a harder problem
+<ol class="org-ol">
+<li><a href="http://www.cs.utoronto.ca/%7Ekriz/cifar.html">Images</a></li>
+<li><a href="http://www.iro.umontreal.ca/%7Elisa/twiki/bin/view.cgi/Public/BabyAIShapesDatasets">Three types of shapes</a></li>
+</ol></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orgda888e9" class="outline-2">
+<h2 id="orgda888e9"><span class="section-number-2">10</span> Example Code</h2>
+<div class="outline-text-2" id="text-10">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">import</span> numpy <span style="color: #a020f0;">as</span> np
+<span style="color: #a020f0;">import</span> random <span style="color: #a020f0;">as</span> r
+<span style="color: #a020f0;">import</span> itertools <span style="color: #a020f0;">as</span> <span style="color: #483d8b;">iter</span>
+<span style="color: #a020f0;">import</span> matplotlib
+matplotlib.use(<span style="color: #8b2252;">'Agg'</span>)
+<span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> pyp
+
+<span style="color: #a0522d;">plotflag</span> = <span style="color: #008b8b;">True</span>
+<span style="color: #a0522d;">printflag</span> = <span style="color: #008b8b;">True</span>
+
+<span style="color: #a0522d;">inputs</span> = [(np.array([[0],[0]]),0),(np.array([[0],[1]]),1),(np.array([[1],[0]]),1),(np.array([[1],[1]]),0)]
+
+<span style="color: #a0522d;">w1</span> = np.array([r.random() <span style="color: #a020f0;">for</span> a <span style="color: #a020f0;">in</span> <span style="color: #483d8b;">range</span>(6)]).reshape(3,2)
+<span style="color: #a0522d;">w2</span> = np.array([r.random() <span style="color: #a020f0;">for</span> a <span style="color: #a020f0;">in</span> <span style="color: #483d8b;">range</span>(3)]).reshape(1,3)
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">eudist</span>(x1,x2):
+    <span style="color: #a020f0;">return</span>(<span style="color: #483d8b;">sum</span>((x1 - x2)**2.0)**0.5)
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">sigmoid</span>(zee): <span style="color: #a020f0;">return</span>(1.0/(1+np.exp(-1*zee)))
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">sigmoidprime</span>(zee): <span style="color: #a020f0;">return</span>(sigmoid(zee)*(1-sigmoid(zee)))
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">cost</span>(y,yhat):
+   0.5*(eudist(y,yhat)**2.0)
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">costprime</span>(y,yhat):
+    <span style="color: #a020f0;">return</span>(yhat - y)
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">forwardpass</span> (xs,wtlist):
+    <span style="color: #a0522d;">zees</span>=[]
+    <span style="color: #a0522d;">ays</span> = [xs]
+    <span style="color: #a020f0;">for</span> w <span style="color: #a020f0;">in</span> wtlist:
+        zees.append(np.dot(w,ays[-1]))
+        ays.append(sigmoid(zees[-1]))
+    <span style="color: #a020f0;">return</span>((zees,ays))
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">backpass</span> (y,zees,ays,wtlist):
+    <span style="color: #a0522d;">delta</span> = costprime(y,ays[-1])*sigmoidprime(zees[-1])
+    <span style="color: #a0522d;">costgrad</span> = [np.dot(delta,ays[-2].T)]
+    <span style="color: #a020f0;">for</span> l <span style="color: #a020f0;">in</span> <span style="color: #483d8b;">range</span>(2,3):
+        <span style="color: #a0522d;">delta</span> = np.dot(wtlist[-l+1].T,delta)*sigmoidprime(zees[-l])
+        costgrad.insert(0,np.dot(delta,ays[-l-1].T))
+    <span style="color: #a020f0;">return</span>(costgrad)
+
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">fbloop</span>(inp,wts,eta = 0.25):
+    <span style="color: #a0522d;">zs</span>,<span style="color: #a0522d;">heys</span>=forwardpass(inp[0],wts)
+    <span style="color: #a0522d;">cgs</span> = backpass(inp[1],zs,heys,wts)
+    <span style="color: #a0522d;">newwts</span> = [wt -eta*cg <span style="color: #a020f0;">for</span> wt,cg <span style="color: #a020f0;">in</span> <span style="color: #483d8b;">zip</span>(wts,cgs)]
+    <span style="color: #a020f0;">return</span>(newwts)
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">bigloop</span>(inputs,startwts):
+    <span style="color: #a0522d;">loopnum</span> = []
+    <span style="color: #a0522d;">error</span> = []
+    <span style="color: #a0522d;">inps</span> = <span style="color: #483d8b;">iter</span>.cycle(inputs)
+    <span style="color: #a0522d;">ws</span> = startwts
+    <span style="color: #a020f0;">for</span> il <span style="color: #a020f0;">in</span> <span style="color: #483d8b;">range</span>(100000):
+        <span style="color: #a0522d;">patt</span> = inps.<span style="color: #483d8b;">next</span>()
+        <span style="color: #a0522d;">ws</span> = fbloop(patt,ws)
+        <span style="color: #a020f0;">if</span> (il%1000 == 0):
+            <span style="color: #a0522d;">tmpe</span>=0
+            <span style="color: #a020f0;">for</span> i,o <span style="color: #a020f0;">in</span> inputs:
+                <span style="color: #a0522d;">z</span>,<span style="color: #a0522d;">h</span>=forwardpass(i,ws)
+                <span style="color: #a020f0;">if</span> printflag:
+                    <span style="color: #a020f0;">print</span> <span style="color: #8b2252;">"Loop #{0} gives output {1} with correct {2}"</span>.<span style="color: #483d8b;">format</span>(il,h[-1],o)
+                <span style="color: #a0522d;">tmpe</span> = tmpe + <span style="color: #483d8b;">abs</span>(h[-1]-o)
+            error.append(tmpe[0][0])
+            loopnum.append(il)
+    <span style="color: #a020f0;">if</span> plotflag:
+        pyp.figure(0)
+        pyp.plot(loopnum,error)
+        pyp.savefig(<span style="color: #8b2252;">'errorPlot.png'</span>)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org68d2fb4" class="outline-2">
+<h2 id="org68d2fb4"><span class="section-number-2">11</span> Sources</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+There is a very good online textbook for this material <sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>.
+</p>
+
+<p>
+And some nice short videos too.<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup>
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+Don't forget that this includes the "bias" term as an extra column of 1's for your input vectors. 
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://en.wikipedia.org/wiki/Norm_(mathematics)">https://en.wikipedia.org/wiki/Norm_(mathematics)</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://en.wikipedia.org/wiki/Lumber_room">https://en.wikipedia.org/wiki/Lumber_room</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+<a href="http://neuralnetworksanddeeplearning.com/chap1.html">http://neuralnetworksanddeeplearning.com/chap1.html</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5">5</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://youtu.be/bxe2T-V8XRs?list=PLiaHhY2iBX9hdHaRr6b7XevZtgZRa1PoU">https://youtu.be/bxe2T-V8XRs?list=PLiaHhY2iBX9hdHaRr6b7XevZtgZRa1PoU</a>
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Date: 2017-02-28 Tue 00:00</p>
+<p class="author">Author: Britt Anderson</p>
+<p class="date">Created: 2017-03-08 Wed 12:34</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
