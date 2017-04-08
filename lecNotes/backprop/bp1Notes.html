@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-03-09 Thu 08:48 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Backpropagation</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Britt Anderson" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<style> blockquote {background:#EEEEEE; padding: 3px 13px}</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Backpropagation</h1>
+<div id="outline-container-org4060cd2" class="outline-2">
+<h2 id="org4060cd2"><span class="section-number-2">1</span> Topic oveview: backpropagation</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-org3f43f46" class="outline-3">
+<h3 id="org3f43f46"><span class="section-number-3">1.1</span> Warm up questions</h3>
+<div class="outline-text-3" id="text-1-1">
+<ol class="org-ol">
+<li>What is a neural network?</li>
+<li>What is the difference between supervised and unsupervised learning? Give an example of each? Does anyone know an example other than what we have discussed in class for unsupervised learning?</li>
+<li>What is the activation function we have used for the perceptron and delta rule networks?</li>
+<li>What role does "error" play in the perceptron and delta learning rules?</li>
+<li>For a multilayer network how do you know how much of the "error" to pass back into the deeper layers of the network?</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org131bdec" class="outline-2">
+<h2 id="org131bdec"><span class="section-number-2">2</span> Sigmoid Functions</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Our prior networks have been forms of threshold units. Check to see if our activation cleared a certain hurdle, and if so set its value to 1 or -1. But it is more common to scale the output continuously between a lower and upper bound. One of the intuitions is that this is like a probability that the neuron might fire.
+</p>
+</div>
+
+<div id="outline-container-org469bb8b" class="outline-3">
+<h3 id="org469bb8b"><span class="section-number-3">2.1</span> An aside: literate programming</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Human readable code. One of the many contributions from <a href="http://www-cs-faculty.stanford.edu/~knuth/">Don Knuth</a> (along with Tex/LaTeX and the Computer Modern font). Noweb is a tool for this is still maintained and is used in these next snippets of code. 
+</p>
+</div>
+<div id="outline-container-org2932390" class="outline-4">
+<h4 id="org2932390"><span class="section-number-4">2.1.1</span> Tools for literate programming</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+The tools are usually language specific. Here is a general <a href="http://www.literateprogramming.com/">website</a>.
+</p>
+
+<p>
+For python something sort of like this are Jupyter notebooks (also availabe for R), and for R and R markdown file (RMD). 
+</p>
+
+<ol class="org-ol">
+<li>Org Babel (emacs specific) 
+<a href="http://orgmode.org/worg/org-contrib/babel/intro.html">http://orgmode.org/worg/org-contrib/babel/intro.html</a></li>
+<li>Jupyter Notebooks
+<a href="http://jupyter.org/about.html">http://jupyter.org/about.html</a></li>
+<li>Noweb
+<a href="https://www.cs.tufts.edu/~nr/noweb/">https://www.cs.tufts.edu/~nr/noweb/</a></li>
+<li>Knitr (R tool)
+<a href="https://yihui.name/knitr/">https://yihui.name/knitr/</a></li>
+<li>Haskell
+<a href="https://wiki.haskell.org/Literate_programming">https://wiki.haskell.org/Literate_programming</a></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org9840ca9" class="outline-3">
+<h3 id="org9840ca9"><span class="section-number-3">2.2</span> What is a sigmoid function and what does it look like?</h3>
+<div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+<pre class="src src-python" id="org7f2d9e3"><span style="color: #a020f0;">def</span> <span style="color: #0000ff;">sig</span> (z): <span style="color: #a020f0;">return</span> 1.0/(1 + np.exp(-1*z))
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">import</span> numpy <span style="color: #a020f0;">as</span> np
+<span style="color: #a020f0;">import</span> matplotlib
+matplotlib.use(<span style="color: #8b2252;">"Agg"</span>)
+<span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> pyp
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">sig</span> (z): <span style="color: #a020f0;">return</span> 1.0/(1 + np.exp(-1*z))
+<span style="color: #a0522d;">xs</span> = np.linspace(-5,5,101)
+<span style="color: #a0522d;">ys</span> = <span style="color: #483d8b;">map</span>(sig,xs)
+pyp.plot(xs,ys)
+pyp.savefig(<span style="color: #8b2252;">"./sig.png"</span>)
+<span style="color: #a020f0;">return</span>(<span style="color: #8b2252;">"./sig.png"</span>)
+</pre>
+</div>
+
+<p>
+\(\hspace{0.1cm}\)
+</p>
+
+<div class="figure">
+<p><img src="./sig.png" alt="sig.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Plot of the Sigmoid Function \(\frac{1}{1+e^{-z}}\).</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org20330d7" class="outline-3">
+<h3 id="org20330d7"><span class="section-number-3">2.3</span> A few questions</h3>
+<div class="outline-text-3" id="text-2-3">
+<ol class="org-ol">
+<li>Why is it called "sigmoid?"</li>
+<li>What advantage does it offer over a threshold function?</li>
+<li>Is it the only "sigmoid" function? Does it have other names?</li>
+<li>Can you guess an an advantage to this particular form of the equation?</li>
+<li>How do use this with a neural network, i.e. what is \(z\)?</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7a3da29" class="outline-2">
+<h2 id="org7a3da29"><span class="section-number-2">3</span> How we use it</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Have to input the activation of the neuron into the \(z\) of the sigmoid function. That is we need, \[\frac{1}{1+e^{-(\sum_i xw)}}\] <sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>
+</p>
+</div>
+
+<div id="outline-container-org8c9190a" class="outline-3">
+<h3 id="org8c9190a"><span class="section-number-3">3.1</span> Think about equations qualitatively.</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Remember from our introduction. One of the goals of computational modelling is to get insights into the implications of our ideas and theories. Sometimes this means running a model to see what comes out of it. But it can also mean that we look at the equations that go into the model and think about their "behavior" to get some sense of how things will behave that have particular functional forms. 
+</p>
+
+<p>
+How might you do that here? Think about how it is the same and differnt from the threshold version. Think about extreme values: what happens at the extremes? Where is the derivative most extreme?  What happens if the dot product of a weight vector and input vector are large? Or very small (and what does small mean here)? What about negative extremes and positive extremes. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdd47f2d" class="outline-3">
+<h3 id="orgdd47f2d"><span class="section-number-3">3.2</span> Why are we starting this discussion of the backpropagation algorithim with all this discussion of activation functions?</h3>
+<div class="outline-text-3" id="text-3-2">
+<ol class="org-ol">
+<li>What is being backpropagated?</li>
+<li>What is it we want our network to do?</li>
+<li>How do we guide it?</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org9b5ef89" class="outline-2">
+<h2 id="org9b5ef89"><span class="section-number-2">4</span> What is the cost?</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Why use a cost instead of a single classification of right or wrong like we had been doing?
+</p>
+
+<p>
+Many networks have a cost function. We may want to know more than just whether you were right or wrong, but how wrong? In a continuous case being "right" might not even really be possible - what is the value of $&pi;" ? Our computers cannot give render sufficient precision. There is not "right" cost function either, but what might you suggest that we use, and why?
+</p>
+
+<p>
+What would you suggest as the cost function?
+</p>
+</div>
+<div id="outline-container-orgc9db7b3" class="outline-3">
+<h3 id="orgc9db7b3"><span class="section-number-3">4.1</span> Mean Squared Error</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+It's always a good guess and a resonable starting point
+</p>
+
+<p>
+\[C(\mathbf{w}) = \frac{1}{2\mathrm{n}}\sum_\mathbf{x} \|\mathbf{y}(\mathbf{x}) - \mathbf{a}\|^2.\]
+</p>
+
+<p>
+Why isn't this a function of \(\mathbf{x}\) and \(\mathbf{y}\) too?
+</p>
+
+<p>
+What is the <i>dimensionality</i> of the part of the equation inside the double lines? 
+</p>
+
+<p>
+What do you call the operation characterized by the double lines?<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>
+</p>
+
+<p>
+Why is adjusting weights for a multilayer network hard?
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orga3717a2" class="outline-2">
+<h2 id="orga3717a2"><span class="section-number-2">5</span> Backpropagation</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-org4a1ea55" class="outline-3">
+<h3 id="org4a1ea55"><span class="section-number-3">5.1</span> What do we want? How do we get it?</h3>
+<div class="outline-text-3" id="text-5-1">
+<ol class="org-ol">
+<li>What do we want? 
+To make our network get better; that is to come closer to the "right" answer. Right is in quotes because what is right may be different in different circumstances. This is operator determined.</li>
+<li>How do we get it?
+<ol class="org-ol">
+<li>What is free for us to change?</li>
+<li>How do we determine if our change is for the better?</li>
+<li>Can we determine a way to do it that will just work? 
+We will return to this question shortly.</li>
+</ol></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orge54f8fe" class="outline-3">
+<h3 id="orge54f8fe"><span class="section-number-3">5.2</span> Classic Publication</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+<a href="http://www.nature.com/nature/journal/v323/n6088/pdf/323533a0.pdf">http://www.nature.com/nature/journal/v323/n6088/pdf/323533a0.pdf</a>
+</p>
+
+<p>
+Note that you can read this article. You have all the notation, language, and concepts. Note that the abstract makes sense to you. 
+</p>
+</div>
+</div>
+<div id="outline-container-org487af50" class="outline-3">
+<h3 id="org487af50"><span class="section-number-3">5.3</span> Some notation</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+\(w_{jk}^l\) is the weight between the \(kth\) neuron in the \(l-1\) layer to the \(jth\) neuron in the \(lth\) layer. 
+</p>
+
+<p>
+Note the ordering of \(j's\) and \(k's\). It may be backwards from your intuition. 
+</p>
+
+<p>
+So, how would you write as an equation with the "sigma" summation sign the value activation of a single <i>arbitrary</i> neuron in an <i>arbitrary</i> layer of a multi-layer network?
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgee67b0e" class="outline-3">
+<h3 id="orgee67b0e"><span class="section-number-3">5.4</span> Getting the activation</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+\[a^l_j = \sigma \left ( \sum_k w_{jk}^l~a^{l-1}_k \right ) \]
+</p>
+</div>
+
+
+<div id="outline-container-orge6571cc" class="outline-4">
+<h4 id="orge6571cc"><span class="section-number-4">5.4.1</span> Explain what this means in words.</h4>
+<div class="outline-text-4" id="text-5-4-1">
+<p>
+Especially the \(\sigma\).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5c2961e" class="outline-4">
+<h4 id="org5c2961e"><span class="section-number-4">5.4.2</span> Explain what this means with a picture.</h4>
+</div>
+<div id="outline-container-org60b946b" class="outline-4">
+<h4 id="org60b946b"><span class="section-number-4">5.4.3</span> Use translation (code:words:pictures) to develop and test your understanding.</h4>
+</div>
+</div>
+
+<div id="outline-container-org6c57b32" class="outline-3">
+<h3 id="org6c57b32"><span class="section-number-3">5.5</span> Rewrite this equation as a matrix equation</h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+\(\sigma(\mathbf{W^l}\vec{a^{l-1}})\) Notice that I am "hiding" the bias inside this equation. You have to always have that extra weight and the fixed input activation of \(1\) for the bias. 
+</p>
+
+<p>
+What is the dimension of this "output" and what is the interpretation of the \(\sigma\)? What is <b>vectorizing</b>? From this expression why does it make sense to put the \(j\) and \(k\) backwards?
+</p>
+
+<p>
+Think of the dot product, column vectors, and the way rows and columns match up. All the odd writing is just to make is consistent with compact matrix notation. 
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org9990378" class="outline-3">
+<h3 id="org9990378"><span class="section-number-3">5.6</span> Python code examples</h3>
+<div class="outline-text-3" id="text-5-6">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">import</span> numpy <span style="color: #a020f0;">as</span> np
+<span style="color: #a020f0;">import</span> matplotlib
+matplotlib.use(<span style="color: #8b2252;">"Agg"</span>)
+<span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> pyp
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">sig</span> (z): <span style="color: #a020f0;">return</span> 1.0/(1 + np.exp(-1*z))
+<span style="color: #a0522d;">a</span> = np.array([0.9,0.8])
+<span style="color: #a0522d;">ab</span> = np.append(a,1.0)
+<span style="color: #b22222;">#</span><span style="color: #b22222;">what is going on in the line above?</span>
+<span style="color: #a0522d;">w</span> = np.array([[0.1,-0.2,0.3],[-.4,0.2,0.2],[1.2,2.3,0.03]])
+<span style="color: #b22222;">#</span><span style="color: #b22222;">how many neurons are in this layer?</span>
+<span style="color: #a0522d;">newa</span> = sig(np.dot(w,ab))
+<span style="color: #a0522d;">newa_alt</span> = <span style="color: #483d8b;">map</span>(sig, np.dot(w,ab))
+<span style="color: #a020f0;">return</span>(newa,newa_alt)
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">array</td>
+<td class="org-left">((0.55724785 0.5 0.95026349))</td>
+<td class="org-left">(0.5572478545985555 0.5 0.9502634884414431)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-orgb5c3a8b" class="outline-4">
+<h4 id="orgb5c3a8b"><span class="section-number-4">5.6.1</span> Questions</h4>
+<div class="outline-text-4" id="text-5-6-1">
+<ol class="org-ol">
+<li>What is the difference between the <code>newa</code> and  <code>newa_alt</code> line?</li>
+<li>Why should you care?</li>
+</ol>
+</div>
+
+<ol class="org-ol"><li><a id="orge4f6438"></a>Functional links<br /><div class="outline-text-5" id="text-5-6-1-1">
+<dl class="org-dl">
+<dt>General</dt><dd><ol class="org-ol">
+<li>A stackoverflow <a href="http://stackoverflow.com/questions/36504/why-functional-languages">discussion</a>.</li>
+<li>And my favorite example: <a href="https://wiki.haskell.org/Functional_programming">Haskell</a>.</li>
+</ol></dd>
+<dt>Python</dt><dd><ol class="org-ol">
+<li>A simple <a href="https://maryrosecook.com/blog/post/a-practical-introduction-to-functional-programming">introduction</a> in python.</li>
+<li>A functional <a href="https://github.com/pytoolz/toolz">library</a> for python and some <a href="https://toolz.readthedocs.io/en/latest/">documentation</a>.</li>
+</ol></dd>
+<dt>R</dt><dd><ol class="org-ol">
+<li>A blog <a href="http://adv-r.had.co.nz/Functional-programming.html">post</a></li>
+<li>A <a href="https://leanpub.com/functional_programming_in_R">book</a>. And code <a href="https://github.com/mailund/functional-programming-in-R">repository</a> on github.</li>
+</ol></dd>
+</dl>
+</div></li></ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb750075" class="outline-2">
+<h2 id="orgb750075"><span class="section-number-2">6</span> Backpropagation: A pseudo code account</h2>
+<div class="outline-text-2" id="text-6">
+<ol class="org-ol">
+<li>Fix the inputs of the first layer to the input pattern \(x\).</li>
+<li>Compute the weighted input to each neuron of the next layer using the input, weights and biases.</li>
+<li>Compute the weighted cost function error vector for the last layer.</li>
+<li>Backpropagate the error</li>
+<li>Use the backpropagated error to update the weights</li>
+</ol>
+</div>
+
+<div id="outline-container-org1d891bf" class="outline-3">
+<h3 id="org1d891bf"><span class="section-number-3">6.1</span> Feedforward Stage</h3>
+</div>
+</div>
+
+
+
+
+<div id="outline-container-org20b83ff" class="outline-2">
+<h2 id="org20b83ff"><span class="section-number-2">7</span> Sources</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+There is a very good online textbook for this material <sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>.
+</p>
+
+<p>
+And some nice short videos too.<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup>
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+Don't forget that this includes the "bias" term as an extra column of 1's for your input vectors. 
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://en.wikipedia.org/wiki/Norm_(mathematics)">https://en.wikipedia.org/wiki/Norm_(mathematics)</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3">3</a></sup> <div class="footpara"><p class="footpara">
+<a href="http://neuralnetworksanddeeplearning.com/chap1.html">http://neuralnetworksanddeeplearning.com/chap1.html</a>
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4">4</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://youtu.be/bxe2T-V8XRs?list=PLiaHhY2iBX9hdHaRr6b7XevZtgZRa1PoU">https://youtu.be/bxe2T-V8XRs?list=PLiaHhY2iBX9hdHaRr6b7XevZtgZRa1PoU</a>
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Date: 2017-02-28 Tue 00:00</p>
+<p class="author">Author: Britt Anderson</p>
+<p class="date">Created: 2017-03-09 Thu 08:48</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
