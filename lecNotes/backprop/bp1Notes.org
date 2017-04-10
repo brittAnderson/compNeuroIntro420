@@ -1,0 +1,266 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "answer") date:t e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:nil todo:t |:t
+#+TITLE: Backpropagation
+#+DATE: <2017-02-28 Tue>
+#+AUTHOR: Britt Anderson
+#+EMAIL: britt@uwaterloo.ca
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: 
+#+CREATOR: Emacs 25.1.1 (Org mode 9.0.4)
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS:
+#+LATEX_HEADER:
+#+LATEX_HEADER_EXTRA:
+#+DESCRIPTION:
+#+KEYWORDS:
+#+SUBTITLE:
+#+LATEX_COMPILER: pdflatex
+#+HTML_HEAD_EXTRA: <style> blockquote {background:#EEEEEE; padding: 3px 13px}</style>
+* Topic oveview: backpropagation
+
+** Warm up questions
+   1. What is a neural network?
+   2. What is the difference between supervised and unsupervised learning? Give an example of each? Does anyone know an example other than what we have discussed in class for unsupervised learning?
+   3. What is the activation function we have used for the perceptron and delta rule networks?
+   4. What role does "error" play in the perceptron and delta learning rules?
+   5. For a multilayer network how do you know how much of the "error" to pass back into the deeper layers of the network?
+:answer:
+1. nodes and edges and a whole bunch of other options.
+2. Supervised we are given the desired outputs to learn. Perceptron and Hopfield.
+3. Threshold function.
+4. It is part of the weight updating equation.
+5. That is what we will be working on today.
+:end:
+* Sigmoid Functions
+
+Our prior networks have been forms of threshold units. Check to see if our activation cleared a certain hurdle, and if so set its value to 1 or -1. But it is more common to scale the output continuously between a lower and upper bound. One of the intuitions is that this is like a probability that the neuron might fire.
+
+** An aside: literate programming
+   Human readable code. One of the many contributions from [[http://www-cs-faculty.stanford.edu/~knuth/][Don Knuth]] (along with Tex/LaTeX and the Computer Modern font). Noweb is a tool for this is still maintained and is used in these next snippets of code. 
+*** Tools for literate programming
+    The tools are usually language specific. Here is a general [[http://www.literateprogramming.com/][website]].
+    
+    For python something sort of like this are Jupyter notebooks (also availabe for R), and for R and R markdown file (RMD). 
+
+    1. Org Babel (emacs specific) 
+       http://orgmode.org/worg/org-contrib/babel/intro.html
+    2. Jupyter Notebooks
+       http://jupyter.org/about.html
+    3. Noweb
+       https://www.cs.tufts.edu/~nr/noweb/
+    4. Knitr (R tool)
+       https://yihui.name/knitr/
+    5. Haskell
+       https://wiki.haskell.org/Literate_programming
+** What is a sigmoid function and what does it look like?
+
+ #+Name: imports
+ #+BEGIN_SRC python :exports none :results silent
+ import numpy as np
+ import matplotlib
+ matplotlib.use("Agg")
+ import matplotlib.pyplot as pyp
+ #+END_SRC
+
+ #+Name: defsigmoid
+ #+BEGIN_SRC python  :exports code :results silent
+ def sig (z): return 1.0/(1 + np.exp(-1*z))
+ #+END_SRC
+
+ #+BEGIN_SRC python :noweb yes :results file :exports code
+ <<imports>>
+ <<defsigmoid>>
+ xs = np.linspace(-5,5,101)
+ ys = map(sig,xs)
+ pyp.plot(xs,ys)
+ pyp.savefig("./sig.png")
+ return("./sig.png")
+ #+END_SRC
+
+ $\hspace{0.1cm}$
+ #+Caption: Plot of the Sigmoid Function $\frac{1}{1+e^{-z}}$.
+ #+RESULTS:
+  [[file:./sig.png]]
+** A few questions
+   1. Why is it called "sigmoid?"
+   2. What advantage does it offer over a threshold function?
+   3. Is it the only "sigmoid" function? Does it have other names?
+   4. Can you guess an an advantage to this particular form of the equation?
+   5. How do use this with a neural network, i.e. what is $z$?
+:answer:
+1. S shaped
+2. Differentiable
+3. No, e.g. [[https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Gjl-t%2528x%2529.svg/700px-Gjl-t%2528x%2529.svg.png][hyperbolic tangent]]. Logistic function.
+4. The exponential gives it some nice differentiation properties. Can you differentiate it? Go ahead.
+   
+   What do you need to know?
+   a. Differentiate a quotient.
+   b. Chain rule.
+   c. Derivatives of sums and sums of derivatives
+   d. Fancy rearrangements.
+   e. The derivative of $e^z$.
+5. The weighted input.
+:end:
+
+* How we use it
+  
+  Have to input the activation of the neuron into the $z$ of the sigmoid function. That is we need, \[\frac{1}{1+e^{-(\sum_i xw)}}\] [fn:sigmoid]
+
+** Think about equations qualitatively.
+
+   Remember from our introduction. One of the goals of computational modelling is to get insights into the implications of our ideas and theories. Sometimes this means running a model to see what comes out of it. But it can also mean that we look at the equations that go into the model and think about their "behavior" to get some sense of how things will behave that have particular functional forms. 
+   
+   How might you do that here? Think about how it is the same and differnt from the threshold version. Think about extreme values: what happens at the extremes? Where is the derivative most extreme?  What happens if the dot product of a weight vector and input vector are large? Or very small (and what does small mean here)? What about negative extremes and positive extremes. 
+
+** Why are we starting this discussion of the backpropagation algorithim with all this discussion of activation functions?
+
+   1. What is being backpropagated?
+   2. What is it we want our network to do?
+   3. How do we guide it?
+:answer:
+1. Cost
+2. Move to the point of minimal cost
+3. We use the derivative (just like we have all course long).
+:end:
+* What is the cost?
+
+  Why use a cost instead of a single classification of right or wrong like we had been doing?
+
+  Many networks have a cost function. We may want to know more than just whether you were right or wrong, but how wrong? In a continuous case being "right" might not even really be possible - what is the value of $\pi" ? Our computers cannot give render sufficient precision. There is not "right" cost function either, but what might you suggest that we use, and why?
+
+  What would you suggest as the cost function?
+** Mean Squared Error
+   It's always a good guess and a resonable starting point
+
+   \[C(\mathbf{w}) = \frac{1}{2\mathrm{n}}\sum_\mathbf{x} \|\mathbf{y}(\mathbf{x}) - \mathbf{a}\|^2.\]
+
+   Why isn't this a function of $\mathbf{x}$ and $\mathbf{y}$ too?
+
+   What is the /dimensionality/ of the part of the equation inside the double lines? 
+
+   What do you call the operation characterized by the double lines?[fn:norm]
+
+   Why is adjusting weights for a multilayer network hard?
+   :answer:
+   1. It is, but we can't vary those, so we treat them as constants. 
+   2. the dimensionality is that of the output vector
+   3. the norm (how big or how far) - think of Hamming distance from the Hopfield network.
+   4. Because we don't know how to distribute the errors for the intermediate connections. How much /blame/ do we give to each one? 
+   :end:
+* Backpropagation
+** What do we want? How do we get it?
+   1. What do we want? 
+      To make our network get better; that is to come closer to the "right" answer. Right is in quotes because what is right may be different in different circumstances. This is operator determined.
+   2. How do we get it?
+      1. What is free for us to change?
+      2. How do we determine if our change is for the better?
+      3. Can we determine a way to do it that will just work? 
+	 We will return to this question shortly.
+** Classic Publication
+   [[http://www.nature.com/nature/journal/v323/n6088/pdf/323533a0.pdf]]
+
+   Note that you can read this article. You have all the notation, language, and concepts. Note that the abstract makes sense to you. 
+** Some notation
+   
+   $w_{jk}^l$ is the weight between the $kth$ neuron in the $l-1$ layer to the $jth$ neuron in the $lth$ layer. 
+
+   Note the ordering of $j's$ and $k's$. It may be backwards from your intuition. 
+
+   So, how would you write as an equation with the "sigma" summation sign the value activation of a single /arbitrary/ neuron in an /arbitrary/ layer of a multi-layer network?
+
+** Getting the activation
+   
+   \[a^l_j = \sigma \left ( \sum_k w_{jk}^l~a^{l-1}_k \right ) \]
+
+   
+*** Explain what this means in words.
+    Especially the $\sigma$.
+
+*** Explain what this means with a picture.
+*** Use translation (code:words:pictures) to develop and test your understanding.
+
+** Rewrite this equation as a matrix equation
+
+   $\sigma(\mathbf{W^l}\vec{a^{l-1}})$ Notice that I am "hiding" the bias inside this equation. You have to always have that extra weight and the fixed input activation of $1$ for the bias. 
+   
+   What is the dimension of this "output" and what is the interpretation of the $\sigma$? What is *vectorizing*? From this expression why does it make sense to put the $j$ and $k$ backwards?
+
+   Think of the dot product, column vectors, and the way rows and columns match up. All the odd writing is just to make is consistent with compact matrix notation. 
+
+
+** Python code examples
+
+#+BEGIN_SRC python :noweb yes :exports both
+<<imports>>
+<<defsigmoid>>
+a = np.array([0.9,0.8])
+ab = np.append(a,1.0)
+#what is going on in the line above?
+w = np.array([[0.1,-0.2,0.3],[-.4,0.2,0.2],[1.2,2.3,0.03]])
+#how many neurons are in this layer?
+newa = sig(np.dot(w,ab))
+newa_alt = map(sig, np.dot(w,ab))
+return(newa,newa_alt)
+#+END_SRC
+
+#+RESULTS:
+| array | ((0.55724785 0.5 0.95026349)) | (0.5572478545985555 0.5 0.9502634884414431) |
+
+*** Questions
+    1. What is the difference between the =newa= and  =newa_alt= line?
+    2. Why should you care?
+    :answer:
+    1. a functional style
+    2. more concise code can improve maintainability and comprehensibility. For what we do that is often much more important than speed and efficiency. 
+    :end:
+
+**** Functional links
+     - General :: 
+       1. A stackoverflow [[http://stackoverflow.com/questions/36504/why-functional-languages][discussion]].
+       2. And my favorite example: [[https://wiki.haskell.org/Functional_programming][Haskell]].
+     - Python :: 
+       1. A simple [[https://maryrosecook.com/blog/post/a-practical-introduction-to-functional-programming][introduction]] in python.
+       2. A functional [[https://github.com/pytoolz/toolz][library]] for python and some [[https://toolz.readthedocs.io/en/latest/][documentation]].
+     - R ::
+       1. A blog [[http://adv-r.had.co.nz/Functional-programming.html][post]]
+       2. A [[https://leanpub.com/functional_programming_in_R][book]]. And code [[https://github.com/mailund/functional-programming-in-R][repository]] on github.
+
+* Backpropagation: A pseudo code account
+
+1. Fix the inputs of the first layer to the input pattern $x$.
+2. Compute the weighted input to each neuron of the next layer using the input, weights and biases.
+3. Compute the weighted cost function error vector for the last layer.
+4. Backpropagate the error
+5. Use the backpropagated error to update the weights
+
+** Feedforward Stage
+
+
+  
+
+* Sources
+
+There is a very good online textbook for this material [fn:onlinetextbook].
+
+And some nice short videos too.[fn:backpropvideos]
+
+* Footnotes
+
+[fn:lumberroom] https://en.wikipedia.org/wiki/Lumber_room
+
+[fn:backpropvideos] https://youtu.be/bxe2T-V8XRs?list=PLiaHhY2iBX9hdHaRr6b7XevZtgZRa1PoU
+
+
+[fn:norm] https://en.wikipedia.org/wiki/Norm_(mathematics)
+
+[fn:sigmoid] Don't forget that this includes the "bias" term as an extra column of 1's for your input vectors. 
+
+[fn:onlinetextbook] http://neuralnetworksanddeeplearning.com/chap1.html
+
+
+
+

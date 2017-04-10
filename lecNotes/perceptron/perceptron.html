@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-02-15 Wed 15:24 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Perceptrons</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Britt Anderson" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Perceptrons</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orge32127a">1. Old Business</a></li>
+<li><a href="#orgdbfdeb5">2. Overview</a>
+<ul>
+<li><a href="#org2c66d60">2.1. Question:</a></li>
+<li><a href="#orge63bb01">2.2. Answer:</a></li>
+<li><a href="#orgf9e0dc7">2.3. Vectors are</a></li>
+<li><a href="#org001b688">2.4. Neural Networks are Vector Transformations</a>
+<ul>
+<li><a href="#org13a5c05">2.4.1. Perceptron - brief history</a></li>
+</ul>
+</li>
+<li><a href="#orge190e35">2.5. Hand Worked Example</a></li>
+<li><a href="#org5234960">2.6. Do some computations by hand</a></li>
+<li><a href="#org8b4deb0">2.7. Bias</a></li>
+<li><a href="#org225a5e1">2.8. What do these things have in common?</a></li>
+<li><a href="#org10070a3">2.9. Deriving the Delta Rule</a></li>
+</ul>
+</li>
+<li><a href="#org241cbc4">3. Some Tools</a></li>
+<li><a href="#orge929ca9">4. Assignments</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge32127a" class="outline-2">
+<h2 id="orge32127a"><span class="section-number-2">1</span> Old Business</h2>
+<div class="outline-text-2" id="text-1">
+<ol class="org-ol">
+<li>Hodgkin - Huxley</li>
+<li>Sign up Sheet
+<a href="file:///home/britt/gitRepos/compNeuroIntro420/finalProjects/signup.txt">signup.txt</a></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgdbfdeb5" class="outline-2">
+<h2 id="orgdbfdeb5"><span class="section-number-2">2</span> Overview</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-org2c66d60" class="outline-3">
+<h3 id="org2c66d60"><span class="section-number-3">2.1</span> Question:</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+What component of the domain of linear algebra is most like a neural network and why?
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge63bb01" class="outline-3">
+<h3 id="orge63bb01"><span class="section-number-3">2.2</span> Answer:</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+I would say a matrix.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf9e0dc7" class="outline-3">
+<h3 id="orgf9e0dc7"><span class="section-number-3">2.3</span> Vectors are</h3>
+<div class="outline-text-3" id="text-2-3">
+<ol class="org-ol">
+<li>Strings of numbers <img src="ltximg/perceptron_fde1ba33e3bf4b96ea593a7559dd17428720883e.png" alt="perceptron_fde1ba33e3bf4b96ea593a7559dd17428720883e.png" />.
+What does the "T" mean?</li>
+<li>Geometric elements with direction and magnitude.</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> p 
+<span style="color: #a0522d;">ax</span> = p.axes()
+ax.set_xlim([0,6])
+ax.set_ylim([0,6])
+ax.arrow(0,0,5,5, lw = 4, head_width = 1.0, head_length=1.0, fc =<span style="color: #8b2252;">'k'</span>, ec = <span style="color: #8b2252;">'k'</span>)
+p.savefig(<span style="color: #8b2252;">'vectorExample.png'</span>)
+<span style="color: #a020f0;">return</span> <span style="color: #8b2252;">'vectorExample.png'</span>
+</pre>
+</div>
+
+
+<div class="figure">
+<p><img src="vectorExample.png" alt="vectorExample.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org001b688" class="outline-3">
+<h3 id="org001b688"><span class="section-number-3">2.4</span> Neural Networks are Vector Transformations</h3>
+<div class="outline-text-3" id="text-2-4">
+</div><div id="outline-container-org13a5c05" class="outline-4">
+<h4 id="org13a5c05"><span class="section-number-4">2.4.1</span> Perceptron - brief history</h4>
+</div>
+</div>
+
+<div id="outline-container-orge190e35" class="outline-3">
+<h3 id="orge190e35"><span class="section-number-3">2.5</span> Hand Worked Example</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+Perceptron 
+</p>
+
+<p>
+<img src="ltximg/perceptron_f99658ba1587f23b5e3d22b132bea4a7977cbb4d.png" alt="perceptron_f99658ba1587f23b5e3d22b132bea4a7977cbb4d.png" /> 
+</p>
+
+<p>
+<img src="ltximg/perceptron_9e4dfc66d1e57c0a51a25b54f60942428c38b01c.png" alt="perceptron_9e4dfc66d1e57c0a51a25b54f60942428c38b01c.png" />
+</p>
+
+<p>
+Threshold value is "0".
+</p>
+
+<p>
+<img src="ltximg/perceptron_56a9dd7fa57bfb385465ffb2f9ec0a5e9c849b89.png" alt="perceptron_56a9dd7fa57bfb385465ffb2f9ec0a5e9c849b89.png" />
+</p>
+
+<p>
+<img src="ltximg/perceptron_68ce5ba65c5a11efd2168ab03af84aca2591dc5e.png" alt="perceptron_68ce5ba65c5a11efd2168ab03af84aca2591dc5e.png" />
+</p>
+
+
+<p>
+Preliminaries:
+</p>
+<ol class="org-ol">
+<li>What does <code>I</code> refer to in the first equation?</li>
+<li>What do <code>x</code> and <code>y</code> refer to?</li>
+<li>What are the <code>w</code>'s and why are they bold?</li>
+<li>What is <img src="ltximg/perceptron_0e32a14cecbc8303e8e9025df8f543f34d06be36.png" alt="perceptron_0e32a14cecbc8303e8e9025df8f543f34d06be36.png" />?</li>
+<li>What happens to the weights under the circumstances where the answer is correct and incorrect?</li>
+<li>Is this a supervised or unsupervised learning algorithm, and what is the difference?</li>
+<li>How does this affect the biolgical plausibility of this neural network?</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org5234960" class="outline-3">
+<h3 id="org5234960"><span class="section-number-3">2.6</span> Do some computations by hand</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+or a spreadsheet or some simple code, and plot the migration of the weight vector. What relationship does the weight vector bear to the decision of correct and incorrect and why does that relation exist?
+</p>
+
+<table id="org99424ee" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 1:</span> Training Data Perceptron Exercise. Beginning weights <img src="ltximg/perceptron_70b2dcf29188983e62860febadd9793aed3a13f7.png" alt="perceptron_70b2dcf29188983e62860febadd9793aed3a13f7.png" />.</caption>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-center" />
+
+<col  class="org-center" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Input1</th>
+<th scope="col" class="org-right">Input2</th>
+<th scope="col" class="org-center">Class Name</th>
+<th scope="col" class="org-center">Class Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0.3</td>
+<td class="org-right">0.7</td>
+<td class="org-center">A</td>
+<td class="org-center">1</td>
+</tr>
+
+<tr>
+<td class="org-right">0.7</td>
+<td class="org-right">0.3</td>
+<td class="org-center">A</td>
+<td class="org-center">1</td>
+</tr>
+
+<tr>
+<td class="org-right">-0.6</td>
+<td class="org-right">0.3</td>
+<td class="org-center">B</td>
+<td class="org-center">-1</td>
+</tr>
+
+<tr>
+<td class="org-right">-0.2</td>
+<td class="org-right">-0.8</td>
+<td class="org-center">B</td>
+<td class="org-center">-1</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+First, see how well the current weights classify the data, then compute and update the weights for each of the inputs (in the order specified) and see how the weight vector moves.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> p 
+<span style="color: #a020f0;">import</span> numpy <span style="color: #a020f0;">as</span> np
+<span style="color: #a020f0;">from</span> itertools <span style="color: #a020f0;">import</span> cycle
+<span style="color: #a0522d;">ds</span> = np.array([[0.3,0.7],[0.7,0.3],[-0.6,0.3],[-0.2,-0.8]])
+<span style="color: #a0522d;">w</span> = np.array([-0.6,0.8])
+<span style="color: #a0522d;">ax</span> = p.axes()
+ax.set_aspect(<span style="color: #8b2252;">'equal'</span>)
+ax.set_xlim(-2.5,2.5)
+ax.set_ylim(-2.5,2.5)
+<span style="color: #a0522d;">cls</span> = cycle(<span style="color: #8b2252;">'rrgg'</span>)
+<span style="color: #a020f0;">for</span> d,c <span style="color: #a020f0;">in</span> <span style="color: #483d8b;">zip</span> (ds,[1,1,-1,-1]):
+     <span style="color: #a0522d;">pltwt</span> = np.sqrt(np.dot(w,w))
+     ax.arrow(0,0,w[0],w[1], lw = pltwt*3, head_width = 0.2*pltwt, head_length=0.05*pltwt, fc =<span style="color: #8b2252;">'k'</span>, ec = <span style="color: #8b2252;">'k'</span>)
+     <span style="color: #a0522d;">nudge</span> = 0.2
+     p.scatter(d[0],d[1],color = <span style="color: #483d8b;">next</span>(cls))
+     p.text(d[0]+nudge,d[1]+nudge,<span style="color: #483d8b;">str</span>(w))
+     <span style="color: #a0522d;">y</span> = 1 <span style="color: #a020f0;">if</span> (np.dot(d,w) &gt;= 0.0) <span style="color: #a020f0;">else</span> -1
+     <span style="color: #a0522d;">beta</span> = 1 <span style="color: #a020f0;">if</span> y == c <span style="color: #a020f0;">else</span> -1
+     <span style="color: #a0522d;">w</span> = w + beta*y*d
+ax.arrow(0,0,w[0],w[1], lw = pltwt*3, head_width = 0.2*pltwt, head_length=0.05*pltwt, fc =<span style="color: #8b2252;">'k'</span>, ec = <span style="color: #8b2252;">'k'</span>)
+p.savefig(<span style="color: #8b2252;">'perceptronExample.png'</span>)
+<span style="color: #a020f0;">return</span> <span style="color: #8b2252;">'perceptronExample.png'</span>
+</pre>
+</div>
+
+
+<div id="org7998cf4" class="figure">
+<p><img src="perceptronExample.png" alt="perceptronExample.png" />
+</p>
+<p><span class="figure-number">Figure 2: </span>Perceptron Example - Weight Vectors</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org8b4deb0" class="outline-3">
+<h3 id="org8b4deb0"><span class="section-number-3">2.7</span> Bias</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+What happens when the line that is needed to separate the points does not go through the origin, as for example any of the logical functions we studied last time (AND,NAND,OR)?
+</p>
+
+<p>
+How could we reconcieve our input vector in order to learn the bias?
+</p>
+
+<p>
+<img src="ltximg/perceptron_02bc2255b23958c30cba2370bd1f0b50a8e67955.png" alt="perceptron_02bc2255b23958c30cba2370bd1f0b50a8e67955.png" /> where is the y-intercept? What is the y-intercept? How do I need to move the line to function to separate the two classes? Now how do I rewrite that in terms of the matrix and vector operations we have been learning so that I can learn the bias just like I learn the weights?
+</p>
+
+<p>
+<img src="ltximg/perceptron_5854dc001e63c4bd9038b02f1344894f69ee6377.png" alt="perceptron_5854dc001e63c4bd9038b02f1344894f69ee6377.png" />
+</p>
+
+<p>
+<img src="ltximg/perceptron_d93805842e57126b6c7fcc3002aaaaea1d447948.png" alt="perceptron_d93805842e57126b6c7fcc3002aaaaea1d447948.png" /> Where x<sub>2</sub> is fixed at 1. Then can visualize as <img src="ltximg/perceptron_2e4232ff81f2d690d752097065cda11c65f96530.png" alt="perceptron_2e4232ff81f2d690d752097065cda11c65f96530.png" />.
+</p>
+</div>
+</div>
+<div id="outline-container-org225a5e1" class="outline-3">
+<h3 id="org225a5e1"><span class="section-number-3">2.8</span> What do these things have in common?</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+Group Exercise: find one general equation for your "term" that relates to how the updating takes place.
+</p>
+<ol class="org-ol">
+<li>Reinforcement Learning</li>
+<li>Rescorla - Wagner</li>
+<li>Newton's Method</li>
+<li>Delta Rule</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org10070a3" class="outline-3">
+<h3 id="org10070a3"><span class="section-number-3">2.9</span> Deriving the Delta Rule</h3>
+<div class="outline-text-3" id="text-2-9">
+<p>
+We have an ouput and a "right" answer, and we want to minimize the difference. We can call the answers as <img src="ltximg/perceptron_bb62ee07678bfcbf2949252402c199f55dd2dd8e.png" alt="perceptron_bb62ee07678bfcbf2949252402c199f55dd2dd8e.png" /> 's and use the subscripts to indicate one of our inputs and known outputs.
+</p>
+
+<p>
+<img src="ltximg/perceptron_58c3340a9c26e7559f25a6e4389c4497dcd30522.png" alt="perceptron_58c3340a9c26e7559f25a6e4389c4497dcd30522.png" /> where <img src="ltximg/perceptron_518ea4e45474cddd75cc7eaddd3c589b3d882b97.png" alt="perceptron_518ea4e45474cddd75cc7eaddd3c589b3d882b97.png" /> . We don't just want to make the answer small for one input-output pair, but for all of them. So, let's add up the errors.
+</p>
+
+<p>
+<img src="ltximg/perceptron_cb605da3499de24422c5aaa3af8a5e3b7e92ffb2.png" alt="perceptron_cb605da3499de24422c5aaa3af8a5e3b7e92ffb2.png" /> What is wrong with this formulation? Well, positive and negative errors can cancel out, and we can have a small number with everything being individually far from zero. A common trick is to make everything positive by squaring it. One reason for not taking absolute values is that squaring makes it easier to take derivatives and the like. 
+</p>
+
+<p>
+<img src="ltximg/perceptron_8f522dcd6aa940667dacd0d7c0ecf755a02728cc.png" alt="perceptron_8f522dcd6aa940667dacd0d7c0ecf755a02728cc.png" /> The one-half value is just for convenience. To find where the value reaches a minimum we take a derivative (a graphical explanation can show why - if you don't see it, ask me, but remember to think of the derivative of the slope of a function at each point. What happens to the slope when you reach a peak or a dip?). What should we take the derivative with respect to? What is it that we are free to change?
+</p>
+
+<p>
+A derivative of a sum is a sum of derivatives so, we need to,
+</p>
+
+<p>
+<img src="ltximg/perceptron_3390b9867e14115a8831b357a06cc95ed37e3e61.png" alt="perceptron_3390b9867e14115a8831b357a06cc95ed37e3e61.png" /> The <img src="ltximg/perceptron_cae2d4d31c691e645c5b4eb88ae07cc3b4c5825f.png" alt="perceptron_cae2d4d31c691e645c5b4eb88ae07cc3b4c5825f.png" /> goes over each of the individual weights, as we usually have a vector (or matrix of weights). 
+</p>
+
+<p>
+<img src="ltximg/perceptron_4ec74a343e49a43bd65f94102050dc4fa8158da8.png" alt="perceptron_4ec74a343e49a43bd65f94102050dc4fa8158da8.png" /> If you compare this to the derivation in wikipedia you will see a difference due to their more general assumptions about the activation function used to produce <img src="ltximg/perceptron_f4b063b0f80936b36f97c50c99cf1c25baca9522.png" alt="perceptron_f4b063b0f80936b36f97c50c99cf1c25baca9522.png" /> which assumes that <img src="ltximg/perceptron_dc4ea36e2fba102a3eb291d0e81f4acb5baf9a84.png" alt="perceptron_dc4ea36e2fba102a3eb291d0e81f4acb5baf9a84.png" /> and I have simplified things by assuming that g is simply the identity.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org241cbc4" class="outline-2">
+<h2 id="org241cbc4"><span class="section-number-2">3</span> Some Tools</h2>
+<div class="outline-text-2" id="text-3">
+<ol class="org-ol">
+<li>Octave/Matlab - programming languages for manipulating matrices and vectors. Common in engineering.</li>
+<li><p>
+R 
+</p>
+<div class="org-src-container">
+<pre class="src src-R">a = matrix(data = c(1,2,3,4),nrow=2,ncol=2)
+print(a)
+b = matrix(data = c(5,6), nrow = 2)
+print(b)
+a <span style="color: #008b8b;">%*%</span> b
+</pre>
+</div>
+
+<p>
+<i>Note that matrix multiplication has a different symbol and meaning from plain multiplication.</i>
+</p>
+<pre class="example">
+     [,1] [,2]
+[1,]    1    3
+[2,]    2    4
+     [,1]
+[1,]    5
+[2,]    6
+     [,1]
+[1,]   23
+[2,]   34
+</pre>
+
+<p>
+A summary of some of the R functions can be found <a href="http://statmethods.net/advstats/matrix.html">here</a>.
+</p></li>
+<li><p>
+Python 
+Probably want to use the numpy or scipy functions. We will use numpy here.
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">import</span> numpy <span style="color: #a020f0;">as</span> np
+<span style="color: #a0522d;">myvec</span> = np.array([5,6])
+<span style="color: #a020f0;">print</span> myvec
+<span style="color: #a0522d;">mymat</span> = np.array([[1,2],[3,4]])
+<span style="color: #a020f0;">print</span> mymat
+<span style="color: #a020f0;">print</span> np.dot(mymat,myvec)
+</pre>
+</div>
+
+<p>
+Now think about it: <b>why is this answer different from the example above</b>?
+</p>
+<pre class="example">
+[5 6]
+[[1 2]
+ [3 4]]
+[17 39]
+</pre></li>
+</ol>
+</div>
+</div>
+
+
+<div id="outline-container-orge929ca9" class="outline-2">
+<h2 id="orge929ca9"><span class="section-number-2">4</span> Assignments</h2>
+<div class="outline-text-2" id="text-4">
+<ol class="org-ol">
+<li>In a spreadsheet (or as code) write out a multi-layer perceptron network that will computer the XOR function. You do not need to "learn" the weights for this network. You know who to represent the XOR in terms of a network of simple logical operations, and you should be able to deduce a set of weights for each of those operations that you can encode into your network (or spreadsheet) that will let me enter each pair of the XOR inputs (0,1) and get the correct output: 1 for True, and 0 or -1 for False.</li>
+<li>Simulation and training with the delta rule. 
+The problem is on pages 91-92 of the text book in gray. There is Octave code demonstrating how to solve the problem, but as we all know it is one thing to read a solution, another to program it ourselves. The problem is described in the test, but one thing that people seem to misunderstand is that you are training a single weight vector for all patterns. <b>Not</b> a weight vector for each pattern.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Britt Anderson</p>
+<p class="date">Created: 2017-02-15 Wed 15:24</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

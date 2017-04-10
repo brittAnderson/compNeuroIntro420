@@ -1,0 +1,218 @@
+#+STARTUP: showall
+#+Title: Neural Network Introduction
+#+Options: creator:nil date:t author:nil timestamp:nil validate:nil html-postamble:nil tex:imagemagick toc:nil
+#+Exclude_tags: 
+
+* Introduction
+  Goals
+
+  - What is a neural network?
+  - What mathematics are needed to build a neural network?
+  - How can neural networks help us understand cognition?
+
+* Be the Neuron
+    
+For this exercise you will need a sheet of graph paper and a *rule*. Begin with the top row of the graph paper. Your rule will specify how the color of a square of the graph paper depends  on the color of neighboring cells in the row immediately above.  Our rule depends on three cells only and is like the gentleman at the football match deciding whether to stand or sit when making the wave.  Each square in the grid of your graph paper decides whether to be blank or colored-in based on the three squares above it
+
+#+Name: fig:neighborhood
+#+Caption: Neighborhood Diagram. Use the relations between the ~?~ square and the three above it to decide what to do.
+\begin{tikzpicture}
+\draw[step=1cm] (-1,0) grid (2,2);
+\draw (-0.5,1.5) node [] {1};
+\draw (0.5,1.5) node [] {2};
+\draw (1.5,1.5) node [] {3};
+\draw (0.5,0.5) node [] {?};
+\end{tikzpicture}
+
+** Rules
+
+#+Name: fig:90
+#+Caption: Rule 90
+[[file:CARule90.png]]
+
+#+Name: fig:60
+#+Caption: Rule 60
+[[file:CARule60.png]]
+
+
+#+Name: fig:110
+#+Caption: Rule 110
+[[file:CARule110.png]]
+
+#+Name: fig:250
+#+Caption: Rule 250
+[[file:CARule250.png]]
+
+** Instructions
+    1. Color in the very center square of the very top row of the graph paper. 
+    2. Proceeding from left to right, color every square in the second row based on the rule you selected. In this row every cell will be left uncolored except for those near the center, because these rules all specify that a cell with three uncolored grids above remains uncolored. But how you treat the ones near the center will depend on the rule. For example, for rule 60, the cell immediately beneath the center, colored, square of row 1 will be colored, as will the one immediately to its right.
+    3. Repeat this process working down until you can clearly see the pattern, or you give up in despair.
+Compare your results from using different rules.
+
+** Food for Thought
+   How many rules are there? This is an exercise in combinatorics. The field of mathematics for computing combinations. You know how many inputs there can be: there are three cells and each can be white or gray, $2\times2\times2 = 8$. But how many output patterns are there that each rule can be matched with?
+
+
+**** Comments :noexport: 
+ What this exercise illustrates (pun intended) is that remarkable global structure can emerge from the consistent application of simple rules. By analogy think of a neuron computing whether or not to spike based on the input it receives from a small set of neighbors. A spike becomes  a decision, like whether or not to color a grid of the graph paper.  The neuron does not need to know the global objective in order to do its job properly. The global structure takes care of itself.
+
+ This example also emphasizes the components of many neural networks. Each grid square is a node. It took inputs, the colors  of the three squares above it, and it (or rather you) computed its output: its color. The connectivity was implicit in the structure we used. Each node (grid cell) was wired to the three  nodes, and only those three nodes, above it (for its input) and wired for output to the node directly beneath it and one to either side.  If we change the connections, we change the network. If we change the rule for coloring, we  change the network. There is nothing special or necessary about choosing to use three cells. In fact, von Neumann used a different, more complex architecture. Some mathematicians argue that such simple programs can give rise to all of our complex world.
+
+** What's the point
+   Local action can give rise to global properties
+
+
+** Cellular Automata
+    1. John Von Neumann
+       
+       Automata and the Brain
+       Commentary by [[http://www.ams.org/bull/1958-64-03/S0002-9904-1958-10214-1/S0002-9904-1958-10214-1.pdf][Claude Shannon]] (PDF)
+    2. Stephen Wolfram
+   
+       [[http://www.wolframscience.com/][A New Kind of Science]]
+* What is a Neural Network?
+
+  What is a Neural Network? It is a brain inspired computational approach in which "neurons" compute functions of their inputs and pass on a /weighted/ proportion to the next neuron in the chain. 
+
+** An example: the threshold unit
+
+ #+Begin_src ditaa :results silent :file net.png
+ +---------+       +---------+
+ | Input 1 |------>| Node 1  |------>W_1\
+ +---------+       +---------+           \
+                                          \
+ +---------+       +---------+             \ +---------+
+ | Input 2 |------>| Node 2  |------>W_2---->| Output  |
+ +---------+       +---------+             / +---------+
+                                          /
+ +---------+       +---------+           /
+ | Input 3 |------>| Node 3  |------>W_3/
+ +---------+       +---------+
+ #+End_src
+
+ #+Caption: *Threshold Unit*: If $I_1 \times w_{1,1} + I_2 \times w_{2,1} + I_3 \times w_{3,1} > \Theta$ then Output = 1.
+ #+Name: fig:net
+ [[./net.png]]
+
+
+
+*** Short Description
+
+    The structure of the threshold unit illustrates the basic mechanics of many neural networks: Inputs are passed to the first layer, which in turn are passed to downstream units (only one shown here). A weighted sum (or possibly a function of the weighted sum) leads to an intermediate output that is then passed to the next *layer* of the network. In this case the weighted sum is fed into a threshold function that compares the value to a threshold, and passes on the value 1 if it is greater than the threshold and 0 otherwise. 
+
+*** Question 
+    What is the $\Theta$ equivalent to in a real neuron?
+
+*** Answer :noexport:
+    The threshold for an action potential.
+
+*** Questions
+    What, geometrically speaking, is a plane?
+
+    What is a hyperplane?
+
+    How does the idea of a plane or hyperplane relate to the notion of /linearly separable/?
+
+*** Examples 
+
+**** AND
+
+#+Begin_src python :export both :results silent
+import matplotlib 
+import matplotlib.pyplot as p
+cs = ["#ff0000","#ff0000","#ff0000","#008000"]
+p.scatter([0, 1, 0, 1],[0,0,1,1],color=cs,s = 60)
+p.savefig('./and.png')
+return './and.png'
+#+End_src
+
+#+Name: fig:and
+#+Caption: Draw a line that separates green from red
+[[./and.png]]
+
+**** XOR
+#+Begin_src python :exports both :results silent
+import matplotlib 
+import matplotlib.pyplot as p
+cs = ["#ff0000", "#008000",  "#008000", "#ff0000"]
+p.scatter([0, 1, 0, 1],[0,0,1,1],color=cs,s = 60)
+p.savefig('./xor.png')
+return './xor.png'
+#+End_src
+
+#+Name: fig:and
+#+Caption: Draw a line that separates green from red
+[[./xor.png]]
+
+ #+Name: fig:nature-biotech
+ #+Caption: Figure from a Nature Biotechnology article on neural networks. [[doi:10.1038/nbt1386]]
+ [[./nbt1386-F1.gif]]
+
+
+
+** Boolean Logic
+
+   
+*** George Boole, Author of the _Laws of Thought_
+    1. Read the [[https://archive.org/details/investigationofl00boolrich][book]] on Archive.org
+    2. Read about George Boole [[https://plato.stanford.edu/entries/boole/#LifWor][here]].
+*** First Order Logic - Truth Tables
+    1. Or
+       #+Name: Or
+       #+Caption: Or
+       | Pr. A | Pr. B | Or |
+       |-------+-------+----|
+       |     1 |     1 |  1 |
+       |     0 |     0 |  0 |
+       |     0 |     1 |  1 |
+       |     1 |     0 |  1 |
+    2. And
+       #+Name: And
+       #+Caption: And
+       | Pr. A | Pr. B | And |
+       |-------+-------+----|
+       |     1 |     1 |  1 |
+       |     0 |     0 |  0 |
+       |     0 |     1 |  0 |
+       |     1 |     0 |  0 |
+    3. Nand
+       #+Name: Nand
+       #+Caption: Nand
+       | Pr. A | Pr. B | NAND |
+       |-------+-------+------|
+       |     1 |     1 |    0 |
+       |     0 |     0 |    1 |
+       |     0 |     1 |    1 |
+       |     1 |     0 |    1 |
+**** Class Activity - Groups
+     1. Create the truth table for the exlusive-or (aka XOR)
+     2. Using only the above /functions/ show how you can get the XOR function from a particular chain of those three functions.
+***** Answer :noexport:
+      :Properties:
+      :Visibility: folded
+      :End:
+      AND(NAND(INPUT),OR(INPUT))
+*** Why Logic
+**** Question:
+     Why should the operations of truth tables and logic be considered relevant for models of human cognition or models of the nervous system?
+***** Answer: :noexport:
+      :Properties:
+      :Visibility: folded
+      :End:
+      Possible answers. Not necessarily "right" answers.
+      1. Human thought is fundamentally logical.
+	 - General
+           https://plato.stanford.edu/entries/cognitive-science/#ForLog
+	 - Mental Models - Philip Johnson Laird
+	   http://mentalmodels.princeton.edu/about/critics/
+      2. Neuron firing can be treated as ones and zeros.
+	 - McCullough and Pitts
+	   http://link.springer.com/article/10.1007/BF02478259
+	 - History of a search for logic in the nervous system
+           http://muse.jhu.edu/article/46496
+
+* Assignments
+    1. Present me with a concise demonstration of the following, which could be a program or an excel spread sheet. This will require that you know what a vector and matrix are. Wikipedia is fine here, but you can use another source if you want. In fact, Wikipedia is more than you need. This python [[http://www.python-course.eu/matrix_arithmetic.php][website]] provides a nice overview. 
+       a. How to multiply two vectors together in the operation called a _dot product_. You can either do it with formulas in a spreadsheet or using a loop in some programming language, but you can't just use some special inbuilt function. I need to see enough to know that you understand what is actually taking place - then we will just use the built in functions as we progress.
+       b. Show how this operation relates to the threshold neuron illustrated above in Figure 1.
+       c. Demonstrate that matrix multiplication is "non-commutative."
