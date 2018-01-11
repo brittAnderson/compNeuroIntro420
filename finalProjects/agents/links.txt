@@ -1,5 +1,0 @@
-Agent based Modelling
-
-https://pypi.python.org/pypi/Mesa/
-
-http://netlogoweb.org/
