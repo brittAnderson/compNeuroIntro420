@@ -12,23 +12,39 @@
 #+EXCLUDE_TAGS: noexport
 #+CREATOR: Emacs 25.3.2 (Org mode 9.1.13)
 * AI
+  
+  Present Order = 3
+
 ** Unsupervised Learning
 ** Machine Learning
    - Bizev
    - Tryhorn
    - Babwani
 * Integrated Information
+   
+  Present Order = 4
+
   - Park
+
 * Neural Plasticity
+
+  Present Order = 2
+
 ** Receptors and medication effects
 ** Neural Models of single cell
    - Moffat
    - Ramljak
 * Gaze and Facial Recognition
+
+  Present Order = 1
+
   - Mehravahr
   - Clappison
   - Parkington
 * Decision Making Motivation 
+
+  Present Order = 5
+
 ** Python for Programming Psychology Experiments
 ** performance on a task like Iowa Gambling
    - Larche
