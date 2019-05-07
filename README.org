@@ -1,4 +1,4 @@
 
 * Overview
 
-  This repo holds notes and some code snippets for my class at the University of Waterloo PSYCH420 an introduction to computational modelling for undergraduate psychology students. Primarily this repository is used for teaching the students how to use git, and to provide a simple interface for sharing that they can use to practice git commands. It is unlikely to be useful to anyone not enrolled in that course. 
+  This repo holds notes and some code snippets for my class at the University of Waterloo PSYCH420 an introduction to computational modelling for undergraduate psychology students. Primarily this repository is used for teaching the students how to use git, and to provide a simple interface for sharing that they can use to practice git commands. It is unlikely to be useful to anyone not enrolled in that course. If you are in the course make sure and pick *branch* **s2019** so you have the contemporary files. 
