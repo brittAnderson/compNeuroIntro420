@@ -1,0 +1,3 @@
+Derivative of e^x: e^x
+Integral of 1/x: ln(x)
+Relationship: ln(e) = 1 [Because ln is log_e]
