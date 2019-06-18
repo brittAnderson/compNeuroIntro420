@@ -4,49 +4,36 @@
 #+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+OPTIONS: timestamp:t title:t toc:t todo:t |:t
 #+TITLE: Projects
-#+DATE: <2018-06-13 Wed>
+#+DATE: <2019-06-17 Mon>
 #+AUTHOR: Britt Anderson
 #+EMAIL: britt@uwaterloo.ca
 #+LANGUAGE: en
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
 #+CREATOR: Emacs 25.3.2 (Org mode 9.1.13)
-* AI
-  
-  Present Order = 3
-
-** Unsupervised Learning
-** Machine Learning
-   - Bizev
-   - Tryhorn
-   - Babwani
-* Integrated Information
-   
-  Present Order = 4
-
-  - Park
-
-* Neural Plasticity
-
-  Present Order = 2
-
-** Receptors and medication effects
-** Neural Models of single cell
-   - Moffat
-   - Ramljak
-* Gaze and Facial Recognition
-
-  Present Order = 1
-
-  - Mehravahr
-  - Clappison
-  - Parkington
-* Decision Making Motivation 
-
-  Present Order = 5
-
-** Python for Programming Psychology Experiments
-** performance on a task like Iowa Gambling
-   - Larche
-   - Zhang
-   - Zeng
+* Python for Psychological Experimentation
+  1. Joyce
+  2. Nicole
+* Modeling of Clinical Conditions
+  1. Suriya
+  2. Sarah
+  3. Natasha
+* Neural Modeling Frameworks for Cell-Cell Signalling
+  1. Amiya
+  2. Brett
+  3. Atticus
+* Emotion Perception
+  1. Jessica
+  2. Jacqueline
+  3. Amie
+  4. Kai
+* Perception and Computer Vision
+  1. Monica
+  2. Melody
+  3. Nolan
+* Intelligence: Natural and Artificial
+  1. Luke
+  2. Swathi
+* To Be Determined
+  1. Starbuck
+  2. Stephen
