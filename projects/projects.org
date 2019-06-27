@@ -11,9 +11,10 @@
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
 #+CREATOR: Emacs 25.3.2 (Org mode 9.1.13)
-* Python for Psychological Experimentation
-  1. Joyce
-  2. Nicole
+* Python for Psychological Experimentation 
+  1. Joyce 
+  2. Nicole 
+  3. Suriya
 * Modeling of Clinical Conditions
   1. Suriya
   2. Sarah
