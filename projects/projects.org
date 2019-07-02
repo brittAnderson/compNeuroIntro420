@@ -15,13 +15,12 @@
   1. Joyce
   2. Nicole
 * Modeling of Clinical Conditions
-  1. Suriya
+  1. Atticus
   2. Sarah
   3. Natasha
 * Neural Modeling Frameworks for Cell-Cell Signalling
   1. Amiya
   2. Brett
-  3. Atticus
 * Emotion Perception
   1. Jessica
   2. Jacqueline
