@@ -32,9 +32,9 @@
   1. Monica
   2. Melody
   3. Nolan
-* Intelligence: Natural and Artificial
+* Intelligence: Reinforcement Learning
   1. Luke
   2. Swathi
+  3. Starbuck
 * To Be Determined
-  1. Starbuck
-  2. Stephen
+  1. Stephen
