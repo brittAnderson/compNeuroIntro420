@@ -22,7 +22,7 @@
 * Neural Modeling Frameworks for Cell-Cell Signalling
   1. Amiya
   2. Brett
-  3. Atticus
+  3. Stephen
 * Emotion Perception
   1. Jessica
   2. Jacqueline
@@ -36,5 +36,4 @@
   1. Luke
   2. Swathi
   3. Starbuck
-* To Be Determined
-  1. Stephen
+
