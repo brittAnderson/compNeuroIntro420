@@ -11,17 +11,18 @@
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
 #+CREATOR: Emacs 25.3.2 (Org mode 9.1.13)
-* Python for Psychological Experimentation
-  1. Joyce
-  2. Nicole
+* Python for Psychological Experimentation 
+  1. Joyce 
+  2. Nicole 
+  3. Suriya
 * Modeling of Clinical Conditions
-  1. Suriya
+  1. Atticus
   2. Sarah
   3. Natasha
 * Neural Modeling Frameworks for Cell-Cell Signalling
   1. Amiya
   2. Brett
-  3. Atticus
+  3. Stephen
 * Emotion Perception
   1. Jessica
   2. Jacqueline
@@ -31,9 +32,8 @@
   1. Monica
   2. Melody
   3. Nolan
-* Intelligence: Natural and Artificial
+* Intelligence: Reinforcement Learning
   1. Luke
   2. Swathi
-* To Be Determined
-  1. Starbuck
-  2. Stephen
+  3. Starbuck
+
