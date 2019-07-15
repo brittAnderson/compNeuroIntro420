@@ -11,6 +11,15 @@
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
 #+CREATOR: Emacs 25.3.2 (Org mode 9.1.13)
+* Emotion Perception (2)
+  1. Jessica
+  2. Jacqueline
+  3. Amie
+  4. Kai
+* Intelligence: Reinforcement Learning (3)
+  1. Luke
+  2. Swathi
+  3. Starbuck
 * Python for Psychological Experimentation 
   1. Joyce 
   2. Nicole 
@@ -23,17 +32,7 @@
   1. Amiya
   2. Brett
   3. Stephen
-* Emotion Perception
-  1. Jessica
-  2. Jacqueline
-  3. Amie
-  4. Kai
 * Perception and Computer Vision
   1. Monica
   2. Melody
   3. Nolan
-* Intelligence: Reinforcement Learning
-  1. Luke
-  2. Swathi
-  3. Starbuck
-
