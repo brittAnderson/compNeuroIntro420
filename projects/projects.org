@@ -11,6 +11,10 @@
 #+SELECT_TAGS: export
 #+EXCLUDE_TAGS: noexport
 #+CREATOR: Emacs 25.3.2 (Org mode 9.1.13)
+* Perception and Computer Vision (1)
+  1. Monicap
+  2. Melody
+  3. Nolan
 * Emotion Perception (2)
   1. Jessica
   2. Jacqueline
@@ -20,19 +24,15 @@
   1. Luke
   2. Swathi
   3. Starbuck
-* Python for Psychological Experimentation 
-  1. Joyce 
-  2. Nicole 
-  3. Suriya
-* Modeling of Clinical Conditions
+* Modeling of Clinical Conditions (4)
   1. Atticus
   2. Sarah
   3. Natasha
-* Neural Modeling Frameworks for Cell-Cell Signalling
+* Python for Psychological Experimentation  (5)
+  1. Joyce 
+  2. Nicole 
+  3. Suriya
+* Neural Modeling Frameworks for Cell-Cell Signalling (6)
   1. Amiya
   2. Brett
   3. Stephen
-* Perception and Computer Vision
-  1. Monica
-  2. Melody
-  3. Nolan
