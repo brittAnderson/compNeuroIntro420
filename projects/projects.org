@@ -12,7 +12,7 @@
 #+EXCLUDE_TAGS: noexport
 #+CREATOR: Emacs 25.3.2 (Org mode 9.1.13)
 * Perception and Computer Vision (1)
-  1. Monicap
+  1. Monica
   2. Melody
   3. Nolan
 * Emotion Perception (2)
