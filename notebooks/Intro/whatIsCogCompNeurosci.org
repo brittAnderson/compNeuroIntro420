@@ -1,0 +1,117 @@
+#+Title: An Introduction to Computational Cognitive (and Neuroscience) Modelling
+
+* Who are you? Who am I?
+What is your major?
+
+What year are you?
+
+What math or programming background do you have?
+
+Why did you take this course?
+
+* What is the course about?
+  Let's talk about that.
+  
+** Share your interest :assignment:
+1. Go to: https://2019.ccneuro.org/Papers/AcceptedPapers.asp
+
+2. Pick a paper.
+
+3. Call out the number so I can list it as taken:
+   Let's take about 10 minutes for you to find and skim the paper. 
+
+   | Student  | Number |
+   |----------+--------|
+   | John Doe | 101    |
+   |          |        |
+
+4. Let's take a look at a few of the selections to give ourselves a sense of the range of the topics.
+
+5. Given this what do we think the content of computational cognitive neuroscience modeling is about and what the domains and tools that should be relevant?
+
+6. A source for further reading: https://seop.illc.uva.nl/entries/computational-mind/
+
+* How is the course structured?
+  We work through modules that are loosely grouped around some mathematical topic that I think is relevant and that is commonly used in computational neuroscience. I a very limited sketch of the math, mostly with the intention to provide some motivation and justification and the secondary goal of introducing terminology and notation. Then we practice using the concept in simple programming exercises that are usually based on historical examples. Simulation via written programs is the most common method of the field, to understand the field and how it works, you need to practice the method. 
+
+** What are the "topics"?
+The two topics that I have always had time to cover are
+1. Differential equations and Models of Neuron Spiking
+2. Linear algebra and Neural Networks
+Depending on pace we might try additional topics and you can help me decide what they should be.
+
+* What tools will you need?
+  You will need a laptop and an environment for programming. You can pick the operating system you want to use, the language you want to program in, and the development environment. Programs are basically text files. The only requirement that your choices have to meet is that they provide you a way of submitting to me the text file that is your program so that I can run it on my machine. 
+
+  
+** What tools do I use?
+- OS :: Linux
+  I use Linux because it gives me greater flexibility to rapidly innovate. I can try out things quickly, because I don't have to wait on an administrator to install new software to my University machines. That doesn't apply to you. However, many developers for non-commercial software like linux and use it perferentially. You may want to try it.
+  If so, you can try Windows Subsystem for Linux 2 or a virtual machine if you are a Mac user. This will be further complicated by whether you are using an M1 mac or an Intel mac. Figuring this out is up to you. Here are a couple of links to point you in the right direction.
+
+  [[https://mac.getutm.app/][VR software for Macs Intel/M1]]
+  [[https://docs.microsoft.com/en-us/windows/wsl/about][Windows Subsystem for Linux]]
+
+  What else might you try? How about an [[https://www.kijiji.ca/b-laptops/kitchener-area/laptop/k0c773l1700209?ad=offering&price=__100][old cheap machine]] that just use for linux? I have a couple I can lend out, but not enough for everyone. You will have to [[https://xubuntu.org/][install]] and update the operating system.
+- Programming Language :: Common Lisp
+  I don't recommend you use this. I am trying it as an experiment and to force myself to learn something new. It also allows me to share code that you are unlikely to be able to just cut and paste, but will have to understand a little to adapt to your own needs. 
+  - Are you an experienced programmer?
+    If so, pick a language you do not know well. Use this as a chance to experiment and push your skills. As long as we can figure out I am to run your code then you can use that language. I am happy to talk about options.
+  - Are you okay, but not great in language X?
+    Then use X.
+  - I have no idea?
+    - Python : very common. Lots (maybe too much) online help
+    - R : mostly used for stats, but can be a good way to get started
+    - Racket : has been used a lot for teaching and can be conveniently installed on Windows, Mac or Linux. Related to Lisp and Scheme.
+- IDE :: This is the Integrated Development Environment.
+  You don't need one. You can write code in any text editor and run it from the command line/terminal. However, they can be convenient and help you avoid silly errors when your write and test your code.
+  - [[https://xkcd.com/378][Emacs]] - what I use. Very powerful. Tough to get started. You will see a lot of it during the course even if you don't use it.
+  - [[https://jupyter.org/install][Jupyter Notebooks]] - these allow you to program in your browser. They can be a very nice way to start and can be used with a variety of languages. They work well under all the operating systems. In past years I used these in the course and you will find in [[https://github.com/brittAnderson/compNeuroIntro420][older branches]] of the course some of these notebooks available.
+  - Misc - Rstudio is an easy way to start for R. Spyder/Idle/Pycharm are all options for python. Racket comes with its own IDE (Dr. Racket). Atom and Sublime are other free choices. [[https://code.visualstudio.com/][Visual Studio Code]] is a popular professional choice (that you will have to buy).
+- Version Control :: git
+  This is how you can keep track of changes, undo things, and share them. We will use _Github_ as our sharing site (git is the software that is used by Github). If you do not have a Github account you should sign-up.
+  You can find some details about this from the material in my Psych363 course.
+  - [[https://github.com/brittAnderson/Intro2Computing4Psychology/blob/master/topics/githubIDBasics.org][Github Basics]]
+  - [[https://github.com/brittAnderson/Intro2Computing4Psychology/blob/master/topics/githubPullRequest.org][Pull Requests]]
+** What tools will you be using?                    :homework:learnMkDropbox:
+    Upload to Learn dropbox the following:
+    1. What OS you are running?
+    2. What Programming Language will be using?
+    3. What IDE (or similar) will you be using.
+    4. A screen shot of the IDE running on your computer and showing a trivial example, e.g. $2+2$.
+* More about the [[https://github.com/brittAnderson/compNeuroIntro420/tree/s2019/notebooks][topics]]
+** Differential Equations
+Modelling things that have dynamics, where things change.
+   
+What is a DE?
+   
+How do you "solve" one?
+
+How do you use one?
+
+How do you use one in neuroscience?  Making models of a single spiking neuron
+** Linear Algebra
+How do you handle lots of things at once?
+
+What is a linear transformation?
+
+How do you use one computationally?
+
+What is a neural network?
+
+How do neural networks and linear algebra relate to each other?
+
+How can we use them? Simple neural network examples:
+- Hopfield
+- Perceptron
+- Multiple layers
+- Backpropagation
+* What are the mechanics?
+     1. Class
+     2. Assignments
+     3. Grading
+     4. Final Projects
+
+* TODO Part II - Syllabus
+  Need to write and link here.
+  
