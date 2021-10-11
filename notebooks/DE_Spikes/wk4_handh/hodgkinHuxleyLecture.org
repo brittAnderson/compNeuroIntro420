@@ -1,0 +1,194 @@
+* Hodgkin Huxley Model of the Neuron
+  :PROPERTIES:
+  :CUSTOM_ID: hodgkin-huxley-model-of-the-neuron
+  :END:
+
+** Reminder
+   :PROPERTIES:
+   :CUSTOM_ID: reminder
+   :END:
+The current going in to the cell is what we inject. The current coming
+out is the sum of the capacitance (due to the lipid bilayer), and the
+resistance (due to the ion channels). This is *Kirchoff's* rule.
+
+Recall that in the Integrate and Fire model we lumped all our ionic
+events together into one term:
+
+$$\tau \frac{dV(t)}{dt} = -V(t) + R~I(t)$$
+
+The HH model is basically the same except we have a resistance for each
+ion channel. The rule for currents in parallel is to apply Kirchoff's
+and Ohm's laws realizing that they all experience the same voltage. The
+currents add.
+
+But in the Hodgkin and Huxley model we treat these different ionic
+components with their own terms to capture the difference between the
+Sodium (Na), Potassium (K), and negative anions (still lumped as "leak"
+l).
+
+$$\sum_i I_R(t) = \bar{g}_{Na} m^3 h (V(t) - E_{Na}) + \bar{g}_{K} n^4 (V(t) - E_{K}) + \bar{g}_{L} (V(t) - E_{L})$$
+
+** Putting together The HH Model
+   :PROPERTIES:
+   :CUSTOM_ID: putting-together-the-hh-model
+   :END:
+$$I_{tot} = I_r + I_C$$
+
+By the same logic as for the integrate and fire $I_C = c~\frac{dV}{dt}$.
+
+$$I_{tot} = \bar{g}_{Na} m^3 h (V(t) - E_{Na}) + \bar{g}_{K} n^4 (V(t) - E_{K}) + \bar{g}_{L} (V(t) - E_{L}) + c~\frac{dV}{dt}$$
+
+Rearrange to get the $\frac{dV}{dt}$ on a side by itself.
+
+$$c~\frac{dV}{dt} = I_{tot} - (\bar{g}_{Na} m^3 h (V(t) - E_{Na}) + \bar{g}_{K} n^4 (V(t) - E_{K}) + \bar{g}_{L} (V(t) - E_{L}))$$
+
+**** Notes
+     :PROPERTIES:
+     :CUSTOM_ID: notes
+     :END:
+
+1. What are the $\bar{g}_*$ terms?
+2. What are the $E_{*}$ terms?
+3. What do m,n, and h represent?
+4. Where did these equations come from?
+
+** It's Differential Equations All the Way Down
+   :PROPERTIES:
+   :CUSTOM_ID: its-differential-equations-all-the-way-down
+   :END:
+$ \dot{m} = \alpha_m (V)(1 - m) - \beta_m (V) m $
+
+**** Notes
+     :PROPERTIES:
+     :CUSTOM_ID: notes
+     :END:
+
+1. Each of the m,n, and h terms have their own equation of exactly the
+   same form, but with their unique alphas and betas (that is what the
+   subscript means).
+2. What does the V in parentheses mean?
+3. When they were finally sequenced (decades later), what do you think
+   was the number of sub-units that the sodium and potassium channels
+   were found to have?
+
+** Online Practice
+   :PROPERTIES:
+   :CUSTOM_ID: online-practice
+   :END:
+An example:
+[[https://ackmanlab.com/2017-06-30-hodgkin-huxley-model.html][Online HH
+Model in Javascript]]
+
+** Getting Started
+   :PROPERTIES:
+   :CUSTOM_ID: getting-started
+   :END:
+*** How do you know where to start?
+    :PROPERTIES:
+    :CUSTOM_ID: how-do-you-know-where-to-start
+    :END:
+
+1. If you allow $t \rightarrow \infty \mbox{, then } \frac{dV}{dt}=$?
+2. You assume that it goes to zero; that is, you reach steady state.
+   Then you can solve for some of the constants.
+3. Where do the constants come from?
+4. They come from experiments, and you use what you are given.
+5. Assume the following constants - they are set to assume a resting
+   potential of zero (instead of what and why doesn't this matter)?
+6. These constants also work out to enforce a capacitance of 1
+
+*** Constants
+    :PROPERTIES:
+    :CUSTOM_ID: constants
+    :END:
+| Constant | Value |
+|----------+-------|
+| ena      | 115   |
+| gna      | 120   |
+| ek       | -12   |
+| gk       | 36    |
+| el       | 10.6  |
+| gl       | 0.3   |
+
+** Alpha and Beta Formulas
+   :PROPERTIES:
+   :CUSTOM_ID: alpha-and-beta-formulas
+   :END:
+$ \alpha /{n}(V/{m})={\frac {0.01(10-V_{m})}{\exp {\big (}{\frac
+{10-V_{m}}{10}}{\big )}-1}}$
+
+$\alpha _{m}(V_{m})={\frac {0.1(25-V_{m})}{\exp {\big (}{\frac {25-V_{m}}{10}}{\big )}-1}}$
+
+$\alpha _{h}(V_{m})=0.07\exp {\bigg (}{\frac {-V_{m}}{20}}{\bigg )}$
+
+$\beta _{n}(V_{m})=0.125\exp {\bigg (}{\frac {-V_{m}}{80}}{\bigg )}$
+
+$\beta _{m}(V_{m})=4\exp {\bigg (}{\frac {-V_{m}}{18}}{\bigg )}$
+
+$\beta /{h}(V/{m})={\frac {1}{\exp {\big (}{\frac {30-V_{m}}{10}}{\big
+)}+1}} $
+
+#+BEGIN_SRC python
+  from numpy import *
+  from pylab import *
+  from math  import *
+
+  T      = 
+  dt     = 
+  time   = 
+  V_0    = 
+  I      = 
+  V      = 
+  V[0]   = 
+  n      = 
+  m      = 
+  h      = 
+  E_Na   = 
+  E_K    = 
+  E_L    = 
+  g_Na   = 
+  g_K    = 
+  g_L    = 
+  C      = 
+  # the K gates cotrolled by n
+  def alpha_n(v): 
+     alpha_n = (0.1-0.01*v)/(exp(1-0.1*v) - 1) if v!=10 else 0.1
+     return alpha_n
+  def beta_n(v):
+
+     return beta_n
+  # the Na gates cotrolled by m
+  def alpha_m(v):
+
+     return alpha_m
+  def beta_m(v):
+
+     return beta_m
+  # the Na gates cotrolled by h
+  def alpha_h(v):
+
+     return alpha_h
+  def beta_h(v):
+
+     return beta_h
+
+  for j, t in enumerate(time):
+     if 20 >= t >= 5:
+        I[j] = 10  #current injection (uA/cm2)
+        
+  for j in range(1, len(time)):
+     n[j] = n[j-1] + dt*"stuff"
+     m[j] = m[j-1] + dt*"stuff"
+     h[j] = h[j-1] + dt*"stuff"
+     
+     V[j] = V[j-1] + "alot of stuff" 
+
+  plot(time, V, time, I-25)
+  legend(('V','I'))
+  ylabel('V (mV)')
+  xlabel('Time (msec)')
+  show()
+#+END_SRC
+
+#+BEGIN_SRC python
+#+END_SRC

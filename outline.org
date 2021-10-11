@@ -1,13 +1,11 @@
 #+Title: Introduction to Computational Modelling for Psychology Students
 
-* Session 1
-  [[file:notebooks/Intro/whatIsCogCompNeurosci.org][Introduction]]
-  1. Purpose
-  2. What you will need.
-  3. What you can expect.
-  4. Topics.
-  5. Grading.
-* Session 2
+* Introduction
+** [[file:notebooks/Intro/whatIsCogCompNeurosci.org][What is computational neuroscience?]]
+*** Session 1
+* Differential Equations
+** [[file:notebooks/DE_Spikes/wk1/DEIntro.org][What is a Differential Equation?]]
+*** Session 2
 * Session 3
 * Session 4
 * Session 5

@@ -1,14 +1,79 @@
-* DE Introduction
+* An Introduction to Differential Equations
 
-  To be able to evaluate lisp in babel blocks you must invoke slime. 
-  #+begin_src lisp :results output
-  (format t "~a~%" (list 1 2 3))
-  #+end_src
+** Why are Differential Equations an important technique for computational modelling in psychology and neuroscience?
 
-  #+RESULTS:
-  : (1 2 3)
+*** What is a differential equation?
+    Give me an answer that uses *no* equations. Just words. 
 
-  
+*** What is a derivative?
+    Give me an answer that uses *no* equations. Just words. 
+
+*** The Action Potential                                      :classExercise:
+    1. 10 minutes to brush up on what an action potential is.
+    2. Then be able to draw one on the board and explain,
+       1. What are the axes?
+       2. What ion causes the upward deflection?
+       3. What causes the repolarization?
+       4. Who discovered the action potential?
+       5. Who won the Nobel Prize for characterizing the ionic events
+          of the action potential experimentally and building a
+          mathematical model?
+    3. Did you draw this?
+       [[file:../../../images/Action_potential_basic_shape.svg]]
+       https://commons.wikimedia.org/w/index.php?curid=44114666
+
+
+*** Why is the action potential relevant for a discussion of DE's in modelling?
+    The computational model of the action potential is a partial differential equation and action potentials, "spikes", are often taken to be the information processing unit of the nervous system.
+
+
+   :PROPERTIES:
+   :CUSTOM_ID: instructions
+   :END:
+We will work on this in class. Your goal is to write the code for a
+spring using a differential equation to help you update your calculation
+of position as a function of time. Here is a skeleton of what you will
+need to get going.
+
+#+BEGIN_SRC python
+  #What inputs and "magics" do you need?
+
+  #What is the equation of a frictionless spring?
+
+  #What is it you are plotting?
+
+  def spring(inputs): #might need more than one input, might not
+      #stuff here
+      return();#something has to go in there
+
+  def plot(inputs): #inputs just a place holder, you have to supply details
+      #stuff here
+      return(); #return something?
+
+  def main():
+      s = spring(1);#1's are just here to make this work without above inputs defined
+      p = plot(1)
+      quit = False
+      if (not quit):
+          q = input('Type y to quit, any other key to continue')
+          if (q != 'y'):
+              main()
+              
+  main()
+#+END_SRC
+
+** Part 2
+   :PROPERTIES:
+   :CUSTOM_ID: part-2
+   :END:
+
+Provide the code for the damped oscillator. It has the formula of
+
+$$ \frac{d^2 s}{dt^2} = -P~s(t) - k~v(t) $$
+
+This should really only require changing one line of your code for the
+simple harmonic oscillator.
+
 ** Can I make a simple plot?
 
 *** First we need a bunch of stuff
