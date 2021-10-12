@@ -1,13 +1,5 @@
 * An Introduction to Differential Equations
-
 ** Why are Differential Equations an important technique for computational modelling in psychology and neuroscience?
-
-*** What is a differential equation?
-    Give me an answer that uses *no* equations. Just words. 
-
-*** What is a derivative?
-    Give me an answer that uses *no* equations. Just words. 
-
 *** The Action Potential                                      :classExercise:
     1. 10 minutes to brush up on what an action potential is.
     2. Then be able to draw one on the board and explain,
@@ -19,13 +11,396 @@
           of the action potential experimentally and building a
           mathematical model?
     3. Did you draw this?
-       [[file:../../../images/Action_potential_basic_shape.svg]]
+       [[file:../../../images/Action_potential_basic_shape.pdf]]
        https://commons.wikimedia.org/w/index.php?curid=44114666
-
 
 *** Why is the action potential relevant for a discussion of DE's in modelling?
     The computational model of the action potential is a partial differential equation and action potentials, "spikes", are often taken to be the information processing unit of the nervous system.
 
+    DE's are the way we capture dynamics, how things change over time. If you think some neural or cognitive process that you are interested in is changing over time, then you are interested in dynamics and the first approach you should think of for modelling it is a differential equation.
+
+** Notation
+Concise summaries of things that would take too long to write out in detail. Mathematical notation is just a technical emoji. You probably know the "math" they represent; you just don't know the abbreviation that is being used.
+
+Write out in long hand (or type on your computer) what is meant by the
+following:
+
+  $$\sum_{\forall x \in \left\{ 1 , 2 , 3 \right \}} x ~=~ 6$$
+*** Multiple Ways to Say the Same Thing
+
+$\frac{dy}{dx}$
+
+$\dot{x}$
+
+$x'$
+
+$f'(x)$
+
+Moral: Don't let weird symbols put you off trying to understand. Plenty of musical people can't understand a score. Just because you don't understand a mathematical score does not mean you don't understand the mathematics.
+
+** Differential Equations: General Facts
+*** What is a differential equation?
+    Give me an answer that uses *no* equations. Just words. 
+*** What is a derivative?
+    Give me an answer that uses *no* equations. Just words. 
+*** Derivatives are Slopes
+1. What is a slope?
+2. When in doubt return to definition.
+3. Deriving the definition of a derivative.
+4. What is the definition of a derivative?
+**** Digression: Use your computer as a tool for exploration
+#+Caption: A Jupyter Python example
+#+begin_example
+1. Launch a new notebook
+2. Create a =code= cell
+3. Use the *magic* for python plotting
+4. =import= the needed libraries (do you know what a library is?)
+5. create a =list= of numbers
+6. create a second =list= of different numbers
+7. plot them.
+#+end_example
+
+
+#+BEGIN_SRC python :exports both :results graphics file :file "./images/p_p.png"
+  import matplotlib
+  import matplotlib.pyplot as plt
+  import numpy as np
+  xs = [1,2,3,4,5]
+  ys = [2,4,6,8,10]
+  plt.plot(xs,ys)
+  plt.savefig("./images/p_p.png")
+  return("./images/p_p.png")
+#+END_SRC
+
+#+RESULTS:
+[[file:./images/p_p.png]]
+
+**** What is the Slope of a Curve?
+#+Name: Loading Some Lisp Packages
+#+Caption: Effective use of the computer as a tool means you should always be learning and trying new things. The be the next new thing, or it may be some great, old, forgotten thing. I want to learn Lisp. I am restyling some of the older examples as self-exercises.
+#+begin_src lisp :results none
+  (ql:quickload '(:eazy-gnuplot :clml.statistics :clml.utility))
+  (use-package :eazy-gnuplot) 
+#+end_src
+
+#+begin_src lisp :exports both :results graphics file :file "./images/s-p.png" 
+  (defun scatter-plot (output)
+    (let ((point-max 100)
+	  (point-type 7)
+	  (point-color "red")
+	  (step-size 1)
+	  (slope 0.4))
+      (with-plots (*standard-output* :debug nil)
+	(gp-setup :terminal '(pngcairo) :output output)
+	(plot
+	 (lambda ()
+	   (loop for p from 1 upto point-max by step-size
+		   do (format t "~&~a ~a" p (+ (- p step-size) (* (- p step-size) slope)))))
+	 :with `(:lines :lc :rgb ,point-color)))))
+  (scatter-plot "./images/s-p.png")
+#+end_src
+
+#+Name: Lisp Eazy-plot Line
+#+Caption: A line drawn with gnuplot called from common-lisp library "eazy-plot". Note the programmatic use of plot commands. Much harder to get started. Much greater control later on. 
+#+RESULTS:
+[[file:./images/s-p.png]]
+
+**** Thinking About Slopes
+1. Describe in words a reallife scenario that matches the process being
+   plotted above.
+2. How would you define a slope for a curve like this?
+**** How do you find the slope of a curve?
+#+BEGIN_SRC python :exports both :results graphics file :file "./images/curve-slope.png"
+  from matplotlib import pyplot
+  import matplotlib.pyplot as plt
+  import numpy as np
+  a = np.linspace(-4,6,num=120)
+  b = [x**3 for x in a];#list comprehension
+  plt.plot(a,b)
+  plt.plot([2,2],[-100,8], 'k-',lw=2)
+  plt.plot([-4,2],[8,8], 'k-',lw=2)
+  plt.plot([4,4],[64,-100], 'k-',lw=2)
+  plt.plot([-4,6],[-64,56], 'r-',lw=2)
+  plt.plot([-4,4],[64,64], 'k-',lw=2)
+  plt.plot([4,6],[64,64], 'k--',lw=2)
+  plt.plot([2,4],[8,64], 'k-',lw=2)
+  plt.savefig("./images/curve-slope.png")
+  return("./images/curve-slope.png")
+#+END_SRC
+
+#+Name: Slope of a Curve
+#+Caption: The slope of a curve illustrated. In this example I use a series of python commands and the python numpy library. There are many ways to get things done. Find one that works for you, and try to think about how to learn something that will serve you long into the future, and not just the tool that meets immediate needs. 
+#+RESULTS:
+[[file:./images/curve-slope.png]]
+
+
+
+**** Derivatives are Instantaneous Slopes
+
+You pick two points that are "close enough" and you get an answer that
+is "close enough." If your answer isn't "close enough" then you move
+your points closer, until /in the limit/ there is an infinitesimal
+distance between them.
+
+Definition:
+
+$$\frac{dy}{dx} = \lim_{h \to 0}\frac{f(x + h) - f(x)}{(x + h) - x}$$
+
+***** Digression: Writing Math in Documents
+The current standard tool for nicely typeset math is LaTeX. You can use this in jupyter notebooks and even some in [[https://support.microsoft.com/en-us/office/linear-format-equations-using-unicodemath-and-latex-in-word-2e00618d-b1fd-49d8-8cb4-8d17f25754f8][Word]]. However, the most powerful way is just to write the document as a simple text file with the .tex ending and use TeX post-processors. This is easiest in Linux, but isn't too hard for both Windows and OSX. Here I use LaTeX fragments in side an "org" file compiled by emacs using other programs on my computer.
+
+[[https://faculty.math.illinois.edu/~hildebr/tex/latex-start.html][Some Resources]]
+
+**** Using Derivatives to Solve Problems With a Computer
+
+***** What is a square root?
+
+What is the *solution* to $y=x^2$ if I tell you what $y$ is?
+
+Thinking about how to solve it. Some discussion questions:
+1. Come up with a guess (e.g. in your head what would you guess is the
+   square root of 128?).
+2. Write a formula that would allow you to compute the error (or how far
+   off you were).
+3. How much should you adjust your guess to get closer to the correct
+   answer?
+4. What is the derivative of $x^2$? Does it have a place in your
+   formula?
+5. Give a reason graphically why you ought to be able to use this
+   derivative to help improve your guess.
+6. What happens to the sign of the "adjustment" when our guesses go from
+   giving us too big an answer to too little an answer.
+**** Analytical Solutions
+     Let software be your guide.
+     1. [[https://www.sympy.org/en/index.html][Sympy]]
+     2. [[https://www.cfm.brown.edu/people/dobrush/am33/SymPy/index.html][Sympy for applied DEs]]
+     3. [[https://cran.r-project.org/web/packages/Deriv/Deriv.pdf][R for Derivatives]]
+
+#+Name: Derivatives with a Computer Algebra System: Maxima
+#+Caption: What is the derivative of x squared?
+#+begin_src maxima :results raw
+  f(x) := x^2;
+  tex(diff (f(x), x));
+#+end_src
+
+#+RESULTS: Derivatives with a Computer Algebra System: Maxima
+$$2\,x$$
+
+IAMHERE
+
+$\mbox{Error} = \mbox{(my guess)}^2 - \mbox{128}$
+
+$\frac{\Delta~\mbox{Error}}{\Delta~\mbox{Guess}} = \frac{\mbox{Error(Guess1) - Error(Guess0)}}{\mbox{Guess1} - \mbox{Guess0}}$
+
+$$\frac{\mbox{dError}}{\mbox{dGuess}} = \frac{\mbox{f(Guess1)} - \mbox{goal} - \mbox{f(Guess0)} + \mbox{goal}}{\mbox{Guess1} - \mbox{Guess0}}$$
+
+#+BEGIN_SRC python
+  #Error Plot
+  #What is square root of 55?
+  plotData = [(x**2-55,x) for x in np.arange(5.0,8.5,0.01)]
+  plt.plot([y[1] for y in plotData],[x[0] for x in plotData],)
+  plt.plot([5.0,8.5],[0,0],'r-')
+  plt.plot([np.sqrt(55),np.sqrt(55)],[12,-30],'r-')
+  plt.plot([5.0,8.0],[-30,0],'k--')
+  plt.plot([8.0,8.0],[-5,15],'g--')
+  plt.plot([8.0,8.0-(9.0/16)] , [9.0,0.0],'b')
+#+END_SRC
+
+#+BEGIN_EXAMPLE
+  [<matplotlib.lines.Line2D at 0x7f582e0d0fd0>]
+#+END_EXAMPLE
+
+[[file:9456843dc53b1d6fc1e8821b9b2cfa01cf07bebb.png]]
+
+#+BEGIN_SRC python
+  plotData = [(x**2-55,x) for x in np.arange(7.3,7.6,0.01)]
+  plt.plot([y[1] for y in plotData],[x[0] for x in plotData],)
+  plt.plot([7.0,7.5],[0,0],'r-')
+  plt.plot([np.sqrt(55),np.sqrt(55)],[3,-3],'r-')
+  xs = [np.sqrt(55)-1/4,np.sqrt(55)+1/4]
+  plt.plot(xs , [16*x-119 for x in xs],'b')
+#+END_SRC
+
+#+BEGIN_EXAMPLE
+  [<matplotlib.lines.Line2D at 0x7fc1a1d709b0>]
+#+END_EXAMPLE
+
+[[file:01d7f4a0fd58ef7194e6c3890292f1ba88944e2c.png]]
+
+**** Pandas
+     :PROPERTIES:
+     :CUSTOM_ID: pandas
+     :END:
+
+[[http://pandas.pydata.org/pandas-docs/stable/][Panda's Documentation]]
+
+There are a lot of tutorials out there, e.g.
+[[https://stackabuse.com/beginners-tutorial-on-the-pandas-python-library/][Panda
+for Beginners]]
+
+By the way: you can actually run web pages inside of a Jupyter notebook
+
+#+BEGIN_SRC python
+  from IPython.display import IFrame
+  IFrame('http://pandas.pydata.org/pandas-docs/stable/',width='100%',height=350)
+#+END_SRC
+
+#+BEGIN_EXAMPLE
+  <IPython.lib.display.IFrame at 0x7f3d20123940>
+#+END_EXAMPLE
+
+If you have heard of /data.frames/ in the programming language R then
+you basically know what Pandas is for. It is an effort to provide the
+same functionality for Python. Think of spreadsheet where you have
+alabel or a name for a column of data.
+
+**** Common Programming Constructs
+     :PROPERTIES:
+     :CUSTOM_ID: common-programming-constructs
+     :END:
+
+1. Constants
+2. Variables
+3. Iterators (like for loops or while loops)
+4. Functions
+
+#+BEGIN_SRC python
+  import pandas as pd
+
+  #Constants
+  guesses = [8.0]    ; #what is the difference between the 8.0 having or not having the square brackets?
+  errors = [10000]  
+  tolerance = 0.01
+#+END_SRC
+
+**** Finding Cube Roots
+     :PROPERTIES:
+     :CUSTOM_ID: finding-cube-roots
+     :END:
+
+1. What is a /cube root/?
+
+2. What is the derivative of $x^3$?
+
+3. Find it with Python
+
+4. Write two Python Functions: one to =return= the cube of a number, and
+   one to =return= the derivative when evaluated at a particular value
+   of =x=.
+
+#+BEGIN_SRC python
+  x = Symbol('x')
+  y = x**3
+  print(diff(y,x))
+#+END_SRC
+
+#+BEGIN_EXAMPLE
+  3*x**2
+#+END_EXAMPLE
+
+Here is the basic syntax for a function in Python.
+
+#+BEGIN_SRC python
+  #Local Functions
+  def cube (x):
+      return(x**3)
+
+  print(cube(10))
+#+END_SRC
+
+#+BEGIN_EXAMPLE
+  1000
+#+END_EXAMPLE
+
+Now you write the formula for the derivative.
+
+#+BEGIN_SRC python
+  def derivCube (x):
+      return(3*x**2)
+#+END_SRC
+
+#+BEGIN_SRC python
+  a = [1,2,3,4]
+  print(a[0])
+  print(a[-1])
+#+END_SRC
+
+#+BEGIN_EXAMPLE
+  1
+  4
+#+END_EXAMPLE
+
+#+BEGIN_SRC python
+  while (abs(errors[-1]) > tolerance):
+      errors.append(cube(guesses[-1]) - 128)
+      guesses.append(-1*errors[-1]/derivCube(guesses[-1]) + guesses[-1])
+
+  pd.DataFrame({
+      'errors' : errors,
+      'guesses' :guesses
+  })
+#+END_SRC
+
+#+BEGIN_EXAMPLE
+           errors   guesses
+  0  10000.000000  8.000000
+  1    384.000000  6.000000
+  2     88.000000  5.185185
+  3     11.409643  5.043729
+  4      0.308434  5.039687
+  5      0.000247  5.039684
+#+END_EXAMPLE
+
+** A freestanding version
+   :PROPERTIES:
+   :CUSTOM_ID: a-freestanding-version
+   :END:
+
+Note bene: Sometimes to figure out what is going wrong with a function
+you need to /debug/.
+
+One simple way to do this for simple programs is to place =print=
+statements at strategic points in your code so that you can see whether
+the variables you are using have sensible values for test cases you can
+do in your head or on paper.
+
+For larger and more complicated programs you would write a test set that
+with known inputs and outputs and you would evaluate your program on
+these known cases to verify sensible behavior in an automatic fashion.
+Sometimes you will see the phrase /test driven development/ to capture
+this technique.
+
+#+BEGIN_SRC python
+  def cube (x):
+      return(x**3)
+
+  def derivCube (x):
+      return(3*x**2)
+
+  def cubeRoot(n,initGuess = 5.0):
+      guess = initGuess
+      error = 10000.0
+      tolerance = 0.01
+      i = 0
+      while (abs(error) > tolerance):
+          error = cube(guess) - n 
+          #print(error)
+          guess = -1*error/derivCube(guess) + guess
+      return(guess)
+
+  def main():
+      testNum = input("Cube root of ?\n")
+      print("Answer is: {0}\n".format(cubeRoot(float(testNum))))
+
+  if __name__ == "__main__":
+      main()
+#+END_SRC
+
+#+BEGIN_EXAMPLE
+  Cube root of ?
+  746
+  Answer is: 9.069421980736077
+#+END_EXAMPLE
 
    :PROPERTIES:
    :CUSTOM_ID: instructions
@@ -77,13 +452,6 @@ simple harmonic oscillator.
 ** Can I make a simple plot?
 
 *** First we need a bunch of stuff
-    #+begin_src lisp
-	   ;; will need some packages/systems I am sure.
-	   ;; will try gnuplot -- need to install that package
-	   ;; and eazy-gnuplot
-      (ql:quickload '(:eazy-gnuplot :clml.statistics :clml.utility))
-      (use-package :eazy-gnuplot) 
-    #+end_src
 
     #+RESULTS:
     : T
@@ -95,37 +463,12 @@ simple harmonic oscillator.
 
     The first cookbook example seems to use a function we don't need: ~png-from-file~. This is probably related to the cookbook being a jupyter notebook.
 
-    #+begin_src lisp :exports both :results graphics file :file "./images/function-plot.png" 
-      (defun function-plot (output)
-	(with-plots (*standard-output* :debug nil)
-	  (gp-setup :terminal '(pngcairo) :output output)
-	  (func-plot "[-5:5] (sin(1/x) - cos(x))*erfc(x)"))
-	output)
-      (function-plot "images/function-plot.png")
-    #+end_src
 
     #+RESULTS:
     [[file:./images/function-plot.png]]
 
 *** Scatter Plot Example
     #+begin_src lisp :exports both :results graphics file :file "./images/scatter-plot.png" 
-      (defun scatter-plot (output)
-	(let ((point-n 400)
-	      (point-type 7)
-	      (point-color "orange"))
-	  (with-plots (*standard-output* :debug nil)
-	    (gp-setup :terminal '(pngcairo) :output output)
-	    (plot
-	     (lambda ()
-	       (loop for p in (map 'list (lambda (x y) (list x y))
-				 (clml.statistics:rand-n
-				  (clml.statistics:chi-square-distribution 100) point-n)
-				 (clml.statistics:rand-n
-				  (clml.statistics:chi-square-distribution 10) point-n))
-		   do (format t "~&~{~a~^ ~}" p)))
-	     :with `(:points :pt ,point-type :lc :rgb ,point-color)))
-	output))
-       (scatter-plot "./images/scatter-plot.png")
     #+end_src
 
     #+RESULTS:
