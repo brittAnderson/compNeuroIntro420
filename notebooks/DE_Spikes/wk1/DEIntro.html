@@ -1,0 +1,929 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2021-10-12 Tue 07:12 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="Britt Anderson" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgc11245d">1. An Introduction to Differential Equations</a>
+<ul>
+<li><a href="#org4a0c596">1.1. Why are Differential Equations an important technique for computational modelling in psychology and neuroscience?</a>
+<ul>
+<li><a href="#orgff007be">1.1.1. The Action Potential&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classExercise">classExercise</span></span></a></li>
+<li><a href="#orgaa082a5">1.1.2. Why is the action potential relevant for a discussion of DE's in modelling?</a></li>
+</ul>
+</li>
+<li><a href="#org71b2e73">1.2. Notation</a>
+<ul>
+<li><a href="#orgac5abd5">1.2.1. Multiple Ways to Say the Same Thing</a></li>
+</ul>
+</li>
+<li><a href="#org9c0cd1e">1.3. Differential Equations: General Facts</a>
+<ul>
+<li><a href="#orgdaacd06">1.3.1. What is a differential equation?</a></li>
+<li><a href="#orga2e0d71">1.3.2. What is a derivative?</a></li>
+<li><a href="#org6b1a409">1.3.3. Derivatives are Slopes</a></li>
+</ul>
+</li>
+<li><a href="#a-freestanding-version">1.4. A freestanding version</a></li>
+<li><a href="#part-2">1.5. Part 2</a></li>
+<li><a href="#orgf1043a3">1.6. Can I make a simple plot?</a>
+<ul>
+<li><a href="#orgb5fb61b">1.6.1. First we need a bunch of stuff</a></li>
+<li><a href="#orga64b9ae">1.6.2. Now a basic example?</a></li>
+<li><a href="#org58dd554">1.6.3. Scatter Plot Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc11245d" class="outline-2">
+<h2 id="orgc11245d"><span class="section-number-2">1.</span> An Introduction to Differential Equations</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org4a0c596" class="outline-3">
+<h3 id="org4a0c596"><span class="section-number-3">1.1.</span> Why are Differential Equations an important technique for computational modelling in psychology and neuroscience?</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-orgff007be" class="outline-4">
+<h4 id="orgff007be"><span class="section-number-4">1.1.1.</span> The Action Potential&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classExercise">classExercise</span></span></h4>
+<div class="outline-text-4" id="text-1-1-1">
+<ol class="org-ol">
+<li>10 minutes to brush up on what an action potential is.</li>
+<li>Then be able to draw one on the board and explain,
+<ol class="org-ol">
+<li>What are the axes?</li>
+<li>What ion causes the upward deflection?</li>
+<li>What causes the repolarization?</li>
+<li>Who discovered the action potential?</li>
+<li>Who won the Nobel Prize for characterizing the ionic events
+of the action potential experimentally and building a
+mathematical model?</li>
+</ol></li>
+<li>Did you draw this?
+<a href="../../../images/Action_potential_basic_shape.pdf">../../../images/Action_potential_basic_shape.pdf</a>
+<a href="https://commons.wikimedia.org/w/index.php?curid=44114666">https://commons.wikimedia.org/w/index.php?curid=44114666</a></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgaa082a5" class="outline-4">
+<h4 id="orgaa082a5"><span class="section-number-4">1.1.2.</span> Why is the action potential relevant for a discussion of DE's in modelling?</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+The computational model of the action potential is a partial differential equation and action potentials, "spikes", are often taken to be the information processing unit of the nervous system.
+</p>
+
+<p>
+DE's are the way we capture dynamics, how things change over time. If you think some neural or cognitive process that you are interested in is changing over time, then you are interested in dynamics and the first approach you should think of for modelling it is a differential equation.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org71b2e73" class="outline-3">
+<h3 id="org71b2e73"><span class="section-number-3">1.2.</span> Notation</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Concise summaries of things that would take too long to write out in detail. Mathematical notation is just a technical emoji. You probably know the "math" they represent; you just don't know the abbreviation that is being used.
+</p>
+
+<p>
+Write out in long hand (or type on your computer) what is meant by the
+following:
+</p>
+
+<p>
+\[\sum_{\forall x \in \left\{ 1 , 2 , 3 \right \}} x ~=~ 6\]
+</p>
+</div>
+<div id="outline-container-orgac5abd5" class="outline-4">
+<h4 id="orgac5abd5"><span class="section-number-4">1.2.1.</span> Multiple Ways to Say the Same Thing</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+\(\frac{dy}{dx}\)
+</p>
+
+<p>
+\(\dot{x}\)
+</p>
+
+<p>
+\(x'\)
+</p>
+
+<p>
+\(f'(x)\)
+</p>
+
+<p>
+Moral: Don't let weird symbols put you off trying to understand. Plenty of musical people can't understand a score. Just because you don't understand a mathematical score does not mean you don't understand the mathematics.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9c0cd1e" class="outline-3">
+<h3 id="org9c0cd1e"><span class="section-number-3">1.3.</span> Differential Equations: General Facts</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-orgdaacd06" class="outline-4">
+<h4 id="orgdaacd06"><span class="section-number-4">1.3.1.</span> What is a differential equation?</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+Give me an answer that uses <b>no</b> equations. Just words. 
+</p>
+</div>
+</div>
+<div id="outline-container-orga2e0d71" class="outline-4">
+<h4 id="orga2e0d71"><span class="section-number-4">1.3.2.</span> What is a derivative?</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<p>
+Give me an answer that uses <b>no</b> equations. Just words. 
+</p>
+</div>
+</div>
+<div id="outline-container-org6b1a409" class="outline-4">
+<h4 id="org6b1a409"><span class="section-number-4">1.3.3.</span> Derivatives are Slopes</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<ol class="org-ol">
+<li>What is a slope?</li>
+<li>When in doubt return to definition.</li>
+<li>Deriving the definition of a derivative.</li>
+<li>What is the definition of a derivative?</li>
+</ol>
+</div>
+<ol class="org-ol">
+<li><a id="org7327b8f"></a>Digression: Use your computer as a tool for exploration<br />
+<div class="outline-text-5" id="text-1-3-3-1">
+<pre class="example" id="org753ebb6">
+1. Launch a new notebook
+2. Create a =code= cell
+3. Use the *magic* for python plotting
+4. =import= the needed libraries (do you know what a library is?)
+5. create a =list= of numbers
+6. create a second =list= of different numbers
+7. plot them.
+</pre>
+
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">import</span> matplotlib
+<span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> plt
+<span style="color: #a020f0;">import</span> numpy <span style="color: #a020f0;">as</span> np
+<span style="color: #a0522d;">xs</span> = [1,2,3,4,5]
+<span style="color: #a0522d;">ys</span> = [2,4,6,8,10]
+plt.plot(xs,ys)
+plt.savefig(<span style="color: #8b2252;">"./images/p_p.png"</span>)
+<span style="color: #a020f0;">return</span>(<span style="color: #8b2252;">"./images/p_p.png"</span>)
+</pre>
+</div>
+
+
+<div id="orga2aa3a5" class="figure">
+<p><img src="./images/p_p.png" alt="p_p.png" />
+</p>
+</div>
+</div>
+</li>
+
+<li><a id="orgb5bcdf9"></a>What is the Slope of a Curve?<br />
+<div class="outline-text-5" id="text-1-3-3-2">
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>Effective use of the computer as a tool means you should always be learning and trying new things. The be the next new thing, or it may be some great, old, forgotten thing. I want to learn Lisp. I am restyling some of the older examples as self-exercises.</label><pre class="src src-lisp" id="org6ca472e">(ql:quickload '(<span style="color: #483d8b;">:eazy-gnuplot</span> <span style="color: #483d8b;">:clml.statistics</span> <span style="color: #483d8b;">:clml.utility</span>))
+(use-package <span style="color: #483d8b;">:eazy-gnuplot</span>) 
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">scatter-plot</span> (output)
+  (<span style="color: #a020f0;">let</span> ((point-max 100)
+        (point-type 7)
+        (point-color <span style="color: #8b2252;">"red"</span>)
+        (step-size 1)
+        (slope 0.4))
+    (<span style="color: #a020f0;">with-plots</span> (*standard-output* <span style="color: #483d8b;">:debug</span> nil)
+      (gp-setup <span style="color: #483d8b;">:terminal</span> '(pngcairo) <span style="color: #483d8b;">:output</span> output)
+      (plot
+       (<span style="color: #a020f0;">lambda</span> ()
+         (<span style="color: #a020f0;">loop</span> for p from 1 upto point-max by step-size
+                 do (format t <span style="color: #8b2252;">"~&amp;~a ~a"</span> p (+ (- p step-size) (* (- p step-size) slope)))))
+       <span style="color: #483d8b;">:with</span> `(<span style="color: #483d8b;">:lines</span> <span style="color: #483d8b;">:lc</span> <span style="color: #483d8b;">:rgb</span> ,point-color)))))
+(scatter-plot <span style="color: #8b2252;">"./images/s-p.png"</span>)
+</pre>
+</div>
+
+
+<div id="orgb2c7461" class="figure">
+<p><img src="./images/s-p.png" alt="s-p.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>A line drawn with gnuplot called from common-lisp library "eazy-plot". Note the programmatic use of plot commands. Much harder to get started. Much greater control later on.</p>
+</div>
+</div>
+</li>
+
+<li><a id="orge8bcf8b"></a>Thinking About Slopes<br />
+<div class="outline-text-5" id="text-1-3-3-3">
+<ol class="org-ol">
+<li>Describe in words a reallife scenario that matches the process being
+plotted above.</li>
+<li>How would you define a slope for a curve like this?</li>
+</ol>
+</div>
+</li>
+<li><a id="orgfbc7832"></a>How do you find the slope of a curve?<br />
+<div class="outline-text-5" id="text-1-3-3-4">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">from</span> matplotlib <span style="color: #a020f0;">import</span> pyplot
+<span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> plt
+<span style="color: #a020f0;">import</span> numpy <span style="color: #a020f0;">as</span> np
+<span style="color: #a0522d;">a</span> = np.linspace(-4,6,num=120)
+<span style="color: #a0522d;">b</span> = [x**3 <span style="color: #a020f0;">for</span> x <span style="color: #a020f0;">in</span> a];<span style="color: #b22222;">#</span><span style="color: #b22222;">list comprehension</span>
+plt.plot(a,b)
+plt.plot([2,2],[-100,8], <span style="color: #8b2252;">'k-'</span>,lw=2)
+plt.plot([-4,2],[8,8], <span style="color: #8b2252;">'k-'</span>,lw=2)
+plt.plot([4,4],[64,-100], <span style="color: #8b2252;">'k-'</span>,lw=2)
+plt.plot([-4,6],[-64,56], <span style="color: #8b2252;">'r-'</span>,lw=2)
+plt.plot([-4,4],[64,64], <span style="color: #8b2252;">'k-'</span>,lw=2)
+plt.plot([4,6],[64,64], <span style="color: #8b2252;">'k--'</span>,lw=2)
+plt.plot([2,4],[8,64], <span style="color: #8b2252;">'k-'</span>,lw=2)
+plt.savefig(<span style="color: #8b2252;">"./images/curve-slope.png"</span>)
+<span style="color: #a020f0;">return</span>(<span style="color: #8b2252;">"./images/curve-slope.png"</span>)
+</pre>
+</div>
+
+
+<div id="org0d4d50d" class="figure">
+<p><img src="./images/curve-slope.png" alt="curve-slope.png" />
+</p>
+<p><span class="figure-number">Figure 2: </span>The slope of a curve illustrated. In this example I use a series of python commands and the python numpy library. There are many ways to get things done. Find one that works for you, and try to think about how to learn something that will serve you long into the future, and not just the tool that meets immediate needs.</p>
+</div>
+</div>
+</li>
+
+
+
+<li><a id="org51f613d"></a>Derivatives are Instantaneous Slopes<br />
+<div class="outline-text-5" id="text-1-3-3-5">
+<p>
+You pick two points that are "close enough" and you get an answer that
+is "close enough." If your answer isn't "close enough" then you move
+your points closer, until <i>in the limit</i> there is an infinitesimal
+distance between them.
+</p>
+
+<p>
+Definition:
+</p>
+
+<p>
+\[\frac{dy}{dx} = \lim_{h \to 0}\frac{f(x + h) - f(x)}{(x + h) - x}\]
+</p>
+</div>
+</li>
+
+<li><a id="org792b0c5"></a>What is a square root?<br />
+<div class="outline-text-5" id="text-1-3-3-6">
+<p>
+What is the <b>solution</b> to \(y=x^2\) if I tell you what \(y\) is?
+</p>
+
+<p>
+<b>Intuition Pumps for how to solve it</b>
+</p>
+
+<ol class="org-ol">
+<li>Come up with a guess (e.g. in your head what would you guess is the
+square root of 128?).</li>
+<li>Write a formula that would allow you to compute the error (or how far
+off you were).</li>
+<li>How much should you adjust your guess to get closer to the correct
+answer?</li>
+<li>What is the derivative of \(x^2\)? Does it have a place in your
+formula?</li>
+<li>Give a reason graphically why you ought to be able to use this
+derivative to help improve your guess.</li>
+<li>What happens to the sign of the "adjustment" when our guesses go from
+giving us too big an answer to too little an answer.</li>
+</ol>
+</div>
+</li>
+<li><a id="orgefcb087"></a>Analytical Solutions<br />
+<div class="outline-text-5" id="text-1-3-3-7">
+<p>
+Let software be your guide.
+</p>
+<ol class="org-ol">
+<li><a href="https://www.sympy.org/en/index.html">Sympy</a></li>
+<li><a href="https://www.cfm.brown.edu/people/dobrush/am33/SymPy/index.html">Sympy for applied DEs</a></li>
+<li><a href="https://cran.r-project.org/web/packages/Deriv/Deriv.pdf">R for Derivatives</a></li>
+</ol>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 2: </span>What is the derivative of x squared?</label><pre class="src src-maxima" id="orgdaf9f13">f(x) := x^2;
+tex(diff (f(x), x));
+</pre>
+</div>
+<p>
+\[2\,x\]
+</p>
+
+
+<p>
+\(\mbox{Error} = \mbox{(my guess)}^2 - \mbox{128}\)
+</p>
+
+<p>
+\(\frac{\Delta~\mbox{Error}}{\Delta~\mbox{Guess}} = \frac{\mbox{Error(Guess1) - Error(Guess0)}}{\mbox{Guess1} - \mbox{Guess0}}\)
+</p>
+
+<p>
+\[\frac{\mbox{dError}}{\mbox{dGuess}} = \frac{\mbox{f(Guess1)} - \mbox{goal} - \mbox{f(Guess0)} + \mbox{goal}}{\mbox{Guess1} - \mbox{Guess0}}\]
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #b22222;">#</span><span style="color: #b22222;">Error Plot</span>
+<span style="color: #b22222;">#</span><span style="color: #b22222;">What is square root of 55?</span>
+<span style="color: #a0522d;">plotData</span> = [(x**2-55,x) <span style="color: #a020f0;">for</span> x <span style="color: #a020f0;">in</span> np.arange(5.0,8.5,0.01)]
+plt.plot([y[1] <span style="color: #a020f0;">for</span> y <span style="color: #a020f0;">in</span> plotData],[x[0] <span style="color: #a020f0;">for</span> x <span style="color: #a020f0;">in</span> plotData],)
+plt.plot([5.0,8.5],[0,0],<span style="color: #8b2252;">'r-'</span>)
+plt.plot([np.sqrt(55),np.sqrt(55)],[12,-30],<span style="color: #8b2252;">'r-'</span>)
+plt.plot([5.0,8.0],[-30,0],<span style="color: #8b2252;">'k--'</span>)
+plt.plot([8.0,8.0],[-5,15],<span style="color: #8b2252;">'g--'</span>)
+plt.plot([8.0,8.0-(9.0/16)] , [9.0,0.0],<span style="color: #8b2252;">'b'</span>)
+</pre>
+</div>
+
+<pre class="example" id="orgea8e38b">
+[&lt;matplotlib.lines.Line2D at 0x7f582e0d0fd0&gt;]
+</pre>
+
+
+<div id="org49cee0e" class="figure">
+<p><img src="9456843dc53b1d6fc1e8821b9b2cfa01cf07bebb.png" alt="9456843dc53b1d6fc1e8821b9b2cfa01cf07bebb.png" />
+</p>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a0522d;">plotData</span> = [(x**2-55,x) <span style="color: #a020f0;">for</span> x <span style="color: #a020f0;">in</span> np.arange(7.3,7.6,0.01)]
+plt.plot([y[1] <span style="color: #a020f0;">for</span> y <span style="color: #a020f0;">in</span> plotData],[x[0] <span style="color: #a020f0;">for</span> x <span style="color: #a020f0;">in</span> plotData],)
+plt.plot([7.0,7.5],[0,0],<span style="color: #8b2252;">'r-'</span>)
+plt.plot([np.sqrt(55),np.sqrt(55)],[3,-3],<span style="color: #8b2252;">'r-'</span>)
+<span style="color: #a0522d;">xs</span> = [np.sqrt(55)-1/4,np.sqrt(55)+1/4]
+plt.plot(xs , [16*x-119 <span style="color: #a020f0;">for</span> x <span style="color: #a020f0;">in</span> xs],<span style="color: #8b2252;">'b'</span>)
+</pre>
+</div>
+
+<pre class="example" id="org6160c15">
+[&lt;matplotlib.lines.Line2D at 0x7fc1a1d709b0&gt;]
+</pre>
+
+
+<div id="org74a9665" class="figure">
+<p><img src="01d7f4a0fd58ef7194e6c3890292f1ba88944e2c.png" alt="01d7f4a0fd58ef7194e6c3890292f1ba88944e2c.png" />
+</p>
+</div>
+</div>
+</li>
+
+<li><a id="pandas"></a>Pandas<br />
+<div class="outline-text-5" id="text-pandas">
+<p>
+<a href="http://pandas.pydata.org/pandas-docs/stable/">Panda's Documentation</a>
+</p>
+
+<p>
+There are a lot of tutorials out there, e.g.
+<a href="https://stackabuse.com/beginners-tutorial-on-the-pandas-python-library/">Panda
+for Beginners</a>
+</p>
+
+<p>
+By the way: you can actually run web pages inside of a Jupyter notebook
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">from</span> IPython.display <span style="color: #a020f0;">import</span> IFrame
+IFrame(<span style="color: #8b2252;">'http://pandas.pydata.org/pandas-docs/stable/'</span>,width=<span style="color: #8b2252;">'100%'</span>,height=350)
+</pre>
+</div>
+
+<pre class="example" id="org4b4fa0b">
+&lt;IPython.lib.display.IFrame at 0x7f3d20123940&gt;
+</pre>
+
+<p>
+If you have heard of <i>data.frames</i> in the programming language R then
+you basically know what Pandas is for. It is an effort to provide the
+same functionality for Python. Think of spreadsheet where you have
+alabel or a name for a column of data.
+</p>
+</div>
+</li>
+
+<li><a id="common-programming-constructs"></a>Common Programming Constructs<br />
+<div class="outline-text-5" id="text-common-programming-constructs">
+<ol class="org-ol">
+<li>Constants</li>
+<li>Variables</li>
+<li>Iterators (like for loops or while loops)</li>
+<li>Functions</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">import</span> pandas <span style="color: #a020f0;">as</span> pd
+
+<span style="color: #b22222;">#</span><span style="color: #b22222;">Constants</span>
+<span style="color: #a0522d;">guesses</span> = [8.0]    ; <span style="color: #b22222;">#</span><span style="color: #b22222;">what is the difference between the 8.0 having or not having the square brackets?</span>
+<span style="color: #a0522d;">errors</span> = [10000]  
+<span style="color: #a0522d;">tolerance</span> = 0.01
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="finding-cube-roots"></a>Finding Cube Roots<br />
+<div class="outline-text-5" id="text-finding-cube-roots">
+<ol class="org-ol">
+<li>What is a <i>cube root</i>?</li>
+
+<li>What is the derivative of \(x^3\)?</li>
+
+<li>Find it with Python</li>
+
+<li>Write two Python Functions: one to <code>return</code> the cube of a number, and
+one to <code>return</code> the derivative when evaluated at a particular value
+of <code>x</code>.</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a0522d;">x</span> = Symbol(<span style="color: #8b2252;">'x'</span>)
+<span style="color: #a0522d;">y</span> = x**3
+<span style="color: #a020f0;">print</span>(diff(y,x))
+</pre>
+</div>
+
+<pre class="example" id="org7f7368d">
+3*x**2
+</pre>
+
+<p>
+Here is the basic syntax for a function in Python.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #b22222;">#</span><span style="color: #b22222;">Local Functions</span>
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">cube</span> (x):
+    <span style="color: #a020f0;">return</span>(x**3)
+
+<span style="color: #a020f0;">print</span>(cube(10))
+</pre>
+</div>
+
+<pre class="example" id="org6be4bf6">
+1000
+</pre>
+
+<p>
+Now you write the formula for the derivative.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">def</span> <span style="color: #0000ff;">derivCube</span> (x):
+    <span style="color: #a020f0;">return</span>(3*x**2)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a0522d;">a</span> = [1,2,3,4]
+<span style="color: #a020f0;">print</span>(a[0])
+<span style="color: #a020f0;">print</span>(a[-1])
+</pre>
+</div>
+
+<pre class="example" id="orge43cf50">
+1
+4
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">while</span> (<span style="color: #483d8b;">abs</span>(errors[-1]) &gt; tolerance):
+    errors.append(cube(guesses[-1]) - 128)
+    guesses.append(-1*errors[-1]/derivCube(guesses[-1]) + guesses[-1])
+
+pd.DataFrame({
+    <span style="color: #8b2252;">'errors'</span> : errors,
+    <span style="color: #8b2252;">'guesses'</span> :guesses
+})
+</pre>
+</div>
+
+<pre class="example" id="org64c2438">
+         errors   guesses
+0  10000.000000  8.000000
+1    384.000000  6.000000
+2     88.000000  5.185185
+3     11.409643  5.043729
+4      0.308434  5.039687
+5      0.000247  5.039684
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-a-freestanding-version" class="outline-3">
+<h3 id="a-freestanding-version"><span class="section-number-3">1.4.</span> A freestanding version</h3>
+<div class="outline-text-3" id="text-a-freestanding-version">
+<p>
+Note bene: Sometimes to figure out what is going wrong with a function
+you need to <i>debug</i>.
+</p>
+
+<p>
+One simple way to do this for simple programs is to place <code>print</code>
+statements at strategic points in your code so that you can see whether
+the variables you are using have sensible values for test cases you can
+do in your head or on paper.
+</p>
+
+<p>
+For larger and more complicated programs you would write a test set that
+with known inputs and outputs and you would evaluate your program on
+these known cases to verify sensible behavior in an automatic fashion.
+Sometimes you will see the phrase <i>test driven development</i> to capture
+this technique.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">def</span> <span style="color: #0000ff;">cube</span> (x):
+    <span style="color: #a020f0;">return</span>(x**3)
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">derivCube</span> (x):
+    <span style="color: #a020f0;">return</span>(3*x**2)
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">cubeRoot</span>(n,initGuess = 5.0):
+    <span style="color: #a0522d;">guess</span> = initGuess
+    <span style="color: #a0522d;">error</span> = 10000.0
+    <span style="color: #a0522d;">tolerance</span> = 0.01
+    <span style="color: #a0522d;">i</span> = 0
+    <span style="color: #a020f0;">while</span> (<span style="color: #483d8b;">abs</span>(error) &gt; tolerance):
+        <span style="color: #a0522d;">error</span> = cube(guess) - n 
+        <span style="color: #b22222;">#</span><span style="color: #b22222;">print(error)</span>
+        <span style="color: #a0522d;">guess</span> = -1*error/derivCube(guess) + guess
+    <span style="color: #a020f0;">return</span>(guess)
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">main</span>():
+    <span style="color: #a0522d;">testNum</span> = <span style="color: #483d8b;">input</span>(<span style="color: #8b2252;">"Cube root of ?\n"</span>)
+    <span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"Answer is: {0}\n"</span>.<span style="color: #483d8b;">format</span>(cubeRoot(<span style="color: #483d8b;">float</span>(testNum))))
+
+<span style="color: #a020f0;">if</span> <span style="color: #483d8b;">__name__</span> == <span style="color: #8b2252;">"__main__"</span>:
+    main()
+</pre>
+</div>
+
+<pre class="example" id="orgf8483ad">
+Cube root of ?
+746
+Answer is: 9.069421980736077
+</pre>
+
+<p>
+:CUSTOM<sub>ID</sub>: instructions
+</p>
+<p>
+We will work on this in class. Your goal is to write the code for a
+spring using a differential equation to help you update your calculation
+of position as a function of time. Here is a skeleton of what you will
+need to get going.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #b22222;">#</span><span style="color: #b22222;">What inputs and "magics" do you need?</span>
+
+<span style="color: #b22222;">#</span><span style="color: #b22222;">What is the equation of a frictionless spring?</span>
+
+<span style="color: #b22222;">#</span><span style="color: #b22222;">What is it you are plotting?</span>
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">spring</span>(inputs): <span style="color: #b22222;">#</span><span style="color: #b22222;">might need more than one input, might not</span>
+    <span style="color: #b22222;">#</span><span style="color: #b22222;">stuff here</span>
+    <span style="color: #a020f0;">return</span>();<span style="color: #b22222;">#</span><span style="color: #b22222;">something has to go in there</span>
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">plot</span>(inputs): <span style="color: #b22222;">#</span><span style="color: #b22222;">inputs just a place holder, you have to supply details</span>
+    <span style="color: #b22222;">#</span><span style="color: #b22222;">stuff here</span>
+    <span style="color: #a020f0;">return</span>(); <span style="color: #b22222;">#</span><span style="color: #b22222;">return something?</span>
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">main</span>():
+    <span style="color: #a0522d;">s</span> = spring(1);<span style="color: #b22222;">#</span><span style="color: #b22222;">1's are just here to make this work without above inputs defined</span>
+    <span style="color: #a0522d;">p</span> = plot(1)
+    <span style="color: #008b8b;">quit</span> = <span style="color: #008b8b;">False</span>
+    <span style="color: #a020f0;">if</span> (<span style="color: #a020f0;">not</span> <span style="color: #008b8b;">quit</span>):
+        <span style="color: #a0522d;">q</span> = <span style="color: #483d8b;">input</span>(<span style="color: #8b2252;">'Type y to quit, any other key to continue'</span>)
+        <span style="color: #a020f0;">if</span> (q != <span style="color: #8b2252;">'y'</span>):
+            main()
+
+main()
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-part-2" class="outline-3">
+<h3 id="part-2"><span class="section-number-3">1.5.</span> Part 2</h3>
+<div class="outline-text-3" id="text-part-2">
+<p>
+Provide the code for the damped oscillator. It has the formula of
+</p>
+
+<p>
+\[ \frac{d^2 s}{dt^2} = -P~s(t) - k~v(t) \]
+</p>
+
+<p>
+This should really only require changing one line of your code for the
+simple harmonic oscillator.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf1043a3" class="outline-3">
+<h3 id="orgf1043a3"><span class="section-number-3">1.6.</span> Can I make a simple plot?</h3>
+<div class="outline-text-3" id="text-1-6">
+</div>
+<div id="outline-container-orgb5fb61b" class="outline-4">
+<h4 id="orgb5fb61b"><span class="section-number-4">1.6.1.</span> First we need a bunch of stuff</h4>
+<div class="outline-text-4" id="text-1-6-1">
+<pre class="example">
+T
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orga64b9ae" class="outline-4">
+<h4 id="orga64b9ae"><span class="section-number-4">1.6.2.</span> Now a basic example?</h4>
+<div class="outline-text-4" id="text-1-6-2">
+<p>
+<a href="https://guicho271828.github.io/eazy-gnuplot/">Here</a> is a "cookbook".
+</p>
+
+<p>
+The examples make use of a local subdirectory called "images". Create it.
+</p>
+
+<p>
+The first cookbook example seems to use a function we don't need: <code>png-from-file</code>. This is probably related to the cookbook being a jupyter notebook.
+</p>
+
+
+
+<div id="orgacacb45" class="figure">
+<p><img src="./images/function-plot.png" alt="function-plot.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org58dd554" class="outline-4">
+<h4 id="org58dd554"><span class="section-number-4">1.6.3.</span> Scatter Plot Example</h4>
+<div class="outline-text-4" id="text-1-6-3">
+<div class="org-src-container">
+<pre class="src src-lisp">
+</pre>
+</div>
+
+
+<div id="orgf63bace" class="figure">
+<p><img src="./images/scatter-plot.png" alt="scatter-plot.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Britt Anderson</p>
+<p class="date">Created: 2021-10-12 Tue 07:12</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
