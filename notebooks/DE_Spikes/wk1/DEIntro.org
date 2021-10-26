@@ -38,7 +38,7 @@ $f'(x)$
 
 Moral: Don't let weird symbols put you off trying to understand. Plenty of musical people can't understand a score. Just because you don't understand a mathematical score does not mean you don't understand the mathematics.
 
-** Differential Equations: General Facts
+** Differential Equations - Equations with Derivatives
 *** What is a differential equation?
     Give me an answer that uses *no* equations. Just words. 
 *** What is a derivative?
@@ -48,39 +48,28 @@ Moral: Don't let weird symbols put you off trying to understand. Plenty of music
 2. When in doubt return to definition.
 3. Deriving the definition of a derivative.
 4. What is the definition of a derivative?
-**** Digression: Use your computer as a tool for exploration
-#+Caption: A Jupyter Python example
-#+begin_example
-1. Launch a new notebook
-2. Create a =code= cell
-3. Use the *magic* for python plotting
-4. =import= the needed libraries (do you know what a library is?)
-5. create a =list= of numbers
-6. create a second =list= of different numbers
-7. plot them.
-#+end_example
-
-
+*** Digression: Use your computer as a tool for exploration
+#+Name: Plotting with Python
 #+BEGIN_SRC python :session *de-intro* :exports both :results graphics file :file "./images/p_p.png"
-import matplotlib
-import matplotlib.pyplot as plt
-import numpy as np
-xs = [1,2,3,4,5]
-ys = [2,4,6,8,10]
-plt.plot(xs,ys)
-plt.savefig("./images/p_p.png")
+  import matplotlib
+  import matplotlib.pyplot as plt
+  import numpy as np
+  plt.clf()
+  xs = [1,2,3,4,5]
+  ys = [2,4,6,8,10]
+  plt.plot(xs,ys)
+  plt.savefig("./images/p_p.png")
 #+END_SRC
 
+#+Caption: A Simple Plot
 #+RESULTS:
 [[file:./images/p_p.png]]
 
-
-
-**** What is the Slope of a Curve?
+*** What is the Slope of a Curve?
 #+Name: Loading Some Lisp Packages
 #+Caption: Effective use of the computer as a tool means you should always be learning and trying new things. The be the next new thing, or it may be some great, old, forgotten thing. I want to learn Lisp. I am restyling some of the older examples as self-exercises.
 #+begin_src lisp :session *plotting* :results none
-  (ql:quickload '(:eazy-gnuplot :clml.statistics :clml.utility))
+  (ql:quickload :eazy-gnuplot)
   (use-package :eazy-gnuplot) 
 #+end_src
 
@@ -106,17 +95,18 @@ plt.savefig("./images/p_p.png")
 #+RESULTS:
 [[file:./images/s-p.png]]
 
-**** Thinking About Slopes
+*** Thinking About Slopes
 1. Describe in words a reallife scenario that matches the process being
    plotted above.
 2. How would you define a slope for a curve like this?
-**** How do you find the slope of a curve?
+*** How do you find the slope of a /curve/?
 #+BEGIN_SRC python :session *de-intro* :exports both :results graphics file :file "./images/curve-slope.png"
   from matplotlib import pyplot
   import matplotlib.pyplot as plt
   import numpy as np
   a = np.linspace(-4,6,num=120)
   b = [x**3 for x in a];#list comprehension
+  plt.clf()
   plt.plot(a,b)
   plt.plot([2,2],[-100,8], 'k-',lw=2)
   plt.plot([-4,2],[8,8], 'k-',lw=2)
@@ -133,11 +123,7 @@ plt.savefig("./images/p_p.png")
 #+RESULTS:
 [[file:./images/curve-slope.png]]
 
-
-
-
-
-**** Derivatives are Instantaneous Slopes
+** Derivatives are Instantaneous Slopes
 
 You pick two points that are "close enough" and you get an answer that
 is "close enough." If your answer isn't "close enough" then you move
@@ -148,7 +134,7 @@ Definition:
 
 $$\frac{dy}{dx} = \lim_{h \to 0}\frac{f(x + h) - f(x)}{(x + h) - x}$$
 
-***** Digression: Writing Math in Documents
+*** Digression: Writing Math in Documents
 The current standard tool for nicely typeset math is LaTeX. You can use this in jupyter notebooks and even some in [[https://support.microsoft.com/en-us/office/linear-format-equations-using-unicodemath-and-latex-in-word-2e00618d-b1fd-49d8-8cb4-8d17f25754f8][Word]]. However, the most powerful way is just to write the document as a simple text file with the .tex ending and use TeX post-processors. This is easiest in Linux, but isn't too hard for both Windows and OSX. Here I use LaTeX fragments in side an "org" file compiled by emacs using other programs on my computer.
 
 [[https://faculty.math.illinois.edu/~hildebr/tex/latex-start.html][Some Resources]]
@@ -186,7 +172,6 @@ Thinking about how to solve it. Some discussion questions:
 #+end_src
 
 #+RESULTS: Derivatives with a Computer Algebra System: Maxima
-$$2\,x$$
 $$2\,x$$
 
 **** Working Through an Example
@@ -243,7 +228,6 @@ $$\frac{\mbox{dError}}{\mbox{dGuess}} = \frac{\mbox{f(Guess1)} - \mbox{goal} - \
 #+RESULTS:
 [[file:./images/sqrt-more.png]]
 
-
 **** Finding Cube Roots :class_exercise:
      :PROPERTIES:
      :CUSTOM_ID: finding-cube-roots
@@ -269,8 +253,6 @@ $$\frac{\mbox{dError}}{\mbox{dGuess}} = \frac{\mbox{f(Guess1)} - \mbox{goal} - \
   #+end_src
 
   #+RESULTS:
-  $$3\,x^2$$
-  The derivative of x^3 at 3 is:  27 
   $$3\,x^2$$
   The derivative of x^3 at 3 is:  27 
 
@@ -304,35 +286,92 @@ $$\frac{\mbox{dError}}{\mbox{dGuess}} = \frac{\mbox{f(Guess1)} - \mbox{goal} - \
 #+RESULTS:
 : 5.039684219366759
 
-#+BEGIN_SRC python :session *de-intro* :eval never
-  #What is the equation of a frictionless spring?
 
-  #What is it you are plotting?
 
-  def spring(inputs): #might need more than one input, might not
-      #stuff here
-      return();#something has to go in there
+* Practice Simulating With DEs
 
-  def plot(inputs): #inputs just a place holder, you have to supply details
-      #stuff here
-      return(); #return something?
+** Frictionless Springs
 
-  def main():
-      s = spring(1);#1's are just here to make this work without above inputs defined
-      p = plot(1)
-      quit = False
-      if (not quit):
-          q = input('Type y to quit, any other key to continue')
-          if (q != 'y'):
-              main()
-              
-  main()
-#+END_SRC
+***  The equation of a frictionless spring?
+$$ \frac{d^2 s}{dt^2} = -P~s(t)$$
 
-** Part 2
-   :PROPERTIES:
-   :CUSTOM_ID: part-2
-   :END:
+What does it mean?
+
+**** How do we finesse the derivatives?
+Use definitions.
+
+Imagine a little time has gone by ($\Delta~t$). What is our new position ($s$ is for space)?
+
+$$\frac{s(t + \Delta t) - s(t)}{\Delta t} = velocity \approx \frac{d s}{d t}$$.
+
+What is our initial velocity? Assume zero.
+
+How will our velocity change with time?
+
+$$\frac{v(t + \Delta t) - v(t)}{\Delta t} = acceleration \approx \frac{d v}{d t} = \frac{d^2 s}{d t^2}$$
+
+And we have a formula for this. We can now bootstrap our simulation.
+
+#+Name: Basic Spring Functions
+#+begin_src lisp :session *de-intro* :results silent 
+  (defun s-of-t (delta-t v s)
+    (+ s (* v delta-t)))
+  
+  (defun v-of-t (delta-t a v)
+    (+ v (* a delta-t)))
+  
+  (defun a-of-t (p s)
+    (* -1 p s))
+#+end_src
+
+Note the similiarity of the two functions. You could write a helper function that was generic to this pattern of old value + rate of change times the  time step, and just used the pertinent values. 
+
+#+Name: constants and variables
+#+begin_src lisp *de-intro* :results silent
+  ;; generating initial values and variables
+  (defconstant +init-v+ 0
+    "The initial Velocity")
+  (defconstant +init-s+ 10)
+  (defconstant +p+ 2)
+  (defconstant +delta-t+ 0.05)
+#+end_src
+
+#+Name: looping
+#+begin_src lisp :session *de-intro* :results silent
+  (defun release-spring (&optional (repeat-n 5))
+    (loop
+      repeat repeat-n
+      for a = (a-of-t +p+ +init-s+)         then (a-of-t +p+ s)
+      for v = (v-of-t +delta-t+ a +init-v+) then (v-of-t +delta-t+ a v)
+      for s = (s-of-t +delta-t+ v +init-s+) then (s-of-t +delta-t+ v s)
+      for time = 0                          then (+ time +delta-t+)
+      collect (list a v s time)))
+#+end_src
+
+#+Name: putting it together: functions and plotting
+#+begin_src lisp :session *de-intro* :exports both :results graphics file :file "./images/spring.png" 
+    (defun spring-plot (output)
+      (let ((data (mapcar (lambda (a) (cons (fourth a) (third a))) (release-spring 1000)))
+  ;	  (ts (mapcar (lambda (a) (car a)) data))
+  ;	  (ss (mapcar (lambda (a) (cdr a)) data))
+	    (point-type 7)
+	    (point-color "red")
+	    (step-size 1)
+	    (slope 0.4))
+	(with-plots (*standard-output* :debug nil)
+	  (gp-setup :terminal '(pngcairo) :output output)
+	  (plot
+	   (lambda ()
+	     (loop for p in data
+		     do (format t "~&~a ~a" (car p) (cdr p))))
+	   :with `(:points)))))
+    (spring-plot "./images/spring.png")
+#+end_src
+
+#+RESULTS: putting it together: functions and plotting
+[[file:./images/spring.png]]
+
+** Damped Oscillators
 
 Provide the code for the damped oscillator. It has the formula of
 
@@ -340,24 +379,4 @@ $$ \frac{d^2 s}{dt^2} = -P~s(t) - k~v(t) $$
 
 This should really only require changing one line of your code for the
 simple harmonic oscillator.
-
-** Can I make a simple plot?
-
-*** First we need a bunch of stuff
-
-
-*** Now a basic example?
-    [[https://guicho271828.github.io/eazy-gnuplot/][Here]] is a "cookbook".
-
-    The examples make use of a local subdirectory called "images". Create it.
-
-    The first cookbook example seems to use a function we don't need: ~png-from-file~. This is probably related to the cookbook being a jupyter notebook.
-
-
-*** Scatter Plot Example
-    # #+begin_src lisp :exports both :results graphics file :file "./images/scatter-plot.png" 
-    # #+end_src
-
-    # #+RESULTS:
-    # [[file:./images/scatter-plot.png]]
 
