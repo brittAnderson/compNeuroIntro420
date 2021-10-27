@@ -11,8 +11,7 @@
           of the action potential experimentally and building a
           mathematical model?
     3. Did you draw this?
-       [[file:../../../images/Action_potential_basic_shape.pdf]]
-       https://commons.wikimedia.org/w/index.php?curid=44114666
+       [[https://commons.wikimedia.org/w/index.php?curid=44114666]]
 
 *** Why is the action potential relevant for a discussion of DE's in modelling?
     The computational model of the action potential is a partial differential equation and action potentials, "spikes", are often taken to be the information processing unit of the nervous system.
@@ -62,8 +61,11 @@ Moral: Don't let weird symbols put you off trying to understand. Plenty of music
 #+END_SRC
 
 #+Caption: A Simple Plot
-#+RESULTS:
+#+RESULTS: Plotting with Python
 [[file:./images/p_p.png]]
+
+
+
 
 *** What is the Slope of a Curve?
 #+Name: Loading Some Lisp Packages
@@ -132,7 +134,7 @@ distance between them.
 
 Definition:
 
-$$\frac{dy}{dx} = \lim_{h \to 0}\frac{f(x + h) - f(x)}{(x + h) - x}$$
+$$\frac{df}{dx} = \lim_{h \to 0}\frac{f(x + h) - f(x)}{(x + h) - x}$$
 
 *** Digression: Writing Math in Documents
 The current standard tool for nicely typeset math is LaTeX. You can use this in jupyter notebooks and even some in [[https://support.microsoft.com/en-us/office/linear-format-equations-using-unicodemath-and-latex-in-word-2e00618d-b1fd-49d8-8cb4-8d17f25754f8][Word]]. However, the most powerful way is just to write the document as a simple text file with the .tex ending and use TeX post-processors. This is easiest in Linux, but isn't too hard for both Windows and OSX. Here I use LaTeX fragments in side an "org" file compiled by emacs using other programs on my computer.
@@ -171,6 +173,7 @@ Thinking about how to solve it. Some discussion questions:
   tex(diff (f(x), x));
 #+end_src
 
+#+Caption: Derivative of $x^2$
 #+RESULTS: Derivatives with a Computer Algebra System: Maxima
 $$2\,x$$
 
@@ -210,6 +213,7 @@ $$\frac{\mbox{dError}}{\mbox{dGuess}} = \frac{\mbox{f(Guess1)} - \mbox{goal} - \
   plt.savefig("./images/sqrt55.png")
 #+END_SRC
 
+#+Caption: Slopes for Curves
 #+RESULTS:
 [[file:./images/sqrt55.png]]
 
@@ -313,7 +317,7 @@ $$\frac{v(t + \Delta t) - v(t)}{\Delta t} = acceleration \approx \frac{d v}{d t}
 And we have a formula for this. We can now bootstrap our simulation.
 
 #+Name: Basic Spring Functions
-#+begin_src lisp :session *de-intro* :results silent 
+#+begin_src lisp :session *de-intro-l* :results silent 
   (defun s-of-t (delta-t v s)
     (+ s (* v delta-t)))
   
@@ -327,7 +331,7 @@ And we have a formula for this. We can now bootstrap our simulation.
 Note the similiarity of the two functions. You could write a helper function that was generic to this pattern of old value + rate of change times the  time step, and just used the pertinent values. 
 
 #+Name: constants and variables
-#+begin_src lisp *de-intro* :results silent
+#+begin_src lisp *de-intro-l* :results silent
   ;; generating initial values and variables
   (defconstant +init-v+ 0
     "The initial Velocity")
@@ -337,39 +341,43 @@ Note the similiarity of the two functions. You could write a helper function tha
 #+end_src
 
 #+Name: looping
-#+begin_src lisp :session *de-intro* :results silent
+#+begin_src lisp :session *de-intro-l* :results silent
   (defun release-spring (&optional (repeat-n 5))
     (loop
       repeat repeat-n
       for a = (a-of-t +p+ +init-s+)         then (a-of-t +p+ s)
-      for v = (v-of-t +delta-t+ a +init-v+) then (v-of-t +delta-t+ a v)
-      for s = (s-of-t +delta-t+ v +init-s+) then (s-of-t +delta-t+ v s)
+      for v = +init-v+                      then (v-of-t +delta-t+ a v)
+      for s = +init-s+                      then (s-of-t +delta-t+ v s)
       for time = 0                          then (+ time +delta-t+)
       collect (list a v s time)))
 #+end_src
 
 #+Name: putting it together: functions and plotting
-#+begin_src lisp :session *de-intro* :exports both :results graphics file :file "./images/spring.png" 
-    (defun spring-plot (output)
-      (let ((data (mapcar (lambda (a) (cons (fourth a) (third a))) (release-spring 1000)))
-  ;	  (ts (mapcar (lambda (a) (car a)) data))
-  ;	  (ss (mapcar (lambda (a) (cdr a)) data))
-	    (point-type 7)
-	    (point-color "red")
-	    (step-size 1)
-	    (slope 0.4))
-	(with-plots (*standard-output* :debug nil)
-	  (gp-setup :terminal '(pngcairo) :output output)
-	  (plot
-	   (lambda ()
-	     (loop for p in data
-		     do (format t "~&~a ~a" (car p) (cdr p))))
-	   :with `(:points)))))
-    (spring-plot "./images/spring.png")
+#+begin_src lisp :session *de-intro-l* :exports both :results graphics file :file "./images/spring.png" 
+  (defun spring-plot (output)
+    (let ((data (mapcar (lambda (a) (cons (fourth a) (third a))) (release-spring 1000)))
+	  (point-type 7)
+	  (point-color "red")
+	  (step-size 1)
+	  (slope 0.4))
+      (with-plots (*standard-output* :debug nil)
+	(gp-setup :output output :terminal '(:pngcairo) :title
+	      "Frictionless Spring" :xlabel "Time (sec.)"
+	      :ylabel "Location" :key '(box lt -1 lw 2 opaque))
+  	(plot
+	 (lambda ()
+	   (loop for p in data
+		   do (format t "~&~a ~a" (car p) (cdr p))))
+	 :with `(:lines :title "Location")))))
+  (spring-plot "./images/spring.png")
 #+end_src
 
 #+RESULTS: putting it together: functions and plotting
 [[file:./images/spring.png]]
+
+
+
+
 
 ** Damped Oscillators
 
