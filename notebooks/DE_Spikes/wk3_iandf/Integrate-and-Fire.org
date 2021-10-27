@@ -1,263 +1,222 @@
 * Integrate and Fire Neurons
-  :PROPERTIES:
-  :CUSTOM_ID: integrate-and-fire-neurons
-  :END:
+  In this section we take a look at the history and math of the computational model of neuron firing called "Integrate and Fire".
 
-** Lapique (1907)
-   :PROPERTIES:
-   :CUSTOM_ID: lapique-1907
-   :END:
-[[https://homepages.inf.ed.ac.uk/mvanross/reprints/lapique2007.pdf][Commentary
-on Lapique's 1907 Paper; pdf]]
+  Although relatively simple (not much harder than modelling and plotting a spring) it is still used [[https://scholar.google.com/scholar?as_ylo=2020&q=%22integrate+and+fire%22+neuron&hl=en&as_sdt=7,39][abundantly]] in computational neuroscience research.
 
-[[http://www.snv.jussieu.fr/brette/papers/Lap07.pdf][Original French
-Paper (scanned); pdf]]
 
+** Origins
+*** Lapicque - Earlier Computational Neuroscientist
+**** Original Paper
+[[https://link.springer.com/content/pdf/10.1007/s00422-007-0190-0.pdf][Original French Paper (scanned); pdf]]
+**** Image of the Laboratory
 [[https://upload.wikimedia.org/wikipedia/commons/a/ac/Lapicque_laboratoire.jpg]]
+**** Modern Commentary on the Work
+[[http://www.snv.jussieu.fr/brette/papers/Lap07.pdf][Commentary on Lapique's 1907 Paper (pdf)]]
+**** Brief Biographical Details of Lapicque
+[[https://fr.wikipedia.org/wiki/Louis_Lapicque][Louie Lapicque]]
 
-**** Notes:
-     :PROPERTIES:
-     :CUSTOM_ID: notes
-     :END:
-
-1. Read the Lapique commentary paper.
-2. When did the Integrate and Fire model first become discussed?
-3. What is the difference between the /leaky/ integrate and fire, the
-   /forgetful/ integrate and fire, and the /plain/ integrate and fire?
-4. One of the early studies was by Gerstein and Mandelbrot (1964). What
-   is Mandelbrot better known for?
-5. Why does the article say that I and F models are popular?
-6. Why is it somewhat surprising that Lapique gave this description of
-   the neuron in 1907? And does that explain why it was not more
-   commonly utilized until the 1960s and later?
-7. When plotting the Integrate and Fire neuron model how many axes do
-   you need and what are the labels for them?
+*** When was the Action Potential Demonstrated?
+[[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1420429/pdf/jphysiol01990-0084.pdf][Lord Adrian 1912 Paper (pdf)]]
 
 ** Good, Free Online Books on Computational Neuroscience
-   :PROPERTIES:
-   :CUSTOM_ID: good-free-online-books-on-computational-neuroscience
-   :END:
-More detailed than mine, may not be as helpful to the novice.
+ 
+*** [[https://ocul-wtl.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma9951382083505162&context=L&vid=01OCUL_WTL:WTL_DEFAULT&lang=en&search_scope=OCULDiscoveryNetwork&adaptor=Local%20Search%20Engine&tab=OCULDiscoveryNetwork&query=any,contains,britt%20anderson&mode=basic][My book]]
+   I wrote this about a decade ago when students were much less prepared for this sort of material. some of the sections begin with exercises in Excel and it includes some commentary on different programming constructs and languages. There are later chapters on things like agent based learning that we never get to in our one term course. All that is to say that you may have friends who find the beginning chapters useful, and that you might find things you want to pursue in the later chapters independently. You can read it for free on-line through the library.
 
-1. [[http://lcn.epfl.ch/~gerstner/BUCH.html][Gerstner and Kistler
-   /Spiking Neurons/]]
+*** [[https://lcnwww.epfl.ch/gerstner/SPNM/SPNM.html][Gerstner and Kistler /Spiking Neurons/]]
 
-2. [[http://neuronaldynamics.epfl.ch/online/index.html][Gerstner et al
-   /Neuronal Dynamics/]]
+*** [[http://neuronaldynamics.epfl.ch/online/index.html][Gerstner et al /Neuronal Dynamics/]]
 
 ** The Integrate and Fire Equation
-   :PROPERTIES:
-   :CUSTOM_ID: the-integrate-and-fire-equation
-   :END:
+
 $$\tau \frac{dV(t)}{dt} = -V(t) + R~I(t)$$
 
-**** Notes
-     :PROPERTIES:
-     :CUSTOM_ID: notes
-     :END:
+*** Formula Discussion Questions
+**** What does $\frac{dV}{dt}$ mean?
+:PROPERTIES:
+:QUESTION: It is the derivative. It is the how the voltage changes as a function of how time changes.
+:END:
 
-1. What does $\frac{dV}{dt}$ mean?
+**** What does $\frac{1}{\tau}$ mean?
+:PROPERTIES:
+:Question: It is the membrane time constant and can be related to the membrane capacitance. Since it is a constant, with a clever choice of units you can assume it to be one and make it disappear.
+:END:
 
-   It is the derivative. It is the how the voltage changes as a function
-   of how time changes.
+**** Why does the voltage term on the right have a negative sign?
+:PROPERTIES:
+:QUESTION: To get the intuition of a model you don't always have to compute things. You can also get some qualitative behaviour just by looking at it. The larger the voltage the more negative becomes its rate of change and vice versa. It drives everything back to some point at which the rate of change to an equilibrium point. We will come back to this notion of a fixed point or attractor.
+:END:
 
-2. What does $\frac{1}{\tau}$ mean?
+**** What is $I(t)$?
+:PROPERTIES:
+:QUESTION: It is the current term. $I$ is the common abbreviation for current. Why? I don't know, can someone help?
+:END:
 
-   It is the membrane time constant and can be related to the membrane
-   capacitance. Since it is a constant, with a clever choice of units
-   you can assume it to be one and make it disappear.
+**** Put it all together
+:PROPERTIES:
+:QUESTION: The voltage in the future will be a sum of whatever current is being added minus a function of the current voltage.
+:END:
 
-3. Why does the voltage term on the right have a negative sign?
+**** Why, if we don't reach a threshold to fire an action potential, do we see an exponential decay?  
+:PROPERTIES:
+:QUESTION: This is where you need to remember what came before. See that the change in voltage is proportional to itself. Solutions to these types of equations involve exponentials. Remember? But note the sign. It is negative. That is why it is an exponential decay instead of an exponential growth.
+:END:
 
-   To get the intuition of a model you don't always have to compute
-   things. You can also get some qualitative behaviour just by looking
-   at it. The larger the voltage the more negative becomes its rate of
-   change and vice versa. It drives everything back to some point at
-   which the rate of change to an equilibrium point. We will come back
-   to this notion of a fixed point or attractor.
+*** Where does the leaky integrate and fire *equation* come from? :class_exercise:
 
-4. What is $I(t)$?
+**** Write and explain Ohm's law
+:PROPERTIES:
+:QUESTION: *Ohm's Law* (empirically observed): $V = IR$
+:END:
 
-   It is the current term. $I$ is the common abbreviation for current.
-   Why? I don't know, can someone help?
+**** Explain what is the relationship between current and charge?
+:PROPERTIES:
+:QUESTION: Current: The derivative of charge with respect to time, $$I = \frac{dQ}{dt}$$
+:END:
 
-5. Put it all together
 
-   The voltage in the future will be a sum of whatever current is being
-   added minus a function of the current voltage.
+**** Explain *Kirchoff's Point Rule*
+:PROPERTIES:
+:QUESTION: Current sums to zero: All the current sources going to a node in a circuit must sum to zero.
+:END:
 
-6. Why, if we don't reach a threshold to fire an action potential, do we
-   see an exponential decay?
+**** What is capacitance?
+:PROPERTIES:
+:QUESTION: Capacitance is a source of current. A capacitor is a sandwich of two conducting surfaces with a non-conducting body in between. If you a charge to one side, the electrons gather there. They can't leap the gap, so they exert an attraction for particles of the opposite charge on the other side of the gap. If you suddenly stop the charge then charge races around and you discharge a current.
+:END:
 
-   This is where you need to remember what came before. See that the
-   change in voltage is proportional to itself. Solutions to these types
-   of equations involve exponentials. Remember? But note the sign. It is
-   negative. That is why it is an exponential decay instead of an
-   exponential growth.
+**** Explain the relationship, mathematically, between capacitance, charge, and voltage.
+:PROPERTIES:
+:QUESTION: $C = Q/V.$ The volume of charge, per unit area, divided by the voltage that produces this imbalance in charge.
+:END:
 
-*** Where does the leaky integrate and fire equation come from?
-    :PROPERTIES:
-    :CUSTOM_ID: where-does-the-leaky-integrate-and-fire-equation-come-from
-    :END:
-
-1. Group to write and explain Ohm's law again.
-
-   *Ohm's Law* (empirically observed): $V = IR$
-
-2. Group to explain what is the relationship between current and charge?
-
-   Current: The derivative of charge with respect to time,
-   $I = \frac{dQ}{dt}$
-
-3. Group to explain *Kirchoff's Point Rule* again.
-
-   Current sums to zero: All the current sources going to a node in a
-   circuit must sum to zero.
-
-4. Group to explain what is capacitance.
-
-   Capacitance is a source of current. A capacitor is a sandwich of two
-   conducting surfaces with a non-conducting body in between. If you a
-   charge to one side, the electrons gather there. They can't leap the
-   gap, so they exert an attraction for particles of the opposite charge
-   on the other side of the gap. If you suddenly stop the charge then
-   charge races around and you discharge a current.
-
-5. Group to explain the relationship, mathematically, between
-   capacitance, charge, and voltage.
-
-   $C = Q/V.$ The volume of charge, per unit area, divided by the
-   voltage that produces this imbalance in charge.
-
-6. Together as a class, what happens when you differentiate this
-   equation with respect to time and treat the capacitance as a
-   constant?
-
-   $C \frac{dV}{dt} = \frac{dQ}{dt} = I$
+**** What happens when you differentiate this equation with respect to time and treat the capacitance as a constant?
+:PROPERTIES:
+:QUESTION: $C \frac{dV}{dt} = \frac{dQ}{dt} = I$
+:END:
 
 *** Deriving the IandF Equation
-    :PROPERTIES:
-    :CUSTOM_ID: deriving-the-iandf-equation
-    :END:
+#+Name: Deriving the Integrate and Fire Equation
+#+header: :headers '("\\usepackage{amsmath}")
+#+header: :exports results
+#+begin_src latex 
+    \begin{align*}
+      I &= I_R + I_C \\
+	&= I_R + C\frac{dV}{dt} \\
+	&= \frac{V}{R} + C\\
+	&= \frac{dV}{dt} RI - V \\
+	&= RC \frac{dV}{dt}\\
+	&= \tau\frac{dV}{dt}
+    \end{align*}						  
+#+end_src
+IAMHERE
+# ** Coding up the Integrate and Fire Neuron
+#    :PROPERTIES:
+#    :CUSTOM_ID: coding-up-the-integrate-and-fire-neuron
+#    :END:
+# Basically almost the same as the spring example. Use that as a guide.
 
-\begin{align/} I &= I_R + I_C \ I &= I_R + C\frac{dV}{dt}\ I &=
-\frac{V}{R} + C\frac{dV}{dt}\ RI - V &= RC\frac{dV}{dt} =
-\tau\frac{dV}{dt}\ \end{align/}
+# #+BEGIN_SRC python
+#   %matplotlib inline
+#   import matplotlib.pyplot as p
+#   import numpy as np
 
-**** Notes
-     :PROPERTIES:
-     :CUSTOM_ID: notes
-     :END:
-Get them to walk through the derivation with me, and understand how we
-justify which steps we take.
+#   #define constants
+#   dt        = 
+#   maxT      = 
+#   time      = 
+#   cap       = 
+#   res       = 
+#   thresh    = 
+#   spikeDispl= 8; # arbitrary value used for "pasting on" a spike. Not needed, just nice for display.
+#   tau       = 
+#   voltage   = 
+#   curMag    = 
+#   injCurrent = ;#a tuple for start and stop of current injection
+#   def newVal(ov,dt,dv):
+#       return("something here")
 
-** Coding up the Integrate and Fire Neuron
-   :PROPERTIES:
-   :CUSTOM_ID: coding-up-the-integrate-and-fire-neuron
-   :END:
-Basically almost the same as the spring example. Use that as a guide.
+#   def dvdt(tau,res,v,i):
+#       return("something here")
 
-#+BEGIN_SRC python
-  %matplotlib inline
-  import matplotlib.pyplot as p
-  import numpy as np
-
-  #define constants
-  dt        = 
-  maxT      = 
-  time      = 
-  cap       = 
-  res       = 
-  thresh    = 
-  spikeDispl= 8; # arbitrary value used for "pasting on" a spike. Not needed, just nice for display.
-  tau       = 
-  voltage   = 
-  curMag    = 
-  injCurrent = ;#a tuple for start and stop of current injection
-  def newVal(ov,dt,dv):
-      return("something here")
-
-  def dvdt(tau,res,v,i):
-      return("something here")
-
-  for j in time:
-      if (injCurrent[0] < j <= injCurrent[1]):
-          #what do I do if time is in the bounds when current should be injected?
-      else:
-          curCur = 0
-      tempV = ;# how do I figure out the voltage at the next time step
-      if voltage[-1] == spikeDisplay: 
-          ;#what should the voltage be if I just spiked? Why?
-      elif tempV > thresh:
-          ;#what should the voltage be if I am above threshold?
-      else: 
-          ;#and what about the other cases?
+#   for j in time:
+#       if (injCurrent[0] < j <= injCurrent[1]):
+#           #what do I do if time is in the bounds when current should be injected?
+#       else:
+#           curCur = 0
+#       tempV = ;# how do I figure out the voltage at the next time step
+#       if voltage[-1] == spikeDisplay: 
+#           ;#what should the voltage be if I just spiked? Why?
+#       elif tempV > thresh:
+#           ;#what should the voltage be if I am above threshold?
+#       else: 
+#           ;#and what about the other cases?
       
 
-  p.plot(time,voltage[0:-1]);#again, what is the '-1' doing?
-  p.show()
-#+END_SRC
+#   p.plot(time,voltage[0:-1]);#again, what is the '-1' doing?
+#   p.show()
+# #+END_SRC
 
-#+BEGIN_EXAMPLE
-    File "<ipython-input-2-0b33091e2d34>", line 6
-      dt        =
-                  ^
-  SyntaxError: invalid syntax
-#+END_EXAMPLE
+# #+BEGIN_EXAMPLE
+#     File "<ipython-input-2-0b33091e2d34>", line 6
+#       dt        =
+#                   ^
+#   SyntaxError: invalid syntax
+# #+END_EXAMPLE
 
-#+BEGIN_SRC python
-  %matplotlib inline
-  import matplotlib.pyplot as p
-  import numpy as np
+# #+BEGIN_SRC python
+#   %matplotlib inline
+#   import matplotlib.pyplot as p
+#   import numpy as np
 
-  #define constants
-  dt = 0.01; #time step is "delta" t
-  maxT = 10; # maximum time for simulation
-  time = np.arange(0,maxT,dt)
-  cap = 1;# capacitance set to 1, why?
-  res = 3;# resistance
-  thresh = 3; #threshold for spike - why is this needed?
-  spikeDisplay = 8; # arbitrary value used for "pasting on" a spike. Not needed, just nice for display.
-  tau = res*cap
-  voltage = [0];#what does the "0" represent here?
-  injCurrent = (1.0,6.0);#using tuple to represent when to start and end "current" injection
-  curMag = 3.0
-#+END_SRC
+#   #define constants
+#   dt = 0.01; #time step is "delta" t
+#   maxT = 10; # maximum time for simulation
+#   time = np.arange(0,maxT,dt)
+#   cap = 1;# capacitance set to 1, why?
+#   res = 3;# resistance
+#   thresh = 3; #threshold for spike - why is this needed?
+#   spikeDisplay = 8; # arbitrary value used for "pasting on" a spike. Not needed, just nice for display.
+#   tau = res*cap
+#   voltage = [0];#what does the "0" represent here?
+#   injCurrent = (1.0,6.0);#using tuple to represent when to start and end "current" injection
+#   curMag = 3.0
+# #+END_SRC
 
-#+BEGIN_SRC python
-  def newVal(ov,dt,dv):
-      return(ov + dv*dt)
+# #+BEGIN_SRC python
+#   def newVal(ov,dt,dv):
+#       return(ov + dv*dt)
 
-  def dvdt(tau,res,v,i):
-      return((1/tau)*(res*i - v))
-#+END_SRC
+#   def dvdt(tau,res,v,i):
+#       return((1/tau)*(res*i - v))
+# #+END_SRC
 
-#+BEGIN_SRC python
-  for j in time:
-      if (injCurrent[0] < j <= injCurrent[1]):
-          curCur = curMag
-      else:
-          curCur = 0
-      tempV = newVal(voltage[-1],dt,dvdt(tau,res,voltage[-1],curCur))
-      if any([x == 8 for x in voltage[-4:-1]]): 
-          voltage.append(0)
-      elif tempV > thresh:
-          voltage.append(spikeDisplay)
-      else: 
-          voltage.append(tempV)
+# #+BEGIN_SRC python
+#   for j in time:
+#       if (injCurrent[0] < j <= injCurrent[1]):
+#           curCur = curMag
+#       else:
+#           curCur = 0
+#       tempV = newVal(voltage[-1],dt,dvdt(tau,res,voltage[-1],curCur))
+#       if any([x == 8 for x in voltage[-4:-1]]): 
+#           voltage.append(0)
+#       elif tempV > thresh:
+#           voltage.append(spikeDisplay)
+#       else: 
+#           voltage.append(tempV)
       
 
-  p.plot(time,voltage[:-1])
-  p.show()
-#+END_SRC
+#   p.plot(time,voltage[:-1])
+#   p.show()
+# #+END_SRC
 
-[[file:429e215718ff3a1b5f96227d2e590212f8cbef4d.png]]
+# [[file:429e215718ff3a1b5f96227d2e590212f8cbef4d.png]]
 
-#+BEGIN_SRC python
-  a=[1,2,3,4]
-  a[-2:]
-#+END_SRC
+# #+BEGIN_SRC python
+#   a=[1,2,3,4]
+#   a[-2:]
+# #+END_SRC
 
-#+BEGIN_EXAMPLE
-  [3, 4]
-#+END_EXAMPLE
+# #+BEGIN_EXAMPLE
+#   [3, 4]
+# #+END_EXAMPLE
