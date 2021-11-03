@@ -99,124 +99,109 @@ $$\tau \frac{dV(t)}{dt} = -V(t) + R~I(t)$$
 #+Name: Deriving the Integrate and Fire Equation
 #+header: :headers '("\\usepackage{amsmath}")
 #+header: :exports results
-#+begin_src latex 
-    \begin{align*}
-      I &= I_R + I_C \\
-	&= I_R + C\frac{dV}{dt} \\
-	&= \frac{V}{R} + C\\
-	&= \frac{dV}{dt} RI - V \\
-	&= RC \frac{dV}{dt}\\
-	&= \tau\frac{dV}{dt}
-    \end{align*}						  
+#+options: tex:t
+#+begin_src latex :results raw
+  \begin{align*}
+    I &= I_R + I_C \\
+      &= I_R + C\frac{dV}{dt} \\
+      &= \frac{V}{R} + C\frac{dV}{dt}\\
+    RI  &= V + RC\frac{dV}{dt} \\
+    \frac{1}{\tau}(RI-V)  &= \frac{dV}{dt}\\
+  \end{align*}						  
 #+end_src
-IAMHERE
-# ** Coding up the Integrate and Fire Neuron
-#    :PROPERTIES:
-#    :CUSTOM_ID: coding-up-the-integrate-and-fire-neuron
-#    :END:
-# Basically almost the same as the spring example. Use that as a guide.
 
-# #+BEGIN_SRC python
-#   %matplotlib inline
-#   import matplotlib.pyplot as p
-#   import numpy as np
+#+RESULTS:
+\begin{align*}
+  I &= I_R + I_C \\
+    &= I_R + C\frac{dV}{dt} \\
+    &= \frac{V}{R} + C\frac{dV}{dt}\\
+  RI  &= V + RC\frac{dV}{dt} \\
+  \frac{1}{\tau}(RI-V)  &= \frac{dV}{dt}\\
+\end{align*}
 
-#   #define constants
-#   dt        = 
-#   maxT      = 
-#   time      = 
-#   cap       = 
-#   res       = 
-#   thresh    = 
-#   spikeDispl= 8; # arbitrary value used for "pasting on" a spike. Not needed, just nice for display.
-#   tau       = 
-#   voltage   = 
-#   curMag    = 
-#   injCurrent = ;#a tuple for start and stop of current injection
-#   def newVal(ov,dt,dv):
-#       return("something here")
 
-#   def dvdt(tau,res,v,i):
-#       return("something here")
 
-#   for j in time:
-#       if (injCurrent[0] < j <= injCurrent[1]):
-#           #what do I do if time is in the bounds when current should be injected?
-#       else:
-#           curCur = 0
-#       tempV = ;# how do I figure out the voltage at the next time step
-#       if voltage[-1] == spikeDisplay: 
-#           ;#what should the voltage be if I just spiked? Why?
-#       elif tempV > thresh:
-#           ;#what should the voltage be if I am above threshold?
-#       else: 
-#           ;#and what about the other cases?
-      
+** Coding up the Integrate and Fire Neuron
+#+begin_src lisp :results silent
+  (ql:quickload :eazy-gnuplot)
+  (use-package :eazy-gnuplot)
+#+end_src
 
-#   p.plot(time,voltage[0:-1]);#again, what is the '-1' doing?
-#   p.show()
-# #+END_SRC
+This is almost the same as the spring example. You can use that as a guide.
 
-# #+BEGIN_EXAMPLE
-#     File "<ipython-input-2-0b33091e2d34>", line 6
-#       dt        =
-#                   ^
-#   SyntaxError: invalid syntax
-# #+END_EXAMPLE
+#+Name: Define Constants
+#+begin_src lisp :results silent
+  (defconstant +dt+ 0.05)
+  (defconstant +max-t+ 10)
+  (defconstant +init-t+ 0.0d0)
+  (defconstant +start-time+ 1.0d0)
+  (defconstant +stop-time+ 4.0d0)
+  (defvar *injection-time* (cons +start-time+ +stop-time+))
+  (defconstant +cap+ 1) 
+  (defconstant +res+ 2)
+  (defconstant +threshold+ 4)
+  (defconstant +spike-display+ 8.0d0) ;arbitrary value used for "pasting on" a spike. Not needed, just nice for display.
+  (defvar *tau* (* +res+ +cap+))
+  (defconstant +init-v+ 0)
+  (defvar *voltage* +init-v+)
+  (defconstant +injection-current+ 2.3d0)
+#+end_src
 
-# #+BEGIN_SRC python
-#   %matplotlib inline
-#   import matplotlib.pyplot as p
-#   import numpy as np
+#+begin_src lisp :results silent
+  (defun update (old-value rate-of-change time-step)
+    (+ (* rate-of-change time-step) old-value))
+#+end_src
+#+begin_src lisp :results silent
+    (defun dv-dt (&key R I V (tau *tau*))
+      (* (/ 1 tau) (- (* R I) V)))
+#+end_src
 
-#   #define constants
-#   dt = 0.01; #time step is "delta" t
-#   maxT = 10; # maximum time for simulation
-#   time = np.arange(0,maxT,dt)
-#   cap = 1;# capacitance set to 1, why?
-#   res = 3;# resistance
-#   thresh = 3; #threshold for spike - why is this needed?
-#   spikeDisplay = 8; # arbitrary value used for "pasting on" a spike. Not needed, just nice for display.
-#   tau = res*cap
-#   voltage = [0];#what does the "0" represent here?
-#   injCurrent = (1.0,6.0);#using tuple to represent when to start and end "current" injection
-#   curMag = 3.0
-# #+END_SRC
+#+begin_src lisp :results silent
+    (defun run-iandf-sim ()
+      (flet ((between (x) (if (and (>= x (car *injection-time*))
+				   (<= x (cdr *injection-time*))) +injection-current+ 0.0))
+	     (voltage-choice (cv b)
+			      (cond
+				((and (> cv +threshold+) (not b)) +spike-display+)
+				(b 0.0d0)
+				(t cv))))
+      (loop
+	for tme = +init-t+ then (+ +dt+ tme)
+	for i = (between tme) then (between tme)
+	for spike = nil then (< (abs (- voltage-now +spike-display+)) 0.1d0))
+	for voltage-now = +init-v+ then (voltage-choice (dv-dt :R +res+ :I i :V voltage-now) spike)
+	collect (list tme i voltage-now)
+	while (< tme +max-t+))))
+#+end_src
 
-# #+BEGIN_SRC python
-#   def newVal(ov,dt,dv):
-#       return(ov + dv*dt)
+#+begin_src lisp 
+    (defun iandf-plot (output)
+      (let ((data (run-iandf-sim)))
+	(with-plots (*standard-output* :debug nil)
+	  (gp-setup :output output :terminal :png)
+	  (plot
+	   (lambda ()
+	     (loop for p in data
+		   do (format t "~&~a ~a" (first p) (third p))))
+	   :with '(:lines))))
+      output)
+#+end_src
 
-#   def dvdt(tau,res,v,i):
-#       return((1/tau)*(res*i - v))
-# #+END_SRC
+#+RESULTS:
+: IANDF-PLOT
 
-# #+BEGIN_SRC python
-#   for j in time:
-#       if (injCurrent[0] < j <= injCurrent[1]):
-#           curCur = curMag
-#       else:
-#           curCur = 0
-#       tempV = newVal(voltage[-1],dt,dvdt(tau,res,voltage[-1],curCur))
-#       if any([x == 8 for x in voltage[-4:-1]]): 
-#           voltage.append(0)
-#       elif tempV > thresh:
-#           voltage.append(spikeDisplay)
-#       else: 
-#           voltage.append(tempV)
-      
 
-#   p.plot(time,voltage[:-1])
-#   p.show()
-# #+END_SRC
+#+begin_src lisp :exports both :results graphics file "iandf.png"
+  (iandf-plot "iandf.png")
+#+end_src
 
-# [[file:429e215718ff3a1b5f96227d2e590212f8cbef4d.png]]
+#+RESULTS:
+a[[file:iandf.png]]
 
-# #+BEGIN_SRC python
-#   a=[1,2,3,4]
-#   a[-2:]
-# #+END_SRC
 
-# #+BEGIN_EXAMPLE
-#   [3, 4]
-# #+END_EXAMPLE
+
+
+
+
+
+
