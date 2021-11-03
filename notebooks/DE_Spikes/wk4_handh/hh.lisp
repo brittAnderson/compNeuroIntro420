@@ -128,3 +128,11 @@
   (- (* (alpha-h volt) (- 1 h)) (* (beta-h volt) h)))
 
 
+(defun m-infinity (volt)
+  (/ (alpha-m volt) (+ (alpha-m volt) (beta-m volt))))
+
+(defun n-infinity (volt)
+  (/ (alpha-n volt) (+ (alpha-n volt) (beta-n volt))))
+
+(defun h-infinity (volt)
+  (/ (alpha-h volt) (+ (alpha-h volt) (beta-h volt))))
