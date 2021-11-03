@@ -1,3 +1,4 @@
+;; need to add injected current into my hh neuron
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (ql:quickload "eazy-gnuplot" :silent t))
 
@@ -118,15 +119,14 @@
 (defun beta-h (volt)
   (/ 1.0d0 (+ (exp (/ (- 30 volt) 10)) 1)))
 
-(defun m-hat (volt m)
+(defun m-dot (volt m)
   (- (* (alpha-m volt) (- 1 m)) (* (beta-m volt) m)))
 
-(defun n-hat (volt n)
+(defun n-dot (volt n)
   (- (* (alpha-n volt) (- 1 n)) (* (beta-n volt) n)))
 
-(defun h-hat (volt h)
+(defun h-dot (volt h)
   (- (* (alpha-h volt) (- 1 h)) (* (beta-h volt) h)))
-
 
 (defun m-infinity (volt)
   (/ (alpha-m volt) (+ (alpha-m volt) (beta-m volt))))
@@ -136,3 +136,40 @@
 
 (defun h-infinity (volt)
   (/ (alpha-h volt) (+ (alpha-h volt) (beta-h volt))))
+
+(defun update (old-value rate-of-change time-step)
+  (+ (* rate-of-change time-step) old-value))
+
+(defun dvdt (voltage-now hh-m hh-n hh-h neuron-parameters)
+  (with-slots (ena gna ek gk el gl) neuron-parameters
+    (+ (* gna (expt hh-m 3.0d0) hh-h (- voltage-now ena))
+       (* gk (expt hh-n 4.0d0) (- voltage-now ek))
+       (* gl (- voltage-now el))))
+  )
+
+
+(defun run-hh-sim (nps)
+  (with-slots 
+	(dt max-t init-t init-v) nps
+	(do*
+	 ((ts)
+	  (vs)
+	  (currs)
+	  (ms)
+	  (ns)
+	  (hs)
+	  (sim-time 0.0 (+ sim-time dt))
+	  (hh-m-sim (m-infinity init-v) (update hh-m-sim (m-dot voltage hh-m-sim) dt ))
+	  (hh-n-sim (n-infinity init-v) (update hh-n-sim (n-dot voltage hh-n-sim) dt ))
+	  (hh-h-sim (h-infinity init-v) (update hh-h-sim (h-dot voltage hh-h-sim) dt ))
+	  (voltage init-v (dvdt voltage hh-m-sim hh-n-sim hh-h-sim nps)))
+	 ((> sim-time max-t) (list (nreverse ts) (nreverse vs) (nreverse currs)
+				   (nreverse ms) (nreverse ns) (nreverse hs)))
+	  (push sim-time ts)
+	  (push voltage vs)
+	  (push 0.0 currs)
+	  (push hh-m-sim ms)
+	  (push hh-n-sim ns)
+	  (push hh-h-sim hs)
+	  )))
+
