@@ -56,7 +56,7 @@ $$c~\frac{dV}{dt} = I_{tot} - (\bar{g}_{Na} m^3 h (V(t) - E_{Na}) + \bar{g}_{K} 
    :PROPERTIES:
    :CUSTOM_ID: its-differential-equations-all-the-way-down
    :END:
-$ \dot{m} = \alpha_m (V)(1 - m) - \beta_m (V) m $
+$\dot{m} = \alpha_m (V)(1 - m) - \beta_m (V) m$
 
 **** Notes
      :PROPERTIES:
@@ -114,10 +114,10 @@ Model in Javascript]]
    :PROPERTIES:
    :CUSTOM_ID: alpha-and-beta-formulas
    :END:
-$ \alpha /{n}(V/{m})={\frac {0.01(10-V_{m})}{\exp {\big (}{\frac
-{10-V_{m}}{10}}{\big )}-1}}$
 
-$\alpha _{m}(V_{m})={\frac {0.1(25-V_{m})}{\exp {\big (}{\frac {25-V_{m}}{10}}{\big )}-1}}$
+$\alpha_{n}(V_{m})={\frac {0.01(10-V_{m})}{\exp {\big (}{\frac{10-V_{m}}{10}}{\big )}-1}}$
+
+$\alpha_{m}(V_{m})={\frac {0.1(25-V_{m})}{\exp {\big (}{\frac {25-V_{m}}{10}}{\big )}-1}}$
 
 $\alpha _{h}(V_{m})=0.07\exp {\bigg (}{\frac {-V_{m}}{20}}{\bigg )}$
 
@@ -125,8 +125,7 @@ $\beta _{n}(V_{m})=0.125\exp {\bigg (}{\frac {-V_{m}}{80}}{\bigg )}$
 
 $\beta _{m}(V_{m})=4\exp {\bigg (}{\frac {-V_{m}}{18}}{\bigg )}$
 
-$\beta /{h}(V/{m})={\frac {1}{\exp {\big (}{\frac {30-V_{m}}{10}}{\big
-)}+1}} $
+$\beta_{h}(V_{m})={\frac {1}{\exp {\big (}{\frac {30-V_{m}}{10}}{\big)}+1}}$
 
 #+BEGIN_SRC python
   from numpy import *
