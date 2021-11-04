@@ -2,12 +2,19 @@
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (ql:quickload "eazy-gnuplot" :silent t))
 
-(defpackage #:hodgkin-huxley
+(load #P"/home/britt/gitRepos/compNeuroIntro420/notebooks/DE_Spikes/wk3_iandf/test.lisp")
+
+(setq *read-default-float-format* 'double-float)
+
+(DEFPACKAGE #:hodgkin-huxley
   (:nicknames "HH") (:use #:cl)
   (:import-from "EAZY-GNUPLOT"
 		"WITH-PLOTS"
 		"PLOT"
-		"GP-SETUP"))
+		"GP-SETUP")
+  (:import-from "MYTEST"
+		"BETWEEN"
+		"UPDATE"))
 
 (in-package :hh)
 
@@ -16,37 +23,37 @@
 (defclass neuron-sim ()
   ((dt
    :initarg :dt
-   :initform 0.05d0)
+   :initform 0.01)
    (max-t
     :initarg :max-t
-    :initform 10d0)
+    :initform 300)
    (init-t
     :initarg :init-t
-    :initform 0.0d0)
+    :initform 0.0)
    (start-time
     :initarg :start-time
-    :initform 1.0d0)
+    :initform 10.0)
    (stop-time
     :initarg :stop-time
-    :initform 6.0d0)
+    :initform 150.0)
    (cap
     :initarg :cap
-    :initform 1.0d0)
+    :initform 1.0)
    (res
     :initarg :res
-    :initform 2.0d0)
+    :initform 2.0)
    (threshold
     :initarg :threshold
-    :initform 3.0d0)
+    :initform 3.0)
    (spike-display
     :initarg :spike-display
-    :initform 8.0d0)
+    :initform 8.0)
    (init-v
     :initarg :init-v
-    :initform 0.0d0)
+    :initform 0.0)
    (injection-current
     :initarg :injection-current
-    :initform 4.3d0)
+    :initform 50.0)
    (voltage)
    (injection-time)
    (tau)))
@@ -65,59 +72,59 @@
   ((ena
     :initarg :ena
     :type real
-    :initform 115.0d0
+    :initform 115.0
     :accessor ena
     :documentation "Reversal Potential for Sodium")
    (gna
     :initarg :gna
     :type real
-    :initform 120.0d0
+    :initform 120.0
     :accessor gna
     :documentation "Sodium Conductance")
    (ek
     :initarg :ek
     :type real
-    :initform -12.0d0
+    :initform -12.0
     :accessor ek
     :documentation "Reversal Potential for Potassium")
    (gk
     :initarg :gk
     :type real
-    :initform 36.0d0
+    :initform 36.0
     :accessor gk
     :documentation "Potassium Conductance")
    (el
     :initarg :el
     :type real
-    :initform 10.6d0
+    :initform 10.6
     :accessor el
     :documentation "Reveral Leak Potential"
     )
    (gl
     :initarg :gl
-    :initform 0.30d0
+    :initform 0.30
     :type real
     :accessor gl
     :documentation "Leak Conductance")))
 
 
 (defun alpha-n (volt)
-  (/ (* 0.01 (- 10 volt)) (- (exp (/ (- 10 volt) 10)) 1)))
+  (/ (- 0.1 (* 0.01 volt)) (- (exp (- 1 (* 0.1 volt))) 1.0)))
 
 (defun alpha-m (volt)
-  (/ (* 0.1d0 (- 25 volt)) (- (exp (/ (- 25 volt) 10)) 1)))
+  (/ (- 2.5 (* 0.1 volt)) (- (exp (- 2.5 (* 0.1 volt))) 1.0)))
 
 (defun alpha-h (volt)
-  (* 0.07 (exp (/ (* -1 volt) 20))))
+  (* 0.07 (exp (/ (* -1.0 volt) 20.0))))
 
 (defun beta-n (volt)
-  (* 0.125 (exp (/ (* -1 volt) 80))))
+  (* 0.125 (exp (/ (* -1.0 volt) 80.0))))
 
 (defun beta-m (volt)
-  (* 4.0d0 (exp (/ (* -1 volt) 18))))
+  (* 4.0 (exp (/ (* -1.0 volt) 18.0))))
 
 (defun beta-h (volt)
-  (/ 1.0d0 (+ (exp (/ (- 30 volt) 10)) 1)))
+  (/ 1.0 (+ (exp (- 3.0 (* 0.1 volt))) 1.0)))
 
 (defun m-dot (volt m)
   (- (* (alpha-m volt) (- 1 m)) (* (beta-m volt) m)))
@@ -137,20 +144,19 @@
 (defun h-infinity (volt)
   (/ (alpha-h volt) (+ (alpha-h volt) (beta-h volt))))
 
-(defun update (old-value rate-of-change time-step)
-  (+ (* rate-of-change time-step) old-value))
+;; (defun update (old-value rate-of-change time-step)
+;;   (+ (* rate-of-change time-step) old-value))
 
-(defun dvdt (voltage-now hh-m hh-n hh-h neuron-parameters)
+(defun dvdt (voltage-now curr-in hh-m hh-n hh-h neuron-parameters)
   (with-slots (ena gna ek gk el gl) neuron-parameters
-    (+ (* gna (expt hh-m 3.0d0) hh-h (- voltage-now ena))
-       (* gk (expt hh-n 4.0d0) (- voltage-now ek))
-       (* gl (- voltage-now el))))
-  )
+    (- curr-in (+ (* gna (expt hh-m 3.0) hh-h (- voltage-now ena))
+	  (* gk (expt hh-n 4.0) (- voltage-now ek))
+	  (* gl (- voltage-now el))))))
 
 
 (defun run-hh-sim (nps)
   (with-slots 
-	(dt max-t init-t init-v) nps
+	(dt max-t init-v injection-current injection-time) nps
 	(do*
 	 ((ts)
 	  (vs)
@@ -159,17 +165,44 @@
 	  (ns)
 	  (hs)
 	  (sim-time 0.0 (+ sim-time dt))
+	  (inj-cur 0.0
+		   (between sim-time
+			    :lower (car injection-time)
+			    :upper (cdr injection-time)
+			    :if-true injection-current))
 	  (hh-m-sim (m-infinity init-v) (update hh-m-sim (m-dot voltage hh-m-sim) dt ))
 	  (hh-n-sim (n-infinity init-v) (update hh-n-sim (n-dot voltage hh-n-sim) dt ))
 	  (hh-h-sim (h-infinity init-v) (update hh-h-sim (h-dot voltage hh-h-sim) dt ))
-	  (voltage init-v (dvdt voltage hh-m-sim hh-n-sim hh-h-sim nps)))
-	 ((> sim-time max-t) (list (nreverse ts) (nreverse vs) (nreverse currs)
+	  (voltage init-v
+		   (update voltage
+			   (dvdt voltage inj-cur hh-m-sim hh-n-sim hh-h-sim nps) dt)))
+	 ((> sim-time max-t) (list (nreverse ts) (nreverse currs) (nreverse vs) 
 				   (nreverse ms) (nreverse ns) (nreverse hs)))
 	  (push sim-time ts)
 	  (push voltage vs)
-	  (push 0.0 currs)
+	  (push inj-cur currs)
 	  (push hh-m-sim ms)
 	  (push hh-n-sim ns)
 	  (push hh-h-sim hs)
 	  )))
 
+(defun handh-plot (output plot-data)
+  (with-plots (*standard-output* :debug nil)
+    (gp-setup :output output :terminal :png
+	      :key '())
+    (plot
+     (lambda ()
+       (loop for times in (first plot-data)
+	     for volts in (third plot-data)
+	     do (format t "~&~a ~a" times volts)))
+     :with '(:lines :title "Voltage"))
+    (plot
+     (lambda ()
+       (loop for times in (first plot-data)
+	     for currs in (second plot-data)
+	     do (format t "~&~a ~a" times currs)))
+     :with '(:lines :lc "red" :title "Current"))
+    output))
+
+(defvar sim-dat (run-hh-sim (make-instance 'neuron-hh :dt 0.02 :max-t 450.0d0 :start-time 50.0d0 :stop-time 300.0d0 :injection-current 7.0d0)))
+(handh-plot "handh.png" sim-dat)
