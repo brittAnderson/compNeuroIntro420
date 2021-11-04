@@ -195,13 +195,13 @@
        (loop for times in (first plot-data)
 	     for volts in (third plot-data)
 	     do (format t "~&~a ~a" times volts)))
-     :with '(:lines :title "Voltage"))
+     :with '(:lines :title "Voltage" :lc "black" :lw 2))
     (plot
      (lambda ()
        (loop for times in (first plot-data)
 	     for currs in (second plot-data)
 	     do (format t "~&~a ~a" times currs)))
-     :with '(:lines :lc "red" :title "Current"))
+     :with '(:lines :lw 2 :lc "red" :title "Current"))
     output))
 
 (defvar sim-dat (run-hh-sim (make-instance 'neuron-hh :dt 0.02 :max-t 450.0d0 :start-time 50.0d0 :stop-time 300.0d0 :injection-current 7.0d0)))
