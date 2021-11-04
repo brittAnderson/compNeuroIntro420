@@ -3,6 +3,9 @@
   :CUSTOM_ID: hodgkin-huxley-model-of-the-neuron
   :END:
 
+* Readings
+  [[https://lcnwww.epfl.ch/gerstner/SPNM/node14.html#table-HH1][Gerstner Book Chapter Hodgkin Huxley]]
+  
 ** Reminder
    :PROPERTIES:
    :CUSTOM_ID: reminder
