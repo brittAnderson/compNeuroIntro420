@@ -1,2 +1,0 @@
-presentation: https://docs.google.com/presentation/d/1X6lTOsqoU-yZQFZbBHD-yu5_tZn87gcVOfiuLkCKPnU/edit?usp=sharing
-code: https://github.com/lsa-pucrs/acerta-abide
