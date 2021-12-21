@@ -1,5 +1,8 @@
 #+Title: Introduction to Computational Modelling for Psychology Students
 
+Note: syllabus attachment is at: 
+[[file:/ssh:brittlab6.uwaterloo.ca:/home/britt/teach/watCourses/compNeurosciIntro/admin/W2022/_3 bonus credits syllabus_Winter 2022.docx][file:/ssh:brittlab6.uwaterloo.ca:/home/britt/teach/watCourses/compNeurosciIntro/admin/W2022/_3 bonus credits syllabus_Winter 2022.docx]]
+
 * Introduction
 ** [[file:notebooks/Intro/whatIsCogCompNeurosci.org][What is computational neuroscience?]]
 *** Session 1
