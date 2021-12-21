@@ -1,0 +1,55 @@
+#+Title: Syllabus Psych 420 Intro Comp Mod Psychology Students
+#+Date: <2021-12-21 Tue>
+#+Author: Britt Anderson PhD & MD
+
+* Instructor Information
+
+Instructor: Britt Anderson
+
+Office: PAS 4039 -or- E7 6328
+
+Office Hours: email to arrange virtual office hour
+
+Phone: never checked; just *email*
+(alternate contacts include an issue on the course github (not LEARN) site - see below).
+
+Email: britt@uwaterloo.ca
+
+* Course Description
+
+** Brief Description
+
+An introduction to the basic elements of computational modeling with an emphasis on psychology students.
+
+** Goals
+
+   1. You will understand the scope of subject topics and methodological tools that comprise computational neuroscience and computational cognitive modeling
+   2. You will learn the skills necessary to program a spiking neuron model, and have a general understanding of the mathematics behind it (differential equations).
+   3. You will learn the skills necessary to code a simple neural network, and have a general understanding of the mathematics behind it (linear algebra).
+   4. We may, given time, cover an additional topic or two, but we will always conclude with the goal of you...
+   5. Using your burgeoning skills to collaborate in a group to program a simple model of something neurological or psychological and provide supporting background material as to why this project is apt for a modeling approach.
+
+** Text
+This is no required text for this course, but much of the material was covered to some extent in my book that you can find online through the library:
+
+[[
+https://ocul-wtl.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma9951382083505162&context=L&vid=01OCUL_WTL:WTL_DEFAULT&lang=en&search_scope=OCULDiscoveryNetwork&adaptor=Local%20Search%20Engine&tab=OCULDiscoveryNetwork&query=any,contains,britt%20anderson&offset=0][Computational neuroscience and cognitive modelling a student's introduction to methods and procedures]]
+
+Most of material that students need can be found in the course github repository: [[https://github.com/brittAnderson/compNeuroIntro420/][Comp-Neuro-420]]. Make sure you track the "lisp" branch.
+
+** Requirements and Assessments
+
+   *Special Requirements*
+
+Because we are, at least in the beginning, in a virtual setting it will be imperative that attend all classes, and participate in the in-class activities.
+
+This will require having a functioning:
+
+- laptop on which they can install software
+- using the zoom application to be able to view multiple screens and share their own screen
+- a reliable internet connection with a camera, sound, and microphone that will be left on by default.
+
+** Graded Assignments
+These will take two forms: regular exercises and a final project.
+
+1. Regular Exercises. These are short in-class presentations on particular topics that will be assigned in real time. There will also be homework exercises to be done in the time between course sessions. These will be turned in a dropbox on Learn. We will generally only use Learn for this sort of administrative function. 
