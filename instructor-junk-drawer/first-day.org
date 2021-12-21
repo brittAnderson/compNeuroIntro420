@@ -23,6 +23,8 @@ Time: Jan 6, 2022 02:30 PM Eastern Time (US and Canada)
 Join Zoom Meeting
 https://uwaterloo.zoom.us/j/91091259763?pwd=dmh4aEhGbWJpOVlrNGdheEFuSWxGdz09
 
+[[file:zoom-codes.txt][zoom codes]]
+
 * Computer
   You will need a computer.
 
