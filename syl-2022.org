@@ -16,11 +16,15 @@ Phone: never checked; just *email*
 Email: britt@uwaterloo.ca
 
 * Course Description
-
 ** Brief Description
 
 An introduction to the basic elements of computational modeling with an emphasis on psychology students.
 
+Date: Thursday
+
+Time: 14:30-17:20
+
+Location: Initially on Zoom, then hopefully QNC 2501
 ** Goals
 
    1. You will understand the scope of subject topics and methodological tools that comprise computational neuroscience and computational cognitive modeling
@@ -32,8 +36,7 @@ An introduction to the basic elements of computational modeling with an emphasis
 ** Text
 This is no required text for this course, but much of the material was covered to some extent in my book that you can find online through the library:
 
-[[
-https://ocul-wtl.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma9951382083505162&context=L&vid=01OCUL_WTL:WTL_DEFAULT&lang=en&search_scope=OCULDiscoveryNetwork&adaptor=Local%20Search%20Engine&tab=OCULDiscoveryNetwork&query=any,contains,britt%20anderson&offset=0][Computational neuroscience and cognitive modelling a student's introduction to methods and procedures]]
+[[https://ocul-wtl.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma9951382083505162&context=L&vid=01OCUL_WTL:WTL_DEFAULT&lang=en&search_scope=OCULDiscoveryNetwork&adaptor=Local%20Search%20Engine&tab=OCULDiscoveryNetwork&query=any,contains,britt%20anderson&offset=0][Computational neuroscience and cognitive modelling a student's introduction to methods and procedures]]
 
 Most of material that students need can be found in the course github repository: [[https://github.com/brittAnderson/compNeuroIntro420/][Comp-Neuro-420]]. Make sure you track the "lisp" branch.
 
@@ -56,8 +59,16 @@ These will take two forms: regular exercises and a final project.
 These are short in-class presentations on particular topics that will be assigned in real time. There will also be homework exercises to be done in the time between course sessions. These will be turned in a dropbox on Learn. We will generally only use Learn for this sort of administrative function. I will expand this list, but for now, and given the uncertainty of our meeting conditions it will remain partial.
 
 *** Final project
+The course is about acquiring familiarity with the tools and methods useful for computational modeling as a research technique in the neurosciences and cognition. The final project will include the following components:
+- selection of an article in the research literature using a particular computational tool or procedure
+- a summary of the math behind that tool (not a proof; not mastery - just an accessible summarization for the non-expert)
+- a summary of the tool (it might be a program, a programming language, or actual math)
+- an, at least minimal, example of the tool. The usual example is a small program running a toy example, but other forms of demonstration will be considered.
+- the work is typically done in a small group, but individual projects can be selected if preferred. It is just means more work usually, and slightly less learning since you do not get others' perspectives.
+- The typical submitted form of the project is a written report, but in these days of on-line teaching and learning a video report could be negotiated. In all cases the code in a form that I can run and test must be submitted.
 
-*** Extra Credit:
+*** Extra Credit
+Extra credit via the Sona route is available, but frankly I don't think is really that necessary. As we are thinking about experiments and data the participation in on-line research could be a good learning experience. If you are doing this and are forced into an on-line testing situation, which features work and don't work so well for data collection by this route? Use your SONA participation as a route to learning for your own future research. Now follows the boiler plate.
 **** Sona Participation and Research Experience Marks
 - Information and Guidelines
   Experiential learning is considered an integral part of the undergraduate program in Psychology. Research participation is one example of this, article review is another. A number of undergraduate courses have been expanded to include opportunities for Psychology students to earn grades while gaining research experience.
@@ -109,8 +120,49 @@ The article review must:
 - Identify the psychological concepts in the article and indicate the pages in the textbook that are applicable. Critically evaluate the application or treatment of those concepts in the article. If inappropriate or incorrect, identify the error and its implications for the validity of the article. You may find, for example, misleading headings, faulty research procedures, alternative explanations that are ignored, failures to distinguish factual findings from opinions, faulty statements of cause-effect relations, errors in reasoning, etc. Provide examples whenever possible. 
 - Clearly evaluate the application or treatment of those concepts in the article.
 - Keep a copy of your review in the unlikely event we misplace the original.
+** Schedule
+| Week | Date   | Topic                   | General |
+|------+--------+-------------------------+---------|
+|    1 | Jan 6  | Intro                   |         |
+|    2 | Jan 13 | DE/Spikes 1             |         |
+|    3 | Jan 20 | DE/Spikes 2             |         |
+|    4 | Jan 27 | DE/Spikes 3             |         |
+|    5 | Feb  3 | Lin Alg/Neural Networks |         |
+|    6 | Feb 10 | Lin Alg/Neural Networks |         |
+|    7 | Feb 17 | Lin Alg/Neural Networks |         |
+|    8 | Feb 24 | Reading Week            |         |
+|    9 | Mar 3  | Lin Alg/Neural Networks |         |
+|   10 | Mar 10 | Buffer*                 |         |
+|   11 | Mar 17 | Buffer*                 |         |
+|   12 | Mar 24 | Final Proj              |         |
+|   13 | Mar 31 | Final Proj              |         |
 
+  * If we have time I have other modules I can slot in here, but if we don't then we can spill into these slots from the earlier components.
+** Late work
+   Can't give credit for things that are not turned in. I will give you deadlines to try and help you keep from getting stuck or procrastinating, but I will look at anything you turn in, so turn in something.
+** Plagiarism Software - none
+** Electronic Device - use any and all
+** Attendance
+   You need to come every week, because otherwise you sabotage the learning. This is not a class with a bunch of outside readings or things to memorize. This is a course based on doing, and often you will learn more from interacting with your peers then from the "raw" material I dispense. If you are not attending class (even when it is virtual) you will lose out. This not some huge class. Interaction will be possible if you attend.
+** Syllabus Boilerplate
 
+*** Academic Integrity:
 
+In order to maintain a culture of academic integrity, members of the University of Waterloo are expected to promote honesty, trust, fairness, respect and responsibility.
 
-IAMHERE
+*** Discipline:
+A student is expected to know what constitutes academic integrity, to avoid committing academic offences, and to take responsibility for his/her actions. A student who is unsure whether an action constitutes an offence, or who needs help in learning how to avoid offences (e.g., plagiarism, cheating) or about “rules” for group work/collaboration should seek guidance from the course professor, academic advisor, or the Undergraduate Associate Dean. When misconduct has been found to have occurred, disciplinary penalties will be imposed under Policy 71 – Student Discipline. For information on categories of offenses and types of penalties, students should refer to Policy 71 - Student Discipline. 
+
+*** Grievance:
+A student who believes that a decision affecting some aspect of his/her university life has been unfair or unreasonable may have grounds for initiating a grievance. Read Policy 70 - Student Petitions and Grievances, Section 4.
+
+*** Appeals:
+A student may appeal the finding and/or penalty in a decision made under Policy 70 - Student Petitions and Grievances (other than regarding a petition) or Policy 71 - Student Discipline if a ground for an appeal can be established. Read Policy 72 - Student Appeals. 
+
+Other sources of information for students 
+Academic integrity (Arts) Academic Integrity Office (uWaterloo) 
+
+*** Accommodation for Students with Disabilities
+
+Note for students with disabilities: The AccessAbility Services office, located in Needles Hall Room 1132, collaborates with all academic departments to arrange appropriate accommodations for students with disabilities without compromising the academic integrity of the curriculum. If you require academic accommodations to lessen the impact of your disability, please register with the AS office at the beginning of each academic term. 
+
