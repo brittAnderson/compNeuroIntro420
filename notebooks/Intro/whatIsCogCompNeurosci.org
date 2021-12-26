@@ -17,14 +17,19 @@ Why did you take this course?
 
 2. Pick a paper.
 
-3. Call out the number so I can list it as taken:
-   Let's take about 10 minutes for you to find and skim the paper. 
+3. I will create breakout rooms with random assignments of 3 or so. Goal: to get a little interaction in this remote setting, and to promote your learning by getting you talking to each other.
+
+   Each group enter a number in the chat so that I (and others) can see who took what.
+
+   I will make a quick list.
 
    | Student  | Number |
    |----------+--------|
    | John Doe | 101    |
    |          |        |
 
+   We will take about 15 minutes for you to review your selection, then we will rotate the groups to tell us what the content was and what tools/techniques were used so we can get a bit of a survey of the extent of the field and its applications.
+   
 4. Let's take a look at a few of the selections to give ourselves a sense of the range of the topics.
 
 5. Given this what do we think the content of computational cognitive neuroscience modeling is about and what the domains and tools that should be relevant?
@@ -32,29 +37,33 @@ Why did you take this course?
 6. A source for further reading: https://seop.illc.uva.nl/entries/computational-mind/
 
 * How is the course structured?
-  We work through modules that are loosely grouped around some mathematical topic that I think is relevant and that is commonly used in computational neuroscience. I a very limited sketch of the math, mostly with the intention to provide some motivation and justification and the secondary goal of introducing terminology and notation. Then we practice using the concept in simple programming exercises that are usually based on historical examples. Simulation via written programs is the most common method of the field, to understand the field and how it works, you need to practice the method. 
+  We work through modules that are loosely grouped around some mathematical topic that I think is relevant and that is commonly used in computational neuroscience. I present a limited sketch of the math that an area relies on, e.g. spiking neuron models use differential equations. The intent is to provide motivation and intuition. A second goal is to introduce terminology and notation. Then we practice using the concept in simple programming exercises that are usually based on historical examples. Simulation via written programs is the most common method of the field, to understand the field and how it works, you need to practice the method. 
 
 ** What are the "topics"?
-The two topics that I have always had time to cover are
+The two topics that I have always had time to cover in the past are
 1. Differential equations and Models of Neuron Spiking
 2. Linear algebra and Neural Networks
+
 Depending on pace we might try additional topics and you can help me decide what they should be.
 
 * What tools will you need?
-  You will need a laptop and an environment for programming. You can pick the operating system you want to use, the language you want to program in, and the development environment. Programs are basically text files. The only requirement that your choices have to meet is that they provide you a way of submitting to me the text file that is your program so that I can run it on my machine. 
+  You will need a laptop and an environment for programming. You can pick the operating system you want to use, the language you want to program in[fn:1], and the development environment (the thing you write your program in). Programs are basically text files. The only requirement that your choices have to meet is that they provide you a way of submitting to me the text file that is your program so that I can run it on my machine. 
 
   
 ** What tools do I use?
+   You do not have to use the tools that I use, but I will share them in case it helps you see what some of your choices are. 
 - OS :: Linux
-  I use Linux because it gives me greater flexibility to rapidly innovate. I can try out things quickly, because I don't have to wait on an administrator to install new software to my University machines. That doesn't apply to you. However, many developers for non-commercial software like linux and use it perferentially. You may want to try it.
-  If so, you can try Windows Subsystem for Linux 2 or a virtual machine if you are a Mac user. This will be further complicated by whether you are using an M1 mac or an Intel mac. Figuring this out is up to you. Here are a couple of links to point you in the right direction.
+  I use Linux because it gives me greater flexibility to rapidly innovate. I have to spend less time adapting myself to my computer, and get to make my computer adapt more to me. But this is a stylistic choice. Maybe you and OSX are a perfect match, but if you don't try something else how will you know? I am also cheap. Linux is free, and can run on almost any hardware (and soon even the M1 macs). I can try out things quickly, because I don't have to wait on an administrator to install new software to my University machines. That doesn't apply to you. However, many developers for non-commercial software like linux and use it perferentially. You may want to try it.
+  How to try Linux? If you are a Windows user you can check out /Windows Subsystem for Linux 2/. If you are Mac User (but not the M1s) try a virtual machine (aka a VM). Figuring this out is up to you. Here are a couple of links to point you in the right direction.
 
   [[https://mac.getutm.app/][VR software for Macs Intel/M1]]
   [[https://docs.microsoft.com/en-us/windows/wsl/about][Windows Subsystem for Linux]]
 
-  What else might you try? How about an [[https://www.kijiji.ca/b-laptops/kitchener-area/laptop/k0c773l1700209?ad=offering&price=__100][old cheap machine]] that just use for linux? I have a couple I can lend out, but not enough for everyone. You will have to [[https://xubuntu.org/][install]] and update the operating system.
+  What else might you try? How about an [[https://www.kijiji.ca/b-laptops/kitchener-area/laptop/k0c773l1700209?ad=offering&price=__100][old cheap machine]] that just use for linux? I have a couple I can lend out, if we ever get to work together in real life. You will have to [[https://xubuntu.org/][install]] and update the operating system.
 - Programming Language :: Common Lisp
-  I don't recommend you use this. I am trying it as an experiment and to force myself to learn something new. It also allows me to share code that you are unlikely to be able to just cut and paste, but will have to understand a little to adapt to your own needs. 
+  I don't recommend you use this. I wanted to learn something new, so I am trying to re-write the exercises in this language. By doing so I can share complete programs as examples. But when you go to code them in another language you will have to mentally remap them into the language you are using. That will give you a framework, but will require you to actively manipulate the material and not just cut and paste.
+
+  Language suggestions
   - Are you an experienced programmer?
     If so, pick a language you do not know well. Use this as a chance to experiment and push your skills. As long as we can figure out I am to run your code then you can use that language. I am happy to talk about options.
   - Are you okay, but not great in language X?
@@ -63,7 +72,7 @@ Depending on pace we might try additional topics and you can help me decide what
     - Python : very common. Lots (maybe too much) online help
     - R : mostly used for stats, but can be a good way to get started
     - Racket : has been used a lot for teaching and can be conveniently installed on Windows, Mac or Linux. Related to Lisp and Scheme.
-- IDE :: This is the Integrated Development Environment.
+- IDE :: This is the Integrated /Development Environment/ mentioned above.
   You don't need one. You can write code in any text editor and run it from the command line/terminal. However, they can be convenient and help you avoid silly errors when your write and test your code.
   - [[https://xkcd.com/378][Emacs]] - what I use. Very powerful. Tough to get started. You will see a lot of it during the course even if you don't use it.
   - [[https://jupyter.org/install][Jupyter Notebooks]] - these allow you to program in your browser. They can be a very nice way to start and can be used with a variety of languages. They work well under all the operating systems. In past years I used these in the course and you will find in [[https://github.com/brittAnderson/compNeuroIntro420][older branches]] of the course some of these notebooks available.
@@ -112,6 +121,9 @@ How can we use them? Simple neural network examples:
      3. Grading
      4. Final Projects
 
-* TODO Part II - Syllabus
-  Need to write and link here.
-  
+* Part II - Syllabus
+  [[file:~/gitRepos/compNeuroIntro420/syl-2022.org][Syllabus]]
+
+* Footnotes
+
+[fn:1] I recommend Python and R that have good documentation, are easy to install, have good tooling for our uses, and which can be used in many other ways in psychology and industry.  
