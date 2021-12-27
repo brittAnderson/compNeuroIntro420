@@ -5,6 +5,8 @@ Note: syllabus attachment is at:
 
 * Introduction
 ** [[file:notebooks/Intro/whatIsCogCompNeurosci.org][What is computational neuroscience?]]
+** Optional
+[[file:notebooks/Intro/githubhowto.html][Github demo]]
 *** Session 1
 * Differential Equations
 ** [[file:notebooks/DE_Spikes/wk1/DEIntro.org][What is a Differential Equation?]]
