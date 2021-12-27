@@ -11,7 +11,8 @@ Office: PAS 4039 -or- E7 6328
 Office Hours: email to arrange virtual office hour
 
 Phone: never checked; just *email*
-(alternate contacts include an issue on the course github (not LEARN) site - see below).
+
+(alternatively you can create an /issue/ on the course github  page (not the LEARN site). See below for additional details on the course github page. 
 
 Email: britt@uwaterloo.ca
 
@@ -24,7 +25,8 @@ Date: Thursday
 
 Time: 14:30-17:20
 
-Location: Initially on Zoom, then hopefully QNC 2501
+Location: Initially on Zoom, then hopefully QNC 2501. The zoom meeting number and password are in an announcement on the Course Learn page (to decrease the risk of zoom bombing please do not share).
+
 ** Goals
 
    1. You will understand the scope of subject topics and methodological tools that comprise computational neuroscience and computational cognitive modeling
@@ -44,13 +46,9 @@ Most of material that students need can be found in the course github repository
 
    *Special Requirements*
 
-Because we are, at least in the beginning, in a virtual setting it will be imperative that attend all classes, and participate in the in-class activities.
+I will not take attendance nor grade on attendance, but the course involves significant "learning by doing" and collaborative work. Because we are, at least in the beginning, in a virtual setting I strongly encourage that you attend all classes, and participate in the in-class activities. I will not be recording, and I will not have the opportunity to tell you what you missed. 
 
-This will require having a functioning:
-
-- laptop on which they can install software
-- using the zoom application to be able to view multiple screens and share their own screen
-- a reliable internet connection with a camera, sound, and microphone that will be left on by default.
+This course will require that you have a functioning laptop *on which you can install software*, are able to use _Zoom_ (chosen because it allows sharing more than one screen at a time), the ability to share your screen, and a reliable internet connection with a camera, sound, and microphone that will be left on by default. To facilitate a reliable internet connection I strongly encourage you to run an ethernet cable from your wireless modem to your computer. 
 
 ** Graded Assignments
 These will take two forms: regular exercises and a final project.
