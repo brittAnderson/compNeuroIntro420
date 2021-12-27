@@ -1,9 +1,9 @@
-IAMHERE
+#+Title: Models of Spiking Neurons and Differential Equations
 * An Introduction to Differential Equations
 ** Why are Differential Equations an important technique for computational modelling in psychology and neuroscience?
-*** The Action Potential                                      :classExercise:
+*** The Action Potential                                      :class_exercise:
     1. 10 minutes to brush up on what an action potential is.
-    2. Then be able to draw one on the board and explain,
+    2. Then be able to draw one and explain,
        1. What are the axes?
        2. What ion causes the upward deflection?
        3. What causes the repolarization?
@@ -13,6 +13,8 @@ IAMHERE
           mathematical model?
     3. Did you draw this?
        [[https://commons.wikimedia.org/w/index.php?curid=44114666]]
+
+*Why?* If we can reproduce this curve mathematically we will gain insight into the mechansims that apply to biological neurons, and we will gain a mathematical model we can use (or simplify for use) in artificial models. 
 
 *** Why is the action potential relevant for a discussion of DE's in modelling?
     The computational model of the action potential is a partial differential equation and action potentials, "spikes", are often taken to be the information processing unit of the nervous system.
@@ -50,48 +52,46 @@ Moral: Don't let weird symbols put you off trying to understand. Plenty of music
 4. What is the definition of a derivative?
 *** Digression: Use your computer as a tool for exploration
 #+Name: Plotting with Python
-#+BEGIN_SRC python :session *de-intro* :exports both :results graphics file :file "./images/p_p.png"
-  import matplotlib
-  import matplotlib.pyplot as plt
-  import numpy as np
-  plt.clf()
-  xs = [1,2,3,4,5]
-  ys = [2,4,6,8,10]
-  plt.plot(xs,ys)
-  plt.savefig("./images/p_p.png")
+#+BEGIN_SRC python :session: *de-intro* :results file graphics replace :exports both :file "./images/p_p.png"
+
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+plt.clf()
+xs = [1,2,3,4,5]
+ys = [2,4,6,8,10]
+plt.plot(xs,ys)
+plt.savefig("./images/p_p.png")
 #+END_SRC
 
 #+Caption: A Simple Plot
 #+RESULTS: Plotting with Python
 [[file:./images/p_p.png]]
 
-
-
-
 *** What is the Slope of a Curve?
 #+Name: Loading Some Lisp Packages
 #+Caption: Effective use of the computer as a tool means you should always be learning and trying new things. The be the next new thing, or it may be some great, old, forgotten thing. I want to learn Lisp. I am restyling some of the older examples as self-exercises.
-#+begin_src lisp :session *plotting* :results none
-  (ql:quickload :eazy-gnuplot)
-  (use-package :eazy-gnuplot) 
-#+end_src
+#+BEGIN_SRC lisp
+(ql:quickload :eazy-gnuplot)
+(use-package :eazy-gnuplot) 
+#+END_SRC
 
-#+begin_src lisp :session *plotting* :exports both :results graphics file :file "./images/s-p.png" 
-  (defun scatter-plot (output)
-    (let ((point-max 100)
-	  (point-type 7)
-	  (point-color "red")
-	  (step-size 1)
-	  (slope 0.4))
-      (with-plots (*standard-output* :debug nil)
-	(gp-setup :terminal '(pngcairo) :output output)
-	(plot
-	 (lambda ()
-	   (loop for p from 1 upto point-max by step-size
-		   do (format t "~&~a ~a" p (+ (- p step-size) (* (- p step-size) slope)))))
-	 :with `(:lines :lc :rgb ,point-color)))))
-  (scatter-plot "./images/s-p.png")
-#+end_src
+#+BEGIN_SRC lisp :session: :results file graphics replace :exports both :file "./images/s-p.png"
+(defun scatter-plot (output)
+  (let ((point-max 100)
+	(point-type 7)
+	(point-color "red")
+	(step-size 1)
+	(slope 0.4))
+    (with-plots (*standard-output* :debug nil)
+      (gp-setup :terminal '(pngcairo) :output output)
+      (plot
+       (lambda ()
+	 (loop for p from 1 upto point-max by step-size
+		 do (format t "~&~a ~a" p (+ (- p step-size) (* (- p step-size) slope)))))
+       :with `(:lines :lc :rgb ,point-color :title "Drawing a Line")))))
+(scatter-plot "./images/s-p.png")
+#+END_SRC
 
 #+Name: Lisp Eazy-plot Line
 #+Caption: A line drawn with gnuplot called from common-lisp library "eazy-plot". Note the programmatic use of plot commands. Much harder to get started. Much greater control later on. 
@@ -103,22 +103,22 @@ Moral: Don't let weird symbols put you off trying to understand. Plenty of music
    plotted above.
 2. How would you define a slope for a curve like this?
 *** How do you find the slope of a /curve/?
-#+BEGIN_SRC python :session *de-intro* :exports both :results graphics file :file "./images/curve-slope.png"
-  from matplotlib import pyplot
-  import matplotlib.pyplot as plt
-  import numpy as np
-  a = np.linspace(-4,6,num=120)
-  b = [x**3 for x in a];#list comprehension
-  plt.clf()
-  plt.plot(a,b)
-  plt.plot([2,2],[-100,8], 'k-',lw=2)
-  plt.plot([-4,2],[8,8], 'k-',lw=2)
-  plt.plot([4,4],[64,-100], 'k-',lw=2)
-  plt.plot([-4,6],[-64,56], 'r-',lw=2)
-  plt.plot([-4,4],[64,64], 'k-',lw=2)
-  plt.plot([4,6],[64,64], 'k--',lw=2)
-  plt.plot([2,4],[8,64], 'k-',lw=2)
-  plt.savefig("./images/curve-slope.png")
+#+BEGIN_SRC python :session: *de-intro* :results file graphics replace :exports both :file "./images/curve-slope.png"
+from matplotlib import pyplot
+import matplotlib.pyplot as plt
+import numpy as np
+a = np.linspace(-4,6,num=120)
+b = [x**3 for x in a];#list comprehension
+plt.clf()
+plt.plot(a,b)
+plt.plot([2,2],[-100,8], 'k-',lw=2)
+plt.plot([-4,2],[8,8], 'k-',lw=2)
+plt.plot([4,4],[64,-100], 'k-',lw=2)
+plt.plot([-4,6],[-64,56], 'r-',lw=2)
+plt.plot([-4,4],[64,64], 'k-',lw=2)
+plt.plot([4,6],[64,64], 'k--',lw=2)
+plt.plot([2,4],[8,64], 'k-',lw=2)
+plt.savefig("./images/curve-slope.png")
 #+END_SRC
 
 #+Name: Slope of a Curve
@@ -133,7 +133,10 @@ is "close enough." If your answer isn't "close enough" then you move
 your points closer, until /in the limit/ there is an infinitesimal
 distance between them.
 
-Definition:
+*** Definition of the Derivative:
+:PROPERTIES:
+:CUSTOM_ID: derivative
+:END:
 
 $$\frac{df}{dx} = \lim_{h \to 0}\frac{f(x + h) - f(x)}{(x + h) - x}$$
 
@@ -144,7 +147,7 @@ The current standard tool for nicely typeset math is LaTeX. You can use this in 
 
 **** Using Derivatives to Solve Problems With a Computer
 
-***** What is a square root?
+***** What is a square root? :class_exercise:
 
 What is the *solution* to $y=x^2$ if I tell you what $y$ is?
 
@@ -169,14 +172,16 @@ Thinking about how to solve it. Some discussion questions:
 
 #+Name: Derivatives with a Computer Algebra System: Maxima
 #+Caption: What is the derivative of x squared?
-#+begin_src maxima :results raw
-  f(x) := x^2;
-  tex(diff (f(x), x));
-#+end_src
+#+BEGIN_SRC maxima
+f(x) := x^2;
+tex(diff (f(x), x));
+#+END_SRC
+
+NB: As I am trying to learn a new computer language I tried a new tool in that language to help with learning. [[https://maxima.sourceforge.io/][Maxima]] is a powerful computer algebra system. You do *not* have to know or use Lisp to use maxima, but it is written in Lisp and can be called from Lisp. 
 
 #+Caption: Derivative of $x^2$
-#+RESULTS: Derivatives with a Computer Algebra System: Maxima
 $$2\,x$$
+
 
 **** Working Through an Example
 
@@ -200,18 +205,18 @@ $$\frac{\mbox{dError}}{\mbox{dGuess}} = \frac{\mbox{f(Guess1)} - \mbox{goal} - \
 - Using these relations can we come up with a formula for how much we need to adjust our guess based on how big the error was?
    
   
-#+BEGIN_SRC python :session *de-intro* :exports both :results graphics file :file "./images/sqrt55.png"
-  #Error Plot
-  #What is square root of 55?
-  plotData = [(x**2-55,x) for x in np.arange(5.0,8.5,0.01)]
-  plt.clf()
-  plt.plot([y[1] for y in plotData],[x[0] for x in plotData],)
-  plt.plot([5.0,8.5],[0,0],'r-')
-  plt.plot([np.sqrt(55),np.sqrt(55)],[12,-30],'r-')
-  plt.plot([5.0,8.0],[-30,0],'k--')
-  plt.plot([8.0,8.0],[-5,15],'g--')
-  plt.plot([8.0,8.0-(9.0/16)] , [9.0,0.0],'b')
-  plt.savefig("./images/sqrt55.png")
+#+BEGIN_SRC python :session: *de-intro* :results file graphics replace :exports both :file  "./images/sqrt55.png"
+#Error Plot
+#What is square root of 55?
+plotData = [(x**2-55,x) for x in np.arange(5.0,8.5,0.01)]
+plt.clf()
+plt.plot([y[1] for y in plotData],[x[0] for x in plotData],)
+plt.plot([5.0,8.5],[0,0],'r-')
+plt.plot([np.sqrt(55),np.sqrt(55)],[12,-30],'r-')
+plt.plot([5.0,8.0],[-30,0],'k--')
+plt.plot([8.0,8.0],[-5,15],'g--')
+plt.plot([8.0,8.0-(9.0/16)] , [9.0,0.0],'b')
+plt.savefig("./images/sqrt55.png")
 #+END_SRC
 
 #+Caption: Slopes for Curves
@@ -219,15 +224,16 @@ $$\frac{\mbox{dError}}{\mbox{dGuess}} = \frac{\mbox{f(Guess1)} - \mbox{goal} - \
 [[file:./images/sqrt55.png]]
 
 
-#+BEGIN_SRC python :session *de-intro* :exports both :results graphics file :file "./images/sqrt-more.png"
-  plotData = [(x**2-55,x) for x in np.arange(7.3,7.6,0.01)]
-  plt.clf()
-  plt.plot([y[1] for y in plotData],[x[0] for x in plotData],)
-  plt.plot([7.0,7.5],[0,0],'r-')
-  plt.plot([np.sqrt(55),np.sqrt(55)],[3,-3],'r-')
-  xs = [np.sqrt(55)-1/4,np.sqrt(55)+1/4]
-  plt.plot(xs , [16*x-119 for x in xs],'b')
-  plt.savefig("./images/sqrt-more.png")
+#+BEGIN_SRC python :session: *de-intro* :results file graphics replace :exports both :file "./images/sqrt-more.png"
+
+plotData = [(x**2-55,x) for x in np.arange(7.3,7.6,0.01)]
+plt.clf()
+plt.plot([y[1] for y in plotData],[x[0] for x in plotData],)
+plt.plot([7.0,7.5],[0,0],'r-')
+plt.plot([np.sqrt(55),np.sqrt(55)],[3,-3],'r-')
+xs = [np.sqrt(55)-1/4,np.sqrt(55)+1/4]
+plt.plot(xs , [16*x-119 for x in xs],'b')
+plt.savefig("./images/sqrt-more.png")
 #+END_SRC
 
 #+RESULTS:
@@ -243,67 +249,86 @@ $$\frac{\mbox{dError}}{\mbox{dGuess}} = \frac{\mbox{f(Guess1)} - \mbox{goal} - \
 2. What is the derivative of $x^3$?
 
 3. Find it with a computer algebra system *even if you know how to do it by hand.*
-   A simple way to make sure you are on the right track with a new programming tool is to do something in code that you can do in your head or on paper to make sure t
+   A simple way to make sure you are on the right track with a new programming tool is to do something in code that you can do in your head or on paper to make sure that you get the correct answer. It does not substitute for [[https://realpython.com/python-testing/][proper testing]], but it is an easy to do start. You don't want to waste time trying to perfect a flawed approach.
 
 4. Write two Python Functions: one to =return= the cube of a number, and
    one to =return= the derivative when evaluated at a particular value
    of =x=.
 
-#+begin_src maxima :results raw
-  f(x) := x^3;
-  df:diff(f(x), x);
-  tex(df);
-  newline();
-  print("The derivative of x^3 at 3 is: ",ev(df,x=3));
-  #+end_src
-
-  #+RESULTS:
+#+BEGIN_SRC maxima
+f(x) := x^3;
+df:diff(f(x), x);
+tex(df);
+newline();
+print("The derivative of x^3 at 3 is: ",ev(df,x=3));
+#+END_SRC
   $$3\,x^2$$
   The derivative of x^3 at 3 is:  27 
 
-#+begin_src lisp :session *cube-root* :results silent
-  (setq *read-default-float-format* 'DOUBLE-FLOAT)
-  (defvar *goal* 128.0)
-  (defvar *initial-guess* 5.0)
-  (defun x-cubed (x) (* x x x))
-  (defun diff-x-cubed (x) (* 3 x x))
-#+end_src
 
-#+begin_src lisp :session *cube-root* :results silent
-  (defun get-step (guess &optional (goal *goal*)) (/ (- goal (x-cubed guess)) (diff-x-cubed guess)))
-#+end_src
 
-#+begin_src lisp :session *cube-root* :results silent
-  (defun get-cube-root (goal initial-guess &optional (tolerance 0.001))
-    (loop
-      for error = (get-step initial-guess goal) then (get-step new-guess goal)
-      for new-guess = (+ initial-guess error) then (+ error new-guess)
-      while ( > (abs ( - (x-cubed new-guess) goal )) tolerance )
-      do (format t "new-guess is ~,15f~%" new-guess)
-      finally (return new-guess)))
-#+end_src
+#+BEGIN_SRC lisp
+(setq *read-default-float-format* 'DOUBLE-FLOAT)
+(defvar *goal* 128.0)
+(defvar *initial-guess* 5.0)
+(defun x-cubed (x) (* x x x))
+(defun diff-x-cubed (x) (* 3 x x))
+#+END_SRC
 
-#+begin_src lisp :session *cube-root* :exports both
-  ;; let's try it out
-  (get-cube-root 128 5.0)
-#+end_src
+#+BEGIN_SRC lisp
+(defun get-step (guess &optional (goal *goal*)) (/ (- goal (x-cubed guess)) (diff-x-cubed guess)))
+#+END_SRC
+
+NB: I am using optional arguments so that when I use my functions I don't have to keep typing in common things that rarely change. You can do this in [[https://realpython.com/python-optional-arguments/][python]] and [[https://www.oreilly.com/library/view/the-r-book/9780470510247/ch002-sec060.html][R]] as well.
+
+#+BEGIN_SRC lisp
+(defun get-cube-root (goal initial-guess &optional (tolerance 0.001))
+  (loop
+    for error = (get-step initial-guess goal) then (get-step new-guess goal)
+    for new-guess = (+ initial-guess error) then (+ error new-guess)
+    while ( > (abs ( - (x-cubed new-guess) goal )) tolerance )
+    do (format t "new-guess is ~,15f~%" new-guess)
+    finally (return new-guess)))
+#+END_SRC
+
+NB: My solution uses a *loop*. To emulate this approach you will need to discover how to write loops in your chosen language. The two main kinds of loops are =for= loops and =while= loops. Which one have I used above?
+
+#+BEGIN_SRC lisp
+;; let's try it out
+(get-cube-root 128 5.0)
+#+END_SRC
 
 #+RESULTS:
 : 5.039684219366759
 
 
 
+** Homework :homework:
+   Submit your program for computing the fourth root of a number. That is the number that when multiplied together four times equals the goal. For example $2\times 2 \times 2 \times 2 ~ = 16$. If I gave you 16, your program ought to put out something close to 2. You should need to make very few changes to what you have already written to have a working program.
+
+   If this comes easy to you consider doing this *bonus* assignment. Have your program work for any root. That is I can give it goal and 'n' and it will calculate the $n^{th}$ root. For example ~(nth-root 16 2)~ gives me four, but ~(nth-root 16 4)~ gives me two.
+   
+
 * Practice Simulating With DEs
 
 ** Frictionless Springs
 
-***  The equation of a frictionless spring?
-$$ \frac{d^2 s}{dt^2} = -P~s(t)$$
+Motivation: I know we want to code neurons, but to get there we should feel comfortable with the underlying tool or we won't be able to adapt it or re-use it for some new purpose. I don't want to give you a fish. I want to teach you how to fish.
 
-What does it mean?
+By working with an example simpler than a neuron, and one for which you might have more intuition, such as a simple spring or "slinky" I hope you will get a better /feel/ for how the numbers, equations, and code all relate. Then we can move on to the neuronal application.
+
+***  The equation of a frictionless spring?
+
+\begin{equation}
+\label{eq:1}
+\frac{d^2 s}{dt^2} = -P~s(t)
+\end{equation}
+
+
+What does it mean? What is multiplying what here? What do the parentheses mean, and how do you know what they mean? 
 
 **** How do we finesse the derivatives?
-Use definitions.
+Use definitions [[#derivative]].
 
 Imagine a little time has gone by ($\Delta~t$). What is our new position ($s$ is for space)?
 
@@ -318,43 +343,52 @@ $$\frac{v(t + \Delta t) - v(t)}{\Delta t} = acceleration \approx \frac{d v}{d t}
 And we have a formula for this. We can now bootstrap our simulation.
 
 #+Name: Basic Spring Functions
-#+begin_src lisp :session *de-intro-l* :results silent 
-  (defun s-of-t (delta-t v s)
-    (+ s (* v delta-t)))
-  
-  (defun v-of-t (delta-t a v)
-    (+ v (* a delta-t)))
-  
-  (defun a-of-t (p s)
-    (* -1 p s))
-#+end_src
+#+BEGIN_SRC lisp
+(defun s-of-t (delta-t v s)
+  (+ s (* v delta-t)))
+
+(defun v-of-t (delta-t a v)
+  (+ v (* a delta-t)))
+
+(defun a-of-t (p s)
+  (* -1 p s))
+#+END_SRC
+
 
 Note the similiarity of the two functions. You could write a helper function that was generic to this pattern of old value + rate of change times the  time step, and just used the pertinent values. 
 
+How do we know the formula for acceleration? We were given it \ref{eq:1}. 
+
 #+Name: constants and variables
-#+begin_src lisp *de-intro-l* :results silent
-  ;; generating initial values and variables
-  (defconstant +init-v+ 0
-    "The initial Velocity")
-  (defconstant +init-s+ 10)
-  (defconstant +p+ 2)
-  (defconstant +delta-t+ 0.05)
-#+end_src
+#+BEGIN_SRC lisp
+;; generating initial values and variables
+(defconstant +init-v+ 0
+  "The initial Velocity")
+(defconstant +init-s+ 10)
+(defconstant +p+ 2)
+(defconstant +delta-t+ 0.05)
+#+END_SRC
+
+NB: you should consider doing something similar with your code. Put all the numbers and values you don't expect to change very much in a block at the top of your code. Then refer to them by their variable names later on. This is much more convenient if you want to change or update something. You have one spot to look to find the value to change. Changing it in one place propagates through all the rest of your code. 
+
+NB: I give an example of a "doc string". Most programming languages have a way of adding documentation. It is much nicer to add this as you write your code than to go in at the end and try to do it all at once. Try to use short simple, but *meaningful*, variable names and give longer explanations as documentation.
 
 #+Name: looping
-#+begin_src lisp :session *de-intro-l* :results silent
-  (defun release-spring (&optional (repeat-n 5))
-    (loop
-      repeat repeat-n
-      for a = (a-of-t +p+ +init-s+)         then (a-of-t +p+ s)
-      for v = +init-v+                      then (v-of-t +delta-t+ a v)
-      for s = +init-s+                      then (s-of-t +delta-t+ v s)
-      for time = 0                          then (+ time +delta-t+)
-      collect (list a v s time)))
-#+end_src
+#+BEGIN_SRC lisp
+(defun release-spring (&optional (repeat-n 5))
+  (loop
+    repeat repeat-n
+    for a = (a-of-t +p+ +init-s+)         then (a-of-t +p+ s)
+    for v = +init-v+                      then (v-of-t +delta-t+ a v)
+    for s = +init-s+                      then (s-of-t +delta-t+ v s)
+    for time = 0                          then (+ time +delta-t+)
+    collect (list a v s time)))
+#+END_SRC
+
+NB: The code above creates a series of steps that happen one after the other. This is *not* a nested loop, though it will look similar to the nesting of loops you can see in python and R. This is just a common lisp idiosyncrasy. You will again need to use a loop. This time I am using what kind of loop? The ~collect~ statement is a short hand for gathering all my values up and returing them. You will probably need something like a =return= statement or a variable that you use to catch the updated values and append them on to a growning list. 
 
 #+Name: putting it together: functions and plotting
-#+begin_src lisp :session *de-intro-l* :exports both :results graphics file :file "./images/spring.png" 
+#+begin_src lisp :exports both :results replace graphics file :file "./images/spring.png" 
   (defun spring-plot (output)
     (let ((data (mapcar (lambda (a) (cons (fourth a) (third a))) (release-spring 1000)))
 	  (point-type 7)
@@ -369,18 +403,21 @@ Note the similiarity of the two functions. You could write a helper function tha
 	 (lambda ()
 	   (loop for p in data
 		   do (format t "~&~a ~a" (car p) (cdr p))))
-	 :with `(:lines :title "Location")))))
+	 :with `(:lines :lc :rgb ,point-color :title "Location")))))
   (spring-plot "./images/spring.png")
 #+end_src
+
+**** Do you understand the logic of the code? :class_exercise:
+You may see examples of _pseudo-code_ in the future. This is when an algorithm is described as if it were a computer program. You are told the steps that need to happen and the order, but often it is not in any particular language, but just a general sort-of kind-of like code code. It is good to practice reading code like that so that you can more easily translate the procedures and steps into the language you like to use.
+
+The "mapcar" you see is a lisp version of =map=. This is a common /functional programming/ construct that is very powerful and lets you write concise code that achieves loop like behavior in a simpler fashion. Less writing means less chances for bugs in your code, and more concise code makes it easier for people to read and understand your code. See if you can find the =map= equivalent for the language you are programming in and see if you can get it to work here. The usual procedure is to get something working first, and then try to amend it to use the new tool or technique. 
 
 #+RESULTS: putting it together: functions and plotting
 [[file:./images/spring.png]]
 
 
 
-
-
-** Damped Oscillators
+** Damped Oscillators :homework:
 
 Provide the code for the damped oscillator. It has the formula of
 

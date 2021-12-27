@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-10-27 Wed 13:43 -->
+<!-- 2021-12-27 Mon 14:22 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title>Models of Spiking Neurons and Differential Equations</title>
 <meta name="author" content="Britt Anderson" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -217,68 +217,71 @@
 </head>
 <body>
 <div id="content" class="content">
+<h1 class="title">Models of Spiking Neurons and Differential Equations</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org82e5e29">1. An Introduction to Differential Equations</a>
+<li><a href="#orgdb1d861">1. An Introduction to Differential Equations</a>
 <ul>
-<li><a href="#org7114fea">1.1. Why are Differential Equations an important technique for computational modelling in psychology and neuroscience?</a>
+<li><a href="#orge390b34">1.1. Why are Differential Equations an important technique for computational modelling in psychology and neuroscience?</a>
 <ul>
-<li><a href="#org96d625c">1.1.1. The Action Potential&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classExercise">classExercise</span></span></a></li>
-<li><a href="#org8820d6e">1.1.2. Why is the action potential relevant for a discussion of DE's in modelling?</a></li>
+<li><a href="#orga3aca2d">1.1.1. The Action Potential&#xa0;&#xa0;&#xa0;<span class="tag"><span class="class_exercise">class_exercise</span></span></a></li>
+<li><a href="#orgf183b67">1.1.2. Why is the action potential relevant for a discussion of DE's in modelling?</a></li>
 </ul>
 </li>
-<li><a href="#org4b502cd">1.2. Notation</a>
+<li><a href="#org267e055">1.2. Notation</a>
 <ul>
-<li><a href="#org7a2ddd8">1.2.1. Multiple Ways to Say the Same Thing</a></li>
+<li><a href="#org997c23a">1.2.1. Multiple Ways to Say the Same Thing</a></li>
 </ul>
 </li>
-<li><a href="#orgbeeecf3">1.3. Differential Equations - Equations with Derivatives</a>
+<li><a href="#org00ef11a">1.3. Differential Equations - Equations with Derivatives</a>
 <ul>
-<li><a href="#org2cbadd5">1.3.1. What is a differential equation?</a></li>
-<li><a href="#org8b6d38b">1.3.2. What is a derivative?</a></li>
-<li><a href="#org4d40538">1.3.3. Derivatives are Slopes</a></li>
-<li><a href="#orgcda68e8">1.3.4. Digression: Use your computer as a tool for exploration</a></li>
-<li><a href="#orgf9b0ff8">1.3.5. What is the Slope of a Curve?</a></li>
-<li><a href="#orgb16167e">1.3.6. Thinking About Slopes</a></li>
-<li><a href="#org546ccc2">1.3.7. How do you find the slope of a <i>curve</i>?</a></li>
+<li><a href="#org9f43a0b">1.3.1. What is a differential equation?</a></li>
+<li><a href="#org378aa28">1.3.2. What is a derivative?</a></li>
+<li><a href="#orgb01c940">1.3.3. Derivatives are Slopes</a></li>
+<li><a href="#org62ae167">1.3.4. Digression: Use your computer as a tool for exploration</a></li>
+<li><a href="#orga5ebfca">1.3.5. What is the Slope of a Curve?</a></li>
+<li><a href="#org139697d">1.3.6. Thinking About Slopes</a></li>
+<li><a href="#org78044bc">1.3.7. How do you find the slope of a <i>curve</i>?</a></li>
 </ul>
 </li>
-<li><a href="#orga0dbb3f">1.4. Derivatives are Instantaneous Slopes</a>
+<li><a href="#org41404c0">1.4. Derivatives are Instantaneous Slopes</a>
 <ul>
-<li><a href="#org3a56739">1.4.1. Digression: Writing Math in Documents</a></li>
+<li><a href="#derivative">1.4.1. Definition of the Derivative:</a></li>
+<li><a href="#orgb1ece74">1.4.2. Digression: Writing Math in Documents</a></li>
 </ul>
 </li>
+<li><a href="#orgc4ffdc6">1.5. Homework&#xa0;&#xa0;&#xa0;<span class="tag"><span class="homework">homework</span></span></a></li>
 </ul>
 </li>
-<li><a href="#org50acfd7">2. Practice Simulating With DEs</a>
+<li><a href="#org0ecb409">2. Practice Simulating With DEs</a>
 <ul>
-<li><a href="#orgf581c0c">2.1. Frictionless Springs</a>
+<li><a href="#orgdd3d0a1">2.1. Frictionless Springs</a>
 <ul>
-<li><a href="#org38b9fd6">2.1.1. The equation of a frictionless spring?</a></li>
+<li><a href="#org6861d82">2.1.1. The equation of a frictionless spring?</a></li>
 </ul>
 </li>
-<li><a href="#orga40fcdd">2.2. Damped Oscillators</a></li>
+<li><a href="#org3a91d14">2.2. Damped Oscillators&#xa0;&#xa0;&#xa0;<span class="tag"><span class="homework">homework</span></span></a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org82e5e29" class="outline-2">
-<h2 id="org82e5e29"><span class="section-number-2">1.</span> An Introduction to Differential Equations</h2>
+<div id="outline-container-orgdb1d861" class="outline-2">
+<h2 id="orgdb1d861"><span class="section-number-2">1.</span> An Introduction to Differential Equations</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org7114fea" class="outline-3">
-<h3 id="org7114fea"><span class="section-number-3">1.1.</span> Why are Differential Equations an important technique for computational modelling in psychology and neuroscience?</h3>
+<div id="outline-container-orge390b34" class="outline-3">
+<h3 id="orge390b34"><span class="section-number-3">1.1.</span> Why are Differential Equations an important technique for computational modelling in psychology and neuroscience?</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org96d625c" class="outline-4">
-<h4 id="org96d625c"><span class="section-number-4">1.1.1.</span> The Action Potential&#xa0;&#xa0;&#xa0;<span class="tag"><span class="classExercise">classExercise</span></span></h4>
+<div id="outline-container-orga3aca2d" class="outline-4">
+<h4 id="orga3aca2d"><span class="section-number-4">1.1.1.</span> The Action Potential&#xa0;&#xa0;&#xa0;<span class="tag"><span class="class_exercise">class_exercise</span></span></h4>
 <div class="outline-text-4" id="text-1-1-1">
 <ol class="org-ol">
 <li>10 minutes to brush up on what an action potential is.</li>
-<li>Then be able to draw one on the board and explain,
+<li>Then be able to draw one and explain,
 <ol class="org-ol">
 <li>What are the axes?</li>
 <li>What ion causes the upward deflection?</li>
@@ -291,11 +294,15 @@ mathematical model?</li>
 <li>Did you draw this?
 <a href="https://commons.wikimedia.org/w/index.php?curid=44114666">https://commons.wikimedia.org/w/index.php?curid=44114666</a></li>
 </ol>
+
+<p>
+<b>Why?</b> If we can reproduce this curve mathematically we will gain insight into the mechansims that apply to biological neurons, and we will gain a mathematical model we can use (or simplify for use) in artificial models. 
+</p>
 </div>
 </div>
 
-<div id="outline-container-org8820d6e" class="outline-4">
-<h4 id="org8820d6e"><span class="section-number-4">1.1.2.</span> Why is the action potential relevant for a discussion of DE's in modelling?</h4>
+<div id="outline-container-orgf183b67" class="outline-4">
+<h4 id="orgf183b67"><span class="section-number-4">1.1.2.</span> Why is the action potential relevant for a discussion of DE's in modelling?</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <p>
 The computational model of the action potential is a partial differential equation and action potentials, "spikes", are often taken to be the information processing unit of the nervous system.
@@ -308,8 +315,8 @@ DE's are the way we capture dynamics, how things change over time. If you think 
 </div>
 </div>
 
-<div id="outline-container-org4b502cd" class="outline-3">
-<h3 id="org4b502cd"><span class="section-number-3">1.2.</span> Notation</h3>
+<div id="outline-container-org267e055" class="outline-3">
+<h3 id="org267e055"><span class="section-number-3">1.2.</span> Notation</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Concise summaries of things that would take too long to write out in detail. Mathematical notation is just a technical emoji. You probably know the "math" they represent; you just don't know the abbreviation that is being used.
@@ -324,8 +331,8 @@ following:
 \[\sum_{\forall x \in \left\{ 1 , 2 , 3 \right \}} x ~=~ 6\]
 </p>
 </div>
-<div id="outline-container-org7a2ddd8" class="outline-4">
-<h4 id="org7a2ddd8"><span class="section-number-4">1.2.1.</span> Multiple Ways to Say the Same Thing</h4>
+<div id="outline-container-org997c23a" class="outline-4">
+<h4 id="org997c23a"><span class="section-number-4">1.2.1.</span> Multiple Ways to Say the Same Thing</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 \(\frac{dy}{dx}\)
@@ -350,28 +357,28 @@ Moral: Don't let weird symbols put you off trying to understand. Plenty of music
 </div>
 </div>
 
-<div id="outline-container-orgbeeecf3" class="outline-3">
-<h3 id="orgbeeecf3"><span class="section-number-3">1.3.</span> Differential Equations - Equations with Derivatives</h3>
+<div id="outline-container-org00ef11a" class="outline-3">
+<h3 id="org00ef11a"><span class="section-number-3">1.3.</span> Differential Equations - Equations with Derivatives</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-org2cbadd5" class="outline-4">
-<h4 id="org2cbadd5"><span class="section-number-4">1.3.1.</span> What is a differential equation?</h4>
+<div id="outline-container-org9f43a0b" class="outline-4">
+<h4 id="org9f43a0b"><span class="section-number-4">1.3.1.</span> What is a differential equation?</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 Give me an answer that uses <b>no</b> equations. Just words. 
 </p>
 </div>
 </div>
-<div id="outline-container-org8b6d38b" class="outline-4">
-<h4 id="org8b6d38b"><span class="section-number-4">1.3.2.</span> What is a derivative?</h4>
+<div id="outline-container-org378aa28" class="outline-4">
+<h4 id="org378aa28"><span class="section-number-4">1.3.2.</span> What is a derivative?</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <p>
 Give me an answer that uses <b>no</b> equations. Just words. 
 </p>
 </div>
 </div>
-<div id="outline-container-org4d40538" class="outline-4">
-<h4 id="org4d40538"><span class="section-number-4">1.3.3.</span> Derivatives are Slopes</h4>
+<div id="outline-container-orgb01c940" class="outline-4">
+<h4 id="orgb01c940"><span class="section-number-4">1.3.3.</span> Derivatives are Slopes</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <ol class="org-ol">
 <li>What is a slope?</li>
@@ -381,11 +388,12 @@ Give me an answer that uses <b>no</b> equations. Just words.
 </ol>
 </div>
 </div>
-<div id="outline-container-orgcda68e8" class="outline-4">
-<h4 id="orgcda68e8"><span class="section-number-4">1.3.4.</span> Digression: Use your computer as a tool for exploration</h4>
+<div id="outline-container-org62ae167" class="outline-4">
+<h4 id="org62ae167"><span class="section-number-4">1.3.4.</span> Digression: Use your computer as a tool for exploration</h4>
 <div class="outline-text-4" id="text-1-3-4">
 <div class="org-src-container">
-<pre class="src src-python" id="org70a9037"><span style="color: #a020f0;">import</span> matplotlib
+<pre class="src src-python" id="org17edca0">
+<span style="color: #a020f0;">import</span> matplotlib
 <span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> plt
 <span style="color: #a020f0;">import</span> numpy <span style="color: #a020f0;">as</span> np
 plt.clf()
@@ -397,7 +405,7 @@ plt.savefig(<span style="color: #8b2252;">"./images/p_p.png"</span>)
 </div>
 
 
-<div id="orgd68200e" class="figure">
+<div id="org0a83bba" class="figure">
 <p><img src="./images/p_p.png" alt="p_p.png" />
 </p>
 <p><span class="figure-number">Figure 1: </span>A Simple Plot</p>
@@ -405,14 +413,11 @@ plt.savefig(<span style="color: #8b2252;">"./images/p_p.png"</span>)
 </div>
 </div>
 
-
-
-
-<div id="outline-container-orgf9b0ff8" class="outline-4">
-<h4 id="orgf9b0ff8"><span class="section-number-4">1.3.5.</span> What is the Slope of a Curve?</h4>
+<div id="outline-container-orga5ebfca" class="outline-4">
+<h4 id="orga5ebfca"><span class="section-number-4">1.3.5.</span> What is the Slope of a Curve?</h4>
 <div class="outline-text-4" id="text-1-3-5">
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 1: </span>Effective use of the computer as a tool means you should always be learning and trying new things. The be the next new thing, or it may be some great, old, forgotten thing. I want to learn Lisp. I am restyling some of the older examples as self-exercises.</label><pre class="src src-lisp" id="org88d1b36">(ql:quickload <span style="color: #483d8b;">:eazy-gnuplot</span>)
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>Effective use of the computer as a tool means you should always be learning and trying new things. The be the next new thing, or it may be some great, old, forgotten thing. I want to learn Lisp. I am restyling some of the older examples as self-exercises.</label><pre class="src src-lisp" id="org135b12f">(ql:quickload <span style="color: #483d8b;">:eazy-gnuplot</span>)
 (use-package <span style="color: #483d8b;">:eazy-gnuplot</span>) 
 </pre>
 </div>
@@ -430,13 +435,13 @@ plt.savefig(<span style="color: #8b2252;">"./images/p_p.png"</span>)
        (<span style="color: #a020f0;">lambda</span> ()
          (<span style="color: #a020f0;">loop</span> for p from 1 upto point-max by step-size
                  do (format t <span style="color: #8b2252;">"~&amp;~a ~a"</span> p (+ (- p step-size) (* (- p step-size) slope)))))
-       <span style="color: #483d8b;">:with</span> `(<span style="color: #483d8b;">:lines</span> <span style="color: #483d8b;">:lc</span> <span style="color: #483d8b;">:rgb</span> ,point-color)))))
+       <span style="color: #483d8b;">:with</span> `(<span style="color: #483d8b;">:lines</span> <span style="color: #483d8b;">:lc</span> <span style="color: #483d8b;">:rgb</span> ,point-color <span style="color: #483d8b;">:title</span> <span style="color: #8b2252;">"Drawing a Line"</span>)))))
 (scatter-plot <span style="color: #8b2252;">"./images/s-p.png"</span>)
 </pre>
 </div>
 
 
-<div id="org875f187" class="figure">
+<div id="org830a8be" class="figure">
 <p><img src="./images/s-p.png" alt="s-p.png" />
 </p>
 <p><span class="figure-number">Figure 2: </span>A line drawn with gnuplot called from common-lisp library "eazy-plot". Note the programmatic use of plot commands. Much harder to get started. Much greater control later on.</p>
@@ -444,8 +449,8 @@ plt.savefig(<span style="color: #8b2252;">"./images/p_p.png"</span>)
 </div>
 </div>
 
-<div id="outline-container-orgb16167e" class="outline-4">
-<h4 id="orgb16167e"><span class="section-number-4">1.3.6.</span> Thinking About Slopes</h4>
+<div id="outline-container-org139697d" class="outline-4">
+<h4 id="org139697d"><span class="section-number-4">1.3.6.</span> Thinking About Slopes</h4>
 <div class="outline-text-4" id="text-1-3-6">
 <ol class="org-ol">
 <li>Describe in words a reallife scenario that matches the process being
@@ -454,8 +459,8 @@ plotted above.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org546ccc2" class="outline-4">
-<h4 id="org546ccc2"><span class="section-number-4">1.3.7.</span> How do you find the slope of a <i>curve</i>?</h4>
+<div id="outline-container-org78044bc" class="outline-4">
+<h4 id="org78044bc"><span class="section-number-4">1.3.7.</span> How do you find the slope of a <i>curve</i>?</h4>
 <div class="outline-text-4" id="text-1-3-7">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #a020f0;">from</span> matplotlib <span style="color: #a020f0;">import</span> pyplot
@@ -477,7 +482,7 @@ plt.savefig(<span style="color: #8b2252;">"./images/curve-slope.png"</span>)
 </div>
 
 
-<div id="org0e45cfc" class="figure">
+<div id="org99ca935" class="figure">
 <p><img src="./images/curve-slope.png" alt="curve-slope.png" />
 </p>
 <p><span class="figure-number">Figure 3: </span>The slope of a curve illustrated. In this example I use a series of python commands and the python numpy library. There are many ways to get things done. Find one that works for you, and try to think about how to learn something that will serve you long into the future, and not just the tool that meets immediate needs.</p>
@@ -486,8 +491,8 @@ plt.savefig(<span style="color: #8b2252;">"./images/curve-slope.png"</span>)
 </div>
 </div>
 
-<div id="outline-container-orga0dbb3f" class="outline-3">
-<h3 id="orga0dbb3f"><span class="section-number-3">1.4.</span> Derivatives are Instantaneous Slopes</h3>
+<div id="outline-container-org41404c0" class="outline-3">
+<h3 id="org41404c0"><span class="section-number-3">1.4.</span> Derivatives are Instantaneous Slopes</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 You pick two points that are "close enough" and you get an answer that
@@ -495,19 +500,20 @@ is "close enough." If your answer isn't "close enough" then you move
 your points closer, until <i>in the limit</i> there is an infinitesimal
 distance between them.
 </p>
+</div>
 
-<p>
-Definition:
-</p>
-
+<div id="outline-container-derivative" class="outline-4">
+<h4 id="derivative"><span class="section-number-4">1.4.1.</span> Definition of the Derivative:</h4>
+<div class="outline-text-4" id="text-derivative">
 <p>
 \[\frac{df}{dx} = \lim_{h \to 0}\frac{f(x + h) - f(x)}{(x + h) - x}\]
 </p>
 </div>
+</div>
 
-<div id="outline-container-org3a56739" class="outline-4">
-<h4 id="org3a56739"><span class="section-number-4">1.4.1.</span> Digression: Writing Math in Documents</h4>
-<div class="outline-text-4" id="text-1-4-1">
+<div id="outline-container-orgb1ece74" class="outline-4">
+<h4 id="orgb1ece74"><span class="section-number-4">1.4.2.</span> Digression: Writing Math in Documents</h4>
+<div class="outline-text-4" id="text-1-4-2">
 <p>
 The current standard tool for nicely typeset math is LaTeX. You can use this in jupyter notebooks and even some in <a href="https://support.microsoft.com/en-us/office/linear-format-equations-using-unicodemath-and-latex-in-word-2e00618d-b1fd-49d8-8cb4-8d17f25754f8">Word</a>. However, the most powerful way is just to write the document as a simple text file with the .tex ending and use TeX post-processors. This is easiest in Linux, but isn't too hard for both Windows and OSX. Here I use LaTeX fragments in side an "org" file compiled by emacs using other programs on my computer.
 </p>
@@ -518,10 +524,10 @@ The current standard tool for nicely typeset math is LaTeX. You can use this in 
 </div>
 
 <ol class="org-ol">
-<li><a id="org9e83b18"></a>Using Derivatives to Solve Problems With a Computer<br />
+<li><a id="org01c3af3"></a>Using Derivatives to Solve Problems With a Computer<br />
 <ol class="org-ol">
-<li><a id="org37b88b8"></a>What is a square root?<br />
-<div class="outline-text-6" id="text-1-4-1-1-1">
+<li><a id="org3643b5b"></a>What is a square root?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="class_exercise">class_exercise</span></span><br />
+<div class="outline-text-6" id="text-1-4-2-1-1">
 <p>
 What is the <b>solution</b> to \(y=x^2\) if I tell you what \(y\) is?
 </p>
@@ -547,8 +553,8 @@ giving us too big an answer to too little an answer.</li>
 </li>
 </ol>
 </li>
-<li><a id="orgc1f7303"></a>Analytical Solutions<br />
-<div class="outline-text-5" id="text-1-4-1-2">
+<li><a id="orgc4891c6"></a>Analytical Solutions<br />
+<div class="outline-text-5" id="text-1-4-2-2">
 <p>
 Let software be your guide.
 </p>
@@ -559,10 +565,14 @@ Let software be your guide.
 </ol>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 2: </span>What is the derivative of x squared?</label><pre class="src src-maxima" id="org048b252">f(x) := x^2;
+<label class="org-src-name"><span class="listing-number">Listing 2: </span>What is the derivative of x squared?</label><pre class="src src-maxima" id="org9a3fcba">f(x) := x^2;
 tex(diff (f(x), x));
 </pre>
 </div>
+
+<p>
+NB: As I am trying to learn a new computer language I tried a new tool in that language to help with learning. <a href="https://maxima.sourceforge.io/">Maxima</a> is a powerful computer algebra system. You do <b>not</b> have to know or use Lisp to use maxima, but it is written in Lisp and can be called from Lisp. 
+</p>
 
 <p>
 \[2\,x\]
@@ -570,10 +580,11 @@ tex(diff (f(x), x));
 </div>
 </li>
 
-<li><a id="org015702b"></a>Working Through an Example<br />
+
+<li><a id="orgd49d877"></a>Working Through an Example<br />
 <ol class="org-ol">
-<li><a id="org67858c5"></a>When in doubt, guess<br />
-<div class="outline-text-6" id="text-1-4-1-3-1">
+<li><a id="org8540c3c"></a>When in doubt, guess<br />
+<div class="outline-text-6" id="text-1-4-2-3-1">
 <ul class="org-ul">
 <li><p>
 How much is your guess off?
@@ -627,7 +638,7 @@ plt.savefig(<span style="color: #8b2252;">"./images/sqrt55.png"</span>)
 </div>
 
 
-<div id="org8e2f555" class="figure">
+<div id="orgb7ba93b" class="figure">
 <p><img src="./images/sqrt55.png" alt="sqrt55.png" />
 </p>
 <p><span class="figure-number">Figure 4: </span>Slopes for Curves</p>
@@ -635,7 +646,8 @@ plt.savefig(<span style="color: #8b2252;">"./images/sqrt55.png"</span>)
 
 
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #a0522d;">plotData</span> = [(x**2-55,x) <span style="color: #a020f0;">for</span> x <span style="color: #a020f0;">in</span> np.arange(7.3,7.6,0.01)]
+<pre class="src src-python">
+<span style="color: #a0522d;">plotData</span> = [(x**2-55,x) <span style="color: #a020f0;">for</span> x <span style="color: #a020f0;">in</span> np.arange(7.3,7.6,0.01)]
 plt.clf()
 plt.plot([y[1] <span style="color: #a020f0;">for</span> y <span style="color: #a020f0;">in</span> plotData],[x[0] <span style="color: #a020f0;">for</span> x <span style="color: #a020f0;">in</span> plotData],)
 plt.plot([7.0,7.5],[0,0],<span style="color: #8b2252;">'r-'</span>)
@@ -647,7 +659,7 @@ plt.savefig(<span style="color: #8b2252;">"./images/sqrt-more.png"</span>)
 </div>
 
 
-<div id="orga1943f7" class="figure">
+<div id="org228540f" class="figure">
 <p><img src="./images/sqrt-more.png" alt="sqrt-more.png" />
 </p>
 </div>
@@ -664,7 +676,7 @@ plt.savefig(<span style="color: #8b2252;">"./images/sqrt-more.png"</span>)
 <li>What is the derivative of \(x^3\)?</li>
 
 <li>Find it with a computer algebra system <b>even if you know how to do it by hand.</b>
-A simple way to make sure you are on the right track with a new programming tool is to do something in code that you can do in your head or on paper to make sure t</li>
+A simple way to make sure you are on the right track with a new programming tool is to do something in code that you can do in your head or on paper to make sure that you get the correct answer. It does not substitute for <a href="https://realpython.com/python-testing/">proper testing</a>, but it is an easy to do start. You don't want to waste time trying to perfect a flawed approach.</li>
 
 <li>Write two Python Functions: one to <code>return</code> the cube of a number, and
 one to <code>return</code> the derivative when evaluated at a particular value
@@ -684,6 +696,8 @@ print("The derivative of x^3 at 3 is: ",ev(df,x=3));
 The derivative of x<sup>3</sup> at 3 is:  27 
 </p>
 
+
+
 <div class="org-src-container">
 <pre class="src src-lisp">(setq *read-default-float-format* 'DOUBLE-FLOAT)
 (<span style="color: #a020f0;">defvar</span> <span style="color: #a0522d;">*goal*</span> 128.0)
@@ -698,6 +712,10 @@ The derivative of x<sup>3</sup> at 3 is:  27
 </pre>
 </div>
 
+<p>
+NB: I am using optional arguments so that when I use my functions I don't have to keep typing in common things that rarely change. You can do this in <a href="https://realpython.com/python-optional-arguments/">python</a> and <a href="https://www.oreilly.com/library/view/the-r-book/9780470510247/ch002-sec060.html">R</a> as well.
+</p>
+
 <div class="org-src-container">
 <pre class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">get-cube-root</span> (goal initial-guess <span style="color: #228b22;">&amp;optional</span> (tolerance 0.001))
   (<span style="color: #a020f0;">loop</span>
@@ -709,49 +727,73 @@ The derivative of x<sup>3</sup> at 3 is:  27
 </pre>
 </div>
 
+<p>
+NB: My solution uses a <b>loop</b>. To emulate this approach you will need to discover how to write loops in your chosen language. The two main kinds of loops are <code>for</code> loops and <code>while</code> loops. Which one have I used above?
+</p>
+
 <div class="org-src-container">
 <pre class="src src-lisp"><span style="color: #b22222;">;; </span><span style="color: #b22222;">let's try it out</span>
 (get-cube-root 128 5.0)
 </pre>
 </div>
-
-<pre class="example">
-5.039684219366759
-</pre>
 </div>
 </li>
 </ol>
 </div>
 </div>
-</div>
 
 
 
-<div id="outline-container-org50acfd7" class="outline-2">
-<h2 id="org50acfd7"><span class="section-number-2">2.</span> Practice Simulating With DEs</h2>
-<div class="outline-text-2" id="text-2">
-</div>
-<div id="outline-container-orgf581c0c" class="outline-3">
-<h3 id="orgf581c0c"><span class="section-number-3">2.1.</span> Frictionless Springs</h3>
-<div class="outline-text-3" id="text-2-1">
-</div>
-<div id="outline-container-org38b9fd6" class="outline-4">
-<h4 id="org38b9fd6"><span class="section-number-4">2.1.1.</span> The equation of a frictionless spring?</h4>
-<div class="outline-text-4" id="text-2-1-1">
+<div id="outline-container-orgc4ffdc6" class="outline-3">
+<h3 id="orgc4ffdc6"><span class="section-number-3">1.5.</span> Homework&#xa0;&#xa0;&#xa0;<span class="tag"><span class="homework">homework</span></span></h3>
+<div class="outline-text-3" id="text-1-5">
 <p>
-\[ \frac{d^2 s}{dt^2} = -P~s(t)\]
+Submit your program for computing the fourth root of a number. That is the number that when multiplied together four times equals the goal. For example \(2\times 2 \times 2 \times 2 ~ = 16\). If I gave you 16, your program ought to put out something close to 2. You should need to make very few changes to what you have already written to have a working program.
 </p>
 
 <p>
-What does it mean?
+If this comes easy to you consider doing this <b>bonus</b> assignment. Have your program work for any root. That is I can give it goal and 'n' and it will calculate the \(n^{th}\) root. For example <code>(nth-root 16 2)</code> gives me four, but <code>(nth-root 16 4)</code> gives me two.
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org0ecb409" class="outline-2">
+<h2 id="org0ecb409"><span class="section-number-2">2.</span> Practice Simulating With DEs</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgdd3d0a1" class="outline-3">
+<h3 id="orgdd3d0a1"><span class="section-number-3">2.1.</span> Frictionless Springs</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Motivation: I know we want to code neurons, but to get there we should feel comfortable with the underlying tool or we won't be able to adapt it or re-use it for some new purpose. I don't want to give you a fish. I want to teach you how to fish.
+</p>
+
+<p>
+By working with an example simpler than a neuron, and one for which you might have more intuition, such as a simple spring or "slinky" I hope you will get a better <i>feel</i> for how the numbers, equations, and code all relate. Then we can move on to the neuronal application.
+</p>
+</div>
+
+<div id="outline-container-org6861d82" class="outline-4">
+<h4 id="org6861d82"><span class="section-number-4">2.1.1.</span> The equation of a frictionless spring?</h4>
+<div class="outline-text-4" id="text-2-1-1">
+\begin{equation}
+\label{eq:1}
+\frac{d^2 s}{dt^2} = -P~s(t)
+\end{equation}
+
+
+<p>
+What does it mean? What is multiplying what here? What do the parentheses mean, and how do you know what they mean? 
 </p>
 </div>
 
 <ol class="org-ol">
-<li><a id="org10a3ba3"></a>How do we finesse the derivatives?<br />
+<li><a id="org074076d"></a>How do we finesse the derivatives?<br />
 <div class="outline-text-5" id="text-2-1-1-1">
 <p>
-Use definitions.
+Use definitions <a href="#derivative">1.4.1</a>.
 </p>
 
 <p>
@@ -779,7 +821,7 @@ And we have a formula for this. We can now bootstrap our simulation.
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lisp" id="org99919d9">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">s-of-t</span> (delta-t v s)
+<pre class="src src-lisp" id="orgc8fd7a4">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">s-of-t</span> (delta-t v s)
   (+ s (* v delta-t)))
 
 (<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">v-of-t</span> (delta-t a v)
@@ -790,12 +832,17 @@ And we have a formula for this. We can now bootstrap our simulation.
 </pre>
 </div>
 
+
 <p>
 Note the similiarity of the two functions. You could write a helper function that was generic to this pattern of old value + rate of change times the  time step, and just used the pertinent values. 
 </p>
 
+<p>
+How do we know the formula for acceleration? We were given it \ref{eq:1}. 
+</p>
+
 <div class="org-src-container">
-<pre class="src src-lisp" id="orgaa21176"><span style="color: #b22222;">;; </span><span style="color: #b22222;">generating initial values and variables</span>
+<pre class="src src-lisp" id="org4063378"><span style="color: #b22222;">;; </span><span style="color: #b22222;">generating initial values and variables</span>
 (<span style="color: #a020f0;">defconstant</span> <span style="color: #a0522d;">+init-v+</span> 0
   <span style="color: #8b2252;">"The initial Velocity"</span>)
 (<span style="color: #a020f0;">defconstant</span> <span style="color: #a0522d;">+init-s+</span> 10)
@@ -804,8 +851,16 @@ Note the similiarity of the two functions. You could write a helper function tha
 </pre>
 </div>
 
+<p>
+NB: you should consider doing something similar with your code. Put all the numbers and values you don't expect to change very much in a block at the top of your code. Then refer to them by their variable names later on. This is much more convenient if you want to change or update something. You have one spot to look to find the value to change. Changing it in one place propagates through all the rest of your code. 
+</p>
+
+<p>
+NB: I give an example of a "doc string". Most programming languages have a way of adding documentation. It is much nicer to add this as you write your code than to go in at the end and try to do it all at once. Try to use short simple, but <b>meaningful</b>, variable names and give longer explanations as documentation.
+</p>
+
 <div class="org-src-container">
-<pre class="src src-lisp" id="org76efc49">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">release-spring</span> (<span style="color: #228b22;">&amp;optional</span> (repeat-n 5))
+<pre class="src src-lisp" id="orgaa5bedb">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">release-spring</span> (<span style="color: #228b22;">&amp;optional</span> (repeat-n 5))
   (<span style="color: #a020f0;">loop</span>
     repeat repeat-n
     for a = (a-of-t +p+ +init-s+)         then (a-of-t +p+ s)
@@ -816,8 +871,12 @@ Note the similiarity of the two functions. You could write a helper function tha
 </pre>
 </div>
 
+<p>
+NB: The code above creates a series of steps that happen one after the other. This is <b>not</b> a nested loop, though it will look similar to the nesting of loops you can see in python and R. This is just a common lisp idiosyncrasy. You will again need to use a loop. This time I am using what kind of loop? The <code>collect</code> statement is a short hand for gathering all my values up and returing them. You will probably need something like a <code>return</code> statement or a variable that you use to catch the updated values and append them on to a growning list. 
+</p>
+
 <div class="org-src-container">
-<pre class="src src-lisp" id="org2a0ec60">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">spring-plot</span> (output)
+<pre class="src src-lisp" id="orgf1680b7">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">spring-plot</span> (output)
   (<span style="color: #a020f0;">let</span> ((data (mapcar (<span style="color: #a020f0;">lambda</span> (a) (cons (fourth a) (third a))) (release-spring 1000)))
         (point-type 7)
         (point-color <span style="color: #8b2252;">"red"</span>)
@@ -831,13 +890,25 @@ Note the similiarity of the two functions. You could write a helper function tha
        (<span style="color: #a020f0;">lambda</span> ()
          (<span style="color: #a020f0;">loop</span> for p in data
                  do (format t <span style="color: #8b2252;">"~&amp;~a ~a"</span> (car p) (cdr p))))
-       <span style="color: #483d8b;">:with</span> `(<span style="color: #483d8b;">:lines</span> <span style="color: #483d8b;">:title</span> <span style="color: #8b2252;">"Location"</span>)))))
+       <span style="color: #483d8b;">:with</span> `(<span style="color: #483d8b;">:lines</span> <span style="color: #483d8b;">:lc</span> <span style="color: #483d8b;">:rgb</span> ,point-color <span style="color: #483d8b;">:title</span> <span style="color: #8b2252;">"Location"</span>)))))
 (spring-plot <span style="color: #8b2252;">"./images/spring.png"</span>)
 </pre>
 </div>
+</div>
+</li>
+
+<li><a id="orgc95ea6e"></a>Do you understand the logic of the code?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="class_exercise">class_exercise</span></span><br />
+<div class="outline-text-5" id="text-2-1-1-2">
+<p>
+You may see examples of <span class="underline">pseudo-code</span> in the future. This is when an algorithm is described as if it were a computer program. You are told the steps that need to happen and the order, but often it is not in any particular language, but just a general sort-of kind-of like code code. It is good to practice reading code like that so that you can more easily translate the procedures and steps into the language you like to use.
+</p>
+
+<p>
+The "mapcar" you see is a lisp version of <code>map</code>. This is a common <i>functional programming</i> construct that is very powerful and lets you write concise code that achieves loop like behavior in a simpler fashion. Less writing means less chances for bugs in your code, and more concise code makes it easier for people to read and understand your code. See if you can find the <code>map</code> equivalent for the language you are programming in and see if you can get it to work here. The usual procedure is to get something working first, and then try to amend it to use the new tool or technique. 
+</p>
 
 
-<div id="org76ed3e9" class="figure">
+<div id="org0156b1e" class="figure">
 <p><img src="./images/spring.png" alt="spring.png" />
 </p>
 </div>
@@ -849,10 +920,8 @@ Note the similiarity of the two functions. You could write a helper function tha
 
 
 
-
-
-<div id="outline-container-orga40fcdd" class="outline-3">
-<h3 id="orga40fcdd"><span class="section-number-3">2.2.</span> Damped Oscillators</h3>
+<div id="outline-container-org3a91d14" class="outline-3">
+<h3 id="org3a91d14"><span class="section-number-3">2.2.</span> Damped Oscillators&#xa0;&#xa0;&#xa0;<span class="tag"><span class="homework">homework</span></span></h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Provide the code for the damped oscillator. It has the formula of
@@ -872,7 +941,7 @@ simple harmonic oscillator.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Britt Anderson</p>
-<p class="date">Created: 2021-10-27 Wed 13:43</p>
+<p class="date">Created: 2021-12-27 Mon 14:22</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
