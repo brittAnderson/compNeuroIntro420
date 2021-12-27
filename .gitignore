@@ -10,3 +10,5 @@
 *.tex
 *latex-*
 zoom-codes.txt
+
+*.org~
