@@ -3,6 +3,7 @@
 A place for me to save links and reminders for myself.
 
 * Current
-  [[file:~/gitRepos/compNeuroIntro420/notebooks/DE_Spikes/wk1/DEIntro.org::IAMHERE][Location of current editing position]].
+  [[file:~/gitRepos/compNeuroIntro420/notebooks/DE_Spikes/wk3_iandf/Integrate-and-Fire.org][Integrate and Fire]]
+  search for IAMHERE
 
 * Things to do
