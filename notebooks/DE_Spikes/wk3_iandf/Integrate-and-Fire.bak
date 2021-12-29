@@ -1,0 +1,254 @@
+#+Title: Integrate and Fire Neuron
+#+Author: Britt Anderson
+#+Options: toc:nil ^:nil
+* Integrate and Fire Neurons
+  In this section we take a look at the history and math of the computational model of neuron firing called "Integrate and Fire" (I&F). The I&F model uses math essentially the same as the spring example. A more extensive use of the same math (differential equations) will be the content for our next section: the [[file:~/gitRepos/compNeuroIntro420/notebooks/DE_Spikes/wk4_handh/hodgkinHuxleyLecture.org][Hodgkin-Huxley spiking neuron model.]]
+
+* Is this a toy example?
+:class_exercise:
+Is the integrate and fire model used much in modeling in the present time. Have them do a quick  [[https://scholar.google.com/scholar?as_ylo=2020&q=%22integrate+and+fire%22+neuron&hl=en&as_sdt=7,39][literature search]] and share their opinions.
+:end:
+* Origins
+This section is mostly here for interest, but there are some good learning points:
+1. You can learn new things from old papers. Don't feel the only worthwhile literature is that which was published in the last couple of years.
+2. A lot of the lore in science is wrong. Did Lapique invent the I&F model? If not, who did?
+3. There is a lot of high quality work that can be done with ingenuity, persistence, and intelligence. Lots of money and technology can make some problems easier, but they are not necessary to make a contribution. 
+** Lapicque - Earlier Computational Neuroscientist
+*** [[https://link.springer.com/content/pdf/10.1007/s00422-007-0190-0.pdf][Modern Commentary on Lapique's Neuron Model]]
+*** Image of the Laboratory
+[[https://upload.wikimedia.org/wikipedia/commons/a/ac/Lapicque_laboratoire.jpg]]
+*** [[http://www.snv.jussieu.fr/brette/papers/Lap07.pdf][Original Lapique Paper (scanned; pdf)]]
+*** Brief Biographical Details of Lapicque
+[[https://fr.wikipedia.org/wiki/Louis_Lapicque][Louie Lapicque]]
+
+** Lord Adrian and the All-or-None Action Potential
+:class_exercise:
+When was the Action Potential Demonstrated?
+What was the experimental animal used by Adrian?
+:END:
+[[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1420429/pdf/jphysiol01990-0084.pdf][Lord Adrian 1912 Paper (pdf)]]
+
+* Background Reading
+We have finally reached the point in the course where we are doing something neural. You may find that you want some supplemental material for working through our material or for trying additional activities on your own. There are a number of good on-line sources for this. Here are a couple of considerations.
+** [[https://ocul-wtl.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma9951382083505162&context=L&vid=01OCUL_WTL:WTL_DEFAULT&lang=en&search_scope=OCULDiscoveryNetwork&adaptor=Local%20Search%20Engine&tab=OCULDiscoveryNetwork&query=any,contains,britt%20anderson&mode=basic][My book]]
+   I wrote this about a decade ago when students were much less prepared for this sort of material. some of the sections begin with exercises in Excel, which might be helpful if you are having problems with the programming and want a more line by line effort to understand what is happening. It includes some commentary on different programming constructs and languages that also might be helpful if you are new to programming. There are later chapters on things like agent based learning that we never get to in our one term course, but that you might have fun working through on your own, or that would work for a final project. You can read it for free on-line through the University of Waterloo library.
+
+   
+** [[https://lcnwww.epfl.ch/gerstner/SPNM/SPNM.html][Gerstner and Kistler /Spiking Neurons/]]
+
+** [[http://neuronaldynamics.epfl.ch/online/index.html][Gerstner et al /Neuronal Dynamics/]]
+
+* The Integrate and Fire Equation
+
+Our goal for this section of the course is to write a program that produces the spikes of an I&F neuron. We also want to understand a little bit of the math behind it, and why that makes sense for the conception of a neuron as an electrial mechanism.
+
+\begin{equation}
+\label{eq:iandf}
+\tau \frac{dV(t)}{dt} = -V(t) + R~I(t)
+\end{equation}
+
+** Electronics Background :class_exercise:
+Each topic will be assigned to a group who will do some hurried research to explain to the rest of the class what the answers are.
+
+1. What is Ohm's Law?
+2. What is Kirchoff's Point Rule
+3. What is Capacitance?
+4. What is the relation between current and capacitance?
+
+*** Write and explain Ohm's law
+:PROPERTIES:
+:QUESTION: *Ohm's Law* (empirically observed): $V = IR$
+:END:
+*** Explain what is the relationship between current and charge?
+:PROPERTIES:
+:QUESTION: Current: The derivative of charge with respect to time, $$I = \frac{dQ}{dt}$$
+:END:
+
+*** Explain *Kirchoff's Point Rule*
+:PROPERTIES:
+:QUESTION: Current sums to zero: All the current sources going to a node in a circuit must sum to zero.
+:END:
+*** What is capacitance?
+:PROPERTIES:
+:QUESTION: Capacitance is a source of current. A capacitor is a sandwich of two conducting surfaces with a non-conducting body in between. If you a charge to one side, the electrons gather there. They can't leap the gap, so they exert an attraction for particles of the opposite charge on the other side of the gap. If you suddenly stop the charge then charge races around and you discharge a current.
+:END:
+*** Explain the relationship, mathematically, between capacitance, charge, and voltage.
+:PROPERTIES:
+:QUESTION: $C = Q/V.$ The volume of charge, per unit area, divided by the voltage that produces this imbalance in charge.
+:END:
+*** What happens when you differentiate this equation with respect to time and treat the capacitance as a constant?
+:PROPERTIES:
+:QUESTION: $C \frac{dV}{dt} = \frac{dQ}{dt} = I$
+:END:
+
+
+
+** Formula Discussion Questions
+*** What does $\frac{dV}{dt}$ mean?
+:PROPERTIES:
+:QUESTION: It is the derivative. It is the how the voltage changes as a function of how time changes.
+:END:
+*** What does $\frac{1}{\tau}$ mean?
+:PROPERTIES:
+:Question: It is the membrane time constant and can be related to the membrane capacitance. Since it is a constant, with a clever choice of units you can assume it to be one and make it disappear.
+:END:
+*** Why does the voltage term on the right have a negative sign?
+:PROPERTIES:
+:QUESTION: To get the intuition of a model you don't always have to compute things. You can also get some qualitative behaviour just by looking at it. The larger the voltage the more negative becomes its rate of change and vice versa. It drives everything back to some point at which the rate of change to an equilibrium point. We will come back to this notion of a fixed point or attractor.
+:END:
+*** What is $I(t)$?
+:PROPERTIES:
+:QUESTION: It is the current term. $I$ is the common abbreviation for current. Why? I don't know, can someone help?
+:END:
+*** Put it all together
+:PROPERTIES:
+:QUESTION: The voltage in the future will be a sum of whatever current is being added minus a function of the current voltage.
+:END:
+
+*** Why, if we don't reach a threshold to fire an action potential, do we see an exponential decay?  
+:PROPERTIES:
+:QUESTION: This is where you need to remember what came before. See that the change in voltage is proportional to itself. Solutions to these types of equations involve exponentials. Remember? But note the sign. It is negative. That is why it is an exponential decay instead of an exponential growth.
+:END:
+
+*** Deriving the IandF Equation
+#+Name: Deriving the Integrate and Fire Equation
+#+header: :headers '("\\usepackage{amsmath}")
+#+header: :exports results
+#+options: tex:t
+#+begin_src latex :results raw
+  \begin{align*}
+    I &= I_R + I_C \\
+      &= I_R + C\frac{dV}{dt} \\
+      &= \frac{V}{R} + C\frac{dV}{dt}\\
+    RI  &= V + RC\frac{dV}{dt} \\
+    \frac{1}{\tau}(RI-V)  &= \frac{dV}{dt}\\
+\end{align*}
+#+end_src
+
+#+RESULTS:
+\begin{align*}
+  I &= I_R + I_C \\
+    &= I_R + C\frac{dV}{dt} \\
+    &= \frac{V}{R} + C\frac{dV}{dt}\\
+  RI  &= V + RC\frac{dV}{dt} \\
+  \frac{1}{\tau}(RI-V)  &= \frac{dV}{dt}\\
+\end{align*}
+
+
+
+** Coding up the Integrate and Fire Neuron
+You will have as your main homework for this week to write a functioning version of this. You can use my code as an example of what you are trying to implement if you get stuck on your own.
+
+If it comes easy and quick then I have some bonus material for you to try listed at the end of this section.
+
+
+#+Name: Imports
+#+begin_src lisp :results silent :exports code
+  (ql:quickload :eazy-gnuplot)
+  (use-package :eazy-gnuplot)
+#+end_src
+
+Here I am doing something similar to python's ~import~ or R's =library=. You will want to start by making accessible the libraries you want to use. At least a graphics package for plotting the output.
+
+As a quick class discussion, what are the "good" plotting graphics libraries for R and Python that one might choose?
+
+#+Name: Define Constants
+#+begin_src lisp :results silent :exports code
+  (defconstant +dt+ 0.05)
+  (defconstant +max-t+ 10)
+  (defconstant +init-t+ 0.0d0)
+  (defconstant +start-time+ 1.0d0)
+  (defconstant +stop-time+ 4.0d0)
+  (defparameter *injection-time* (cons +start-time+ +stop-time+))
+  (defconstant +cap+ 1) 
+  (defconstant +res+ 2)
+  (defconstant +threshold+ 4)
+  (defconstant +spike-display+ 8.0d0) ;arbitrary value used for "pasting on" a spike. Not needed, just nice for display.
+  (defparameter *tau* (* +res+ +cap+))
+  (defconstant +init-v+ 0)
+  (defparameter *voltage* +init-v+)
+  (defconstant +injection-current+ 2.3d0)
+#+end_src
+
+This is a good habit to develop with your code. Do not "hard code" in values for variables that you will have to write in multiple locations in a file. It makes it hard to update and debug your code. Give sensible and short names to things you will use in your code. Then define values for those at the top of your code. This gives you one place to look for explanations and reminders, and also gives you a place where when you make a single change it will propagate through your code.
+
+The =defvar, defconstant= terms are words in lisp for this purpose. And the use of the ~+~signs or ~*~ around names is just a convention used by lisp programmers to highlight to each other when a variable is not meant to change. Or is "global".
+
+All program languages have their conventions, and while you do not *have* to use them, it is good to do so. It makes it easier for others to read your code so that they can help you, and so they can use what you have worked on. Here is a link to the [[https://www.python.org/dev/peps/pep-0008/][python style guide]]. Code written in the usual style is said to be /idiomatic/.
+
+#+Name: Updating
+#+begin_src lisp :results silent :exports code
+  (defun update (old-value rate-of-change time-step)
+    (+ (* rate-of-change time-step) old-value))
+#+end_src
+
+This is the same updating rule that we used in the spring example. It is a rewriting of the definition of the derivative. This is sometimes referred to as [[https://en.wikipedia.org/wiki/Euler_method][Euler's method]].
+
+#+Name: I&F Equation in Code
+#+begin_src lisp :results silent
+    (defun dv-dt (&key R I V (tau *tau*))
+      (* (/ 1 tau) (- (* R I) V)))
+#+end_src
+
+Just as we were given the equation for a spring, here we are given the equation for the I&F neuron, which we translate from math to code. These are being defined as functions. You can do the same in both Python and R, but will need a differnt keyword and syntax.
+
+#+Name: Running the I&F Model
+#+begin_src lisp :results silent :exports code
+      (defun run-iandf-sim ()
+	(labels ((between (x) (if (and (>= x (car *injection-time*))
+				     (<= x (cdr *injection-time*))) +injection-current+ 0.0))
+	       (voltage-choice (cv b)
+				(cond
+				  ((and (> cv +threshold+) (not b)) +spike-display+)
+				  (b 0.0d0)
+				  (t cv))))
+	(loop
+	  for tme = +init-t+ then (+ +dt+ tme)
+	  for i = (between tme) then (between tme)
+	  for spike = nil then (< (abs (- voltage-now +spike-display+)) 0.1d0))
+	  for voltage-now = +init-v+ then (voltage-choice (dv-dt :R +res+ :I i :V voltage-now) spike)
+  collect (list tme i voltage-now)
+	  while (< tme +max-t+)
+	  )))
+#+end_src
+
+Again, we see the similarity to the Spring here, though things may look more complex as we have more parameters and also more conditions to check. The basic flow is the same though. We have a *loop* tat in this case is using a bunch of local values to keep track of the time and current voltage. It runs for a specified amount of time (which we determined above with our ~*injection-time*~ tuple. We are collecting lists of all our intermediate values so that we can use them in plotting.
+
+I am also using a technique where I define and use a *local function* with ~flet~. It is probably overkill here, but the idea is a good one to try and get in the habit of. When you need a function or a variable for only a small part of your program, make them local. Define them where you need them, use them, and then let them get /garbage collected/. That frees up your computer's memory and your namespace. It can also make the code easier to read and understand as things are defined where they are needed and used. Defining local variables and functions does not require special keywords in Python and R, but can be inferred from the code itself.
+
+#+Name: Making the I&F Plot
+#+begin_src lisp :results silent :exports code
+    (defun iandf-plot (output)
+      (let ((data (run-iandf-sim)))
+	(with-plots (*standard-output* :debug nil)
+	  (gp-setup :output output :terminal :png)
+	  (plot
+	   (lambda ()
+	     (loop for p in data
+		   do (format t "~&~a ~a" (first p) (third p))))
+	   :with '(:lines))))
+      output)
+#+end_src
+
+Visualizations can be essential in helping you to see and understand the function of your computational program. Gain a good familiarity and facility with the plotting functions of whatever programming language you plan to use. 
+
+
+
+#+begin_src lisp :exports results :results graphics file "iandf.png"
+  (iandf-plot "iandf.png")
+#+end_src
+
+#+RESULTS:
+#+Caption: The Integrate and Fire Model Plotted.
+[[file:iandf.png]]
+
+
+
+
+
+
+Bonus Material
+
+Use some of the example Matlab code from book to implement variations on the traditional simple integrate and fire neuron. 
+
+https://ocul-wtl.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma999986807084905162&context=L&vid=01OCUL_WTL:WTL_DEFAULT&lang=en&search_scope=OCULDiscoveryNetwork&adaptor=Local%20Search%20Engine&tab=OCULDiscoveryNetwork&query=any,contains,dynamical%20systems%20in%20neuroscience&mode=basic
