@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-10-29 Fri 06:39 -->
+<!-- 2021-12-29 Wed 14:20 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title>Integrate and Fire Neuron</title>
 <meta name="author" content="Britt Anderson" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -217,95 +217,72 @@
 </head>
 <body>
 <div id="content" class="content">
-<div id="table-of-contents" role="doc-toc">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents" role="doc-toc">
-<ul>
-<li><a href="#orgce2ef0a">1. Integrate and Fire Neurons</a>
-<ul>
-<li><a href="#orgc2d2a15">1.1. Origins</a>
-<ul>
-<li><a href="#orgb3425b4">1.1.1. Lapicque - Earlier Computational Neuroscientist</a></li>
-<li><a href="#org33cb1c5">1.1.2. When was the Action Potential Demonstrated?</a></li>
-</ul>
-</li>
-<li><a href="#org422b835">1.2. Good, Free Online Books on Computational Neuroscience</a>
-<ul>
-<li><a href="#orgc045e94">1.2.1. My book</a></li>
-<li><a href="#org46f600d">1.2.2. Gerstner and Kistler <i>Spiking Neurons</i></a></li>
-<li><a href="#org469d1b8">1.2.3. Gerstner et al <i>Neuronal Dynamics</i></a></li>
-</ul>
-</li>
-<li><a href="#org22ee5cc">1.3. The Integrate and Fire Equation</a>
-<ul>
-<li><a href="#org78cd181">1.3.1. Formula Discussion Questions</a></li>
-<li><a href="#org6fff40b">1.3.2. Where does the leaky integrate and fire <b>equation</b> come from?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="class_exercise">class_exercise</span></span></a></li>
-<li><a href="#org744f70a">1.3.3. Deriving the IandF Equation</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgce2ef0a" class="outline-2">
-<h2 id="orgce2ef0a"><span class="section-number-2">1.</span> Integrate and Fire Neurons</h2>
+<h1 class="title">Integrate and Fire Neuron</h1>
+<div id="outline-container-org1734654" class="outline-2">
+<h2 id="org1734654"><span class="section-number-2">1.</span> Integrate and Fire Neurons</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-In this section we take a look at the history and math of the computational model of neuron firing called "Integrate and Fire".
+In this section we take a look at the history and math of the computational model of neuron firing called "Integrate and Fire" (I&amp;F). The I&amp;F model uses math essentially the same as the spring example. A more extensive use of the same math (differential equations) will be the content for our next section: the <a href="file:///home/britt/gitRepos/compNeuroIntro420/notebooks/DE_Spikes/wk4_handh/hodgkinHuxleyLecture.html">Hodgkin-Huxley spiking neuron model.</a>
 </p>
+</div>
+</div>
 
+<div id="outline-container-org6dc5c2f" class="outline-2">
+<h2 id="org6dc5c2f"><span class="section-number-2">2.</span> Is this a toy example?</h2>
+<div class="outline-text-2" id="text-2">
 <p>
-Although relatively simple (not much harder than modelling and plotting a spring) it is still used <a href="https://scholar.google.com/scholar?as_ylo=2020&amp;q=%22integrate+and+fire%22+neuron&amp;hl=en&amp;as_sdt=7,39">abundantly</a> in computational neuroscience research.
+Is the integrate and fire model used much in modeling in the present time. Have them do a quick  <a href="https://scholar.google.com/scholar?as_ylo=2020&amp;q=%22integrate+and+fire%22+neuron&amp;hl=en&amp;as_sdt=7,39">literature search</a> and share their opinions.
 </p>
 </div>
-
-
-<div id="outline-container-orgc2d2a15" class="outline-3">
-<h3 id="orgc2d2a15"><span class="section-number-3">1.1.</span> Origins</h3>
-<div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-orgb3425b4" class="outline-4">
-<h4 id="orgb3425b4"><span class="section-number-4">1.1.1.</span> Lapicque - Earlier Computational Neuroscientist</h4>
-<div class="outline-text-4" id="text-1-1-1">
-</div>
+<div id="outline-container-org2f98b0a" class="outline-2">
+<h2 id="org2f98b0a"><span class="section-number-2">3.</span> Origins</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+This section is mostly here for interest, but there are some good learning points:
+</p>
 <ol class="org-ol">
-<li><a id="orgb80d7ea"></a>Original Paper<br />
-<div class="outline-text-5" id="text-1-1-1-1">
-<p>
-<a href="https://link.springer.com/content/pdf/10.1007/s00422-007-0190-0.pdf">Original French Paper (scanned); pdf</a>
-</p>
+<li>You can learn new things from old papers. Don't feel the only worthwhile literature is that which was published in the last couple of years.</li>
+<li>A lot of the lore in science is wrong. Did Lapique invent the I&amp;F model? If not, who did?</li>
+<li>There is a lot of high quality work that can be done with ingenuity, persistence, and intelligence. Lots of money and technology can make some problems easier, but they are not necessary to make a contribution.</li>
+</ol>
 </div>
-</li>
-<li><a id="orgfe61353"></a>Image of the Laboratory<br />
-<div class="outline-text-5" id="text-1-1-1-2">
+<div id="outline-container-org62e3856" class="outline-3">
+<h3 id="org62e3856"><span class="section-number-3">3.1.</span> Lapicque - Earlier Computational Neuroscientist</h3>
+<div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-orgee9cee7" class="outline-4">
+<h4 id="orgee9cee7"><span class="section-number-4">3.1.1.</span> <a href="https://link.springer.com/content/pdf/10.1007/s00422-007-0190-0.pdf">Modern Commentary on Lapique's Neuron Model</a></h4>
+</div>
+<div id="outline-container-orgba3461a" class="outline-4">
+<h4 id="orgba3461a"><span class="section-number-4">3.1.2.</span> Image of the Laboratory</h4>
+<div class="outline-text-4" id="text-3-1-2">
 
-<div id="org91f5a4a" class="figure">
+<div id="org76208be" class="figure">
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Lapicque_laboratoire.jpg" alt="Lapicque_laboratoire.jpg" />
 </p>
 </div>
 </div>
-</li>
-<li><a id="org3d7be8b"></a>Modern Commentary on the Work<br />
-<div class="outline-text-5" id="text-1-1-1-3">
-<p>
-<a href="http://www.snv.jussieu.fr/brette/papers/Lap07.pdf">Commentary on Lapique's 1907 Paper (pdf)</a>
-</p>
 </div>
-</li>
-<li><a id="orge0664a6"></a>Brief Biographical Details of Lapicque<br />
-<div class="outline-text-5" id="text-1-1-1-4">
+<div id="outline-container-orgce2952c" class="outline-4">
+<h4 id="orgce2952c"><span class="section-number-4">3.1.3.</span> <a href="http://www.snv.jussieu.fr/brette/papers/Lap07.pdf">Original Lapique Paper (scanned; pdf)</a></h4>
+</div>
+<div id="outline-container-org08866f3" class="outline-4">
+<h4 id="org08866f3"><span class="section-number-4">3.1.4.</span> Brief Biographical Details of Lapicque</h4>
+<div class="outline-text-4" id="text-3-1-4">
 <p>
 <a href="https://fr.wikipedia.org/wiki/Louis_Lapicque">Louie Lapicque</a>
 </p>
 </div>
-</li>
-</ol>
 </div>
-
-<div id="outline-container-org33cb1c5" class="outline-4">
-<h4 id="org33cb1c5"><span class="section-number-4">1.1.2.</span> When was the Action Potential Demonstrated?</h4>
-<div class="outline-text-4" id="text-1-1-2">
+</div>
+<div id="outline-container-orga1f7671" class="outline-3">
+<h3 id="orga1f7671"><span class="section-number-3">3.2.</span> Lord Adrian and the All-or-None Action Potential</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+When was the Action Potential Demonstrated?
+What was the experimental animal used by Adrian?
+</p>
 <p>
 <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1420429/pdf/jphysiol01990-0084.pdf">Lord Adrian 1912 Paper (pdf)</a>
 </p>
@@ -313,134 +290,344 @@ Although relatively simple (not much harder than modelling and plotting a spring
 </div>
 </div>
 
-<div id="outline-container-org422b835" class="outline-3">
-<h3 id="org422b835"><span class="section-number-3">1.2.</span> Good, Free Online Books on Computational Neuroscience</h3>
-<div class="outline-text-3" id="text-1-2">
-</div>
-<div id="outline-container-orgc045e94" class="outline-4">
-<h4 id="orgc045e94"><span class="section-number-4">1.2.1.</span> <a href="https://ocul-wtl.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma9951382083505162&amp;context=L&amp;vid=01OCUL_WTL:WTL_DEFAULT&amp;lang=en&amp;search_scope=OCULDiscoveryNetwork&amp;adaptor=Local%20Search%20Engine&amp;tab=OCULDiscoveryNetwork&amp;query=any,contains,britt%20anderson&amp;mode=basic">My book</a></h4>
-<div class="outline-text-4" id="text-1-2-1">
+<div id="outline-container-orgacfd5a7" class="outline-2">
+<h2 id="orgacfd5a7"><span class="section-number-2">4.</span> Background Reading</h2>
+<div class="outline-text-2" id="text-4">
 <p>
-I wrote this about a decade ago when students were much less prepared for this sort of material. some of the sections begin with exercises in Excel and it includes some commentary on different programming constructs and languages. There are later chapters on things like agent based learning that we never get to in our one term course. All that is to say that you may have friends who find the beginning chapters useful, and that you might find things you want to pursue in the later chapters independently. You can read it for free on-line through the library.
+We have finally reached the point in the course where we are doing something neural. You may find that you want some supplemental material for working through our material or for trying additional activities on your own. There are a number of good on-line sources for this. Here are a couple of considerations.
+</p>
+</div>
+<div id="outline-container-orgb5f69ee" class="outline-3">
+<h3 id="orgb5f69ee"><span class="section-number-3">4.1.</span> <a href="https://ocul-wtl.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma9951382083505162&amp;context=L&amp;vid=01OCUL_WTL:WTL_DEFAULT&amp;lang=en&amp;search_scope=OCULDiscoveryNetwork&amp;adaptor=Local%20Search%20Engine&amp;tab=OCULDiscoveryNetwork&amp;query=any,contains,britt%20anderson&amp;mode=basic">My book</a></h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+I wrote this about a decade ago when students were much less prepared for this sort of material. some of the sections begin with exercises in Excel, which might be helpful if you are having problems with the programming and want a more line by line effort to understand what is happening. It includes some commentary on different programming constructs and languages that also might be helpful if you are new to programming. There are later chapters on things like agent based learning that we never get to in our one term course, but that you might have fun working through on your own, or that would work for a final project. You can read it for free on-line through the University of Waterloo library.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org46f600d" class="outline-4">
-<h4 id="org46f600d"><span class="section-number-4">1.2.2.</span> <a href="https://lcnwww.epfl.ch/gerstner/SPNM/SPNM.html">Gerstner and Kistler <i>Spiking Neurons</i></a></h4>
+<div id="outline-container-org16a1d6b" class="outline-3">
+<h3 id="org16a1d6b"><span class="section-number-3">4.2.</span> <a href="https://lcnwww.epfl.ch/gerstner/SPNM/SPNM.html">Gerstner and Kistler <i>Spiking Neurons</i></a></h3>
 </div>
 
-<div id="outline-container-org469d1b8" class="outline-4">
-<h4 id="org469d1b8"><span class="section-number-4">1.2.3.</span> <a href="http://neuronaldynamics.epfl.ch/online/index.html">Gerstner et al <i>Neuronal Dynamics</i></a></h4>
+<div id="outline-container-org5cdc60b" class="outline-3">
+<h3 id="org5cdc60b"><span class="section-number-3">4.3.</span> <a href="http://neuronaldynamics.epfl.ch/online/index.html">Gerstner et al <i>Neuronal Dynamics</i></a></h3>
 </div>
 </div>
 
-<div id="outline-container-org22ee5cc" class="outline-3">
-<h3 id="org22ee5cc"><span class="section-number-3">1.3.</span> The Integrate and Fire Equation</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-org09a3c20" class="outline-2">
+<h2 id="org09a3c20"><span class="section-number-2">5.</span> The Integrate and Fire Equation</h2>
+<div class="outline-text-2" id="text-5">
 <p>
-\[\tau \frac{dV(t)}{dt} = -V(t) + R~I(t)\]
+Our goal for this section of the course is to write a program that produces the spikes of an I&amp;F neuron. We also want to understand a little bit of the math behind it, and why that makes sense for the conception of a neuron as an electrial mechanism.
 </p>
+
+\begin{equation}
+\label{eq:iandf}
+\tau \frac{dV(t)}{dt} = -V(t) + R~I(t)
+\end{equation}
 </div>
 
-<div id="outline-container-org78cd181" class="outline-4">
-<h4 id="org78cd181"><span class="section-number-4">1.3.1.</span> Formula Discussion Questions</h4>
-<div class="outline-text-4" id="text-1-3-1">
-</div>
+<div id="outline-container-orgc6f9995" class="outline-3">
+<h3 id="orgc6f9995"><span class="section-number-3">5.1.</span> Electronics Background&#xa0;&#xa0;&#xa0;<span class="tag"><span class="class_exercise">class_exercise</span></span></h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Each topic will be assigned to a group who will do some hurried research to explain to the rest of the class what the answers are.
+</p>
+
 <ol class="org-ol">
-<li><a id="org35df603"></a>What does \(\frac{dV}{dt}\) mean?<br />
-<div class="outline-text-5" id="text-1-3-1-1">
-</div>
-</li>
-
-<li><a id="orgdc8b4df"></a>What does \(\frac{1}{\tau}\) mean?<br />
-<div class="outline-text-5" id="text-1-3-1-2">
-</div>
-</li>
-
-<li><a id="org9953827"></a>Why does the voltage term on the right have a negative sign?<br />
-<div class="outline-text-5" id="text-1-3-1-3">
-</div>
-</li>
-
-<li><a id="orgf9fe8e5"></a>What is \(I(t)\)?<br />
-<div class="outline-text-5" id="text-1-3-1-4">
-</div>
-</li>
-
-<li><a id="orgfbea370"></a>Put it all together<br />
-<div class="outline-text-5" id="text-1-3-1-5">
-</div>
-</li>
-
-<li><a id="orgc47b0d4"></a>Why, if we don't reach a threshold to fire an action potential, do we see an exponential decay?<br />
-<div class="outline-text-5" id="text-1-3-1-6">
-</div>
-</li>
+<li>What is Ohm's Law?</li>
+<li>What is Kirchoff's Point Rule</li>
+<li>What is Capacitance?</li>
+<li>What is the relation between current and capacitance?</li>
 </ol>
 </div>
 
-<div id="outline-container-org6fff40b" class="outline-4">
-<h4 id="org6fff40b"><span class="section-number-4">1.3.2.</span> Where does the leaky integrate and fire <b>equation</b> come from?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="class_exercise">class_exercise</span></span></h4>
-<div class="outline-text-4" id="text-1-3-2">
+<div id="outline-container-org1d2192e" class="outline-4">
+<h4 id="org1d2192e"><span class="section-number-4">5.1.1.</span> Write and explain Ohm's law</h4>
+<div class="outline-text-4" id="text-5-1-1">
 </div>
-<ol class="org-ol">
-<li><a id="orgca1b434"></a>Write and explain Ohm's law<br />
-<div class="outline-text-5" id="text-1-3-2-1">
 </div>
-</li>
-
-<li><a id="org4396418"></a>Explain what is the relationship between current and charge?<br />
-<div class="outline-text-5" id="text-1-3-2-2">
+<div id="outline-container-orge3882f0" class="outline-4">
+<h4 id="orge3882f0"><span class="section-number-4">5.1.2.</span> Explain what is the relationship between current and charge?</h4>
+<div class="outline-text-4" id="text-5-1-2">
 </div>
-</li>
-
-
-<li><a id="orgbd1186f"></a>Explain <b>Kirchoff's Point Rule</b><br />
-<div class="outline-text-5" id="text-1-3-2-3">
-</div>
-</li>
-
-<li><a id="org935aa54"></a>What is capacitance?<br />
-<div class="outline-text-5" id="text-1-3-2-4">
-</div>
-</li>
-
-<li><a id="org6c6733b"></a>Explain the relationship, mathematically, between capacitance, charge, and voltage.<br />
-<div class="outline-text-5" id="text-1-3-2-5">
-</div>
-</li>
-
-<li><a id="orgbfdcde7"></a>What happens when you differentiate this equation with respect to time and treat the capacitance as a constant?<br />
-<div class="outline-text-5" id="text-1-3-2-6">
-</div>
-</li>
-</ol>
 </div>
 
-<div id="outline-container-org744f70a" class="outline-4">
-<h4 id="org744f70a"><span class="section-number-4">1.3.3.</span> Deriving the IandF Equation</h4>
-<div class="outline-text-4" id="text-1-3-3">
+<div id="outline-container-orga195dd9" class="outline-4">
+<h4 id="orga195dd9"><span class="section-number-4">5.1.3.</span> Explain <b>Kirchoff's Point Rule</b></h4>
+<div class="outline-text-4" id="text-5-1-3">
+</div>
+</div>
+<div id="outline-container-org0a460af" class="outline-4">
+<h4 id="org0a460af"><span class="section-number-4">5.1.4.</span> What is capacitance?</h4>
+<div class="outline-text-4" id="text-5-1-4">
+</div>
+</div>
+<div id="outline-container-org540b7be" class="outline-4">
+<h4 id="org540b7be"><span class="section-number-4">5.1.5.</span> Explain the relationship, mathematically, between capacitance, charge, and voltage.</h4>
+<div class="outline-text-4" id="text-5-1-5">
+</div>
+</div>
+<div id="outline-container-org068ff12" class="outline-4">
+<h4 id="org068ff12"><span class="section-number-4">5.1.6.</span> What happens when you differentiate this equation with respect to time and treat the capacitance as a constant?</h4>
+<div class="outline-text-4" id="text-5-1-6">
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgad77111" class="outline-3">
+<h3 id="orgad77111"><span class="section-number-3">5.2.</span> Formula Discussion Questions</h3>
+<div class="outline-text-3" id="text-5-2">
+</div>
+<div id="outline-container-org205c427" class="outline-4">
+<h4 id="org205c427"><span class="section-number-4">5.2.1.</span> What does \(\frac{dV}{dt}\) mean?</h4>
+<div class="outline-text-4" id="text-5-2-1">
+</div>
+</div>
+<div id="outline-container-orgf8ffd96" class="outline-4">
+<h4 id="orgf8ffd96"><span class="section-number-4">5.2.2.</span> What does \(\frac{1}{\tau}\) mean?</h4>
+<div class="outline-text-4" id="text-5-2-2">
+</div>
+</div>
+<div id="outline-container-org7d71e6b" class="outline-4">
+<h4 id="org7d71e6b"><span class="section-number-4">5.2.3.</span> Why does the voltage term on the right have a negative sign?</h4>
+<div class="outline-text-4" id="text-5-2-3">
+</div>
+</div>
+<div id="outline-container-org869ead2" class="outline-4">
+<h4 id="org869ead2"><span class="section-number-4">5.2.4.</span> What is \(I(t)\)?</h4>
+<div class="outline-text-4" id="text-5-2-4">
+</div>
+</div>
+<div id="outline-container-org10e9b2b" class="outline-4">
+<h4 id="org10e9b2b"><span class="section-number-4">5.2.5.</span> Put it all together</h4>
+<div class="outline-text-4" id="text-5-2-5">
+</div>
+</div>
+
+<div id="outline-container-org84cd3e9" class="outline-4">
+<h4 id="org84cd3e9"><span class="section-number-4">5.2.6.</span> Why, if we don't reach a threshold to fire an action potential, do we see an exponential decay?</h4>
+<div class="outline-text-4" id="text-5-2-6">
+</div>
+</div>
+
+<div id="outline-container-org109649a" class="outline-4">
+<h4 id="org109649a"><span class="section-number-4">5.2.7.</span> Deriving the IandF Equation</h4>
+<div class="outline-text-4" id="text-5-2-7">
 \begin{align*}
-  I &= I_R + I_C \\
-    &= I_R + C\frac{dV}{dt} \\
-    &= \frac{V}{R} + C\frac{dV}{dt}\\
-  RI  &= V + RC\frac{dV}{dt} \\
-  \frac{1}{\tau}(RI-V)  &= \frac{dV}{dt}\\
+    I &= I_R + I_C \\
+      &= I_R + C\frac{dV}{dt} \\
+      &= \frac{V}{R} + C\frac{dV}{dt}\\
+    RI  &= V + RC\frac{dV}{dt} \\
+    \frac{1}{\tau}(RI-V)  &= \frac{dV}{dt}\\
 \end{align*}
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgb920f89" class="outline-3">
+<h3 id="orgb920f89"><span class="section-number-3">5.3.</span> Coding up the Integrate and Fire Neuron</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+You will have as your main homework for this week to write a functioning version of this. You can use my code as an example of what you are trying to implement if you get stuck on your own.
+</p>
+
+<p>
+If it comes easy and quick then I have some bonus material for you to try listed at the end of this section.
+</p>
+
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>Loading Packages</label><pre class="src src-lisp" id="org6a7cbaa">(<span style="color: #a020f0;">eval-when</span> (<span style="color: #483d8b;">:compile-toplevel</span> <span style="color: #483d8b;">:load-toplevel</span> <span style="color: #483d8b;">:execute</span>)
+  (ql:quickload <span style="color: #8b2252;">"eazy-gnuplot"</span> <span style="color: #483d8b;">:silent</span> t))
+
+(<span style="color: #a020f0;">defpackage</span> <span style="color: #b22222;">#:</span><span style="color: #8b2252;">mytest</span>
+  (<span style="color: #483d8b;">:use</span> <span style="color: #b22222;">#:</span><span style="color: #8b2252;">common-lisp</span> <span style="color: #b22222;">#:</span><span style="color: #8b2252;">eazy-gnuplot</span>))
+
+(<span style="color: #a020f0;">in-package</span> <span style="color: #b22222;">#:</span><span style="color: #8b2252;">mytest</span>)
+</pre>
+</div>
+
+<p>
+For practice I am making a lisp package. You will not have to do this in Python or R (but you can). It creates a "namespace" where the names of my variables and functions will live. I do this so as not to have names "clash" with those imported from other packages.
+</p>
+
+<p>
+Here I am doing something similar to python's <code>import</code> or R's <code>library</code> with the <code>quickload</code> command. You too will want to start by making accessible the libraries you want to use. At least a graphics package for plotting the output.
+</p>
+
+<p>
+As a quick class discussion, what are the "good" plotting graphics libraries for R and Python that one might choose?
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 2: </span>Defining local variables and constants</label><pre class="src src-lisp" id="orgfd34c53">(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">dt</span> 0.05)
+(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">max-t</span> 10)
+(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">init-t</span> 0.0d0)
+(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">start-time</span> 1.0d0)
+(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">stop-time</span> 6.0d0)
+(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">cap</span> 1)
+(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">res</span> 2)
+(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">threshold</span> 3.0d0)
+(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">spike-display</span> 8.0d0)
+(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">init-v</span> 0.0d0)
+(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">voltage</span> init-v)
+(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">injection-current</span> 4.3d0)
+(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">injection-time</span> (cons start-time stop-time))
+(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">tau</span> (* res cap))
+</pre>
+</div>
+
+<p>
+This is a good habit to develop with your code. Do not "hard code" in values for variables that you will have to write in multiple locations in a file. It makes it hard to update and debug your code. Give sensible and short names to things you will use in your code. Then define values for those at the top of your code. This gives you one place to look for explanations and reminders, and also gives you a place where when you make a single change it will propagate through your code.
+</p>
+
+<p>
+The <code>defparameter</code> terms are words in lisp for this purpose. Some lisp programmers use of the <code>+~signs or ~*</code> around names to highlight that a variable is not meant to change.
+</p>
+
+<p>
+All programming languages have their conventions, and while you do not <b>have</b> to use them, it is good to do so. It makes it easier for others to read your code so that they can help you, and so they can use what you have worked on. Here is a link to the <a href="https://www.python.org/dev/peps/pep-0008/">python style guide</a>. Code written in the usual style is said to be <i>idiomatic</i>.
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 3: </span>Euler's Method Again</label><pre class="src src-lisp" id="orgd4aff60">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">update</span> (old-value rate-of-change time-step)
+  (+ (* rate-of-change time-step) old-value))
+</pre>
+</div>
+
+<p>
+This is the same updating rule that we used in the spring example. It is a rewriting of the definition of the derivative. This is sometimes referred to as <a href="https://en.wikipedia.org/wiki/Euler_method">Euler's method</a>.
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 4: </span>Our derivative and helper functions</label><pre class="src src-lisp" id="org0ca029d">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">dv-dt</span> (localres locali localv)
+  (* (/ 1 tau) (- (* localres locali) localv)))
+
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">between</span> (x <span style="color: #228b22;">&amp;key</span> (lower (car injection-time))
+                    (upper (cdr injection-time))
+                    (if-true injection-current)
+                    (if-false 0.0d0))
+  (<span style="color: #a020f0;">if</span> (and (&gt;= x lower) (&lt;= x upper)) if-true if-false))
+
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">voltage-choice</span> (curr-volt spike-status <span style="color: #228b22;">&amp;key</span> (thr threshold) (sd spike-display))
+  (<span style="color: #a020f0;">cond</span>
+    ((and (&gt; curr-volt thr) (not spike-status)) sd)
+    (spike-status 0.0d0)
+    (t curr-volt)))
+</pre>
+</div>
+
+<p>
+Just as we were given the equation for a spring, here we are given the equation for the I&amp;F neuron, which we translate from math to code. These are being defined as functions. You can do the same in both Python and R, but will need a different keyword and syntax.
+</p>
+
+<p>
+In addition, I create some smaller "helper" functions. It would be possible to collapse all this into one big function, but that would be harder for me to understand, and harder for you to understand. In general, try to write short little functions that do one thing. Then you can chain those small functions together to accomplish the larger task.
+</p>
+
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 5: </span>Looping through the data</label><pre class="src src-lisp" id="org79c044a">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">run-iandf-sim</span> (<span style="color: #228b22;">&amp;key</span> (tolerance 0.1d0))
+  (<span style="color: #a020f0;">do*</span> ((ts)
+        (is)
+        (vs)
+        (tme init-t (+ dt tme))
+        (inj-cur 0.0d0 (between tme))
+        (spike nil (&lt; (abs (- voltage-now spike-display)) tolerance))
+        (voltage-now init-v
+                     (voltage-choice (update voltage-now (dv-dt res inj-cur voltage-now) dt) spike)))
+       ((&gt; tme max-t) (list (nreverse ts) (nreverse  is) (nreverse vs)))
+    (push tme ts)
+    (push inj-cur is)
+    (push voltage-now vs)))
+</pre>
+</div>
+
+<p>
+Again, if you squint, you will see similarities to the Spring exercise. Though things may look more complex here it is only because I have so many more <i>local</i> variables to define. The basic flow is still just a <b>loop</b>. Each of those local variables gets a start value and then a rule for updating each time through the loop. Later local variables can depend on the values of that came earlier in the list (that is the reason for the asterisk in <code>do*</code>). The loop also has a test condition for when to quit (like a "while" loop), and what it should do when that condition is met. Here it collects all the data into a big long list and reverses the order. I was pushing the recent values on to the front of the list each time, but now I need to reverse it so that time flows as we expect. 
+</p>
+
+<p>
+Define variables, and even functions, where you need them. It might be overkill here, but the idea is a good one to try and get in the habit of. When you need a function or a variable for only a small part of your program, make them local. Then they won't interfere with other parts of your program, and after you use them your programming language system can <i>garbage collect</i> them freeing up your computer's memory and your namespace. Local variables, local functions, and even un-named, so-called <i>lambda</i> functions, can make your code easier to read and understand as things are defined where they are needed and used. Defining local variables and functions does not require special keywords in Python and R, but can be inferred from the code itself.
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 6: </span>Plotting the data</label><pre class="src src-lisp" id="org0a5a0ff">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">iandf-plot</span> (output plot-data)
+  (<span style="color: #a020f0;">with-plots</span> (*standard-output* <span style="color: #483d8b;">:debug</span> nil)
+    (gp-setup <span style="color: #483d8b;">:output</span> output <span style="color: #483d8b;">:terminal</span> <span style="color: #483d8b;">:png</span>)
+    (plot
+     (<span style="color: #a020f0;">lambda</span> ()
+       (<span style="color: #a020f0;">loop</span> for times in (first plot-data)
+             for volts in (third plot-data)
+             do (format t <span style="color: #8b2252;">"~&amp;~a ~a"</span> times volts)))
+     <span style="color: #483d8b;">:with</span> '(<span style="color: #483d8b;">:lines</span>)))
+  output)
+</pre>
+</div>
+
+<p>
+Visualizations can be essential in helping you to see and understand the function of your computational program. Gain a good familiarity and facility with the plotting functions of whatever programming language you plan to use. 
+</p>
+
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 7: </span>I&amp;F Neuron Response to Constant Input Current</label><pre class="src src-lisp" id="org2febcff">(iandf-plot <span style="color: #8b2252;">"iandf.png"</span> (run-iandf-sim))
+</pre>
+</div>
+
+
+
+<div id="orgbd74db3" class="figure">
+<p><img src="iandf.png" alt="iandf.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>I&amp;F Neuron Response to Constant Input Current</p>
+</div>
+
+
+
+
 
 
 <p>
-IAMHERE
+In this function we can give a name to our plot and feed in the data it will use. In fact, I did not have to create and save the data. I was able to generate it internal to the function itself. This is sometimes thought of as function <i>composition</i>. You will also hear people talk of <i>chaining</i> functions or <i>piping</i>. Think of how you can connect a series of pipes together to get a flow from beginning to end. In the case of a programming language each of the pipes may do something to what it is carrying and the result can be a processed data stream. 
 </p>
 </div>
 </div>
+</div>
+
+
+
+
+<div id="outline-container-org956f8fb" class="outline-2">
+<h2 id="org956f8fb"><span class="section-number-2">6.</span> Homework</h2>
+<div class="outline-text-2" id="text-6">
+<ol class="org-ol">
+<li>This weeks homework is to write a I&amp;F program that does what I just did. It should generate a "spike" when given a constant input. Be sure to look at my code to see how that spike is created. If you don't understand that you will have a hard time.</li>
+<li>Related to the last point, does the I&amp;F neuron truly spike?</li>
+<li>If (1) goes easy then here are some other things to try:
+<ul class="org-ul">
+<li>create a refractory period for your neuron.</li>
+<li>give a noisy input rather than the single flat line I demonstrate.</li>
+<li>Look at how many times your neuron spikes to constant input. Is that what a real neuron does (try searching for Mainin and Sejnowski)? Does that affect the utility of the I&amp;F model for computational neuroscience?</li>
+<li>Lastly, if all that goes quickly, and it will for some of you, but not most of you, try creating variations of this simple I&amp;F model. You can find Matlab codein the <a href="https://ocul-wtl.primo.exlibrisgroup.com/discovery/fulldisplay?docid=alma999986807084905162&amp;context=L&amp;vid=01OCUL_WTL:WTL_DEFAULT&amp;lang=en&amp;search_scope=OCULDiscoveryNetwork&amp;adaptor=Local%20Search%20Engine&amp;tab=OCULDiscoveryNetwork&amp;query=any,contains,dynamical%20systems%20in%20neuroscience&amp;mode=basic">book</a> Dynamical Systems in Neuroscience as well as descriptions of many variations of this model (e.g. for the "quadratic" you replace the "v" with a \(v^2\) in the basic equation).</li>
+</ul></li>
+</ol>
+
+<p>
+Upload your code to LEARN for credit.     
+</p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Britt Anderson</p>
-<p class="date">Created: 2021-10-29 Fri 06:39</p>
+<p class="date">Created: 2021-12-29 Wed 14:20</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
