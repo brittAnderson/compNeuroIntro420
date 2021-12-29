@@ -3,7 +3,6 @@
 A place for me to save links and reminders for myself.
 
 * Current
-  [[file:~/gitRepos/compNeuroIntro420/notebooks/DE_Spikes/wk3_iandf/Integrate-and-Fire.org][Integrate and Fire]]
-  search for IAMHERE
+  Hodgkin and Huxley lesson. Incorporate LISP code and comments. 
 
 * Things to do
