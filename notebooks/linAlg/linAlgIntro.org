@@ -1,0 +1,341 @@
+#+Title: Introduction to Linear Algebra and Neural Networks
+#+Author: Britt Anderson
+#+Date: Winter 2022
+#+bibliography:/home/britt/gitRepos/masterBib/bayatt.bib
+#+csl-style: ./j-neurosci.csl
+* Introduction
+   :PROPERTIES:
+   :CUSTOM_ID: introduction
+   :END:
+
+** Goals
+- What is a neural network?
+- What is a cellular Automata
+- What mathematics are needed to build a neural network?
+- How can neural networks help us understand cognition?
+
+** Be the Neuron
+   :PROPERTIES:
+   :CUSTOM_ID: be-the-neuron
+   :END:
+
+For this exercise you will need a sheet of graph paper and a *rule*.
+
+Think of this /rule/ as a mathematical function. You are going to consider a particular grid cell. YOu will put into your rule the list of the three cells above-left, above, and above-right and whether they are painted black or white. From that input your /rule/ will specify an output of either "black" or "white". You color the square or not accordingly.
+
+You should think of this /rule/ as a computer function as well.
+
+#+Name: Defining Package
+#+begin_src lisp :results silent :exports none
+  (defpackage #:lin-alg-intro
+    (:nicknames "LA")
+    (:use #:cl)
+    (:import-from "TRIVIA" "MATCH"))
+  
+  (in-package :la)
+#+end_src
+
+#+Name: Rule Demonstration
+#+Caption: Rules as Functions
+#+begin_src lisp :results silent :exports code
+(defun rule0 (ns) 
+	   (match ns
+	     ('('w 'w 'w) 'w)
+	     ('('w 'w 'b) 'w)
+	     ('('w 'b 'w) 'w)
+	     ('('b 'w 'w) 'w)
+	     ('('w 'b 'b) 'w)
+	     ('('b 'w 'b) 'w)
+	     ('('b 'b 'w) 'w)
+	     ('('b 'b 'b) 'w)))
+  #+end_src
+
+
+Begin with the top row of the graph paper. Your rule will specify how
+the color of a square of the graph paper depends on the color of
+neighboring cells in the row immediately above. Our rule depends on
+three cells only and is like the gentleman at the football match
+deciding whether to stand or sit when making the wave. Each square in
+the grid of your graph paper decides whether to be blank or colored-in
+based on the three squares above it
+
+#+BEGIN_SRC python
+  %load_ext tikzmagic
+#+END_SRC
+
+#+BEGIN_SRC python
+  %%tikz
+  \draw[step=1cm] (-1,0) grid (2,2);
+  \draw (-0.5,1.5) node [] {1};
+  \draw (0.5,1.5) node [] {2};
+  \draw (1.5,1.5) node [] {3};
+  \draw (0.5,0.5) node [] {?};
+#+END_SRC
+
+[[file:348f6b5ea06804029c60a21c95cbb58445663f75.png]]
+
+** Rules
+   :PROPERTIES:
+   :CUSTOM_ID: rules
+   :END:
+
+[[file:introNN/CARule60.png]]
+
+#+BEGIN_HTML
+  <center>_Rule 60_</center>
+#+END_HTML
+
+[[file:introNN/CARule90.png]]
+
+#+BEGIN_HTML
+  <center>_Rule 90_</center>
+#+END_HTML
+
+[[file:introNN/CARule110.png]]
+
+#+BEGIN_HTML
+  <center>_Rule 110_</center>
+#+END_HTML
+
+[[file:introNN/CARule250.png]]
+
+#+BEGIN_HTML
+  <center>_Rule 250_</center>
+#+END_HTML
+
+** Instructions
+   :PROPERTIES:
+   :CUSTOM_ID: instructions
+   :END:
+
+1. Color in the very center square of the very top row of the graph
+   paper.
+2. Proceeding from left to right, color every square in the second row
+   based on the rule you selected. In this row every cell will be left
+   uncolored except for those near the center, because these rules all
+   specify that a cell with three uncolored grids above remains
+   uncolored. But how you treat the ones near the center will depend on
+   the rule. For example, for rule 60, the cell immediately beneath the
+   center, colored, square of row 1 will be colored, as will the one
+   immediately to its right.
+3. Repeat this process working down until you can clearly see the
+   pattern, or you give up in despair. Compare your results from using
+   different rules.
+
+** Cellular Automata
+   :PROPERTIES:
+   :CUSTOM_ID: cellular-automata
+   :END:
+
+1. [[https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life][Game of
+   Life]]
+
+2. John Von Neumann *Automata and the Brain*
+
+   Commentary by
+   [[http://www.ams.org/bull/1958-64-03/S0002-9904-1958-10214-1/S0002-9904-1958-10214-1.pdf][Claude
+   Shannon (pdf)]]
+
+   [[https://archive.org/details/TheComputerAndTheBrain][Copy]] of the
+   book: [[https://archive.org][The Computer and the Brain]]
+
+3. Stephen Wolfram [[http://www.wolframscience.com][thinks]] automata
+   explain everything
+
+* What Math Underlies Neural Networks?
+  :PROPERTIES:
+  :CUSTOM_ID: what-math-underlies-neural-networks
+  :END:
+
+** Linear Algebra
+   :PROPERTIES:
+   :CUSTOM_ID: linear-algebra
+   :END:
+
+The players:
+
+1. Vectors
+2. Matrices
+3. Scalars
+4. Addition
+5. Multiplication (scalar and matrix)
+6. Transposition
+7. Inverse
+
+In Class Exercise:
+
+Using Numpy arrays (and what is an array?) construct two matrices and
+add them together. As I do below.
+
+And then answer the following question (in code, that is by trying it
+out).
+
+1. What are rules for being able to multiply two matrices?
+2. Does A/B = B/A and what needs to be special about A and B for this
+   question to even make sense?
+
+[[https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.array-creation.html][Here]]
+are many different ways to create arrays.
+
+** Notation
+   :PROPERTIES:
+   :CUSTOM_ID: notation
+   :END:
+
+Vectors tend to be notated as /lower case/ letters, often in bold, such
+as $\mathbf{a}$. They are also occasionally represented with little
+arrows on top such as $\overrightarrow{\textbf{a}}$.
+
+Matrices tend to be notated as /upper case/ letters, typically in bold,
+such as $\mathbf{M}$.
+
+More Linear Algebra
+
+1. What is a row vector and what is a column vector?
+2. Which orientation is the more standard?
+3. What is the size of a vector? There are a couple possible answers to
+   this one.
+4. What is an inner product?
+
+* Homework
+  :PROPERTIES:
+  :CUSTOM_ID: homework
+  :END:
+
+Provide a program (or notebook) that computes the inner product of two
+vectors. First, by coding your own implementation, and second by using
+the built in numpy method. In your code verify that you get the same
+answer for the same inputs. And tell me why - in the notebook - that it
+is generally preferable to find and use built-in functions (or functions
+from established libraries) rather than coding your own.
+
+#+BEGIN_SRC python
+  print("ip(a,b) is equal to %d" % ip(a,b))
+  print("ipnumpy(a,b) is equal to %d" % ipnumpy(a,b))
+  print("and ip(a,b) == ipnumpy(a,b) is %s" % (ip(a,b) == ipnumpy(a,b)))
+#+END_SRC
+
+#+BEGIN_EXAMPLE
+  ip(a,b) is equal to 32
+  ipnumpy(a,b) is equal to 32
+  and ip(a,b) == ipnumpy(a,b) is True
+#+END_EXAMPLE
+
+* What is a Neural Network?
+  :PROPERTIES:
+  :CUSTOM_ID: what-is-a-neural-network
+  :END:
+
+What is a Neural Network? It is a brain inspired computational approach
+in which "neurons" compute functions of their inputs and pass on a
+/weighted/ proportion to the next neuron in the chain.
+
+#+BEGIN_SRC python
+  %%tikz
+  \draw node(i1)[rectangle,draw] {\textbf{Input 1}};
+  \draw node(i2)[below of=i1,rectangle,draw] {\textbf{Input 2}};
+  \draw node(i3)[below of=i2,rectangle,draw] {\textbf{Input 3}};
+  \draw node(n1)[right of= i1,rectangle,node distance = 2cm,draw] {\textbf{Node 1}};
+  \draw node(n2)[right of= i2,rectangle,node distance = 2cm,draw] {\textbf{Node 1}};
+  \draw node(n3)[right of= i3,rectangle,node distance = 2cm,draw] {\textbf{Node 1}};
+  \draw node(w1)[right of= n1,rectangle,node distance = 2cm] {\textbf{W1}};
+  \draw node(w2)[right of= n2,rectangle,node distance = 2cm] {\textbf{W2}};
+  \draw node(w3)[right of= n3,rectangle,node distance = 2cm] {\textbf{W3}};
+  \draw node(output)[right of = w2,rectangle,node distance = 2cm] {\textbf{Output}};
+  \draw [->] (i1) edge (n1) (n1) edge (w1) (w1) edge (output);
+  \draw [->] (i2) edge (n2) (n2) edge (w2) (w2) edge (output);
+  \draw [->] (i3) edge (n3) (n3) edge (w3) (w3) edge (output);
+#+END_SRC
+
+[[file:ae54d3ab8af2e9ef1b0701d6fd65485f3a6d72f7.png]]
+
+$I_1 \times w_{1,1} + I_2 \times w_{2,1} + I_3 \times w_{3,1} > \Theta$
+then Output = 1.
+
+The structure of the threshold unit illustrates the basic mechanics of
+many neural networks: Inputs are passed to the first layer, which in
+turn are passed to downstream units (only one shown here). A weighted
+sum (or possibly a function of the weighted sum) leads to an
+intermediate output that is then passed to the next layer of the
+network. In this case the weighted sum is fed into a threshold function
+that compares the value to a threshold, and passes on the value 1 if it
+is greater than the threshold and 0 otherwise.
+
+** Questions:
+   :PROPERTIES:
+   :CUSTOM_ID: questions
+   :END:
+
+1. What does the $\Theta$ represent and what is it equivalent to in a
+   real neuron?
+2. What, geometrically speaking, is a plane?
+3. What is a hyperplane?
+4. What is linearly separability and how does that relate to planes and
+   hyperplanes?
+
+** Examples
+   :PROPERTIES:
+   :CUSTOM_ID: examples
+   :END:
+
+*** AND
+    :PROPERTIES:
+    :CUSTOM_ID: and
+    :END:
+
+#+BEGIN_SRC python
+  %matplotlib inline
+  import matplotlib 
+  import matplotlib.pyplot as p
+  cs = ["#ff0000","#ff0000","#ff0000","#008000"]
+  p.scatter([0, 1, 0, 1],[0,0,1,1],color=cs,s = 60)
+#+END_SRC
+
+#+BEGIN_EXAMPLE
+  <matplotlib.collections.PathCollection at 0x7f4d1675a358>
+#+END_EXAMPLE
+
+[[file:3f05cd832f4ad01de5504346d08e13ebca7ec05d.png]]
+
+*** XOR
+    :PROPERTIES:
+    :CUSTOM_ID: xor
+    :END:
+
+#+BEGIN_SRC python
+  import matplotlib 
+  import matplotlib.pyplot as p
+  cs = ["#ff0000", "#008000",  "#008000", "#ff0000"]
+  p.scatter([0, 1, 0, 1],[0,0,1,1],color=cs,s = 60)
+#+END_SRC
+
+#+BEGIN_EXAMPLE
+  <matplotlib.collections.PathCollection at 0x7f4d16722cf8>
+#+END_EXAMPLE
+
+[[file:4d57e9d499c37398c2c20ff103ba5761d8659b12.png]]
+
+Nature Biotechnology volume 26, pages 195--197 (2008)
+
+[[https://media.nature.com/m685/nature-assets/nbt/journal/v26/n2/images/nbt1386-F1.gif]]
+
+** Boolean Logic
+   :PROPERTIES:
+   :CUSTOM_ID: boolean-logic
+   :END:
+
+- George Boole, Author of the /Laws of Thought/
+
+  1. Read the
+     [[https://archive.org/details/investigationofl00boolrich][book]] on
+     Archive.org
+  2. Read about
+     [[https://plato.stanford.edu/entries/boole/#LifWor][George Boole]].
+
+*** First Order Logic - Truth Tables 1. Or #+Name: Or #+Caption: Or |
+Pr. A | Pr. B | Or | |-------+-------+----| | 1 | 1 | 1 | | 0 | 0 | 0 |
+| 0 | 1 | 1 | | 1 | 0 | 1 | 2. And #+Name: And #+Caption: And | Pr. A |
+Pr. B | And | |-------+-------+----| | 1 | 1 | 1 | | 0 | 0 | 0 | | 0 | 1
+| 0 | | 1 | 0 | 0 | 3. Nand #+Name: Nand #+Caption: Nand | Pr. A | Pr. B
+| NAND | |-------+-------+------| | 1 | 1 | 0 | | 0 | 0 | 1 | | 0 | 1 |
+1 | | 1 | 0 | 1 |

@@ -1,0 +1,809 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-01-03 Mon 10:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Introduction to Linear Algebra and Neural Networks</title>
+<meta name="author" content="Britt Anderson" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Introduction to Linear Algebra and Neural Networks</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#introduction">1. Introduction</a>
+<ul>
+<li><a href="#org727406d">1.1. Goals</a></li>
+<li><a href="#be-the-neuron">1.2. Be the Neuron</a></li>
+<li><a href="#rules">1.3. Rules</a></li>
+<li><a href="#instructions">1.4. Instructions</a></li>
+<li><a href="#cellular-automata">1.5. Cellular Automata</a></li>
+</ul>
+</li>
+<li><a href="#what-math-underlies-neural-networks">2. What Math Underlies Neural Networks?</a>
+<ul>
+<li><a href="#linear-algebra">2.1. Linear Algebra</a></li>
+<li><a href="#notation">2.2. Notation</a></li>
+</ul>
+</li>
+<li><a href="#homework">3. Homework</a></li>
+<li><a href="#what-is-a-neural-network">4. What is a Neural Network?</a>
+<ul>
+<li><a href="#questions">4.1. Questions:</a></li>
+<li><a href="#examples">4.2. Examples</a>
+<ul>
+<li><a href="#and">4.2.1. AND</a></li>
+<li><a href="#xor">4.2.2. XOR</a></li>
+</ul>
+</li>
+<li><a href="#boolean-logic">4.3. Boolean Logic</a>
+<ul>
+<li><a href="#orgb24ffb9">4.3.1. First Order Logic - Truth Tables 1. Or #+Name: Or #+Caption: Or |</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-introduction" class="outline-2">
+<h2 id="introduction"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-introduction">
+</div>
+
+<div id="outline-container-org727406d" class="outline-3">
+<h3 id="org727406d"><span class="section-number-3">1.1.</span> Goals</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>What is a neural network?</li>
+<li>What is a cellular Automata</li>
+<li>What mathematics are needed to build a neural network?</li>
+<li>How can neural networks help us understand cognition?</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-be-the-neuron" class="outline-3">
+<h3 id="be-the-neuron"><span class="section-number-3">1.2.</span> Be the Neuron</h3>
+<div class="outline-text-3" id="text-be-the-neuron">
+<p>
+For this exercise you will need a sheet of graph paper and a <b>rule</b>.
+</p>
+
+<p>
+Think of this <i>rule</i> as a mathematical function. You are going to consider a particular grid cell. YOu will put into your rule the list of the three cells above-left, above, and above-right and whether they are painted black or white. From that input your <i>rule</i> will specify an output of either "black" or "white". You color the square or not accordingly.
+</p>
+
+<p>
+You should think of this <i>rule</i> as a computer function as well.
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>Rules as Functions</label><pre class="src src-lisp" id="org0bf6be2">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">rule0</span> (ns) 
+           (match ns
+             ('('w 'w 'w) 'w)
+             ('('w 'w 'b) 'w)
+             ('('w 'b 'w) 'w)
+             ('('b 'w 'w) 'w)
+             ('('w 'b 'b) 'w)
+             ('('b 'w 'b) 'w)
+             ('('b 'b 'w) 'w)
+             ('('b 'b 'b) 'w)))
+</pre>
+</div>
+
+<pre class="example">
+RULE0
+</pre>
+
+
+<p>
+Begin with the top row of the graph paper. Your rule will specify how
+the color of a square of the graph paper depends on the color of
+neighboring cells in the row immediately above. Our rule depends on
+three cells only and is like the gentleman at the football match
+deciding whether to stand or sit when making the wave. Each square in
+the grid of your graph paper decides whether to be blank or colored-in
+based on the three squares above it
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">%load_ext tikzmagic
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python">%%tikz
+\draw[step=1cm] (-1,0) grid (2,2);
+\draw (-0.5,1.5) node [] {1};
+\draw (0.5,1.5) node [] {2};
+\draw (1.5,1.5) node [] {3};
+\draw (0.5,0.5) node [] {?};
+</pre>
+</div>
+
+
+<div id="orgb2fab56" class="figure">
+<p><img src="348f6b5ea06804029c60a21c95cbb58445663f75.png" alt="348f6b5ea06804029c60a21c95cbb58445663f75.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-rules" class="outline-3">
+<h3 id="rules"><span class="section-number-3">1.3.</span> Rules</h3>
+<div class="outline-text-3" id="text-rules">
+
+<div id="org8a9bde5" class="figure">
+<p><img src="introNN/CARule60.png" alt="CARule60.png" />
+</p>
+</div>
+
+<div class="HTML" id="org4a8071d">
+<p>
+&lt;center&gt;<sub>Rule</sub> 60_&lt;/center&gt;
+</p>
+
+</div>
+
+
+<div id="orgd4a04ef" class="figure">
+<p><img src="introNN/CARule90.png" alt="CARule90.png" />
+</p>
+</div>
+
+<div class="HTML" id="org7e1a834">
+<p>
+&lt;center&gt;<sub>Rule</sub> 90_&lt;/center&gt;
+</p>
+
+</div>
+
+
+<div id="orgeb75b67" class="figure">
+<p><img src="introNN/CARule110.png" alt="CARule110.png" />
+</p>
+</div>
+
+<div class="HTML" id="orgbb47849">
+<p>
+&lt;center&gt;<sub>Rule</sub> 110_&lt;/center&gt;
+</p>
+
+</div>
+
+
+<div id="orgd824cf9" class="figure">
+<p><img src="introNN/CARule250.png" alt="CARule250.png" />
+</p>
+</div>
+
+<div class="HTML" id="orgfb462c6">
+<p>
+&lt;center&gt;<sub>Rule</sub> 250_&lt;/center&gt;
+</p>
+
+</div>
+</div>
+</div>
+
+<div id="outline-container-instructions" class="outline-3">
+<h3 id="instructions"><span class="section-number-3">1.4.</span> Instructions</h3>
+<div class="outline-text-3" id="text-instructions">
+<ol class="org-ol">
+<li>Color in the very center square of the very top row of the graph
+paper.</li>
+<li>Proceeding from left to right, color every square in the second row
+based on the rule you selected. In this row every cell will be left
+uncolored except for those near the center, because these rules all
+specify that a cell with three uncolored grids above remains
+uncolored. But how you treat the ones near the center will depend on
+the rule. For example, for rule 60, the cell immediately beneath the
+center, colored, square of row 1 will be colored, as will the one
+immediately to its right.</li>
+<li>Repeat this process working down until you can clearly see the
+pattern, or you give up in despair. Compare your results from using
+different rules.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-cellular-automata" class="outline-3">
+<h3 id="cellular-automata"><span class="section-number-3">1.5.</span> Cellular Automata</h3>
+<div class="outline-text-3" id="text-cellular-automata">
+<ol class="org-ol">
+<li><a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game of
+Life</a></li>
+
+<li><p>
+John Von Neumann <b>Automata and the Brain</b>
+</p>
+
+<p>
+Commentary by
+<a href="http://www.ams.org/bull/1958-64-03/S0002-9904-1958-10214-1/S0002-9904-1958-10214-1.pdf">Claude
+Shannon (pdf)</a>
+</p>
+
+<p>
+<a href="https://archive.org/details/TheComputerAndTheBrain">Copy</a> of the
+book: <a href="https://archive.org">The Computer and the Brain</a>
+</p></li>
+
+<li>Stephen Wolfram <a href="http://www.wolframscience.com">thinks</a> automata
+explain everything</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-what-math-underlies-neural-networks" class="outline-2">
+<h2 id="what-math-underlies-neural-networks"><span class="section-number-2">2.</span> What Math Underlies Neural Networks?</h2>
+<div class="outline-text-2" id="text-what-math-underlies-neural-networks">
+</div>
+
+<div id="outline-container-linear-algebra" class="outline-3">
+<h3 id="linear-algebra"><span class="section-number-3">2.1.</span> Linear Algebra</h3>
+<div class="outline-text-3" id="text-linear-algebra">
+<p>
+The players:
+</p>
+
+<ol class="org-ol">
+<li>Vectors</li>
+<li>Matrices</li>
+<li>Scalars</li>
+<li>Addition</li>
+<li>Multiplication (scalar and matrix)</li>
+<li>Transposition</li>
+<li>Inverse</li>
+</ol>
+
+<p>
+In Class Exercise:
+</p>
+
+<p>
+Using Numpy arrays (and what is an array?) construct two matrices and
+add them together. As I do below.
+</p>
+
+<p>
+And then answer the following question (in code, that is by trying it
+out).
+</p>
+
+<ol class="org-ol">
+<li>What are rules for being able to multiply two matrices?</li>
+<li>Does A/B = B/A and what needs to be special about A and B for this
+question to even make sense?</li>
+</ol>
+
+<p>
+<a href="https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.array-creation.html">Here</a>
+are many different ways to create arrays.
+</p>
+</div>
+</div>
+
+<div id="outline-container-notation" class="outline-3">
+<h3 id="notation"><span class="section-number-3">2.2.</span> Notation</h3>
+<div class="outline-text-3" id="text-notation">
+<p>
+Vectors tend to be notated as <i>lower case</i> letters, often in bold, such
+as \(\mathbf{a}\). They are also occasionally represented with little
+arrows on top such as \(\overrightarrow{\textbf{a}}\).
+</p>
+
+<p>
+Matrices tend to be notated as <i>upper case</i> letters, typically in bold,
+such as \(\mathbf{M}\).
+</p>
+
+<p>
+More Linear Algebra
+</p>
+
+<ol class="org-ol">
+<li>What is a row vector and what is a column vector?</li>
+<li>Which orientation is the more standard?</li>
+<li>What is the size of a vector? There are a couple possible answers to
+this one.</li>
+<li>What is an inner product?</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-homework" class="outline-2">
+<h2 id="homework"><span class="section-number-2">3.</span> Homework</h2>
+<div class="outline-text-2" id="text-homework">
+<p>
+Provide a program (or notebook) that computes the inner product of two
+vectors. First, by coding your own implementation, and second by using
+the built in numpy method. In your code verify that you get the same
+answer for the same inputs. And tell me why - in the notebook - that it
+is generally preferable to find and use built-in functions (or functions
+from established libraries) rather than coding your own.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"ip(a,b) is equal to %d"</span> % ip(a,b))
+<span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"ipnumpy(a,b) is equal to %d"</span> % ipnumpy(a,b))
+<span style="color: #a020f0;">print</span>(<span style="color: #8b2252;">"and ip(a,b) == ipnumpy(a,b) is %s"</span> % (ip(a,b) == ipnumpy(a,b)))
+</pre>
+</div>
+
+<pre class="example" id="org81bac36">
+ip(a,b) is equal to 32
+ipnumpy(a,b) is equal to 32
+and ip(a,b) == ipnumpy(a,b) is True
+</pre>
+</div>
+</div>
+
+<div id="outline-container-what-is-a-neural-network" class="outline-2">
+<h2 id="what-is-a-neural-network"><span class="section-number-2">4.</span> What is a Neural Network?</h2>
+<div class="outline-text-2" id="text-what-is-a-neural-network">
+<p>
+What is a Neural Network? It is a brain inspired computational approach
+in which "neurons" compute functions of their inputs and pass on a
+<i>weighted</i> proportion to the next neuron in the chain.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">%%tikz
+\draw node(i1)[rectangle,draw] {\textbf{Input 1}};
+\draw node(i2)[below of=i1,rectangle,draw] {\textbf{Input 2}};
+\draw node(i3)[below of=i2,rectangle,draw] {\textbf{Input 3}};
+\draw node(n1)[right of= i1,rectangle,node distance = 2cm,draw] {\textbf{Node 1}};
+\draw node(n2)[right of= i2,rectangle,node distance = 2cm,draw] {\textbf{Node 1}};
+\draw node(n3)[right of= i3,rectangle,node distance = 2cm,draw] {\textbf{Node 1}};
+\draw node(w1)[right of= n1,rectangle,node distance = 2cm] {\textbf{W1}};
+\draw node(w2)[right of= n2,rectangle,node distance = 2cm] {\textbf{W2}};
+\draw node(w3)[right of= n3,rectangle,node distance = 2cm] {\textbf{W3}};
+\draw node(output)[right of = w2,rectangle,node distance = 2cm] {\textbf{Output}};
+\draw [-&gt;] (i1) edge (n1) (n1) edge (w1) (w1) edge (output);
+\draw [-&gt;] (i2) edge (n2) (n2) edge (w2) (w2) edge (output);
+\draw [-&gt;] (i3) edge (n3) (n3) edge (w3) (w3) edge (output);
+</pre>
+</div>
+
+
+<div id="org777a264" class="figure">
+<p><img src="ae54d3ab8af2e9ef1b0701d6fd65485f3a6d72f7.png" alt="ae54d3ab8af2e9ef1b0701d6fd65485f3a6d72f7.png" />
+</p>
+</div>
+
+<p>
+\(I_1 \times w_{1,1} + I_2 \times w_{2,1} + I_3 \times w_{3,1} > \Theta\)
+then Output = 1.
+</p>
+
+<p>
+The structure of the threshold unit illustrates the basic mechanics of
+many neural networks: Inputs are passed to the first layer, which in
+turn are passed to downstream units (only one shown here). A weighted
+sum (or possibly a function of the weighted sum) leads to an
+intermediate output that is then passed to the next layer of the
+network. In this case the weighted sum is fed into a threshold function
+that compares the value to a threshold, and passes on the value 1 if it
+is greater than the threshold and 0 otherwise.
+</p>
+</div>
+
+<div id="outline-container-questions" class="outline-3">
+<h3 id="questions"><span class="section-number-3">4.1.</span> Questions:</h3>
+<div class="outline-text-3" id="text-questions">
+<ol class="org-ol">
+<li>What does the \(\Theta\) represent and what is it equivalent to in a
+real neuron?</li>
+<li>What, geometrically speaking, is a plane?</li>
+<li>What is a hyperplane?</li>
+<li>What is linearly separability and how does that relate to planes and
+hyperplanes?</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-examples" class="outline-3">
+<h3 id="examples"><span class="section-number-3">4.2.</span> Examples</h3>
+<div class="outline-text-3" id="text-examples">
+</div>
+
+<div id="outline-container-and" class="outline-4">
+<h4 id="and"><span class="section-number-4">4.2.1.</span> AND</h4>
+<div class="outline-text-4" id="text-and">
+<div class="org-src-container">
+<pre class="src src-python">%matplotlib inline
+<span style="color: #a020f0;">import</span> matplotlib 
+<span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> p
+<span style="color: #a0522d;">cs</span> = [<span style="color: #8b2252;">"#ff0000"</span>,<span style="color: #8b2252;">"#ff0000"</span>,<span style="color: #8b2252;">"#ff0000"</span>,<span style="color: #8b2252;">"#008000"</span>]
+p.scatter([0, 1, 0, 1],[0,0,1,1],color=cs,s = 60)
+</pre>
+</div>
+
+<pre class="example" id="orgbdaa598">
+&lt;matplotlib.collections.PathCollection at 0x7f4d1675a358&gt;
+</pre>
+
+
+<div id="org4a045ca" class="figure">
+<p><img src="3f05cd832f4ad01de5504346d08e13ebca7ec05d.png" alt="3f05cd832f4ad01de5504346d08e13ebca7ec05d.png" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-xor" class="outline-4">
+<h4 id="xor"><span class="section-number-4">4.2.2.</span> XOR</h4>
+<div class="outline-text-4" id="text-xor">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #a020f0;">import</span> matplotlib 
+<span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> p
+<span style="color: #a0522d;">cs</span> = [<span style="color: #8b2252;">"#ff0000"</span>, <span style="color: #8b2252;">"#008000"</span>,  <span style="color: #8b2252;">"#008000"</span>, <span style="color: #8b2252;">"#ff0000"</span>]
+p.scatter([0, 1, 0, 1],[0,0,1,1],color=cs,s = 60)
+</pre>
+</div>
+
+<pre class="example" id="org108a194">
+&lt;matplotlib.collections.PathCollection at 0x7f4d16722cf8&gt;
+</pre>
+
+
+<div id="orgcc5b606" class="figure">
+<p><img src="4d57e9d499c37398c2c20ff103ba5761d8659b12.png" alt="4d57e9d499c37398c2c20ff103ba5761d8659b12.png" />
+</p>
+</div>
+
+<p>
+Nature Biotechnology volume 26, pages 195&#x2013;197 (2008)
+</p>
+
+
+<div id="org0bc7135" class="figure">
+<p><img src="https://media.nature.com/m685/nature-assets/nbt/journal/v26/n2/images/nbt1386-F1.gif" alt="nbt1386-F1.gif" />
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-boolean-logic" class="outline-3">
+<h3 id="boolean-logic"><span class="section-number-3">4.3.</span> Boolean Logic</h3>
+<div class="outline-text-3" id="text-boolean-logic">
+<ul class="org-ul">
+<li>George Boole, Author of the <i>Laws of Thought</i>
+
+<ol class="org-ol">
+<li>Read the
+<a href="https://archive.org/details/investigationofl00boolrich">book</a> on
+Archive.org</li>
+<li>Read about
+<a href="https://plato.stanford.edu/entries/boole/#LifWor">George Boole</a>.</li>
+</ol></li>
+</ul>
+</div>
+
+<div id="outline-container-orgb24ffb9" class="outline-4">
+<h4 id="orgb24ffb9"><span class="section-number-4">4.3.1.</span> First Order Logic - Truth Tables 1. Or #+Name: Or #+Caption: Or |</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<p>
+Pr. A | Pr. B | Or | |-------<del>-------</del>-&#x2014;| | 1 | 1 | 1 | | 0 | 0 | 0 |
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">2. And #+Name: And #+Caption: And</td>
+<td class="org-left">Pr. A</td>
+</tr>
+</tbody>
+</table>
+<p>
+Pr. B | And | |-------<del>-------</del>-&#x2014;| | 1 | 1 | 1 | | 0 | 0 | 0 | | 0 | 1
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">3. Nand #+Name: Nand #+Caption: Nand</td>
+<td class="org-right">Pr. A</td>
+<td class="org-left">Pr. B</td>
+</tr>
+
+<tr>
+<td class="org-right">NAND</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">-------<del>-------</del>------</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+</tbody>
+</table>
+<p>
+1 | | 1 | 0 | 1 |
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: Winter 2022</p>
+<p class="author">Author: Britt Anderson</p>
+<p class="date">Created: 2022-01-03 Mon 10:07</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
