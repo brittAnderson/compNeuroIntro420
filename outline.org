@@ -1,7 +1,8 @@
 #+Title: Introduction to Computational Modelling for Psychology Students
 
 Note: syllabus attachment is at: 
-[[file:/ssh:brittlab6.uwaterloo.ca:/home/britt/teach/watCourses/compNeurosciIntro/admin/W2022/_3 bonus credits syllabus_Winter 2022.docx][file:/ssh:brittlab6.uwaterloo.ca:/home/britt/teach/watCourses/compNeurosciIntro/admin/W2022/_3 bonus credits syllabus_Winter 2022.docx]]
+[[file:syl-2022.pdf][syllabus (pdf)]]
+[[file:syl-2022.org][syllabus (org)]]
 
 * First Day
 ** [[file:admin/first-day.org][First Day Org]]
