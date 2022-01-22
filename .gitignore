@@ -12,3 +12,5 @@
 zoom-codes.txt
 
 *.org~
+*.zip
+.vscode/
