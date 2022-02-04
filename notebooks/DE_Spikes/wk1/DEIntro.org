@@ -76,6 +76,9 @@ plt.savefig("./images/p_p.png")
 (use-package :eazy-gnuplot) 
 #+END_SRC
 
+#+RESULTS: Loading Some Lisp Packages
+: T
+
 #+BEGIN_SRC lisp :session: :results file graphics replace :exports both :file "./images/s-p.png"
 (defun scatter-plot (output)
   (let ((point-max 100)
@@ -177,6 +180,9 @@ f(x) := x^2;
 tex(diff (f(x), x));
 #+END_SRC
 
+#+RESULTS: Derivatives with a Computer Algebra System: Maxima
+| $$2\ | x$$ |
+
 NB: As I am trying to learn a new computer language I tried a new tool in that language to help with learning. [[https://maxima.sourceforge.io/][Maxima]] is a powerful computer algebra system. You do *not* have to know or use Lisp to use maxima, but it is written in Lisp and can be called from Lisp. 
 
 #+Caption: Derivative of $x^2$
@@ -262,6 +268,11 @@ tex(df);
 newline();
 print("The derivative of x^3 at 3 is: ",ev(df,x=3));
 #+END_SRC
+
+#+RESULTS:
+| $$3\,x^2$$ |            |    |     |    |   |     |    |
+| The        | derivative | of | x^3 | at | 3 | is: | 27 |
+
   $$3\,x^2$$
   The derivative of x^3 at 3 is:  27 
 
@@ -275,9 +286,15 @@ print("The derivative of x^3 at 3 is: ",ev(df,x=3));
 (defun diff-x-cubed (x) (* 3 x x))
 #+END_SRC
 
+#+RESULTS:
+: DIFF-X-CUBED
+
 #+BEGIN_SRC lisp
 (defun get-step (guess &optional (goal *goal*)) (/ (- goal (x-cubed guess)) (diff-x-cubed guess)))
 #+END_SRC
+
+#+RESULTS:
+: GET-STEP
 
 NB: I am using optional arguments so that when I use my functions I don't have to keep typing in common things that rarely change. You can do this in [[https://realpython.com/python-optional-arguments/][python]] and [[https://www.oreilly.com/library/view/the-r-book/9780470510247/ch002-sec060.html][R]] as well.
 
@@ -290,6 +307,9 @@ NB: I am using optional arguments so that when I use my functions I don't have t
     do (format t "new-guess is ~,15f~%" new-guess)
     finally (return new-guess)))
 #+END_SRC
+
+#+RESULTS:
+: GET-CUBE-ROOT
 
 NB: My solution uses a *loop*. To emulate this approach you will need to discover how to write loops in your chosen language. The two main kinds of loops are =for= loops and =while= loops. Which one have I used above?
 
@@ -321,7 +341,7 @@ By working with an example simpler than a neuron, and one for which you might ha
 
 \begin{equation}
 \label{eq:1}
-\frac{d^2 s}{dt^2} = -P~s(t)
+\frac{d^2 s}{dt^2} = -P~s
 \end{equation}
 
 
@@ -354,6 +374,9 @@ And we have a formula for this. We can now bootstrap our simulation.
   (* -1 p s))
 #+END_SRC
 
+#+RESULTS: Basic Spring Functions
+: A-OF-T
+
 
 Note the similiarity of the two functions. You could write a helper function that was generic to this pattern of old value + rate of change times the  time step, and just used the pertinent values. 
 
@@ -368,6 +391,9 @@ How do we know the formula for acceleration? We were given it \ref{eq:1}.
 (defconstant +p+ 2)
 (defconstant +delta-t+ 0.05)
 #+END_SRC
+
+#+RESULTS: constants and variables
+: +DELTA-T+
 
 NB: you should consider doing something similar with your code. Put all the numbers and values you don't expect to change very much in a block at the top of your code. Then refer to them by their variable names later on. This is much more convenient if you want to change or update something. You have one spot to look to find the value to change. Changing it in one place propagates through all the rest of your code. 
 
@@ -384,6 +410,9 @@ NB: I give an example of a "doc string". Most programming languages have a way o
     for time = 0                          then (+ time +delta-t+)
     collect (list a v s time)))
 #+END_SRC
+
+#+RESULTS: looping
+: RELEASE-SPRING
 
 NB: The code above creates a series of steps that happen one after the other. This is *not* a nested loop, though it will look similar to the nesting of loops you can see in python and R. This is just a common lisp idiosyncrasy. You will again need to use a loop. This time I am using what kind of loop? The ~collect~ statement is a short hand for gathering all my values up and returing them. You will probably need something like a =return= statement or a variable that you use to catch the updated values and append them on to a growning list. 
 
