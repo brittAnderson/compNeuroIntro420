@@ -35,20 +35,24 @@ Think of this /rule/ as a mathematical function. You are going to consider a par
 You should think of this /rule/ as a computer function as well.
 
 #+Name: Defining Package
-#+begin_src lisp :results silent :exports none
-    ;; need to quickload trivia and str in slime for this to work <2022-01-03 Mon>
-    (defpackage #:lin-alg-intro
-      (:nicknames "LA")
-      (:use #:cl)
-      (:import-from "TRIVIA" "MATCH")
-      (:import-from "STR" "PAD"))
-    
-    (in-package :la)
+#+begin_src lisp :results silent :tangle ./test-tangle.lisp :exports none :tangle ./test-tangle.lisp
+  ;; need to quickload trivia and str in slime for this to work <2022-01-03 Mon>
+
+  (ql:quickload "trivia")
+  (ql:quickload "str")
+
+  (defpackage #:lin-alg-intro
+    (:nicknames "LA")
+    (:use #:cl)
+    (:import-from "TRIVIA" "MATCH")
+    (:import-from "STR" "PAD"))
+
+  (in-package :la)
 #+end_src
 
 #+Name: Rule Demonstration
 #+Caption: A simple rule: nothing changes
-#+begin_src lisp :results silent :exports code
+#+begin_src lisp :results silent :tangle ./test-tangle.lisp :exports code
 (defun rule0 (ns) 
 	   (match ns
 	     ('('w 'w 'w) 'w)
@@ -69,7 +73,7 @@ You can create a rule by adapting my code to change the 'w' → 'b' wherever you
 
 #+Name: rule:110
 #+Caption: Rule 110 for "01101110"
-#+begin_src lisp :results silent :exports code
+#+begin_src lisp :results silent :tangle ./test-tangle.lisp :exports code
 (defun rule110 (ns) 
 	   (match ns
 	     ('('w 'w 'w) 'w)
@@ -94,7 +98,7 @@ You can create a rule by adapting my code to change the 'w' → 'b' wherever you
 
 #+Name: code:make-rule
 #+Caption: Automate where you can. This is my first (successful) attempt to generate a function that will write its own function to map the outputs based on the number of the rule. It basically writes a function like the ones we have above. It substitutes the output for the color that goes with the number of the rule. It should be possible to make the matching part more concise and not require me to manually call each element, but the perfect can be the enemy of the good. Often times it is better to get something that works up and running. If you need to later on you can make it more efficient or elgant. 
-#+begin_src lisp :results silent :exports code
+#+begin_src lisp :results silent :tangle ./test-tangle.lisp :exports code
   (defun make-rule (rule-no)
       (flet ((white-or-black? (in-char)
 	       (if (string= in-char #\0) 'w 'b)))
@@ -112,7 +116,7 @@ You can create a rule by adapting my code to change the 'w' → 'b' wherever you
 #+end_src
 
 #+Caption: Demonstrating how to make a rule.
-#+begin_src lisp :exports both
+#+begin_src lisp :tangle ./test-tangle.lisp :exports both
   (defparameter r110 (make-rule 110))
   
   (funcall r110 '('b 'w 'b))
@@ -264,7 +268,7 @@ is greater than the threshold and 0 (sometimes $-1$ is chosen) otherwise.
     :CUSTOM_ID: and
     :END:
 
-#+BEGIN_SRC python :results graphics output file :file "and.png" :exports file
+#+BEGIN_SRC python :results graphics output file :file "and.png" :tangle ./test-tangle.lisp :exports file
   import matplotlib 
   import matplotlib.pyplot as p
   cs = ["#ff0000","#ff0000","#ff0000","#008000"]
@@ -280,7 +284,7 @@ is greater than the threshold and 0 (sometimes $-1$ is chosen) otherwise.
     :CUSTOM_ID: xor
     :END:
 
-#+BEGIN_SRC python :results graphics output file :file "xor.png" :exports file
+#+BEGIN_SRC python :results graphics output file :file "xor.png" :tangle ./test-tangle.lisp :exports file
   import matplotlib 
   import matplotlib.pyplot as p
   cs = ["#ff0000", "#008000",  "#008000", "#ff0000"]
