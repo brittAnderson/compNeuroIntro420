@@ -3,6 +3,6 @@
 A place for me to save links and reminders for myself.
 
 * Current
-  Hodgkin and Huxley lesson. Incorporate LISP code and comments. 
+
 
 * Things to do
