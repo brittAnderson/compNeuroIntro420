@@ -2,14 +2,14 @@
 (ql:quickload "zpng")
 (ql:quickload "str")
 
-(defpackage #:lin-alg-intro
-  (:nicknames "LA")
+(defpackage #:cellular-automata
+  (:nicknames "CA")
   (:use #:cl)
   (:import-from "TRIVIA" "MATCH")
   (:import-from "STR" "PAD")
   (:import-from "ZPNG" "PNG" "DATA-ARRAY" "WRITE-PNG"))
 
-(in-package :la)
+(in-package :ca)
 
 (defun rule0 (ns) 
 	   (match ns
