@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-01-03 Mon 15:39 -->
+<!-- 2022-02-13 Sun 13:35 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Introduction to Linear Algebra and Neural Networks</title>
@@ -222,9 +222,8 @@
 <h2 id="introduction"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-introduction">
 </div>
-
-<div id="outline-container-orgd2ae4d5" class="outline-3">
-<h3 id="orgd2ae4d5"><span class="section-number-3">1.1.</span> Goals</h3>
+<div id="outline-container-orgdb5e34c" class="outline-3">
+<h3 id="orgdb5e34c"><span class="section-number-3">1.1.</span> Goals</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>What is a neural network?</li>
@@ -247,20 +246,18 @@ Think of this <i>rule</i> as a mathematical function. You are going to consider 
 </p>
 
 
-<div id="orgcc7f317" class="figure">
+<div id="org3a10ab4" class="figure">
 <p><img src="./grid.png" alt="grid.png" />
 </p>
+<p><span class="figure-number">Figure 1: </span>Automata has a 1D grid with Neighbors. You are cell number "2". You decide whether to stay the same color or switch based on your value and the neighbor to your left or right. For visualization purposes time runs down. You color each square in the next row of the graph paper based on its value update in the row above.</p>
 </div>
-
-
-
 
 <p>
 You should think of this <i>rule</i> as a computer function as well.
 </p>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 1: </span>A simple rule: nothing changes</label><pre class="src src-lisp" id="orge807957">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">rule0</span> (ns) 
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>A simple rule: nothing changes</label><pre class="src src-lisp" id="org409be19">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">rule0</span> (ns) 
            (match ns
              ('('w 'w 'w) 'w)
              ('('w 'w 'b) 'w)
@@ -286,7 +283,7 @@ You can create a rule by adapting my code to change the 'w' → 'b' wherever you
 </p>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 2: </span>Rule 110 for "01101110"</label><pre class="src src-lisp" id="org75641f4">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">rule110</span> (ns) 
+<label class="org-src-name"><span class="listing-number">Listing 2: </span>Rule 110 for "01101110"</label><pre class="src src-lisp" id="org6601afb">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">rule110</span> (ns) 
            (match ns
              ('('w 'w 'w) 'w)
              ('('w 'w 'b) 'b)
@@ -302,8 +299,8 @@ You can create a rule by adapting my code to change the 'w' → 'b' wherever you
 </div>
 
 
-<div id="outline-container-org08fd6ee" class="outline-3">
-<h3 id="org08fd6ee"><span class="section-number-3">1.3.</span> The activity&#xa0;&#xa0;&#xa0;<span class="tag"><span class="class_exercise">class_exercise</span></span></h3>
+<div id="outline-container-org5b2cc9a" class="outline-3">
+<h3 id="org5b2cc9a"><span class="section-number-3">1.3.</span> The activity&#xa0;&#xa0;&#xa0;<span class="tag"><span class="class_exercise">class_exercise</span></span></h3>
 <div class="outline-text-3" id="text-1-3">
 <ol class="org-ol">
 <li>We need to have something to start with. Put a black square in the center middle of your graph paper. <sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup> You need to do this, because I will call on a random subset of you to exhibit your pattern.</li>
@@ -315,36 +312,94 @@ You can create a rule by adapting my code to change the 'w' → 'b' wherever you
 </ol>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 3: </span>Automate where you can. This is my first (successful) attempt to generate a function that will write its own function to map the outputs based on the number of the rule. It basically writes a function like the ones we have above. It substitutes the output for the color that goes with the number of the rule. It should be possible to make the matching part more concise and not require me to manually call each element, but the perfect can be the enemy of the good. Often times it is better to get something that works up and running. If you need to later on you can make it more efficient or elgant.</label><pre class="src src-lisp" id="org77e3a15">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">make-rule</span> (rule-no)
+<label class="org-src-name"><span class="listing-number">Listing 3: </span>Automate where you can. This is my first (successful) attempt to generate a function that will write its own function to map the outputs based on the number of the rule. It basically writes a function like the ones we have above. It substitutes the output for the color that goes with the number of the rule. It should be possible to make the matching part more concise and not require me to manually call each element, but the perfect can be the enemy of the good. Often times it is better to get something that works up and running. If you need to later on you can make it more efficient or elgant.</label><pre class="src src-lisp" id="org68d792d">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">make-rule</span> (rule-no)
     (<span style="color: #a020f0;">flet</span> ((white-or-black? (in-char)
              (<span style="color: #a020f0;">if</span> (string= in-char #\0) 'w 'b)))
-    (<span style="color: #a020f0;">let</span> ((test-char (pad 8 (write-to-string rule-no <span style="color: #483d8b;">:base</span> 2) <span style="color: #483d8b;">:pad-char</span> <span style="color: #8b2252;">"0"</span> <span style="color: #483d8b;">:pad-side</span> <span style="color: #483d8b;">:left</span>)))
+    (<span style="color: #a020f0;">let</span> ((test-char (reverse (str:pad 8 (write-to-string rule-no <span style="color: #483d8b;">:base</span> 2) <span style="color: #483d8b;">:pad-char</span> <span style="color: #8b2252;">"0"</span> <span style="color: #483d8b;">:pad-side</span> <span style="color: #483d8b;">:left</span>))))
       (<span style="color: #a020f0;">lambda</span> (ns)
       (match ns
-         ('('w 'w 'w) (white-or-black? (elt test-char 0)))
-         ('('w 'w 'b) (white-or-black? (elt test-char 1)))
-         ('('w 'b 'w) (white-or-black? (elt test-char 2)))
-         ('('b 'w 'w) (white-or-black? (elt test-char 3)))
-         ('('w 'b 'b) (white-or-black? (elt test-char 4)))
-         ('('b 'w 'b) (white-or-black? (elt test-char 5)))
-         ('('b 'b 'w) (white-or-black? (elt test-char 6)))
-         ('('b 'b 'b) (white-or-black? (elt test-char 7))))))))
+         ('(w w w) (white-or-black? (elt test-char 0)))
+         ('(w w b) (white-or-black? (elt test-char 1)))
+         ('(w b w) (white-or-black? (elt test-char 2)))
+         ('(w b b) (white-or-black? (elt test-char 3)))
+         ('(b w w) (white-or-black? (elt test-char 4)))
+         ('(b w b) (white-or-black? (elt test-char 5)))
+         ('(b b w) (white-or-black? (elt test-char 6)))
+         ('(b b b) (white-or-black? (elt test-char 7))))))))
 </pre>
 </div>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 4: </span>Demonstrating how to make a rule.</label><pre class="src src-lisp">(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">r110</span> (make-rule 110))
+<label class="org-src-name"><span class="listing-number">Listing 4: </span>Demonstrating how to make and use a rule.</label><pre class="src src-lisp">(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">r110</span> (make-rule 110))
 
 (funcall r110 '('b 'w 'b))
 </pre>
 </div>
 
-<pre class="example">
-B
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 5: </span>To make our computer automata we need to create the top-row and then run our automata rule along that row, and then down the rows. To handle the edges we will "wrap" the neighborhoods.</label><pre class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">top-row</span> (n)
+  (<span style="color: #a020f0;">multiple-value-bind</span>
+        (how-many-start how-many-end)
+      (<span style="color: #a020f0;">if</span> (evenp n)
+          (values (- (/ n 2) 1) (/ n 2))
+          (values (/ (- n 1) 2)  (/ (- n 1) 2)))
+    (append (make-list how-many-start <span style="color: #483d8b;">:initial-element</span> 'w) (cons 'b nil) (make-list how-many-end <span style="color: #483d8b;">:initial-element</span> 'w))))
+
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">pad-front</span> (in-list)
+  (cons (elt in-list (- (length in-list) 1))
+        (subseq in-list 0 2)))
+
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">pad-end</span> (in-list)
+  (append (subseq in-list (- (length in-list) 2) (length in-list)) (list (first in-list))))
+
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">crawl-cols</span> (which-rule in-list)
+  (<span style="color: #a020f0;">do*</span>  ((next-row (list (funcall which-rule (pad-front in-list))))
+         (when-to-quit (length in-list))
+         (start 0 (+ 1 start))
+         (stop 3 (+ 1 stop))
+         (patt (funcall which-rule (subseq in-list start stop)) (funcall which-rule (subseq in-list start stop))))
+         ((= stop when-to-quit) (nreverse (append (list (funcall which-rule (pad-end in-list)) patt) next-row)))
+    (push patt next-row)))
+
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">build-rows</span> (which-rule <span style="color: #228b22;">&amp;key</span> (ncols 200) (nrows 200))
+  (<span style="color: #a020f0;">let</span> ((lol (list (top-row ncols))))
+    (<span style="color: #a020f0;">dotimes</span> (rs (- nrows 1) (nreverse lol))
+      (push (crawl-cols which-rule (elt lol 0)) lol)
+      )))
+
 </pre>
 </div>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 6: </span>Printing. Lastly we need a mechanism for seeing our automata in action. I decided to render the data to a png using a pre-exising packge.</label><pre class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">rule-num-to-png</span> (rule-num file-name
+                        <span style="color: #228b22;">&amp;key</span> (xsize 200)
+                          (ysize 200))
+  (<span style="color: #a020f0;">let*</span> ((which-rule (make-rule rule-num))
+         (rule-dat (build-rows which-rule <span style="color: #483d8b;">:ncols</span> xsize <span style="color: #483d8b;">:nrows</span> ysize))
+         (pic (make-instance 'png <span style="color: #483d8b;">:width</span>  xsize
+                                  <span style="color: #483d8b;">:height</span> ysize
+                                  <span style="color: #483d8b;">:color-type</span> <span style="color: #483d8b;">:grayscale</span>))
+         (image-data (data-array pic)))
+    (<span style="color: #a020f0;">dotimes</span> (ri (length rule-dat) (write-png pic file-name))
+      (<span style="color: #a020f0;">let</span> ((cur-row (elt rule-dat ri)))
+        (<span style="color: #a020f0;">dotimes</span> (ci  (length cur-row))
+          (setf (aref image-data ri ci 0) (<span style="color: #a020f0;">if</span> (equal (elt cur-row ci) 'w) 255 0)))))))
+</pre>
 </div>
 
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 7: </span>Seeing the results</label><pre class="src src-lisp">(rule-num-to-png 110 <span style="color: #8b2252;">"r110.png"</span> <span style="color: #483d8b;">:xsize</span> 400 <span style="color: #483d8b;">:ysize</span> 600)
+</pre>
+</div>
+
+
+<div id="orgee3aacf" class="figure">
+<p><img src="r110.png" alt="r110.png" />
+</p>
+</div>
+</div>
+</div>
 
 <div id="outline-container-cellular-automata" class="outline-3">
 <h3 id="cellular-automata"><span class="section-number-3">1.4.</span> Cellular Automata</h3>
@@ -354,8 +409,8 @@ Cellular automata provide some basic lessons that lay the ground work for thinki
 </p>
 </div>
 
-<div id="outline-container-org8d09e28" class="outline-4">
-<h4 id="org8d09e28"><span class="section-number-4">1.4.1.</span> Local Decisions Can Produce Interesting Global Effects</h4>
+<div id="outline-container-orgf0aa6e2" class="outline-4">
+<h4 id="orgf0aa6e2"><span class="section-number-4">1.4.1.</span> Local Decisions Can Produce Interesting Global Effects</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <p>
 <a href="https://plato.stanford.edu/entries/cellular-automata/supplement.html">SEP: The 256 Rules</a>
@@ -371,12 +426,12 @@ You can think of each cell in the grid as a neuron. It receives input via it's d
 </div>
 </div>
 
-<div id="outline-container-org21dc453" class="outline-4">
-<h4 id="org21dc453"><span class="section-number-4">1.4.2.</span> You can think of cells (or units or neurons) as functions or computations</h4>
+<div id="outline-container-org316d538" class="outline-4">
+<h4 id="org316d538"><span class="section-number-4">1.4.2.</span> You can think of cells (or units or neurons) as functions or computations</h4>
 </div>
 
-<div id="outline-container-orgbb65938" class="outline-4">
-<h4 id="orgbb65938"><span class="section-number-4">1.4.3.</span> Automata are themselves viewed as a model of the brain</h4>
+<div id="outline-container-org155f119" class="outline-4">
+<h4 id="org155f119"><span class="section-number-4">1.4.3.</span> Automata are themselves viewed as a model of the brain</h4>
 <div class="outline-text-4" id="text-1-4-3">
 <p>
 John Von Neumann <b>Automata and the Brain</b>
@@ -410,8 +465,8 @@ Stephen Wolfram <a href="http://www.wolframscience.com">thinks</a> automata expl
 <div class="outline-text-3" id="text-linear-algebra">
 </div>
 
-<div id="outline-container-orgeb58842" class="outline-4">
-<h4 id="orgeb58842"><span class="section-number-4">2.1.1.</span> Objects and Operations</h4>
+<div id="outline-container-org370114f" class="outline-4">
+<h4 id="org370114f"><span class="section-number-4">2.1.1.</span> Objects and Operations</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <ol class="org-ol">
 <li>Vectors</li>
@@ -425,8 +480,8 @@ Stephen Wolfram <a href="http://www.wolframscience.com">thinks</a> automata expl
 </div>
 </div>
 
-<div id="outline-container-orgf51b927" class="outline-4">
-<h4 id="orgf51b927"><span class="section-number-4">2.1.2.</span> Adding Matrices&#xa0;&#xa0;&#xa0;<span class="tag"><span class="class_exercise">class_exercise</span></span></h4>
+<div id="outline-container-orgbc9eb28" class="outline-4">
+<h4 id="orgbc9eb28"><span class="section-number-4">2.1.2.</span> Adding Matrices&#xa0;&#xa0;&#xa0;<span class="tag"><span class="class_exercise">class_exercise</span></span></h4>
 <div class="outline-text-4" id="text-2-1-2">
 <p>
 Two definitions of a vector:
@@ -447,7 +502,7 @@ A matrix can be considered as a collection of vectors or, in our case, as a rect
 </div>
 
 <ol class="org-ol">
-<li><a id="org0bf56a5"></a>Activity<br />
+<li><a id="org089c5db"></a>Activity<br />
 <div class="outline-text-5" id="text-2-1-2-1">
 <p>
 Using your preferred programming language figure out how to construct an array/matrix.
@@ -497,8 +552,8 @@ Good things to know: what is an <i>inner product</i>? How do you compute it in y
 </div>
 </div>
 
-<div id="outline-container-org3f060ea" class="outline-4">
-<h4 id="org3f060ea"><span class="section-number-4">2.1.4.</span> Another Homework</h4>
+<div id="outline-container-orge78406a" class="outline-4">
+<h4 id="orge78406a"><span class="section-number-4">2.1.4.</span> Another Homework</h4>
 <div class="outline-text-4" id="text-2-1-4">
 <p>
 Submit a simple program that accepts two matrices, checks if they are of compatible sizes, and then computes their inner product. 
@@ -507,7 +562,6 @@ Submit a simple program that accepts two matrices, checks if they are of compati
 </div>
 </div>
 </div>
-
 
 <div id="outline-container-what-is-a-neural-network" class="outline-2">
 <h2 id="what-is-a-neural-network"><span class="section-number-2">3.</span> What is a Neural Network?</h2>
@@ -519,22 +573,22 @@ in which "neurons" compute functions of their inputs and pass on a
 </p>
 
 
-<div id="orgfb3e022" class="figure">
+<div id="orge648736" class="figure">
 <p><img src="./nn.png" alt="nn.png" />
 </p>
 </div>
 </div>
 
 
-<div id="outline-container-orge0a0928" class="outline-3">
-<h3 id="orge0a0928"><span class="section-number-3">3.1.</span> Non-linearities</h3>
+<div id="outline-container-org1057a2e" class="outline-3">
+<h3 id="org1057a2e"><span class="section-number-3">3.1.</span> Non-linearities</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 The spiking of a neuron is non-linear. The increase in voltage with increasing input is not a straight line. To emulate this, and sometimes just to make the math easier, there is often further processing on the output of the neuron before it becomes the input to the next layer. In its simplest form this takes the form of a <i>thresholding</i> operation. We did something very much like this when we set a threshold for the spike in our integrate and fire model.
 </p>
 
 \begin{equation}
-\label{org369cb26}
+\label{org00a54bd}
 \mbox{if } I_1 \times w_{1,1} + I_2 \times w_{2,1} + I_3 \times w_{3,1} > \Theta \mbox{ then } Output = 1
 \end{equation}
 
@@ -576,7 +630,7 @@ p.savefig(<span style="color: #8b2252;">"and.png"</span>)
 </div>
 
 
-<div id="orga00a5e1" class="figure">
+<div id="orgfc09c27" class="figure">
 <p><img src="and.png" alt="and.png" />
 </p>
 </div>
@@ -596,15 +650,15 @@ p.savefig(<span style="color: #8b2252;">"xor.png"</span>)
 </div>
 
 
-<div id="orgd5aa6e2" class="figure">
+<div id="org84f0b14" class="figure">
 <p><img src="xor.png" alt="xor.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org89dfa62" class="outline-4">
-<h4 id="org89dfa62"><span class="section-number-4">3.3.3.</span> Optional Reading</h4>
+<div id="outline-container-orgffbfa0b" class="outline-4">
+<h4 id="orgffbfa0b"><span class="section-number-4">3.3.3.</span> Optional Reading</h4>
 <div class="outline-text-4" id="text-3-3-3">
 <p>
 This short <a href="https://media.nature.com/m685/nature-assets/nbt/journal/v26/n2/images/nbt1386-F1.gif">article</a> provides a nice example of linear separability and some basics of what a neural network is. 
@@ -614,8 +668,8 @@ This short <a href="https://media.nature.com/m685/nature-assets/nbt/journal/v26/
 </div>
 </div>
 
-<div id="outline-container-org8734048" class="outline-2">
-<h2 id="org8734048"><span class="section-number-2">4.</span> Connections</h2>
+<div id="outline-container-org0d6cfbe" class="outline-2">
+<h2 id="org0d6cfbe"><span class="section-number-2">4.</span> Connections</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Can neural networks encode logic? Is the processing zeros and ones enough to capture the richness of human intellectual activity?
@@ -644,14 +698,14 @@ In the next section we will build up a simple threshold neural unit and try to c
 </div>
 </div>
 
-<div id="outline-container-orgcdd6fe9" class="outline-3">
-<h3 id="orgcdd6fe9"><span class="section-number-3">4.2.</span> First Order Logic - Truth Tables</h3>
+<div id="outline-container-orgfb0b28d" class="outline-3">
+<h3 id="orgfb0b28d"><span class="section-number-3">4.2.</span> First Order Logic - Truth Tables</h3>
 <div class="outline-text-3" id="text-4-2">
 <ol class="org-ol">
 <li><p>
 Or
 </p>
-<table id="orgab151c7" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org4bb164d" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 1:</span> Or</caption>
 
 <colgroup>
@@ -698,7 +752,7 @@ Or
 <li><p>
 And
 </p>
-<table id="org783317b" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org94491b9" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 2:</span> And</caption>
 
 <colgroup>
@@ -748,7 +802,7 @@ And
 <li><p>
 Nand
 </p>
-<table id="orgf804209" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org28b66ac" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 3:</span> Nand</caption>
 
 <colgroup>
@@ -813,7 +867,7 @@ If you don't have graph paper just draw a grid on any handy sheet of paper. If y
 <div id="postamble" class="status">
 <p class="date">Date: Winter 2022</p>
 <p class="author">Author: Britt Anderson</p>
-<p class="date">Created: 2022-01-03 Mon 15:39</p>
+<p class="date">Created: 2022-02-13 Sun 13:35</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
