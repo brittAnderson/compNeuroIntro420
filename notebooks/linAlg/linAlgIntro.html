@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-02-13 Sun 13:35 -->
+<!-- 2022-02-13 Sun 15:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Introduction to Linear Algebra and Neural Networks</title>
@@ -222,18 +222,23 @@
 <h2 id="introduction"><span class="section-number-2">1.</span> Introduction</h2>
 <div class="outline-text-2" id="text-introduction">
 </div>
-<div id="outline-container-orgdb5e34c" class="outline-3">
-<h3 id="orgdb5e34c"><span class="section-number-3">1.1.</span> Goals</h3>
+<div id="outline-container-org3f99a9f" class="outline-3">
+<h3 id="org3f99a9f"><span class="section-number-3">1.1.</span> Goals</h3>
 <div class="outline-text-3" id="text-1-1">
+<p>
+Our goal for the next few lessons is to come to understand 
+</p>
 <ul class="org-ul">
 <li>What is a neural network?</li>
-<li>What is a cellular Automata</li>
 <li>What mathematics are needed to build a neural network?</li>
 <li>How can neural networks help us understand cognition?</li>
 </ul>
-</div>
-</div>
 
+<p>
+As a first illustration of some of the key ideas we will execute a simple cellular automata rule. 
+</p>
+</div>
+</div>
 <div id="outline-container-be-the-neuron" class="outline-3">
 <h3 id="be-the-neuron"><span class="section-number-3">1.2.</span> Be the Neuron</h3>
 <div class="outline-text-3" id="text-be-the-neuron">
@@ -242,22 +247,40 @@ For this exercise you will need a sheet of graph paper and a <b>rule</b>.
 </p>
 
 <p>
-Think of this <i>rule</i> as a mathematical function. You are going to consider a particular grid cell. You will put into your rule the list of the three cells above-left, above, and above-right and whether they are painted black or white. From that input your <i>rule</i> will specify an output of either "black" or "white". You color the square or not accordingly.
+Think of this <i>rule</i> as a <i>mathematical function</i>: a matching of each possible input to one possible output. You are going to consider a particular grid cell of the graph papers as a metaphorical neuron. That "neuron" decides whether or not to "fire" (in this case firing is to be colored in black and not firing to be left white).  Your rule specifies what the output is for that neuron/grid-cell as a function of it's three inputs: the neighbor to the left, itself, and the neighbor to the right. We view the passage of time as flowing down, so you color in the neuron's state below it. 
 </p>
 
 
-<div id="org3a10ab4" class="figure">
+<div id="org61c6267" class="figure">
 <p><img src="./grid.png" alt="grid.png" />
 </p>
-<p><span class="figure-number">Figure 1: </span>Automata has a 1D grid with Neighbors. You are cell number "2". You decide whether to stay the same color or switch based on your value and the neighbor to your left or right. For visualization purposes time runs down. You color each square in the next row of the graph paper based on its value update in the row above.</p>
+<p><span class="figure-number">Figure 1: </span>Automata as a 1D grid with neighbors. For this example the neuron is grid cell "2". You decide whether to color the grid cell below (visualized as the neuron one moment in time later) based on the value of the neighbor to your left, itself, and the neigbhbor to the right. Implement your assigned rule on the piece of graph paper to see what pattern emerges.</p>
+</div>
+</div>
 </div>
 
+<div id="outline-container-org0dc7a5c" class="outline-3">
+<h3 id="org0dc7a5c"><span class="section-number-3">1.3.</span> What are the lessons learned?</h3>
+<div class="outline-text-3" id="text-1-3">
+<ol class="org-ol">
+<li>Repetitive actions are hard. We (humans) make mistakes following even simple rules for a large number of repeated steps. Better to let the computer do it since that is where its strengths lie.</li>
+<li>Complex global patterns can emerge from local actions. Each neuron is only responding to its immediate right and left yet global structures emerge.</li>
+<li>These characteristics seem similar to brain activity. Each neuron in the brain is just one of many. Whether a neuron spikes or not is a consequence of its own state and its inputs (like the neighbors in the grid example).</li>
+<li>From each neuron making a local computation, global patterns of complex activity can emerge.</li>
+<li>Maybe by programming something similar to this system we can get insights into brain activity.</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgdf541df" class="outline-3">
+<h3 id="orgdf541df"><span class="section-number-3">1.4.</span> Programmatic implementation</h3>
+<div class="outline-text-3" id="text-1-4">
 <p>
-You should think of this <i>rule</i> as a computer function as well.
+To demonstrate how one might take the ideas that we practiced when implementing a cellular automata phycially programmatically, I have coded some of the steps for a visualization in common lisp and show the code here. Because things don't always run so cleanly when breaking the code into snippets inside an orgmode file and using emacs, if you decide to adapt or test this code you should use the <a href="cellular-automata.lisp">cellular-automata.lisp</a>.
 </p>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 1: </span>A simple rule: nothing changes</label><pre class="src src-lisp" id="org409be19">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">rule0</span> (ns) 
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>A simple rule: nothing changes</label><pre class="src src-lisp" id="orgb0f0112">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">rule0</span> (ns) 
            (match ns
              ('('w 'w 'w) 'w)
              ('('w 'w 'b) 'w)
@@ -271,19 +294,19 @@ You should think of this <i>rule</i> as a computer function as well.
 </div>
 
 <p>
-We have three cells to consider, and they can each be one of two values. That means there are \(2\times2\times2\) or \(8\) cases our rule has to cover. For each of those 8 cases the output can be either of two values so we have \(2^8\) possible rules (though you might think that we only have half that many since all white or all black is pretty much the same thing).
+The above code snippet shows us how we can view the instructions of what to color as a function that takes input and gives us a unique output. We have three cells to consider, and they can each be one of two values. That means there are \(2\times2\times2\) or \(8\) cases our rule has to cover. For each of those 8 cases the output can be either of two values so we have \(2^8\) possible rules (though you might think that we only have half that many since all white or all black is pretty much the same thing).
 </p>
 
 <p>
-Each rule is considered as a binary number. For example rule 0 is "00000000" because that is the binary representation of 0, whereas "00011110" is what number? <sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
+We can view each rule as a mapping from one binary number to a 0 or 1. If 'w' is considered a zero then the input "w w w" is 0 0 0. The use of binary numbers gives us a natural order. If we apply the same mapping of w → 0 and b → 1 then then each rule can also be seen as a binary number and exists in a fixed order. We can translate that binary number to our usual base 10 number. For example, when we map each input to w we get the binary number 00000000 and this is 0 in base 10;  "00011110" is 30 <sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>. You can also go the other way and convert the number in base 10 representation to a binary list. It may be a bit tedious to figure out the details, but once you do the computer can make the translation over and over without mistake. 
 </p>
 
 <p>
-You can create a rule by adapting my code to change the 'w' → 'b' wherever your binary number would have a 'b'. So to make rule 110 we would change the function to:
+That way we don't have to manually write 256 rules like this:
 </p>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 2: </span>Rule 110 for "01101110"</label><pre class="src src-lisp" id="org6601afb">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">rule110</span> (ns) 
+<label class="org-src-name"><span class="listing-number">Listing 2: </span>Rule 110 for "01101110"</label><pre class="src src-lisp" id="org6b038ee">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">rule110</span> (ns) 
            (match ns
              ('('w 'w 'w) 'w)
              ('('w 'w 'b) 'b)
@@ -295,24 +318,9 @@ You can create a rule by adapting my code to change the 'w' → 'b' wherever you
              ('('b 'b 'b) 'w)))
 </pre>
 </div>
-</div>
-</div>
-
-
-<div id="outline-container-org5b2cc9a" class="outline-3">
-<h3 id="org5b2cc9a"><span class="section-number-3">1.3.</span> The activity&#xa0;&#xa0;&#xa0;<span class="tag"><span class="class_exercise">class_exercise</span></span></h3>
-<div class="outline-text-3" id="text-1-3">
-<ol class="org-ol">
-<li>We need to have something to start with. Put a black square in the center middle of your graph paper. <sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup> You need to do this, because I will call on a random subset of you to exhibit your pattern.</li>
-<li>Send in the chat the number for the rule you are going to follow. You can pick any rule you want except for 0 or 110, or the number that anyone before you has already selected.</li>
-<li>Follow your rule and work across and down coloring each row based on the update of the cell above it.</li>
-<li>Do enough rows to get a sense of the pattern, and then message in the chat that you are done.</li>
-<li><b>Save your image</b>. If it is a piece of paper take a picture of it. If it is a spreadsheet take a screen grab. You will have to submit that to the dropbox on learn for credit for today's activity.</li>
-<li>A <b>homework</b> for this activity will be to reproduce your rule as a bit of computer code. You will use any programming language (other than lisp) to write a function like the one I have written for outputting the color of a square based on the input of its neighbors.</li>
-</ol>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 3: </span>Automate where you can. This is my first (successful) attempt to generate a function that will write its own function to map the outputs based on the number of the rule. It basically writes a function like the ones we have above. It substitutes the output for the color that goes with the number of the rule. It should be possible to make the matching part more concise and not require me to manually call each element, but the perfect can be the enemy of the good. Often times it is better to get something that works up and running. If you need to later on you can make it more efficient or elgant.</label><pre class="src src-lisp" id="org68d792d">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">make-rule</span> (rule-no)
+<label class="org-src-name"><span class="listing-number">Listing 3: </span>Automate where you can. This is my first (successful) attempt to generate a function that will write its own function to map the outputs based on the number of the rule. It basically writes a function like the ones we have above. It substitutes the output for the color that goes with the number of the rule. It should be possible to make the matching part more concise and not require me to manually call each element, but the perfect can be the enemy of the good. Often times it is better to get something that works up and running. If you need to later on you can make it more efficient or elgant.</label><pre class="src src-lisp" id="org5b0530c">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">make-rule</span> (rule-no)
     (<span style="color: #a020f0;">flet</span> ((white-or-black? (in-char)
              (<span style="color: #a020f0;">if</span> (string= in-char #\0) 'w 'b)))
     (<span style="color: #a020f0;">let</span> ((test-char (reverse (str:pad 8 (write-to-string rule-no <span style="color: #483d8b;">:base</span> 2) <span style="color: #483d8b;">:pad-char</span> <span style="color: #8b2252;">"0"</span> <span style="color: #483d8b;">:pad-side</span> <span style="color: #483d8b;">:left</span>))))
@@ -394,79 +402,68 @@ You can create a rule by adapting my code to change the 'w' → 'b' wherever you
 </div>
 
 
-<div id="orgee3aacf" class="figure">
+<div id="org6de43e4" class="figure">
 <p><img src="r110.png" alt="r110.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-cellular-automata" class="outline-3">
-<h3 id="cellular-automata"><span class="section-number-3">1.4.</span> Cellular Automata</h3>
-<div class="outline-text-3" id="text-cellular-automata">
-<p>
-Cellular automata provide some basic lessons that lay the ground work for thinking about neural networks. 
-</p>
-</div>
 
-<div id="outline-container-orgf0aa6e2" class="outline-4">
-<h4 id="orgf0aa6e2"><span class="section-number-4">1.4.1.</span> Local Decisions Can Produce Interesting Global Effects</h4>
-<div class="outline-text-4" id="text-1-4-1">
+<div id="outline-container-org5f81a76" class="outline-3">
+<h3 id="org5f81a76"><span class="section-number-3">1.5.</span> The activity&#xa0;&#xa0;&#xa0;<span class="tag"><span class="class_exercise">class_exercise</span></span></h3>
+<div class="outline-text-3" id="text-1-5">
+<ol class="org-ol">
+<li>We need to have something to start with. Put a black square in the center middle of your graph paper. <sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup> You need to do this, because I will call on a random subset of you to exhibit your pattern.</li>
+<li>Send in the chat the number for the rule you are going to follow. You can pick any rule you want except for 0 or 110, or the number that anyone before you has already selected.</li>
+<li>Follow your rule and work across and down coloring each row based on the update of the cell above it.</li>
+<li>Do enough rows to get a sense of the pattern, and then message in the chat that you are done.</li>
+<li><b>Save your image</b>. If it is a piece of paper take a picture of it. If it is a spreadsheet take a screen grab. You will have to submit that to the dropbox on learn for credit for today's activity.</li>
+<li>A <b>homework</b> for this activity will be to reproduce your rule as a bit of computer code. You will use any programming language (other than lisp) to write a function like the one I have written for outputting the color of a square based on the input of its neighbors.</li>
+</ol>
 <p>
-<a href="https://plato.stanford.edu/entries/cellular-automata/supplement.html">SEP: The 256 Rules</a>
-</p>
-
-<p>
-<a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game of Life</a> (wikipedia link)
-</p>
-
-<p>
-You can think of each cell in the grid as a neuron. It receives input via it's dendrites and it has a current state (e.g. the internal voltage). Based on its current voltage and the input to the neuron it does or does not fire. With our automata the cell's current color was its voltage and the color of the neighbors on either side were the inputs to our grid cell's dendrites.
+NB. For the class in Winter 2022 I decided <b>not</b> to make this a homework. 
 </p>
 </div>
 </div>
 
-<div id="outline-container-org316d538" class="outline-4">
-<h4 id="org316d538"><span class="section-number-4">1.4.2.</span> You can think of cells (or units or neurons) as functions or computations</h4>
-</div>
 
-<div id="outline-container-org155f119" class="outline-4">
-<h4 id="org155f119"><span class="section-number-4">1.4.3.</span> Automata are themselves viewed as a model of the brain</h4>
-<div class="outline-text-4" id="text-1-4-3">
+<div id="outline-container-orgb6d4766" class="outline-3">
+<h3 id="orgb6d4766"><span class="section-number-3">1.6.</span> Cellular Automata</h3>
+<div class="outline-text-3" id="text-1-6">
 <p>
-John Von Neumann <b>Automata and the Brain</b>
+As mentioned above, cellular automata demonstrate some basic lessons that we will make use of when thinking about neural networks. One of these points is that there may be simpler representations for complex descriptions. If we can find the right language to translate them into we may get concision and repeatability as by-products. This is demonstrated by the naming convention for the rules of cellular automata: <a href="https://plato.stanford.edu/entries/cellular-automata/supplement.html">SEP: The 256 Rules</a>
 </p>
 
 <p>
-Commentary by
-<a href="http://www.ams.org/bull/1958-64-03/S0002-9904-1958-10214-1/S0002-9904-1958-10214-1.pdf">Claude Shannon (pdf)</a>
+In emphasizing that local decisions can produce interesting global effects it may be interesting to examine other similar uses of the cellular automata idea. One famous and visually pleasing one is the <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game of Life</a>.
 </p>
 
 <p>
-<a href="https://complexityexplorer.s3.amazonaws.com/supplemental_materials/5.6+Artificial+Life/The+Computer+and+The+Brain_text.pdf">Copy (pdf)</a> of the
-book: <a href="https://ocul-wtl.primo.exlibrisgroup.com/permalink/01OCUL_WTL/vk29fk/alma994863683505162">The Computer and the Brain</a>
+The analogy of automata to simple neurons may be deeper than at first it appears. Some very famous thinkers connected the two. One of the most brilliant people of all time, John von Neumann, was working on a book about automata and the brain at the time of his death. I have linked to a commentary in case you are interested in reading further (<a href="http://www.ams.org/bull/1958-64-03/S0002-9904-1958-10214-1/S0002-9904-1958-10214-1.pdf">Claude Shannon (pdf)</a>) as well as to a pdf <a href="https://complexityexplorer.s3.amazonaws.com/supplemental_materials/5.6+Artificial+Life/The+Computer+and+The+Brain_text.pdf">copy</a> of the book: <a href="https://ocul-wtl.primo.exlibrisgroup.com/permalink/01OCUL_WTL/vk29fk/alma994863683505162">The Computer and the Brain</a>
 </p>
 
 <p>
-Stephen Wolfram <a href="http://www.wolframscience.com">thinks</a> automata explain everything
+A contemporary mathematician and the inventor of the Mathematica software system also believes that cellular automata may be a theory of everything. See what Stephen Wolfram <a href="http://www.wolframscience.com">thinks</a>.
 </p>
 </div>
 </div>
 </div>
+
+<div id="outline-container-org70eda58" class="outline-2">
+<h2 id="org70eda58"><span class="section-number-2">2.</span> What Math Underlies Neural Networks?</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org1cf7f96" class="outline-3">
+<h3 id="org1cf7f96"><span class="section-number-3">2.1.</span> Linear Algebra</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+The math at the heart of neural networks and their computer implementation is <i>linear algebra</i>. For us, the section of linear algebra we are going to need is mostly limited to vectors, matrices and how to add and multiply them.
+</p>
 </div>
 
-<div id="outline-container-what-math-underlies-neural-networks" class="outline-2">
-<h2 id="what-math-underlies-neural-networks"><span class="section-number-2">2.</span> What Math Underlies Neural Networks?</h2>
-<div class="outline-text-2" id="text-what-math-underlies-neural-networks">
-</div>
-
-<div id="outline-container-linear-algebra" class="outline-3">
-<h3 id="linear-algebra"><span class="section-number-3">2.1.</span> Linear Algebra</h3>
-<div class="outline-text-3" id="text-linear-algebra">
-</div>
-
-<div id="outline-container-org370114f" class="outline-4">
-<h4 id="org370114f"><span class="section-number-4">2.1.1.</span> Objects and Operations</h4>
+<div id="outline-container-orgc53c685" class="outline-4">
+<h4 id="orgc53c685"><span class="section-number-4">2.1.1.</span> Some of the Objects and Operations we will need (terminology to learn).</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <ol class="org-ol">
 <li>Vectors</li>
@@ -480,11 +477,15 @@ Stephen Wolfram <a href="http://www.wolframscience.com">thinks</a> automata expl
 </div>
 </div>
 
-<div id="outline-container-orgbc9eb28" class="outline-4">
-<h4 id="orgbc9eb28"><span class="section-number-4">2.1.2.</span> Adding Matrices&#xa0;&#xa0;&#xa0;<span class="tag"><span class="class_exercise">class_exercise</span></span></h4>
+<div id="outline-container-orga9fd18e" class="outline-4">
+<h4 id="orga9fd18e"><span class="section-number-4">2.1.2.</span> Adding Matrices&#xa0;&#xa0;&#xa0;<span class="tag"><span class="class_exercise">class_exercise</span></span></h4>
 <div class="outline-text-4" id="text-2-1-2">
 <p>
-Two definitions of a vector:
+To gain some hands on familiarity with the manipulation of matrices and vectors we will try to do by hand and in simple programs some of the fundamental operations of addition and multiplication. We will also thereby learn that some of the rules we learned for numbers (such as a * b = b * a) do not always apply in other mathematical realms.
+</p>
+
+<p>
+Two ways to think about what a vector is:
 </p>
 
 <ol class="org-ol">
@@ -502,18 +503,18 @@ A matrix can be considered as a collection of vectors or, in our case, as a rect
 </div>
 
 <ol class="org-ol">
-<li><a id="org089c5db"></a>Activity<br />
+<li><a id="org4b20bfa"></a>Activity<br />
 <div class="outline-text-5" id="text-2-1-2-1">
 <p>
 Using your preferred programming language figure out how to construct an array/matrix.
 </p>
 
 <p>
-Make two of them and make them the same size (what is the <i>size</i> of a matrix?).
+Make two arrays and make them the same size (what is the <i>size</i> of a matrix?).
 </p>
 
 <p>
-Add them together in both orders (A + B and B + A)
+Add them together in both orders (A + B and B + A). How does one add an array that itself has numerous different numbers?
 </p>
 
 <p>
@@ -532,9 +533,9 @@ To get you started <a href="https://docs.scipy.org/doc/numpy-1.13.0/reference/ro
 </ol>
 </div>
 
-<div id="outline-container-notation" class="outline-4">
-<h4 id="notation"><span class="section-number-4">2.1.3.</span> Common Notational Conventions for Vectors and Matrices</h4>
-<div class="outline-text-4" id="text-notation">
+<div id="outline-container-org2aff2c9" class="outline-4">
+<h4 id="org2aff2c9"><span class="section-number-4">2.1.3.</span> Common Notational Conventions for Vectors and Matrices</h4>
+<div class="outline-text-4" id="text-2-1-3">
 <p>
 Vectors tend to be notated as <i>lower case</i> letters, often in bold, such
 as \(\mathbf{a}\). They are also occasionally represented with little
@@ -552,8 +553,8 @@ Good things to know: what is an <i>inner product</i>? How do you compute it in y
 </div>
 </div>
 
-<div id="outline-container-orge78406a" class="outline-4">
-<h4 id="orge78406a"><span class="section-number-4">2.1.4.</span> Another Homework</h4>
+<div id="outline-container-org8766b2b" class="outline-4">
+<h4 id="org8766b2b"><span class="section-number-4">2.1.4.</span> Homework</h4>
 <div class="outline-text-4" id="text-2-1-4">
 <p>
 Submit a simple program that accepts two matrices, checks if they are of compatible sizes, and then computes their inner product. 
@@ -563,9 +564,9 @@ Submit a simple program that accepts two matrices, checks if they are of compati
 </div>
 </div>
 
-<div id="outline-container-what-is-a-neural-network" class="outline-2">
-<h2 id="what-is-a-neural-network"><span class="section-number-2">3.</span> What is a Neural Network?</h2>
-<div class="outline-text-2" id="text-what-is-a-neural-network">
+<div id="outline-container-orgf4e9ca7" class="outline-2">
+<h2 id="orgf4e9ca7"><span class="section-number-2">3.</span> What is a Neural Network?</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 What is a Neural Network? It is a brain inspired computational approach
 in which "neurons" compute functions of their inputs and pass on a
@@ -573,36 +574,35 @@ in which "neurons" compute functions of their inputs and pass on a
 </p>
 
 
-<div id="orge648736" class="figure">
+<div id="orgd056ef5" class="figure">
 <p><img src="./nn.png" alt="nn.png" />
 </p>
 </div>
 </div>
 
 
-<div id="outline-container-org1057a2e" class="outline-3">
-<h3 id="org1057a2e"><span class="section-number-3">3.1.</span> Non-linearities</h3>
+<div id="outline-container-org4eed510" class="outline-3">
+<h3 id="org4eed510"><span class="section-number-3">3.1.</span> Non-linearities</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
-The spiking of a neuron is non-linear. The increase in voltage with increasing input is not a straight line. To emulate this, and sometimes just to make the math easier, there is often further processing on the output of the neuron before it becomes the input to the next layer. In its simplest form this takes the form of a <i>thresholding</i> operation. We did something very much like this when we set a threshold for the spike in our integrate and fire model.
+The spiking of a neuron is non-linear. You saw this in both the integrate and fire and Hodgkin and Huxley models you programmed. The lines on those plots your created are not, for the most part, straight. Perhaps the simplest way to incorporate a non-linearity into our artificial neuron is to give it a threshold, like we did for the integrate and fire model. When activity exceeds the threshold (which we will usually designate with a capital Greek Theta \(\Theta\)) then the neuron is set to 1 and if it is not firing it is set to 0 (like the "w" → 0; "b" → 1 mapping we used for the cellular automata).
 </p>
 
 \begin{equation}
-\label{org00a54bd}
+\label{orge3ccb2e}
 \mbox{if } I_1 \times w_{1,1} + I_2 \times w_{2,1} + I_3 \times w_{3,1} > \Theta \mbox{ then } Output = 1
 \end{equation}
 
 <p>
-What this equation shows is that Inputs (the \(I\) s) are passed to the first layer. A weighted
-sum (inner product) is computed as an intermediate value. The weighted sum is fed into a threshold function that compares the value to a threshold (\(\Theta\)), and passes on the value 1 if it
-is greater than the threshold and 0 (sometimes \(-1\) is chosen) otherwise.
+What this equation shows is that Inputs (the \(I\) s) are passed to a neuron. Those inputs have something like a synapse. That is designated by the w's. Those weights are how tightly the input and internal activity of our artificial neuron is coupled. The reason for all the subscripts is to try and help you see the similarity between this equation and the inner product and matrix multiplication rules you just worked on programming. The activity of the neuron is a sort of internal state, and then based on the comparison of that activity to the threshold you can envision the neuron spiking or not, meaning it has value 1 or 0. Mathematically, the weighted sum is fed into a threshold function that compares the value to a threshold (\(\Theta\)), and passes on the value 1 if it
+is greater than the threshold and 0 (sometimes \(-1\) rather than zero is chosen for the inactive state because there are certain computational conveniences in doing so).
 </p>
 </div>
 </div>
 
-<div id="outline-container-questions" class="outline-3">
-<h3 id="questions"><span class="section-number-3">3.2.</span> Questions:</h3>
-<div class="outline-text-3" id="text-questions">
+<div id="outline-container-org30fafe1" class="outline-3">
+<h3 id="org30fafe1"><span class="section-number-3">3.2.</span> Questions:</h3>
+<div class="outline-text-3" id="text-3-2">
 <ol class="org-ol">
 <li>What, geometrically speaking, is a plane?</li>
 <li>What is a hyperplane?</li>
@@ -612,53 +612,43 @@ hyperplanes?</li>
 </div>
 </div>
 
-<div id="outline-container-examples" class="outline-3">
-<h3 id="examples"><span class="section-number-3">3.3.</span> Examples</h3>
-<div class="outline-text-3" id="text-examples">
+<div id="outline-container-orgf885bec" class="outline-3">
+<h3 id="orgf885bec"><span class="section-number-3">3.3.</span> Examples of Boolean Functions and How They Map onto our Neural Network Intuitions</h3>
+<div class="outline-text-3" id="text-3-3">
 </div>
+<div id="outline-container-orgbcbdf99" class="outline-4">
+<h4 id="orgbcbdf99"><span class="section-number-4">3.3.1.</span> AND</h4>
+<div class="outline-text-4" id="text-3-3-1">
 
-<div id="outline-container-and" class="outline-4">
-<h4 id="and"><span class="section-number-4">3.3.1.</span> AND</h4>
-<div class="outline-text-4" id="text-and">
-<div class="org-src-container">
-<pre class="src src-python"><span style="color: #a020f0;">import</span> matplotlib 
-<span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> p
-<span style="color: #a0522d;">cs</span> = [<span style="color: #8b2252;">"#ff0000"</span>,<span style="color: #8b2252;">"#ff0000"</span>,<span style="color: #8b2252;">"#ff0000"</span>,<span style="color: #8b2252;">"#008000"</span>]
-p.scatter([0, 1, 0, 1],[0,0,1,1],color=cs,s = 60)
-p.savefig(<span style="color: #8b2252;">"and.png"</span>)
-</pre>
-</div>
-
-
-<div id="orgfc09c27" class="figure">
-<p><img src="and.png" alt="and.png" />
+<div id="org3cadb2b" class="figure">
+<p><img src="and-lisp.png" alt="and-lisp.png" />
 </p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-xor" class="outline-4">
-<h4 id="xor"><span class="section-number-4">3.3.2.</span> XOR</h4>
-<div class="outline-text-4" id="text-xor">
-<div class="org-src-container">
-<pre class="src src-python"><span style="color: #a020f0;">import</span> matplotlib 
-<span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> p
-<span style="color: #a0522d;">cs</span> = [<span style="color: #8b2252;">"#ff0000"</span>, <span style="color: #8b2252;">"#008000"</span>,  <span style="color: #8b2252;">"#008000"</span>, <span style="color: #8b2252;">"#ff0000"</span>]
-p.scatter([0, 1, 0, 1],[0,0,1,1],color=cs,s = 60)
-p.savefig(<span style="color: #8b2252;">"xor.png"</span>)
-</pre>
+<p><span class="figure-number">Figure 2: </span>The "and" is true when both inputs, and only when both inputs, are true.</p>
 </div>
 
 
-<div id="org84f0b14" class="figure">
-<p><img src="xor.png" alt="xor.png" />
+<div id="orga87da77" class="figure">
+<p><img src="or-lisp.png" alt="or-lisp.png" />
 </p>
+<p><span class="figure-number">Figure 3: </span>The "or" is true unless both inputs are false.</p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgffbfa0b" class="outline-4">
-<h4 id="orgffbfa0b"><span class="section-number-4">3.3.3.</span> Optional Reading</h4>
+<div id="outline-container-org71384dc" class="outline-4">
+<h4 id="org71384dc"><span class="section-number-4">3.3.2.</span> XOR</h4>
+<div class="outline-text-4" id="text-3-3-2">
+
+<div id="orgbe5c1cd" class="figure">
+<p><img src="xor-lisp.png" alt="xor-lisp.png" />
+</p>
+<p><span class="figure-number">Figure 4: </span>The "xor" is true when one or the other, but not both of the inputs are true. It is exclusively an or function</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5cfd311" class="outline-4">
+<h4 id="org5cfd311"><span class="section-number-4">3.3.3.</span> Optional Reading</h4>
 <div class="outline-text-4" id="text-3-3-3">
 <p>
 This short <a href="https://media.nature.com/m685/nature-assets/nbt/journal/v26/n2/images/nbt1386-F1.gif">article</a> provides a nice example of linear separability and some basics of what a neural network is. 
@@ -668,8 +658,8 @@ This short <a href="https://media.nature.com/m685/nature-assets/nbt/journal/v26/
 </div>
 </div>
 
-<div id="outline-container-org0d6cfbe" class="outline-2">
-<h2 id="org0d6cfbe"><span class="section-number-2">4.</span> Connections</h2>
+<div id="outline-container-org0810d6d" class="outline-2">
+<h2 id="org0810d6d"><span class="section-number-2">4.</span> Connections</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Can neural networks encode logic? Is the processing zeros and ones enough to capture the richness of human intellectual activity?
@@ -698,14 +688,14 @@ In the next section we will build up a simple threshold neural unit and try to c
 </div>
 </div>
 
-<div id="outline-container-orgfb0b28d" class="outline-3">
-<h3 id="orgfb0b28d"><span class="section-number-3">4.2.</span> First Order Logic - Truth Tables</h3>
+<div id="outline-container-orgc303143" class="outline-3">
+<h3 id="orgc303143"><span class="section-number-3">4.2.</span> First Order Logic - Truth Tables</h3>
 <div class="outline-text-3" id="text-4-2">
 <ol class="org-ol">
 <li><p>
 Or
 </p>
-<table id="org4bb164d" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org0f5a9b7" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 1:</span> Or</caption>
 
 <colgroup>
@@ -752,7 +742,7 @@ Or
 <li><p>
 And
 </p>
-<table id="org94491b9" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org31744c8" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 2:</span> And</caption>
 
 <colgroup>
@@ -802,7 +792,7 @@ And
 <li><p>
 Nand
 </p>
-<table id="org28b66ac" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="orgae5385b" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 3:</span> Nand</caption>
 
 <colgroup>
@@ -867,7 +857,7 @@ If you don't have graph paper just draw a grid on any handy sheet of paper. If y
 <div id="postamble" class="status">
 <p class="date">Date: Winter 2022</p>
 <p class="author">Author: Britt Anderson</p>
-<p class="date">Created: 2022-02-13 Sun 13:35</p>
+<p class="date">Created: 2022-02-13 Sun 15:39</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

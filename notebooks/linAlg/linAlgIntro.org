@@ -195,48 +195,19 @@ NB. For the class in Winter 2022 I decided *not* to make this a homework.
 
 
 ** Cellular Automata
-   :PROPERTIES:
-   :CUSTOM_ID: cellular-automata
-   :END:
-:course-development:
-Use the sketch package in Lisp (or something similar to make a little function that draw the output of a rule.
-:END:
+As mentioned above, cellular automata demonstrate some basic lessons that we will make use of when thinking about neural networks. One of these points is that there may be simpler representations for complex descriptions. If we can find the right language to translate them into we may get concision and repeatability as by-products. This is demonstrated by the naming convention for the rules of cellular automata: [[https://plato.stanford.edu/entries/cellular-automata/supplement.html][SEP: The 256 Rules]]
 
-Cellular automata provide some basic lessons that lay the ground work for thinking about neural networks. 
+In emphasizing that local decisions can produce interesting global effects it may be interesting to examine other similar uses of the cellular automata idea. One famous and visually pleasing one is the [[https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life][Game of Life]].
 
-*** Local Decisions Can Produce Interesting Global Effects
+The analogy of automata to simple neurons may be deeper than at first it appears. Some very famous thinkers connected the two. One of the most brilliant people of all time, John von Neumann, was working on a book about automata and the brain at the time of his death. I have linked to a commentary in case you are interested in reading further ([[http://www.ams.org/bull/1958-64-03/S0002-9904-1958-10214-1/S0002-9904-1958-10214-1.pdf][Claude Shannon (pdf)]]) as well as to a pdf [[https://complexityexplorer.s3.amazonaws.com/supplemental_materials/5.6+Artificial+Life/The+Computer+and+The+Brain_text.pdf][copy]] of the book: [[https://ocul-wtl.primo.exlibrisgroup.com/permalink/01OCUL_WTL/vk29fk/alma994863683505162][The Computer and the Brain]]
 
-[[https://plato.stanford.edu/entries/cellular-automata/supplement.html][SEP: The 256 Rules]]
-
-[[https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life][Game of Life]] (wikipedia link)
-
-You can think of each cell in the grid as a neuron. It receives input via it's dendrites and it has a current state (e.g. the internal voltage). Based on its current voltage and the input to the neuron it does or does not fire. With our automata the cell's current color was its voltage and the color of the neighbors on either side were the inputs to our grid cell's dendrites.
-
-*** You can think of cells (or units or neurons) as functions or computations
-
-*** Automata are themselves viewed as a model of the brain
-
-John Von Neumann *Automata and the Brain*
-
-   Commentary by
-   [[http://www.ams.org/bull/1958-64-03/S0002-9904-1958-10214-1/S0002-9904-1958-10214-1.pdf][Claude Shannon (pdf)]]
-
-   [[https://complexityexplorer.s3.amazonaws.com/supplemental_materials/5.6+Artificial+Life/The+Computer+and+The+Brain_text.pdf][Copy (pdf)]] of the
-   book: [[https://ocul-wtl.primo.exlibrisgroup.com/permalink/01OCUL_WTL/vk29fk/alma994863683505162][The Computer and the Brain]]
-
-Stephen Wolfram [[http://www.wolframscience.com][thinks]] automata explain everything
+A contemporary mathematician and the inventor of the Mathematica software system also believes that cellular automata may be a theory of everything. See what Stephen Wolfram [[http://www.wolframscience.com][thinks]].
 
 * What Math Underlies Neural Networks?
-  :PROPERTIES:
-  :CUSTOM_ID: what-math-underlies-neural-networks
-  :END:
-
 ** Linear Algebra
-   :PROPERTIES:
-   :CUSTOM_ID: linear-algebra
-   :END:
+The math at the heart of neural networks and their computer implementation is /linear algebra/. For us, the section of linear algebra we are going to need is mostly limited to vectors, matrices and how to add and multiply them.
 
-*** Objects and Operations
+*** Some of the Objects and Operations we will need (terminology to learn). 
 1. Vectors
 2. Matrices
 3. Scalars
@@ -246,8 +217,9 @@ Stephen Wolfram [[http://www.wolframscience.com][thinks]] automata explain every
 7. Inverse
 
 *** Adding Matrices                                          :class_exercise:
+To gain some hands on familiarity with the manipulation of matrices and vectors we will try to do by hand and in simple programs some of the fundamental operations of addition and multiplication. We will also thereby learn that some of the rules we learned for numbers (such as a * b = b * a) do not always apply in other mathematical realms.
 
-Two definitions of a vector:
+Two ways to think about what a vector is:
 
 1) It is an object (arrow) with magnitude and direction
 2) It is a (by convention) column of numbers
@@ -259,9 +231,9 @@ A matrix can be considered as a collection of vectors or, in our case, as a rect
 **** Activity
 Using your preferred programming language figure out how to construct an array/matrix.
 
-Make two of them and make them the same size (what is the /size/ of a matrix?).
+Make two arrays and make them the same size (what is the /size/ of a matrix?).
 
-Add them together in both orders (A + B and B + A)
+Add them together in both orders (A + B and B + A). How does one add an array that itself has numerous different numbers?
 
 Then do the same for multiplication. Note that there are particular requirements for the sizes of matrices in order from the to be able to be multiplied one versus another and very strict requirements for being able to be multiplied in both directions.
 
@@ -270,9 +242,6 @@ What is the name for the operation when A*B = B*A?
 To get you started [[https://docs.scipy.org/doc/numpy-1.13.0/reference/routines.array-creation.html][here]] are many different ways to create array in python and [[https://www.tutorialspoint.com/r/r_matrices.htm][R]].
 
 *** Common Notational Conventions for Vectors and Matrices
-   :PROPERTIES:
-   :CUSTOM_ID: notation
-   :END:
 
 Vectors tend to be notated as /lower case/ letters, often in bold, such
 as $\mathbf{a}$. They are also occasionally represented with little
@@ -283,14 +252,11 @@ such as $\mathbf{M}$.
 
 Good things to know: what is an /inner product/? How do you compute it in your preferred programming language?
 
-*** Another Homework
+*** Homework
 
 Submit a simple program that accepts two matrices, checks if they are of compatible sizes, and then computes their inner product. 
 
 * What is a Neural Network?
-  :PROPERTIES:
-  :CUSTOM_ID: what-is-a-neural-network
-  :END:
 
 What is a Neural Network? It is a brain inspired computational approach
 in which "neurons" compute functions of their inputs and pass on a
@@ -303,64 +269,37 @@ in which "neurons" compute functions of their inputs and pass on a
 
 
 ** Non-linearities
-   The spiking of a neuron is non-linear. The increase in voltage with increasing input is not a straight line. To emulate this, and sometimes just to make the math easier, there is often further processing on the output of the neuron before it becomes the input to the next layer. In its simplest form this takes the form of a /thresholding/ operation. We did something very much like this when we set a threshold for the spike in our integrate and fire model.
-
+   The spiking of a neuron is non-linear. You saw this in both the integrate and fire and Hodgkin and Huxley models you programmed. The lines on those plots your created are not, for the most part, straight. Perhaps the simplest way to incorporate a non-linearity into our artificial neuron is to give it a threshold, like we did for the integrate and fire model. When activity exceeds the threshold (which we will usually designate with a capital Greek Theta $\Theta$) then the neuron is set to 1 and if it is not firing it is set to 0 (like the "w" → 0; "b" → 1 mapping we used for the cellular automata).
+   
 #+Name: eqn:threshold-neuron
 #+Caption: A simple equation to capture the thresholding of our simple one neuron with three inputs.
 \begin{equation}
 \mbox{if } I_1 \times w_{1,1} + I_2 \times w_{2,1} + I_3 \times w_{3,1} > \Theta \mbox{ then } Output = 1
 \end{equation}
 
-What this equation shows is that Inputs (the $I$ s) are passed to the first layer. A weighted
-sum (inner product) is computed as an intermediate value. The weighted sum is fed into a threshold function that compares the value to a threshold ($\Theta$), and passes on the value 1 if it
-is greater than the threshold and 0 (sometimes $-1$ is chosen) otherwise.
+What this equation shows is that Inputs (the $I$ s) are passed to a neuron. Those inputs have something like a synapse. That is designated by the w's. Those weights are how tightly the input and internal activity of our artificial neuron is coupled. The reason for all the subscripts is to try and help you see the similarity between this equation and the inner product and matrix multiplication rules you just worked on programming. The activity of the neuron is a sort of internal state, and then based on the comparison of that activity to the threshold you can envision the neuron spiking or not, meaning it has value 1 or 0. Mathematically, the weighted sum is fed into a threshold function that compares the value to a threshold ($\Theta$), and passes on the value 1 if it
+is greater than the threshold and 0 (sometimes $-1$ rather than zero is chosen for the inactive state because there are certain computational conveniences in doing so).
 
 ** Questions:
-   :PROPERTIES:
-   :CUSTOM_ID: questions
-   :END:
-
 1. What, geometrically speaking, is a plane?
 2. What is a hyperplane?
 3. What is linearly separability and how does that relate to planes and
    hyperplanes?
 
-** Examples
-   :PROPERTIES:
-   :CUSTOM_ID: examples
-   :END:
-
+** Examples of Boolean Functions and How They Map onto our Neural Network Intuitions
 *** AND
-    :PROPERTIES:
-    :CUSTOM_ID: and
-    :END:
+#+Name: And Function
+#+Caption: The "and" is true when both inputs, and only when both inputs, are true.
+[[file:and-lisp.png]]
 
-#+BEGIN_SRC python :results graphics output file :file "and.png" :tangle ./test-tangle.lisp :exports file
-  import matplotlib 
-  import matplotlib.pyplot as p
-  cs = ["#ff0000","#ff0000","#ff0000","#008000"]
-  p.scatter([0, 1, 0, 1],[0,0,1,1],color=cs,s = 60)
-  p.savefig("and.png")
-#+END_SRC
-
-#+RESULTS:
-[[file:and.png]]
+#+Name: Or Function
+#+Caption: The "or" is true unless both inputs are false.
+[[file:or-lisp.png]]
 
 *** XOR
-    :PROPERTIES:
-    :CUSTOM_ID: xor
-    :END:
-
-#+BEGIN_SRC python :results graphics output file :file "xor.png" :tangle ./test-tangle.lisp :exports file
-  import matplotlib 
-  import matplotlib.pyplot as p
-  cs = ["#ff0000", "#008000",  "#008000", "#ff0000"]
-  p.scatter([0, 1, 0, 1],[0,0,1,1],color=cs,s = 60)
-  p.savefig("xor.png")
-#+END_SRC
-
-#+RESULTS:
-[[file:xor.png]]
+#+Name: XOR  (also known as exclusive or) Function
+#+Caption: The "xor" is true when one or the other, but not both of the inputs are true. It is exclusively an or function
+[[file:xor-lisp.png]]
 
 *** Optional Reading
 
