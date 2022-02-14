@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-02-14 Mon 11:38 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Perceptrons</title>
+<meta name="author" content="Britt Anderson" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Perceptrons</h1>
+<div id="outline-container-org196e59f" class="outline-2">
+<h2 id="org196e59f"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org3c841be" class="outline-3">
+<h3 id="org3c841be"><span class="section-number-3">1.1.</span> Goals</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The goal for this file is to share the idea of a perceptron, the mathematical formula for updating one, and iniate the process of coding a simple implementation that we will adapt to the delta rule.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbbb9715" class="outline-2">
+<h2 id="orgbbb9715"><span class="section-number-2">2.</span> Perceptron History and Implementation</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The perceptron was the invention of a psychologist, not a computer scientist. Though he obviously had a bit of the mathematician in him.
+</p>
+</div>
+<div id="outline-container-org28dd0cd" class="outline-3">
+<h3 id="org28dd0cd"><span class="section-number-3">2.1.</span> Frank Rosenblatt: Psychologist, Inventor of the Perceptron, Father of Neural Networks</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+<a href="http://dspace.library.cornell.edu/bitstream/1813/18965/2/Rosenblatt_Frank_1971.pdf">Frank Rosenblatt Obituary (pdf)</a>
+</p>
+
+<p>
+<a href="https://en.wikipedia.org/wiki/File:Mark_I_perceptron.jpeg#/media/File:Mark_I_perceptron.jpeg">Rosenblatt's Perceptron Mark I</a>
+</p>
+
+<p>
+Mark 1 Perceptron (details to be found on <a href="https://en.wikipedia.org/wiki/Perceptron">wikipedia</a>).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org26c385d" class="outline-3">
+<h3 id="org26c385d"><span class="section-number-3">2.2.</span> Some References</h3>
+<div class="outline-text-3" id="text-2-2">
+<ol class="org-ol">
+<li><a href="https://babel.hathitrust.org/cgi/pt?id=mdp.39015039846566&amp;view=1up&amp;seq=9">Principles of Neurodynamics</a> (30mb pdf).</li>
+
+<li>This is a book on <a href="https://link.springer.com/book/10.1007/978-3-642-70911-1">Brain Theory</a> that has several historical chapters including one on Rosenblatt.</li>
+
+<li><p>
+From the preface
+</p>
+
+<p>
+For this writer, the perceptron program is not primarily concerned with
+the invention of devices for "artificialintelligence", but rather with
+investigating the physical structures and neurodynamic principles which
+under lie "natural intelligence". A perceptron is first and fore most a
+brain model, not an invention for pattern recognition. As a brain model,
+its utility is in enabling us to determine the physical conditions for
+the emergence of various psychological properties.
+</p></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgee16553" class="outline-3">
+<h3 id="orgee16553"><span class="section-number-3">2.3.</span> The Perceptron Rules</h3>
+<div class="outline-text-3" id="text-2-3">
+<ol class="org-ol">
+<li>\(I = \sum_{i=1}^{n} w_i~x_i\)</li>
+<li>If \(I \ge T\) then \(y = +1\) else if \(I < T\) then \(y = -1\).</li>
+<li>if answer correct, then \(\beta = +1\), else if answer incorrect then
+\(\beta = -1\).</li>
+<li>\(\mathbf{w_{new}} = \mathbf{w_{old}} + \beta y \mathbf{x}\)</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org7fe0bcc" class="outline-3">
+<h3 id="org7fe0bcc"><span class="section-number-3">2.4.</span> You are the Perceptron&#xa0;&#xa0;&#xa0;<span class="tag"><span class="class_exercise">class_exercise</span></span></h3>
+<div class="outline-text-3" id="text-2-4">
+<ol class="org-ol">
+<li>Demonstrate your understanding with pencil and paper.
+This is often the key beginning to programming effectively. First, start with pencil and paper to make sure you understand the algorithm, and that you can effectively implement the steps in an elementary, manual fashion. Then plot the flow of of your implementation. Having done this you will find all the coding goes faster.</li>
+
+<li>Beginning with an input of \(\begin{bmatrix}0.3 \\ 0.7 \end{bmatrix}\), an initial set of weights of \(\begin{bmatrix}-0.6\\0.8\end{bmatrix}\), and a <b>class</b> of 1. Compute the value of the new weight vector with pen and paper.</li>
+
+<li>Do it in code. The same exact calculation. Make sure to write functions so that the step that does the calculation can be re-used with different inputs for the input, weights, and class.</li>
+
+<li><p>
+What is a good data structure (class discussion)?
+</p>
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>A Lisp Data Structure - not the only one, just a simple one.</label><pre class="src src-lisp">(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">my-data</span> (list (list '( 0.3   0.7)  1.0)
+                      (list '(-0.6  0.3)  -1.0)
+                      (list '( 0.7   0.3)  1.0)
+                      (list '(-0.2 -0.8)  -1.0)))
+</pre>
+</div>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 2: </span>Another version in Python. Again, nothing special. Just a practical choice.</label><pre class="src src-python"><span style="color: #a020f0;">import</span> numpy <span style="color: #a020f0;">as</span> np
+<span style="color: #a0522d;">ins</span> = np.array([
+    [np.array([0.3,0.7])   ,  1.0],
+    [np.array([-0.6,0.3])  , -1.0],
+    [np.array([0.7,0.3])   ,  1.0],
+    [np.array([-0.2,-0.8]) , -1.0]])                
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org5c2368e" class="outline-3">
+<h3 id="org5c2368e"><span class="section-number-3">2.5.</span> Coding the Perceptron</h3>
+<div class="outline-text-3" id="text-2-5">
+<ol class="org-ol">
+<li>Create a data structure for your weights and classes.</li>
+<li><p>
+Create a function to update the weights
+</p>
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 3: </span>My Lisp Functions. Do <b>not</b> try to copy these. Look for what I am doing functionally and then think how you might implement that in your language of choice. Mapping is a common "functional" programming like operation that you can do in multiple languages. "List comprehensions" are a convenient way to get done much of what I am doing here in python.</label><pre class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">compute-activation</span> (current-data current-wts <span style="color: #228b22;">&amp;key</span> (theta 0.0))
+ (<span style="color: #a020f0;">if</span> ( &gt; (apply #'+ (mapcar #'* current-data current-wts)) theta) 1.0 -1.0))
+
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">compare-class</span> (computed-class desired-class)
+ (<span style="color: #a020f0;">if</span> (equal computed-class desired-class) 1.0 -1.0))
+
+(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">upd-wt-perceptron</span> (input wts <span style="color: #228b22;">&amp;key</span> (theta 0.0))
+ (<span style="color: #a020f0;">let*</span> ((in-activity (car input))
+        (cls (cadr input))
+        (y (compute-activation in-activity wts))
+        (beta (compare-class y cls)))
+   (mapcar #'+ (mapcar #'(<span style="color: #a020f0;">lambda</span> (x) (* (* beta y) x)) in-activity) wts)))
+</pre>
+</div></li>
+<li><p>
+Test it. Use the same one you did by hand.
+</p>
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 4: </span>Testing As You Develop Keeps Problems and Bugs At A Manageable Size</label><pre class="src src-lisp">(upd-wt-perceptron (elt my-data 0) (list -0.6 0.8))
+</pre>
+</div>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">-0.3</td>
+<td class="org-right">1.5</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>
+How does the network do with this original input for classifying these four cases?
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(<span style="color: #a020f0;">defun</span> <span style="color: #0000ff;">test-perceptron-classification</span> (indat test-wts)
+  (<span style="color: #a020f0;">dolist</span> (in-data-and-class indat)
+    (format t <span style="color: #8b2252;">"Right or wrong? ~a~%"</span>  (compare-class (compute-activation (car in-data-and-class) test-wts) (cadr in-data-and-class)))))
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-lisp">(test-perceptron-classification my-data (list -0.6 0.8))
+</pre>
+</div>
+
+<pre class="example">
+Right or wrong? 1.0
+Right or wrong? -1.0
+Right or wrong? -1.0
+Right or wrong? 1.0
+</pre></li>
+<li><p>
+Now train it for each of the four inputs shown above.
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(<span style="color: #a020f0;">defvar</span> <span style="color: #a0522d;">outwt</span>)
+(<span style="color: #a020f0;">defparameter</span> <span style="color: #a0522d;">starting-wts</span> (list -0.6 0.8))
+(setq outwt (<span style="color: #a020f0;">let</span> ((curr-wt starting-wts))
+           (<span style="color: #a020f0;">dolist</span>
+               (ind my-data curr-wt)
+             (setq curr-wt (upd-wt-perceptron ind curr-wt))
+             (format t <span style="color: #8b2252;">"Current-wts are: ~a~%"</span> curr-wt))))
+</pre>
+</div>
+
+<pre class="example">
+Current-wts are: (-0.3 1.5)
+Current-wts are: (0.3 1.2)
+Current-wts are: (1.0 1.5)
+Current-wts are: (1.2 2.3)
+</pre></li>
+<li><p>
+How is our network doing now?
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">(test-perceptron-classification my-data outwt)
+</pre>
+</div>
+
+<pre class="example">
+Right or wrong? 1.0
+Right or wrong? 1.0
+Right or wrong? 1.0
+Right or wrong? 1.0
+</pre></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org9f6712c" class="outline-3">
+<h3 id="org9f6712c"><span class="section-number-3">2.6.</span> Think Geometrically</h3>
+<div class="outline-text-3" id="text-2-6">
+
+<div id="org31c5b0e" class="figure">
+<p><img src="output_25_0.png" alt="output_25_0.png" width="700px" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Geometrically, what does the weight vector mean, and what is the significane of the perpendicular to the weight vector?</p>
+</div>
+</div>
+<div id="outline-container-org5fefd32" class="outline-4">
+<h4 id="org5fefd32"><span class="section-number-4">2.6.1.</span> Question for Geometrical Thinking&#xa0;&#xa0;&#xa0;<span class="tag"><span class="class_discussion">class_discussion</span></span></h4>
+<div class="outline-text-4" id="text-2-6-1">
+<ol class="org-ol">
+<li>What is the relation between the inner product of two vectors and the cosine of the angle between them?</li>
+<li>What is the <b>sign</b> for the cosine of angles less than 90 degrees and those greater than 90 degrees?</li>
+<li>How do these facts help us to answer the question above?</li>
+<li>Why does this reinforce the advice to think <i>geometrically</i> when thinking about networks and weight vectors?</li>
+</ol>
+</div>
+<ol class="org-ol">
+<li><a id="org5ad3162"></a>Python Syntax Aside<br />
+<div class="outline-text-5" id="text-2-6-1-1">
+<p>
+The other day we saw an asterisk in python code. Here is simple demo of what it is doing. The intuition is that it is mathching up a list with the arguments of a function, e.g.:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #b22222;"># </span><span style="color: #b22222;">What is that asterisk origin doing?</span>
+<span style="color: #a0522d;">a</span> = [1, 2, 3]
+
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">printInput</span>(i1,i2,i3):
+    <span style="color: #a020f0;">print</span>(i1)
+    <span style="color: #a020f0;">print</span>(i2)
+    <span style="color: #a020f0;">print</span>(i3)
+
+printInput(*a)
+</pre>
+</div>
+
+<pre class="example">
+1
+2
+3
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgfbdc6be" class="outline-2">
+<h2 id="orgfbdc6be"><span class="section-number-2">3.</span> Rules are Made to be Broken (or at least updated): The Delta Rule</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgc337773" class="outline-3">
+<h3 id="orgc337773"><span class="section-number-3">3.1.</span> The Delta Rule</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+\[\Delta~w_i = x_i~\eta(desired - observed)\]
+</p>
+</div>
+</div>
+<div id="outline-container-org478a7fc" class="outline-3">
+<h3 id="org478a7fc"><span class="section-number-3">3.2.</span> Using the Delta Rule (warm-up)</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Replace the perceptron learning rule with the Delta rule and run a few
+rounds with your own data (can be random or hand crafted). 
+</p>
+</div>
+</div>
+<div id="outline-container-org5c9b747" class="outline-3">
+<h3 id="org5c9b747"><span class="section-number-3">3.3.</span> Thinking About the Delta Rule</h3>
+<div class="outline-text-3" id="text-3-3">
+<ol class="org-ol">
+<li>How do you know when to stop applying the delta rule?</li>
+<li>What happens to your weights if you don't stop?</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org9acebc1" class="outline-3">
+<h3 id="org9acebc1"><span class="section-number-3">3.4.</span> Perceptron and Delta Rule Homework&#xa0;&#xa0;&#xa0;<span class="tag"><span class="homework">homework</span></span></h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+<b>Please Read Carefully</b>
+You are not learning this solution. The purpose of this homework is to make sure you internalize the idea of decision planes and how multi-layer perceptrons can compute complex functions that single layer neural networks cannot. To do this you will have to solve a considerable amount of this homework on paper using your pencil or pen. And only then will you be able to write the program that implements it. You will <b>not</b> be implementing the delta rule here. You will be implementing your hand coded wts to create this mapping. If you want to know why this is significant see some of the background on the neural network winter, perceptrons, Marvin Minsky and linear inseparability (here is a <a href="https://www.skynettoday.com/overviews/neural-net-history">blog</a> that shows some of this history). 
+</p>
+</div>
+<div id="outline-container-orgbc8bcf7" class="outline-4">
+<h4 id="orgbc8bcf7"><span class="section-number-4">3.4.1.</span> Perceptron (Handcoded) Solution to the XOR Problem - Steps</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<ol class="org-ol">
+<li>Provide a table showing the XOR function (inputs and outputs)</li>
+<li>Show how you can compute this function using a two layer network and
+only (all? some?) of the Boolean functions <b>AND</b>, <b>OR</b>, <b>NOTAND</b> aka
+<b>NAND</b>.</li>
+<li>Using your understanding of how weight vectors relate to the
+decision plane hardcode a network in the language of your choice
+that will allow me to input a two valued tuple (e.g. (0,1)) and
+where your network will correctly compute the XOR solution and
+print, and where this will repeat until I chose to quit.</li>
+<li>Note you will need a <i>bias</i>. Thus your network will assume that all
+my end puts have a third input value that is always "1", and the
+weight vectors of your network have three values.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgc02b1b8" class="outline-4">
+<h4 id="orgc02b1b8"><span class="section-number-4">3.4.2.</span> Delta Rule Assignment</h4>
+<div class="outline-text-4" id="text-3-4-2">
+<ol class="org-ol">
+<li>Create two classes of random data</li>
+<li>Draw an x-y plane.</li>
+<li>Draw a line on that plane.</li>
+<li>Put ten points on one-side of the line and ten points on the other.</li>
+<li>Mark one set of points as the +1s and the other as the -1s</li>
+<li>Record the x-y coordinates of each point and their class into your data structure. <sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></li>
+<li>Generate a random set of starting weights with a bias.</li>
+<li>Train a simple one-unit delta rule network to correctly classify all the twenty examples in your data set.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+If you are feeling comfortable with your coding figure out a way to automate the prior steps to create new data sets programmatically.  
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Date: Winter 2022</p>
+<p class="author">Author: Britt Anderson</p>
+<p class="date">Created: 2022-02-14 Mon 11:38</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

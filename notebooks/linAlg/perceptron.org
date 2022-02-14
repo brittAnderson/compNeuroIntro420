@@ -1,0 +1,238 @@
+#+Title: Perceptrons
+#+Author: Britt Anderson
+#+Date: Winter 2022
+#+Options: toc:nil ^:nil d:nil 
+#+bibliography:/home/britt/gitRepos/masterBib/bayatt.bib
+#+csl-style: ../../admin/cambridge-university-press-numeric.csl
+* Introduction
+** Goals
+The goal for this file is to share the idea of a perceptron, the mathematical formula for updating one, and iniate the process of coding a simple implementation that we will adapt to the delta rule.
+* Perceptron History and Implementation
+The perceptron was the invention of a psychologist, not a computer scientist. Though he obviously had a bit of the mathematician in him.
+** Frank Rosenblatt: Psychologist, Inventor of the Perceptron, Father of Neural Networks
+[[http://dspace.library.cornell.edu/bitstream/1813/18965/2/Rosenblatt_Frank_1971.pdf][Frank Rosenblatt Obituary (pdf)]]
+
+[[https://en.wikipedia.org/wiki/File:Mark_I_perceptron.jpeg#/media/File:Mark_I_perceptron.jpeg][Rosenblatt's Perceptron Mark I]]
+
+Mark 1 Perceptron (details to be found on [[https://en.wikipedia.org/wiki/Perceptron][wikipedia]]).
+
+** Some References 
+1. [[https://babel.hathitrust.org/cgi/pt?id=mdp.39015039846566&view=1up&seq=9][Principles of Neurodynamics]] (30mb pdf).
+
+2. This is a book on [[https://link.springer.com/book/10.1007/978-3-642-70911-1][Brain Theory]] that has several historical chapters including one on Rosenblatt.
+
+3. From the preface
+
+   For this writer, the perceptron program is not primarily concerned with
+   the invention of devices for "artificialintelligence", but rather with
+   investigating the physical structures and neurodynamic principles which
+   under lie "natural intelligence". A perceptron is first and fore most a
+   brain model, not an invention for pattern recognition. As a brain model,
+   its utility is in enabling us to determine the physical conditions for
+   the emergence of various psychological properties.
+
+** The Perceptron Rules
+1. $I = \sum_{i=1}^{n} w_i~x_i$
+2. If $I \ge T$ then $y = +1$ else if $I < T$ then $y = -1$.
+3. if answer correct, then $\beta = +1$, else if answer incorrect then
+   $\beta = -1$.
+4. $\mathbf{w_{new}} = \mathbf{w_{old}} + \beta y \mathbf{x}$
+
+** You are the Perceptron :class_exercise:
+   1. Demonstrate your understanding with pencil and paper.
+       This is often the key beginning to programming effectively. First, start with pencil and paper to make sure you understand the algorithm, and that you can effectively implement the steps in an elementary, manual fashion. Then plot the flow of of your implementation. Having done this you will find all the coding goes faster.
+
+   2. Beginning with an input of $\begin{bmatrix}0.3 \\ 0.7 \end{bmatrix}$, an initial set of weights of $\begin{bmatrix}-0.6\\0.8\end{bmatrix}$, and a *class* of 1. Compute the value of the new weight vector with pen and paper.
+
+   3. Do it in code. The same exact calculation. Make sure to write functions so that the step that does the calculation can be re-used with different inputs for the input, weights, and class.
+    
+   4. What is a good data structure (class discussion)?
+      #+Caption: A Lisp Data Structure - not the only one, just a simple one.
+      #+begin_src lisp :results silent
+           (defparameter my-data (list (list '( 0.3   0.7)  1.0)
+      				 (list '(-0.6  0.3)  -1.0)
+      				 (list '( 0.7   0.3)  1.0)
+      				 (list '(-0.2 -0.8)  -1.0)))
+      #+end_src
+      
+      #+Caption: Another version in Python. Again, nothing special. Just a practical choice.
+      #+BEGIN_SRC python :results silent
+        import numpy as np
+        ins = np.array([
+            [np.array([0.3,0.7])   ,  1.0],
+            [np.array([-0.6,0.3])  , -1.0],
+            [np.array([0.7,0.3])   ,  1.0],
+            [np.array([-0.2,-0.8]) , -1.0]])                
+      #+END_SRC
+
+** Coding the Perceptron
+   :python_example:
+#+BEGIN_SRC python
+  def updPercep (i,wt,T=0):
+	ipt = i[0]
+	cls = i[1]
+	y = 1 if (ipt @ wt) >= T else -1
+	Beta = 1 if y == cls else -1
+	return (wt + Beta*y*ipt)
+
+
+  wtest = w
+  for i in ins:
+      print(np.sign(i[0] @ wtest) == i[1]) 
+
+
+  neww = np.array([w])
+  for patt in ins:
+      tempw = updPercep(patt,neww[-1])
+      neww = np.append(neww,np.array([updPercep(patt,neww[-1])]),axis=0)
+
+  print(neww)
+
+#+BEGIN_EXAMPLE
+  [[-0.6  0.8]
+   [-0.3  1.5]
+   [ 0.3  1.2]
+   [ 1.   1.5]
+   [ 1.2  2.3]]
+#+END_EXAMPLE
+
+  origin = [0],[0]
+  p.quiver(*origin, neww[:,0],neww[:,1],scale= 2.3,units='inches')
+  p.show()
+#+END_SRC
+:end:
+1. Create a data structure for your weights and classes.
+2. Create a function to update the weights
+   #+Caption: My Lisp Functions. Do *not* try to copy these. Look for what I am doing functionally and then think how you might implement that in your language of choice. Mapping is a common "functional" programming like operation that you can do in multiple languages. "List comprehensions" are a convenient way to get done much of what I am doing here in python.
+   #+begin_src lisp :results silent
+   (defun compute-activation (current-data current-wts &key (theta 0.0))
+    (if ( > (apply #'+ (mapcar #'* current-data current-wts)) theta) 1.0 -1.0))
+
+   (defun compare-class (computed-class desired-class)
+    (if (equal computed-class desired-class) 1.0 -1.0))
+
+   (defun upd-wt-perceptron (input wts &key (theta 0.0))
+    (let* ((in-activity (car input))
+	   (cls (cadr input))
+	   (y (compute-activation in-activity wts))
+	   (beta (compare-class y cls)))
+      (mapcar #'+ (mapcar #'(lambda (x) (* (* beta y) x)) in-activity) wts)))
+   #+end_src  
+3. Test it. Use the same one you did by hand.
+   #+Caption: Testing As You Develop Keeps Problems and Bugs At A Manageable Size
+   #+begin_src lisp :exports both 
+     (upd-wt-perceptron (elt my-data 0) (list -0.6 0.8))
+   #+end_src
+   #+RESULTS:
+   | -0.3 | 1.5 |
+4. How does the network do with this original input for classifying these four cases?
+   #+begin_src lisp :results silent
+     (defun test-perceptron-classification (indat test-wts)
+       (dolist (in-data-and-class indat)
+         (format t "Right or wrong? ~a~%"  (compare-class (compute-activation (car in-data-and-class) test-wts) (cadr in-data-and-class)))))
+   #+end_src
+   
+   #+begin_src lisp :exports both :results output
+     (test-perceptron-classification my-data (list -0.6 0.8))
+   #+end_src
+   
+   #+RESULTS:
+   : Right or wrong? 1.0
+   : Right or wrong? -1.0
+   : Right or wrong? -1.0
+   : Right or wrong? 1.0
+5. Now train it for each of the four inputs shown above.
+   #+begin_src lisp :results output :exports both
+     (defvar outwt)
+     (defparameter starting-wts (list -0.6 0.8))
+     (setq outwt (let ((curr-wt starting-wts))
+   		(dolist
+   		    (ind my-data curr-wt)
+   		  (setq curr-wt (upd-wt-perceptron ind curr-wt))
+   		  (format t "Current-wts are: ~a~%" curr-wt))))
+   #+end_src
+   
+   #+RESULTS:
+   : Current-wts are: (-0.3 1.5)
+   : Current-wts are: (0.3 1.2)
+   : Current-wts are: (1.0 1.5)
+   : Current-wts are: (1.2 2.3)
+6. How is our network doing now?
+   #+begin_src lisp :results output :exports both
+     (test-perceptron-classification my-data outwt)
+   #+end_src
+   
+   #+RESULTS:
+   : Right or wrong? 1.0
+   : Right or wrong? 1.0
+   : Right or wrong? 1.0
+   : Right or wrong? 1.0
+** Think Geometrically
+
+#+CAPTION: Geometrically, what does the weight vector mean, and what is the significane of the perpendicular to the weight vector?
+#+Attr_Html: :width 700px
+[[file:output_25_0.png]]
+*** Question for Geometrical Thinking :class_discussion:
+1. What is the relation between the inner product of two vectors and the cosine of the angle between them?
+2. What is the *sign* for the cosine of angles less than 90 degrees and those greater than 90 degrees?
+3. How do these facts help us to answer the question above?
+4. Why does this reinforce the advice to think /geometrically/ when thinking about networks and weight vectors?
+**** Python Syntax Aside
+The other day we saw an asterisk in python code. Here is simple demo of what it is doing. The intuition is that it is mathching up a list with the arguments of a function, e.g.:
+   
+#+BEGIN_SRC python :results output :exports both
+  # What is that asterisk origin doing?
+  a = [1, 2, 3]
+
+  def printInput(i1,i2,i3):
+      print(i1)
+      print(i2)
+      print(i3)
+
+  printInput(*a)
+#+END_SRC
+
+#+RESULTS:
+: 1
+: 2
+: 3
+
+
+* Rules are Made to be Broken (or at least updated): The Delta Rule
+** The Delta Rule
+$$\Delta~w_i = x_i~\eta(desired - observed)$$
+** Using the Delta Rule (warm-up)
+Replace the perceptron learning rule with the Delta rule and run a few
+rounds with your own data (can be random or hand crafted). 
+** Thinking About the Delta Rule
+1. How do you know when to stop applying the delta rule?
+2. What happens to your weights if you don't stop?
+** Perceptron and Delta Rule Homework                              :homework:
+*Please Read Carefully*
+You are not learning this solution. The purpose of this homework is to make sure you internalize the idea of decision planes and how multi-layer perceptrons can compute complex functions that single layer neural networks cannot. To do this you will have to solve a considerable amount of this homework on paper using your pencil or pen. And only then will you be able to write the program that implements it. You will *not* be implementing the delta rule here. You will be implementing your hand coded wts to create this mapping. If you want to know why this is significant see some of the background on the neural network winter, perceptrons, Marvin Minsky and linear inseparability (here is a [[https://www.skynettoday.com/overviews/neural-net-history][blog]] that shows some of this history). 
+*** Perceptron (Handcoded) Solution to the XOR Problem - Steps
+1. Provide a table showing the XOR function (inputs and outputs)
+2. Show how you can compute this function using a two layer network and
+   only (all? some?) of the Boolean functions *AND*, *OR*, *NOTAND* aka
+   *NAND*.
+3. Using your understanding of how weight vectors relate to the
+   decision plane hardcode a network in the language of your choice
+   that will allow me to input a two valued tuple (e.g. (0,1)) and
+   where your network will correctly compute the XOR solution and
+   print, and where this will repeat until I chose to quit.
+4. Note you will need a /bias/. Thus your network will assume that all
+   my end puts have a third input value that is always "1", and the
+   weight vectors of your network have three values.
+*** Delta Rule Assignment
+1. Create two classes of random data
+2. Draw an x-y plane.
+3. Draw a line on that plane.
+4. Put ten points on one-side of the line and ten points on the other.
+5. Mark one set of points as the +1s and the other as the -1s
+6. Record the x-y coordinates of each point and their class into your data structure. [fn:1]
+7. Generate a random set of starting weights with a bias.
+8. Train a simple one-unit delta rule network to correctly classify all the twenty examples in your data set.
+
+* Footnotes
+
+[fn:1] If you are feeling comfortable with your coding figure out a way to automate the prior steps to create new data sets programmatically.  
