@@ -203,7 +203,7 @@ More detailed:
        :CUSTOM_ID: imports
        :END:
 
-#+BEGIN_SRC python :session *hop*
+#+BEGIN_SRC python :session *hop* :tangle yes
   import matplotlib
   import matplotlib.pyplot as p
   import random as r
@@ -218,7 +218,7 @@ More detailed:
        :CUSTOM_ID: generate-random-size-and-number-of-patterns
        :END:
 
-#+BEGIN_SRC python :session *hop*
+#+BEGIN_SRC python :session *hop* :tangle yes
   def hopGenSzN ():
       pn = r.randint(4,8)
       psz = np.repeat(r.randint(6,10),2)
@@ -232,7 +232,7 @@ More detailed:
        :CUSTOM_ID: function-to-make-random-patterns
        :END:
 
-#+BEGIN_SRC python :session *hop*
+#+BEGIN_SRC python :session *hop* :tangle yes
   def hopMkPatts(numPs2Make,psize):
       ps = []
       for n in range(numPs2Make):
@@ -248,7 +248,7 @@ More detailed:
        :CUSTOM_ID: function-to-make-weight-matrix-for-a-set-of-generated-patterns
        :END:
 
-#+BEGIN_SRC python :session *hop*
+#+BEGIN_SRC python :session *hop* :tangle yes
   def hopMkWts(patterns):
       w = np.zeros(list(map((lambda x: x**2),patterns[0].shape)))
       for p in patterns:
@@ -260,7 +260,7 @@ More detailed:
 
 #+RESULTS:
 
-#+BEGIN_SRC python :session *hop*
+#+BEGIN_SRC python :session *hop* :tangle yes
   def hopLoop(patt,wts):
       workingpatt = deepcopy(patt)
       testpatt    = deepcopy(patt)
@@ -291,7 +291,7 @@ Pattern Until Output is Stable
        :CUSTOM_ID: a-function-to-visualize-the-output
        :END:
 
-#+BEGIN_SRC python :session *hop*
+#+BEGIN_SRC python :session *hop* :tangle yes
   def hopPlot(ins,outs): 
       r = len(ins)
       c = 3
@@ -314,7 +314,7 @@ Pattern Until Output is Stable
        :CUSTOM_ID: example-of-how-to-use
        :END:
 
-#+BEGIN_SRC python :session *hop*
+#+BEGIN_SRC python :session *hop* :tangle yes
   myn,mysz = hopGenSzN()
   myps = hopMkPatts(myn,mysz)
   w = hopMkWts(myps)
@@ -326,7 +326,7 @@ Pattern Until Output is Stable
 
 #+RESULTS:
 
-#+BEGIN_SRC python :session *hop* :results graphics file :file "hop.png"
+#+BEGIN_SRC python :session *hop* :tangle yes :results graphics file :file "hop.png"
   myp = hopPlot(myps,outps)
 #+END_SRC
 
