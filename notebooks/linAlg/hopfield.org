@@ -203,32 +203,36 @@ More detailed:
        :CUSTOM_ID: imports
        :END:
 
-#+BEGIN_SRC python
-  %matplotlib inline
+#+BEGIN_SRC python :session *hop*
   import matplotlib
   import matplotlib.pyplot as p
   import random as r
   import numpy as np
+  from copy import copy,deepcopy
 #+END_SRC
+
+#+RESULTS:
 
 ****** Generate Random Size and Number of Patterns
        :PROPERTIES:
        :CUSTOM_ID: generate-random-size-and-number-of-patterns
        :END:
 
-#+BEGIN_SRC python
+#+BEGIN_SRC python :session *hop*
   def hopGenSzN ():
-      pn = r.randint(5,10)
-      psz = np.repeat(r.randint(3,6),2)
+      pn = r.randint(4,8)
+      psz = np.repeat(r.randint(6,10),2)
       return((pn,psz))
 #+END_SRC
+
+#+RESULTS:
 
 ****** Function to make random patterns
        :PROPERTIES:
        :CUSTOM_ID: function-to-make-random-patterns
        :END:
 
-#+BEGIN_SRC python
+#+BEGIN_SRC python :session *hop*
   def hopMkPatts(numPs2Make,psize):
       ps = []
       for n in range(numPs2Make):
@@ -237,36 +241,44 @@ More detailed:
       return(ps)
 #+END_SRC
 
+#+RESULTS:
+
 ****** Function to Make Weight Matrix for a set of Generated Patterns
        :PROPERTIES:
        :CUSTOM_ID: function-to-make-weight-matrix-for-a-set-of-generated-patterns
        :END:
 
-#+BEGIN_SRC python
+#+BEGIN_SRC python :session *hop*
   def hopMkWts(patterns):
       w = np.zeros(list(map((lambda x: x**2),patterns[0].shape)))
       for p in patterns:
-          w = (1.0/p.size)*(w + np.outer(p,p))
+          w = w + np.outer(p,p)
+      w = 1.0/len(patterns) * w
       np.fill_diagonal(w,0)
       return(w)
 #+END_SRC
 
-#+BEGIN_SRC python
+#+RESULTS:
+
+#+BEGIN_SRC python :session *hop*
   def hopLoop(patt,wts):
-      inpatt = patt
+      workingpatt = deepcopy(patt)
+      testpatt    = deepcopy(patt)
       while True:
           rws = list(range(patt.shape[0]))
           cls = list(range(patt.shape[1]))
           r.shuffle(rws)
           r.shuffle(cls)
-          testpatt = inpatt
+          linpatt = np.reshape(workingpatt,(1,workingpatt.size))
           for rw in rws:
               for cl in cls:
-                  inpatt[rw][cl] = 1.0 if ((np.reshape(inpatt,(1,inpatt.size))
-                                          @ wts[rw]) * inpatt[rw][cl]) > 0 else -1
-          if (np.all(testpatt == inpatt)): break
-      return(patt)
+                  workingpatt[rw][cl] = 1.0 if np.dot(linpatt,wts[rw*len(rws) + cl]) > 0 else -1.0
+          break
+                        #          if (np.all(testpatt == inpatt)): break
+      return(workingpatt)
 #+END_SRC
+
+#+RESULTS:
 
 ****** Function to Loop Asynchronously Through all the Elements of a
 Pattern Until Output is Stable
@@ -279,7 +291,7 @@ Pattern Until Output is Stable
        :CUSTOM_ID: a-function-to-visualize-the-output
        :END:
 
-#+BEGIN_SRC python
+#+BEGIN_SRC python :session *hop*
   def hopPlot(ins,outs): 
       r = len(ins)
       c = 3
@@ -295,12 +307,14 @@ Pattern Until Output is Stable
       return(p)
 #+END_SRC
 
+#+RESULTS:
+
 ****** Example of How to Use
        :PROPERTIES:
        :CUSTOM_ID: example-of-how-to-use
        :END:
 
-#+BEGIN_SRC python
+#+BEGIN_SRC python :session *hop*
   myn,mysz = hopGenSzN()
   myps = hopMkPatts(myn,mysz)
   w = hopMkWts(myps)
@@ -310,8 +324,12 @@ Pattern Until Output is Stable
       outps.append(op)
 #+END_SRC
 
-#+BEGIN_SRC python
+#+RESULTS:
+
+#+BEGIN_SRC python :session *hop* :results graphics file :file "hop.png"
   myp = hopPlot(myps,outps)
 #+END_SRC
+
+#+RESULTS:
 
 [[file:8a1284b97d78ce1c4330d596fa0ccc6873678a1d.png]]
