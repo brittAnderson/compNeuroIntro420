@@ -14,3 +14,6 @@ zoom-codes.txt
 *.org~
 shortNotesToSelf.org
 to-dos.org
+
+*.dep
+*.zo

@@ -189,8 +189,9 @@ How do we know the formula for acceleration? We were given it \ref{eq:1}.
 @examples[#:eval plot-eval
           (require "spring.rkt")
           (begin
-            (define spring-results (release-spring))
-            (plot (lines (map vector (third spring-results) (fourth spring-results)))))]
+            (define spring-results (release-spring ))
+            (plot (lines (map vector (map fourth spring-results) (map third spring-results)))))]
+
 
                               NB: The code above creates a series of steps that happen one after the other. This is *not* a nested loop, though it will look similar to the nesting of loops you can see in python and R. This is just a common lisp idiosyncrasy. You will again need to use a loop. This time I am using what kind of loop? The ~collect~ statement is a short hand for gathering all my values up and returing them. You will probably need something like a =return= statement or a variable that you use to catch the updated values and append them on to a growning list. 
 
