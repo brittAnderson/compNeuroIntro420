@@ -193,44 +193,11 @@ How do we know the formula for acceleration? We were given it \ref{eq:1}.
             (plot (lines (map vector (map fourth spring-results) (map third spring-results)))))]
 
 
-                              NB: The code above creates a series of steps that happen one after the other. This is *not* a nested loop, though it will look similar to the nesting of loops you can see in python and R. This is just a common lisp idiosyncrasy. You will again need to use a loop. This time I am using what kind of loop? The ~collect~ statement is a short hand for gathering all my values up and returing them. You will probably need something like a =return= statement or a variable that you use to catch the updated values and append them on to a growning list. 
+@subsection{Damped Oscillators}
 
-@; #+Name: putting it together: functions and plotting
-@; #+begin_src lisp :exports both :results replace graphics file :file "./images/spring.png" 
-@;   (defun spring-plot (output)
-@;     (let ((data (mapcar (lambda (a) (cons (fourth a) (third a))) (release-spring 1000)))
-@; 	  (point-type 7)
-@; 	  (point-color "red")
-@; 	  (step-size 1)
-@; 	  (slope 0.4))
-@;       (with-plots (*standard-output* :debug nil)
-@; 	(gp-setup :output output :terminal '(:pngcairo) :title
-@; 	      "Frictionless Spring" :xlabel "Time (sec.)"
-@; 	      :ylabel "Location" :key '(box lt -1 lw 2 opaque))
-@;   	(plot
-@; 	 (lambda ()
-@; 	   (loop for p in data
-@; 		   do (format t "~&~a ~a" (car p) (cdr p))))
-@; 	 :with `(:lines :lc :rgb ,point-color :title "Location")))))
-@;   (spring-plot "./images/spring.png")
-@; #+end_src
+Provide the code for the damped oscillator. It has the formula of
 
-@; **** Do you understand the logic of the code? :class_exercise:
-@; You may see examples of _pseudo-code_ in the future. This is when an algorithm is described as if it were a computer program. You are told the steps that need to happen and the order, but often it is not in any particular language, but just a general sort-of kind-of like code code. It is good to practice reading code like that so that you can more easily translate the procedures and steps into the language you like to use.
+@($$ "\\frac{d^2 s}{dt^2} = -P~s(t) - k~v(t)")
 
-@; The "mapcar" you see is a lisp version of =map=. This is a common /functional programming/ construct that is very powerful and lets you write concise code that achieves loop like behavior in a simpler fashion. Less writing means less chances for bugs in your code, and more concise code makes it easier for people to read and understand your code. See if you can find the =map= equivalent for the language you are programming in and see if you can get it to work here. The usual procedure is to get something working first, and then try to amend it to use the new tool or technique. 
-
-@; #+RESULTS: putting it together: functions and plotting
-@; [[file:./images/spring.png]]
-
-
-
-@; ** Damped Oscillators :homework:
-
-@; Provide the code for the damped oscillator. It has the formula of
-
-@; $$ \frac{d^2 s}{dt^2} = -P~s(t) - k~v(t) $$
-
-@; This should really only require changing one line of your code for the
-@; simple harmonic oscillator.
+This should really only need to change a couple of lines to update the model to be able to handle the damped version as well. You might want to edit @hyperlink["./../spring.rkt"]{spring.rkt}.
 
