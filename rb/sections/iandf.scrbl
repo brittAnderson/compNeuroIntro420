@@ -36,7 +36,7 @@ In this section we take a look at the history and math of the computational mode
 @figure[
   "fig:lapique-lab"
   @elem{The Lapique Lab at the Sorbonne 190something}
-  @elem{@image[#:scale 0.5]{./../images/Lapicque_laboratoire.jpg}}]
+  @elem{@image[#:scale 0.5]{./../images/Lapicque_laboratoire.png}}]
 
 @; haven't figure out how to scale the image. 
 
@@ -50,7 +50,7 @@ In this section we take a look at the history and math of the computational mode
 
 @section[#:tag "sec:iandf"]{The Integrate and Fire Equation}
 @(use-mathjax)
-@($$ "\\tau \\frac{dV(t)}{dt} = -V(t) + R~I(t)")
+@$$["\\tau \\frac{dV(t)}{dt} = -V(t) + R~I(t)"]{\tag{1}}
 
 @seclink["sec:iandf"]
 

@@ -1,6 +1,6 @@
 #lang racket
 
-(provide run-iandf-sim)
+(provide run-iandf-sim update between)
 
 (define dt 0.05)
 (define max-t 10)
