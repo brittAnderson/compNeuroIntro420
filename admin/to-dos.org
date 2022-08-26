@@ -1,8 +1,0 @@
-#+Title: To-Dos
-
-A place for me to save links and reminders for myself.
-
-* Current
-
-
-* Things to do
