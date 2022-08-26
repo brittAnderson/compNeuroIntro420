@@ -18,4 +18,4 @@ to-dos.org
 *.dep
 *.zo
 
-admin/
+/admin
