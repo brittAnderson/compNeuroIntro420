@@ -11,4 +11,4 @@
 @include-section{./sections/preamble.scrbl}
 @include-section{./sections/preliminaries.scrbl}
 @include-section{./sections/cognition.scrbl}
-@; I am here - work on what is computational cognitive science next
+@include-section{./sections/comp-cogn.scrbl}
