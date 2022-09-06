@@ -3,7 +3,7 @@
 (provide
  ~cite citet generate-bibliography
  what-is-cognition
-  )
+ cog-comp-neurosci-is)
 
 (require
   scriblib/autobib)
@@ -30,3 +30,20 @@
    #:date 2019
    #:location (journal-location "Current Biology" #:volume 29)
    #:url "https://doi.org/10.1016/j.cub.2019.05.044"))
+
+
+(define cog-comp-neurosci-is
+  (make-bib
+   #:author (authors "Thomas Naselaris"
+                     "Danielle Bassett"
+                     "Alyson Fletcher"
+                     "Konrad Kording"
+                     "Nikolaus Kriegeskorte"
+                     "Hendrikje Nienborg"
+                     "Russell A Poldrak"
+                     "Daphna Shohamy"
+                     "Kendrick Kay")
+   #:title "Cognitive Computational Neuroscience: A New Conference for an Emerging Discipline"
+   #:location (journal-location "Trends in Cognitive Sciences" #:volume 22 #:pages '(365 367))
+   #:date 2018
+   #:url "https://dx.doi.org/10.1016/j.tics.2018.02.008"))
