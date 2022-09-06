@@ -23,7 +23,7 @@ For this course we will be writing our code in @hyperlink["https://racket-lang.o
 @figure[
   "fig:drracket"
   @elem{The Dr Racket IDE with a @tt{#lang} line and some simple code}
-  @elem{@image[#:scale 0.5]{./images/drrack.png}}]
+  @elem{@image[#:scale 0.25]{./images/drrack.svg}}]
 
 @bold{Submit} your screen shot of your Dr Racket IDE with your name to the appropriate Dropbox on Learn.
 
