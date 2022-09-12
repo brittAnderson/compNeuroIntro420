@@ -1,5 +1,6 @@
 #lang racket
 
+(provide (all-defined-out))
 
 ;;use racket's structure for creating a simple data
 ;;structure to hold the basics of a simple TM
