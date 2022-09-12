@@ -28,98 +28,78 @@
 
 @title{Is Cognition Computational?}
 
-@margin-note{What does it mean to say that cognition is computational? What implications does the answer have for modeling cognition?}
+@section{Motivating questions:}
+@itemlist[#:style 'ordered
+          @item{Is there anything a human can think that a computer cannot compute?}
+          @item{What does it mean for a function to be "computable"?}
+          @item{What does it mean to say that cognition is computational?}
+          @item{What implications does the answer have for modeling cognition?}]
 
+@section{Introduction}
 Is there a difference between computational cognitive neuroscience and cognitive computational neuroscience? The former seems to suggest that we are interested in explaining cognition directly from the actions of neurons and then using computational tools as adjuncts to aid this attempt. On the other hand, when you reverse the order it seems as if you are trying to explain thinking via the computational accounts of neuronal function. The latter seems to require a clear link between notions of computation and models of thinking. To use Marr's three levels as a scaffold, we are taking neurons as our implementation, positing algorithms for them, and assuming that computational principles populate the level of our cognitive abstractions. Measures of success depend on the meanings of terms. @margin-note{What do people who call themselves @hyperlink["https://2022.ccneuro.org/program.php"]{Cognitive Computational Neuroscientists} study?@~cite[cog-comp-neurosci-is]}
 
+In all of this is the basic idea that if you want to understand @emph{mind} you need to develop a @emph{theory} (and understand what that word means), express your theory clearly for which the best language is @emph{math}, and then explore the implications of your construction via simulation, which requires the writing of @emph{code}. Mind → Theory → Math  → Code. Let's explore a little more what is implied by this pathway. What it means to use computing as a model for mind.
 
-IAMHERE -- translating from old org and lisp files to scribble...
+@section{Computing in Minds and Computers}
 
-  We want to make practical progress in deepening our understanding of cognition. I have advanced the claim that to do that we must better understand [[file:first-day.org][what we mean by "mind"]], [[file:theory-day.org][what it is we should expect from a theory]], and what it means to stack our theory on some version of the [[file:mind.org][computational mind]]. I have suggested that the succes of that effort hinges on our developing a greater familiarity with some mathematics and more practice in translating ideas via math into code. So far, we have not done the latter steps. Today marks our first steps in this formal direction by considering computation in more detail and from mathematical and programming language perspectives. 
+One definition of whether something is computable is whether there exists a Turing Machine that computes it. That Turing machine must halt, and since one cannot decide in advance for all machines whether they will halt whether something is computable is, in general, undecidable.
 
-* Computing in Minds and Computers
-:answers:
-One definition of computable is that there is a Turing Machine that computes it and halts. The problem is that one cannot decide in advance whether the description of a Turing Machine describes a machine that halts. 
-:END:
+Although most of us learned of Turing machines in the context of whether a computer has human intelligence, the so-called @emph{Turing test}, the model of Turing computability emerged from thinking about humans computing @~cite[turing-machine]. @margin-note*{A nice short version of this history can be found in this @hyperlink["https://link.springer.com/content/pdf/10.1007/978-3-642-31933-4.pdf"]{pdf}.} 
 
+@subsection{Classical Computational Theory of Mind}
 
-Motivating questions:
-  1. Is there anything a human can think that a computer cannot compute?
-  2. What does it mean for a function to be "computable"?
+The classical computational theory of mind says that in all important ways the mind is like a Turing machine. If we want to  model (or emulate) functions of mind one way would be to build a Turing machine. However this can be a practical challenge, and one can question the insight gained from this approach. Still given the theoretical and practical prominence given to Turing computatbility it behooves us to know what a Turing machine truly is.
 
-Questions to keep in mind for this section
+@subsubsection{What is a Turing machine? Some Background and Details}
+@hyperlink["http://www.turingarchive.org/browse.php/B/12"]{Turing machines} are quite simple implements. While one can build a physical Turning machine, the more usual sense of the term is for a hypothetical computer that is comprised of
+@itemlist[@item{a finite alphabet,}
+               @item{a finite set of states,}
+               @item{the capacity to read and write to a single location in memory, and the ability to adjust to the memory location immediately left or right or to make no move at all, and}
+               @item{a set of instructions (or "machine table") that translates the combination of the current state and the current symbol to a new state and one of the acceptable actions.}]
 
-  1. What are some more detailed metaphors of the computational mind account?
-  2. How do they make contact with mathematical formalisms for computation.
-  3. What are alternative non-computational accounts of mind
-  4. What are some challenging questions for computational theories of mind?
+Other models of computation are the @emph{lambda calculus}  and the @emph{theory of recursive functions}. Those alternative accounts of computability are interesting, and may offer more insight or be more practical in some situations, but it appears to be the case that they are equivalent. Anything designated "computable" by one these formal accounts is computable by the others as well. Does this mean that if you accept the computational mind hypothesis you must accept that the mind is able to be simulated by a Turing Machine? As a consequence does this mean that minds are @emph{@hyperlink["https://plato.stanford.edu/entries/multiple-realizability"]{multiply realizable}}?
 
+@margin-note{@itemlist[@item{Are Turing machines @emph{digital}?}
+                            @item{Is this an important distinction?}
+                            @item{Does this mean that analog computations are omitted?}
+                            @item{Would an analog paradigm be a better match to modeling mental activity?}]}
 
-** Classical Computational Theory of Mind
+@section{Programming a Turing Machine: the Busy Beaver}
 
-The mind in all important ways is like a Turing machine. The things we want to model (or emulate) are very much like the things a Turing machine does.
+The following is a slightly formatted version of the Wikipedia description of a Turing machine.
 
-*** What is a Turing machine? Some Background and Details
-[[http://www.turingarchive.org/browse.php/B/12][Turing machines]] are quite simple implements. While one can build a physical Turning machine, the more usual sense of the term is for a hypothetical computer that is comprised of
-     - a finite alphabet
-     - a finite set of states
-     - the capacity to read and write to a single location in memory, and the ability to adjust to the memory location immediately left or right or to make no move at all, and
-     - a set of instructions (or "machine table") that translates the combination of the current state and the current symbol to a new state and one of the acceptable actions.
+@itemlist[#:style 'ordered
+          @item{A Turing machine has n "operational" states plus a Halt state, where n is a positive integer, and one of the n states is distinguished as the starting state.}
+          @item{The machine uses a single two-way infinite (or unbounded) tape.}
+          @item{The tape alphabet is {0, 1}, with 0 serving as the blank symbol.}
+          @item{The machine's transition function takes two inputs:
+                    @itemlist[@item{the current non-Halt state,}
+                                   @item{the symbol in the current tape cell,}]}
+          @item{and produces three outputs:
+                    @itemlist[@item{a symbol to write over the symbol in the current tape cell (it may be the same symbol as the symbol overwritten),}
+                                   @item{a direction to move (left or right@";" that is, shift to the tape cell one place to the left or right of the current cell), and}
+                                   @item{a state to transition into (which may be the Halt state).}]}]
 
-Other models of computation are the /lambda calculus/  and the /theory of recursive functions/. We will come to those shortly. It is an interesting fact that anything that can be computed by any one of those three can be computed by the other two. It is an accepted, but unproven, conjecture that therefore anything that is effectively computable is computable by a Turing machine. Doesn't this mean that if you accept the computational mind hypothesis you must accept that the mind is able to be simulated by a Turing Machine? And as a consequence that minds are /multiply realizable/?
+We will use it to guide us to write a simple instance that computes a solution to the Busy Beaver problem. A n-state Turing machine has @($ "(4n + 4)2n") states. The formula is (symbols × directions × (states + 1))(symbols × states). The transition function (how to figure how where to go next may be seen as a finite look-up table. Each row of the table is a 5-tuple: (current state, current symbol, symbol to write, direction of shift, next state). Our goal with the Busy Beaver problem is to run our machine to produce as long a series of uninterrupted ones as we can @emph{and} @bold{halt}.
 
-**** Is that above what you mean when you say you believe in the computational theory of mind? :class_discussion:
+What it means to "run" a Turing machine is to start in the starting state with the current tape cell being any cell of a blank (all-0) "tape", and then iterate the transition function. If the Halt state is entered then the number of 1s remaining on the tape is called the machine's score. Different transition rules will give us different outputs, so we can score our machine based on its performance. 
 
-**** Are Turing machines /digital/?                        :class_discussion:
-Is this an important distinction? Does this mean that analog computations are omitted? Would an analog paradigm be a better match to modeling mental activity?
+To restate in a more general way, the n-state busy beaver (BB-n) game is a contest to find an n-state Turing machine having the largest possible score — the largest number of 1s on its tape after halting. A machine that attains the largest possible score among all n-state Turing machines is called an n-state busy beaver, and a machine whose score is merely the highest so far attained (perhaps not the largest possible) is called a champion n-state machine (This ends the lightly edited Wikipedia quote).
 
-*** Programming a Turing Machine: the Busy Beaver :class_exercise:
+@subsection{Why Use the Busy Beaver Problem As an Example?}
 
-/We may or may not have time to do this in class. If we feel that would be too much pressure we can schedule our review of code and our discussion of the various programming language pros and cons to the next session. We can have a shorter class to free time up to work on this in groups./
+ADD DISCUSSION OF BUSY BEAVER and computability
 
-Use your programming language to write a Busy Beaver Turing Machine. If you have already done this in the past please refrain from helping your team too much, and if you don't know what it is, don't do an internet search for the time-being.
+@subsection{A Busy Beaver Warm-Up}
 
-   The following is the Wikipedia description:
-   #+begin_quote
+A simple version of the Busy Beaver problem, and one you can do by hand with pencil and paper, is the n=2 version. Create a Turing Machine with the following transition rules:
 
-   The machine has n "operational" states plus a Halt state, where n is a positive integer, and one of the n states is distinguished as the starting state. (Typically, the states are labelled by 1, 2, ..., n, with state 1 as the starting state, or by A, B, C, ..., with state A as the starting state.)
-The machine uses a single two-way infinite (or unbounded) tape.
-The tape alphabet is {0, 1}, with 0 serving as the blank symbol.
-The machine's transition function takes two inputs:
+@itemlist[@item{a0 → b1r}
+               @item{a1  → b1l}
+               @item{b0  → a1l}
+               @item{b1  → h1r}]
 
-    the current non-Halt state,
-    the symbol in the current tape cell,
-
-and produces three outputs:
-
-    a symbol to write over the symbol in the current tape cell (it may be the same symbol as the symbol overwritten),
-    a direction to move (left or right; that is, shift to the tape cell one place to the left or right of the current cell), and
-    a state to transition into (which may be the Halt state).
-
-   There are thus (4n + 4)2n n-state Turing machines meeting this definition because the general form of the formula is (symbols × directions × (states + 1))(symbols × states).
-The transition function may be seen as a finite table of 5-tuples, each of the form
-    (current state, current symbol, symbol to write, direction of shift, next state).
-
-    "Running" the machine consists of starting in the starting state, with the current tape cell being any cell of a blank (all-0) tape, and then iterating the transition function until the Halt state is entered (if ever). If, and only if, the machine eventually halts, then the number of 1s finally remaining on the tape is called the machine's score.
-
-The n-state busy beaver (BB-n) game is a contest to find such an n-state Turing machine having the largest possible score — the largest number of 1s on its tape after halting. A machine that attains the largest possible score among all n-state Turing machines is called an n-state busy beaver, and a machine whose score is merely the highest so far attained (perhaps not the largest possible) is called a champion n-state machine.
-   #+end_quote
-
-
-**** Exercises
-
-_Busy Beaver Warm-up_
-
-Here are the rules for n=2. Create this Turing Machine using your group's programming language.
-
-a0 -> b1r
-
-a1 -> b1l
-
-b0 -> a1l
-
-b1 -> h1r
-
+IAMHERE -- need to port this code from LISP  → racket
 
 ***** My Code (see "[[https://en.wikipedia.org/wiki/Eating_your_own_dog_food][dogfooding]]")
 #+Caption: Importing Necessary Library "Trivia"
