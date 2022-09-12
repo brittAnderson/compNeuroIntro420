@@ -3,7 +3,8 @@
 (provide
  ~cite citet generate-bibliography
  what-is-cognition
- cog-comp-neurosci-is)
+ cog-comp-neurosci-is
+ turing-machine)
 
 (require
   scriblib/autobib)
@@ -47,3 +48,10 @@
    #:location (journal-location "Trends in Cognitive Sciences" #:volume 22 #:pages '(365 367))
    #:date 2018
    #:url "https://dx.doi.org/10.1016/j.tics.2018.02.008"))
+
+(define turing-machine
+  (make-bib
+   #:author "A. M. Turing"
+   #:title "On computable numbers with an application to the Entscheidungsproblem"
+   #:location (journal-location "Proc. London Math. Soc." #:volume 42 #:pages '(230 265))
+   #:date 1936))
