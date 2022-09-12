@@ -88,7 +88,9 @@ To restate in a more general way, the n-state busy beaver (BB-n) game is a conte
 
 @subsection{Why Use the Busy Beaver Problem As an Example?}
 
-ADD DISCUSSION OF BUSY BEAVER and computability
+The Busy Beaver Problem is non-computable
+
+The busy beaver problem is to compute the maximum number of 1's that a Turing machine can write before halting with the number of states equal to n. This @hyperlink["https://jeremykun.com/2012/02/08/busy-beavers-and-the-quest-for-big-numbers/"]{webpage} includes the proof of the non-computability of the busy beaver problem. It uses contradiction, and like most proof relying on contradiction I find it head warping, but there it is. 
 
 @subsection{A Busy Beaver Warm-Up}
 
@@ -99,167 +101,116 @@ A simple version of the Busy Beaver problem, and one you can do by hand with pen
                @item{b0  → a1l}
                @item{b1  → h1r}]
 
-IAMHERE -- need to port this code from LISP  → racket
+@section{Busy Beaver Problem Demo Code}
 
-wrote code in racket. Just need to import and typeset.
-
-
-***** My Code (see "[[https://en.wikipedia.org/wiki/Eating_your_own_dog_food][dogfooding]]")
-#+Caption: Importing Necessary Library "Trivia"
-#+begin_src lisp :results silent :exports code
-(ql:quickload "trivia")
-#+end_src
-
-#+Caption: Creating a Structure to hold the features of a Turing machine
-#+begin_src lisp :results silent :exports code
-  (defstruct turing-machine state tape head-location)  
-#+end_src
-
-My idea was to see if making the code explicitly reflect the written description would be easy in lisp and whether that would help me write the code to implement it since I might be more easily able to follow the textual description directly.
+@examples[#:no-prompt #:label "Making a Structure for Our Turing Machine" (struct turing-machine (state tape head-location) #:transparent #:mutable)]
 
 
-#+Caption: Moving the tape under the head
-#+begin_src lisp :exports code :results silent
-  (defun move-left (tm)
-    (let ((loc (turing-machine-head-location tm))
-	  (lst (turing-machine-tape tm)))
+@examples[#:no-prompt #:label "Moving our TM Along the Tape" (define (move-left temp-tm )
+   (let ([loc (turing-machine-head-location temp-tm)]
+         [lst (turing-machine-tape temp-tm)])
       (if (= loc 0)
-	  (setf (turing-machine-tape tm) (cons 0 lst))
-	  (setf (turing-machine-head-location tm) (- loc 1)))))
-  (defun move-right (tm)
-    (let ((loc (turing-machine-head-location tm))
-	  (lst (turing-machine-tape tm)))
-      (when (= (+ loc 1) (length lst))
-	(setf (turing-machine-tape tm) (append lst (list 0))))
-      (setf (turing-machine-head-location tm) (+ loc 1))))
-  
-  (defun move (tm dir)
-    (cond 
-      ((eq dir 'left)
-       (move-left tm))
-      ((eq dir 'right)
-       (move-right tm))))
-#+end_src
+	  (set-turing-machine-tape! temp-tm (cons 0 lst))
+	  (set-turing-machine-head-location! temp-tm (- loc 1)))))
 
-Used separate functions for moving tape right or left, and then a generic ~move~ function that simply picks which one to call. Trying to encapsulate my logic in small functions. 
+(define (move-right temp-tm )
+   (let ([loc (turing-machine-head-location temp-tm)]
+         [lst (turing-machine-tape temp-tm)])
+     (when (= (+ loc 1) (length lst))
+       (set-turing-machine-tape! temp-tm (append lst (list 0))))
+     (set-turing-machine-head-location! temp-tm (+ loc 1))))
 
-#+Caption: Testing Equality of Turing Machines
-#+begin_src lisp :results silent :exports code
-  (defun equal-sv (tm s v)
-    (and (eql (turing-machine-state tm) s)
-	 (= (elt (turing-machine-tape tm) (turing-machine-head-location tm)) v)))
-#+end_src
+(define (move tm dir)
+  (cond
+    [(equal? dir 'left) (move-left tm)]
+    [(equal? dir 'right) (move-right tm)]
+    [else (error "illegal direction")]))]
 
-I had to define a function for comparing states and values. Some computing languages have a way to overload functions or to invoke particular methods based on the type of values being compared. That might have made the expression of this comparison more natural than what I had to do here. Lisp has a notion of types and generics, but I am not currently advanced enough to program those quickly so I did it this way first, with the idea that I can refine this later on if it is deemed worth the time and effort. 
+@examples[#:no-prompt #:label "Helper Functions"
+(define (tm-equal-state-value tm state value)
+  (and (equal? (turing-machine-state tm) state)
+       (= (list-ref (turing-machine-tape tm) (turing-machine-head-location tm)) value)))
 
-#+Caption: Defining the Rules
-#+begin_src lisp :results silent :exports code
-  (defun rule (tm) ;;state value
+(define (upd-tape-location tm value)
+  (set-turing-machine-tape! tm (list-set (turing-machine-tape tm) (turing-machine-head-location tm) value)))
+
+(define (pretty-print-tm tm)
+  (display (format "state:~a, tape: ~a, head: ~a\n" (turing-machine-state tm) (turing-machine-tape tm) (turing-machine-head-location tm))))]
+
+
+@examples[#:no-prompt #:label "Rules are the Critical Part of This Machine" (define (rule tm) ;;state value
     (cond
-      ((equal-sv tm 'a 0)
-       (setf (turing-machine-state tm) 'b)
-       (setf (elt (turing-machine-tape tm) (turing-machine-head-location tm)) 1)
+      ((tm-equal-state-value tm 'a 0)
+       (set-turing-machine-state! tm 'b)
+       (upd-tape-location tm 1)
        (move tm 'right))
-      ((equal-sv tm 'a 1)
-       (setf (turing-machine-state tm) 'b)
-       (setf (elt (turing-machine-tape tm) (turing-machine-head-location tm)) 1)
+      ((tm-equal-state-value tm 'a 1)
+       (set-turing-machine-state! tm 'b)
+       (upd-tape-location tm 1)
        (move tm 'left))
-      ((equal-sv tm 'b 0)
-       (setf (turing-machine-state tm) 'a)
-       (setf (elt (turing-machine-tape tm) (turing-machine-head-location tm)) 1)
+      ((tm-equal-state-value tm 'b 0)
+       (set-turing-machine-state! tm 'a)
+       (upd-tape-location tm 1)
        (move tm 'left))
-      ((equal-sv tm 'b 1)
-       (setf (turing-machine-state tm) 'h)
-       (setf (elt (turing-machine-tape tm) (turing-machine-head-location tm)) 1)
-       (move tm 'right))))
-#+end_src
+      ((tm-equal-state-value tm 'b 1)
+       (set-turing-machine-state! tm 'h)
+       (upd-tape-location tm 1)
+       (move tm 'right))))]
 
-Each Turing machine is a /particular/ choice of rules (and some other things). This function ~rule~ is named a bit generically for what it is, which is a specific choice of algorithm. It compares the current state of the machine and value on the tape to each of the rules and then implements the update based on which rule matches. This way of writing the rules would not scale very well, but the similar structure of all the cases suggests that this could be made more concise, but at the expense of obscuring what is happening.
-
-#+Caption: Running our Turing machine
-#+begin_src lisp :results silent :exports both
-  (defparameter *initial-state* (make-turing-machine :state 'a :tape (list 0) :head-location 0))
-  (defun pp-tm (tm)
-    (format t "~&state:~a, tape: ~a, head: ~a" (turing-machine-state tm) (turing-machine-tape tm) (turing-machine-head-location tm)))
-  
-  (defun bb (tm)
-   (progn
-     (pp-tm tm)
-     (do ()
-      ((eql (turing-machine-state tm) 'h))
-       (rule tm)
-       (pp-tm tm))))
-    #+end_src
-
-We declare an initial state. All Turing machines start in a state. The ~pp-tm~ function is a minimal /pretty printer/. Pretty printers are functions that take a complicated structure and render it in a human readable form that makes it easier for the human user to see what is going on or get essential information displayed.
-
-The ~do~ clause of the program is essentially a loop. It has a termination condition that it checks for (which is when the machine is in the halting state). Unless that is met it just keeps following its rules, updating states, and letting us see the results via its pretty printer. 
-    
-#+begin_src lisp :exports code :results output
-  (bb *initial-state*)
-#+end_src
-
-#+RESULTS:
-: state:A, tape: (0), head: 0
-: state:B, tape: (1 0), head: 1
-: state:A, tape: (1 1), head: 0
-: state:B, tape: (0 1 1), head: 0
-: state:A, tape: (0 1 1 1), head: 0
-: state:B, tape: (1 1 1 1), head: 1
-: state:H, tape: (1 1 1 1), head: 2
-
-*A run of my Turing Machine*
-#+begin_example
-state:A, tape: (0), head: 0
-state:B, tape: (1 0), head: 1
-state:A, tape: (1 1), head: 0
-state:B, tape: (0 1 1), head: 0
-state:A, tape: (0 1 1 1), head: 0
-state:B, tape: (1 1 1 1), head: 1
-state:H, tape: (1 1 1 1), head: 2
-#+end_example
+@examples[#:no-prompt #:label "A Run Through the N=2 Busy Beaver Problem" (define (busy-beaver-2-do tm)
+  (pretty-print-tm tm)
+  (do ([i 0 (+ i 1)])
+    ((equal? (turing-machine-state tm) 'h)
+     (display (format "Loops equaled ~a\n" i)))
+    (rule tm)
+    (pretty-print-tm tm))
+  tm)]
 
 
-_Busy Beaver Competition_
+@examples[#:no-prompt
+          #:label "test"
+          (begin
+            (require "./code/tm.rkt")
+            (define initial-turing-machine (turing-machine 'a (list 0) 0))
+            (define working-tm (struct-copy turing-machine initial-turing-machine))
+            (busy-beaver-2-do initial-turing-machine))]
 
+CREATE HW
 Try to come up with a version or rules for n=5 and we will run your programs against each other in class. The current chanmpion produces 4098 ones over about 50 million steps. Don't try and break the record. We are learning about Turing machines and how to write code the implements mathematical and theoretical ideas for the elucidation of cognition. Spending too much time perfecting your Busy Beaver implementation misses the point.  
 
+@section{Resources}
 
-***** A tutorial article with examples and a nice visualization
-If you are having a little trouble getting started then this [[https://catonmat.net/busy-beaver][article]] might help.
-**** Why the [[https://en.wikipedia.org/wiki/Busy_beaver][Busy Beaver]]?
-     Because the solution to this problem is [[#sec:noncomputable][*uncomputable*]]. What does it mean that we are solving this with our computers and our own reasoning, but that the problem itself is impossible to solve? Does that present any hurdle at all for using the Turing Machine as a model of mind?
+A tutorial article with examples and a nice visualization If you are
+having a little trouble getting started then this
+@hyperlink["https://catonmat.net/busy-beaver"]{article} might help.
 
-One objection to the computer metaphor of the brain is that it is obviously wrong. Computers are programmable and the mind/brain is not. Of course, that is not what the proponents of a computational theory of mind mean, so it is perhaps best to avoide the mind as computer metaphor, and stick with the more clumsy name.
+Why the @hyperlink["https://en.wikipedia.org/wiki/Busy_beaver"]{Busy Beaver}?
+Because the solution to this problem is noncomputable. @margin-note*{What does it mean that we are
+solving this with our computers and our own reasoning, but that the
+problem itself is not computable? Does that present any hurdle at
+all for using the Turing Machine as a model of mind?}
 
-/What are the implications of the mind as Turing machine for implementation?/ Doesn't this mean that if the mind is a Turing machine (not /like/ a Turing machine, but actually a Turing machine - and if you hold that the mind is a computational machine then given that all that can be effectively computed is computable by a suitably specificed Turing machine; that is what logic requires you accept) then any functionally equivalent computational system, regardless of its hardware (i.e. it could be vacumn tubes or the population of China) would be a mind.
+If you accept that the mind is a computational machine, and that for all computable problems an equivalent Turing machine exits, does that require you accept that any functionally equivalent computational system, regardless of its hardware (i.e. it could be vacumn tubes or the population of China) would be a mind?
 
-** Functionalism [[cite:&levin21_funct]]
-You don't need to think about mental states in terms of what they are as "things". Think about them in terms of what they "do". You might compare this ideas of subjects and verbs or to objects and arrows in a [[file:category-day.org][category]]. Mental states serve a functional role in a cognitive system. They relate to the sensory input, motor output and to /each other./
+@subsection{Functionalism}
 
-There is an appearl to the mathematical notion of a function, but the term function here is more inspired by the idea of asking what the function of something is? What is the function of raising interest rates? Raising interest rates leads to less borrowing and less spending. Having the mental state of X leads to Y is a functionalist account.
+You don't need to think about mental states in terms of what they are as "things". You might think about them in terms of what they "do".  Mental states serve a functional role in a cognitive system. The important thing is how they relate to the sensory input, motor output and to /each other./
 
-There is more than one kind of functionalism. The one closest to our Turing machine is probably /machine state/ functionalism. 
+There variety of  functionalism closest to our Turing machine is probably @emph{machine state functionalism}. 
 
-** And there are others
-I could greatly expand here, but I risk making this a philosophy course instead of an emphasis on mathematical tools and their programmatic translation. I will pause for now.
+@section{Is the Computational Account of Mind Trivial?}
+@itemlist[#:style 'ordered @item{Any sufficiently complex physical system (such as the molecules comprising the wall behind me or the brain) can be shown to be @emph{isomorphic} to the formal structure of @emph{any} program. If you view the mind as a program than you might as well say that you and the wall behind you share the same thoughts.}
+          @item{There is no room for the time scale to matter and there is an intuition that it should. We could implement a Turing machine with water wheels, levers & pulleys, vacumn tubes, or transistors. The speed with which the resulting machine computes will be very different, but they will all perform the same computation. Do we think that a model of mind that is blind to time scale can possibly be right?}
+          @item{Discrete or continuous. Turing machines are *discrete*, *finite* state machines. Time and thought operate in continuous time (don't they)?. Are discrete models that move forward in time in discontinuous steps capable of modeling us who live in and think in the world of continuous time?}
+          @item{Computations might model something without explaining it. Weather simulators predict rain, but they don't themselves actually rain. Flight simulators do not fly. Even if a computer program simulated a mind it does not mean it would be thinking. Does the simulations, explanation or demonstration distinction bother you?}]
 
-** A couple of troubling questions for the computational account of mind
-
-1. It is a trivial account. Any sufficiently complex physical system (such as the molecules comprising the wall behind me or the brain) can be shown to be /isomorphic/ to the formal structure of /any/ program. If you view the mind as a program than you might as well say that you and the wall behind you share the same thoughts. 
-
-2. There is no room for the time scale to matter and there is an intuition that it should. We could implement a Turing machine with water wheels, levers & pulleys, vacumn tubes, or transistors. The speed with which the resulting machine computes will be very different, but they will all perform the same computation. Do we think that a model of mind that is blind to time scale can possibly be right?
-   
-3. Discrete or continuous. Turing machines are *discrete*, *finite* state machines. Time and thought operate in continuous time (don't they)?. Are discrete models that move forward in time in discontinuous steps capable of modeling us who live in and think in the world of continuous time?
-
-4. Computations might model something without explaining it. Weather simulators predict rain, but they don't themselves actually rain. Flight simulators do not fly. Even if a computer program simulated a mind it does not mean it would be thinking. Does the simulations, explanation or demonstration distinction bother you?
-
-** Some Non-computational theories of mind
-*** Logical Behaviorism
+@section{What Would a Non-computational Theory of Mind Be?}
+          
+@subsection{Logical Behaviorism}
     Mental states are predispositions to behave. There is no internal state corresponding to belief that is mental. Belief is only a predisposition to behave in a certain way in a certain context.  We characterize people by what they are likely to do without ascribing to them associated mental states. The person who first developed this idea, Gilbert Ryle, asserts that being a mentalist is incompatible with being a realist (that is it makes you a dualist). Logical behaviorism  does not seem to be much in vogue now, but it is another take on the important issues [[cite:&schuette_behav_logic]].
 
-*** Type-Identity Theory
-Mental states are just brain states.
+@subsection{Type-Identity Theory}
+Mental states just @emph{are} brain states.
 
 Since our brains are different from time to time (synaptic weights change; cells die (and a few born)) does that mean we never have the same mental state twice?
 
@@ -269,15 +220,12 @@ If you feel this is true, but that the differences are trivial, how do you decid
 
 If you program a computational neuroscience model what are you modeling since each mental state is going to be distinct of each brain state?
 
-Does this bind you to a particular take on the question of /multiple realizability/? 
+Does this bind you to a particular take on the question of multiple realizability? 
 
 
-* Alternatives to the Turing Machine
+@section{Alternatives to the Turing Machine Model of Computation}
 
-** Models of Computation
-
-
-** Lambda Calculus
+@subsection{Lambda Calculus}
 The lambda calculus was developed as a theory of functions, but it has turned into a favorite tool of functional programmers and theoretical computer scientists to describe their languges, and even as a basis for developing their programming languages. John McCarthy invented Lisp as a theoretical exercise for working on the theory of computable functions. He felt the Turing machine to be too mechanical and too awkward for this work, and wanted a better tool, a better metaphor. He adopted the lambda of the lambda calculus and the ~eval~ function to take in lisp programs and execute them. Late one of his [[https://en.wikipedia.org/wiki/Steve_Russell_(computer_scientist)][collaborators]] observed that it was relatively straightforward to implement this as a real programming language. A bit more of the history is [[https://lwn.net/Articles/778550/][here]]. But in order to try and learn a bit of the lambda calculus I will make reference to a concise summary [[cite:see Chap 2 in &michaelson89_lambd]] and then give us some exercises we can play with.
 
 The untyped lambda calculus was followed by the typed lambda calculus, which is directly related to programming language theory for all the contemporary statically typed languages such as Haskell and OCAML.
@@ -358,37 +306,12 @@ The idea here is to figure out a good, concise, tractable practical project we c
 Maybe this exercise on conditionals would be good? Use the lambdas to compute some simple truth tables?
 https://www.diderot.one/courses/56/books/275/chapter/3210
 
-#+begin_src lisp
-  (defparameter myt (lambda (x) (lambda (y) x)))
-  (defparameter myf (lambda (x) (lambda (y) y)))
-  
-  (defun mytfun (x1 y1) ((lambda (x) (lambda (y) x) x1) y1))
-  (defun myffun (x1 y1) ((lambda (x) (lambda (y) x) y1) x1))
-  
-  (and (mytfun 1 0) (myffun 1 0))
-  (or  (mytfun 1 0) (myffun 1 0))
-  
-  ; write xor with these primitive functions?
-#+end_src   
-
-#+RESULTS:
-: 1
-
-
-
-   
-** Recursive Function Theory (Kleene)
-Something for another day. 
-
 
 ** Non-computable
 :PROPERTIES:
 :CUSTOM_ID: sec:noncomputable
 :END:
  
-*** The Busy Beaver Problem is non-computable
-    The busy beaver problem is to compute the maximum number of 1's that a Turing machine can write before halting with the number of states equal to n. This [[https://jeremykun.com/2012/02/08/busy-beavers-and-the-quest-for-big-numbers/][webpage]] includes the proof of the non-computability of the busy beaver problem. It uses contradiction, and like most proof relying on contradiction I find it head warping, but there it is. 
-
 * Companion and Optional Readings
   1. /An Introduction to Functional Programming Through the Lambda Calculus/ [[cite:&michaelson89_lambd]]
   2. /Functionalism/ in SEP [[cite:&levin21_funct]]
