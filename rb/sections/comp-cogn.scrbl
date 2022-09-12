@@ -101,6 +101,9 @@ A simple version of the Busy Beaver problem, and one you can do by hand with pen
 
 IAMHERE -- need to port this code from LISP  → racket
 
+wrote code in racket. Just need to import and typeset.
+
+
 ***** My Code (see "[[https://en.wikipedia.org/wiki/Eating_your_own_dog_food][dogfooding]]")
 #+Caption: Importing Necessary Library "Trivia"
 #+begin_src lisp :results silent :exports code
