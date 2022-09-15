@@ -175,10 +175,11 @@ A simple version of the Busy Beaver problem, and one you can do by hand with pen
             (define working-tm (struct-copy turing-machine initial-turing-machine))
             (busy-beaver-2-do initial-turing-machine))]
 
-CREATE HW
-Try to come up with a version or rules for n=5 and we will run your programs against each other in class. The current chanmpion produces 4098 ones over about 50 million steps. Don't try and break the record. We are learning about Turing machines and how to write code the implements mathematical and theoretical ideas for the elucidation of cognition. Spending too much time perfecting your Busy Beaver implementation misses the point.  
+@subsection{Busy Beaver Homework}
 
-@section{Resources}
+Come up with a version or rules for n=4. We will run your programs against each other in class (hopefully). Don't try and break any records, but do spend sometime trying to get the numbers up. We are learning about Turing machines and how to write code the implements mathematical and theoretical ideas for the elucidation of cognition. Spending too much time perfecting your Busy Beaver implementation misses the point, but just getting something that works without crashing doesn't give you enough chance to think about this model of computation. 
+
+@subsection{Resources}
 
 A tutorial article with examples and a nice visualization If you are
 having a little trouble getting started then this
@@ -190,76 +191,63 @@ solving this with our computers and our own reasoning, but that the
 problem itself is not computable? Does that present any hurdle at
 all for using the Turing Machine as a model of mind?}
 
-If you accept that the mind is a computational machine, and that for all computable problems an equivalent Turing machine exits, does that require you accept that any functionally equivalent computational system, regardless of its hardware (i.e. it could be vacumn tubes or the population of China) would be a mind?
+
+@section{Optional Material}
+
+Someday some of this material may make it into the regular portion of the course. For now, it is simply left here as a guide to additional topics that one may want to think about when engaged in cognitive computational (neuroscience) modeling. 
 
 @subsection{Functionalism}
 
-You don't need to think about mental states in terms of what they are as "things". You might think about them in terms of what they "do".  Mental states serve a functional role in a cognitive system. The important thing is how they relate to the sensory input, motor output and to /each other./
+One of the schools of thought in the domain of Philosophy of Mind, @hyperlink{"https://plato.stanford.edu/entries/functionalism/"}[functionalism] comes up a lot in computational modeling. It suggests that if you know what something does, what its function is, you know the important stuff. You don't need to think about mental states in terms of what they are as "things". You might think about them in terms of what they "do".  Mental states serve a functional role in a cognitive system. The important thing is how they relate to the sensory input, motor output and to @emph{each other.}
+
+@margin-note{Food for Thought Question: If you accept that the mind is a computational machine, and that for all computable problems an equivalent Turing machine exits, does that require you accept that any functionally equivalent computational system, regardless of its hardware (i.e. it could be vacumn tubes or the population of China) would be a mind?}
+
+
 
 There variety of  functionalism closest to our Turing machine is probably @emph{machine state functionalism}. 
 
-@section{Is the Computational Account of Mind Trivial?}
+After you familiarize yourself with functionalism, you might return to the question above and revisit your answer. 
+
+@subsection{Is the Computational Account of Mind Trivial?}
 @itemlist[#:style 'ordered @item{Any sufficiently complex physical system (such as the molecules comprising the wall behind me or the brain) can be shown to be @emph{isomorphic} to the formal structure of @emph{any} program. If you view the mind as a program than you might as well say that you and the wall behind you share the same thoughts.}
           @item{There is no room for the time scale to matter and there is an intuition that it should. We could implement a Turing machine with water wheels, levers & pulleys, vacumn tubes, or transistors. The speed with which the resulting machine computes will be very different, but they will all perform the same computation. Do we think that a model of mind that is blind to time scale can possibly be right?}
-          @item{Discrete or continuous. Turing machines are *discrete*, *finite* state machines. Time and thought operate in continuous time (don't they)?. Are discrete models that move forward in time in discontinuous steps capable of modeling us who live in and think in the world of continuous time?}
+          @item{Discrete or continuous. Turing machines are @bold{discrete, finite} state machines. Time and thought operate in continuous time (don't they)?. Are discrete models that move forward in time in discontinuous steps capable of modeling us who live in and think in the world of continuous time?}
           @item{Computations might model something without explaining it. Weather simulators predict rain, but they don't themselves actually rain. Flight simulators do not fly. Even if a computer program simulated a mind it does not mean it would be thinking. Does the simulations, explanation or demonstration distinction bother you?}]
 
-@section{What Would a Non-computational Theory of Mind Be?}
+@subsection{What Would a Non-computational Theory of Mind Be?}
           
-@subsection{Logical Behaviorism}
-    Mental states are predispositions to behave. There is no internal state corresponding to belief that is mental. Belief is only a predisposition to behave in a certain way in a certain context.  We characterize people by what they are likely to do without ascribing to them associated mental states. The person who first developed this idea, Gilbert Ryle, asserts that being a mentalist is incompatible with being a realist (that is it makes you a dualist). Logical behaviorism  does not seem to be much in vogue now, but it is another take on the important issues [[cite:&schuette_behav_logic]].
+@subsubsection{Logical Behaviorism}
+    Mental states are predispositions to behave. There is no internal state corresponding to belief that is mental. Belief is only a predisposition to behave in a certain way in a certain context.  We characterize people by what they are likely to do without ascribing to them associated mental states. The person who first developed this idea, Gilbert Ryle, asserts that being a mentalist is incompatible with being a realist (that is it makes you a dualist). Logical behaviorism  does not seem to be much in vogue now, but it is another take on the important issues @~cite[behav-logic].
 
-@subsection{Type-Identity Theory}
-Mental states just @emph{are} brain states.
+@subsubsection{Type-Identity Theory}
+Mental states just @emph{are} brain states. @margin-note*{Since our brains are different from time to time (synaptic weights change; cells die (and a few born)) does that mean we never have the same mental state twice? Since no two people have the same brain does that mean no two people ever have the same mental states?}
 
-Since our brains are different from time to time (synaptic weights change; cells die (and a few born)) does that mean we never have the same mental state twice?
+@subsection{Alternatives to the Turing Machine Model of Computation}
+Although the Turing Machine account of computation seems to dominate examples in psychology and neuroscience accounts of computation and models this may be an artifact of the example of the Turing Test as a prominent example of evaluating machine intelligence. There are other formal theories of computation, and as stated above they are all conjectured to be equivalent. The one I describe below has had a large influence on programming language design. It was the mathematical idea that motivated the development of LISP, which via its descendent scheme, became the Racket language we are using in this course.
 
-Since no two people have the same brain does that mean no two people ever have the same mental states?
+@subsubsection{Lambda Calculus}
+The lambda calculus was developed as a theory of functions. @hyperlink["https://news.stanford.edu/news/2011/october/john-mccarthy-obit-102511.html"]{John McCarthy} invented Lisp as a theoretical exercise for working on the theory of computable functions. He felt the Turing machine to be too mechanical and too awkward for this work, and wanted a better tool, a better metaphor. He adopted the lambda of the lambda calculus and the ~eval~ function to take in lisp programs and execute them. Later one of his @hyperlink["https://en.wikipedia.org/wiki/Steve_Russell_(computer_scientist)"]{collaborators} observed that it was relatively straightforward to implement this as a real programming language. A bit more of the history is @hyperlink["https://lwn.net/Articles/778550/"]{here}. But in order to try and learn a bit of the lambda calculus you might look at @~cite[lambda-intro]
 
-If you feel this is true, but that the differences are trivial, how do you decide where to draw the line?
+@margin-note{Why a "lambda" (λ)? The λ of lambda calculus doesn't really mean anything. It just signals that you have a lambda expression. It creation as the symbol was an accident of notation and the limits of older typewriters.}
 
-If you program a computational neuroscience model what are you modeling since each mental state is going to be distinct of each brain state?
+@bold{Some Details and Interesting Facts about the Lambda Calculus}
 
-Does this bind you to a particular take on the question of multiple realizability? 
+There is not just one lambda calculus.
 
+To have the lambda calculus you need to specify your @emph{algebra}. What are the rules for reducing things (i.e. your computations), what are the allowed symbols, and what do things mean? A "lambda calculus" is a way of handling "lambda expressions."
 
-@section{Alternatives to the Turing Machine Model of Computation}
+@bold{Into the Weeds}
 
-@subsection{Lambda Calculus}
-The lambda calculus was developed as a theory of functions, but it has turned into a favorite tool of functional programmers and theoretical computer scientists to describe their languges, and even as a basis for developing their programming languages. John McCarthy invented Lisp as a theoretical exercise for working on the theory of computable functions. He felt the Turing machine to be too mechanical and too awkward for this work, and wanted a better tool, a better metaphor. He adopted the lambda of the lambda calculus and the ~eval~ function to take in lisp programs and execute them. Late one of his [[https://en.wikipedia.org/wiki/Steve_Russell_(computer_scientist)][collaborators]] observed that it was relatively straightforward to implement this as a real programming language. A bit more of the history is [[https://lwn.net/Articles/778550/][here]]. But in order to try and learn a bit of the lambda calculus I will make reference to a concise summary [[cite:see Chap 2 in &michaelson89_lambd]] and then give us some exercises we can play with.
-
-The untyped lambda calculus was followed by the typed lambda calculus, which is directly related to programming language theory for all the contemporary statically typed languages such as Haskell and OCAML.
-
-*** If you feel that ...                                   :class_discussion:
-human brains (and not just human beings) are computational then these abstract formal descriptions might provide the right language for expresssing your truths about thinking. But is it necessary that you know about them or care about them to actually do cognitive or neuroscience modeling?
-
-*** Some Lambda Calculus details from cite:stark90_mathem_found_lisp
-
-**** Why a "lambda" (λ)?
-The λ of lambda calculus doesn't really mean anything. It just signals that you have a lambda expression. It creation as the symbol was an accident of notation and the limits of older typewriters.
-
-**** There is not just one lambda calculus
-To have the lambda calculus you need to specify your algebra. What are the rules for reducing things (i.e. your computations), what are the allowed symbols, and what do things mean? A "lambda calculus" is a way of handling "lambda expressions."
-
-**** Some of the details
-
-*Terms* are either simple variables ($x$ or $y$) or composite terms ($\lambda~v~t_1$). Having two terms next to each other ($(~t_1~t_2)$) means "apply" $t_1$ to $t_2$. The meaning of a term like $\lambda~v~t_1$ is value returned by lambda abstraction. The meaning part is described by formulas such as $t_1~\rightarrow~t_2$.
-
-That is the tl;dr version, but there are essential details for actually using it.
+@emph{Terms} are either simple variables @($"x") or @($"y") or composite terms @($"\\lambda~v~t_1"). Having two terms next to each other @($"(~t_1~t_2)") means "apply" @($"t_1") to @($"t_2"). The meaning of a term like @($"\\lambda~v~t_1") is value returned by the lambda abstraction. The meaning part is sometimes designated in writing by formulas using arrows, such as @($"t_1~\\rightarrow~t_2").
 
 Some "axioms" you supply (or that Alonzo Church did).
+@itemlist[@item{Beta reduction}
+               @item{Beta abstraction}
+               @item{Alpha conversion}
+               @item{Eta reduction}
+               @item{Normal Form}]
 
-- Beta reduction
-
-- Beta abstraction
-
-- Alpha conversion
-
-- Eta reduction
-  
-- Normal Form
-
-The equivalent of the halting problem for the Turing machine is the reaching of a /normal form/ in the  lambda calculus.
+The equivalent of the halting problem for the Turing machine is the reaching of a @emph{normal form} in the  lambda calculus.
 
 Functions have the form λ <name> . <body>
 
@@ -267,79 +255,15 @@ Note the "dot". This separates the name from the body of expressions that it nam
 
 <body> is also an expression (note the recursion that is built in).
 
-I am worried about this being too dry, so I figure it may be better to give you the online texts [[cite:&stark90_mathem_found_lisp;&michaelson89_lambd]] and then we can tackle some simple examples as exercises.
+@bold{Some Opportunities for Practice}
+@itemlist[#:style 'ordered @item{Write the lambda expression for the identity function? What is the identity function?}
+          @item{Apply the identity function to itself.}
+          @item{What is the identity function in Racket?}
+          @item{An interesting lambda expression is the "self-application" expression: @($$"\\lambda~s . (s~s).")
+With pencil and paper try to @itemlist[#:style 'ordered @item{apply this to the identity,}
+                                       @item{apply the identity to the self-application,}
+                                       @item{apply the self-application to itself. What is its termination status?}]}]
 
-***** Classroom Exercises and Discussion
-   :answer:
-   Identity function: $$\lambda~x.x$$
-
-   
-:END:
-
-1. Write the lambda expression for the identity function? What is the identity function?
-2. Apply the identity function to itself.
-3. What is the identity function in the programming language of your group?
-   #+Caption: An example in Common Lisp
-   #+begin_src lisp :results value :exports both
-     (identity 10)
-   #+end_src
-   
-   #+RESULTS:
-   : 10
-   
-   #+Caption: Writing it as a lambda
-   #+begin_src lisp :exports code :results value
-     (funcall (lambda (x) x) 10)
-   #+end_src
-   
-   #+RESULTS:
-   : 10
-4. An interesting lambda expression is the so-called /self-application/ expression: $\lambda~s . (s~s)$. Just do these with pencil and paper (or on the Zoom whiteboard). 
-   a. apply this to the identity.
-   b. apply the identity to the self-application
-   c. apply the self-application to itself. What is its termination status?
-
-
-***** Write your own homework
-The idea here is to figure out a good, concise, tractable practical project we can do to use the different computing languages to solidify our knowledge of how formal computing theory informs (or maybe doesn't inform) practical attempts to implement cognitive models that implicitly adhere to a computation theory of mind.
-
-Maybe this exercise on conditionals would be good? Use the lambdas to compute some simple truth tables?
-https://www.diderot.one/courses/56/books/275/chapter/3210
-
-
-** Non-computable
-:PROPERTIES:
-:CUSTOM_ID: sec:noncomputable
-:END:
- 
-* Companion and Optional Readings
-  1. /An Introduction to Functional Programming Through the Lambda Calculus/ [[cite:&michaelson89_lambd]]
-  2. /Functionalism/ in SEP [[cite:&levin21_funct]]
-  3. The original beaver paper as a proof of a simple non-computable function [[https://pdos.csail.mit.edu/~rsc/rado62beaver.pdf][(pdf)]].
-  4. Comprehensive [[https://www.cs.virginia.edu/~njb2b/cstheory/s2020/files/slides/church-turing-thesis.pdf][on line slides]] (pdf) from a course on the theory of computing.
-  5. A detailed and more traditionally written up [[http://www.people.cs.uchicago.edu/~soare/History/handbook.pdf][history of the concept of computability (pdf)]]. It is over 30 pages long, but readable. It does deal with technical material, but is mostly prose, and tries to tie it to history, usage, and contemporary interpretations. A really good read if you have the time and interest. 
-  6. An accessible [[http://bach.ai/lambda-calculus-for-absolute-dummies/][blog]] article called _Lambda Calculus for Absolute Dummies_
-  7. Another nice online [[http://cs.rpi.edu/academics/courses/spring10/proglang/handouts/LambdaCalculus.pdf][resource]] (pdf)
-* References
-[[bibliography:/home/britt/gitRepos/masterBib/bayatt.bib]]
-
-* A bit of detail about lambda calculus notation
-
-λ expressions are either a "name" | "function" | "application"
-
-Names name expressions, functions introduce an abstraction, applications specialize abstractions.
-
-Names are sequences of characters.
-
-Functions have the form λ <name> . <body>
-
-Note the "dot". This separates the name from the body of expressions that it names.
-
-<body> is also an expression (note the recursion that is built in).
-
-/application/ has the form of <function expression> <argument expression>
-
-Note that both are expressions (everything is an expression). They are simply placed in proximity. An example $\lambda~x.x\hspace{1.5em}\lambda~a.\lambda~b.b$ . Interesting to note that functions can be arguments too. The intent here is that application provides an expression for the name.
 
 
 @(generate-bibliography)
