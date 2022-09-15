@@ -19,7 +19,7 @@
     eval))
 
 
-@title{Models of Spiking Neurons and Differential Equations}
+@title[#:tag "Spiking Neuron Models"]{Models of Spiking Neurons and Differential Equations}
 @section{An Introduction to Differential Equations}
 
 
@@ -146,7 +146,7 @@ What is square root of 128?
                   (my-sqrt target current-guess))))]
 
 
-@examples[(require "my-square-root.rkt")
+
           (my-sqrt 55.0 4.0)]
 
 
@@ -187,7 +187,7 @@ Note the similiarity of the two functions. You could write a helper function tha
 How do we know the formula for acceleration? We were given it \ref{eq:1}. 
 
 @examples[#:eval plot-eval
-          (require "spring.rkt")
+          (require "./code/spring.rkt")
           (begin
             (define spring-results (release-spring ))
             (plot (lines (map vector (map fourth spring-results) (map third spring-results)))))]
@@ -199,5 +199,5 @@ Provide the code for the damped oscillator. It has the formula of
 
 @($$ "\\frac{d^2 s}{dt^2} = -P~s(t) - k~v(t)")
 
-This should really only need to change a couple of lines to update the model to be able to handle the damped version as well. You might want to edit @hyperlink["./../spring.rkt"]{spring.rkt}.
+This should really only need to change a couple of lines to update the model to be able to handle the damped version as well. You might want to edit @hyperlink["./../code/spring.rkt"]{spring.rkt}.
 
