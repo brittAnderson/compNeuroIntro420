@@ -4,7 +4,9 @@
  ~cite citet generate-bibliography
  what-is-cognition
  cog-comp-neurosci-is
- turing-machine)
+ turing-machine
+ behav-logic
+ lambda-intro)
 
 (require
   scriblib/autobib)
@@ -51,7 +53,24 @@
 
 (define turing-machine
   (make-bib
-   #:author "A. M. Turing"
+   #:author (authors "A. M. Turing")
    #:title "On computable numbers with an application to the Entscheidungsproblem"
    #:location (journal-location "Proc. London Math. Soc." #:volume 42 #:pages '(230 265))
    #:date 1936))
+
+(define lambda-intro
+  (make-bib
+   #:author (authors "Greg Michaelson")
+   #:title  "An introduction to functional programming through Lambda calculus"
+   #:date   2011
+   #:is-book? "yes"
+   #:location (book-location #:publisher "Dover Publications")
+   #:url "https://www.cs.rochester.edu/~brown/173/readings/LCBook.pdf"))
+
+(define behav-logic
+  (make-bib
+   #:author (authors "Michael Schütte")
+   #:title  "Logical Behaviorism"
+   #:date 2008
+   #:location (journal-location "Encyclopedia of Neuroscience" #:pages '(372 375))
+   #:url "http://dx.doi.org/10.1007/978-3-540-29678-2_596"))
