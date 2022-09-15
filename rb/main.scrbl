@@ -12,3 +12,4 @@
 @include-section{./sections/preliminaries.scrbl}
 @include-section{./sections/cognition.scrbl}
 @include-section{./sections/comp-cogn.scrbl}
+@include-section{./sections/DEIntro.scrbl}
