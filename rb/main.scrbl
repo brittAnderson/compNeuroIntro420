@@ -8,8 +8,7 @@
 @author[(author+email "Britt Anderson PhD & MD" "britt@uwaterloo.ca")]
 
 
-@include-section{./sections/preamble.scrbl}
-@include-section{./sections/preliminaries.scrbl}
-@include-section{./sections/cognition.scrbl}
-@include-section{./sections/comp-cogn.scrbl}
-@include-section{./sections/DEIntro.scrbl}
+@include-section{front-matter.scrbl}
+@include-section{cog-comp-matter.scrbl}
+@include-section{diff-eq-spikes.scrbl}
+
