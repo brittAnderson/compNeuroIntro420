@@ -6,6 +6,7 @@
  cog-comp-neurosci-is
  turing-machine
  behav-logic
+ marr-re-evaluated
  lambda-intro)
 
 (require
@@ -74,3 +75,12 @@
    #:date 2008
    #:location (journal-location "Encyclopedia of Neuroscience" #:pages '(372 375))
    #:url "http://dx.doi.org/10.1007/978-3-540-29678-2_596"))
+
+(define marr-re-evaluated
+  (make-bib
+   #:author (authors "R. McClamrock")
+   #:title "Marr's three levels: A re-evaluation"
+   #:location (journal-location "Minds and Machines" #:volume 1 #:pages '(185 196))
+   #:date 1991
+   #:url "https://doi.org/10.1007/BF00361036"))
+  
