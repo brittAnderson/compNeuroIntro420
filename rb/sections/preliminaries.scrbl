@@ -29,9 +29,9 @@ For this course we will be writing our code in @hyperlink["https://racket-lang.o
 
 @section{Git}
 
-This book and the code it uses is either already in a git repository or soon will be. Currently the git repository for this book is hosted on @hyperlink["https:github.com/brittAnderson/compNeuroIntro420"]{github}. Make sure you have the @tt{racket-book} branch selected. You are free to look at other branches, and you may find some interesting code or examples there from earlier offerings of the course, but the branch that we will be using for the Fall 2022 term is the racket-book branch.
+This book and the code it uses is in a git repository. Currently the git repository for this book is hosted on @hyperlink["https:github.com/brittAnderson/compNeuroIntro420"]{github}. Make sure you have the @tt{racket-book} branch selected. You are free to look at other branches, and you may find some interesting code or examples there from earlier offerings of the course, but the branch that we will be using for the Fall 2022 term is the @tt{racket-book} branch.
 
-Git is a  program for version control, and is very useful. Github is one of a few different hosting hubs where many developers host their code to make it visible to others. You can @tt{fork} and @tt{clone} the code of others to try out their software or make your own changes to it.
+@hyperlink["https://git-scm.com/"]{Git} is a  program for version control, and is very useful. @hyperlink["https://github.com"]{Github} is one of a few different hosting hubs where many developers host their code to make it visible to others. You can @tt{fork} and @tt{clone} the code of others to try out their software or make your own changes to it.
 
 I tried to explain all this once in a video. If you are already very confused it will not make things worse, and if you are only mildly confused it might help.
 
@@ -50,7 +50,7 @@ To make sure you have, and will be able to update, the code and material for thi
           @item{Clone (and possibly fork) this repository}
           @item{Demonstrate that you are tracking the correct branch.}]
 
-One way to do this is to run the @tt{git branch --verbose} and @tt{git remote --verbose} commands from the terminal, take a screenshot (on my linux system I use the terminal screen shot library "scrot").
+One way to do this is to run the @tt{git branch --verbose} and @tt{git remote --verbose} commands from the terminal, take a screenshot (on my linux system I use the terminal screen shot library @hyperlink["https://wiki.archlinux.org/title/Screen_capture"]{scrot}).
 
 @bold{Submit} the screenshot of the output to the Dropbox on Learn.
 

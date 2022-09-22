@@ -38,7 +38,7 @@ Why are Differential Equations an important technique for computational modellin
 
 Did you draw     @hyperlink["https://commons.wikimedia.org/w/index.php?curid=44114666"]{this}?
 
-@margin-note{Why is the action potential relevant for a discussion of DE's in modelling?}
+@margin-note{Why is the action potential relevant for a discussion of DE's in modeling?}
 
 @;     The computational model of the action potential is a partial differential equation and action potentials, "spikes", are often taken to be the information processing unit of the nervous system.
 
