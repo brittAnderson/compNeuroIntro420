@@ -18,8 +18,9 @@
                       plot/utils)))
     eval))
 
+@title{Differential Equations and Spiking Neuron Models}
 
-@title[#:tag "Spiking Neuron Models"]{Goals}
+@section[#:tag "Spiking Neuron Models"]{Goals}
 
 Why are Differential Equations an important technique for computational modelling in psychology and neuroscience?
 
@@ -42,9 +43,8 @@ This gives us the following goals for this section:
 
 Our goal is to use differential equations in code written to simulate spiking neurons. Therefore, we ought to remind ourselves about the basics of what is a neuronal action potential.
 
-@itemlist[@item{10 minutes to brush up on what an action potential is}
-               @item{Then be able to draw one and explain,}
-               @item{What are the axes?}
+Give yourself 10 minutes to brush up on what an action potential is. First, try and draw an action potential:
+@itemlist[@item{What are the axes?}
                @item{What ion causes the upward deflection?}
                @item{What causes the repolarization?}
                @item{Who discovered the action potential?}
@@ -52,22 +52,20 @@ Our goal is to use differential equations in code written to simulate spiking ne
 
 Did you draw     @hyperlink["https://commons.wikimedia.org/w/index.php?curid=44114666"]{this}?
 
-@margin-note{Why is the action potential relevant for a discussion of DE's in modeling?}
+@bold{An aside: Notation}
 
-@;     The computational model of the action potential is a partial differential equation and action potentials, "spikes", are often taken to be the information processing unit of the nervous system.
+Mathematics is full of notation. And one person's notation is another person's jargon. The key thing is not to let yourself be scared off. Often the motivation for mathematical notation is just convenience: condensing something that would take a long time to say or write into an abbreviated form. It is the equivalent of saying "meh" or "lol".  Mathematical notation is just a technical emoji. You probably know the mathematical idea that is being represented; you just don't know the abbreviation that is being used. So, just like you can teach granma the meaning of TMI you can with a little bit of practice get used to the Greek symbols that appear so often in mathematical presentations. 
 
-@;     DE's are the way we capture dynamics, how things change over time. If you think some neural or cognitive process that you are interested in is changing over time, then you are interested in dynamics and the first approach you should think of for modelling it is a differential equation.
+As a first exercise, write out in long hand what is meant by the
+following:
 
-@bold{Notation}
-Concise summaries of things that would take too long to write out in detail. Mathematical notation is just a technical emoji. You probably know the "math" they represent; you just don't know the abbreviation that is being used.
-
-@; Write out in long hand (or type on your computer) what is meant by the
-@; following:
 @(use-mathjax)
 
-@($$ "\\sum_{i=0}^n x_i^3")
-
 @($$ "\\sum_{\\forall x \\in \\left\\{ 1 , 2 , 3 \\right \\}} x ~=~ 6")
+
+Did you write: @hyperlink["../sections/notation-answer.txt"]{this?}
+
+IAMHERE
 @subsection{Multiple Ways to Say the Same Thing}
 
 @($ "\\frac{dx}{dt}")
