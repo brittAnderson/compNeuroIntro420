@@ -19,14 +19,28 @@
     eval))
 
 
-@title[#:tag "Spiking Neuron Models"]{Models of Spiking Neurons and Differential Equations}
-@section{An Introduction to Differential Equations}
-
-
+@title[#:tag "Spiking Neuron Models"]{Goals}
 
 Why are Differential Equations an important technique for computational modelling in psychology and neuroscience?
 
-@centered{@bold{The Action Potential}}
+Work on the modeling of the action potential eventually resulted in @hyperlink["https://www.nobelprize.org/prizes/medicine/1963/summary/"]{Nobel Prizes}. The Hodgkin-Huxley equations that resulted from this work are differential equations. Subsequent models, even very marked simplifications such as the Integrate and Fire model, are also differential equations. When you rely on a simulation software that allows you to create populations of such neurons you are using, at least indirectly, a differential equation. It is worth knowing what they are.
+
+Beyond that, the idea of a differential equation is a very intuitive and useful notion. You can recast the example of the @(secref "forgetting") forgetting curve as a differential equation in which the change in the strength of a memory over time is proportional to the current strength of the memory  as a function of time. @margin-note{Exponentials show up a lot in neuroscience and psychology. When you see a rate of change in a quantity that is proportional to the magnitude of that quantity there is an exponential hidden in there somewhere.}
+
+Further, modern computers and their powers mean that we can often use differential equations in our models by naively implementing their effects as a series of very tiny steps. We might gain insight if we knew more about how to solve differential equations analytically, but often, if our goals our practical, that is running a simulation to see the result, we can be ignorant of differential equations at that level, and just deploy them as another practical tool. Just like you can now use software to implement Monte Carlo simulations in statistics without knowing the full details of the theory mathematically.
+
+This gives us the following goals for this section:
+
+@itemlist[#:style 'ordered @item{Learn what a Differential Equation is as a mathematical entity,}
+          @item{Get an intuition for differential equations by thinking of them as slopes,}
+          @item{Learn how they emerge as a natural effort to account for changing quantities in neuroscience and psychology,}
+          @item{Put this altogether by writing programs to implement the integrate and fire point neuron model and a version of the Hodgkin-Huxley neuron model.}]
+      
+
+
+@section{The Action Potential - a very short review}
+
+Our goal is to use differential equations in code written to simulate spiking neurons. Therefore, we ought to remind ourselves about the basics of what is a neuronal action potential.
 
 @itemlist[@item{10 minutes to brush up on what an action potential is}
                @item{Then be able to draw one and explain,}
