@@ -28,7 +28,7 @@
 
 @(define-cite ~cite citet-id generate-bibliography #:style author+date-style)
 
-@title{What Is Cognition?}
+@title[#:tag "forgetting"]{What Is Cognition?}
 
 The technical challenges for modeling in psychology are mastering the mathematics and programming necessary to formally express an idea and to implement a simulation to examine the consequences. The conceptual challenge is to decide what it is you are modeling. @margin-note*{Is a mathematical formula that reproduces an observed behavioral pattern a model?} In the late 1800s Ebbinghaus, using creative, and for their time, @hyperlink["https://youtu.be/TGGr5Uc8_Bw"]{innovative, Herculean methodologies}, demonstrated that the proportion of items retained in memory declines predictably over time. The form of the forgetting curve is exponential. 
 
