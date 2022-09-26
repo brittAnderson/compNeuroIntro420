@@ -37,8 +37,7 @@ This gives us the following goals for this section:
           @item{Learn how they emerge as a natural effort to account for changing quantities in neuroscience and psychology,}
           @item{Put this altogether by writing programs to implement the integrate and fire point neuron model and a version of the Hodgkin-Huxley neuron model.}]
       
-
-
+@margin-note{In preparation for things to come you might try to remember (or look up) what is the integral of one over x? In symbols, what is @($ "\\int \\frac{1}{x}~ dx")?}
 @section{The Action Potential - a very short review}
 
 Our goal is to use differential equations in code written to simulate spiking neurons. Therefore, we ought to remind ourselves about the basics of what is a neuronal action potential.
@@ -65,61 +64,72 @@ following:
 
 Did you write: @hyperlink["../sections/notation-answer.txt"]{this?}
 
-IAMHERE
+
 @subsection{Multiple Ways to Say the Same Thing}
 
-@($ "\\frac{dx}{dt}")
+Another thing to note about mathematical notation is that it often provides more than one way to say the same thing. Which notation is used depends on context and the technical community the work is intended for. Computer scientists frequently use @tt{i} as a variable for indexing a loop. To the mathematician it is the complex part of an imaginary number @($ "i~=~\\sqrt{-1}"), but engineers use @tt{j} instead. Here are some of the many different ways you may see the derivative depicted.
 
-@($ "\\dot{x}")
+Leibniz notation: @($ "\\frac{dx}{dt}")
 
-@($ "x'")
+Physicists often use this for derivatives with respect to time (@tt{t}): @($ "\\dot{x}")
 
-@($ "f'(x)")
+Mathematicians often use the variable itself as a representation for the function and use the number of "primes" to indicate how many derivatives to take: @($ "x'")
+
+Or they may make the variable representing the function explicit if they think that will make their reasoning clearer in the present context: @($ "f'(x)")
+
+This is called operator notation. You won't see it as much, but when doing certain kinds of proofs or reasoning more abstractly it can be much more convenient: @($ "D~f") 
 
 
 @section{Derivatives are Slopes}
-@itemlist[@item{What is a slope?}
-               @item{When in doubt return to definition.}
-               @item{Deriving the definition of a derivative.}
-               @item{What is the definition of a derivative?}]
 
-Digression: Use your computer as a tool for exploration
+There may be many ways to write out the notation for a derivative, but the uniting concept behind them is as "rates of change." They are essentially just the slopes you learned about in secondary school. The old "rise over run" where the length of the run is made very, very small.
+
+You might want to pause here and make sure you remember what a slope is. 
+
+@itemlist[@item{Can you write the equation to find the slope of a line?}
+               @item{How would you apply this to a curve and not a line?}
+               @item{When in doubt return to definition. What is the definition of a slope of a function?}]
+We will see momentarily how to go from our basic understanding of the slope of a line to @bold{generalize} it to also include curves. This notion of generalizing is often a key step in developing an idea for modeling. 
+
+
+@subsection{Use your computer as a tool for exploration}
+
+Demonstrating something mathematically can give a great deal of satisfaction and ultimately is the guarantor of whether something is correct. Often we want to know more than whether something is correct in the abstract, we want to see specific examples. Sometimes pencil and paper are the best approach, but often we can do the same thing more quickly and more extensively by using our computer. Let's digress to use our computer for visualizing ideas about slopes. You should try to get these to work in Dr. Racket. 
 
 @examples[#:eval plot-eval
           (begin
             (define xs (list 1 2 3 4 5))
             (define ys (list 2 4 6 8 10))
-            (plot (lines (map vector xs ys))))]
+            (plot (lines (map vector xs ys)) #:title "A Line: What is it's slope?"))]
 
 
 
 
-@(plot (list (function (lambda (x) (expt x 3)) (- 3) 3)
-             (function (lambda (x) (- (* 12 x) 16)) 1 3)))
+@examples[#:eval plot-eval
+          (plot (list (function (lambda (x) (expt x 3)) (- 3) 3)
+                      (function (lambda (x) (- (* 12 x) 16)) 1 3)) #:title "A curve (of what?) showing the slope at a point.")]
+
 
 @(plot (list (function (lambda (x) (expt x 3)) 1.5 2.5)
-             (function (lambda (x) (- (* 12 x) 16)) 1.5 2.5)))
+             (function (lambda (x) (- (* 12 x) 16)) 1.5 2.5)) #:title "An enlarged view of the same function.")
 
 
 
 @margin-note{Derivatives are Instantaneous Slopes}
 
-You pick two points that are "close enough" and you get an answer that
-is "close enough." If your answer isn't "close enough" then you move
-your points closer, until /in the limit/ there is an infinitesimal
-distance between them.
+These plots are intended to demonstrate the idea that locally everything is linear. If you calculate the slope for your curve exactly like you do for a line you will get something that starts to look more and more like a line the smaller your "run" gets. The idea is that you pick two points that are "close enough" and your derivative becomes "close enough." At least with a computer. Mathematically, you just keep going to the limit.
 
 @centered{@bold{Definition of the Derivative}@(linebreak)@($ "\\frac{df}{dx} = \\lim_{h \\to 0}\\frac{f(x + h) - f(x)}{(x + h) - x}")}
 
 
 @section[#:tag "use-deriv-to-solve"]{Using Derivatives to Solve Problems With a Computer}
 
-@subsection{What is the square root of 53?}
+@subsection{What is the square root of 128?}
 
-We want to know the value of @($ "x") that makes @($ "53 =x^2") true?
+We want to know the value of @($ "x") that makes @($ "128 =x^2") true?
 
 @margin-note*{Always use the computer for the busy work when you can. Your computer can solve many mathematical problems for you. For example, requiring @tt{symalg} we can programatically find that the derivative of @($ "x^2") is 
-@($ (latex (simplify (differentiate (parse-infix "x^2")))))}
+@($ (latex (simplify (differentiate (parse-infix "x^2"))))). Look at the code for this @tt{margin-note} and you will see how I computed that with racket (and then typeset it).}
 
 @itemlist[@item{Come up with a guess.}
                @item{Calculate the error.}
@@ -141,13 +151,23 @@ To get there let us consider representing the ratio of how our function's output
 
 @($$ "\\frac{\\Delta~\\mbox{output}}{\\Delta~\\mbox{input}} = \\frac{\\mbox{function(input_1)} - \\mbox{function(input_0)}}{\\mbox{input_1} - \\mbox{input_0}}")
 
-If you take a look at the definition of the derivative above you will see the resemblance, except for the absence of the limit. When trying to solve this problem we don't initially know both inputs, but we do know that when we put in the solution to our problem we will get 128. And we also know that we can computer the derivative. A bit of rearranging and renaming give us. 
+If you take a look at the definition of the derivative above you will see the resemblance, except for the absence of the limit. When trying to solve this problem we don't initially know both inputs, but we do know that when we put in the solution to our problem we will get 128. And we also know that we can compute the derivative. A bit of rearranging and renaming give us.@margin-note*{Can you map the steps I took to get this equation from the one above?}
 
 @($$ "\\Delta(guess) = \\frac{\\mbox{f(guess)} - 128}{\\frac{\\mbox{df}}{\\mbox{dg}}|_{guess}}")
 
 What is square root of 128?
 
-@examples[(define (df g) (* 2.0 g))
+@(define (df g) (* 2.0 g))
+@(define (update-guess g target)
+   (/ (- target (expt g 2.0) ) (df g)))
+@(define (my-sqrt [target 128.0] [guess 7.0] [tol 0.000001])
+  (let* ([udg (update-guess guess target)]
+         [current-guess (+ guess udg)])
+    (if (< udg tol)
+        current-guess
+        (my-sqrt target current-guess))))
+
+@examples[#:label "A function to compute the square root" (define (df g) (* 2.0 g))
           (define (update-guess g target)
             (/ (- target (expt g 2.0) ) (df g)))
           (define (my-sqrt [target 128.0] [guess 7.0] [tol 0.000001])
@@ -157,26 +177,26 @@ What is square root of 128?
                   current-guess
                   (my-sqrt target current-guess))))]
 
+@verbatim{@(number->string (my-sqrt 128))}
 
-
-          (my-sqrt 55.0 4.0)]
-
+@subsection{Homework: Computing the Cube Root}
 
 @itemlist[@item{What is a @tt{cube root}?}
                @item{What is the derivative of @($ "x^3")?}
                @item{Write a Racket program to computer the cube root of a give number.}]
 
-@subsection{Practice Simulating With DEs}
+@section{Practice Simulating With DEs}
 
-@subsubsection{Frictionless Springs}
+@subsection{Frictionless Springs}
 
 We want to code neurons, but to get there we should feel comfortable with the underlying tool or we won't be able to adapt it or re-use it for some new purpose. I don't want to give you a fish. I want to teach you how to fish.
 
-By working with an example simpler than a neuron, and one for which you might have more intuition, such as a simple spring or "slinky" I hope you will get a better /feel/ for how the numbers, equations, and code all relate. Then we can move on to the neuronal application.
+By working with an example simpler than a neuron, and one for which you might have more intuition, such as a simple spring or "slinky", I hope you will get a better @italic{feel} for how the numbers, equations, and code all relate. Then we can move on to the neuronal application.
 
 The equation of a frictionless spring is:
 
-@($$ "\\frac{d^2 s}{dt^2} = -P~s")
+@$$["\\frac{d^2 s}{dt^2} = -P~s"]{\tag{1}}
+
 where 's' refers to space, 't' refers to time, and 'P' is a constant, often called the spring constant, that indicates how stiff or springy the spring is. 
 
 
@@ -196,7 +216,8 @@ How will our velocity change with time?
 
 Note the similiarity of the two functions. You could write a helper function that was generic to this pattern of old value + rate of change times the  time step, and just used the pertinent values. 
 
-How do we know the formula for acceleration? We were given it \ref{eq:1}. 
+How do we know the formula for acceleration? We were given it in Equation 1 above. 
+
 
 @examples[#:eval plot-eval
           (require "./code/spring.rkt")
@@ -205,6 +226,7 @@ How do we know the formula for acceleration? We were given it \ref{eq:1}.
             (plot (lines (map vector (map fourth spring-results) (map third spring-results)))))]
 
 
+IAMHERE
 @subsection{Damped Oscillators}
 
 Provide the code for the damped oscillator. It has the formula of
@@ -212,4 +234,5 @@ Provide the code for the damped oscillator. It has the formula of
 @($$ "\\frac{d^2 s}{dt^2} = -P~s(t) - k~v(t)")
 
 This should really only need to change a couple of lines to update the model to be able to handle the damped version as well. You might want to edit @hyperlink["./../code/spring.rkt"]{spring.rkt}.
+
 
