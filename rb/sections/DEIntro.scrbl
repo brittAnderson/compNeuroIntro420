@@ -195,7 +195,9 @@ By working with an example simpler than a neuron, and one for which you might ha
 
 The equation of a frictionless spring is:
 
+@elemtag{eqn1}
 @$$["\\frac{d^2 s}{dt^2} = -P~s"]{\tag{1}}
+@(linebreak)
 
 where 's' refers to space, 't' refers to time, and 'P' is a constant, often called the spring constant, that indicates how stiff or springy the spring is. 
 
@@ -216,7 +218,7 @@ How will our velocity change with time?
 
 Note the similiarity of the two functions. You could write a helper function that was generic to this pattern of old value + rate of change times the  time step, and just used the pertinent values. 
 
-How do we know the formula for acceleration? We were given it in Equation 1 above. 
+How do we know the formula for acceleration? We were given it in @elemref["eqn1"]{Equation 1} above. 
 
 
 @examples[#:eval plot-eval
