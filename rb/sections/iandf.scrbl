@@ -36,7 +36,7 @@ In this section we take a look at the history and math of the computational mode
 @figure[
   "fig:lapique-lab"
   @elem{The Lapique Lab at the Sorbonne 190something}
-  @elem{@image[#:scale 0.5]{./../images/Lapicque_laboratoire.png}}]
+  @elem{@image[#:scale 0.5]{./images/Lapicque_laboratoire.png}}]
 
 @; haven't figure out how to scale the image. 
 
@@ -192,7 +192,7 @@ Then you can chain those small functions together to accomplish the larger task.
 
 
 @examples[#:eval plot-eval
-          (require "./../code/iandf.rkt")
+          (require "./code/iandf.rkt")
           (begin
             (define iandf-results (run-iandf-sim #:max-time 10.0 ))
             (plot (lines (map vector (map first iandf-results) (map third iandf-results)))))]

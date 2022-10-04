@@ -6,3 +6,4 @@
 @title[#:tag "DEs and Spikes"]{Differential Equations and Spiking Neuron Models}
 
 @include-section{./sections/DEIntro.scrbl}
+@include-section{./sections/iandf.scrbl}
