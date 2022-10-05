@@ -41,20 +41,33 @@ In this section we take a look at the history and math of the computational mode
 @; haven't figure out how to scale the image. 
 
 @hyperlink["http://www.snv.jussieu.fr/brette/papers/Lap07.pdf"]{Original Lapique Paper (scanned; pdf)}
+                                                                                        
 @hyperlink["https://fr.wikipedia.org/wiki/Louis_Lapicque"]{Brief Biographical Details of Lapicque}.
 
+
 @subsection{Lord Adrian and the All-or-None Action Potential}
-@margin-note{When was the Action Potential Demonstrated? What was the experimental animal used by Adrian? @hyperlink["https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1420429/pdf/jphysiol01990-0084.pdf"]{Answer (pdf).}}
+One of the first demonstrations of the all-or-none nature of the neuronal action potential was made by Lord Adrian. Lord Adrian was an interesting scientific figure how asserted that some of his prowess at electrophysiology stemmed from his interest in and training in fencing.
+
+To answer the questions:
+@itemlist[@item{When was the action potential demonstrated?}
+               @item{What was the experimental animal used by Adrian?}]
+Consult this @hyperlink["https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1420429/pdf/jphysiol01990-0084.pdf"]{this pdf for answers.}                                                                       
 
 @margin-note{Want more details? There is an excellent free book available @hyperlink["https://lcnwww.epfl.ch/gerstner/SPNM/SPNM.html"]{@bold{Spiking Neurons}.} They also have another more modern book out too @hyperlink["http://neuronaldynamics.epfl.ch/online/index.html"]{@bold{Neuronal Dynamics}.}}
 
 @section[#:tag "sec:iandf"]{The Integrate and Fire Equation}
-@(use-mathjax)
-@$$["\\tau \\frac{dV(t)}{dt} = -V(t) + R~I(t)"]{\tag{1}}
 
-@seclink["sec:iandf"]
+While Hodgkin and Huxley provided the first robust computational model of the neuronal action potential there model is quite complex, as we will soon see. Is all that complexity necessary? That of course depends on the nature of the scientific question, and if we are primarily intersted in whether a spike has or has not occured, and not the ionic events that produced the spike, we may find our experimental questions dealt with much more concisely by a much simpler model of neuronal spiking: the leaky integrate and fire model.
+
+The formula for the leaky integrate and fire neuron is:
+@(use-mathjax)
+@$$["\\tau \\frac{dV(t)}{dt} = -V(t) + R~I(t) ."]{\tag{I}}
+
+In the next sections we will describe how this simplification came to be, and use it as the basis for learning some of the elementary electrical laws and relations upon which it is based. 
 
 @section{Electronics Background}
+The following questions are the ones we need answers to to derive our integrte and fire model.
+
 @itemlist[#:style 'ordered @item{What is Ohm's Law?}
           @item{What is Kirchoff's Point Rule?}
           @item{What is Capacitance?}
@@ -77,7 +90,10 @@ In this section we take a look at the history and math of the computational mode
 @; :QUESTION: $C \frac{dV}{dt} = \frac{dQ}{dt} = I$
 @; :END:
 
+
 @subsection{Formula Discussion Questions}
+To understand our formula clearly we should review the meaning of the key symbols and notation.
+
 @itemlist[#:style 'ordered @item{What does @($ "\\frac{dV}{dt}") mean?}
           @item{What does @($ "\\frac{1}{\\tau}") mean?}
           @item{Why does the voltage term on the right have a negative sign?}
@@ -89,16 +105,13 @@ In this section we take a look at the history and math of the computational mode
 @; :QUESTION: To get the intuition of a model you don't always have to compute things. You can also get some qualitative behaviour just by looking at it. The larger the voltage the more negative becomes its rate of change and vice versa. It drives everything back to some point at which the rate of change to an equilibrium point. We will come back to this notion of a fixed point or attractor.
 @; :QUESTION: It is the current term. $I$ is the common abbreviation for current. Why? I don't know, can someone help?
 
+To derive our equation we need to put all these fact together. 
           
-Put it all together
+We recall that just like we used the derivative to help us figure out where the spring would be some small increment of time into the future, we use the same approach to compute our future voltage. That future voltage will also include a term that reflects and additional current that we have "experimentally" injected. 
 
-The voltage in the future will be a sum of whatever current is being added minus a function of the current voltage.
+@margin-note{Can you tell why, looking at the integrate and fire equation, if we don't reach the firing threshold, we see an exponential decay?}  
 
-Why, if we don't reach a threshold to fire an action potential, do we see an exponential decay?  
-
-This is where you need to remember what came before. See that the change in voltage is proportional to itself. Solutions to these types of equations involve exponentials. Remember? But note the sign. It is negative. That is why it is an exponential decay instead of an exponential growth.
-
-
+I AM HERE
 Deriving the IandF Equation
 @($$ "\\begin{align*}
      I &= I_R + I_C \\\\

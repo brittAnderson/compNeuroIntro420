@@ -61,7 +61,6 @@ following:
 @(use-mathjax)
 
 @($$ "\\sum_{\\forall x \\in \\left\\{ 1 , 2 , 3 \\right \\}} x ~=~ 6")
-
 Did you write: @hyperlink["../sections/notation-answer.txt"]{this?}
 
 
@@ -119,8 +118,10 @@ Demonstrating something mathematically can give a great deal of satisfaction and
 
 These plots are intended to demonstrate the idea that locally everything is linear. If you calculate the slope for your curve exactly like you do for a line you will get something that starts to look more and more like a line the smaller your "run" gets. The idea is that you pick two points that are "close enough" and your derivative becomes "close enough." At least with a computer. Mathematically, you just keep going to the limit.
 
-@centered{@bold{Definition of the Derivative}@(linebreak)@($ "\\frac{df}{dx} = \\lim_{h \\to 0}\\frac{f(x + h) - f(x)}{(x + h) - x}")}
-
+@elemtag{derivative}
+@bold{Definition of the Derivative}
+@$$["\\frac{df}{dx} = \\lim_{h \\to 0}\\frac{f(x + h) - f(x)}{(x + h) - x}"]{\tag{D}}
+@(linebreak)
 
 @section[#:tag "use-deriv-to-solve"]{Using Derivatives to Solve Problems With a Computer}
 
@@ -151,52 +152,12 @@ To get there let us consider representing the ratio of how our function's output
 
 @($$ "\\frac{\\Delta~\\mbox{output}}{\\Delta~\\mbox{input}} = \\frac{\\mbox{function(input_1)} - \\mbox{function(input_0)}}{\\mbox{input_1} - \\mbox{input_0}}")
 
-If you take a look at the definition of the derivative above you will see the resemblance, except for the absence of the limit. When trying to solve this problem we don't initially know both inputs, but we do know that when we put in the solution to our problem we will get 128. And we also know that we can compute the derivative. A bit of rearranging and renaming give us.@margin-note*{Can you map the steps I took to get this equation from the one above?}
-
-@($$ "\\Delta(guess) = \\frac{\\mbox{f(guess)} - 128}{\\frac{\\mbox{df}}{\\mbox{dg}}|_{guess}}")
-
-What is square root of 128?
-
-@(define (df g) (* 2.0 g))
-@(define (update-guess g target)
-   (/ (- target (expt g 2.0) ) (df g)))
-@(define (my-sqrt [target 128.0] [guess 7.0] [tol 0.000001])
-  (let* ([udg (update-guess guess target)]
-         [current-guess (+ guess udg)])
-    (if (< udg tol)
-        current-guess
-        (my-sqrt target current-guess))))
-
-@examples[#:label "A function to compute the square root" (define (df g) (* 2.0 g))
-          (define (update-guess g target)
-            (/ (- target (expt g 2.0) ) (df g)))
-          (define (my-sqrt [target 128.0] [guess 7.0] [tol 0.000001])
-            (let* ([udg (update-guess guess target)]
-                   [current-guess (+ guess udg)])
-              (if (< udg tol)
-                  current-guess
-                  (my-sqrt target current-guess))))]
-
-@verbatim{@(number->string (my-sqrt 128))}
-
-@subsection{Homework: Computing the Cube Root}
-
-@itemlist[@item{What is a @tt{cube root}?}
-               @item{What is the derivative of @($ "x^3")?}
-               @item{Write a Racket program to computer the cube root of a give number.}]
-
-@section{Practice Simulating With DEs}
-
-@subsection{Frictionless Springs}
-
-We want to code neurons, but to get there we should feel comfortable with the underlying tool or we won't be able to adapt it or re-use it for some new purpose. I don't want to give you a fish. I want to teach you how to fish.
-
-By working with an example simpler than a neuron, and one for which you might have more intuition, such as a simple spring or "slinky", I hope you will get a better @italic{feel} for how the numbers, equations, and code all relate. Then we can move on to the neuronal application.
+If you take a look at the definition of the derivative @elemref["derivative"]{(equation D)} above you will see the resemblance, except for the absence of the limit. When trying to solve this problem we don't initially know both inputs, but we do know that when we put in the solution to our problem we will get 128. And we also know that we can compute the derivative. A bit of rearranging and renaming give us.@margin-note*{Can you map the steps I took to get this equation from the one above?}
 
 The equation of a frictionless spring is:
 
-@elemtag{eqn1}
-@$$["\\frac{d^2 s}{dt^2} = -P~s"]{\tag{1}}
+@elemtag{spring}
+@$$["\\frac{d^2 s}{dt^2} = -P~s"]{\tag{S}}
 @(linebreak)
 
 where 's' refers to space, 't' refers to time, and 'P' is a constant, often called the spring constant, that indicates how stiff or springy the spring is. 
@@ -218,7 +179,7 @@ How will our velocity change with time?
 
 Note the similiarity of the two functions. You could write a helper function that was generic to this pattern of old value + rate of change times the  time step, and just used the pertinent values. 
 
-How do we know the formula for acceleration? We were given it in @elemref["eqn1"]{Equation 1} above. 
+How do we know the formula for acceleration? We were given it in @elemref["spring"]{Equation S} above. 
 
 
 @examples[#:eval plot-eval
@@ -228,7 +189,6 @@ How do we know the formula for acceleration? We were given it in @elemref["eqn1"
             (plot (lines (map vector (map fourth spring-results) (map third spring-results)))))]
 
 
-IAMHERE
 @subsection{Damped Oscillators}
 
 Provide the code for the damped oscillator. It has the formula of
