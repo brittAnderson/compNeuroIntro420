@@ -4,6 +4,7 @@
 	  scribble/base
 	  scribble-math/dollar
 	  scribble/example
+          scribble/manual
           symalg
           scriblib/figure)
 
@@ -65,7 +66,7 @@ The formula for the leaky integrate and fire neuron is:
 
 In the next sections we will describe how this simplification came to be, and use it as the basis for learning some of the elementary electrical laws and relations upon which it is based. 
 
-@section{Electronics Background}
+@subsection{Electronics Background}
 The following questions are the ones we need answers to to derive our integrte and fire model.
 
 @itemlist[#:style 'ordered @item{What is Ohm's Law?}
@@ -107,23 +108,47 @@ To understand our formula clearly we should review the meaning of the key symbol
 
 To derive our equation we need to put all these fact together. 
           
-We recall that just like we used the derivative to help us figure out where the spring would be some small increment of time into the future, we use the same approach to compute our future voltage. That future voltage will also include a term that reflects and additional current that we have "experimentally" injected. 
+We recall that just like we used the derivative to help us figure out where the spring would be some small increment of time into the future, we use the same approach to compute our future voltage. That future voltage will also include a term that reflects an additional current that we have "experimentally" injected. 
 
 @margin-note{Can you tell why, looking at the integrate and fire equation, if we don't reach the firing threshold, we see an exponential decay?}  
 
-I AM HERE
 Deriving the IandF Equation
 @($$ "\\begin{align*}
-     I &= I_R + I_C \\\\
-       &= I_R + C\\frac{dV}{dt} \\\\
-       &= \\frac{V}{R} + C\\frac{dV}{dt}\\\\
-     RI  &= V + RC\\frac{dV}{dt} \\\\
-     \\frac{1}{\\tau}(RI-V)  &= \\frac{dV}{dt}\\\\
+     I &= I_R + I_C & (a) \\\\
+       &= I_R + C\\frac{dV}{dt} & (b)\\\\
+       &= \\frac{V}{R} + C\\frac{dV}{dt} & (c)\\\\
+     RI  &= V + RC\\frac{dV}{dt} & (d) \\\\
+     \\frac{1}{\\tau} (RI-V)  &= \\frac{dV}{dt} & (e)\\\\
      \\end{align*}")
 
-\subsection{Coding up the Integrate and Fire Neuron}
-You will have as your main homework for this week to write a functioning version of this.
-You can use my code as an example of what you are trying to implement if you get stuck on your own.
+@itemlist[@item{a: Kirchoff's point rule,}
+               @item{b: the relationship between current, charge, and their derivatives} 
+               @item{c: Ohm's law}
+               @item{d:multiply through by R}
+               @item{e: rearrange and define @($ "\\tau")}]
+
+@subsection{Coding up the Integrate and Fire Neuron}
+Most of the integrate and fire implementation is conceptually and practically identical to the spring example. You assume a starting voltate (initial state) and then you update that voltage using the differential equation for how voltage changes with time (@($ "\\frac{dV}{dt}")).
+
+There is one critical difference though. Unlike real neurons the Integrate and Fire neuron model does not have a natural threshold and spiking behavior. You pick a threshold and everyone time your voltage reaches that threshold you designate a spike and reset the voltage.
+
+What I added below is a strictly cosmetic amendment that changes the first value after the threshold to a number much higher than the threshold so that when plotted it creates the visual appearance of a spike.
+
+@subsubsection{Class Exercise: Adding a refractory period to the Integrate and Fire model}
+@margin-note{What is the refractory period for a neuron?}
+
+In class make sure you can get the @hyperlink["./../code/iandf.rkt"]{integrate and fire model} working in Dr. Racket. After you get the basic model working trying altering the input current to see how that affects the number of spikes and the regularity of their spiking.
+
+Next, change the form of the input current to be something other than a constant. I suggest trying a sine wave. This will give you a chance to sample some of racket's potential.
+
+Find out how to take the sin of a number. Then learn how to @tt{map} the sin function over a list of numbers. If you use @tt{in-range} you can create a stream of numbers from a minimum to a maximun for a given step size. Then you may want to shift up or scale all the numbers to make them non-zero. This could be done by mapping again. The @tt{map} function is very powerful and allows you to avoid writing a lot of lengthy looping code.
+
+After you have done that edit the code to include a refractory period. First, decide on the logic of how to do this and only after that start editing the code to implement it.
+
+
+
+The next examples walk through the code and describe some of the ideas.
+
 @examples[#:no-prompt
           #:label @bold{@italic{Defining our parameters:}}
 (define dt 0.05)
@@ -155,7 +180,7 @@ This gives you one place to look for explanations and reminders, and also gives 
 
 This is the same updating rule that we used in the spring example.
 It is a rewriting of the definition of the derivative.
-This is sometimes referred to as [[https://en.wikipedia.org/wiki/Euler_method][Euler's method]].
+This is sometimes referred to as @hyperlink["https://en.wikipedia.org/wiki/Euler_method"]{Euler's method}.
 
 
 @examples[#:no-prompt
@@ -177,11 +202,8 @@ This is sometimes referred to as [[https://en.wikipedia.org/wiki/Euler_method][E
               (spike-status 0.0d0)
               (#t curr-volt)))]
           
-Just as we were given the equation for a spring, here we are given the equation for the I&F neuron, which we translate from math to code.
-These are being defined as functions.
-You can do the same in both Python and R, but will need a different keyword and syntax.
+Just as we were given the equation for a spring, here we are given the equation for the I&F neuron, which we translate from math to code. In addition, I created some smaller "helper" functions. I like a style that gives my functions default values. Then I don't have to enter so many arguments when I call the function. This, of course, only makes sense if there are values which you input to your function and that rarely change. I also find it convenient to use a style where I have keywords for my functions. Then I can change the order that I enter things. It does make my code longer, because I have to type the keywords when specifying the input to my functions. This is what I am doing with the lines that look like: @code[#:lang "racket"]|{#:if-false [if-false 0.0]}|
 
-In addition, I create some smaller "helper" functions.
 It would be possible to collapse all this into one big function, but that would be harder for me to understand, and harder for you to understand.
 In general, try to write short little functions that do one thing.
 Then you can chain those small functions together to accomplish the larger task.
@@ -211,43 +233,18 @@ Then you can chain those small functions together to accomplish the larger task.
             (plot (lines (map vector (map first iandf-results) (map third iandf-results)))))]
 
 
-Again, if you squint, you will see similarities to the Spring exercise.
-Though things may look more complex here it is only because I have so many more /local/ variables to define.
-The basic flow is still just a *loop*.
-Each of those local variables gets a start value and then a rule for updating each time through the loop.
-Later local variables can depend on the values of that came earlier in the list (that is the reason for the asterisk in =do*=).
-The loop also has a test condition for when to quit (like a "while" loop), and what it should do when that condition is met.
-Here it collects all the data into a big long list and reverses the order.
-I was pushing the recent values on to the front of the list each time, but now I need to reverse it so that time flows as we expect.
+Though things may look more complex than the spring example, it is because I have so many more @italic{local} variables to define.
+The basic flow is still just a @bold{loop}.
 
+Visualizations can be essential in helping you to see and understand the function of your computational program. Thus, while it is only cosmetic, I find the addition of the apparent spike helps me to see what the output of my simulation is. In another context, e.g. if were only counting spikes this decorative element would be un-needed complexity. 
 
-Define variables, and even functions, where you need them.
-It might be overkill here, but the idea is a good one to try and get in the habit of.
-When you need a function or a variable for only a small part of your program, make them local.
-Then they won't interfere with other parts of your program, and after you use them your programming language system can @italic{garbage collect} them freeing up your computer's memory and your namespace.
-Local variables, local functions, and even un-named, so-called @italic{lambda} functions, can make your code easier to read and understand as things are defined where they are needed and used.
-Defining local variables and functions does not require special keywords in Python and R, but can be inferred from the code itself.
+@section{Homework}
 
-Visualizations can be essential in helping you to see and understand the function of your computational program.
-Gain a good familiarity and facility with the plotting functions of whatever programming language you plan to use.
+The Integrate and Fire homework has two components. One practical and one theoretical.
 
+Practically, submit an integrate and fire racket program that alters mine in some meaningful way. You might change the plot or the type of current input. You might examine how the results depends on the size of the time step used. Just something to show that you can edit code and keep it working.
 
-In this function we can give a name to our plot and feed in the data it will use. In fact, I did not have to create and save the data. I was able to generate it internal to the function itself. This is sometimes thought of as function /composition/. You will also hear people talk of /chaining/ functions or /piping/. Think of how you can connect a series of pipes together to get a flow from beginning to end. In the case of a programming language each of the pipes may do something to what it is carrying and the result can be a processed data stream. 
-
-
-
-
-* Homework
-@itemlist[#:style 'ordered @item{This weeks homework is to write a I&F program that does what I just did. It should generate a "spike" when given a constant input. Be sure to look at my code to see how that spike is created. If you don't understand that you will have a hard time.}
-          @item{Related to the last point, does the I&F neuron truly spike?}
-          @item{If (1) goes easy then here are some other things to try:
-                   @itemlist[@item{create a refractory period for your neuron.}
-                                  @item{give a noisy input rather than the single flat line I demonstrate.}
-                                  @item{Look at how many times your neuron spikes to constant input. Is that what a real neuron does (try searching for Mainin and Sejnowski)? Does that affect the utility of the I&F model for computational neuroscience?}
-                                  @item{Lastly, if all that goes quickly, and it will for some of you, but not most of you, try creating variations of this simple I&F model.}]}]
-
-
-Upload your code to LEARN for credit.     
+Theoretically, look at @hyperlink["https://redwood.berkeley.edu/wp-content/uploads/2018/08/mainen-sejnowski.pdf"]{this article (pdf)} and tell me how you feel our integrate and fire model compares to these actual real world spiking data when both are give constant input. What are the implications for using the integrate and fire model as a model of neuronal function? 
 
 
 
