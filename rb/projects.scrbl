@@ -23,4 +23,4 @@
 @section{Genetic Algorithms}
 @section{Quantum Probability}
 @section{Vector Symbolic Architectures}
-
+@section{Linear Ballistic Accumulators}
