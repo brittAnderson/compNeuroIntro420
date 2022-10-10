@@ -8,7 +8,8 @@
           symalg
           scriblib/figure
           scribble/core
-          scribble/html-properties)
+          scribble/html-properties
+          "./../code/refs.rkt")
 
 @(define plot-eval
   (let ([eval  (make-base-eval)])
@@ -21,7 +22,6 @@
                       plot/pict
                       plot/utils)))
     eval))
-
 
 @title{Hodgkin and Huxley Model of the Action Potential}
 @section{Background and Motivation}
@@ -44,11 +44,11 @@ Some introductory reminders and admonitions:
  
 The current going in to the cell is intended to represent what an electrophysiologist would inject in their laboratory setting, or what might be changed by the input from other neurons. 
 The total current coming out of the neuron is the sum of the capacitance (due to the lipid bilayer), and the resistance (due to the ion channels).
-This is *Kirchoff's* rule implemented in the Hodgkin and Huxley model.
+This is @bold{Kirchoff's} rule implemented in the Hodgkin and Huxley model.
 
-Recall that in the Integrate not and and Fire model we lumped all our ionic
+Recall that in the Integrate and Fire model we lumped all our ionic
 events together into one term:
-@(use-mathjax)01
+@(use-mathjax)
 @($$ "\\tau \\frac{dV(t)}{dt} = -V(t) + R~I(t)")
  
 The Hodgkin and Huxley model is basically the same as the Integrate and Fire model. What differs is that total conductance is decomposed into three parts where we have a resistance @italic{for each ion channel}.
@@ -66,7 +66,7 @@ If you rearrange terms you can get the @${\frac{dV}{dt}} on one side of the equa
 
 @$$["c~\\frac{dV}{dt} = I_{tot} - (\\bar{g}_{Na} m^3 h (V(t) - E_{Na}) + \\bar{g}_{K} n^4 (V(t) - E_{K}) + \\bar{g}_{L} (V(t) - E_{L}))"]{\tag 1}
 
-@subsubsection{Test your understanding}l
+@subsubsection{Test your understanding}
 
 You cannot program what you don't understand. A major headache in any programming task comes from starting to write your code too soon. Your time to completion will often be shorter if you delay starting the writing of your code until you can confirm a solid understanding of the intent of your code and the flow of the algorithm you are implementing. It is a mistake to think that programming will bring understanding. Programming may bring you new insights or help you extend your understanding, but it cannot turn a confused implementation into a working one. Sometimes you think you understand something, and in the act of coding you find that you really do not. Or else that there are elements of the original problem that were under specified. At this point you should stop writing code, and go back to the blackboard to work through what it is you are trying to do. Make your coding about implementing an idea. Do not expect it to deliver the idea. 
 
@@ -78,8 +78,8 @@ So, in that light, and before you start coding, ask yourself,
           @item{What do m,n, and h represent?}
           @item{Where did these equations come from?}]
    
-@subsection{It's Differential Equationsl All the Way Down}
-Although the Hodgkin and Huxley model uses the same mathematics as the Integrate and Fire model, and we will use the same Euler's method to step forward and calculate model terms that evolve over time, this model is more complex in two ways that make the coding more intricate. First, it has multiple derivatives and derivatives at multiple levels. Each of the @italic{m}, @italic{n}, and @italic{h} terms are also changing and regulated by a differential equation. They are dependent on voltage. For example, @${\dot{m} = \alpha_m (V)(1 - m) - \beta_m (V) m}.
+@subsection{It's Differential Equations All the Way Down}
+Although the Hodgkin and Huxley model uses the same mathematics as the Integrate and Fire model, and we will use the same Euler's method to step forward and calculate model terms that evolve over time, this model is more complex in two ways that make the coding more intricate. First, it has multiple derivatives and derivatives at multiple levels. Each of the @italic{m}, @italic{n}, and @italic{h} terms are also changing and regulated by a differential equation. They are dependent on voltage. For example, @$${\dot{m} = \alpha_m (V)(1 - m) - \beta_m (V) m}.
 
 @bold{Test Your Understanding}
 @itemlist[#:style 'ordered
@@ -122,7 +122,7 @@ You will need to make some assumptions to get your initial conditions.
 @${\beta _{m}(V_{m})=4\exp {\bigg (}{\frac {-V_{m}}{18}}{\bigg )}}
 
 @${\beta_{h}(V_{m})={\frac {1}{\exp {\big (}{\frac {30-V_{m}}{10}}{\big)}+1}}}
-@nested[#:style (style #f `(,(attributes '([style . "background-color:linen;"]))))]{@bold{Programming Concept: Hash Tables}. Often when writing a more complex program you will have collections of values that go together conceptually. If you declare each as its own variable your functions that need the entire collection can require very long strings of arguments. It is often convenient to group such variables into a collection type recognized by your programming language. Python dictionaries are one approach. R and other languages may make it easier to use @italic{objects}. In this instance I am using a Racket hash table like a dictionary. I provide a name and a value and then an overall name for the table of name-value pairs.}
+@nested[#:style (style #f `(,(attributes '([style . "background-color:linen;"]))))]{@bold{Programming Concept: Hash Tables}. Often when writing a more complex program you will have collections of values that go together conceptually. If you declare each as its own variable your functions that need the entire collection can require very long strings of arguments. It is often convenient to group such variables into a collection type recognized by your programming language. Python dictionaries are one approach. R and other languages may make it easier to use @italic{objects}. In this instance I am using a Racket hash table. I provide a name and a value and then an overall name for the table of name-value pairs.}
 @examples[#:no-prompt
           #:label "Defining the Basic Neuron Parameters"
        (define neuron-details (hash 'dt 0.05
@@ -177,7 +177,7 @@ You will need to make some assumptions to get your initial conditions.
   (if (and (>= x lower) (<= x upper)) if-true if-false)))]
 
 @subsection{Updating the Voltage}
-Look back at the @${\frac{dv}{dt}} formula for the Integrate and Fire model and try to see the similarities. Although this function looks more complex it is still the basic Euler Method we used from the Integrate and Fire model. In fact, if you look at the source code for the @code{update} function you will see it is literally the one from the Integrate and Fire model.
+Look back at the @${\frac{dv}{dt}} formula for the @elemref["iandf-eq"]{Integrate and Fire equation} and try to see the similarities. Although this function looks more complex it is still the basic Euler Method we used from the Integrate and Fire model. In fact, if you look at the source code for the @code{update} function you will see it is literally the one from the Integrate and Fire model.
 
 @examples[#:no-prompt
           #:label "Computing the Change of Voltage"
@@ -221,9 +221,8 @@ Look back at the @${\frac{dv}{dt}} formula for the Integrate and Fire model and 
                          (dvdt v i hh-m hh-n hh-h nps) dt)
                  (cons (list t i v) accum)))))]
 
+@subsubsection{Demonstrating the Hodgkin-Huxley Model}
 
-
-Testing
 @examples[#:no-prompt
           #:label "Running the HH Model"
           #:eval plot-eval
@@ -237,4 +236,19 @@ Testing
                                   (map third run)))))]
 
 
+@subsection{Homework}
+
+I have given you code for this neuron in @hyperlink["./../code/handh.rkt"]{handh.rkt}. Your homework will require you to modify this code and generate example plots of the output. You may find this harder than prior homeworks. Start sooner to see how it goes.
+
+You will need to submit a scribble file. It should have a title, your name, and text describing each plot. You should provide at least two plots. You will need to adapt the model to fit this paper @~cite[handh-k-hw]. These authors analyzed a series of inherited channelopathies (where ion channels are altered due to mutation) via simulation. In these conditions empirical measurements had been made on actual patients. The authors adapted the Hodgkin and Huxley model to permit them to explore the effects of such altered conductance on neuronal excitability. For this home work you will need to adapt the @italic{n} equation to be as follows:
+
+@($$ "\\frac{dn}{dt} = \\gamma_\\tau (\\gamma_\\alpha \\alpha_n (v−\\Delta V)(1−n)− \\gamma_\\beta \\beta_n (v− \\Delta V)n)")
+
+Then you must select one of the sets of @($"\\gamma") from their @hyperlink["https://link.springer.com/article/10.1007/s10827-020-00766-1/tables/1"]{Table 1} and plot the neuronal activity.
+
+To start implement the new @italic{n} channel and set all the @($ "\\gamma")s to 1. This should work exactly like the old model. Generate a plot showing that it does. For the second plot generate the same plot with your altered @($ "\\gamma") values.
+
+To ease your transition to scribble I will accept it if you generate the plots as pngs in Dr Racket and then load them as images in your scribble document. For the submission give me the scrbl file, the image files, and the html output you generated (the .html file). 
+
+@(generate-bibliography)
 

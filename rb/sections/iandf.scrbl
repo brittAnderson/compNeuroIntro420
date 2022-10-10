@@ -62,7 +62,10 @@ While Hodgkin and Huxley provided the first robust computational model of the ne
 
 The formula for the leaky integrate and fire neuron is:
 @(use-mathjax)
+
+@elemtag{iandf-eq}
 @$$["\\tau \\frac{dV(t)}{dt} = -V(t) + R~I(t) ."]{\tag{I}}
+@(linebreak)
 
 In the next sections we will describe how this simplification came to be, and use it as the basis for learning some of the elementary electrical laws and relations upon which it is based. 
 

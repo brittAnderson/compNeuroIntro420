@@ -7,15 +7,15 @@
  turing-machine
  behav-logic
  marr-re-evaluated
- lambda-intro)
+ handh-k-hw
+ lambda-intro
+ )
 
 (require
   scriblib/autobib)
 
 (define-cite ~cite citet generate-bibliography
   #:style author+date-square-bracket-style)
-
-
 
 (define what-is-cognition
   (make-bib
@@ -84,3 +84,13 @@
    #:date 1991
    #:url "https://doi.org/10.1007/BF00361036"))
   
+(define handh-k-hw
+  (make-bib
+   #:author (authors "Omar A. Hafez"
+                     "Allan Gottschalk")
+   #:title "Altered Neuronal Excitability in a Hodgkin-Huxley Model Incorporating Channelopathies of the Delayed Rectifier Potassium Channel"
+   #:location (journal-location "Journal of Computational Neuroscience"
+                                #:volume 48
+                                #:pages '(377 386))
+   #:date 2020
+   #:url "http://dx.doi.org/10.1007/s10827-020-00766-1"))
