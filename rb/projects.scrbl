@@ -24,3 +24,4 @@
 @section{Quantum Probability}
 @section{Vector Symbolic Architectures}
 @section{Linear Ballistic Accumulators}
+@section{Fitzhugh-Nagamo Neuron Model}
