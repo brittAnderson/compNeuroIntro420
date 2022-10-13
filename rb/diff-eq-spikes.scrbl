@@ -8,3 +8,4 @@
 @include-section{./sections/DEIntro.scrbl}
 @include-section{./sections/iandf.scrbl}
 @include-section{./sections/handh.scrbl}
+@include-section{./sections/morris-lecar.scrbl}

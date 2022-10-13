@@ -36,7 +36,7 @@ In this section we take a look at the history and math of the computational mode
 @; *** Image of the Laboratory
 @figure[
   "fig:lapique-lab"
-  @elem{The Lapique Lab at the Sorbonne 190something}
+  @elem{The Lapique Lab at the Sorbonne early 1900s}
   @elem{@image[#:scale 0.5]{./images/Lapicque_laboratoire.png}}]
 
 @; haven't figure out how to scale the image. 
@@ -241,7 +241,7 @@ The basic flow is still just a @bold{loop}.
 
 Visualizations can be essential in helping you to see and understand the function of your computational program. Thus, while it is only cosmetic, I find the addition of the apparent spike helps me to see what the output of my simulation is. In another context, e.g. if were only counting spikes this decorative element would be un-needed complexity. 
 
-@section{Homework}
+@section{Integrate and Fire Homework}
 
 The Integrate and Fire homework has two components. One practical and one theoretical.
 

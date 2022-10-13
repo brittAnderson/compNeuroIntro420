@@ -23,7 +23,7 @@
     eval))
 
 @(use-mathjax)
-
+v
 @(define-cite ~cite citet-id generate-bibliography #:style author+date-style)
 
 @title{Is Cognition Computational?}
@@ -273,4 +273,5 @@ With pencil and paper try to @itemlist[#:style 'ordered @item{apply this to the 
 
 
 
-@(generate-bibliography)
+@generate-bibliography[#:sec-title "Computational Cognition References"]
+

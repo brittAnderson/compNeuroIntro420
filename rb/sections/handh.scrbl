@@ -236,7 +236,7 @@ Look back at the @${\frac{dv}{dt}} formula for the @elemref["iandf-eq"]{Integrat
                                   (map third run)))))]
 
 
-@subsection{Homework}
+@subsection{Hodgkin and Huxley Homework}
 
 I have given you code for this neuron in @hyperlink["./../code/handh.rkt"]{handh.rkt}. Your homework will require you to modify this code and generate example plots of the output. You may find this harder than prior homeworks. Start sooner to see how it goes.
 
@@ -250,5 +250,6 @@ To start implement the new @italic{n} channel and set all the @($ "\\gamma")s to
 
 To ease your transition to scribble I will accept it if you generate the plots as pngs in Dr Racket and then load them as images in your scribble document. For the submission give me the scrbl file, the image files, and the html output you generated (the .html file). 
 
-@(generate-bibliography)
+@generate-bibliography[#:sec-title "Hodgkin-Huxley References"]
+
 
