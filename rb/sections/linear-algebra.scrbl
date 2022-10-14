@@ -9,7 +9,15 @@
           scriblib/figure
           scribble/core
           scribble/html-properties
+          "./../code/bool-figs.rkt"
           "./../code/ca.rkt")
+
+@(define bool-eval
+  (let ([eval (make-base-eval)])
+    (eval '(begin
+             (require "./code/bool-figs.rkt")))
+    eval))
+
 
 @title{The Math That Underlies Neural Networks?}
 @section{Linear Algebra}
@@ -99,75 +107,63 @@ One of our first efforts will be to code a @italic{perceptron} to solve the XOR 
 
 The "AND" Operation/Function
 
-IAMHERE
+@figure["fig:and"
+        @elem{The @italic{and} operation is true when both its inputs are true.}
+        @(and-fig)]
 
-#+Caption: The "and" is true when both inputs, and only when both inputs, are true.
-[[file:and-lisp.png]]
+        
+@figure["fig:or"
+        @elem{The @italic{or} operation is true if either or both of its inputs are true.}
+        @(or-fig)]
 
-#+Name: Or Function
-#+Caption: The "or" is true unless both inputs are false.
-[[file:or-lisp.png]]
+@figure["fig:xor"
+        @elem{The @italic{xor} is true when one or the other, but not both of the inputs are true. It is exclusively an or function.}
+        @(xor-fig)]
 
-*** XOR
-#+Name: XOR  (also known as exclusive or) Function
-#+Caption: The "xor" is true when one or the other, but not both of the inputs are true. It is exclusively an or function
-[[file:xor-lisp.png]]
+This short @hyperlink["https://media.nature.com/m685/nature-assets/nbt/journal/v26/n2/images/nbt1386-F1.gif"]{article} provides a nice example of linear separability and some basics of what a neural network is. 
 
-*** Optional Reading
+@subsubsection{Exercise XOR}
 
-This short [[https://media.nature.com/m685/nature-assets/nbt/journal/v26/n2/images/nbt1386-F1.gif][article]] provides a nice example of linear separability and some basics of what a neural network is. 
+Using only @italic{not}, @italic{and}, and @italic{or} operations draw the diagram that allows you to compute in two steps the @italic{xor} operation. You will need this to code it up as a perceptron.
 
-* Connections
+@subsection{Connections}
   Can neural networks encode logic? Is the processing zeros and ones enough to capture the richness of human intellectual activity?
 
-  In fact there is a long tradition of representing human thought as the consequence of some sort of calculation of two values (true or false). If you have two values you can swap out 1's and 0's for the true and false in your calculation. They even seem to obey similar laws. If you the conjunction (AND) of two true things it is only true when both are true. If you take T = 1, then T ∧ T is the same as $1~\times~1$.
+There is a long tradition of representing human thought as the consequence of some sort of calculation of two values (true or false). If you have two values you can swap out 1's and 0's for the true and false in your calculation. They even seem to obey similar laws. If you the conjunction (AND) of two true things it is only true when both are true. If you take T = 1, then T ∧ T is the same as @($"1~\\times~1").
 
-  In the next section we will build up a simple threshold neural unit and try to calculate some of these truth functions with our neuron. We will build simple neurons for truth tables (like those that follow), and string them together into an argument. Then we can feed values of T and F into our network and let it calculate the XOR problem.
-
-@;; ** Boolean Logic
-@;;    :PROPERTIES:
-@;;    :CUSTOM_ID: boolean-logic
-@;;    :END:
-
-@;; - George Boole, Author of the /Laws of Thought/
-
-@;;   1. Read the [[https://archive.org/details/investigationofl00boolrich][book]] on Archive.org
-@;;   2. Read about [[https://plato.stanford.edu/entries/boole/#LifWor][George Boole]].
-
-@;; ** First Order Logic - Truth Tables
-@;; 1. Or
-@;;    #+Name: Or
-@;;    #+Caption: Or
-@;;    | Pr A | Pr B | Or |
-@;;    |------+------+----|
-@;;    |    0 |    0 |  0 |
-@;;    |    0 |    1 |  1 |
-@;;    |    1 |    0 |  1 |
-@;;    |    1 |    1 |  1 |
-
-@;; 2. And
-@;;    #+Name: And
-@;;    #+Caption: And
-@;;    | Pr A | Pr B | Or |
-@;;    |------+------+----|
-@;;    |    0 |    0 |  0 |
-@;;    |    0 |    1 |  0 |
-@;;    |    1 |    0 |  0 |
-@;;    |    1 |    1 |  1 |
+We will next build up a simple threshold neural unit and try to calculate some of these truth functions with our neuron. We will build simple neurons for truth tables (like those that follow), and string them together into an argument. Then we can feed values of T and F into our network and let it calculate the XOR problem.
 
 
-@;;  3. Nand
-@;;     #+Name: Nand
-@;;     #+Caption: Nand
-@;;    | Pr A | Pr B | Or |
-@;;    |------+------+----|
-@;;    |    0 |    0 |  1 |
-@;;    |    0 |    1 |  0 |
-@;;    |    1 |    0 |  0 |
-@;;    |    1 |    1 |  0 |
-    
+@subsection{Boolean Logic}
+George Boole, Author of the @italic{Laws of Thought}
 
-@;; * Footnotes
-@;; [fn:2] If you don't have graph paper just draw a grid on any handy sheet of paper. If you don't have a piece of paper open up a spreadsheet on your computer and just type in 0's and 1's to represent white and black (or color the cells if you know how to do that).  
+@itemlist[@item{Read the @hyperlink["https://archive.org/details/investigationofl00boolrich"]{book} on Archive.org}
+               @item{Read about @hyperlink["https://plato.stanford.edu/entries/boole/#LifWor"]{George Boole}}]
 
-@;; [fn:1] 30 
+@subsection{ First Order Logic - Truth Tables}
+@bold{Or}
+
+@tabular[#:sep @hspace[1]
+         (list (list @bold{Pr A} @bold{Pr B} @bold{Or})
+               (list "0" "0" "0")
+               (list "0" "1" "1")
+               (list "1" "0" "1")
+               (list "1" "1" "1"))]
+
+@bold{And}
+
+@tabular[#:sep @hspace[1]
+         (list (list @bold{Pr A} @bold{Pr B} @bold{Or})
+               (list "0" "0" "0")
+               (list "0" "1" "0")
+               (list "1" "0" "0")
+               (list "1" "1" "1"))]
+
+@bold{Nand}
+
+@tabular[#:sep @hspace[1]
+         (list (list @bold{Pr A} @bold{Pr B} @bold{Or})
+               (list "0" "0" "1")
+               (list "0" "1" "1")
+               (list "1" "0" "1")
+               (list "1" "1" "0"))]
