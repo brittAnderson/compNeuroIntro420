@@ -273,5 +273,6 @@ With pencil and paper try to @itemlist[#:style 'ordered @item{apply this to the 
 
 
 
-@generate-bibliography[#:sec-title "Computational Cognition References"]
+@generate-bibliography[#:sec-title "Computational Cognition References"
+                       #:tag "ref:comp-cog"]
 

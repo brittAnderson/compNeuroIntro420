@@ -250,6 +250,7 @@ To start implement the new @italic{n} channel and set all the @($ "\\gamma")s to
 
 To ease your transition to scribble I will accept it if you generate the plots as pngs in Dr Racket and then load them as images in your scribble document. For the submission give me the scrbl file, the image files, and the html output you generated (the .html file). 
 
-@generate-bibliography[#:sec-title "Hodgkin-Huxley References"]
+@generate-bibliography[#:sec-title "Hodgkin-Huxley References"
+                       #:tag "ref:handh"]
 
 

@@ -46,4 +46,5 @@ The technical challenges for modeling in psychology are mastering the mathematic
 
 As revealed in this recent article@~cite[what-is-cognition] there are a wide array of views on what is cognition. @margin-note{Which of these opinions, if any, do you agree with and why?}
 
-@generate-bibliography[#:sec-title "Cognition Section Bibliography"]
+@generate-bibliography[#:sec-title "Cognition Section Bibliography"
+                       #:tag "ref:cog"]
