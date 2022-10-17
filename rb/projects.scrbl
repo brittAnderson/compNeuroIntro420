@@ -21,11 +21,15 @@
 
 @title{Topics for Final Projects}
 @section{Agent Based Modeling}
-Provide an overview of the idea behind agent based models in psychology. Give a demonstration by implementing in racket a simple version (includeing graphics) of the classic work of Schelling @~cite{neighborhood-agent-model}.
+Provide an overview of the idea behind agent based models in psychology. Give a demonstration by implementing in racket a simple version (includeing graphics) of the classic work of Schelling @~cite[neighborhood-agent-model].
 @section{Genetic Algorithms}
 @section{Quantum Probability}
 @section{Vector Symbolic Architectures}
+Provide an overview of vector symbolic architectures and provide a short racket implementation of Kanerva's "what is Mexico's dollar?" example @~cite[vsa-dollar].
 @section{Linear Ballistic Accumulators}
 @section{Fitzhugh-Nagamo Neuron Model}
 
+
+
 @generate-bibliography[#:tag "ref:projects" #:sec-title "Project References"]
+
