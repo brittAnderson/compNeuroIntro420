@@ -1,21 +1,21 @@
 #lang racket/base
 
-(provide
- ~cite citet generate-bibliography
- what-is-cognition
- cog-comp-neurosci-is
- turing-machine
- behav-logic
- marr-re-evaluated
- handh-k-hw
- lambda-intro
- )
-
 (require
   scriblib/autobib)
 
+(provide (all-defined-out))
+
 (define-cite ~cite citet generate-bibliography
   #:style author+date-square-bracket-style)
+
+(define neighborhood-agent-model
+  (make-bib
+   #:author (authors "Thomas C. Schelling")
+   #:title "Dynamic models of segregation"
+   #:date 1971
+   #:location (journal-location "The Journal of Mathematical Sociology" #:volume 1
+                                #:pages '(143 186))
+   #:url "https://doi.org/10.1080/0022250X.1971.9989794"))
 
 (define what-is-cognition
   (make-bib
