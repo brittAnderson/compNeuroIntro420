@@ -9,14 +9,7 @@
           scriblib/figure
           scribble/core
           scribble/html-properties
-          "./../code/bool-figs.rkt"
-          "./../code/ca.rkt")
-
-@(define bool-eval
-  (let ([eval (make-base-eval)])
-    (eval '(begin
-             (require "./code/bool-figs.rkt")))
-    eval))
+          "./../code/bool-figs.rkt")
 
 
 @title{The Math That Underlies Neural Networks?}
@@ -50,7 +43,7 @@ Similarly, we often just consider a matrix as a collection of vectors or as a re
 @subsubsection{Activity}
 Look up how racket handles @hyperlink["https://docs.racket-lang.org/math/matrices.html"]{matrices and vectors}. Here is a very simple @hyperlink["./../code/la-demo.rkt"]{file} to try and get started. 
 
-{@bold{Important}: vectors are a special datatype in Racket, and the vector type is probably not what you want to be using. Look for matrices and linear algebra}
+@bold{Important}: vectors are a special datatype in Racket, and the vector type is probably not what you want to be using. Look for matrices and linear algebra.
 
 Make two arrays and make them the same size@margin-note*{What is the @italic{size} of a matrix?}.
 

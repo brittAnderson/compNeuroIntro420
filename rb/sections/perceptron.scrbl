@@ -9,6 +9,7 @@
           scriblib/figure
           scribble/core
           scribble/html-properties
+          scriblib/autobib
           "./../code/refs.rkt")
 
 @(define plot-eval
@@ -61,4 +62,6 @@ This is a pencil and paper exercise. Before coding it is often a good idea to tr
 
 Beginning with an input of @($ "\\begin{bmatrix}0.3 \\\\ 0.7 \\end{bmatrix}"), an initial set of weights of @($ "\\begin{bmatrix}-0.6 \\\\ 0.8 \\end{bmatrix}"), and a @bold{class} of 1. Compute the value of the new weight vector with pen and paper.
                                                                                                               
-IAMHERE - consult perceptron.org for next steps. 
+
+@generate-bibliography[#:sec-title "Perceptron Bibliography"
+                       #:tag "ref:perceptron"]

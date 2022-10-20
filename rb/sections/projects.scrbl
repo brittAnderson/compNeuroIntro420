@@ -5,7 +5,7 @@
 	  scribble-math/dollar
 	  scribble/example
           scriblib/autobib
-          "./code/refs.rkt")
+          "./../code/refs.rkt")
 
 @(define plot-eval
   (let ([eval  (make-base-eval)])
@@ -32,5 +32,5 @@ Provide an overview of vector symbolic architectures and provide a short racket 
 
 
 
-@generate-bibliography[#:tag "ref:projects" #:sec-title "Project References"]
-
+@generate-bibliography[#:sec-title "Project References"
+                       #:tag "ref:projects"]

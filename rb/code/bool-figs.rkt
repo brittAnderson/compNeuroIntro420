@@ -1,9 +1,12 @@
 #lang racket
 
 (require racket/draw
-         racket/gui)
+         racket/snip)
 
-(provide (all-defined-out))
+(provide and-fig
+         or-fig
+         xor-fig)
+
 
 
 (define (and-fig)

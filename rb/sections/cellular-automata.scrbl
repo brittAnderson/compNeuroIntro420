@@ -8,8 +8,7 @@
           symalg
           scriblib/figure
           scribble/core
-          scribble/html-properties
-          "./../code/ca.rkt")
+          scribble/html-properties)
 
 
 @(define ca-eval

@@ -9,6 +9,7 @@
           scriblib/figure
           scribble/core
           scribble/html-properties
+          scriblib/autobib
           "./../code/refs.rkt")
 
 @(define plot-eval
@@ -23,7 +24,11 @@
                       plot/utils)))
     eval))
 
-@title{Hodgkin and Huxley Model of the Action Potential}
+
+@(define-cite ~cite citet-id generate-bibliography #:style author+date-style)
+
+
+@title[#:tag "Hodgkin and Huxley"]{Hodgkin and Huxley Model of the Action Potential}
 @section{Background and Motivation}
 
 Hodgkin and Huxley, the people as well as their model, provide a nice example for how to structure one's education to enable one to do work that combines mathematics, models, and empirical data. Each was a scientist from one side of the aisle who sought training from the other.
