@@ -59,6 +59,6 @@ Updating is done by @($ "\\mathbf{w_{new}} =
 
 This is a pencil and paper exercise. Before coding it is often a good idea to try and work the basics out by hand. This may be a flow chart or a simple hand worked example. This both gives you a simple test case to compare your code against, but more importantly makes sure that you understand what you are trying to code. Let's make sure you understand how to compute the perceptron learning rule, but doing a simple case by hand.
 
-Beginning with an input of @($ "\\begin{bmatrix}0.3 \\\\ 0.7 \\end{bmatrix}"), an initial set of weights of @($ "\\begin{bmatrix}-0.6 \\\\ 0.8 \\end{bmatrix})", and a @bold{class} of 1. Compute the value of the new weight vector with pen and paper.
+Beginning with an input of @($ "\\begin{bmatrix}0.3 \\\\ 0.7 \\end{bmatrix}"), an initial set of weights of @($ "\\begin{bmatrix}-0.6 \\\\ 0.8 \\end{bmatrix}"), and a @bold{class} of 1. Compute the value of the new weight vector with pen and paper.
                                                                                                               
 IAMHERE - consult perceptron.org for next steps. 
