@@ -141,7 +141,7 @@ Mark 1 Perceptron (details to be found on [[https://en.wikipedia.org/wiki/Percep
    : Right or wrong? -1.0
    : Right or wrong? -1.0
    : Right or wrong? 1.0
-5. Now train it for each of the four inputs shown above.
+5. Now train it for each of the four inputs shown bove.
    #+begin_src lisp :results output :exports both
      (defvar outwt)
      (defparameter starting-wts (list -0.6 0.8))

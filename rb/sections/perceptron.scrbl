@@ -24,6 +24,16 @@
                       plot/utils)))
     eval))
 
+@(define percep-eval
+   (let ([eval (make-base-eval)])
+     (eval '(begin
+              (require math/matrix
+                       math/array)))
+     eval))
+
+@(define-cite ~cite citet-id generate-bibliography #:style author+date-style)
+
+
 @title{Perceptrons}
 @section{Goals}
 The goal for this file is to share the idea of a perceptron, the mathematical formula for updating one, and iniate the process of coding a simple implementation that we will adapt to the delta rule.
@@ -61,7 +71,49 @@ Updating is done by @($ "\\mathbf{w_{new}} =
 This is a pencil and paper exercise. Before coding it is often a good idea to try and work the basics out by hand. This may be a flow chart or a simple hand worked example. This both gives you a simple test case to compare your code against, but more importantly makes sure that you understand what you are trying to code. Let's make sure you understand how to compute the perceptron learning rule, but doing a simple case by hand.
 
 Beginning with an input of @($ "\\begin{bmatrix}0.3 \\\\ 0.7 \\end{bmatrix}"), an initial set of weights of @($ "\\begin{bmatrix}-0.6 \\\\ 0.8 \\end{bmatrix}"), and a @bold{class} of 1. Compute the value of the new weight vector with pen and paper.
-                                                                                                              
+
+@subsection{A simple data set}
+
+For these data there are two dimensions or features (the first and second columns) and the third colum represents their @italic{class}. 
+
+@(racketblock (matrix [[ 0.3 0.7 1.0]
+                      [-0.5 0.3 -1.0]
+                      [0.7 0.3 1.0]
+                      [-0.2 -0.8 -1.0]]))
+
+Using the starting weight above write code to iteratively compute a new weight from each input and it's class and using the current weight. If you can, save each updated weight so you can see how they change, but if you can't still try to use a for construct to iterate through these data and see how the weights change.
+
+In broad outlines you will need to decide on a data structure. You can use a matrix as I have here, but it may be easier to just use a list to start. For example @(racket (list (list 0.3 0.7) 1.0)). The first element of the list would be the input data and the last item the desired class. You could create a list of list of such elements to capture the matrix I have displayed above. 
+
+This progressive updating of the weight vector is the @italic{learning}. Note that sometimes our initial weight vector classifies incorrectly. How does it do after one complete cycle through all the training examples?
+
+@examples[#:label "Checking our Learned Weight For One Input"
+         #:eval percep-eval
+         (let ([in-class -1.0])
+           (if (= (if (>= (matrix-ref
+                           (matrix* (row-matrix [-0.6 0.3])
+                                    (col-matrix [1.2 2.3])) 0 0) 0.0)
+                      1 -1) in-class) "correct" "incorrect"))]
+
+@subsection{What does it all mean? How is the Perceptron Learning?}
+
+@subsubsection{Geometrical Thinking}
+@itemlist[@item{What is the relation between the inner product of two vectors and the cosine of the angle between them?}
+@item{What is the *sign* for the cosine of angles less than 90 degrees and those greater than 90 degrees?}
+@item{ How do these facts help us to answer the question above?}
+@item{ Why does this reinforce the advice to think /geometrically/ when thinking about networks and weight vectors?}]
+
+@section{The Delta Rule - Homework}
+
+The @bold{@italic{Delta Rule}} is another simple learning rule that is a minimal variation on the perceptron rule. It is used more frequently, and it has the spirit of Hebbian learning, which we will learn more about soon. The homework asks you to write code to test and train an artificial neuron using the delta learning rule. 
+
+@itemlist[#:style 'ordered
+          @item{For an easy start create some pseudo random linearly separable points on a a sheet of paper. Label one population as @bold{1} and the other population as @bold{-1}.}
+          @item{For a more challenging set-up create the data programatically using random numbers and some method that allows you to vary how close or distant the points are to the line of separation, and how many points there are to train on.}
+          @item{The Delta Learning rule is: @($$ "\\Delta~w_i = x_i~\\eta(desired - observed)")}
+          @item{Submit your code that has your test data in it. Start with an initial random weight and use the delta rule to learn the correct weighting to solve all your training examples. Then test on a new set of points that you did @bold{not} test on but that are classified according to the same rule. Your code should assess how well the @italic{trained} rule classifies the @italic{test} data.}]
+
+I have @hyperlink["./../code/perceptron-rule.rkt"]{some code} for the perceptron that might give you some code you could adapt if you have trouble getting started. 
 
 @generate-bibliography[#:sec-title "Perceptron Bibliography"
                        #:tag "ref:perceptron"]
