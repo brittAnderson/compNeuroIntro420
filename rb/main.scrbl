@@ -9,7 +9,7 @@
 
 
 @include-section{front-matter.scrbl}
-@include-section{cog-comp-matter.scrbl}
-@include-section{diff-eq-spikes.scrbl}
-@include-section{neural-networks.scrbl}
-@include-section{projects.scrbl}
+@;@include-section{cog-comp-matter.scrbl}
+@;@include-section{diff-eq-spikes.scrbl}
+@;@include-section{neural-networks.scrbl}
+@;@include-section{projects.scrbl}
