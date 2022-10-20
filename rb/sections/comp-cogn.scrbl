@@ -23,7 +23,7 @@
     eval))
 
 @(use-mathjax)
-v
+
 @(define-cite ~cite citet-id generate-bibliography #:style author+date-style)
 
 @title{Is Cognition Computational?}
