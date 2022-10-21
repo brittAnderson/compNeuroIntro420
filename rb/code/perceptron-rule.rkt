@@ -4,6 +4,8 @@
          math/array
          plot)
 
+(provide (all-defined-out))
+
 (define my-data (matrix [[ 0.3 0.7 1.0]
                          [-0.6 0.3 -1.0]
                          [0.7 0.3 1.0]
@@ -45,5 +47,5 @@
   (plot (for/list ([pp (parse-points lrnd)]
                     [i (in-range 100)])
           (arrows pp #:color i
-                  #:width (* i 1.0)))))
+                  #:width (* i 1.5)))))
                 

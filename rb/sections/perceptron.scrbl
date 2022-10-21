@@ -1,7 +1,6 @@
 #lang scribble/book
 
-@(require plot/pict 
-	  scribble/base
+@(require scribble/base
 	  scribble-math/dollar
 	  scribble/example
           scribble/manual
@@ -12,17 +11,7 @@
           scriblib/autobib
           "./../code/refs.rkt")
 
-@(define plot-eval
-  (let ([eval  (make-base-eval)])
-    (eval '(begin
-             (require racket/math
-                      racket/match
-                      racket/list
-                      racket/draw
-                      racket/class
-                      plot/pict
-                      plot/utils)))
-    eval))
+
 
 @(define percep-eval
    (let ([eval (make-base-eval)])
@@ -30,6 +19,20 @@
               (require math/matrix
                        math/array)))
      eval))
+
+@(define percep-plot-eval
+   (let ([eval (make-base-eval)])
+     (eval '(begin
+              (require math/matrix
+                       math/array
+                       "./code/perceptron-rule.rkt")))
+     eval))
+
+@(define ca-eval
+   (let ([eval (make-base-eval)])
+     (eval '(begin (require "./code/ca.rkt")))
+     eval))
+              
 
 @(define-cite ~cite citet-id generate-bibliography #:style author+date-style)
 
@@ -56,7 +59,7 @@ From the foreward of that book we have the following quote:
 @section{The Perceptron Rules}
 The perceptron rules are the equations that characterize what a perceptron is, and what it does in contact with experience, so that it can learn and revise its behavior. A lot can be done with these simple equations.
 
-@($ "I = i\\sum_{i=1}^{n} w_i~x_i")
+@($ "I = \\sum_{i=1}^{n} w_i~x_i")
 
 If @($ "I \\ge T") then @($ "y = +1") else if @($ "I < T") then @($ "y = -1")
 
@@ -97,7 +100,16 @@ This progressive updating of the weight vector is the @italic{learning}. Note th
 
 @subsection{What does it all mean? How is the Perceptron Learning?}
 
-ADDPLOTOFWEIGHTVECTOR
+@examples[#:label "Changing Weights as Vectors"
+          #:eval percep-plot-eval
+          #:no-prompt
+          (wt-plot (one-loop-through-data my-data (col-matrix [-0.6 0.8])))]
+
+These functions and the @tt{my-data} are in the file @hyperlink["./../code/perceptron-rule.rkt"]{perceptron-rule.rkt}. Each time through the perceptron rule I compute the new weights and use the first position as the 'x' value and the second position as the 'y' value to plot vectors on an 'x-y' plane. You can imagine that as we iterate through the data we are rotating the vectors around an origin. The decision plane is perpendicular to the vectors and anchored at the bottom of the arrows. If you compare this to the location of the data points (which you can add to the plot by editing the functions in the linked file) you will see that the rule is learning to find the decision plane that puts all of one class on one side of the line and all of the other class on the other side. That is why it is limited to problems that are linearly separable!
+
+@subsection{Bias}
+
+These data were selected such that the base of the vector could separate them while anchored at zero. However, for many data sets you not only need to learn what direction to point the vector, but you also need to learn where to anchor the vector. This is done by including a @bold{bias weight}. Add an extra dimension to your weight vector and your inputs. For the inputs it will just be a constant value of 1.0, but this extra, bias weight, will also be learned and allows you to achieve, effectively, a translation away from the origin to be able to separate points that are more heterogeneously scattered. 
 
 @subsubsection{Geometrical Thinking}
 @itemlist[@item{What is the relation between the inner product of two vectors and the cosine of the angle between them?}

@@ -2,7 +2,7 @@
 
 (require racket/format
          racket/draw
-         racket/gui)
+         racket/snip)
 
 (provide (all-defined-out))
 

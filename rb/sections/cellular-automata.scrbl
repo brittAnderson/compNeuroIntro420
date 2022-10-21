@@ -1,8 +1,7 @@
 #lang scribble/book
 
-@(require plot/pict 
-	  scribble/base
-	  scribble-math/dollar
+@(require scribble/base
+          scribble-math/dollar
 	  scribble/example
           scribble/manual
           symalg
