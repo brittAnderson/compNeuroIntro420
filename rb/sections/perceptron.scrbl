@@ -97,6 +97,8 @@ This progressive updating of the weight vector is the @italic{learning}. Note th
 
 @subsection{What does it all mean? How is the Perceptron Learning?}
 
+ADDPLOTOFWEIGHTVECTOR
+
 @subsubsection{Geometrical Thinking}
 @itemlist[@item{What is the relation between the inner product of two vectors and the cosine of the angle between them?}
 @item{What is the *sign* for the cosine of angles less than 90 degrees and those greater than 90 degrees?}

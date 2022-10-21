@@ -102,3 +102,53 @@
                                 #:pages '(377 386))
    #:date 2020
    #:url "http://dx.doi.org/10.1007/s10827-020-00766-1"))
+
+(define neuroevo
+  (make-bib
+   #:author (authors "Kenneth O. Stanley"
+                     "Jeff Clune"
+                     "Joel Lehman"
+                     "Risto Mikkulainen")
+   #:title "Designing neural networks thought neuroevolution"
+   #:location (journal-location "Nature Machine Intelligence"
+                                #:volume 1
+                                #:pages '(24 35))
+   #:date 2019
+   #:url "https://www.researchgate.net/profile/Jeff-Clune/publication/330203191_Designing_neural_networks_through_neuroevolution/links/5e7243fc92851c93e0ac18ea/Designing-neural-networks-through-neuroevolution.pdf?_sg%5B0%5D=started_experiment_milestone&_sg%5B1%5D=started_experiment_milestone&origin=journalDetail"))
+
+(define quantum-prob
+  (make-bib
+   #:author (authors "Peter D. Bruza"
+                     "Zheng Wang"
+                     "Jerome R. Busemeyer")
+   #:title "Quantum cognition: a new theoretical approach to psychology"
+   #:location (journal-location "Trends in Cognitive Science" #:volume 19 #:pages '(383 393))
+   #:date 2015
+   #:url "http://dx.doi.org/10.1016/j.tics.2015.05.001"))
+
+(define quantum-prob-2022
+  (make-bib
+   #:author (authors "Pothos, Emmanuel M."
+                     "Busemeyer, Jerome R.")
+   #:title "Quantum Cognition"
+   #:location (journal-location "Annual Review of Psychology" #:volume 73 #:pages '(749 778))
+   #:date 2022
+   #:url "https://dx.doi.org/10.1146/annurev-psych-033020-123501"))
+
+(define quantum-prob-2015
+  (make-bib
+   #:author (authors "Jerome R. Busemeyer"
+                      "Zheng Wang")
+   #:title "What is Quantum Cognition, and How is it Applied to Psychology?"
+   #:location (journal-location "Current Directions in Psychological Science" #:volume 24 #:pages '(163 169))
+   #:date 2015
+   #:url "https://jbusemey.pages.iu.edu/quantum/CDinQC.pdf"))
+
+(define lba
+  (make-bib
+   #:title "The simplest complete model of choice response time: Linear ballistic accumulation"
+   #:location (journal-location "Cognitive Psychology" #:volume 57 #:pages '(153 178))
+   #:date 2008
+   #:url "https://dx.doi.org/10.1016/j.cogpsych.2007.12.002"
+   #:author (authors "Scott D. Brown"
+                     "Andrew Heathcote")))
