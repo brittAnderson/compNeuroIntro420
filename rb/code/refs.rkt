@@ -152,3 +152,13 @@
    #:url "https://dx.doi.org/10.1016/j.cogpsych.2007.12.002"
    #:author (authors "Scott D. Brown"
                      "Andrew Heathcote")))
+
+(define hopfield-orig
+  (make-bib
+   #:author (authors "J. J. Hopfield")
+   #:title "Neural netowrks and physical systems with emergent collecttive computational abilities."
+   #:location (journal-location "PNAS" #:volume 79 #:pages '(2554 2558))
+   #:date 1982
+   #:url "https://www.pnas.org/doi/abs/10.1073/pnas.79.8.2554"))
+   
+  
