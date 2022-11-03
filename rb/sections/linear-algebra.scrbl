@@ -54,7 +54,7 @@ Then do the same for multiplication. Note that there are particular requirements
 What is the name for the property of having A*B = B*A?
 
 
-** Common Notational Conventions for Vectors and Matrices
+@subsection{Common Notational Conventions for Vectors and Matrices}
 
 Vectors tend to be notated as @italic{lower case} letters, often in bold, such
 as @($ "\\mathbf{a}"). They are also occasionally represented with little
@@ -65,7 +65,7 @@ such as @($ "\\mathbf{M}").
 
 Good things to know: what is an @italic{inner product}? How do you compute it in racket?
 
-@subsection{What is a Neural Network?}
+@section{What is a Neural Network?}
 
 What is a Neural Network? It is a brain inspired computational approach
 in which "neurons" compute functions of their inputs and pass on a
@@ -76,7 +76,7 @@ in which "neurons" compute functions of their inputs and pass on a
         @elem{@image{./images/nn.png}}]
 
 
-@subsubsection{Non-linearities}
+@subsection{Non-linearities}
 The spiking of a biological neuron is non-linear. You saw this in both the integrate and fire and Hodgkin and Huxley models you programmed. The lines on those plots you created are not, for the most part, straight. Perhaps the simplest way to incorporate a non-linearity into our artificial neuron is to give it a threshold, like we did for the integrate and fire model. When activity exceeds the threshold (which we will usually designate with a capital Greek Theta @($ "\\Theta") then the neuron is set to 1 and if it is not firing it is set to 0 (like the "w" → 0; "b" → 1 mapping we used for the cellular automata).
    
 @($$ "\\begin{equation}
