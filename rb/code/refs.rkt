@@ -156,9 +156,17 @@
 (define hopfield-orig
   (make-bib
    #:author (authors "J. J. Hopfield")
-   #:title "Neural netowrks and physical systems with emergent collecttive computational abilities."
+   #:title "Neural networks and physical systems with emergent collective computational abilities."
    #:location (journal-location "PNAS" #:volume 79 #:pages '(2554 2558))
    #:date 1982
    #:url "https://www.pnas.org/doi/abs/10.1073/pnas.79.8.2554"))
    
   
+(define kohonen-book
+  (make-bib 
+            #:title "Self-organization and associative memory"
+            #:author (authors "Kohonen, Teuvo")
+            #:is-book? "yes"
+            #:location (book-location #:publisher "Springer Science & Business Media")
+            #:date 2012
+            #:url "https://books.google.com/books?hl=en&lr=&id=cSzwCAAAQBAJ&oi=fnd&pg=PA1&dq=Self-Organization+and+Associative+Memory&ots=kJXwlePW0S&sig=rc_eCyYJ7IqmOthPHajxdCZTFpE"))
