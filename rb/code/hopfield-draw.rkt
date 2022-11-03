@@ -20,9 +20,6 @@
     (send hf-dc set-font (make-font #:size 24 #:family 'roman
                                  #:weight 'bold))
     (send hf-dc draw-text "X" 15 20)
-    (send hf-dc draw-text "X" 15 340)
-    (send hf-dc draw-text "X" 365 20)
-    (send hf-dc draw-text "X" 365 340)
     ;;connections UL
     (draw-arrow hf-dc 60 60 60 315 0 0 #:arrow-head-size 12)
     (draw-arrow hf-dc 60 60 315 60 0 0 #:arrow-head-size 12)
