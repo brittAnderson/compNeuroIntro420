@@ -146,7 +146,7 @@ George Boole, Author of the @italic{Laws of Thought}
 @bold{And}
 
 @tabular[#:sep @hspace[1]
-         (list (list @bold{Pr A} @bold{Pr B} @bold{Or})
+         (list (list @bold{Pr A} @bold{Pr B} @bold{AND})
                (list "0" "0" "0")
                (list "0" "1" "0")
                (list "1" "0" "0")
@@ -155,7 +155,7 @@ George Boole, Author of the @italic{Laws of Thought}
 @bold{Nand}
 
 @tabular[#:sep @hspace[1]
-         (list (list @bold{Pr A} @bold{Pr B} @bold{Or})
+         (list (list @bold{Pr A} @bold{Pr B} @bold{NAND})
                (list "0" "0" "1")
                (list "0" "1" "1")
                (list "1" "0" "1")
