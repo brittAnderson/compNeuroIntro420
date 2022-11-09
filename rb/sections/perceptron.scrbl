@@ -66,6 +66,8 @@ If @($ "I \\ge T") then @($ "y = +1") else if @($ "I < T") then @($ "y = -1")
 If the answer was correct, then @($ "\\beta = +1"), else if the
 answer was incorrect then @($ "\\beta = -1").
 
+The "T" in the above equation refers to the threshold. This is a user defined value that is conveniently, and often made, to be zero. 
+
 Updating is done by @($ "\\mathbf{w_{new}} =
 \\mathbf{w_{old}} + \\beta y \\mathbf{x}")
 
