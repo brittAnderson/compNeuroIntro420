@@ -7,11 +7,19 @@
          racket/draw
          "outer.rkt")
 
+(provide (all-defined-out))
 
 (define (hf-gen-size-n n)
   (for/matrix (sqrt n) (sqrt n)
   ([entry (random-sample (in-list (list 1.0 -1.0)) n)])
   entry))
+
+(define (hf-gen-size-n-not-sq n)
+  (list->matrix n 1 (for/list ([i (in-range n)])
+    (random-ref (in-list (list 1.0 -1.0))))))
+  
+
+  
 
 (define (hf-make-n-patts-size-m n m)
   (for/list ([i (in-range n)])
@@ -32,6 +40,7 @@
                #:result (array->mutable-array (matrix-scale (zero-diag m) (/ 1 (length patt-list)))))
               ([p patt-list])
       (let ([p-col (array-reshape p (vector (* r c) 1))])
+
         (matrix+ m (outer-prod p-col p-col))))))
     
 
