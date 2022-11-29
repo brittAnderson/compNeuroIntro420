@@ -279,4 +279,20 @@
 ;;                (displayln (test-learning i t10000)))
 
 
+;;two functions added to explore paradoxical
+;;homework results 
+(define (ml-size-test n)
+  (let* ([my-net (init-network (list 2 n 1))]
+         [my-net-t (bp-loop data-xor my-net #:loop-no 1000)])
+    (for ([i (map first data-xor)]) (displayln (test-learning i my-net-t)))
+    (test-learning (first (fourth data-xor)) my-net-t)))
+
+(define (view-4)
+  (let* ([rs (range 20 80 10)]
+         [fours (for/list ([ns rs])
+                  (ml-size-test ns))])
+    (map (lambda (x) (displayln (format "ml size:~a \t 4thpatt out: ~a\n" (first x) (caadr x))))
+         (map list rs fours)))
+  null)
+    
 

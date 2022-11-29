@@ -170,3 +170,12 @@
             #:location (book-location #:publisher "Springer Science & Business Media")
             #:date 2012
             #:url "https://books.google.com/books?hl=en&lr=&id=cSzwCAAAQBAJ&oi=fnd&pg=PA1&dq=Self-Organization+and+Associative+Memory&ots=kJXwlePW0S&sig=rc_eCyYJ7IqmOthPHajxdCZTFpE"))
+
+
+(define catastrophic-forgetting-sleep
+  (make-bib
+   #:title "Sleep prevents catastrophic forgetting in spiking neural networks by forming a joint synaptic weight representation"
+   #:author (authors "Ryan Golden" "Jean Erik Delanois" "Pavel Sanda" "Maxim Bazhenov")
+   #:location (journal-location "PLOS Computational Biology" #:volume 18 #:pages '(e1010628))
+   #:date 2022
+   #:url "http://dx.doi.org/10.1371/journal.pcbi.1010628"))
