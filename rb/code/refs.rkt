@@ -176,6 +176,18 @@
   (make-bib
    #:title "Sleep prevents catastrophic forgetting in spiking neural networks by forming a joint synaptic weight representation"
    #:author (authors "Ryan Golden" "Jean Erik Delanois" "Pavel Sanda" "Maxim Bazhenov")
-   #:location (journal-location "PLOS Computational Biology" #:volume 18 #:pages '(e1010628))
+   #:location (journal-location "PLOS Computational Biology" #:volume 18 )
    #:date 2022
    #:url "http://dx.doi.org/10.1371/journal.pcbi.1010628"))
+
+;#:pages '('e1010628))
+
+
+(define fechner-psychophysics
+  (make-bib 
+   #:title "Gustav Theodor Fechner: Psychophysics and Natural Science"
+   #:author (authors "David K. Robinson")
+   #:is-book? "yes"
+   #:location (book-location #:publisher "Oxford Research Encylopedia of Psychology")
+   #:date 2020
+   #:url "https://oxfordre.com/psychology/psychology/view/10.1093/acrefore/9780190236557.001.0001/acrefore-9780190236557-e-487"))
