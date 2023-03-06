@@ -1,6 +1,6 @@
 
 * Overview
 
-  This repo holds notes and some code snippets for my class at the University of Waterloo PSYCH420 an introduction to computational modeling for undergraduate psychology students. Primarily this repository is used for sharing teaching material and course notes. It is unlikely to be useful to anyone not enrolled in that course. If you are in the course make sure and pick *branch* **racket-book** so you have the files intended for the Fall 2022 offering. 
+This repo holds notes and some code snippets for my class at the University of Waterloo PSYCH420 an introduction to computational modeling for undergraduate psychology students. Primarily this repository is used for sharing teaching material and course notes. It is unlikely to be useful to anyone not enrolled in that course. If you are in the course make sure and pick *branch* **racket-book** so you have the files intended for the Spring 2023 offering. 
   
   Here is the current link to the [[https://brittanderson.github.io/compNeuroIntro420/rb/main/index.html][course notes]].
