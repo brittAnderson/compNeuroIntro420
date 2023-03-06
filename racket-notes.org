@@ -1,0 +1,49 @@
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+options: author:t broken-links:nil c:nil creator:nil
+#+options: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+options: timestamp:t title:t toc:t todo:t |:t
+#+title: racket-notes
+#+date: <2023-03-06 Mon>
+#+author: Britt Anderson
+#+email: britt@uwaterloo.ca
+#+language: en
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 28.2 (Org mode 9.6-pre)
+#+cite_export:
+
+A few short notes for helping remember how to recompile when I need to update this after a year or so.
+
+* Racket packages
+Packages depend on racket version. If the racket version has updated than you need to /migrate/ your packages to the new version.
+
+You can do it in the terminal with the command =raco pkg migrate <old-version-no>=
+
+* How to compile it all
+
+=raco scribble --htmls /home/britt/gitRepos/compNeuroIntro420/rb/main.scrbl=
+
+** Problems
+1. Look for an error mentioning ~refs.rkt~. Sometimes minor formatting problems there can cause the whole thing to halt. Right now (<2023-03-06 Mon>) I am having trouble with a non-standard page for one of the references.
+2. 
+
+   
+* References
+This is a tricky bit to get write.
+You need to add the references to a file, in my case ~refs.rkt~. Then you need to make sure that you add the =scribble/autobib= and ref file to the =require= section of the file. Then you need to define the =~cite= part, e.g. something like:
+
+#+begin_src racket :eval never
+  @(define-cite ~cite citet-id generate-bibliography #:style author+date-style)
+#+end_src
+
+And then you need to add a bibliography section where you want it to appear:
+#+begin_src racket :eval never
+  
+@generate-bibliography[#:sec-title "Preamble Bibliography"
+                       #:tag "ref:preamble"]
+#+end_src
+
+* Remaining Someday "Todos"
+1. Could really benefit from adding references. Maybe I could give some extra credit for adding a reference via a pull request. 
+
