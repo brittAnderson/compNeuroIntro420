@@ -26,7 +26,7 @@ You can do it in the terminal with the command =raco pkg migrate <old-version-no
 
 ** Problems
 1. Look for an error mentioning ~refs.rkt~. Sometimes minor formatting problems there can cause the whole thing to halt. Right now (<2023-03-06 Mon>) I am having trouble with a non-standard page for one of the references.
-2. 
+2. Running from local server can give different behavior than running off of github.io as a github pages. Some of the paths are slightly different. Probably better to prioritize the latter mechanism. 
 
    
 * References
