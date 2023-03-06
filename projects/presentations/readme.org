@@ -1,2 +1,0 @@
-This is the folder for presentation material. Feel free to add your own folders here via pull requests. 
-
