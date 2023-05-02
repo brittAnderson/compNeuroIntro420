@@ -191,3 +191,12 @@
    #:location (book-location #:publisher "Oxford Research Encylopedia of Psychology")
    #:date 2020
    #:url "https://oxfordre.com/psychology/psychology/view/10.1093/acrefore/9780190236557.001.0001/acrefore-9780190236557-e-487"))
+
+
+(define quantum-modeling
+  (make-bib
+   #:title "Open Systems, Quantum Probability and Logic for Quantum-Like Modeling in Biology, Cognition, and Decision Making"
+   #:author (authors "Andrei Khrennikov")
+   #:location (journal-location "CoRR")
+   #:date 2023
+   #:url "http://arxiv.org/abs/2304.08599v1"))

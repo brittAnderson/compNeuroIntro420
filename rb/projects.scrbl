@@ -29,6 +29,7 @@ Genetic algorithms are algorithms were the "learning" takes place via selection 
 @section{Quantum Probability}
 Developed for quantum mechanics the formalism of quantum probability has been suggested to be a better approach to human decision making than conventional, classical probability@~cite[quantum-prob]; @~cite[quantum-prob-2022]. It seems that one of the authors has some MATLAB® @hyperlink["https://jbusemey.pages.iu.edu/quantum/HilbertSpaceModelPrograms.htm"]{programs} available for some of the published models. For this project you will need to provide @bold{one} example of a different prediction between classical and quantum probability, review the empirical results in favor of the latter, and show a racket program that computes some of the key values.
 @; a blog about quantum probability in general: https://www.math3ma.com/blog/a-first-look-at-quantum-probability-part-2
+An additional review came out recently @~cite[quantum-modeling].
 @section{Vector Symbolic Architectures}
 Provide an overview of vector symbolic architectures and provide a short racket implementation of Kanerva's "what is Mexico's dollar?" example @~cite[vsa-dollar].
 @section{Linear Ballistic Accumulators}
