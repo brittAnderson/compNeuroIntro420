@@ -154,6 +154,33 @@ To get there let us consider representing the ratio of how our function's output
 
 If you take a look at the definition of the derivative @elemref["derivative"]{(equation D)} above you will see the resemblance, except for the absence of the limit. When trying to solve this problem we don't initially know both inputs, but we do know that when we put in the solution to our problem we will get 128. And we also know that we can compute the derivative. A bit of rearranging and renaming give us.@margin-note*{Can you map the steps I took to get this equation from the one above?}
 
+@examples[(define (df g) (* 2.0 g))
+          (define (update-guess g target)
+            (/ (- target (expt g 2.0) ) (df g)))
+          (define (my-sqrt [target 128.0] [guess 7.0] [tol 0.000001])
+            (let* ([udg (update-guess guess target)]
+                   [current-guess (+ guess udg)])
+              (if (< udg tol)
+                  current-guess
+                  (my-sqrt target current-guess))))]
+
+
+
+          (my-sqrt 55.0 4.0)]
+
+
+@itemlist[@item{What is a @tt{cube root}?}
+               @item{What is the derivative of @($ "x^3")?}
+               @item{Write a Racket program to computer the cube root of a give number.}]
+
+@subsection{Practice Simulating With DEs}
+
+@subsubsection{Frictionless Springs}
+
+We want to code neurons, but to get there we should feel comfortable with the underlying tool or we won't be able to adapt it or re-use it for some new purpose. I don't want to give you a fish. I want to teach you how to fish.
+
+By working with an example simpler than a neuron, and one for which you might have more intuition, such as a simple spring or "slinky" I hope you will get a better /feel/ for how the numbers, equations, and code all relate. Then we can move on to the neuronal application.
+
 The equation of a frictionless spring is:
 
 @elemtag{spring}
