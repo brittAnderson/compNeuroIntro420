@@ -173,7 +173,7 @@ Here is the code to produce that plot:
 
 @section{Conclusion}
 
-There is much more you can do with scribble. My point in sharing this is to provide a simple template for getting started. The formal documentation can scanning of source code can be a long road to get started. It can be nice to a have a relatively simple working example and then build the complexity in as you need it.
+There is much more you can do with scribble. My point in sharing this is to provide a simple template for getting started. The formal documentation and scanning of source code can be a long road to get started. It can be nice to a have a relatively simple working example and then build the complexity in as you need it.
 
 
 
