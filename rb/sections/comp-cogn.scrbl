@@ -51,7 +51,7 @@ Although most of us learned the name "Turing" in the context of whether a comput
 The classical computational theory of mind says that in all important ways the mind is like a Turing machine. If we want to  model (or emulate) functions of mind one way would be to build a Turing machine. However this can be a practical challenge, and one can question the insight gained from this approach. Still given the theoretical and practical prominence given to Turing computatbility it behooves us to know what a Turing machine truly is.
 
 @subsubsection{What is a Turing machine? Some Background and Details}
-@hyperlink["http://www.turingarchive.org/browse.php/B/12"]{Turing machines} are quite simple implements. While one can build a physical Turning machine, the more usual sense of the term is for a hypothetical computer that is comprised of
+@hyperlink["http://www.turingarchive.org/browse.php/B/12"]{Turing machines} are quite simple implements. While one can build a physical Turing machine, the more usual sense of the term is for a hypothetical computer that is comprised of
 @itemlist[@item{a finite alphabet,}
                @item{a finite set of states,}
                @item{the capacity to read and write to a single location in memory, and the ability to adjust the memory location immediately left or right or to make no move at all, and}
@@ -275,4 +275,3 @@ With pencil and paper try to @itemlist[#:style 'ordered @item{apply this to the 
 
 @generate-bibliography[#:sec-title "Computational Cognition References"
                        #:tag "ref:comp-cog"]
-
