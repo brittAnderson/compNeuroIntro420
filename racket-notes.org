@@ -44,6 +44,4 @@ And then you need to add a bibliography section where you want it to appear:
                        #:tag "ref:preamble"]
 #+end_src
 
-* Remaining Someday "Todos"
-1. Could really benefit from adding references. Maybe I could give some extra credit for adding a reference via a pull request. 
 

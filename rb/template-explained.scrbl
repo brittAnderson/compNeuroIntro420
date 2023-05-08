@@ -131,7 +131,7 @@ To get this to work for html export I had to make sure I had this declaration in
 
 @codeblock|{@(use-mathjax)}|
 
-Then, because I imported that @code|{scribble-math/dollar}| library I could write a LaTeX like like and it got typeset on export.
+Then, because I imported that @code|{scribble-math/dollar}| library I could write a LaTeX line and it got typeset on export.
 
 @codeblock|{
 @($$ "\\sum_{\\forall x \\in \\left\\{ 1 , 2 , 3 \\right \\}} x ~=~ 6")
