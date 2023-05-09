@@ -245,6 +245,9 @@ To have the lambda calculus you need to specify your @emph{algebra}. What are th
 
 @bold{Into the Weeds}
 
+@margin-note{Want to implement the lambda calculus yourself on a computer (using Common Lisp)? Check out this @hyperlink["https://flownet.com/ron/lambda-calculus.html"]{blog post}.}
+
+
 @emph{Terms} are either simple variables @($"x") or @($"y") or composite terms @($"\\lambda~v~t_1"). Having two terms next to each other @($"(~t_1~t_2)") means "apply" @($"t_1") to @($"t_2"). The meaning of a term like @($"\\lambda~v~.~ t_1") is the value returned by the lambda abstraction. The meaning part is sometimes designated in writing by formulas using arrows, such as @($"t_1~\\rightarrow~t_2").
 
 Some "axioms" you supply (or that @hyperlink["https://plato.stanford.edu/entries/church/"]{Alonzo Church} did).
