@@ -183,7 +183,7 @@ In your editor make a copy of this file with a new name. Test that you can edit 
 
 @subsection{Busy Beaver Homework}
 
-Come up with a version of rules for n=4. All you will need to edit is the rules section. Everything else should just work. After you are satisfied creat a new function for @tt{busy-beaver-4-do} that uses your new rule. Add the line invoking it to your file. That will allow me to run your racket program from the command line and see the results of your rule in my terminal. You can test this yourself by running @racket{racket <your-name>-busy-beaver-4-do.rkt} when you are in the home directory of your program.
+Come up with a version of rules for n=4. All you will need to edit is the rules section. Everything else should just work. After you are satisfied create a new function for @tt{busy-beaver-4-do} that uses your new rule. Add the line invoking it to your file. That will allow me to run your racket program from the command line and see the results of your rule in my terminal. You can test this yourself by running @racket{racket <your-name>-busy-beaver-4-do.rkt} when you are in the home directory of your program.
 
 I will run your programs against each other in class (hopefully). Don't try and break any records, but do spend sometime trying to get the numbers up. We are learning about Turing machines and how to write code the implements mathematical and theoretical ideas for the elucidation of cognition. Spending too much time perfecting your Busy Beaver implementation misses the point, but just getting something that works without crashing doesn't give you enough chance to think about this model of computation. This will also give you a chance to start to learn the racket language a little bit. 
 
