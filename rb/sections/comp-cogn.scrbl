@@ -51,13 +51,13 @@ Although most of us learned the name "Turing" in the context of whether a comput
 The classical computational theory of mind says that in all important ways the mind is like a Turing machine. If we want to  model (or emulate) functions of mind one way would be to build a Turing machine. However this can be a practical challenge, and one can question the insight gained from this approach. Still given the theoretical and practical prominence given to Turing computatbility it behooves us to know what a Turing machine truly is.
 
 @subsubsection{What is a Turing machine? Some Background and Details}
-@hyperlink["http://www.turingarchive.org/browse.php/B/12"]{Turing machines} are quite simple implements. While one can build a physical Turning machine, the more usual sense of the term is for a hypothetical computer that is comprised of
+@hyperlink["http://www.turingarchive.org/browse.php/B/12"]{Turing machines} are quite simple implements. While one can build a physical Turing machine, the more usual sense of the term is for a hypothetical computer that is comprised of
 @itemlist[@item{a finite alphabet,}
                @item{a finite set of states,}
                @item{the capacity to read and write to a single location in memory, and the ability to adjust the memory location immediately left or right or to make no move at all, and}
                @item{a set of instructions (or "machine table") that translates the combination of the current state and the current symbol to a new state and one of the acceptable actions.}]
 
-Other models of computation are the @emph{lambda calculus}  and the @emph{theory of recursive functions}. Those alternative accounts of computability are interesting, and may offer more insight or be more practical in some situations, but it appears to be the case that they are equivalent. Anything designated "computable" by one these formal accounts is computable by the others as well. Does this mean that if you accept the computational mind hypothesis you must accept that the mind is able to be simulated by a Turing Machine? As a consequence does this mean that minds are @emph{@hyperlink["https://plato.stanford.edu/entries/multiple-realizability"]{multiply realizable}}?
+Other models of computation are the @emph{lambda calculus}  and the @emph{theory of recursive functions}. Those alternative accounts of computability are interesting, and may offer more insight or be more practical in some situations, but it appears to be the case that they are equivalent. Anything designated "computable" by one of these formal accounts is computable by the others as well. Does this mean that if you accept the computational mind hypothesis you must accept that the mind is able to be simulated by a Turing Machine? As a consequence does this mean that minds are @emph{@hyperlink["https://plato.stanford.edu/entries/multiple-realizability"]{multiple realizable}}?
 
 @margin-note{@itemlist[@item{Are Turing machines @emph{digital}?}
                             @item{Is this an important distinction?}
@@ -183,7 +183,7 @@ In your editor make a copy of this file with a new name. Test that you can edit 
 
 @subsection{Busy Beaver Homework}
 
-Come up with a version of rules for n=4. All you will need to edit is the rules section. Everything else should just work. After you are satisfied creat a new function for @tt{busy-beaver-4-do} that uses your new rule. Add the line invoking it to your file. That will allow me to run your racket program from the command line and see the results of your rule in my terminal. You can test this yourself by running @racket{racket <your-name>-busy-beaver-4-do.rkt} when you are in the home directory of your program.
+Come up with a version of rules for n=4. All you will need to edit is the rules section. Everything else should just work. After you are satisfied create a new function for @tt{busy-beaver-4-do} that uses your new rule. Add the line invoking it to your file. That will allow me to run your racket program from the command line and see the results of your rule in my terminal. You can test this yourself by running @racket{racket <your-name>-busy-beaver-4-do.rkt} when you are in the home directory of your program.
 
 I will run your programs against each other in class (hopefully). Don't try and break any records, but do spend sometime trying to get the numbers up. We are learning about Turing machines and how to write code the implements mathematical and theoretical ideas for the elucidation of cognition. Spending too much time perfecting your Busy Beaver implementation misses the point, but just getting something that works without crashing doesn't give you enough chance to think about this model of computation. This will also give you a chance to start to learn the racket language a little bit. 
 
@@ -278,4 +278,3 @@ With pencil and paper try to @itemlist[#:style 'ordered @item{apply this to the 
 
 @generate-bibliography[#:sec-title "Computational Cognition References"
                        #:tag "ref:comp-cog"]
-
