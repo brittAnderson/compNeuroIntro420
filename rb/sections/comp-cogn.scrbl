@@ -48,7 +48,7 @@ Although most of us learned the name "Turing" in the context of whether a comput
 
 @subsection{Classical Computational Theory of Mind}
 
-The classical computational theory of mind says that in all important ways the mind is like a Turing machine. If we want to  model (or emulate) functions of mind one way would be to build a Turing machine. However this can be a practical challenge, and one can question the insight gained from this approach. Still given the theoretical and practical prominence given to Turing computatbility it behooves us to know what a Turing machine truly is.
+The classical computational theory of mind says that in all important ways the mind is like a Turing machine. If we want to  model (or emulate) functions of mind one way would be to build a Turing machine. However this can be a practical challenge, and one can question the insight gained from this approach. Still given the theoretical and practical prominence given to Turing computability it behooves us to know what a Turing machine truly is.
 
 @subsubsection{What is a Turing machine? Some Background and Details}
 @hyperlink["https://turingarchive.kings.cam.ac.uk/publications-lectures-and-talks-amtb/amt-b-12"]{Turing machines} are quite simple implements. While one can build a physical Turing machine, the more usual sense of the term is for a hypothetical computer that is comprised of
@@ -217,7 +217,7 @@ After you familiarize yourself with functionalism, you might return to the quest
 
 @subsection{Is the Computational Account of Mind Trivial?}
 @itemlist[#:style 'ordered @item{Any sufficiently complex physical system (such as the molecules comprising the wall behind me or the brain) can be shown to be @emph{isomorphic} to the formal structure of @emph{any} program. If you view the mind as a program than you might as well say that you and the wall behind you share the same thoughts.}
-          @item{There is no room for the time scale to matter and there is an intuition that it should. We could implement a Turing machine with water wheels, levers & pulleys, vacumn tubes, or transistors. The speed with which the resulting machine computes will be very different, but they will all perform the same computation. Do we think that a model of mind that is blind to time scale can possibly be right?}
+          @item{There is no room for the time scale to matter and there is an intuition that it should. We could implement a Turing machine with water wheels, levers & pulleys, vacuum tubes, or transistors. The speed with which the resulting machine computes will be very different, but they will all perform the same computation. Do we think that a model of mind that is blind to time scale can possibly be right?}
           @item{Discrete or continuous. Turing machines are @bold{discrete, finite} state machines. Time and thought operate in continuous time (don't they?). Are discrete models that move forward in time in discontinuous steps capable of modeling us who live in and think in the world of continuous time?}
           @item{Computations might model something without explaining it. Weather simulators predict rain, but they don't themselves actually rain. Flight simulators do not fly. Even if a computer program simulated a mind it does not mean it would be thinking. Does the simulations, explanation or demonstration distinction bother you?}]
 

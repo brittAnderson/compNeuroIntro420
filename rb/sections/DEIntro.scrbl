@@ -53,7 +53,7 @@ Did you draw     @hyperlink["https://commons.wikimedia.org/w/index.php?curid=441
 
 @bold{An aside: Notation}
 
-Mathematics is full of notation. And one person's notation is another person's jargon. The key thing is not to let yourself be scared off. Often the motivation for mathematical notation is just convenience: condensing something that would take a long time to say or write into an abbreviated form. It is the equivalent of saying "meh" or "lol".  Mathematical notation is just a technical emoji. You probably know the mathematical idea that is being represented; you just don't know the abbreviation that is being used. So, just like you can teach granma the meaning of TMI you can with a little bit of practice get used to the Greek symbols that appear so often in mathematical presentations. 
+Mathematics is full of notation. And one person's notation is another person's jargon. The key thing is not to let yourself be scared off. Often the motivation for mathematical notation is just convenience: condensing something that would take a long time to say or write into an abbreviated form. It is the equivalent of saying "meh" or "lol".  Mathematical notation is just a technical emoji. You probably know the mathematical idea that is being represented; you just don't know the abbreviation that is being used. So, just like you can teach grandma the meaning of TMI you can with a little bit of practice get used to the Greek symbols that appear so often in mathematical presentations.
 
 As a first exercise, write out in long hand what is meant by the
 following:
@@ -129,7 +129,7 @@ These plots are intended to demonstrate the idea that locally everything is line
 
 We want to know the value of @($ "x") that makes @($ "128 =x^2") true?
 
-@margin-note*{Always use the computer for the busy work when you can. Your computer can solve many mathematical problems for you. For example, requiring @tt{symalg} we can programatically find that the derivative of @($ "x^2") is 
+@margin-note*{Always use the computer for the busy work when you can. Your computer can solve many mathematical problems for you. For example, requiring @tt{symalg} we can programmatically find that the derivative of @($ "x^2") is
 @($ (latex (simplify (differentiate (parse-infix "x^2"))))). Look at the code for this @tt{margin-note} and you will see how I computed that with racket (and then typeset it).}
 
 @itemlist[@item{Come up with a guess.}
@@ -204,7 +204,7 @@ How will our velocity change with time?
 
  And we have a formula for this. We can now bootstrap our simulation.
 
-Note the similiarity of the two functions. You could write a helper function that was generic to this pattern of old value + rate of change times the  time step, and just used the pertinent values. 
+Note the similarity of the two functions. You could write a helper function that was generic to this pattern of old value + rate of change times the  time step, and just used the pertinent values.
 
 How do we know the formula for acceleration? We were given it in @elemref["spring"]{Equation S} above. 
 
@@ -223,5 +223,3 @@ Provide the code for the damped oscillator. It has the formula of
 @($$ "\\frac{d^2 s}{dt^2} = -P~s(t) - k~v(t)")
 
 This should really only need to change a couple of lines to update the model to be able to handle the damped version as well. You might want to edit @hyperlink["./../code/spring.rkt"]{spring.rkt}.
-
-
