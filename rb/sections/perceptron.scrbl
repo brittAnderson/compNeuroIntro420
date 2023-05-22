@@ -39,7 +39,7 @@
 
 @title{Perceptrons}
 @section{Goals}
-The goal for this file is to share the idea of a perceptron, the mathematical formula for updating one, and iniate the process of coding a simple implementation that we will adapt to the delta rule.
+The goal for this file is to share the idea of a perceptron, the mathematical formula for updating one, and initiate the process of coding a simple implementation that we will adapt to the delta rule.
 @section{Perceptron History and Implementation}
 The perceptron was the invention of a psychologist, @hyperlink["http://dspace.library.cornell.edu/bitstream/1813/18965/2/Rosenblatt_Frank_1971.pdf"]{Frank Rosenblatt}.  He was not a computer scientist. Though he obviously had a bit of the mathematician in him.
 
@@ -52,7 +52,7 @@ Details to be found on the @hyperlink["https://en.wikipedia.org/wiki/Perceptron"
 
 Those interested in some interesting background reading could consult his over 600 page book entitled @hyperlink["https://babel.hathitrust.org/cgi/pt?id=mdp.39015039846566&view=1up&seq=9"]{Principles of Neurodynamics} or this @hyperlink["https://link.springer.com/book/10.1007/978-3-642-70911-1"]{historical review}.
 
-From the foreward of that book we have the following quote:
+From the foreword of that book we have the following quote:
 
 "For this writer, the perceptron program is not primarily concerned with the invention of devices for "artificial intelligence", but rather with investigating the physical structures and neurodynamic principles which under lie "natural intelligence". A perceptron is first and fore most a brain model, not an invention for pattern recognition. As a brain model, its utility is in enabling us to determine the physical conditions for the emergence of various psychological properties."
 
@@ -125,7 +125,7 @@ The @bold{@italic{Delta Rule}} is another simple learning rule that is a minimal
 
 @itemlist[#:style 'ordered
           @item{For an easy start create some pseudo random linearly separable points on a a sheet of paper. Label one population as @bold{1} and the other population as @bold{-1}.}
-          @item{For a more challenging set-up create the data programatically using random numbers and some method that allows you to vary how close or distant the points are to the line of separation, and how many points there are to train on.}
+          @item{For a more challenging set-up create the data programmatically using random numbers and some method that allows you to vary how close or distant the points are to the line of separation, and how many points there are to train on.}
           @item{The Delta Learning rule is: @($$ "\\Delta~w_i = x_i~\\eta(desired - observed)")}
           @item{Submit your code that has your test data in it. Start with an initial random weight and use the delta rule to learn the correct weighting to solve all your training examples. Then test on a new set of points that you did @bold{not} test on but that are classified according to the same rule. Your code should assess how well the @italic{trained} rule classifies the @italic{test} data.}]
 

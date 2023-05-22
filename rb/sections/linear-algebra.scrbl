@@ -85,7 +85,7 @@ The spiking of a biological neuron is non-linear. You saw this in both the integ
 
 What this equation shows is that Inputs (the @($"I")s) are passed to a neuron. Those inputs have something like a synapse. That is designated by the w's. Those weights are how tightly the input and internal activity of our artificial neuron is coupled. The reason for all the subscripts is to try and help you see the similarity between this equation and the inner product and matrix multiplication rules you just worked on programming. The activity of the neuron is a sort of internal state, and then, based on the comparison of that activity to the threshold, you can envision the neuron spiking or not, meaning it has value 1 or 0. Mathematically, the weighted sum is fed into a threshold function that compares the value to a threshold @($"\\Theta"), and passes on the value 1 if it is greater than the threshold and 0 (sometimes @($"-1") rather than zero is chosen for the inactive state because there are certain computational conveniences in doing so).
 
-To prepare you for the next steps in writing a simple percetron (the earliest form of artificial neural network), you should try to answer the followign questons. 
+To prepare you for the next steps in writing a simple perceptron (the earliest form of artificial neural network), you should try to answer the following questions.
 
 Questions:
 @itemlist[#:style 'ordered

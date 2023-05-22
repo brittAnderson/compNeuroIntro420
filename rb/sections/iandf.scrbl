@@ -58,7 +58,7 @@ Consult this @hyperlink["https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1420429/pd
 
 @section[#:tag "sec:iandf"]{The Integrate and Fire Equation}
 
-While Hodgkin and Huxley provided the first robust computational model of the neuronal action potential there model is quite complex, as we will soon see. Is all that complexity necessary? That of course depends on the nature of the scientific question, and if we are primarily intersted in whether a spike has or has not occured, and not the ionic events that produced the spike, we may find our experimental questions dealt with much more concisely by a much simpler model of neuronal spiking: the leaky integrate and fire model.
+While Hodgkin and Huxley provided the first robust computational model of the neuronal action potential there model is quite complex, as we will soon see. Is all that complexity necessary? That of course depends on the nature of the scientific question, and if we are primarily interested in whether a spike has or has not occurred, and not the ionic events that produced the spike, we may find our experimental questions dealt with much more concisely by a much simpler model of neuronal spiking: the leaky integrate and fire model.
 
 The formula for the leaky integrate and fire neuron is:
 @(use-mathjax)
@@ -70,7 +70,7 @@ The formula for the leaky integrate and fire neuron is:
 In the next sections we will describe how this simplification came to be, and use it as the basis for learning some of the elementary electrical laws and relations upon which it is based. 
 
 @subsection{Electronics Background}
-The following questions are the ones we need answers to to derive our integrte and fire model.
+The following questions are the ones we need answers to to derive our integrate and fire model.
 
 @itemlist[#:style 'ordered @item{What is Ohm's Law?}
           @item{What is Kirchoff's Point Rule?}
@@ -131,7 +131,7 @@ Deriving the IandF Equation
                @item{e: rearrange and define @($ "\\tau")}]
 
 @subsection{Coding up the Integrate and Fire Neuron}
-Most of the integrate and fire implementation is conceptually and practically identical to the spring example. You assume a starting voltate (initial state) and then you update that voltage using the differential equation for how voltage changes with time (@($ "\\frac{dV}{dt}")).
+Most of the integrate and fire implementation is conceptually and practically identical to the spring example. You assume a starting voltage (initial state) and then you update that voltage using the differential equation for how voltage changes with time (@($ "\\frac{dV}{dt}")).
 
 There is one critical difference though. Unlike real neurons the Integrate and Fire neuron model does not have a natural threshold and spiking behavior. You pick a threshold and everyone time your voltage reaches that threshold you designate a spike and reset the voltage.
 
@@ -144,7 +144,7 @@ In class make sure you can get the @hyperlink["./../code/iandf.rkt"]{integrate a
 
 Next, change the form of the input current to be something other than a constant. I suggest trying a sine wave. This will give you a chance to sample some of racket's potential.
 
-Find out how to take the sin of a number. Then learn how to @tt{map} the sin function over a list of numbers. If you use @tt{in-range} you can create a stream of numbers from a minimum to a maximun for a given step size. Then you may want to shift up or scale all the numbers to make them non-zero. This could be done by mapping again. The @tt{map} function is very powerful and allows you to avoid writing a lot of lengthy looping code.
+Find out how to take the sin of a number. Then learn how to @tt{map} the sin function over a list of numbers. If you use @tt{in-range} you can create a stream of numbers from a minimum to a maximum for a given step size. Then you may want to shift up or scale all the numbers to make them non-zero. This could be done by mapping again. The @tt{map} function is very powerful and allows you to avoid writing a lot of lengthy looping code.
 
 After you have done that edit the code to include a refractory period. First, decide on the logic of how to do this and only after that start editing the code to implement it.
 
@@ -248,6 +248,3 @@ The Integrate and Fire homework has two components. One practical and one theore
 Practically, submit an integrate and fire racket program that alters mine in some meaningful way. You might change the plot or the type of current input. You might examine how the results depends on the size of the time step used. Just something to show that you can edit code and keep it working.
 
 Theoretically, look at @hyperlink["https://redwood.berkeley.edu/wp-content/uploads/2018/08/mainen-sejnowski.pdf"]{this article (pdf)} and tell me how you feel our integrate and fire model compares to these actual real world spiking data when both are give constant input. What are the implications for using the integrate and fire model as a model of neuronal function? 
-
-
-

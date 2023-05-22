@@ -89,7 +89,7 @@ You continue to use the @"@" syntax to define some standard metadata such as tit
 The writing becomes a mixture of things you just type as if they were text, like you are used to, and things preceded with an @"@" sign that switches you into a mode that leads to the next bit of text being treated as code. There are complex rules for this. I don't have any good advice except to @itemlist[@item{Read the manual}
                            @item{Look at the Scribble document source code.}]
 
-It was the second that often proved the most helpful since you could see what the scribble authors put in their .scbrl files which they compile to produce the documentation. These files are found at the @hyperlink["https://github.com/racket/scribble/tree/master/scribble-doc"]{racket/scribble github repository}.
+It was the second that often proved the most helpful since you could see what the scribble authors put in their .scrbl files which they compile to produce the documentation. These files are found at the @hyperlink["https://github.com/racket/scribble/tree/master/scribble-doc"]{racket/scribble github repository}.
 
 @section{Some Simple Formatting}
 
@@ -154,7 +154,7 @@ This really needs a knowledge of the evaluator and the plot library. But if you 
 		  (plot (points (map vector xs ys)))]
 }|
 
-Note that here I am using the @racket[examples ] function. This both typesets the code, and includes the result of running the code in the document. This is the result of executing what I have typeset in the paragraph proceding.
+Note that here I am using the @racket[examples ] function. This both typesets the code, and includes the result of running the code in the document. This is the result of executing what I have typeset in the paragraph proceeding.
 
 @examples[#:eval plot-eval
 		  (define xs (build-list 20 (lambda _ (random))))	
@@ -174,8 +174,3 @@ Here is the code to produce that plot:
 @section{Conclusion}
 
 There is much more you can do with scribble. My point in sharing this is to provide a simple template for getting started. The formal documentation and scanning of source code can be a long road to get started. It can be nice to a have a relatively simple working example and then build the complexity in as you need it.
-
-
-
-
-

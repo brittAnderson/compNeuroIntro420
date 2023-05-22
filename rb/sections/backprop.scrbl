@@ -108,7 +108,7 @@ In the sigmoid illustrated above where is the derivative maximal? What happens i
 
 Can you think of a function that would give us an even simpler derivative and why might we want (or not want) to use it?
 
-Why are we starting this discussion of the backpropagation algorithim with all this discussion of activation functions?
+Why are we starting this discussion of the backpropagation algorithm with all this discussion of activation functions?
 
 In summary, we want to understand ...
 1. What is being backpropagated?
@@ -127,7 +127,7 @@ What would you suggest as the cost function?
 
 @subsubsection{Mean Squared Error}
 
-It's always a good guess and a resonable starting point
+It's always a good guess and a reasonable starting point
 
 @($$ "C(\\mathbf{w}) = \\frac{1}{2\\mathrm{n}}\\sum_\\mathbf{x} \\lVert \\mathbf{y}(\\mathbf{x}) - \\mathbf{a}\\rVert^2")
 
@@ -168,7 +168,7 @@ Some intuition can help to understand the ideas behind the backpropagation algor
 
 @subsection{Some Details}
 
-The mathematics behind the backpropagation algorithm involves derviatives. These derivatives are usually "partial". We study the rate of change of our dependent variable as a function of one of many possible independent variables. If we want to study how the error changes as we change one specific weight in our network we are looking at the particial derivative. This is typically notated with a sort of curly d like @($ "\\partial"). This means that we could write our rate of change of the error as a function of the change in a particular weight in layer l connecting the kth neuron in the l-1 layer to the jth neuron in the l layer as
+The mathematics behind the backpropagation algorithm involves derivatives. These derivatives are usually "partial". We study the rate of change of our dependent variable as a function of one of many possible independent variables. If we want to study how the error changes as we change one specific weight in our network we are looking at the partial derivative. This is typically notated with a sort of curly d like @($ "\\partial"). This means that we could write our rate of change of the error as a function of the change in a particular weight in layer l connecting the kth neuron in the l-1 layer to the jth neuron in the l layer as
 @($ "\\frac{\\partial E}{\\partial w_{jk}^l}"). Note this ordering maybe backwards from your intuition. 
 
 We do not have an equation that directly specifies the change of error in terms of a specific weight, but we can tell how the error changes if we change the output of the last layer. That output is determined by our activation function which is determined in part by the input. By looking how this chain of relationships change we can track our way back to a dependency on the weights. In calculus there is a rule for navigating such chains. It is called the @hyperlink["https://en.wikipedia.org/wiki/Chain_rule"]{chain rule}.
@@ -200,7 +200,7 @@ How would you write as an equation with the "sigma" (@($ "\\sigma") summation si
 To help you check your understanding try to describe in words what is happening here: 
 @($$ "a^l_j = \\sigma \\left ( \\sum_k w_{jk}^l~a^{l-1}_k \\right )")
 
-One of the reasons for this type of equation with all its formatting as subscripts and superscripts is that the coding of the backpropagation algorithm often uses multi-dimensional arrays. All the inputs are treated as vectors and loaded into a matrix where each row (or column) is one pattern, and the collection is a matrix. The weights between one layer and the next are going to be a matrix as well with one dimension the number of nodes in the first layer and the other dimension the number of nodes in the next layer. Each row/column intersetion holds the value of one weight. To collect all the weight matrices into a single structure we need to aggregate them into some sort of three dimensional structure where each matrix can be thought to be stacked on the one that came before. If this sounds complicated to think about imagine trying to code it. It is a project, and it does not map easily on to the logic of the neural network that we learn about as layers and nodes serially connected.
+One of the reasons for this type of equation with all its formatting as subscripts and superscripts is that the coding of the backpropagation algorithm often uses multi-dimensional arrays. All the inputs are treated as vectors and loaded into a matrix where each row (or column) is one pattern, and the collection is a matrix. The weights between one layer and the next are going to be a matrix as well with one dimension the number of nodes in the first layer and the other dimension the number of nodes in the next layer. Each row/column intersection holds the value of one weight. To collect all the weight matrices into a single structure we need to aggregate them into some sort of three dimensional structure where each matrix can be thought to be stacked on the one that came before. If this sounds complicated to think about imagine trying to code it. It is a project, and it does not map easily on to the logic of the neural network that we learn about as layers and nodes serially connected.
 
 In addition, there are other arrays that are needed. We must keep track of the errors that we backpropagate and the inputs that are going forward. Depending on your implementation you may need an array for inputs, one for weights, one for activations, one for "deltas", and then you will need to progressively loop over all the layers from beginning to end to get the feedforward output, and then backwards to apply the weight adjustments from end to beginning. This requires careful book-keeping and making sure you orient the various matrices correctly. 
 
@@ -214,7 +214,7 @@ Here is a pseudo-code summary:
           @item{Backpropagate the error}
           @item{Use the backpropagated error to update the weights}]
 
-I wrote a version in racket that seems to work for simple cases. As I only tested it in a few limited cases you are encourged to probe it for bugs and logic errors and suggest corrections.
+I wrote a version in racket that seems to work for simple cases. As I only tested it in a few limited cases you are encouraged to probe it for bugs and logic errors and suggest corrections.
 
 @(define backprop-eval
    (let ([eval (make-base-eval)])
