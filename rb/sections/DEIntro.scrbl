@@ -179,7 +179,7 @@ If you take a look at the definition of the derivative @elemref["derivative"]{(e
 
 We want to code neurons, but to get there we should feel comfortable with the underlying tool or we won't be able to adapt it or re-use it for some new purpose. I don't want to give you a fish. I want to teach you how to fish.
 
-By working with an example simpler than a neuron, and one for which you might have more intuition, such as a simple spring or "slinky" I hope you will get a better /feel/ for how the numbers, equations, and code all relate. Then we can move on to the neuronal application.
+By working with an example simpler than a neuron, and one for which you might have more intuition, such as a simple spring or "slinky" I hope you will get a better @italic{feel} for how the numbers, equations, and code all relate. Then we can move on to the neuronal application.
 
 The equation of a frictionless spring is:
 
