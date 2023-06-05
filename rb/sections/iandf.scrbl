@@ -231,7 +231,7 @@ Then you can chain those small functions together to accomplish the larger task.
 
 @examples[#:eval plot-eval
           (require "./code/iandf.rkt")
-          (require plot)
+          ;;(require plot) ;;if you are doing this yourself in Dr Racket
           (begin
             (define iandf-results (run-iandf-sim #:max-time 10.0 ))
             (plot (lines (map vector (map first iandf-results) (map third iandf-results)))))]
