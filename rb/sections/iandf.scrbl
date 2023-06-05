@@ -58,7 +58,7 @@ Consult this @hyperlink["https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1420429/pd
 
 @section[#:tag "sec:iandf"]{The Integrate and Fire Equation}
 
-While Hodgkin and Huxley provided the first robust computational model of the neuronal action potential there model is quite complex, as we will soon see. Is all that complexity necessary? That of course depends on the nature of the scientific question, and if we are primarily interested in whether a spike has or has not occurred, and not the ionic events that produced the spike, we may find our experimental questions dealt with much more concisely by a much simpler model of neuronal spiking: the leaky integrate and fire model.
+While Hodgkin and Huxley provided the first robust computational model of the neuronal action potential their model is quite complex, as we will soon see. Is all that complexity necessary? That of course depends on the nature of the scientific question, and if we are primarily interested in whether a spike has or has not occurred, and not the ionic events that produced the spike, we may find our experimental questions dealt with much more concisely by a much simpler model of neuronal spiking: the leaky integrate and fire model.
 
 The formula for the leaky integrate and fire neuron is:
 @(use-mathjax)
@@ -231,6 +231,7 @@ Then you can chain those small functions together to accomplish the larger task.
 
 @examples[#:eval plot-eval
           (require "./code/iandf.rkt")
+          (require plot)
           (begin
             (define iandf-results (run-iandf-sim #:max-time 10.0 ))
             (plot (lines (map vector (map first iandf-results) (map third iandf-results)))))]
