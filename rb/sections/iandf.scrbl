@@ -47,7 +47,7 @@ In this section we take a look at the history and math of the computational mode
 
 
 @subsection{Lord Adrian and the All-or-None Action Potential}
-One of the first demonstrations of the all-or-none nature of the neuronal action potential was made by Lord Adrian. Lord Adrian was an interesting scientific figure how asserted that some of his prowess at electrophysiology stemmed from his interest in and training in fencing.
+One of the first demonstrations of the all-or-none nature of the neuronal action potential was made by Lord Adrian. Lord Adrian was an interesting scientific figure. He asserted that some of his prowess at electrophysiology stemmed from his interest in and training in fencing.
 
 To answer the questions:
 @itemlist[@item{When was the action potential demonstrated?}
@@ -75,7 +75,7 @@ The following questions are the ones we need answers to to derive our integrate 
 @itemlist[#:style 'ordered @item{What is Ohm's Law?}
           @item{What is Kirchoff's Point Rule?}
           @item{What is Capacitance?}
-          @item{What is the relation between current and capacitance?}]
+          @item{What is the relation between current and charge?}]
 
 @;  *Ohm's Law* (empirically observed): $V = IR$
 @; *** Explain what is the relationship between current and charge?
