@@ -2,6 +2,8 @@
 
 (require plot/pict)
 
+(provide (all-defined-out))
+
 ;;practice and to avoid retyping
 (define (list-to-alist l)
     (cond ((null? l) l)
@@ -57,7 +59,10 @@
                            (second os)
                            (cons (list t v n) accum))))))
 
-;; (let ([outcome (eval (test-loop-morris-lescar (cons (cons 'phi (/ 1 5)) (remove (assoc 'phi mlps-alist) mlps-alist)) #:max-time 1000.0))])(plot (lines (map vector (map first outcome) (map second outcome)))))
-;; a quicky method to generate output and replace the phi value.
+(define (try-a-new-phi phi)
+  (let ([outcome (eval (test-loop-morris-lescar (cons (cons 'phi phi) (remove (assoc 'phi mlps-alist) mlps-alist)) #:max-time 1000.0))])
+    (plot (lines (map vector (map first outcome) (map second outcome))))))
 
-;;Still to do. Phase analysis. 
+(define (poor-mans-phase-plot phi)
+         (let ([outcome (eval (test-loop-morris-lescar (cons (cons 'phi phi) (remove (assoc 'phi mlps-alist) mlps-alist)) #:max-time 1000.0))])
+           (plot (lines (map vector (map second outcome) (map third outcome))))))

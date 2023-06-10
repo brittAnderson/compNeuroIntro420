@@ -200,3 +200,14 @@
    #:location (journal-location "CoRR")
    #:date 2023
    #:url "http://arxiv.org/abs/2304.08599v1"))
+
+(define dynamics-tutorial
+  (make-bib
+   #:title "An Introduction to Dynamical Systems and Neuronal Dynamics"
+   #:author (authors "David Terman")
+   #:location (book-chapter-location "Tutorials in Mathematical Biosciences I: Mathematical Neuroscience"
+                                     #:publisher "Springer Berlin Heidelberg"
+                                     #:pages '(21 68))
+   #:url "https://doi.org/10.1007/978-3-540-31544-5_2"
+   #:date 2005))
+
