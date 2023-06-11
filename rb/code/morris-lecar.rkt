@@ -61,8 +61,8 @@
 
 (define (try-a-new-phi phi)
   (let ([outcome (eval (test-loop-morris-lescar (cons (cons 'phi phi) (remove (assoc 'phi mlps-alist) mlps-alist)) #:max-time 1000.0))])
-    (plot (lines (map vector (map first outcome) (map second outcome))))))
+    (plot-pict (lines (map vector (map first outcome) (map second outcome))))))
 
 (define (poor-mans-phase-plot phi)
          (let ([outcome (eval (test-loop-morris-lescar (cons (cons 'phi phi) (remove (assoc 'phi mlps-alist) mlps-alist)) #:max-time 1000.0))])
-           (plot (lines (map vector (map second outcome) (map third outcome))))))
+           (plot-pict (lines (map vector (map second outcome) (map third outcome))))))

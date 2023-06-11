@@ -130,39 +130,56 @@ Find the fixed points for the @bold{@italic{transcritical}} bifurcation and plot
 Then are many more types of bifurcations that are classified based on these types of graphs.
 Some, such as the "Hopf" can only be observed in higher dimensions where the ideas of a @bold{@italic{phase}} space and plot become common terms. 
 
-IAMHERE
+@subsection{From Lines to Planes}
 
-The extrapolation we want to make from the 1D case is that this geometry of a "particle" moving in a space is sufficient or all ordinary (no partial derivatives)  differential equations.
+The extrapolation we want to make from the 1D case is that the geometry of our "particle" is  moving in a plane. It turns out for all ordinary differential equations @margin-note{Ordinary differential equations have only a single independent variable.} no matter how high their dimensionality this spatial metaphor will be useful.
 
-For the two dimensional examples you need two variables (say x and y) and two functions of those two variables. We need to consider the derivatives of each. How x changes (x') is a function of both x and y. Same for how y changes (y'). For this two dimensional case the phase *plane* is the x - y plane.
+For two dimension (dependent variables @$["x"] and @$["y"]) and two functions of those two variables, we need to consider the derivatives of each. How x changes with time (@$["x'"]) is a function of both x and y. The same for how y changes (@$["y'"]). For this two dimensional case the phase *plane* is the x - y plane.
 
-Think of your "particle". At the initial time (t_0) it is somewhere (x(t_0), y(t_0)). As t grows the position of the particle will move in the x - y plane. How do we know where it goes next? We have the derivatives that describe how it changes over time.
+At the initial time (t_0) the "particle" is somewhere (x(t_0), y(t_0)). As t grows the position of the particle changes. It move in the x - y plane. How do we know where it goes next? We have the derivatives that describe how it changes over time, and we use those just as we did to propragate velocity in the Hodgkin-Huxley model. 
 
 One approach:
-1. Determine the fixed points.
-2. Draw the /nullclines/.
-   What is a nullcline? It is the line for when one of the derivatives is zero. For example if you had a system of equations like:
+@itemlist[#:style 'ordered
+          @item{Determine the fixed points.}
+          @item{Draw the @italic{nullclines}.}]
 
-   \begin{align*}
-   x' &= y - x^2 + x \\
+A nullcline is the line in your phase space when one of the derivatives of your dependent variables is zero. For example, if you had a system of equations like:
+
+@$$["\\begin{align*}
+   x' &= y - x^2 + x \\\\
    y' &= x - y
-   \end{align*}
+   \\end{align*}"]
 
-   Then you would consider when $x'$ is zero. That would mean when $y = x^2 - x$. What is the y nullcline for this system of equations? Fixed points are where both derivatives are zero. How would that show up in such a graph as this?
-   
-Locally everything is linear. To find out the stability of complex systems where the graphical depiction doesn't give you all the answers you take your non-linear system and linearize in the neighborhood of the fixed points.
+Consider when $x'$ is zero. That would mean when @$["y = x^2 - x"]. Now you determine what the y nullcline is for this system of equations. Then plot them with Racket's plot functions. The look at the graph and determine where the fixed points.
 
-Terms: before we used the  first and second derivatives. Same here, but things get more complicated with more equations and more terms. To "linearize" you can use Taylor's expansion. And find the eigenvalues of the Jacobian. We will not be explaining this further.
+@;{
+@examples[#:no-prompt
+          #:eval plot-eval
+          (plot (list (axes)
+                      (function (lambda (x) (- (expt x 2.0) x)) -4 4 #:color "red")
+                      (function (lambda (x) x) #:color "green")))]
+}
 
-A reduced model of the Hodgkin-Huxley is the Morris Lecar. Potassium/Calcium and a leak current. And an applied constant current. 
+@subsection{Dealing with the Non-linear}
+
+Make it linear. Locally everything is linear. To find out the stability of a complex system where the graphical depiction doesn't give you all the answers you take your non-linear system and linearize in the neighborhood of the fixed points. This is very similar to what we have already done, but disguises this process with new terminology and a more complex notation for tracking the multiple variables we need to reference. All I will do here is introduce some of the words, but their application will have to wait. 
+
+Continuous functions (those without breaks and jumps) can be decomposed into an expansion of terms that multiply the powers of their independent variable by coefficients. When you progress through the algebra you end up with an expansion that involves derivatives of increasing order and factorials. For most of the functions that are of biological or psychological relevance the magnitude of the terms decreases quickly enough that all the orders beyond x or @$["x^2"] can usually be ignored. Such expansions are called a @bold{@italic{Taylor}} series. When applied to a system of equations you get a matrix, which we will look at more shortly in the section on neural networks. The @bold{@italic{Jacobian}} is really just a bunch of second derivatives that we use like above to determine the stability of regions in our phase space via looking at the @bold{@italic{eigenvalues}} of this phase space. @margin-note{The terms here are so you know what to look up if you want to learn more on your own. The book on Neuronal Dyanmics referenced earlier and the Tutorial book with Terman's chapter are both useful sources.}
 
 
+@section{Neuronal Dyanmics Applied to Spiking Neuron Models}
+
+The Hodgkin and Huxley model is quite complex. There are simpler versions of spiking neuron models that still yield much of the important features of the H-H model. Having fewer variables and fewer equations they are more tractable mathematically and more understandable via inspection. Having a spike generation process they are more applicable to real neurons than the even simpler integrate and fire model.
+
+A popular reduced model is the @hyperlink["https://en.wikipedia.org/wiki/Morris%E2%80%93Lecar_model"]{Morris Lecar}. It is an idealized version of a neuron with two ionic conductances and one leak current. Only one of the ionic currents changes slowly enough to matter (the other is instantaneous). There can also be an applied current. By varying the, in this version of the terminology, φ value one can change the behavior of the neuron and use the above methodologies for @hyperlink["https://web.archive.org/web/20120402093059/http://pegasus.medsci.tokushima-u.ac.jp/~tsumoto/work/nolta2002_4181.pdf"]{studying how that affects neuronal spiking dynamics}. As a preview demonstration consider these two plots. 
 
 @examples[#:eval plot-eval
           (require "./code/morris-lecar.rkt")
-          ;;(require plot)@; needs commenting?
-          (list (try-a-new-phi 0.03)
-                (poor-mans-phase-plot 0.03))]
+          ;;(require plot)@; needs uncommenting if you are doing in DrRacket
+          (hc-append
+           (try-a-new-phi 0.03)
+           (poor-mans-phase-plot 0.03))]
+
 
 
 @generate-bibliography[#:sec-title "Dynamics Bibliography"
