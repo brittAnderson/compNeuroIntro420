@@ -45,7 +45,7 @@ Assume you have a derivative that is equal to @$["f(x) = x - x^3"].@margin-note{
 
 What you want is some function of the variable @italic{x} that will equal what you get when you take its derivative. For this function you could find the analytical solution by first separating the variables (@italic{x}'s on one side and @italic{t}'s on the other) and then using partial fractions before integrating. Should you do this by hand (or using a computer algebra system like @hyperlink["https://www.wolframalpha.com/input?i=integral+of+1%2Fx"]{Wolfram Alpha}) you will find a complicated formula where it is not easy to intuit how the value of the function changes as you evolve @italic{t}.
 
-The dynamical systems approach is the same idea as we used to implement our spiking neuron models. We think of  @$["x"] as itself a function: @$["$x(t)"]. Then as @italic{t} changes we will also change $x$.
+The dynamical systems approach is the same idea as we used to implement our spiking neuron models. We think of  @$["x"] as itself a function: @$["x(t)"]. Then as @italic{t} changes we will also change @$["x"].
 
 @section{Fixed Points}
 
