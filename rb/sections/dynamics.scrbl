@@ -45,7 +45,7 @@ Assume you have a derivative that is equal to @$["f(x) = x - x^3"].@margin-note{
 
 What you want is some function of the variable @italic{x} that will equal what you get when you take its derivative. For this function you could find the analytical solution by first separating the variables (@italic{x}'s on one side and @italic{t}'s on the other) and then using partial fractions before integrating. Should you do this by hand (or using a computer algebra system like @hyperlink["https://www.wolframalpha.com/input?i=integral+of+1%2Fx"]{Wolfram Alpha}) you will find a complicated formula where it is not easy to intuit how the value of the function changes as you evolve @italic{t}.
 
-The dynamical systems approach is the same idea as we used to implement our spiking neuron models. We think of @$["x"] as itself a function: @$["x(t)"]. Then as @italic{t} changes we will also change @$["x"].
+The dynamical systems approach is the same idea as we used to implement our spiking neuron models. We think of  @$["x"] as itself a function: @$["$x(t)"]. Then as @italic{t} changes we will also change $x$.
 
 @section{Fixed Points}
 
@@ -122,7 +122,7 @@ Plot the values of x for all its fixed points as a function of lambda. What does
 
 This is a so-called @bold{@italic{saddle node}}.
 
-Now try to do the same for the function: @$["x' = \\lambda~x - x^2."]
+Now try to do the same for the function: @$$["x' = \\lambda~x - x^2."]
 Find the fixed points for the @bold{@italic{transcritical}} bifurcation and plot the stability. It is probably easier if just use pen and paper (or ipad). Use your calculus to find the fixed points and the derivatives for stability.
 
 @margin-note{It is important to recognize that the λ here is not the same as for the λ calculus. There are only so many symbols and the mathematicians tend to recycle and re-use.}
@@ -150,7 +150,7 @@ A nullcline is the line in your phase space when one of the derivatives of your 
    y' &= x - y
    \\end{align*}"]
 
-Consider when @$["x"] is zero. That would mean when @$["y = x^2 - x"]. Now you determine what the y nullcline is for this system of equations. Then plot them with Racket's plot functions. The look at the graph and determine where the fixed points.
+Consider when $x'$ is zero. That would mean when @$["y = x^2 - x"]. Now you determine what the y nullcline is for this system of equations. Then plot them with Racket's plot functions. The look at the graph and determine where the fixed points.
 
 @;{
 @examples[#:no-prompt
