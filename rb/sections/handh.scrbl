@@ -33,7 +33,7 @@
 
 Hodgkin and Huxley, the people as well as their model, provide a nice example for how to structure one's education to enable one to do work that combines mathematics, models, and empirical data. Each was a scientist from one side of the aisle who sought training from the other.
 
-Another lesson taught by the Hodgkin and Huxley model is a meta lesson: you may not understand in the beginning what your true problem even is. You need to be prepared for it to appear, and when it does to be able to attack it with the methods appropriate to its nature. Rather than being the man with a hammer and seeing everything as a nail, you need to carry a Swiss Army knife.
+Another lesson taught by the Hodgkin and Huxley model is a meta lesson: you may not understand in the beginning what your true problem even is. You need to be prepared for it to appear, and when it does to be able to attack it with the methods appropriate to its nature. Rather than being the person with a hammer and seeing everything as a nail, you need to carry a Swiss Army knife.
 
 @subsection{Biographical Sources}
 To learn more about these remarkable individuals and their careers you can consult the biographies of the Nobel Foundation. The Nobel Prize organization keeps biographies of all recipients @hyperlink["https://www.nobelprize.org/prizes/medicine/1963/hodgkin/biographical/"]{Hodgkin},  @hyperlink["https://www.nobelprize.org/prizes/medicine/1963/huxley/biographical/"]{Huxley}.
