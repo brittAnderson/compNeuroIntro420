@@ -116,9 +116,9 @@ You will need to make some assumptions to get your initial conditions.
 
 @subsection{Alpha and Beta Formulas}
 
-@${\alpha_{n}(V_{m})={\frac {0.01(10-V_l{m})}{\exp {\big (}{\frac{10-V_{m}}{10}}{\big )}-1}}}
+@${\alpha_{n}(V_{m})={\frac {0.01(10-V_{m})}{\exp {\big (}{\frac{10-V_{m}}{10}}{\big )}-1}}}
 
-@${\alpha_{m}(V_{m})={\frac {0.1(25-V_{lm})}{\exp {\big (}{\frac {25-V_{m}}{10}}{\big )}-1}}}
+@${\alpha_{m}(V_{m})={\frac {0.1(25-V_{m})}{\exp {\big (}{\frac {25-V_{m}}{10}}{\big )}-1}}}
 
 @${\alpha _{h}(V_{m})=0.07\exp {\bigg (l}{\frac {-V_{m}}{20}}{\bigg )}}
 
