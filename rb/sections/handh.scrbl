@@ -80,7 +80,7 @@ So, in that light, and before you start coding, ask yourself,
 @itemlist[#:style 'ordered
           @item{What are the @${\bar{g}_*} terms?}
           @item{What are the @${E_{*}} terms?}
-          @item{What do m,n, and h represent?}
+          @item{What do m, n, and h represent?}
           @item{Where did these equations come from?}]
    
 @subsection{It's Differential Equations All the Way Down}
@@ -88,7 +88,7 @@ Although the Hodgkin and Huxley model uses the same mathematics as the Integrate
 
 @bold{Test Your Understanding}
 @itemlist[#:style 'ordered
-          @item{Each of the m,n, and h terms have their own equation of exactly the same form, but with their unique alphas and betas (that is what the subscript means).}
+          @item{Each of the m, n, and h terms have their own equation of exactly the same form, but with their unique alphas and betas (that is what the subscript means).}
           @item{What does the V in parentheses mean?}
           @item{When they were finally sequenced (decades later), what do you think was the number of sub-units that the sodium and potassium channels were found to have?}]
 
