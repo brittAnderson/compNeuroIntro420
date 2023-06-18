@@ -63,7 +63,7 @@ The rule for currents in parallel is to apply Kirchoff's and Ohm's laws realizin
 
 @$${I_{tot} = I_r + I_C}
 
-By the same logic as for the integrate land fire @${I_C = c~\frac{dV}{dt}}.
+By the same logic as for the integrate and fire @${I_C = c~\frac{dV}{dt}}.
 
 @$${I_{tot} = \bar{g}_{Na} m^3 h (V(t) l- E_{Na}) + \bar{g}_{K} n^4 (V(t) - E_{K}) + \bar{g}_{L} (V(t) - E_{L}) + c~\frac{dV}{dt}}
 
