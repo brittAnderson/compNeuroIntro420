@@ -33,7 +33,7 @@
 
 Hodgkin and Huxley, the people as well as their model, provide a nice example for how to structure one's education to enable one to do work that combines mathematics, models, and empirical data. Each was a scientist from one side of the aisle who sought training from the other.
 
-Another lesson taught by the Hodgkin and Huxley model is a meta lesson: you may not understand in the beginning what your true problem even is. You need to be prepared for it to appear, and when it does to be able to attack it with the methods appropriate to its nature. Rather than being the man with a hammer and seeing everything as a nail, you need to carry a Swiss Army knife.
+Another lesson taught by the Hodgkin and Huxley model is a meta lesson: you may not understand in the beginning what your true problem even is. You need to be prepared for it to appear, and when it does to be able to attack it with the methods appropriate to its nature. Rather than being the person with a hammer and seeing everything as a nail, you need to carry a Swiss Army knife.
 
 @subsection{Biographical Sources}
 To learn more about these remarkable individuals and their careers you can consult the biographies of the Nobel Foundation. The Nobel Prize organization keeps biographies of all recipients @hyperlink["https://www.nobelprize.org/prizes/medicine/1963/hodgkin/biographical/"]{Hodgkin},  @hyperlink["https://www.nobelprize.org/prizes/medicine/1963/huxley/biographical/"]{Huxley}.
@@ -63,7 +63,7 @@ The rule for currents in parallel is to apply Kirchoff's and Ohm's laws realizin
 
 @$${I_{tot} = I_r + I_C}
 
-By the same logic as for the integrate land fire @${I_C = c~\frac{dV}{dt}}.
+By the same logic as for the integrate and fire @${I_C = c~\frac{dV}{dt}}.
 
 @$${I_{tot} = \bar{g}_{Na} m^3 h (V(t) l- E_{Na}) + \bar{g}_{K} n^4 (V(t) - E_{K}) + \bar{g}_{L} (V(t) - E_{L}) + c~\frac{dV}{dt}}
 
@@ -80,7 +80,7 @@ So, in that light, and before you start coding, ask yourself,
 @itemlist[#:style 'ordered
           @item{What are the @${\bar{g}_*} terms?}
           @item{What are the @${E_{*}} terms?}
-          @item{What do m,n, and h represent?}
+          @item{What do m, n, and h represent?}
           @item{Where did these equations come from?}]
    
 @subsection{It's Differential Equations All the Way Down}
@@ -88,7 +88,7 @@ Although the Hodgkin and Huxley model uses the same mathematics as the Integrate
 
 @bold{Test Your Understanding}
 @itemlist[#:style 'ordered
-          @item{Each of the m,n, and h terms have their own equation of exactly the same form, but with their unique alphas and betas (that is what the subscript means).}
+          @item{Each of the m, n, and h terms have their own equation of exactly the same form, but with their unique alphas and betas (that is what the subscript means).}
           @item{What does the V in parentheses mean?}
           @item{When they were finally sequenced (decades later), what do you think was the number of sub-units that the sodium and potassium channels were found to have?}]
 
@@ -116,9 +116,9 @@ You will need to make some assumptions to get your initial conditions.
 
 @subsection{Alpha and Beta Formulas}
 
-@${\alpha_{n}(V_{m})={\frac {0.01(10-V_l{m})}{\exp {\big (}{\frac{10-V_{m}}{10}}{\big )}-1}}}
+@${\alpha_{n}(V_{m})={\frac {0.01(10-V_{m})}{\exp {\big (}{\frac{10-V_{m}}{10}}{\big )}-1}}}
 
-@${\alpha_{m}(V_{m})={\frac {0.1(25-V_{lm})}{\exp {\big (}{\frac {25-V_{m}}{10}}{\big )}-1}}}
+@${\alpha_{m}(V_{m})={\frac {0.1(25-V_{m})}{\exp {\big (}{\frac {25-V_{m}}{10}}{\big )}-1}}}
 
 @${\alpha _{h}(V_{m})=0.07\exp {\bigg (l}{\frac {-V_{m}}{20}}{\bigg )}}
 
