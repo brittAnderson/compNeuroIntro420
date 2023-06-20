@@ -113,7 +113,7 @@ The "AND" Operation/Function
         @elem{The @italic{xor} is true when one or the other, but not both of the inputs are true. It is exclusively an or function.}
         @(xor-fig)]
 
-This short @hyperlink["https://media.nature.com/m685/nature-assets/nbt/journal/v26/n2/images/nbt1386-F1.gif"]{article} provides a nice example of linear separability and some basics of what a neural network is. 
+This short @hyperlink["https://doi.org/10.1038/nbt1386"]{article} provides a nice example of linear separability and some basics of what a neural network is. 
 
 @subsubsection{Exercise XOR}
 
