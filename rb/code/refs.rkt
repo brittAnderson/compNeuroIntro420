@@ -14,7 +14,7 @@
    #:title "What We Mean When We Say \"What's the Dollar of Mexico?\" : Prototypes and Mapping in Concept Space"
    #:location (proceedings-location "AAAI Fall Symposium Series")
    #:date 2010
-   #:url "https://www.aaai.org/ocs/index.php/FSS/FSS10/paper/view/2243"))
+   #:url "https://cdn.aaai.org/ocs/2243/2243-9566-1-PB.pdf"))
 
 (define neighborhood-agent-model
   (make-bib
