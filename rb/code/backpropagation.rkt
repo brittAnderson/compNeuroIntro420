@@ -276,7 +276,7 @@
 ;; Example use of above:
 ;; (define tmany (bp-loop data-xor test-net #:loop-no 10000))
 ;; (for ([i (map first data-xor)])
-;;                (displayln (test-learning i t10000)))
+;;                (displayln (test-learning i tmany)))
 
 
 ;;two functions added to explore paradoxical
