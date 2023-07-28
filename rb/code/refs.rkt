@@ -144,6 +144,14 @@
    #:date 2015
    #:url "https://jbusemey.pages.iu.edu/quantum/CDinQC.pdf"))
 
+(define quantum-cog-methods
+  (make-bib
+   #:author (authors "Martha Lewis")
+   #:title "Quantum Computing and Cognitive Simulation"
+   #:locationi (journal-location "PsyArXiv Preprints")
+   #:date 2021
+   #:url "https://doi.org/10.31234/osf.io/hvbgt"))
+
 (define lba
   (make-bib
    #:title "The simplest complete model of choice response time: Linear ballistic accumulation"
