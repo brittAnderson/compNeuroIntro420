@@ -148,7 +148,7 @@
   (make-bib
    #:author (authors "Martha Lewis")
    #:title "Quantum Computing and Cognitive Simulation"
-   #:locationi (journal-location "PsyArXiv Preprints")
+   #:location (journal-location "PsyArXiv Preprints")
    #:date 2021
    #:url "https://doi.org/10.31234/osf.io/hvbgt"))
 
