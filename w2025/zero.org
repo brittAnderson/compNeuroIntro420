@@ -60,4 +60,18 @@ https://pmc.ncbi.nlm.nih.gov/articles/PMC3006465/pdf/10867_2010_Article_9195.pdf
 
 3. You need to bring your computer to class. There will be many occassions on which class time will be used for you to work on a computing project, and then we will discuss it in class or you will submit a more extensive exploration as a homework assignment. 
 * And if we have some time left
-  
+#+begin_src python :exports code :results silent
+def xcubed (x) : return (x * x * x)
+def diff_x_cubed (x) : return (3 * x * x)
+def get_step (guess, goal) :
+    return ((goal - (xcubed (guess))) / (diff_x_cubed (guess)))
+def get_cube_root (goal, initial_guess, tolerance) :
+    cur_guess = initial_guess + get_step(initial_guess, goal)
+    error = abs(xcubed(cur_guess) - goal)
+    while (error > tolerance):
+        cur_guess = cur_guess + get_step(cur_guess, goal)
+        error = abs(xcubed(cur_guess) - goal)
+    return(cur_guess)
+#+end_src
+
+

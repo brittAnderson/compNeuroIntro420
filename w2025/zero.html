@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-11-25 Mon 14:14 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Computational Modeling for Psychology Students</title>
+<meta name="author" content="Britt Anderson" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Computational Modeling for Psychology Students</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org9cb7497">1. Identifying Details</a></li>
+<li><a href="#org0253589">2. What will we study and how will we study it?</a></li>
+<li><a href="#org40a5567">3. A word about the use of LLMs</a>
+<ul>
+<li><a href="#org0e63774">3.1. What are Marr's three levels and how do they relate to the question of whether cognition is computational?</a></li>
+</ul>
+</li>
+<li><a href="#org4a30301">4. For next week</a>
+<ul>
+<li><a href="#org3ef0783">4.1. Reading</a></li>
+<li><a href="#orgcf273db">4.2. Expectations</a></li>
+<li><a href="#org2e33e7e">4.3. You will turn in</a></li>
+</ul>
+</li>
+<li><a href="#orgaa88e7b">5. Technical Expectations</a></li>
+<li><a href="#org596a1cb">6. And if we have some time left</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9cb7497" class="outline-2">
+<h2 id="org9cb7497"><span class="section-number-2">1.</span> Identifying Details</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+PSYCH420 Section 001
+</p>
+
+<p>
+Meets: Friday 8:30-11:20
+</p>
+
+<p>
+Room: EV3
+</p>
+</div>
+</div>
+<div id="outline-container-org0253589" class="outline-2">
+<h2 id="org0253589"><span class="section-number-2">2.</span> What will we study and how will we study it?</h2>
+<div class="outline-text-2" id="text-2">
+<ol class="org-ol">
+<li>What is the difference between a mind and a brain?</li>
+<li>What is the difference between computational psychology and computational neuroscience?</li>
+<li>Is the a difference between a computational model of X, and the assertion that X is computational?</li>
+<li>What is computation?</li>
+<li>What is cognition?</li>
+<li>What does it mean to assert that cognition is computation?</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org40a5567" class="outline-2">
+<h2 id="org40a5567"><span class="section-number-2">3.</span> A word about the use of LLMs</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org0e63774" class="outline-3">
+<h3 id="org0e63774"><span class="section-number-3">3.1.</span> What are Marr's three levels and how do they relate to the question of whether cognition is computational?</h3>
+<div class="outline-text-3" id="text-3-1">
+<blockquote>
+<p>
+David Marr proposed three levels of analysis for understanding cognitive systems:
+</p>
+
+<ol class="org-ol">
+<li>Computational Level: Defines the goal or problem the cognitive system is solving and the logic/strategy for solving it. For cognition, this means specifying what information processing task is being accomplished.</li>
+
+<li>Algorithmic Level: Describes the specific representation and algorithm used to implement the computational goal. Here, one details the precise steps and data structures used to achieve the computational objective.</li>
+
+<li>Implementation Level: Examines the physical mechanisms that actually realize the algorithm, such as neural structures in the brain.</li>
+</ol>
+
+<p>
+Regarding computational cognition, Marr's levels suggest cognition can be understood computationally: If cognitive processes can be systematically described at the computational and algorithmic levels, with clear input-output mappings and step-by-step information processing, this supports viewing cognition as fundamentally computational. The implementation level reveals how these computational processes are physically instantiated.
+</p>
+
+<p>
+By providing a structured framework for analyzing cognitive systems, Marr's levels offer a strong argument for computational approaches to understanding mental phenomena, while also acknowledging the importance of examining actual biological mechanisms.
+</p>
+
+<p>
+Claude<sub>AI</sub> <span class="timestamp-wrapper"><span class="timestamp">&lt;2024-11-25 Mon&gt;</span></span>
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org4a30301" class="outline-2">
+<h2 id="org4a30301"><span class="section-number-2">4.</span> For next week</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org3ef0783" class="outline-3">
+<h3 id="org3ef0783"><span class="section-number-3">4.1.</span> Reading</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3006465/pdf/10867_2010_Article_9195.pdf">https://pmc.ncbi.nlm.nih.gov/articles/PMC3006465/pdf/10867_2010_Article_9195.pdf</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgcf273db" class="outline-3">
+<h3 id="orgcf273db"><span class="section-number-3">4.2.</span> Expectations</h3>
+<div class="outline-text-3" id="text-4-2">
+<ol class="org-ol">
+<li>You will make some effort to look-up things you do not understand.</li>
+<li>You will be able to make some effort to discuss this article, and revisit the questions we have discussed above, in light of your reading of this article.</li>
+<li>Quizzes are an imprecise way of assessing your learning, but in the absence of discussion I have no way of gauging what you know, and so I can make five question quizzes on the readings if necessary. Please help me not to have to do this.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org2e33e7e" class="outline-3">
+<h3 id="org2e33e7e"><span class="section-number-3">4.3.</span> You will turn in</h3>
+<div class="outline-text-3" id="text-4-3">
+<ol class="org-ol">
+<li>a less than one page paper in which you indicate the poster/talk you have selected from <a href="https://2024.ccneuro.org/poster-sessions/?view=all">here</a> and why you chose this is an example of a computational approach to a psychological question, and why it resonated with you.</li>
+<li>a statement of what programming language you will use to do your exercises (at least to start with).
+<ol class="org-ol">
+<li>If you are already a pretty accomplished programmer pick something new to challenge yourself with and learn a bit more: common lisp; scheme; racket; haskell; ocaml. Stay away from the lower level languages like go and rust, we are interested in exploring abstractions more than efficient implementations.</li>
+</ol></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orgaa88e7b" class="outline-2">
+<h2 id="orgaa88e7b"><span class="section-number-2">5.</span> Technical Expectations</h2>
+<div class="outline-text-2" id="text-5">
+<ol class="org-ol">
+<li>You need a computer. Phones and tablets will not work.</li>
+
+<li>You need to know how to use your computer:
+<ul class="org-ul">
+<li>can you find a particular file or directory?</li>
+<li>do you know how to download a program or data and find it on your computer?</li>
+<li>do you know how to use "git" or any version control software?</li>
+<li>do you know what an IDE is and can you use it for the basics?
+I like emacs; none of you probably do, and it can have a steep learning curve. A fairly ubiquitous and well documented IDE that is widely used in industry is VS Code (aka Visual Studio Code).</li>
+<li>Can you program at a rudimentary languge in any programming language. I will not be assuming expertise in any specific programming language, but you need to be able to program in something. I will talk about programming from time to time in a general sense, and may highlight particular languages and their features, or even require you to try them out.</li>
+</ul></li>
+
+<li>You need to bring your computer to class. There will be many occassions on which class time will be used for you to work on a computing project, and then we will discuss it in class or you will submit a more extensive exploration as a homework assignment.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org596a1cb" class="outline-2">
+<h2 id="org596a1cb"><span class="section-number-2">6.</span> And if we have some time left</h2>
+<div class="outline-text-2" id="text-6">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #56b4e9; font-weight: bold;">def</span> <span style="color: #d55e00;">xcubed</span> (x) : <span style="color: #56b4e9; font-weight: bold;">return</span> (x * x * x)
+<span style="color: #56b4e9; font-weight: bold;">def</span> <span style="color: #d55e00;">diff_x_cubed</span> (x) : <span style="color: #56b4e9; font-weight: bold;">return</span> (3 * x * x)
+<span style="color: #56b4e9; font-weight: bold;">def</span> <span style="color: #d55e00;">get_step</span> (guess, goal) :
+    <span style="color: #56b4e9; font-weight: bold;">return</span> ((goal - (xcubed (guess))) / (diff_x_cubed (guess)))
+<span style="color: #56b4e9; font-weight: bold;">def</span> <span style="color: #d55e00;">get_cube_root</span> (goal, initial_guess, tolerance) :
+    <span style="color: #e69f00; font-weight: bold;">cur_guess</span> = initial_guess + get_step(initial_guess, goal)
+    <span style="color: #e69f00; font-weight: bold;">error</span> = <span style="color: #0072b2;">abs</span>(xcubed(cur_guess) - goal)
+    <span style="color: #56b4e9; font-weight: bold;">while</span> (error &gt; tolerance):
+        <span style="color: #e69f00; font-weight: bold;">cur_guess</span> = cur_guess + get_step(cur_guess, goal)
+        <span style="color: #e69f00; font-weight: bold;">error</span> = <span style="color: #0072b2;">abs</span>(xcubed(cur_guess) - goal)
+    <span style="color: #56b4e9; font-weight: bold;">return</span>(cur_guess)
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: Winter 2025</p>
+<p class="author">Author: Britt Anderson</p>
+<p class="date">Created: 2024-11-25 Mon 14:14</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
