@@ -1,0 +1,63 @@
+#+STARTUP: nofold hideblocks
+#+Title: Computational Modeling for Psychology Students
+#+author: Britt Anderson
+#+date: Winter 2025
+
+
+* Identifying Details
+PSYCH420 Section 001
+
+Meets: Friday 8:30-11:20
+
+Room: EV3
+
+* What will we study and how will we study it?
+  1. What is the difference between a mind and a brain?
+  2. What is the difference between computational psychology and computational neuroscience?
+  3. Is the a difference between a computational model of X, and the assertion that X is computational?
+  4. What is computation?
+  5. What is cognition?
+  6. What does it mean to assert that cognition is computation?
+
+* A word about the use of LLMs
+** What are Marr's three levels and how do they relate to the question of whether cognition is computational? 
+#+begin_quote
+   David Marr proposed three levels of analysis for understanding cognitive systems:
+
+1. Computational Level: Defines the goal or problem the cognitive system is solving and the logic/strategy for solving it. For cognition, this means specifying what information processing task is being accomplished.
+
+2. Algorithmic Level: Describes the specific representation and algorithm used to implement the computational goal. Here, one details the precise steps and data structures used to achieve the computational objective.
+
+3. Implementation Level: Examines the physical mechanisms that actually realize the algorithm, such as neural structures in the brain.
+
+Regarding computational cognition, Marr's levels suggest cognition can be understood computationally: If cognitive processes can be systematically described at the computational and algorithmic levels, with clear input-output mappings and step-by-step information processing, this supports viewing cognition as fundamentally computational. The implementation level reveals how these computational processes are physically instantiated.
+
+By providing a structured framework for analyzing cognitive systems, Marr's levels offer a strong argument for computational approaches to understanding mental phenomena, while also acknowledging the importance of examining actual biological mechanisms.
+
+Claude_AI <2024-11-25 Mon>
+#+end_quote
+* For next week
+** Reading
+https://pmc.ncbi.nlm.nih.gov/articles/PMC3006465/pdf/10867_2010_Article_9195.pdf
+** Expectations
+   1. You will make some effort to look-up things you do not understand.
+   2. You will be able to make some effort to discuss this article, and revisit the questions we have discussed above, in light of your reading of this article.
+   3. Quizzes are an imprecise way of assessing your learning, but in the absence of discussion I have no way of gauging what you know, and so I can make five question quizzes on the readings if necessary. Please help me not to have to do this.
+** You will turn in
+   1. a less than one page paper in which you indicate the poster/talk you have selected from [[https://2024.ccneuro.org/poster-sessions/?view=all][here]] and why you chose this is an example of a computational approach to a psychological question, and why it resonated with you.
+   2. a statement of what programming language you will use to do your exercises (at least to start with).
+      1. If you are already a pretty accomplished programmer pick something new to challenge yourself with and learn a bit more: common lisp; scheme; racket; haskell; ocaml. Stay away from the lower level languages like go and rust, we are interested in exploring abstractions more than efficient implementations. 
+* Technical Expectations
+1. You need a computer. Phones and tablets will not work.
+
+2. You need to know how to use your computer:
+   - can you find a particular file or directory?
+   - do you know how to download a program or data and find it on your computer?
+   - do you know how to use "git" or any version control software?
+   - do you know what an IDE is and can you use it for the basics?
+     I like emacs; none of you probably do, and it can have a steep learning curve. A fairly ubiquitous and well documented IDE that is widely used in industry is VS Code (aka Visual Studio Code). 
+   - Can you program at a rudimentary languge in any programming language. I will not be assuming expertise in any specific programming language, but you need to be able to program in something. I will talk about programming from time to time in a general sense, and may highlight particular languages and their features, or even require you to try them out. 
+
+3. You need to bring your computer to class. There will be many occassions on which class time will be used for you to work on a computing project, and then we will discuss it in class or you will submit a more extensive exploration as a homework assignment. 
+* And if we have some time left
+  
