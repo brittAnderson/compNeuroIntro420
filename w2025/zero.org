@@ -52,7 +52,6 @@ https://plato.stanford.edu/entries/computational-mind/
       1. If you are already a pretty accomplished programmer pick something new to challenge yourself with and learn a bit more: common lisp; scheme; racket; haskell; ocaml. Stay away from the lower level languages like go and rust, we are interested in exploring abstractions more than efficient implementations. 
 * Technical Expectations
 1. You need a computer. Phones and tablets will not work.
-
 2. You need to know how to use your computer:
    - can you find a particular file or directory?
    - do you know how to download a program or data and find it on your computer?
@@ -60,7 +59,6 @@ https://plato.stanford.edu/entries/computational-mind/
    - do you know what an IDE is and can you use it for the basics?
      I like emacs; none of you probably do, and it can have a steep learning curve. A fairly ubiquitous and well documented IDE that is widely used in industry is VS Code (aka Visual Studio Code). 
    - Can you program at a rudimentary languge in any programming language. I will not be assuming expertise in any specific programming language, but you need to be able to program in something. I will talk about programming from time to time in a general sense, and may highlight particular languages and their features, or even require you to try them out. 
-
 3. You need to bring your computer to class. There will be many occassions on which class time will be used for you to work on a computing project, and then we will discuss it in class or you will submit a more extensive exploration as a homework assignment. 
 * And if we have some time left
 
