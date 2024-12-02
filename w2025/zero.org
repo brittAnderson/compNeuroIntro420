@@ -38,7 +38,10 @@ Claude_AI <2024-11-25 Mon>
 #+end_quote
 * For next week
 ** Reading
+*** One half reads: 
 https://pmc.ncbi.nlm.nih.gov/articles/PMC3006465/pdf/10867_2010_Article_9195.pdf
+*** Other half reads:
+https://plato.stanford.edu/entries/computational-mind/
 ** Expectations
    1. You will make some effort to look-up things you do not understand.
    2. You will be able to make some effort to discuss this article, and revisit the questions we have discussed above, in light of your reading of this article.
