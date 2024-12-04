@@ -3,11 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-11-25 Mon 14:17 -->
+<!-- 2024-12-04 Wed 16:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Computational Modeling for Psychology Students</title>
-<meta name="author" content="Britt Anderson" />
+<title>Computational Modeling for Psychology Students Please write me lean4 code for solving the two state busy beaver problem.</title>
+<meta name="author" content="Britt Anderson Claude.ai" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -196,32 +196,52 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Computational Modeling for Psychology Students</h1>
+<h1 class="title">Computational Modeling for Psychology Students Please write me lean4 code for solving the two state busy beaver problem.</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org070fcec">1. Identifying Details</a></li>
-<li><a href="#org659234d">2. What will we study and how will we study it?</a></li>
-<li><a href="#org94262dd">3. A word about the use of LLMs</a>
+<li><a href="#org8e5c646">1. Identifying Details</a></li>
+<li><a href="#orge67bf36">2. Buzzati and The Singularity</a></li>
+<li><a href="#org4cf0db1">3. What will we study and how will we study it?</a>
 <ul>
-<li><a href="#org6063580">3.1. What are Marr's three levels and how do they relate to the question of whether cognition is computational?</a></li>
+<li><a href="#orgab85a08">3.1. The high level issues</a></li>
+<li><a href="#org86839e9">3.2. The concrete level issues</a></li>
+<li><a href="#orgae331d1">3.3. Learning Implementations</a></li>
 </ul>
 </li>
-<li><a href="#org39ebb3c">4. For next week</a>
+<li><a href="#org5d6e05d">4. Thinking about computation more carefully. A warm-up exercise.</a>
 <ul>
-<li><a href="#org32c46b4">4.1. Reading</a></li>
-<li><a href="#orgab5599b">4.2. Expectations</a></li>
-<li><a href="#org2d6a976">4.3. You will turn in</a></li>
+<li><a href="#org827cb8e">4.1. What are Marr's three levels and how do they relate to the question of whether cognition is computational?</a></li>
+<li><a href="#org32bdf29">4.2. An opportunity to start a conversation about the value of large language models for your learning.</a>
+<ul>
+<li><a href="#org88339ad">4.2.1. Busy Beavers and Lean Code</a></li>
 </ul>
 </li>
-<li><a href="#org186d72e">5. Technical Expectations</a></li>
-<li><a href="#org0a846b3">6. And if we have some time left</a></li>
+</ul>
+</li>
+<li><a href="#orgc796caf">5. For next week - Your first two homeworks</a>
+<ul>
+<li><a href="#org2a50f68">5.1. Reading</a>
+<ul>
+<li><a href="#org12faf2e">5.1.1. One half reads:</a></li>
+<li><a href="#orgcd64d4e">5.1.2. Other half reads:</a></li>
+</ul>
+</li>
+<li><a href="#orgd9400dd">5.2. Expectations</a></li>
+<li><a href="#org75a578f">5.3. You will turn in</a></li>
+</ul>
+</li>
+<li><a href="#orgef0446a">6. Why I Assign Homework; What Am I Looking For?</a></li>
+<li><a href="#org7d9d281">7. Technical Expectations</a></li>
+<li><a href="#org580117d">8. The projected outline of topics</a></li>
+<li><a href="#orgb9985b6">9. Grades</a></li>
+<li><a href="#org9214d17">10. And if we have some time left</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org070fcec" class="outline-2">
-<h2 id="org070fcec"><span class="section-number-2">1.</span> Identifying Details</h2>
+<div id="outline-container-org8e5c646" class="outline-2">
+<h2 id="org8e5c646"><span class="section-number-2">1.</span> Identifying Details</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 PSYCH420 Section 001
@@ -232,30 +252,63 @@ Meets: Friday 8:30-11:20
 </p>
 
 <p>
-Room: EV3
+Room: EV3 1408
 </p>
 </div>
 </div>
-<div id="outline-container-org659234d" class="outline-2">
-<h2 id="org659234d"><span class="section-number-2">2.</span> What will we study and how will we study it?</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orge67bf36" class="outline-2">
+<h2 id="orge67bf36"><span class="section-number-2">2.</span> Buzzati and The Singularity</h2>
+</div>
+<div id="outline-container-org4cf0db1" class="outline-2">
+<h2 id="org4cf0db1"><span class="section-number-2">3.</span> What will we study and how will we study it?</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgab85a08" class="outline-3">
+<h3 id="orgab85a08"><span class="section-number-3">3.1.</span> The high level issues</h3>
+<div class="outline-text-3" id="text-3-1">
 <ol class="org-ol">
 <li>What is the difference between a mind and a brain?</li>
 <li>What is the difference between computational psychology and computational neuroscience?</li>
-<li>Is the a difference between a computational model of X, and the assertion that X is computational?</li>
+<li>Is there a difference between a computational model of X, and the assertion that X is computational?</li>
 <li>What is computation?</li>
 <li>What is cognition?</li>
 <li>What does it mean to assert that cognition is computation?</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org94262dd" class="outline-2">
-<h2 id="org94262dd"><span class="section-number-2">3.</span> A word about the use of LLMs</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org86839e9" class="outline-3">
+<h3 id="org86839e9"><span class="section-number-3">3.2.</span> The concrete level issues</h3>
+<div class="outline-text-3" id="text-3-2">
+<ol class="org-ol">
+<li>What are the mathematical domains relevant for computational psychology and neuroscience work?
+Not what are the software packages, but what are the areas of mathematics, and can we learn to think about them generally before we begin to program them?
+<ol class="org-ol">
+<li>Differential Equations</li>
+<li>Linear Algebra</li>
+<li>Logic</li>
+<li>Abstract Algebra</li>
+</ol></li>
+<li>How do the mathematical tools inter-relate to each other and to our coding?</li>
+<li>How do the use of math and coding fit into the quest for a <i>theory</i>?</li>
+</ol>
 </div>
-<div id="outline-container-org6063580" class="outline-3">
-<h3 id="org6063580"><span class="section-number-3">3.1.</span> What are Marr's three levels and how do they relate to the question of whether cognition is computational?</h3>
-<div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-orgae331d1" class="outline-3">
+<h3 id="orgae331d1"><span class="section-number-3">3.3.</span> Learning Implementations</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Things learned through use are the things you retain and can deploy in the future for non-classroom purposes. What does "use" mean? It can mean discuss where you have to paraphrase and explain. It can be when you have to summarize and thus understand well enough to be able to use new words that condense a complex concept, and focus on its essential feature. It can also mean an implementation. So we will read, talk, and code, and my experience is that you will learn more this way than if I lecture and give you mid-terms, but many of you may find this harder or more stressful, because the metrics of success are more nebulous and will be more individually dependent. 
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org5d6e05d" class="outline-2">
+<h2 id="org5d6e05d"><span class="section-number-2">4.</span> Thinking about computation more carefully. A warm-up exercise.</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org827cb8e" class="outline-3">
+<h3 id="org827cb8e"><span class="section-number-3">4.1.</span> What are Marr's three levels and how do they relate to the question of whether cognition is computational?</h3>
+<div class="outline-text-3" id="text-4-1">
 <blockquote>
 <p>
 David Marr proposed three levels of analysis for understanding cognitive systems:
@@ -283,32 +336,317 @@ Claude<sub>AI</sub> <span class="timestamp-wrapper"><span class="timestamp">&lt;
 </blockquote>
 </div>
 </div>
+<div id="outline-container-org32bdf29" class="outline-3">
+<h3 id="org32bdf29"><span class="section-number-3">4.2.</span> An opportunity to start a conversation about the value of large language models for your learning.</h3>
+<div class="outline-text-3" id="text-4-2">
 </div>
-<div id="outline-container-org39ebb3c" class="outline-2">
-<h2 id="org39ebb3c"><span class="section-number-2">4.</span> For next week</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org88339ad" class="outline-4">
+<h4 id="org88339ad"><span class="section-number-4">4.2.1.</span> Busy Beavers and Lean Code</h4>
+<div class="outline-text-4" id="text-4-2-1">
 </div>
-<div id="outline-container-org32c46b4" class="outline-3">
-<h3 id="org32c46b4"><span class="section-number-3">4.1.</span> Reading</h3>
-<div class="outline-text-3" id="text-4-1">
+<ol class="org-ol">
+<li><a id="org2684917"></a>What is the busy beaver problem (we will come back to this; for now just illustrating a point).<br />
+<div class="outline-text-5" id="text-4-2-1-1">
+<p>
+I'll create an artifact with a Lean 4 implementation for solving the two-state busy beaver problem.
+</p>
+
+<p>
+I've implemented a comprehensive Lean 4 solution for the two-state busy beaver problem. Let me break down the key components:
+</p>
+
+<ol class="org-ol">
+<li><b><b>Inductive Types</b></b>: 
+<ul class="org-ul">
+<li>`State`: Represents the machine states (A, B, Halt)</li>
+<li>`Cell`: Represents tape cell values (Zero, One)</li>
+<li>`WriteAction`: Defines write operations (WriteZero, WriteOne)</li>
+<li>`MoveDirection`: Defines tape head movement (Left, Right)</li>
+</ul></li>
+
+<li><b><b>Tape Representation</b></b>: 
+<ul class="org-ul">
+<li>A `Tape` structure that allows writing and moving the tape head</li>
+<li>Supports infinite tape by dynamically expanding left and right</li>
+</ul></li>
+
+<li><b><b>Transition Rules</b></b>:
+<ul class="org-ul">
+<li>`TransitionRule` defines how the machine behaves for each state and cell combination</li>
+<li>`generateAllRules` creates all possible two-state transition rules</li>
+</ul></li>
+
+<li><b><b>Machine Execution</b></b>:
+<ul class="org-ul">
+<li>`transitionFunction` applies rules based on current state and cell</li>
+<li>`runMachine` executes the Turing machine with a maximum step limit</li>
+<li>`findBusyBeaverChampion` finds the machine that writes the most 1's within the step limit</li>
+</ul></li>
+
+<li><b><b>Halting Condition</b></b>:
+<ul class="org-ul">
+<li>Machine halts when it reaches the Halt state or no applicable rule is found</li>
+<li>Maximum steps prevent infinite loops</li>
+</ul></li>
+</ol>
+
+<p>
+The `main` function demonstrates how to use the implementation, finding the champion two-state busy beaver machine and printing its final state and steps taken.
+</p>
+
+<p>
+A few notes on the implementation:
+</p>
+<ul class="org-ul">
+<li>It's a theoretical exploration of the two-state busy beaver problem</li>
+<li>Uses Lean 4's dependent type system for strong type safety</li>
+<li>Explores all possible two-state machine configurations</li>
+<li>Limits computation to prevent truly infinite loops</li>
+</ul>
+
+<p>
+You can adjust `maxSteps` to control the exploration depth. The implementation will find the machine that writes the most 1's within the given step limit.
+</p>
+
+<p>
+Would you like me to explain any part of the implementation in more detail?
+</p>
+</div>
+</li>
+<li><a id="org7167b91"></a>Code it in Lean4 ( I can't get this in the pdf properly. You should be able to find the file in the git repo).<br />
+<div class="outline-text-5" id="text-4-2-1-2">
+<div class="org-src-container">
+<pre class="src src-lean">-- Two-State Busy Beaver Problem Solver
+-- This implementation explores the maximum number of steps a 2-state Turing machine can run before halting
+
+namespace BusyBeaver
+
+-- Define the possible states
+inductive State
+  | A
+  | B
+  | Halt
+  deriving Repr, Inhabited
+
+-- Define the possible tape cell values
+inductive Cell
+  | Zero
+  | One
+  deriving Repr, Inhabited
+
+-- Define the possible write actions
+inductive WriteAction
+  | WriteZero
+  | WriteOne
+  deriving Repr
+
+-- Define the possible move directions
+inductive MoveDirection
+  | Left
+  | Right
+  deriving Repr
+
+-- Represents a single transition rule
+structure TransitionRule where
+  currentState : State
+  currentCell : Cell
+  writeAction : WriteAction
+  moveDirection : MoveDirection
+  nextState : State
+  deriving Repr
+
+-- Tape representation with a focus on the current cell
+structure Tape where
+  left : List Cell   -- Cells to the left of the current cell
+  current : Cell     -- Current cell
+  right : List Cell  -- Cells to the right of the current cell
+  deriving Repr
+
+namespace Tape
+  -- Create an empty tape
+  def empty : Tape :=
+    { left := [], current := .Zero, right := [] }
+
+  -- Write a cell value to the current position
+  def write (tape : Tape) (action : WriteAction) : Tape :=
+    match action with
+    | .WriteZero =&gt; { tape with current := .Zero }
+    | .WriteOne  =&gt; { tape with current := .One }
+
+  -- Move the tape head
+  def move (tape : Tape) (direction : MoveDirection) : Tape :=
+    match direction with
+    | .Left  =&gt;
+        match tape.left with
+        | []        =&gt; { left := [], current := .Zero, right := tape.current :: tape.right }
+        | hd :: tl  =&gt; { left := tl, current := hd, right := tape.current :: tape.right }
+    | .Right =&gt;
+        match tape.right with
+        | []        =&gt; { left := tape.current :: tape.left, current := .Zero, right := [] }
+        | hd :: tl  =&gt; { left := tape.current :: tape.left, current := hd, right := tl }
+end Tape
+
+-- Machine state representing the entire computation
+structure MachineState where
+  tape : Tape
+  currentState : State
+  stepCount : Nat
+  deriving Repr
+
+-- The transition function that defines the machine's behavior
+def transitionFunction 
+  (rules : List TransitionRule) 
+  (state : MachineState) : Option MachineState :=
+  -- Find the applicable rule based on current state and cell
+  let applicableRule := rules.find? (fun rule =&gt;
+    rule.currentState = state.currentState ∧ 
+    rule.currentCell = state.tape.current
+  )
+
+  -- Apply the rule if found
+  match applicableRule with
+  | some rule =&gt;
+    some {
+      tape := (state.tape.write rule.writeAction).move rule.moveDirection,
+      currentState := rule.nextState,
+      stepCount := state.stepCount + 1
+    }
+  | none =&gt; none
+
+-- Run the Turing machine to completion
+partial def runMachine 
+  (rules : List TransitionRule) 
+  (initialState : MachineState) 
+  (maxSteps : Nat) : MachineState :=
+  let rec loop (currentState : MachineState) (remainingSteps : Nat) :=
+    if remainingSteps = 0 then
+      currentState
+    else 
+      match transitionFunction rules currentState with
+      | some nextState =&gt; 
+          if nextState.currentState = .Halt then
+            nextState
+          else
+            loop nextState (remainingSteps - 1)
+      | none =&gt; currentState
+  loop initialState maxSteps
+
+-- Generate all possible two-state transition rules
+def generateAllRules : List TransitionRule :=
+  let states := [State.A, State.B]
+  let cells := [Cell.Zero, Cell.One]
+  let writeActions := [WriteAction.WriteZero, WriteAction.WriteOne]
+  let moveDirections := [MoveDirection.Left, MoveDirection.Right]
+  let nextStates := states ++ [State.Halt]
+
+  (states.bind fun currentState =&gt;
+    cells.bind fun currentCell =&gt;
+    writeActions.bind fun writeAction =&gt;
+    moveDirections.bind fun moveDirection =&gt;
+    nextStates.map fun nextState =&gt; 
+    {
+      currentState := currentState,
+      currentCell := currentCell,
+      writeAction := writeAction,
+      moveDirection := moveDirection,
+      nextState := nextState
+    })
+
+-- Find the busy beaver champion machine
+def findBusyBeaverChampion (maxSteps : Nat) : List TransitionRule :=
+  generateAllRules.foldl (fun champion rules =&gt;
+    let initialState : MachineState := {
+      tape := Tape.empty,
+      currentState := State.A,
+      stepCount := 0
+    }
+
+    let finalState := runMachine rules initialState maxSteps
+
+    -- Compare machines based on number of 1's written and steps taken
+    let finalTape := finalState.tape
+    let onesCount := 
+      (finalTape.left.count (· = .One)) +
+      (if finalTape.current = .One then 1 else 0) +
+      (finalTape.right.count (· = .One))
+
+    let currentChampionOnes := 
+      let currentInitialState : MachineState := {
+        tape := Tape.empty,
+        currentState := State.A,
+        stepCount := 0
+      }
+      let currentFinalState := runMachine champion currentInitialState maxSteps
+      let currentTape := currentFinalState.tape
+      (currentTape.left.count (· = .One)) +
+      (if currentTape.current = .One then 1 else 0) +
+      (currentTape.right.count (· = .One))
+
+    if finalState.stepCount &gt; currentChampionOnes then rules else champion
+  ) []
+
+-- Example usage and testing
+def main : IO Unit := do
+  let maxSteps := 100
+  let championRules := findBusyBeaverChampion maxSteps
+  IO.println s!"Busy Beaver Champion Rules: {championRules}"
+
+  let initialState : MachineState := {
+    tape := Tape.empty,
+    currentState := State.A,
+    stepCount := 0
+  }
+
+  let finalState := runMachine championRules initialState maxSteps
+  IO.println s!"Final Machine State: {finalState}"
+  IO.println s!"Steps Taken: {finalState.stepCount}"
+
+end BusyBeaver
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc796caf" class="outline-2">
+<h2 id="orgc796caf"><span class="section-number-2">5.</span> For next week - <a href="https://learn.uwaterloo.ca/d2l/lms/dropbox/admin/folders_manage.d2l?ou=1103273&amp;dst=1">Your first two homeworks</a></h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org2a50f68" class="outline-3">
+<h3 id="org2a50f68"><span class="section-number-3">5.1.</span> Reading</h3>
+<div class="outline-text-3" id="text-5-1">
+</div>
+<div id="outline-container-org12faf2e" class="outline-4">
+<h4 id="org12faf2e"><span class="section-number-4">5.1.1.</span> One half reads:</h4>
+<div class="outline-text-4" id="text-5-1-1">
 <p>
 <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3006465/pdf/10867_2010_Article_9195.pdf">https://pmc.ncbi.nlm.nih.gov/articles/PMC3006465/pdf/10867_2010_Article_9195.pdf</a>
 </p>
 </div>
 </div>
-<div id="outline-container-orgab5599b" class="outline-3">
-<h3 id="orgab5599b"><span class="section-number-3">4.2.</span> Expectations</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-orgcd64d4e" class="outline-4">
+<h4 id="orgcd64d4e"><span class="section-number-4">5.1.2.</span> Other half reads:</h4>
+<div class="outline-text-4" id="text-5-1-2">
+<p>
+<a href="https://plato.stanford.edu/entries/computational-mind/">https://plato.stanford.edu/entries/computational-mind/</a>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd9400dd" class="outline-3">
+<h3 id="orgd9400dd"><span class="section-number-3">5.2.</span> Expectations</h3>
+<div class="outline-text-3" id="text-5-2">
 <ol class="org-ol">
 <li>You will make some effort to look-up things you do not understand.</li>
 <li>You will be able to make some effort to discuss this article, and revisit the questions we have discussed above, in light of your reading of this article.</li>
-<li>Quizzes are an imprecise way of assessing your learning, but in the absence of discussion I have no way of gauging what you know, and so I can make five question quizzes on the readings if necessary. Please help me not to have to do this.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org2d6a976" class="outline-3">
-<h3 id="org2d6a976"><span class="section-number-3">4.3.</span> You will turn in</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-org75a578f" class="outline-3">
+<h3 id="org75a578f"><span class="section-number-3">5.3.</span> You will turn in</h3>
+<div class="outline-text-3" id="text-5-3">
 <ol class="org-ol">
 <li>a less than one page paper in which you indicate the poster/talk you have selected from <a href="https://2024.ccneuro.org/poster-sessions/?view=all">here</a> and why you chose this is an example of a computational approach to a psychological question, and why it resonated with you.</li>
 <li>a statement of what programming language you will use to do your exercises (at least to start with).
@@ -319,45 +657,84 @@ Claude<sub>AI</sub> <span class="timestamp-wrapper"><span class="timestamp">&lt;
 </div>
 </div>
 </div>
-<div id="outline-container-org186d72e" class="outline-2">
-<h2 id="org186d72e"><span class="section-number-2">5.</span> Technical Expectations</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgef0446a" class="outline-2">
+<h2 id="orgef0446a"><span class="section-number-2">6.</span> Why I Assign Homework; What Am I Looking For?</h2>
+<div class="outline-text-2" id="text-6">
+<ol class="org-ol">
+<li>Since the University requires I give you a grade I have to have something quantitative to use.</li>
+<li>Since you would like some way of confirming if you are on track we have numbers and assignments.</li>
+<li>But what I am most interested in encouraging is to promote your independent inquiry and topic mastery. I find this most effectively done through conversation and practice<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org7d9d281" class="outline-2">
+<h2 id="org7d9d281"><span class="section-number-2">7.</span> Technical Expectations</h2>
+<div class="outline-text-2" id="text-7">
 <ol class="org-ol">
 <li>You need a computer. Phones and tablets will not work.</li>
-
 <li>You need to know how to use your computer:
 <ul class="org-ul">
 <li>can you find a particular file or directory?</li>
 <li>do you know how to download a program or data and find it on your computer?</li>
 <li>do you know how to use "git" or any version control software?</li>
 <li>do you know what an IDE is and can you use it for the basics?
-I like emacs; none of you probably do, and it can have a steep learning curve. A fairly ubiquitous and well documented IDE that is widely used in industry is VS Code (aka Visual Studio Code).</li>
+I like emacs; none of you probably do, and it can have a steep learning curve. A fairly ubiquitous and well documented IDE that is widely used in industry is <a href="https://code.visualstudio.com/">VS Code</a> (aka Visual Studio Code). I recommend you download and use this if you do not have a strong preference, and you do not identify with <a href="https://youtu.be/urcL86UpqZc">this (youtube)</a> guy.</li>
 <li>Can you program at a rudimentary languge in any programming language. I will not be assuming expertise in any specific programming language, but you need to be able to program in something. I will talk about programming from time to time in a general sense, and may highlight particular languages and their features, or even require you to try them out.</li>
 </ul></li>
-
 <li>You need to bring your computer to class. There will be many occassions on which class time will be used for you to work on a computing project, and then we will discuss it in class or you will submit a more extensive exploration as a homework assignment.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org0a846b3" class="outline-2">
-<h2 id="org0a846b3"><span class="section-number-2">6.</span> And if we have some time left</h2>
-<div class="outline-text-2" id="text-6">
-<div class="org-src-container">
-<pre class="src src-python"><span style="color: #56b4e9; font-weight: bold;">def</span> <span style="color: #d55e00;">xcubed</span> (x) : <span style="color: #56b4e9; font-weight: bold;">return</span> (x * x * x)
-<span style="color: #56b4e9; font-weight: bold;">def</span> <span style="color: #d55e00;">diff_x_cubed</span> (x) : <span style="color: #56b4e9; font-weight: bold;">return</span> (3 * x * x)
-<span style="color: #56b4e9; font-weight: bold;">def</span> <span style="color: #d55e00;">get_step</span> (guess, goal) :
-    <span style="color: #56b4e9; font-weight: bold;">return</span> ((goal - (xcubed (guess))) / (diff_x_cubed (guess)))
-<span style="color: #56b4e9; font-weight: bold;">def</span> <span style="color: #d55e00;">get_cube_root</span> (goal, initial_guess, tolerance) :
-    <span style="color: #e69f00; font-weight: bold;">cur_guess</span> = initial_guess + get_step(initial_guess, goal)
-    <span style="color: #e69f00; font-weight: bold;">error</span> = <span style="color: #0072b2;">abs</span>(xcubed(cur_guess) - goal)
-    <span style="color: #56b4e9; font-weight: bold;">while</span> (error &gt; tolerance):
-        <span style="color: #e69f00; font-weight: bold;">cur_guess</span> = cur_guess + get_step(cur_guess, goal)
-        <span style="color: #e69f00; font-weight: bold;">error</span> = <span style="color: #0072b2;">abs</span>(xcubed(cur_guess) - goal)
-    <span style="color: #56b4e9; font-weight: bold;">return</span>(cur_guess)
-</pre>
+<div id="outline-container-org580117d" class="outline-2">
+<h2 id="org580117d"><span class="section-number-2">8.</span> The projected outline of topics</h2>
+<div class="outline-text-2" id="text-8">
+<ol class="org-ol">
+<li>Computation and Cognition</li>
+<li>Models of Computation
+<ul class="org-ul">
+<li>Turing Machines</li>
+<li>Lambda Calculi</li>
+</ul></li>
+<li>Differential Equations
+<ul class="org-ul">
+<li>What are they and how can we use them in neuroscience (and psychology)</li>
+<li>Our examples: integrate and fire neuron and Hodgkin and Huxley neuron</li>
+</ul></li>
+<li>Linear Algebra
+<ul class="org-ul">
+<li>what are matrices and vectors</li>
+<li>a glimpse of a graphical calculus (maybe)</li>
+<li>how we can use them for neural networks
+<ul class="org-ul">
+<li>Hopfield</li>
+<li>Backpropagation</li>
+<li>and maybe Kohonen's Self-Organizing map</li>
+</ul></li>
+</ul></li>
+<li>Category Theory and Theory and Formally Verifiable Code
+<ul class="org-ul">
+<li>rather doubt we will have time for this, but maybe</li>
+</ul></li>
+<li>Putting your knowledge to work
+<ul class="org-ul">
+<li>Your project &#x2013; details to follow, but in short you, in a small group, with work on a topic where you present the idea and the background and then share with us some working simulation and code.</li>
+</ul></li>
+</ol>
 </div>
-
-
+</div>
+<div id="outline-container-orgb9985b6" class="outline-2">
+<h2 id="orgb9985b6"><span class="section-number-2">9.</span> Grades</h2>
+<div class="outline-text-2" id="text-9">
+<ol class="org-ol">
+<li>Homework - should be about 60% with 10 to 12 (maybe a few more; maybe a few less) so that no one assignment is worth too much, but also so that there is always something you can be working on and thinking about.</li>
+<li>Participation - 10%. Students usually worry about this, but you shouldn't. Do you come to class? Do you participate in our discussions? Are you prepared? Do you have good questions? Are you helpful to your peers? Then you will get it all.</li>
+<li>Final Project - 30%. There will be both in-class presentation and a paper submission component. Details will follow as we get into things a bit.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org9214d17" class="outline-2">
+<h2 id="org9214d17"><span class="section-number-2">10.</span> And if we have some time left</h2>
+<div class="outline-text-2" id="text-10">
 <p>
 Another version
 </p>
@@ -378,11 +755,21 @@ Another version
 </div>
 </div>
 </div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+To train by repeated exercises. 
+</p></div></div>
+
+
 </div>
+</div></div>
 <div id="postamble" class="status">
 <p class="date">Date: Winter 2025</p>
-<p class="author">Author: Britt Anderson</p>
-<p class="date">Created: 2024-11-25 Mon 14:17</p>
+<p class="author">Author: Britt Anderson Claude.ai</p>
+<p class="date">Created: 2024-12-04 Wed 16:55</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

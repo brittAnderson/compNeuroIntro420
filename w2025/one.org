@@ -26,24 +26,30 @@
 #+bibliography: /home/britt/gitRepos/masterBib/bayatt.bib
 #+cite_export: csl /home/britt/gitRepos/brittsite/assets/chicago-fullnote-bibliography.csl
 
-* Key Questions:
+* Reviewing Last Week's Exercises and Assignments
+1. Reading Discussions
+2. Sharing Posters
+3. Revisiting some of our [[file:zero.org::#zero-high-level][key questions]] from last week. 
+
+* Some Additional Questions For Computational Cognition:
   1. Is the brain a computer?
   2. What does it mean for something to be computable?
   3. What is the computational theory of mind, and what does it mean for us practically?
 
 * What Is Cognition?
+The technical challenges for modeling in psychology are mastering the mathematics and programming necessary to formally express an idea and to implement a simulation to examine the consequences. The conceptual challenge is to decide what it is you are modeling. And it appears that there is no consensus on what is cognition[cite:@bayne19_what_is_cognit].\marginpar{\raggedright Which of these opinions, if any, do you agree with and why?}.
 
-The technical challenges for modeling in psychology are mastering the mathematics and programming necessary to formally express an idea and to implement a simulation to examine the consequences. The conceptual challenge is to decide what it is you are modeling.
+In the late 1800s Ebbinghaus, using creative, and for their time, [[https://youtu.be/TGGr5Uc8_Bw][innovative, Herculean methodologies]], demonstrated that the proportion of items retained in memory declines predictably over time. The form of the forgetting curve is exponential. 
+
 
 \marginpar{\raggedright Is a mathematical formula that reproduces an observed behavioral pattern a model?}
 
-In the late 1800s Ebbinghaus, using creative, and for their time, [[https://youtu.be/TGGr5Uc8_Bw][innovative, Herculean methodologies]], demonstrated that the proportion of items retained in memory declines predictably over time. The form of the forgetting curve is exponential. 
 
 #+Name: Forgetting Curve
 #+Attr_Latex: :caption By The original uploader was Icez at English Wikipedia. - https://commons.wikimedia.org/wiki/File:ForgettingCurve.svg, CC0, https://commons.wikimedia.org/w/index.php?curid=121236141
 file:figs/Forgetting_curve_decline.svg
 
-
+IAMHERE - can I get the next plot working?
 
 # @figure[
 #         "fig:exponential-curve"
