@@ -37,6 +37,10 @@
   3. What is the computational theory of mind, and what does it mean for us practically?
 
 * What Is Cognition?
+:PROPERTIES:
+:CUSTOM_ID: abc123
+:ID:       264cc60d-3fbf-40cd-ba21-a299803df658
+:END:
 The technical challenges for modeling in psychology are mastering the mathematics and programming necessary to formally express an idea and to implement a simulation to examine the consequences. The conceptual challenge is to decide what it is you are modeling. And it appears that there is no consensus on what is cognition[cite:@bayne19_what_is_cognit].\marginpar{\raggedright Which of these opinions, if any, do you agree with and why?}.
 
 In the late 1800s Ebbinghaus, using creative, and for their time, [[https://youtu.be/TGGr5Uc8_Bw][innovative, Herculean methodologies]], demonstrated that the proportion of items retained in memory declines predictably over time. The form of the forgetting curve is exponential. 
@@ -45,20 +49,29 @@ In the late 1800s Ebbinghaus, using creative, and for their time, [[https://yout
 \marginpar{\raggedright Is a mathematical formula that reproduces an observed behavioral pattern a model?}
 
 
-#+Name: Forgetting Curve
-#+Attr_Latex: :caption By The original uploader was Icez at English Wikipedia. - https://commons.wikimedia.org/wiki/File:ForgettingCurve.svg, CC0, https://commons.wikimedia.org/w/index.php?curid=121236141
+
+#+Name: forgetting-curve
+#+caption: By The original uploader was Icez at English Wikipedia.
 file:figs/Forgetting_curve_decline.svg
 
-IAMHERE - can I get the next plot working?
 
-# @figure[
-#         "fig:exponential-curve"
-#         @elem{Plot of @($ "\\exp ( \\frac{1}{x} )")}
-#         @elem{@(plot-eval (plot (function my-exp 1 4)))}]
+#+begin_src gnuplot :file my-data-plot.png
+  reset
+  set xrange[1:4]
+  f(x) = exp(1.0 / x)
+  plot f(x) 
+#+end_src
 
-# @section{Cognition is ...}
+#+Name: exponential-function
+#+Caption: Plot of \( e^{\frac{1}{x}} \).
+#+RESULTS:
+[[file:my-data-plot.png]]
 
-As revealed in this recent article [cite:@bayne19_what_is_cognit] there are a wide array of views on what is cognition\marginpar{\raggedright Which of these opinions, if any, do you agree with and why?}.
+What can we infer from the similarity between Figure [[exponential-function]] and Figure [[forgetting-curve]]?
+
+* Cognition is ... ?
+
+As revealed in [cite:@bayne19_what_is_cognit] there are a wide array of views on what is cognition\marginpar{\raggedright Which of these opinions, if any, do you agree with and why?}.
 
 
 * Is Cognition Computational?
@@ -68,34 +81,81 @@ As revealed in this recent article [cite:@bayne19_what_is_cognit] there are a wi
   4. What implications does the answer have for modeling cognition?
 
 ** Introduction
-Is there a difference between computational cognitive neuroscience and cognitive computational neuroscience? The former seems to suggest that we are interested in explaining cognition directly from the actions of neurons and then using computational tools as adjuncts to aid this attempt. On the other hand, when you reverse the order it seems as if you are trying to explain thinking via the computational accounts of neuronal function. The latter seems to require a clear link between notions of computation and models of thinking. To use Marr's three levels as a scaffold[cite:@McClamrock_1991]\marginpar{\raggedright This reference is an older one, and not the original, but it does use LISP as its example, so it seems to relate nicely to the programming language we are using for our exercise.}, we are taking neurons as our implementation, positing algorithms for them, and assuming that computational principles populate the level of our cognitive abstractions. Measures of success depend on the meanings of terms.
+Is there a difference between computational cognitive neuroscience and cognitive computational neuroscience? The former seems to suggest that we are interested in explaining cognition directly from the actions of neurons and then using computational tools as adjuncts to aid this attempt. On the other hand, when you reverse the order it seems as if you are trying to explain thinking via the computational accounts of neuronal function. The latter seems to require a clear link between notions of computation and models of thinking. To use Marr's three levels as a scaffold[cite:@McClamrock_1991]\marginpar{\raggedright This reference is an older one, and not the original, but it does use LISP as its example, which is the classic example of good old fashioned AI.}; we are taking neurons as our implementation, positing algorithms for them, and assuming that computational principles populate the level of our cognitive abstractions. Measures of success depend on the meanings of terms.
 
-In all of this is the basic idea that if you want to understand /mind/ you need to develop a /theory/ (and understand what that word means), express your theory clearly, for which the best language is /math/, and then explore the implications of your construction via simulation, which requires the writing of /code/. Mind → Theory → Math  → Code. Let's explore a little more what is implied by this pathway. What it means to use computing as a model for mind.
+Behind all of this is the idea that if you want to understand /mind/ you need to first develop a /theory/. Explanations offered in words only are really more proto-theories than theories because of their imprecision. To express a theory clearly and unambiguously you need to /formalize/ it. Either you express it as /math/ or you can /code/ it. Let's explores the distinction between computation as implementation and computation as the basis for mind\marginpar{\raggedright What are Marr's three levels?}.
 
 *** Computing in Minds and Computers
 
-One definition of whether something is computable is whether there exists a Turing Machine that computes it. That Turing machine must halt. Since one cannot decide in advance for all machines whether they will halt or not it turns out that whether or not something is computable is, in general, undecidable.
-
-Although most of us learned the name "Turing" in the context of whether a computer has human intelligence, the so-called /Turing test/, the model of Turing computability emerged from thinking about humans computing[cite:@Turing_2004]\marginpar{\raggedright A nice short version of this history can be found in [[https://link.springer.com/content/pdf/10.1007/978-3-642-31933-4.pdf][pdf]]
-
-*** Classical Computational Theory of Mind
-
- The classical computational theory of mind says that in all important ways the mind is like a Turing machine. If we want to  model (or emulate) functions of mind one way would be to build a Turing machine. However this can be a practical challenge, and one can question the insight gained from this approach. Still given the theoretical and practical prominence given to Turing computability it behooves us to know what a Turing machine truly is.
+One definition of whether something is computable is whether there exists a Turing Machine that can compute it. Although most of us learned the name "Turing" in the context of whether a computer has human intelligence, the so-called /Turing test/, the model of Turing computability emerged from thinking about humans computing[cite:@Turing_2004]\marginpar{\raggedright A nice short version of this history can be found in [[https://link.springer.com/content/pdf/10.1007/978-3-642-31933-4.pdf][pdf]]}
 
 **** What is a Turing machine? Some Background and Details
-
 [[https://turingarchive.kings.cam.ac.uk/publications-lectures-and-talks-amtb/amt-b-12][Turing machines]] are quite simple implements. While one can build a physical Turing machine, the more usual sense of the term is for a hypothetical computer that is comprised of:
   1. a finite alphabet,
   2. a finite set of states,
   3. the capacity to read and write to a single location in memory, and the ability to adjust the memory location immediately left or right or to make no move at all, and
   4. a set of instructions (or "machine table") that translates the combination of the current state and the current symbol to a new state and one of the acceptable actions.
 
-Other models of computation are the /lambda calculus/  and the /theory of recursive functions/. Those alternative accounts of computability are interesting, and may offer more insight or be more practical in some situations, but it appears to be the case that they are equivalent. Anything designated "computable" by one of these formal accounts is computable by the others as well. Does this mean that if you accept the computational mind hypothesis you must accept that the mind is able to be simulated by a Turing Machine? As a consequence does this mean that minds are [[https://plato.stanford.edu/entries/multiple-realizability][multiply realizable]]?
+
+***** Classroom Activity
+Let's develop pseudo-code for the implementing a Turing Machine
+
+**** The Lambda Calculus
+  
+Another model of computation is the /lambda calculus/[fn:1].
+
+The lambda calculus was developed as a theory of functions. [[https://news.stanford.edu/news/2011/october/john-mccarthy-obit-102511.html][John McCarthy]] invented the computer programming language Lisp as a theoretical exercise for working on the theory of computable functions. He felt the Turing machine was too mechanical and too awkward for this sort of theoretical work. He wanted a better tool; a better metaphor. He adopted the lambda of the lambda calculus and the ~eval~ function to take in lisp programs and execute them. Later one of his [[https://en.wikipedia.org/wiki/Steve_Russell_(computer_scientist)][collaborators]] observed that it was relatively straightforward to implement this theoretical language as a real programming language. A bit more of the history this development can be found [[https://lwn.net/Articles/778550/][here]]. To get more details see [cite/t:see @michaelson11_lambd].
+
+***** Some Details and Interesting Facts about the Lambda Calculus
+1. There is not just one lambda calculus.
+2. To have the lambda calculus you need to specify your algebra. What are the rules for reducing things (i.e. your computations), what are the allowed symbols, and what do things mean? A "lambda calculus" is a way of handling "lambda expressions."[fn:3]
+
+***** Into the Weeds
+
+*Terms* are either /simple variables/ e.g. $x$ or $y$ or /composite terms/ like \( \lambda~v~t_1 \). Having two terms next to each other \( t_1~t_2 \) means "apply" $t_1$ to $t_2$. The meaning of a term like \( \lambda~v~.~ t_1 \) is the value returned by the lambda abstraction. The meaning part is sometimes designated in writing by formulas using arrows, such as \(t_1~\rightarrow~t_2 \).[fn:2]
+
+Some "axioms" you supply, or that [[https://plato.stanford.edu/entries/church/][Alonzo Church]] did are:
+- Beta reduction
+- Beta abstraction
+- Alpha conversion
+- Eta reduction
+- Normal Form
+
+The equivalent of the halting problem for the Turing machine is the reaching of a /normal form/ in the  lambda calculus.
+
+Functions have the form \lambda <name> . <body> . Note the "dot". This separates the name from the body of expressions that it names. <body> is also an expression (note the recursion that is built in).\marginpar{\raggedright What are recursive functions?}
+
+***** Some Opportunities for Practice
+- Write the lambda expression for the identity function?
+  - But first we better decide what the identity function is?
+- Apply the identity function to itself.
+- What is the identity function in whatever language you are hoping to use?
+- An interesting lambda expression is the "self-application" expression: \( \lambda~s . (s~s) \).
+  - With pencil and paper try to:
+    - apply this to the identity,
+    - apply the identity to the self-application,
+    - apply the self-application to itself. What is its termination status?
+      
+
+
+IAMHERE
+
+
+
+but it appears to be the case that they are equivalent. Anything designated "computable" by one of these formal accounts is computable by the others as well. Does this mean that if you accept the computational mind hypothesis you must accept that the mind is able to be simulated by a Turing Machine? As a consequence does this mean that minds are [[https://plato.stanford.edu/entries/multiple-realizability][multiply realizable]]?
 
 1. Are Turing machines /digital?
 2. Is this an important distinction?
 3. Does this mean that analog computations are omitted?
 4. Would an analog paradigm be a better match to modeling mental activity?
+
+*** Classical Computational Theory of Mind
+
+ The classical computational theory of mind says that in all important ways the mind is like a Turing machine. If we want to  model (or emulate) functions of mind one way would be to build a Turing machine. However this can be a practical challenge, and one can question the insight gained from this approach. Still given the theoretical and practical prominence given to Turing computability it behooves us to know what a Turing machine truly is.
+
+ 
+That Turing machine must halt. Since one cannot decide in advance for all machines whether they will halt or not it turns out that whether or not something is computable is, in general, undecidable.
+
 
 *** Programming a Turing Machine: the Busy Beaver
 
@@ -264,50 +324,15 @@ The following is a slightly formatted version of the Wikipedia description of a 
 # @subsection{Alternatives to the Turing Machine Model of Computation}
 # Although the Turing Machine account of computation seems to dominate examples in psychology and neuroscience this may be an artifact of the example of the Turing Test as a prominent example of evaluating machine intelligence. There are other formal theories of computation, and as stated above they are all conjectured to be equivalent. The one I describe below has had a large influence on programming language design. It was the mathematical idea that motivated the development of LISP, which via its descendent Scheme, became the Racket language we are using in this course.
 
-# @subsubsection{Lambda Calculus}
-# The lambda calculus was developed as a theory of functions. @hyperlink["https://news.stanford.edu/news/2011/october/john-mccarthy-obit-102511.html"]{John McCarthy} invented Lisp as a theoretical exercise for working on the theory of computable functions. He felt the Turing machine to be too mechanical and too awkward for this work, and wanted a better tool, a better metaphor. He adopted the lambda of the lambda calculus and the ~eval~ function to take in lisp programs and execute them. Later one of his @hyperlink["https://en.wikipedia.org/wiki/Steve_Russell_(computer_scientist)"]{collaborators} observed that it was relatively straightforward to implement this as a real programming language. A bit more of the history is @hyperlink["https://lwn.net/Articles/778550/"]{here}. But in order to try and learn a bit of the lambda calculus you might look at @~cite[lambda-intro]
-
-# @margin-note{Why a "lambda" (λ)? The λ of lambda calculus doesn't really mean anything. It just signals that you have a lambda expression. Its creation as the symbol for the function calculus was an accident of notation and the limits of older typewriters.}
-
-# @bold{Some Details and Interesting Facts about the Lambda Calculus}
-
-# There is not just one lambda calculus.
-
-# To have the lambda calculus you need to specify your /algebra}. What are the rules for reducing things (i.e. your computations), what are the allowed symbols, and what do things mean? A "lambda calculus" is a way of handling "lambda expressions."
-
-# @bold{Into the Weeds}
-
-# @margin-note{Want to implement the lambda calculus yourself on a computer (using Common Lisp)? Check out this @hyperlink["https://flownet.com/ron/lambda-calculus.html"]{blog post}.}
-
-
-# /Terms} are either simple variables @($"x") or @($"y") or composite terms @($"\\lambda~v~t_1"). Having two terms next to each other @($"(~t_1~t_2)") means "apply" @($"t_1") to @($"t_2"). The meaning of a term like @($"\\lambda~v~.~ t_1") is the value returned by the lambda abstraction. The meaning part is sometimes designated in writing by formulas using arrows, such as @($"t_1~\\rightarrow~t_2").
-
-# Some "axioms" you supply (or that @hyperlink["https://plato.stanford.edu/entries/church/"]{Alonzo Church} did).
-# @itemlist[@item{Beta reduction}
-#                @item{Beta abstraction}
-#                @item{Alpha conversion}
-#                @item{Eta reduction}
-#                @item{Normal Form}]
-
-# The equivalent of the halting problem for the Turing machine is the reaching of a /normal form} in the  lambda calculus.
-
-# Functions have the form λ <name> . <body>
-
-# Note the "dot". This separates the name from the body of expressions that it names.
-
-# <body> is also an expression (note the recursion that is built in).
-
-# @bold{Some Opportunities for Practice}
-# @itemlist[#:style 'ordered @item{Write the lambda expression for the identity function? What is the identity function?}
-#           @item{Apply the identity function to itself.}
-#           @item{What is the identity function in Racket?}
-#           @item{An interesting lambda expression is the "self-application" expression: @($$"\\lambda~s . (s~s).")
-# With pencil and paper try to @itemlist[#:style 'ordered @item{apply this to the identity,}
-#                                        @item{apply the identity to the self-application,}
-#                                        @item{apply the self-application to itself. What is its termination status?}]}]
-
 
 
 # @generate-bibliography[#:sec-title "Computational Cognition References"
 #                        #:tag "ref:comp-cog"]
 
+* Footnotes
+
+[fn:3] The \lambda of lambda calculus doesn't really mean anything.It just signals that you have a lambda expression. Its creation as the symbol for the function calculus was an accident of notation and the limits of older typewriters.
+ 
+[fn:2] Want to try implementing the lambda calculus yourself? Here is a [[https://flownet.com/ron/lambda-calculus.html][blog post]] on doing this in the computer language Common Lisp. 
+
+[fn:1] And yet another is the /theory of recursive functions/ 
