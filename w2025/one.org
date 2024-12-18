@@ -16,7 +16,10 @@
 #+latex_class_options:
 #+latex_header:
 #+latex_header: \usepackage{svg}
-#+latex_header_extra:
+#+Latex_Header: \usepackage{mdframed}
+#+latex_header: \usepackage{hyperref}
+#+latex_header_extra: \newmdenv[linecolor=red,frametitle=Class Discussion]{cdbox}
+#+latex_header_extra: \newmdenv[linecolor=red,frametitle=Further Class Discussion]{fcdbox}
 #+description:
 #+keywords:
 #+subtitle: One
@@ -114,16 +117,19 @@ The lambda calculus was developed as a theory of functions. [[https://news.stanf
 
 *Terms* are either /simple variables/ e.g. $x$ or $y$ or /composite terms/ like \( \lambda~v~t_1 \). Having two terms next to each other \( t_1~t_2 \) means "apply" $t_1$ to $t_2$. The meaning of a term like \( \lambda~v~.~ t_1 \) is the value returned by the lambda abstraction. The meaning part is sometimes designated in writing by formulas using arrows, such as \(t_1~\rightarrow~t_2 \).[fn:2]
 
+Functions have the form \lambda <name> . <body> . Note the "dot". This separates the name from the body of expressions that it names. <body> is also an expression (note the recursion that is built in).\marginpar{\raggedright What are recursive functions?}
+
 Some "axioms" you supply, or that [[https://plato.stanford.edu/entries/church/][Alonzo Church]] did are:
 - Beta reduction
-- Beta abstraction
+  apply the function, e.g. (\lambda x.M) N = M[x:N] this latter is just a way of saying that you will substitute the value "N" everytime you see an "x" in whatever expression "M" is.
 - Alpha conversion
+  essentially you are just renaming variables
 - Eta reduction
-- Normal Form
+  Is a way of getting rid of things that don't change anything. If for example \(f(x) = g(x)\) then you could just save yourself some ink and write: f = g. A more technical way of saying things, that we will not go into, is that you can free yourself of free variables, that is if there is no "x" in "f" then \(f = \lambda x.(f x) \).
+  
+Your goal is often the *normal* form. A lambda term that cannot be reduced anymore. Think of it like simplifying an equation. It helps you get to the essentials, and can make it easier to compare things to see when they are the same. 
 
-The equivalent of the halting problem for the Turing machine is the reaching of a /normal form/ in the  lambda calculus.
-
-Functions have the form \lambda <name> . <body> . Note the "dot". This separates the name from the body of expressions that it names. <body> is also an expression (note the recursion that is built in).\marginpar{\raggedright What are recursive functions?}
+The equivalent of the halting problem for the Turing machine is the reaching of a /normal form/ in the  lambda calculus. 
 
 ***** Some Opportunities for Practice
 - Write the lambda expression for the identity function?
@@ -135,144 +141,176 @@ Functions have the form \lambda <name> . <body> . Note the "dot". This separates
     - apply this to the identity,
     - apply the identity to the self-application,
     - apply the self-application to itself. What is its termination status?
-      
 
 
-IAMHERE
+**** What are the differences?
+We have seen Turing Machines and a Lambda Calculus. They look very different. Another model of computation that I have mentioned, but not presented is [[https://plato.stanford.edu/entries/recursive-functions/][recursive function theory]]. It looks different still.
 
 
+#+begin_export latex
+\begin{cdbox}[backgroundcolor=lightgray]
+What does it mean for our idea that the mind is a "computer" if there are three different models of computation?
+\end{cdbox}
+#+end_export
 
-but it appears to be the case that they are equivalent. Anything designated "computable" by one of these formal accounts is computable by the others as well. Does this mean that if you accept the computational mind hypothesis you must accept that the mind is able to be simulated by a Turing Machine? As a consequence does this mean that minds are [[https://plato.stanford.edu/entries/multiple-realizability][multiply realizable]]?
-
+Always question assumptions: [[https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis][Church-Turing Conjecture]] . 
+#+begin_export latex
+\begin{fcdbox}[backgroundcolor=lightgray]
 1. Are Turing machines /digital?
+
 2. Is this an important distinction?
+
 3. Does this mean that analog computations are omitted?
+
 4. Would an analog paradigm be a better match to modeling mental activity?
+\end{fcdbox}
+#+end_export
+
 
 *** Classical Computational Theory of Mind
+#+begin_export latex
+\begin{cdbox}[backgroundcolor=lightgray]
+Does a computational theory of mind mean that minds are \href{https://plato.stanford.edu/entries/multiple-realizability}{multiply realizable} ?
+\end{cdbox}
+#+end_export
 
- The classical computational theory of mind says that in all important ways the mind is like a Turing machine. If we want to  model (or emulate) functions of mind one way would be to build a Turing machine. However this can be a practical challenge, and one can question the insight gained from this approach. Still given the theoretical and practical prominence given to Turing computability it behooves us to know what a Turing machine truly is.
 
+
+ The classical computational theory of mind says that in all important ways the mind is like a Turing machine. If we want to  model (or emulate) functions of mind one way would be to build a Turing machine. However, this can be a practical challenge, and one can question the insight gained from this approach. Still given the theoretical and practical prominence given to Turing computability it behooves us to know what a Turing machine truly is.
  
-That Turing machine must halt. Since one cannot decide in advance for all machines whether they will halt or not it turns out that whether or not something is computable is, in general, undecidable.
+For something to be computatble the Turing machine that computes it must halt. So, we would like to know before we run our machine whether it will halt or not. Unfortunately, the answer to the halting problem is that we cannot know in advance, and in general, whether a Turing machine will halt. Computabilty is therefore /undecidable/.
 
 
 *** Programming a Turing Machine: the Busy Beaver
 
-The following is a slightly formatted version of the Wikipedia description of a Turing machine.
+In my experience the only way to really come to grips with what a Turing machine is is to program one yourself. For this exercise we will program a Turing machine to solve an elementary version of the Busy Beaver problem. This is a famous problem, because it is easy to state and woefully difficulty to answer. In fact it is [[https://jeremykun.com/2012/02/08/busy-beavers-and-the-quest-for-big-numbers/][incomputable]].
 
-1. A Turing machine has n "operational" states plus a Halt state, where n is a positive integer, and one of the n states is distinguished as the starting state.}
-2. The machine uses a single two-way infinite (or unbounded) tape.}
-3. The tape alphabet is {0, 1}, with 0 serving as the blank symbol.}
+The following is a slightly formatted version of the [[https://en.wikipedia.org/wiki/Turing_machine#Description][Wikipedia description of a Turing machine]].
+1. A Turing machine has n "operational" states plus a Halt state, where n is a positive integer, and one of the n states is distinguished as the starting state.
+2. The machine uses a single two-way infinite (or unbounded) tape.
+3. The tape alphabet is {0, 1}, with 0 serving as the blank symbol.
 4. The machine's transition function takes two inputs:
-   1. the current non-Halt state,}
-   2. the symbol in the current tape cell,}]}
+   1. the current non-Halt state,
+   2. the symbol in the current tape cell,
    3. and produces three outputs:
-      1. a symbol to write over the symbol in the current tape cell (it may be the same symbol as the symbol overwritten),}
-      2. a direction to move (left or right@";" that is, shift to the tape cell one place to the left or right of the current cell), and}
+      1. a symbol to write over the symbol in the current tape cell (it may be the same symbol as the symbol overwritten),
+      2. a direction to move (left or right@";" that is, shift to the tape cell one place to the left or right of the current cell), and
       3. a state to transition into (which may be the Halt state).
 
-# We will use it to guide us to write a simple instance that computes a solution to the Busy Beaver problem. A n-state Turing machine has @($ "(4n + 4)2n") states. The formula is (symbols × directions × (states + 1))(symbols × states). The transition function (how to figure out where to go next may be seen as a finite look-up table. Each row of the table is a 5-tuple: (current state, current symbol, symbol to write, direction of shift, next state). Our goal with the Busy Beaver problem is to run our machine to produce as long a series of uninterrupted ones as we can /and} @bold{halt}.
+We will use it to guide us to write a simple instance that computes a solution to the Busy Beaver problem. A n-state Turing machine has \( (4n + 4)2n \)states. The formula is (symbols × directions × (states + 1))(symbols × states). The transition function (how to figure out where to go next may be seen as a finite look-up table. Each row of the table is a 5-tuple: (current state, current symbol, symbol to write, direction of shift, next state). Our goal with the Busy Beaver problem is to run our machine to produce as long a series of uninterrupted ones as we can and then *halt*.
 
-# What it means to "run" a Turing machine is to start in the starting state with the current tape cell being any cell of a blank (all-0) "tape", and then iterate the transition function. If the Halt state is entered then the number of 1s remaining on the tape is called the machine's score. Different transition rules will give us different outputs, so we can score our machine based on its performance. 
+What it means to "run" a Turing machine is to start in the starting state with the current tape cell being any cell of a blank (all-0) "tape", and then iterate the transition function. If the Halt state is entered then the number of 1s remaining on the tape is called the machine's score. Different transition rules will give us different outputs, so we can score our machine based on its performance. 
 
-# To restate in a more general way, the n-state busy beaver (BB-n) game is a contest to find an n-state Turing machine having the largest possible score — the largest number of 1s on its tape after halting. A machine that attains the largest possible score among all n-state Turing machines is called an n-state busy beaver, and a machine whose score is merely the highest so far attained (perhaps not the largest possible) is called a champion n-state machine (This ends the lightly edited Wikipedia quote).
+To restate in a more general way, the n-state busy beaver (BB-n) game is a contest to find an n-state Turing machine having the largest possible score — the largest number of 1s on its tape after halting. A machine that attains the largest possible score among all n-state Turing machines is called an n-state busy beaver, and a machine whose score is merely the highest so far attained (perhaps not the largest possible) is called a champion n-state machine.[fn:4]
 
-# @subsection{Why Use the Busy Beaver Problem As an Example?}
+**** A Busy Beaver Warm-Up
 
-# The Busy Beaver Problem is non-computable
+A simple version of the Busy Beaver problem, and one you can do by hand with pencil and paper, is the n=2 version. Create a Turing Machine with the following transition rules:
 
-# The busy beaver problem is to compute the maximum number of 1's that a Turing machine can write before halting with the number of states equal to n. This @hyperlink["https://jeremykun.com/2012/02/08/busy-beavers-and-the-quest-for-big-numbers/"]{webpage} includes the proof of the non-computability of the busy beaver problem. It uses contradiction, and like most proofs relying on contradiction I find it head warping, but there it is. 
+Here is the transition table for our machine:
 
-# @subsection{A Busy Beaver Warm-Up}
+| Machine Tuple In | Machine Tuple Out |
+|------------------+-------------------|
+| a0               | b1r               |
+| a1               | b1l               |
+| b0               | a1l               |
+| b1               | h1r               |
 
-# A simple version of the Busy Beaver problem, and one you can do by hand with pencil and paper, is the n=2 version. Create a Turing Machine with the following transition rules:
-
-# @itemlist[@item{a0 → b1r}
-#                @item{a1  → b1l}
-#                @item{b0  → a1l}
-#                @item{b1  → h1r}]
-
-# @section{Busy Beaver Problem Demo Code}
-
-# @examples[#:no-prompt #:label "Making a Structure for Our Turing Machine" (struct turing-machine (state tape head-location) #:transparent #:mutable)]
-
-# @margin-note{There is some inelegance here to handle the fact that we are not, in fact, starting with an infinitely long tape and want to build it on the fly.}
-# @examples[#:no-prompt #:label "Moving our TM Along the Tape" (define (move-left temp-tm )
-#    (let ([loc (turing-machine-head-location temp-tm)]
-#          [lst (turing-machine-tape temp-tm)])
-#       (if (= loc 0)
-# 	  (set-turing-machine-tape! temp-tm (cons 0 lst))
-# 	  (set-turing-machine-head-location! temp-tm (- loc 1)))))
-
-# (define (move-right temp-tm )
-#    (let ([loc (turing-machine-head-location temp-tm)]
-#          [lst (turing-machine-tape temp-tm)])
-#      (when (= (+ loc 1) (length lst))
-#        (set-turing-machine-tape! temp-tm (append lst (list 0))))
-#      (set-turing-machine-head-location! temp-tm (+ loc 1))))
-
-# (define (move tm dir)
-#   (cond
-#     [(equal? dir 'left) (move-left tm)]
-#     [(equal? dir 'right) (move-right tm)]
-#     [else (error "illegal direction")]))]
-
-# @examples[#:no-prompt #:label "Helper Functions"
-# (define (tm-equal-state-value tm state value)
-#   (and (equal? (turing-machine-state tm) state)
-#        (= (list-ref (turing-machine-tape tm) (turing-machine-head-location tm)) value)))
-
-# (define (upd-tape-location tm value)
-#   (set-turing-machine-tape! tm (list-set (turing-machine-tape tm) (turing-machine-head-location tm) value)))
-
-# (define (pretty-print-tm tm)
-#   (display (format "state:~a, tape: ~a, head: ~a\n" (turing-machine-state tm) (turing-machine-tape tm) (turing-machine-head-location tm))))]
+**** Busy Beaver Problem Demo Code in Racket
+Why Racket? Because I don't want you to copy my code. I want you to see the structure of how I approach the problem with this language so you can build your own version in another language.
 
 
-# @examples[#:no-prompt #:label "Rules are the Critical Part of This Machine" (define (rule tm) ;;state value
-#     (cond
-#       ((tm-equal-state-value tm 'a 0)
-#        (set-turing-machine-state! tm 'b)
-#        (upd-tape-location tm 1)
-#        (move tm 'right))
-#       ((tm-equal-state-value tm 'a 1)
-#        (set-turing-machine-state! tm 'b)
-#        (upd-tape-location tm 1)
-#        (move tm 'left))
-#       ((tm-equal-state-value tm 'b 0)
-#        (set-turing-machine-state! tm 'a)
-#        (upd-tape-location tm 1)
-#        (move tm 'left))
-#       ((tm-equal-state-value tm 'b 1)
-#        (set-turing-machine-state! tm 'h)
-#        (upd-tape-location tm 1)
-#        (move tm 'right))))]
+#+Name: tm-struct
+#+caption: Making a Structure for Our Turing Machine
+#+begin_src racket :exports code
+(struct turing-machine (state tape head-location) #:transparent #:mutable)]
+#+end_src
 
-# @examples[#:no-prompt #:label "A Run Through the N=2 Busy Beaver Problem" (define (busy-beaver-2-do tm)
-#   (pretty-print-tm tm)
-#   (do ([i 0 (+ i 1)])
-#     ((equal? (turing-machine-state tm) 'h)
-#      (display (format "Loops equaled ~a\n" i)))
-#     (rule tm)
-#     (pretty-print-tm tm))
-#   tm)]
+#+Name: tape-movement
+#+caption: Moving our TM Along the Tape
+#+begin_src racket :exports code
+(define (move-left temp-tm )
+   (let ([loc (turing-machine-head-location temp-tm)]
+         [lst (turing-machine-tape temp-tm)])
+      (if (= loc 0)
+	  (set-turing-machine-tape! temp-tm (cons 0 lst))
+	  (set-turing-machine-head-location! temp-tm (- loc 1)))))
+  
+(define (move-right temp-tm )
+   (let ([loc (turing-machine-head-location temp-tm)]
+         [lst (turing-machine-tape temp-tm)])
+     (when (= (+ loc 1) (length lst))
+       (set-turing-machine-tape! temp-tm (append lst (list 0))))
+     (set-turing-machine-head-location! temp-tm (+ loc 1))))
 
+(define (move tm dir)
+  (cond
+    [(equal? dir 'left) (move-left tm)]
+    [(equal? dir 'right) (move-right tm)]
+    [else (error "illegal direction")]))
+#+end_src
 
-# @examples[#:no-prompt
-#           #:label "test"
-#           (begin
-#             (require "./code/tm.rkt")
-#             (define initial-turing-machine (turing-machine 'a (list 0) 0))
-#             (define working-tm (struct-copy turing-machine initial-turing-machine))
-#             (busy-beaver-2-do initial-turing-machine))]
+#+Name:helper-fxns
+#+Caption: Helper Functions
+#+begin_src racket :eval never :exports code
+(define (tm-equal-state-value tm state value)
+  (and (equal? (turing-machine-state tm) state)
+       (= (list-ref (turing-machine-tape tm) (turing-machine-head-location tm)) value)))
 
-# @subsection{Testing the Busy Beaver Code}
+(define (upd-tape-location tm value)
+  (set-turing-machine-tape! tm (list-set (turing-machine-tape tm) (turing-machine-head-location tm) value)))
 
-# The code typed above can be found at @hyperlink["../code/tm.rkt"]{../code/tm.rkt}. Open DrRacket. Open this file (you can use the navigate to it with DrRacket's built-in file manager if the link does not work for you). Click @bold{@tt{run}}. You should seen no error messages (or much of anything else). Now add the code  @racket{(busy-beaver-2-do initial-turing-machine)} to the bottom of the file, and re-run the file. You should see the output typed above in the lower, execution, window.
+(define (pretty-print-tm tm)
+  (display (format "state:~a, tape: ~a, head: ~a\n" (turing-machine-state tm) (turing-machine-tape tm) (turing-machine-head-location tm))))]
+#+end_src
 
-# In your editor make a copy of this file with a new name. Test that you can edit the code by changing the line of what to do with @tt{'a 0} to transition to @tt{'h} instead of @tt{'b}. Save and re-run. You should halt after the first state. If that is working, you have the basics functioning and now can tackle the homework. 
+#+Name:rules
+#+Caption: Rules are the Critical Part of This Machine
+#+begin_src racket :eval never :exports code
+(define (rule tm) ;;state value
+    (cond
+      ((tm-equal-state-value tm 'a 0)
+       (set-turing-machine-state! tm 'b)
+       (upd-tape-location tm 1)
+       (move tm 'right))
+      ((tm-equal-state-value tm 'a 1)
+       (set-turing-machine-state! tm 'b)
+       (upd-tape-location tm 1)
+       (move tm 'left))
+      ((tm-equal-state-value tm 'b 0)
+       (set-turing-machine-state! tm 'a)
+       (upd-tape-location tm 1)
+       (move tm 'left))
+      ((tm-equal-state-value tm 'b 1)
+       (set-turing-machine-state! tm 'h)
+       (upd-tape-location tm 1)
+       (move tm 'right))))
+#+end_src
 
+#+Name: n2run
+#+Caption: An n=2 run through
+#+begin_src racket :eval never :exports code
+(define (busy-beaver-2-do tm)
+  (pretty-print-tm tm)
+  (do ([i 0 (+ i 1)])
+    ((equal? (turing-machine-state tm) 'h)
+     (display (format "Loops equaled ~a\n" i)))
+    (rule tm)
+    (pretty-print-tm tm))
+  tm)
+#+end_src
+
+#+Name: testing
+#+Caption: Testing The TM Busy Beaver
+#+begin_src racket :eval never :exports code
+(begin
+  (require "./code/tm.rkt")
+  (define initial-turing-machine (turing-machine 'a (list 0) 0))
+  (define working-tm (struct-copy turing-machine initial-turing-machine))
+  (busy-beaver-2-do initial-turing-machine))]
+#+end_src
+
+IAMHERE
 # @subsection{Busy Beaver Homework}
 
 # Come up with a version of rules for n=4. All you will need to edit is the rules section. Everything else should just work. After you are satisfied create a new function for @tt{busy-beaver-4-do} that uses your new rule. Add the line invoking it to your file. That will allow me to run your racket program from the command line and see the results of your rule in my terminal. You can test this yourself by running @racket{racket <your-name>-busy-beaver-4-do.rkt} when you are in the home directory of your program.
@@ -330,6 +368,7 @@ The following is a slightly formatted version of the Wikipedia description of a 
 #                        #:tag "ref:comp-cog"]
 
 * Footnotes
+[fn:4] Much of this description of the Busy Beaver problem is lightly edited Wikipedia material. 
 
 [fn:3] The \lambda of lambda calculus doesn't really mean anything.It just signals that you have a lambda expression. Its creation as the symbol for the function calculus was an accident of notation and the limits of older typewriters.
  
