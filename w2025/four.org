@@ -12,14 +12,11 @@
 #+author: Britt Anderson
 #+date: Winter 2025
 
-#+begin_src latex
-  \begin{cdbox}
-Why are \emph{differential equations} an important technique for computational modelling in psychology and neuroscience?
+** Dynamics
+
+\begin{cdbox}
+Why are *differential equations* an important technique for computational modelling in psychology and neuroscience?
 \end{cdbox}    
-#+end_src
-
-
-* Dynamics
 
 Spiking neuron models rely on differential equation to capture the evolution of voltage as a function of time. Dynamics is the study of things changing over time, and neural dynamics gives us important insights into brain and neuronal activity normally and as a consequence of disease.
 
@@ -27,7 +24,7 @@ An interest in dynamical systems has been a part of computational neuroscience s
 
 To ground our understanding with the use of differential equations in computational neuroscience we will produce simple, single neuron simulations of the integrate and fire variety. An excellent and concise summary of these ideas, one that I drew upon heavily for this course is [cite:@Terman_2005]. 
 
-** Beginning to Think Dynamically
+*** Beginning to Think Dynamically
 
 Assume you have a derivative that is equal to \( x - x^3 \) (see Figure [[xminusxcubed]]). What would it mean to "solve" this equation?
 
@@ -47,29 +44,28 @@ What you want is some /function/ of the variable $x$ that will equal what you ge
 
 We will now review the action potential and lay the ground work for writing our own code to simulate a neuron's firing. 
 
-** The Action Potential
+*** The Action Potential
 
-#+begin_src latex 
-    \begin{cdbox}
-      \begin{itemize}
-  \item{10 minutes to brush up on what an action potential is.}
-  \item{Then be able to draw one.}
-  \item{What are the axes?}
-  \item{What ion causes the upward deflection?}
-  \item{What causes the repolarization?}
-  \item{Who discovered the action potential?}
-  \item{Who won the Nobel Prize for characterizing the ionic events of the action potential experimentally and building a mathematical model?}
-    \end{itemize}
-    \end{cdbox}
-#+end_src
+ 
+\begin{fcdbox}
+How is an action potential like a flush toilet?
+\end{fcdbox}
 
-#+begin_src latex
-  \begin{fcdbox}
-  How is an action potential like a flush toilet?
-  \end{fcdbox}
-#+end_src
 
-** A Mathematical Aside
+\begin{cdbox}
+\begin{itemize}
+\item{10 minutes to brush up on what an action potential is.}
+\item{Then be able to draw one.}
+\item{What are the axes?}
+\item{What ion causes the upward deflection?}
+\item{What causes the repolarization?}
+\item{Who discovered the action potential?}
+\item{Who won the Nobel Prize for characterizing the ionic events of the action potential experimentally and building a mathematical model?}
+\end{itemize}
+\end{cdbox}
+
+
+*** A Mathematical Aside
 I often find that psychology students let mathematical notation get in their way of understanding. The unfamiliar symbols lead people to skip the most important part of computational papers. The most important thing to learn is that mathematical notation is just like an emoji: a concise way to express a more complex idea. Once you learn the "slang" you can look beyond the characters. Here is an example of how simple math can start to look forbidding when notated.
 
 What does \( \sum_{\forall x \in \left\{ 1 , 2 , 3 \right \}} x = 6 \) really mean?
@@ -79,17 +75,15 @@ Another confusing feature of mathematical notation is that there are often many 
 For example, 
 \(\frac{dx}{dt}\) \(\dot{x}\) \(x{'}\) \(f{'}(x)\) are all different ways of talking about derivatives and derivatives are at the heart of differential equations. 
 
-** Derivatives are Slopes
-#+begin_src latex
-  \begin{cdbox}
+*** Derivatives are Slopes
+\begin{cdbox}
 1. What is a slope?
 2. When in doubt return to definition.
 3. Deriving the definition of a derivative.
 4. What is the definition of a derivative?
 \end{cdbox}
-#+end_src
 
-*** Your computer is a tool for exploration
+**** Your computer is a tool for exploration
 
 #+begin_src gnuplot :file twox.png
   reset
@@ -118,7 +112,7 @@ For example,
 [[file:slopecurve.png]]
 
 
-*** To approximate the derivative of a curve at a point draw a straight line close by
+**** To approximate the derivative of a curve at a point draw a straight line close by
 
 You pick two points that are "close enough" and you get an answer that
 is "close enough." If your answer isn't "close enough" then you move
@@ -156,7 +150,7 @@ IAMHERE add derivative definition
 
 # What is the *solution* to $y=x'1362$ if I tell you what $y$ is?
 
-* Footnotes
+*** Footnotes
 [fn:2] What does "analytical" mean here? 
 
 [fn:1] It is not /that/ hard, and Claude.AI (as of <2024-12-19 Thu>) can do it for you. But it is substantially harder than before.  

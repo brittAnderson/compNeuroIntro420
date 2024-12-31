@@ -11,9 +11,9 @@
 #+date: Winter 2025
 
 
-* Further Philosophical Digressions on Computation, Mind and Modeling
+** Further Philosophical Digressions on Computation, Mind and Modeling
 
-** Functionalism
+*** Functionalism
 
 One of the schools of thought in the domain of Philosophy of Mind , [[https://plato.stanford.edu/entries/functionalism/][functionalism]], comes up a lot in computational modeling. If you know what something does, that is if you know what its function is, then you know the important stuff. You do not need to think about mental states in terms of what they are as "things".
 Mental states serve a functional role in a cognitive system. The important thing is how they relate to the sensory input, motor output and to /each other.
@@ -28,7 +28,7 @@ The variety of  functionalism closest to our Turing machine is probably /machine
 
 After you familiarize yourself with functionalism, you might return to the question above and revisit your answer. 
 
-** Is the Computational Account of Mind Trivial?
+*** Is the Computational Account of Mind Trivial?
 Do you have refutations for these arguments?
 
    1. Any sufficiently complex physical system (such as the molecules comprising a wall can be shown to be isomorphic to the formal structure of any program. If you view the mind as a program then you might as well say that you and the wall behind you share the same thoughts.
@@ -36,22 +36,22 @@ Do you have refutations for these arguments?
    3. Discrete or continuous? Turing machines are *discrete*[fn:1], finite state machines. Time and thought operate in continuous time (don't they?). Are discrete models that move forward in time in discontinuous steps capable of modeling us who live in and think in the world of continuous time?
    4. Computations might model something without explaining it. Weather simulators predict rain, but they don't themselves actually rain. Flight simulators do not fly. Even if a computer program simulated a mind it does not mean it would be thinking. Does the simulations, explanation or demonstration distinction bother you?
 
-** What Would a Non-computational Theory of Mind Be?
+*** What Would a Non-computational Theory of Mind Be?
 Here are some alternatives to a computational theory of mind. I do not understand many of them well myself. Maybe you can explain them to me.          
    - Logical Behaviorism :: Mental states are predispositions to behave. There is no internal state corresponding to belief that is mental. Belief is only a predisposition to behave in a certain way in a certain context.  We characterize people by what they are likely to do without ascribing to them associated mental states. The person who first developed this idea, Gilbert Ryle, asserts that being a mentalist is incompatible with being a realist (that is it makes you a dualist). Logical behaviorism  does not seem to be much in vogue now, but it is another take on the important issues [cite:@Schuette_2008].
    - Type-Identity Theory :: Mental states just "are" brain states.
 #+begin_src latex
 \begin{cdbox}
-Since our brains are different from time to time (synaptic weights change; cells die (and a few born)) does that mean we never have the same mental state twice? Since no two people have the same brain does that mean no two people ever have the same mental states?}
+Since our brains are different from time to time (synaptic weights change; cells die (and a few born)) does that mean we never have the same mental state twice? Since no two people have the same brain does that mean no two people ever have the same mental states?
 \end{cdbox}
 #+end_src
 
-** Alternatives to the Turing Machine Model of Computation
+*** Alternatives to the Turing Machine Model of Computation
 Although the Turing Machine account of computation seems to dominate examples in psychology and neuroscience this may be an artifact of the example of the Turing Test [cite:@TURING_1950] as a prominent example of evaluating machine intelligence. There are other formal theories of computation, and as stated above they are all conjectured to be equivalent.
 
 
 
-* Footnotes
+*** Footnotes
 
 [fn:1] Can you tell me what this word means in this context? 
 

@@ -1,5 +1,0 @@
-[0] Config.pm:307> INFO - This is Biber 2.19
-[0] Config.pm:310> INFO - Logfile is 'two.blg'
-[45] biber:340> INFO - === Thu Dec 19, 2024, 15:18:47
-[119] Utils.pm:410> ERROR - Cannot find 'two.bcf'!
-[119] Biber.pm:136> INFO - ERRORS: 1

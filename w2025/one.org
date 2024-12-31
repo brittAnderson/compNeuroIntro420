@@ -29,17 +29,19 @@
 #+bibliography: /home/britt/gitRepos/masterBib/bayatt.bib
 #+cite_export: csl /home/britt/gitRepos/brittsite/assets/chicago-fullnote-bibliography.csl
 
-* Reviewing Last Week's Exercises and Assignments
+
+**  Is Cognition Computation?
+*** Reviewing Last Week's Exercises and Assignments
 1. Reading Discussions
 2. Sharing Posters
 3. Revisiting some of our [[file:zero.org::#zero-high-level][key questions]] from last week. 
 
-* Some Additional Questions For Computational Cognition:
+*** Some Additional Questions For Computational Cognition:
   1. Is the brain a computer?
   2. What does it mean for something to be computable?
   3. What is the computational theory of mind, and what does it mean for us practically?
 
-* What Is Cognition?
+*** What Is Cognition?
 :PROPERTIES:
 :CUSTOM_ID: abc123
 :ID:       264cc60d-3fbf-40cd-ba21-a299803df658
@@ -72,27 +74,26 @@ file:figs/Forgetting_curve_decline.svg
 
 What can we infer from the similarity between Figure [[exponential-function]] and Figure [[forgetting-curve]]?
 
-* Cognition is ... ?
+*** Cognition is ... ?
 
 As revealed in [cite:@bayne19_what_is_cognit] there are a wide array of views on what is cognition\marginpar{\raggedright Which of these opinions, if any, do you agree with and why?}.
 
-
-* Is Cognition Computational?
+*** Is Cognition Computational?
   1. Is there anything a human can think that a computer cannot compute?
   2. What does it mean for a function to be "computable"?
   3. What does it mean to say that cognition is computational?
   4. What implications does the answer have for modeling cognition?
 
-** Introduction
+**** Introduction
 Is there a difference between computational cognitive neuroscience and cognitive computational neuroscience? The former seems to suggest that we are interested in explaining cognition directly from the actions of neurons and then using computational tools as adjuncts to aid this attempt. On the other hand, when you reverse the order it seems as if you are trying to explain thinking via the computational accounts of neuronal function. The latter seems to require a clear link between notions of computation and models of thinking. To use Marr's three levels as a scaffold[cite:@McClamrock_1991]\marginpar{\raggedright This reference is an older one, and not the original, but it does use LISP as its example, which is the classic example of good old fashioned AI.}; we are taking neurons as our implementation, positing algorithms for them, and assuming that computational principles populate the level of our cognitive abstractions. Measures of success depend on the meanings of terms.
 
 Behind all of this is the idea that if you want to understand /mind/ you need to first develop a /theory/. Explanations offered in words only are really more proto-theories than theories because of their imprecision. To express a theory clearly and unambiguously you need to /formalize/ it. Either you express it as /math/ or you can /code/ it. Let's explores the distinction between computation as implementation and computation as the basis for mind\marginpar{\raggedright What are Marr's three levels?}.
 
-*** Computing in Minds and Computers
+***** Computing in Minds and Computers
 
 One definition of whether something is computable is whether there exists a Turing Machine that can compute it. Although most of us learned the name "Turing" in the context of whether a computer has human intelligence, the so-called /Turing test/, the model of Turing computability emerged from thinking about humans computing[cite:@Turing_2004]\marginpar{\raggedright A nice short version of this history can be found in [[https://link.springer.com/content/pdf/10.1007/978-3-642-31933-4.pdf][pdf]]}
 
-**** What is a Turing machine? Some Background and Details
+****** What is a Turing machine? Some Background and Details
 [[https://turingarchive.kings.cam.ac.uk/publications-lectures-and-talks-amtb/amt-b-12][Turing machines]] are quite simple implements. While one can build a physical Turing machine, the more usual sense of the term is for a hypothetical computer that is comprised of:
   1. a finite alphabet,
   2. a finite set of states,
@@ -100,20 +101,20 @@ One definition of whether something is computable is whether there exists a Turi
   4. a set of instructions (or "machine table") that translates the combination of the current state and the current symbol to a new state and one of the acceptable actions.
 
 
-***** Classroom Activity
+******* Classroom Activity
 Let's develop pseudo-code for the implementing a Turing Machine
 
-**** The Lambda Calculus
+****** The Lambda Calculus
   
 Another model of computation is the /lambda calculus/[fn:1].
 
 The lambda calculus was developed as a theory of functions. [[https://news.stanford.edu/news/2011/october/john-mccarthy-obit-102511.html][John McCarthy]] invented the computer programming language Lisp as a theoretical exercise for working on the theory of computable functions. He felt the Turing machine was too mechanical and too awkward for this sort of theoretical work. He wanted a better tool; a better metaphor. He adopted the lambda of the lambda calculus and the ~eval~ function to take in lisp programs and execute them. Later one of his [[https://en.wikipedia.org/wiki/Steve_Russell_(computer_scientist)][collaborators]] observed that it was relatively straightforward to implement this theoretical language as a real programming language. A bit more of the history this development can be found [[https://lwn.net/Articles/778550/][here]]. To get more details see [cite/t:see @michaelson11_lambd].
 
-***** Some Details and Interesting Facts about the Lambda Calculus
+******* Some Details and Interesting Facts about the Lambda Calculus
 1. There is not just one lambda calculus.
 2. To have the lambda calculus you need to specify your algebra. What are the rules for reducing things (i.e. your computations), what are the allowed symbols, and what do things mean? A "lambda calculus" is a way of handling "lambda expressions."[fn:3]
 
-***** Into the Weeds
+******* Into the Weeds
 
 *Terms* are either /simple variables/ e.g. $x$ or $y$ or /composite terms/ like \( \lambda~v~t_1 \). Having two terms next to each other \( t_1~t_2 \) means "apply" $t_1$ to $t_2$. The meaning of a term like \( \lambda~v~.~ t_1 \) is the value returned by the lambda abstraction. The meaning part is sometimes designated in writing by formulas using arrows, such as \(t_1~\rightarrow~t_2 \).[fn:2]
 
@@ -131,7 +132,7 @@ Your goal is often the *normal* form. A lambda term that cannot be reduced anymo
 
 The equivalent of the halting problem for the Turing machine is the reaching of a /normal form/ in the  lambda calculus. 
 
-***** Some Opportunities for Practice
+******* Some Opportunities for Practice
 - Write the lambda expression for the identity function?
   - But first we better decide what the identity function is?
 - Apply the identity function to itself.
@@ -143,7 +144,7 @@ The equivalent of the halting problem for the Turing machine is the reaching of 
     - apply the self-application to itself. What is its termination status?
 
 
-**** What are the differences?
+****** What are the differences?
 We have seen Turing Machines and a Lambda Calculus. They look very different. Another model of computation that I have mentioned, but not presented is [[https://plato.stanford.edu/entries/recursive-functions/][recursive function theory]]. It looks different still.
 
 
@@ -167,7 +168,7 @@ Always question assumptions: [[https://en.wikipedia.org/wiki/Church%E2%80%93Turi
 #+end_export
 
 
-*** Classical Computational Theory of Mind
+***** Classical Computational Theory of Mind
 #+begin_export latex
 \begin{cdbox}[backgroundcolor=lightgray]
 Does a computational theory of mind mean that minds are \href{https://plato.stanford.edu/entries/multiple-realizability}{multiply realizable} ?
@@ -181,7 +182,7 @@ Does a computational theory of mind mean that minds are \href{https://plato.stan
 For something to be computatble the Turing machine that computes it must halt. So, we would like to know before we run our machine whether it will halt or not. Unfortunately, the answer to the halting problem is that we cannot know in advance, and in general, whether a Turing machine will halt. Computabilty is therefore /undecidable/.
 
 
-*** Programming a Turing Machine: the Busy Beaver
+***** Programming a Turing Machine: the Busy Beaver
 
 In my experience the only way to really come to grips with what a Turing machine is is to program one yourself. For this exercise we will program a Turing machine to solve an elementary version of the Busy Beaver problem. This is a famous problem, because it is easy to state and woefully difficulty to answer. In fact it is [[https://jeremykun.com/2012/02/08/busy-beavers-and-the-quest-for-big-numbers/][incomputable]].
 
@@ -203,7 +204,7 @@ What it means to "run" a Turing machine is to start in the starting state with t
 
 To restate in a more general way, the n-state busy beaver (BB-n) game is a contest to find an n-state Turing machine having the largest possible score — the largest number of 1s on its tape after halting. A machine that attains the largest possible score among all n-state Turing machines is called an n-state busy beaver, and a machine whose score is merely the highest so far attained (perhaps not the largest possible) is called a champion n-state machine.[fn:4]
 
-**** A Busy Beaver Warm-Up
+****** A Busy Beaver Warm-Up
 
 A simple version of the Busy Beaver problem, and one you can do by hand with pencil and paper, is the n=2 version. Create a Turing Machine with the following transition rules:
 
@@ -216,7 +217,7 @@ Here is the transition table for our machine:
 | b0               | a1l               |
 | b1               | h1r               |
 
-**** Busy Beaver Problem Demo Code in Racket
+****** Busy Beaver Problem Demo Code in Racket
 Why Racket? Because I don't want you to copy my code. I want you to see the structure of how I approach the problem with this language so you can build your own version in another language.
 
 
@@ -311,15 +312,15 @@ Why Racket? Because I don't want you to copy my code. I want you to see the stru
 #+end_src
 
 
-** Busy Beaver Homework
+**** Busy Beaver Homework
 See Dropbox on Learn
 
 You might find the [[https://github.com/brittAnderson/compNeuroIntro420/blob/w2025/rb/code/tm.rkt][racket source]] useful for hints.
 
-* Planning for next time
+*** Planning for next time
 See if you can get a sense of what /functionalism/ means. 
 
-* Footnotes
+*** Footnotes
 [fn:4] Much of this description of the Busy Beaver problem is lightly edited Wikipedia material. 
 
 [fn:3] The \lambda of lambda calculus doesn't really mean anything.It just signals that you have a lambda expression. Its creation as the symbol for the function calculus was an accident of notation and the limits of older typewriters.
