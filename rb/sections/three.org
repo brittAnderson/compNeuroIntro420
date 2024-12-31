@@ -1,0 +1,279 @@
+#+STARTUP: nofold hideblocks
+#+options: toc:nil
+#+Latex_Header: \usepackage{mdframed}
+#+latex_header: \usepackage{hyperref}
+#+latex_header: \usepackage{amsthm}
+#+latex_header_extra: \newmdenv[linecolor=red,frametitle=Class Discussion]{cdbox}
+#+latex_header_extra: \newmdenv[linecolor=red,frametitle=Further Class Discussion]{fcdbox}
+#+latex_header_extra: \newtheorem{definition}{Definition}
+#+bibliography: /home/britt/gitRepos/masterBib/bayatt.bib
+#+cite_export: csl /home/britt/gitRepos/brittsite/assets/chicago-fullnote-bibliography.csl
+#+Title: CPMS04
+#+author: Britt Anderson
+#+date: Winter 2025
+
+* Neural Networks
+
+Our goal here is to understand the basic mathematical objects and their notation that underlie neural networks. We want to have enough of a grasp to be able to code simple versions of them by hand. If you ever build a big model you will undoubtedly want to use the well established standard libraries, but for making design decisions, thinking about aberrant behavior, or even just conceiving the kind of network you want to build an how it will match your problem, you want a more fundamental and practical grasp of the pieces you will be putting together.
+
+Our distal goal is to code the Hopfield Network, and ideally the Kohonen self-organizing map, but along the way we will first learn about vectors, matrices, scalar products, the perceptron, and learning rules. 
+
+** John Hopfield
+To motivate our learning, and to put a human face on the project these two links give you a glimpse of Hopfield talking about his work at the 2024 Nobel Prize lectures, and a nice long podcast that gives a slow, throurough, tutorial discussion of what it is all about. We will come back to this later, but for now start listening. There is an associated homework. 
+
+*** Nobel Prize
+[[https://youtu.be/8SffhDk4mdU?feature=shared][John Hopfield's Nobel Lecture]]
+
+*** Podcast on the Hopfield Network
+This [[https://theoreticalneuroscience.no/thn22/][theoretical neuroscience podcast]] gives a nice long look at the Hopfield Network. It works up to its creation, its abstraction, and it social impact on shaping the field of computational neuroscience. It is long, but, if you make your way through it you will have a good overview of the model before you start coding it.
+
+** The Math That Underlies Neural Networks?
+*** Linear Algebra
+
+The math at the heart of neural networks and their computer implementation is *linear algebra*. For us, the section of linear algebra we are going to need is mostly limited to vectors, matrices and how to add and multiply them.
+
+\begin{cdbox}
+What makes linear algebra linear?
+\end{cdbox}
+
+**** Important Objects and Operations
+  - Vectors
+  - Matrices
+  - Scalars
+  - Addition
+  - Multiplication (scalar and matrix)
+  - Transposition
+  - Inverse
+
+\begin{fcdbox}
+Give a definition or description of each of these objects and operations.
+\end{fcdbox}
+
+
+  
+*** Adding Matrices                                       
+To gain some hands on familiarity with the manipulation of matrices and vectors we will try to do some hand and programming exercises for some of the fundamental operations of addition and multiplication. We will also thereby learn that some of the rules we learned for numbers (such as a * b = b * a) do not always apply in other mathematical realms.
+
+There are in fact many ways to think about what a vector is. 
+
+It can be thought of as a column (or row of numbers).
+More abstractly it is an object (arrow) with magnitude and direction.
+Most abstractly it is anything that obeys the requirements of a vector space. 
+
+For particular circumstances one or another of the different definitions may serve our purposes better. In application to neural networks we often just use the first definition, a column of numbers, but the second can be more helpful for developing our geometric intuitions about what various learning rules are doing and how they do it.  
+
+Similarly, we often just consider a matrix as a collection of vectors or as a rectangular (2-D) collection of numbers.
+
+*** Activity
+In your programming language of choice find the package (sometimes also called a library) that has the construct of a "vector".  Is it the same thing as the vector described above? If not, make sure you find the equivalent construct for your programming language. Make sure you can use it to create two vectors and computer their scalar product. Be prepared to demonstrate this for the class.
+
+
+# @bold{Important}: vectors are a special datatype in Racket, and the vector type is probably not what you want to be using. Look for matrices and linear algebra.
+
+# Make two arrays and make them the same size@margin-note*{What is the @italic{size} of a matrix?}.
+
+# Add them together in both orders (A + B and B + A). How does one add an array that itself has numerous different numbers?
+
+# Then do the same for multiplication. Note that there are particular requirements for the sizes of matrices in order that it is possible to multiply them in both directions. What is that rule?
+
+# What is the name for the property of having A*B = B*A?
+
+
+*** Common Notational Conventions for Vectors and Matrices}
+
+# Vectors tend to be notated as @italic{lower case} letters, often in bold, such
+# as @($ "\\mathbf{a}"). They are also occasionally represented with little
+# arrows on top such as @($ "\\overrightarrow{\\textbf{a}}").
+
+# Matrices tend to be notated as @italic{upper case} letters, typically in bold,
+# such as @($ "\\mathbf{M}").
+
+# Good things to know: what is an @italic{inner product}? How do you compute it in racket?
+
+# @section{What is a Neural Network?}
+
+# What is a Neural Network? It is a brain inspired computational approach
+# in which "neurons" compute functions of their inputs and pass on a
+# @italic{weighted} proportion to the next neuron in the chain.
+
+# @figure["fig-nn" @; figure tag
+#         @elem{simple schematic of the basics of a neural network. This is an image for a single neuron. The input has three elements and each of these connects to the same neuron ("node 1"). The activity at those nodes is filtered by the weights, which are specific for each of the inputs. These three processed inputs are combined to generate the output from this neuron. For multiple layers this output becomes an input for the next neuron along the chain.}
+#         @elem{@image{./images/nn.png}}]
+
+
+*** Non-linearities}
+# The spiking of a biological neuron is non-linear. You saw this in both the integrate and fire and Hodgkin and Huxley models you programmed. The lines on those plots you created are not, for the most part, straight. Perhaps the simplest way to incorporate a non-linearity into our artificial neuron is to give it a threshold, like we did for the integrate and fire model. When activity exceeds the threshold (which we will usually designate with a capital Greek Theta @($ "\\Theta") then the neuron is set to 1 and if it is not firing it is set to 0 (like the "w" → 0; "b" → 1 mapping we used for the cellular automata).
+   
+# @($$ "\\begin{equation}
+# \\mbox{if } I_1 \\times w_{1,1} + I_2 \\times w_{2,1} + I_3 \\times w_{3,1} > \\Theta \\mbox{ then } Output = 1
+# \\end{equation}")
+
+# What this equation shows is that Inputs (the @($"I")s) are passed to a neuron. Those inputs have something like a synapse. That is designated by the w's. Those weights are how tightly the input and internal activity of our artificial neuron is coupled. The reason for all the subscripts is to try and help you see the similarity between this equation and the inner product and matrix multiplication rules you just worked on programming. The activity of the neuron is a sort of internal state, and then, based on the comparison of that activity to the threshold, you can envision the neuron spiking or not, meaning it has value 1 or 0. Mathematically, the weighted sum is fed into a threshold function that compares the value to a threshold @($"\\Theta"), and passes on the value 1 if it is greater than the threshold and 0 (sometimes @($"-1") rather than zero is chosen for the inactive state because there are certain computational conveniences in doing so).
+
+# To prepare you for the next steps in writing a simple perceptron (the earliest form of artificial neural network), you should try to answer the following questions.
+
+# Questions:
+# @itemlist[#:style 'ordered
+#           @item{What, geometrically speaking, is a plane?}
+#           @item{What is a hyperplane?}
+#           @item{What is linearly separability and how does that relate to planes and
+#    hyperplanes?}]
+
+# One of our first efforts will be to code a @italic{perceptron} to solve the XOR problem. In order for this to happen you need to know a bit about @italic{Boolean} functions and what an XOR problem actually is. 
+
+# @bold{Examples of Boolean Functions and How They Map onto our Neural Network Intuitions}
+
+# The "AND" Operation/Function
+
+# @figure["fig:and"
+#         @elem{The @italic{and} operation is true when both its inputs are true.}
+#         @(and-fig)]
+
+        
+# @figure["fig:or"
+#         @elem{The @italic{or} operation is true if either or both of its inputs are true.}
+#         @(or-fig)]
+
+# @figure["fig:xor"
+#         @elem{The @italic{xor} is true when one or the other, but not both of the inputs are true. It is exclusively an or function.}
+#         @(xor-fig)]
+
+# This short @hyperlink["https://doi.org/10.1038/nbt1386"]{article} provides a nice example of linear separability and some basics of what a neural network is. 
+
+*** Exercise XOR}
+
+# Using only @italic{not}, @italic{and}, and @italic{or} operations draw the diagram that allows you to compute in two steps the @italic{xor} operation. You will need this to code it up as a perceptron.
+
+*** Connections}
+#   Can neural networks encode logic? Is the processing zeros and ones enough to capture the richness of human intellectual activity?
+
+# There is a long tradition of representing human thought as the consequence of some sort of calculation of two values (true or false). If you have two values you can swap out 1's and 0's for the true and false in your calculation. They even seem to obey similar laws. If you the conjunction (AND) of two true things it is only true when both are true. If you take T = 1, then T ∧ T is the same as @($"1~\\times~1").
+
+# We will next build up a simple threshold neural unit and try to calculate some of these truth functions with our neuron. We will build simple neurons for truth tables (like those that follow), and string them together into an argument. Then we can feed values of T and F into our network and let it calculate the XOR problem.
+
+
+*** Boolean Logic}
+# George Boole, Author of the @italic{Laws of Thought}
+
+# @itemlist[@item{Read the @hyperlink["https://archive.org/details/investigationofl00boolrich"]{book} on Archive.org}
+#                @item{Read about @hyperlink["https://plato.stanford.edu/entries/boole/#LifWor"]{George Boole}}]
+
+***  First Order Logic - Truth Tables}
+# @bold{Or}
+
+# @tabular[#:sep @hspace[1]
+#          (list (list @bold{Pr A} @bold{Pr B} @bold{Or})
+#                (list "0" "0" "0")
+#                (list "0" "1" "1")
+#                (list "1" "0" "1")
+#                (list "1" "1" "1"))]
+
+# @bold{And}
+
+# @tabular[#:sep @hspace[1]
+#          (list (list @bold{Pr A} @bold{Pr B} @bold{AND})
+#                (list "0" "0" "0")
+#                (list "0" "1" "0")
+#                (list "1" "0" "0")
+#                (list "1" "1" "1"))]
+
+# @bold{Nand}
+
+# @tabular[#:sep @hspace[1]
+#          (list (list @bold{Pr A} @bold{Pr B} @bold{NAND})
+#                (list "0" "0" "1")
+#                (list "0" "1" "1")
+#                (list "1" "0" "1")
+#                (list "1" "1" "0"))]
+
+
+# @section{Not all Networks are the Same}
+# @itemlist[@item{Feedforward}
+#                 @item{Recurrent}
+#                 @item{Convolutional}
+#                 @item{Multilevel}
+#                 @item{Supervised}
+#                 @item{Unsupervised}]
+
+# The Hopfield network@~cite[hopfield-orig] has taught many lessons, both practical and conceptual. Hopfield showed physicists a new realm for their skills and added recurrent (i.e. feedback) connections to network design (output becomes input). He changed the focus from network architecture to that of a dynamical system. Hopfield showed that the network could remember and it could do some error correction, it could reconstruct the "right" answer from faulty input.
+
+# @figure["fig:hopfield-net"
+#         @elem{Hopfield Recurrent Connections}
+#         @elem{@(hopfield-net)}]
+
+*** How does a network like this work?}
+# @itemlist[@item{Each node has a value.}
+#                @item{Each of those arrowheads has an associated weight.}
+#                @item{The line with the "x" indicates that there are no self connections.}
+#                @item{All other connections for all other units are present and go in both directions.}]
+
+*** Test your understanding:}
+# @itemlist[#:style 'ordered @item{Tell me what the input for a network like this with four nodes should look like it terms of the linear algebra constructs we have talked about.}
+#           @item{A weight is a number associated to each connection. Tell me what the weights should look like in terms of the linear algebra constructs.}
+#           @item{How might we conceive of "running" the network for one cycle in terms
+#    of the above.}]
+
+*** A Worked Example}
+# Inputs can be thought of as vectors. Although I have drawn the network like a square that shape is really independent of the structure of data flow. Each node needs an input and each node will need a weighted contact to all the other nodes. Consider the following two input patterns and the following weight matrix.  
+#   @($$ "A = \\{1,0,1,0\\}^T")
+
+#   @($$ "B = \\{0,1,0,1\\}^T")
+
+# @($$ "weights =  \\begin{bmatrix}
+#   0 & -3 & 3 & -3\\\\
+#   -3 & 0 & -3 & 3\\\\
+#   3 & -3 & 0 & -3\\\\
+#   -3 & 3 & -3 & 0\\\\
+#   \\end{bmatrix}")
+
+# @margin-note{Ask yourself, how do I compute the output? Which comes first: the matrix or the input vector and why?}
+
+# Hopfield networks use a threshold rule. This non-linearity is, at least metaphorically, like the threshold that says whether a neuron in the brain or in our integrate and fire model fires. For the Hopfield network our threshold rule says:
+
+# @($$ "output(t)=\\{\\begin{array}{c} 1\\; \\mbox{if } t \\geq \\Theta\\\\ 0\\; \\mbox{if } t < \\Theta \\end{array}")
+
+# @($ "\\Theta") will represent the value of our threshold and for now let's set @($ "\\Theta = 0").
+
+# To make sure you understand the mechanics of this type of network you should first calculate the output to each of the two input patterns. 
+
+# Then, to test your intuition, you should guess what output you would get for an input of @($ "\\{1,0,0,0\\}^T"). Calculate it.
+
+# To understand why this is the case, ask yourself whether A or B is @bold{closer} to this test input? This will hopefully lead you to reflect on what it means, in this context, for one vector to be "closer" to another. 
+
+*** Distance Metrics}
+# Metrics relate to measurement. For some operation to be a distance metric it should meet three intuitive requirements and one that is maybe not as obvious. To measure the distance between two things we need an operation that is binary. That is, it takes two inputs. In this case that would be our two vectors. It's result should always be @bold{Non-negative}. A negative distance would clearly be meaningless. Our output should be @bold{symmetric}. Meaning that @($"d(A,B)~d(B,A)"). The distance from Waterloo to Toronto ought to come out as the same as going from Toronto to Waterloo. Our metric should be @bold{reflexive}. The distance from anything to itself ought to be zero. Lastly, to be a distance metric, our operation must obey the @hyperlink["https://en.wikipedia.org/wiki/Triangle_inequality"]{@bold{triangle inequality}}
+
+# Now, to understand what the network did, consider your distance measure to be the number of mismatched bits. This metric is called the Hamming distance.
+
+# @italic{Reminder}: Don't forget to think about geometry and dynamics.
+
+# For perceptrons we talked about how the weight vector moved the direction it pointed. Here we don't have the weight vector moving, but you can visualize what is happening as updating a point in space. When we first input our four element vector we have a location in 4-D space. We multiply the first row of our weight matrix against our column of the input vector and we see, in effect, what is the effect on our first element (node) of all the other weighted inputs coming in to it. We then "update" that location. Maybe we flip it from a 1 to a zero (or vice versa). Then we try the next row of the weight matrix to see what happens to the second element. As we change the values of our nodes we are creating new points. The sequence of points is a trajectory that we are tracing in the input space. In this simple situation here we only require one pass to reach the final location, but in other settings we might not. In that case we just keep repeating the process until we do. One of the wonderful insights that Hopfield had was that by conceptualizing this process as an "energy" he could mathematically prove that the process would always reach a resting place.
+
+*** Hebb's @hyperlink["https://en.wikipedia.org/wiki/Outer_product"]{Outer Product} Rule}
+# @margin-note{Why is this learning rule called "Hebb's"? And if you don't know who Hebb is let's take a moment to figure that out.}
+
+# The strength of a change in a connection is proportionate to the product of the input and outputs, i.e. @($$ "\\Delta A[i,j] = \\eta f[j]g[i]") and @($$ "g[i] = \\sum_j~A[i,j]~f[j]") therefore, @($$ "\\vec{g} = \\mathbf{Af}"). @margin-note{Does it matter that the (\mathbf{W}) comes first?}
+
+# @margin-note{What is an outer product? Can you compute one with racket?}
+
+# @section{Hopfield Homework Description: Robustness to Noise}
+# Overview of the steps to take:
+# @itemlist[#:style 'ordered @item{Create a small set of random data for input patterns.}
+#           @item{Generate the weights necessary to properly decode the inputs.}
+#           @item{Conceive of a way to randomly corrupt the inputs. Perhaps by flipping some bits and show that your network does correctly decode the uncorrupted inputs.}
+#           @item{Report the accuracy of the output. Explore how the length of the input vector and the number of bits your "flip" impact performance.}]
+
+# Detailed instructions:
+# @itemlist[#:style 'ordered
+#           @item{Make the input patterns 2-d, square and of size "n".}
+#           @item{Use a bipolar system and have, roughly, equal numbers of +1s and -1s in your patterns.}
+#           @item{Make a few of them and store them in some sort of data structure.}
+#           @item{Using those patterns, compute the weight matrix with the following equation:
+#    @($$ "w_{ij} =\\frac{1}{N} \\sum_{\\mu} value^\\mu_i \\times value^\\mu_j")
+#    Where N is the size of the patterns, that is how many "neurons". @($ "\\mu") is an index for each of the patterns, and @($"i") and @($"j") refer to the neurons in the pattern @($ "\\mu"). Do this @bold{in code}. The computer is good   for this manual, repetitive sort of stuff.}
+#           @item{Program an @bold{asynchronous} updating rule, run your network until it stabilizes, and then show that you get back what you put in.}
+#           @item{Then do the same for at least one disrupted pattern (where you   flipped a couple of bits around.)}]
+
+  
+# @generate-bibliography[#:sec-title "Hopfield Bibliography"
+#                        #:tag "ref:hopfield"]

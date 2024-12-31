@@ -1,0 +1,98 @@
+* An Introduction to Differential Equations
+:PROPERTIES:
+:CUSTOM_ID: t:x28part_x22Anx5fIntroductionx5ftox5fDifferentialx5fEquationsx22x29
+:END:
+Why are Differential Equations an important technique for computational
+modelling in psychology and neuroscience?
+
+*The Action Potential*
+
+- 10 minutes to brush up on what an action potential is
+
+- Then be able to draw one and explain,
+
+- What are the axes?
+
+- What ion causes the upward deflection?
+
+- What causes the repolarization?
+
+- Who discovered the action potential?
+
+- Who won the Nobel Prize for characterizing the ionic events of the
+  action potential experimentally and building a mathematical model?
+
+Did you draw
+[[https://commons.wikimedia.org/w/index.php?curid=44114666][this]]?
+
+*Notation* Concise summaries of things that would take too long to write
+out in detail. Mathematical notation is just a technical emoji. You
+probably know the "math" they represent; you just don't know the
+abbreviation that is being used.
+
+_i=0^n x_i^3\[\sum_{i=0}^n x_i^3\]
+
+_x { 1 , 2 , 3 } x  = 
+6\[\sum_{\forall x \in \left\{ 1 , 2 , 3 \right \}} x ~=~ 6\]
+
+** Multiple Ways to Say the Same Thing
+:PROPERTIES:
+:CUSTOM_ID: t:x28part_x22Multiplex5fWaysx5ftox5fSayx5fthex5fSamex5fThingx22x29
+:END:
+\(\frac{dx}{dt}\)
+
+\(\dot{x}\)
+
+\(x{'}\)
+
+\(f{'}(x)\)
+
+* Derivatives are Slopes
+:PROPERTIES:
+:CUSTOM_ID: t:x28part_x22Derivativesx5farex5fSlopesx22x29
+:END:
+- What is a slope?
+
+- When in doubt return to definition.
+
+- Deriving the definition of a derivative.
+
+- What is the definition of a derivative?
+
+Digression: Use your computer as a tool for exploration
+
+Example:
+
+=2ex=2ex
+
+=>== =
+
+You pick two points that are "close enough" and you get an answer that
+is "close enough." If your answer isn't "close enough" then you move
+your points closer, until /in the limit/ there is an infinitesimal
+distance between them.
+
+Definition of the Derivative: :PROPERTIES: :CUSTOM\(\_\)ID: derivative
+:END:
+
+<<definition:derivative>>
+*Definition 2.1* (derivative). /= _h /
+
+​*** Digression: Writing Math in Documents The current standard tool for
+nicely typeset math is LaTeX. You can use this in jupyter notebooks and
+even some in
+[[https://support.microsoft.com/en-us/office/linear-format-equations-using-unicodemath-and-latex-in-word-2e00618d-b1fd-49d8-8cb4-8d17f25754f8][Word]].
+However, the most powerful way is just to write the document as a simple
+text file with the .tex ending and use TeX post-processors. This is
+easiest in Linux, but isn't too hard for both Windows and OSX. Here I
+use LaTeX fragments in side an "org" file compiled by emacs using other
+programs on my computer.
+
+[[https://faculty.math.illinois.edu/\(\sim\)hildebr/tex/latex-start.html][Some
+Resources]]
+
+​**** Using Derivatives to Solve Problems With a Computer
+
+​***** What is a square root? :class\(\_\)exercise:
+
+What is the *solution* to $y=x'1362$ if I tell you what $y$ is?
