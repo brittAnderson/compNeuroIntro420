@@ -28,7 +28,7 @@ inductive MoveDirection
   | Right
   deriving Repr
 
--- Represents a single transition rule
+-- Represents a single transition 
 structure TransitionRule where
   currentState : State
   currentCell : Cell
@@ -81,7 +81,7 @@ def transitionFunction
   (state : MachineState) : Option MachineState :=
   -- Find the applicable rule based on current state and cell
   let applicableRule := rules.find? (fun rule =>
-    rule.currentState = state.currentState ∧ 
+    rule.currentState = state.currentState and 
     rule.currentCell = state.tape.current
   )
   
