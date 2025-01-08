@@ -6,9 +6,7 @@
 ** Overview of Scope and Practice
 *** Identifying Details
 PSYCH420 Section 001
-
 Meets: Friday 8:30-11:20
-
 Room: EV3 1408
 
 *** Buzzati and The Singularity
@@ -62,11 +60,13 @@ Regarding computational cognition, Marr's levels suggest cognition can be unders
 By providing a structured framework for analyzing cognitive systems, Marr's levels offer a strong argument for computational approaches to understanding mental phenomena, while also acknowledging the importance of examining actual biological mechanisms.
 
 Claude_AI <2024-11-25 Mon>
+
 #+end_quote
+
 **** An opportunity to start a conversation about the value of large language models for your learning.
 ***** Busy Beavers and Lean Code
 ****** What is the busy beaver problem (we will come back to this; for now just illustrating a point). 
-     #+INCLUDE: "./code-related/claude-busy-beaver-inquiry.org"
+     #+INCLUDE: "./code-related/claude-busy-beaver-inquiry.org" :lines "4-"
 ****** Code it in Lean4 ( I can't get this in the pdf properly. You should be able to find the file in the git repo).
 
 #+INCLUDE: "./code-related/busy-beaver-two-state.lean" src lean
