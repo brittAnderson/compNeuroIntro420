@@ -166,67 +166,92 @@ One of our first efforts will be to code a /perceptron/ to solve the XOR problem
 
 ***** Examples of Boolean Functions and How They Map onto our Neural Network Intuitions
 
+
+
+
+
 - The "AND" Operation/Function ::
   #+Name: and
   #+caption: The /and/ operation is true when both its inputs are true.
-  
+  #+begin_src gnuplot :var data="and.txt" :file my-and.png
+    reset
+    set nokey
+    set nocolorbox
+    set palette model RGB defined ( 0 "red", 1 "green" )
+    set xrange[-0.25:1.25]
+    set yrange[-0.25:1.25]
+    plot data u 1:2:3 with points ps 7 pt 7 lc palette variable
+#+end_src
 
-        
-@figure["fig:or"
-        @elem{The @italic{or} operation is true if either or both of its inputs are true.}
-        @(or-fig)]
+#+RESULTS: and
+[[file:my-data-plot.png]]
 
-@figure["fig:xor"
-        @elem{The @italic{xor} is true when one or the other, but not both of the inputs are true. It is exclusively an or function.}
-        @(xor-fig)]
+- The "OR" Operation/Function ::
+  #+Name: or
+  #+caption: The /or/ operation is true when either or both of its inputs are true.
+  #+begin_src gnuplot :var data="or.txt" :file my-or.png
+    reset
+    set nokey
+    set nocolorbox
+    set palette model RGB defined ( 0 "red", 1 "green" )
+    set xrange[-0.25:1.25]
+    set yrange[-0.25:1.25]
+    plot data u 1:2:3 with points ps 7 pt 7 lc palette variable
+#+end_src
 
-# This short @hyperlink["https://doi.org/10.1038/nbt1386"]{article} provides a nice example of linear separability and some basics of what a neural network is. 
+#+RESULTS: or
+[[file:my-data-plot.png]]
 
-**** Exercise XOR}
+- The "XOR" Operation/Function ::
+  #+Name: xor
+  #+caption: The /xor/ operation one and only one of its inputs are true.
+  #+begin_src gnuplot :var data="xor.txt" :file my-xor.png
+    reset
+    set nokey
+    set nocolorbox
+    set palette model RGB defined ( 0 "red", 1 "green" )
+    set xrange[-0.25:1.25]
+    set yrange[-0.25:1.25]
+    plot data u 1:2:3 with points ps 7 pt 7 lc palette variable
+#+end_src
 
-# Using only @italic{not}, @italic{and}, and @italic{or} operations draw the diagram that allows you to compute in two steps the @italic{xor} operation. You will need this to code it up as a perceptron.
+#+RESULTS: xor
+[[file:my-data-plot.png]]
 
-**** Connections}
-#   Can neural networks encode logic? Is the processing zeros and ones enough to capture the richness of human intellectual activity?
+\begin{cdbox}
+Can you draw the truth tables that match each of these graphs?
+\end{cdbox}
 
-# There is a long tradition of representing human thought as the consequence of some sort of calculation of two values (true or false). If you have two values you can swap out 1's and 0's for the true and false in your calculation. They even seem to obey similar laws. If you the conjunction (AND) of two true things it is only true when both are true. If you take T = 1, then T ∧ T is the same as @($"1~\\times~1").
+This short [[https://doi.org/10.1038/nbt1386][article]]provides a nice example of linear separability and some basics of what a neural network is. 
 
-# We will next build up a simple threshold neural unit and try to calculate some of these truth functions with our neuron. We will build simple neurons for truth tables (like those that follow), and string them together into an argument. Then we can feed values of T and F into our network and let it calculate the XOR problem.
+**** Exercise XOR
+
+  Using only *not*, *and*, and *or* operations draw the diagram that allows you to compute in two steps the *xor* operation. You will need this logic to code up a perceptron.
+
+**** Connections
+Can neural networks encode logic? Is the processing zeros and ones enough to capture the richness of human intellectual activity?
+
+There is a long tradition of representing human thought as the consequence of some sort of calculation of two values (true or false). If you have two values you can swap out 1's and 0's for the true and false in your calculation. They even seem to obey similar laws. The conjunction (AND) of two true things is only true when both are true. If you take T = 1, then T AND T is the same as \( 1~\times~1 \).
+
+  We will next build up a simple threshold neural unit and try to calculate some of these truth functions with our neuron. We will build simple neurons for truth tables (like those that follow), and string them together into an argument. Then we can feed values of T and F into our network and let it calculate the XOR problem.
 
 
-**** Boolean Logic}
-# George Boole, Author of the @italic{Laws of Thought}
+**** Boolean Logic
+George Boole, Author of the /Laws of Thought/.
 
-# @itemlist[@item{Read the @hyperlink["https://archive.org/details/investigationofl00boolrich"]{book} on Archive.org}
-#                @item{Read about @hyperlink["https://plato.stanford.edu/entries/boole/#LifWor"]{George Boole}}]
+[[https://archive.org/details/investigationofl00boolrich]]
+[[https://plato.stanford.edu/entries/boole/#LifWor]]
 
-****  First Order Logic - Truth Tables}
-# @bold{Or}
+****  First Order Logic - Truth Tables
+An example *Or*
 
-# @tabular[#:sep @hspace[1]
-#          (list (list @bold{Pr A} @bold{Pr B} @bold{Or})
-#                (list "0" "0" "0")
-#                (list "0" "1" "1")
-#                (list "1" "0" "1")
-#                (list "1" "1" "1"))]
 
-# @bold{And}
-
-# @tabular[#:sep @hspace[1]
-#          (list (list @bold{Pr A} @bold{Pr B} @bold{AND})
-#                (list "0" "0" "0")
-#                (list "0" "1" "0")
-#                (list "1" "0" "0")
-#                (list "1" "1" "1"))]
-
-# @bold{Nand}
-
-# @tabular[#:sep @hspace[1]
-#          (list (list @bold{Pr A} @bold{Pr B} @bold{NAND})
-#                (list "0" "0" "1")
-#                (list "0" "1" "1")
-#                (list "1" "0" "1")
-#                (list "1" "1" "0"))]
+| First | Second | Truth |
+|-------+--------+-------|
+|     0 |      0 | nil   |
+|     0 |      1 | t     |
+|     1 |      0 | t     |
+|     1 |      1 | t     |
 
 
 # @section{Not all Networks are the Same}
