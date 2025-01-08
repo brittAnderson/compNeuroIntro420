@@ -1,5 +1,5 @@
 #+STARTUP: nofold hideblocks
-#+Title: Computational Modeling for Psychology Students
+#+Title: P420 Working Notes
 #+author: Britt Anderson
 #+date: Winter 2025
 #+options: author:t broken-links:nil c:nil creator:nil
