@@ -91,7 +91,8 @@ Behind all of this is the idea that if you want to understand /mind/ you need to
 
 ***** Computing in Minds and Computers
 
-One definition of whether something is computable is whether there exists a Turing Machine that can compute it. Although most of us learned the name "Turing" in the context of whether a computer has human intelligence, the so-called /Turing test/, the model of Turing computability emerged from thinking about humans computing[cite:@Turing_2004]\marginpar{\raggedright A nice short version of this history can be found in [[https://link.springer.com/content/pdf/10.1007/978-3-642-31933-4.pdf][pdf]]}
+One definition of whether something is computable is whether there exists a Turing Machine that can compute it. Although most of us learned the name "Turing" in the context of whether a computer has human intelligence, the so-called /Turing test/, the model of Turing computability emerged from thinking about humans computing[cite:@Turing_2004][fn:5]
+
 
 ****** What is a Turing machine? Some Background and Details
 [[https://turingarchive.kings.cam.ac.uk/publications-lectures-and-talks-amtb/amt-b-12][Turing machines]] are quite simple implements. While one can build a physical Turing machine, the more usual sense of the term is for a hypothetical computer that is comprised of:
@@ -321,6 +322,9 @@ You might find the [[https://github.com/brittAnderson/compNeuroIntro420/blob/w20
 See if you can get a sense of what /functionalism/ means. 
 
 *** Footnotes
+
+[fn:5] A nice short version of this history can be found in this [[https://link.springer.com/content/pdf/10.1007/978-3-642-31933-4.pdf][pdf]].
+ 
 [fn:4] Much of this description of the Busy Beaver problem is lightly edited Wikipedia material. 
 
 [fn:3] The \lambda of lambda calculus doesn't really mean anything.It just signals that you have a lambda expression. Its creation as the symbol for the function calculus was an accident of notation and the limits of older typewriters.

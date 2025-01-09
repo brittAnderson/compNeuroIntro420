@@ -184,7 +184,7 @@ One of our first efforts will be to code a /perceptron/ to solve the XOR problem
 #+end_src
 
 #+RESULTS: and
-[[file:my-data-plot.png]]
+[[file:my-and.png]]
 
 - The "OR" Operation/Function ::
   #+Name: or
@@ -200,7 +200,7 @@ One of our first efforts will be to code a /perceptron/ to solve the XOR problem
 #+end_src
 
 #+RESULTS: or
-[[file:my-data-plot.png]]
+[[file:my-or.png]]
 
 - The "XOR" Operation/Function ::
   #+Name: xor
@@ -216,13 +216,13 @@ One of our first efforts will be to code a /perceptron/ to solve the XOR problem
 #+end_src
 
 #+RESULTS: xor
-[[file:my-data-plot.png]]
+[[file:my-xor.png]]
 
 \begin{cdbox}
 Can you draw the truth tables that match each of these graphs?
 \end{cdbox}
 
-This short [[https://doi.org/10.1038/nbt1386][article]]provides a nice example of linear separability and some basics of what a neural network is. 
+This short [[https://doi.org/10.1038/nbt1386][article]] provides a nice example of linear separability and some basics of what a neural network is. 
 
 **** Exercise XOR
 
@@ -252,6 +252,108 @@ An example *Or*
 |     0 |      1 | t     |
 |     1 |      0 | t     |
 |     1 |      1 | t     |
+
+
+*** Our First Neural Network: The Perceptron
+
+In many ways the Perceptron can be regarded as the first neural network ever.
+
+The perceptron (see Figure [[mark1]]) was the invention of a psychologist, [[http://dspace.library.cornell.edu/bitstream/1813/18965/2/Rosenblatt_Frank_1971.pdf][Frank Rosenblatt (pdf)]].  He was not a computer scientist. Though he obviously had a bit of the mathematician in him.
+
+#+Name: mark1
+#+caption: The Mark I computer for computing the perceptron's activity. Details can be found on [[https://en.wikipedia.org/wiki/Perceptron][Wikipedia's page]].
+[[file:~/gitRepos/compNeuroIntro420/rb/images/Mark_I_perceptron.jpeg]]
+
+For those of you interested in a very interesting, very long, reading might his 600 page [[https://babel.hathitrust.org/cgi/pt?id=mdp.39015039846566&view=1up&seq=9][Principles of Neurodynamics]] or this more accessible [[https://link.springer.com/book/10.1007/978-3-642-70911-1][historical review]].
+
+But a good intuition for Rosenblatt's frame of mind with this research can be gained just from the foreword:
+
+#+begin_quote
+For this writer, the perceptron program is not primarily concerned with the invention of devices for "artificial intelligence", but rather with investigating the physical structures and neurodynamic principles which under lie "natural intelligence". A perceptron is first and fore most a brain model, not an invention for pattern recognition. As a brain model, its utility is in enabling us to determine the physical conditions for the emergence of various psychological properties.
+#+end_quote
+
+
+**** The Perceptron Rules
+The algorithm the perceptron follows is simple enough to be done by hand. But before doing that take a minute to think what is trying to do. It is trying to go from one set of "weights" to another set of "weights". If you think of all the weights as coordinates in a Cartesian graph then you can visualize each cycle of updating as adding another point to the graph. Squint your eyes and the dots merge to a path. A path through the weight /space./ This is a dynamic process. A theme that we return to in a later Chapter (add link here).
+
+In short, the perceptron "rules" are the equations that characterize what a perceptron should do when it gets some input, computes and output and learns if its guess is right or wrong. It revises its behavior based on this feedback, and thus can be said to learn. A lot can be done with these simple equations.
+
+\( I = \sum_{i=1}^{n} w_i~x_i \)
+
+If \( I \ge T \) then \( y = +1 \) else if \( I < T \) then \( y = -1 \)
+
+If the answer was correct, then \( \beta = +1 \), else if the
+answer was incorrect then \( \beta = -1 \).
+
+The "T" in the above equation refers to the threshold. This is a user defined value that is usually set to zero for convenience. 
+
+Updating is done by \( \mathbf{w_{new}} =
+\mathbf{w_{old}} + \beta y \mathbf{x} \)
+
+IAMHERE
+# @section{You Are The Perceptron}
+
+# This is a pencil and paper exercise. Before coding it is often a good idea to try and work the basics out by hand. This may be a flow chart or a simple hand worked example. This both gives you a simple test case to compare your code against, but more importantly makes sure that you understand what you are trying to code. Let's make sure you understand how to compute the perceptron learning rule, but doing a simple case by hand.
+
+# Beginning with an input of @($ "\\begin{bmatrix}0.3 \\\\ 0.7 \\end{bmatrix}"), an initial set of weights of @($ "\\begin{bmatrix}-0.6 \\\\ 0.8 \\end{bmatrix}"), and a @bold{class} of 1. Compute the value of the new weight vector with pen and paper.
+
+# @subsection{A simple data set}
+
+# For these data there are two dimensions or features (the first and second columns) and the third colum represents their @italic{class}. 
+
+# @(racketblock (matrix [[ 0.3 0.7 1.0]
+#                       [-0.5 0.3 -1.0]
+#                       [0.7 0.3 1.0]
+#                       [-0.2 -0.8 -1.0]]))
+
+# Using the starting weight above write code to iteratively compute a new weight from each input and it's class and using the current weight. If you can, save each updated weight so you can see how they change, but if you can't still try to use a for construct to iterate through these data and see how the weights change.
+
+# In broad outlines you will need to decide on a data structure. You can use a matrix as I have here, but it may be easier to just use a list to start. For example @(racket (list (list 0.3 0.7) 1.0)). The first element of the list would be the input data and the last item the desired class. You could create a list of list of such elements to capture the matrix I have displayed above. 
+
+# This progressive updating of the weight vector is the @italic{learning}. Note that sometimes our initial weight vector classifies incorrectly. How does it do after one complete cycle through all the training examples?
+
+# @examples[#:label "Checking our Learned Weight For One Input"
+#          #:eval percep-eval
+#          (let ([in-class -1.0])
+#            (if (= (if (>= (matrix-ref
+#                            (matrix* (row-matrix [-0.6 0.3])
+#                                     (col-matrix [1.2 2.3])) 0 0) 0.0)
+#                       1 -1) in-class) "correct" "incorrect"))]
+
+# @subsection{What does it all mean? How is the Perceptron Learning?}
+
+# @examples[#:label "Changing Weights as Vectors"
+#           #:eval percep-plot-eval
+#           #:no-prompt
+#           (wt-plot (one-loop-through-data my-data (col-matrix [-0.6 0.8])))]
+
+# These functions and the @tt{my-data} are in the file @hyperlink["./../code/perceptron-rule.rkt"]{perceptron-rule.rkt}. Each time through the perceptron rule I compute the new weights and use the first position as the 'x' value and the second position as the 'y' value to plot vectors on an 'x-y' plane. You can imagine that as we iterate through the data we are rotating the vectors around an origin. The decision plane is perpendicular to the vectors and anchored at the bottom of the arrows. If you compare this to the location of the data points (which you can add to the plot by editing the functions in the linked file) you will see that the rule is learning to find the decision plane that puts all of one class on one side of the line and all of the other class on the other side. That is why it is limited to problems that are linearly separable!
+
+# @subsection{Bias}
+
+# These data were selected such that the base of the vector could separate them while anchored at zero. However, for many data sets you not only need to learn what direction to point the vector, but you also need to learn where to anchor the vector. This is done by including a @bold{bias weight}. Add an extra dimension to your weight vector and your inputs. For the inputs it will just be a constant value of 1.0, but this extra, bias weight, will also be learned and allows you to achieve, effectively, a translation away from the origin to be able to separate points that are more heterogeneously scattered. 
+
+# @subsubsection{Geometrical Thinking}
+# @itemlist[@item{What is the relation between the inner product of two vectors and the cosine of the angle between them?}
+# @item{What is the *sign* for the cosine of angles less than 90 degrees and those greater than 90 degrees?}
+# @item{ How do these facts help us to answer the question above?}
+# @item{ Why does this reinforce the advice to think /geometrically/ when thinking about networks and weight vectors?}]
+
+# @section{The Delta Rule - Homework}
+
+# The @bold{@italic{Delta Rule}} is another simple learning rule that is a minimal variation on the perceptron rule. It is used more frequently, and it has the spirit of Hebbian learning, which we will learn more about soon. The homework asks you to write code to test and train an artificial neuron using the delta learning rule. 
+
+# @itemlist[#:style 'ordered
+#           @item{For an easy start create some pseudo random linearly separable points on a a sheet of paper. Label one population as @bold{1} and the other population as @bold{-1}.}
+#           @item{For a more challenging set-up create the data programmatically using random numbers and some method that allows you to vary how close or distant the points are to the line of separation, and how many points there are to train on.}
+#           @item{The Delta Learning rule is: @($$ "\\Delta~w_i = x_i~\\eta(desired - observed)")}
+#           @item{Submit your code that has your test data in it. Start with an initial random weight and use the delta rule to learn the correct weighting to solve all your training examples. Then test on a new set of points that you did @bold{not} test on but that are classified according to the same rule. Your code should assess how well the @italic{trained} rule classifies the @italic{test} data.}]
+
+# I have @hyperlink["./../code/perceptron-rule.rkt"]{some code} for the perceptron that might give you some code you could adapt if you have trouble getting started. 
+
+# @generate-bibliography[#:sec-title "Perceptron Bibliography"
+#                        #:tag "ref:perceptron"]
+
 
 
 # @section{Not all Networks are the Same}
@@ -341,6 +443,3 @@ An example *Or*
 #           @item{Program an @bold{asynchronous} updating rule, run your network until it stabilizes, and then show that you get back what you put in.}
 #           @item{Then do the same for at least one disrupted pattern (where you   flipped a couple of bits around.)}]
 
-  
-# @generate-bibliography[#:sec-title "Hopfield Bibliography"
-#                        #:tag "ref:hopfield"]
