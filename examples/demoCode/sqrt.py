@@ -9,3 +9,5 @@ def get_cube_root (goal, initial_guess, tolerance) :
         cur_guess = cur_guess + get_step(cur_guess, goal)
         error = abs(xcubed(cur_guess) - goal)
     return(cur_guess)
+
+print(get_cube_root(141, 3.0, 0.01))

@@ -31,11 +31,6 @@
 
 
 **  Is Cognition Computation?
-*** Reviewing Last Week's Exercises and Assignments
-1. Reading Discussions
-2. Sharing Posters
-3. Revisiting some of our [[file:zero.org::#zero-high-level][key questions]] from last week. 
-
 *** Some Additional Questions For Computational Cognition:
   1. Is the brain a computer?
   2. What does it mean for something to be computable?
@@ -50,15 +45,11 @@ The technical challenges for modeling in psychology are mastering the mathematic
 
 In the late 1800s Ebbinghaus, using creative, and for their time, [[https://youtu.be/TGGr5Uc8_Bw][innovative, Herculean methodologies]], demonstrated that the proportion of items retained in memory declines predictably over time. The form of the forgetting curve is exponential. 
 
-
 \marginpar{\raggedright Is a mathematical formula that reproduces an observed behavioral pattern a model?}
-
-
 
 #+Name: forgetting-curve
 #+caption: By The original uploader was Icez at English Wikipedia.
 file:figs/Forgetting_curve_decline.svg
-
 
 #+begin_src gnuplot :file my-data-plot.png
   reset
@@ -87,7 +78,7 @@ As revealed in [cite:@bayne19_what_is_cognit] there are a wide array of views on
 **** Introduction
 Is there a difference between computational cognitive neuroscience and cognitive computational neuroscience? The former seems to suggest that we are interested in explaining cognition directly from the actions of neurons and then using computational tools as adjuncts to aid this attempt. On the other hand, when you reverse the order it seems as if you are trying to explain thinking via the computational accounts of neuronal function. The latter seems to require a clear link between notions of computation and models of thinking. To use Marr's three levels as a scaffold[cite:@McClamrock_1991]\marginpar{\raggedright This reference is an older one, and not the original, but it does use LISP as its example, which is the classic example of good old fashioned AI.}; we are taking neurons as our implementation, positing algorithms for them, and assuming that computational principles populate the level of our cognitive abstractions. Measures of success depend on the meanings of terms.
 
-Behind all of this is the idea that if you want to understand /mind/ you need to first develop a /theory/. Explanations offered in words only are really more proto-theories than theories because of their imprecision. To express a theory clearly and unambiguously you need to /formalize/ it. Either you express it as /math/ or you can /code/ it. Let's explores the distinction between computation as implementation and computation as the basis for mind\marginpar{\raggedright What are Marr's three levels?}.
+<<theory>>Behind all of this is the idea that if you want to understand /mind/ you need to first develop a /theory/. Explanations offered in words only are really more proto-theories than theories because of their imprecision. To express a theory clearly and unambiguously you need to /formalize/ it. Either you express it as /math/ or you can /code/ it. Let's explores the distinction between computation as implementation and computation as the basis for mind\marginpar{\raggedright What are Marr's three levels?}.
 
 ***** Computing in Minds and Computers
 
@@ -104,6 +95,8 @@ One definition of whether something is computable is whether there exists a Turi
 
 ******* Classroom Activity
 Let's develop pseudo-code for the implementing a Turing Machine
+
+
 
 ****** The Lambda Calculus
   
@@ -227,7 +220,7 @@ Why Racket? Because I don't want you to copy my code. I want you to see the stru
 #+begin_src racket :exports code
 (struct turing-machine (state tape head-location) #:transparent #:mutable)]
 #+end_src
-
+;,
 #+Name: tape-movement
 #+caption: Moving our TM Along the Tape
 #+begin_src racket :exports code
