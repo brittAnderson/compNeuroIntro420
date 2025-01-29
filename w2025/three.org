@@ -1,7 +1,8 @@
-#+STARTUP: nofold hideblocks
+ #+STARTUP: nofold hideblocks
 #+options: toc:nil
 #+Latex_Header: \usepackage{mdframed}
 #+latex_header: \usepackage{hyperref}
+#+latex_header: \usepackage{amsmath}
 #+latex_header: \usepackage{amsthm}
 #+latex_header_extra: \newmdenv[linecolor=red,frametitle=Class Discussion]{cdbox}
 #+latex_header_extra: \newmdenv[linecolor=red,frametitle=Further Class Discussion]{fcdbox}
@@ -27,8 +28,74 @@ To motivate our learning, and to put a human face on the project these two links
 **** Podcast on the Hopfield Network
 This [[https://theoreticalneuroscience.no/thn22/][theoretical neuroscience podcast]] gives a nice long look at the Hopfield Network. It works up to its creation, its abstraction, and it social impact on shaping the field of computational neuroscience. It is long, but, if you make your way through it you will have a good overview of the model before you start coding it.
 
-*** The Math That Underlies Neural Networks?
-**** Linear Algebra
+
+\begin{cdbox}
+\begin{itemize}
+\item{What is a neural network?}
+\item{What mathematics are needed to build a neural network?}
+\item{How can neural networks help us understand cognition?}
+\end{itemize}
+\end{cdbox}
+
+*** Cellular Automata
+\marginpar{\raggedright Match these features to facts about neurons. Extend them to what you believe will be their application in neural networks.} As a first illustration of some of the key ideas we will execute a simple cellular automata rule. What I hope to emphasize through this exercise is that whenever you can get the computer to do a repetitive task do so. It will do it much better than you. And even if it takes you days to get the program right for many task you will quickly save the time in the long run. Second, we are using a simple rule (as you will shortly see). But even though the rule is local it yields impressive global structure. And very slight tweaks in this local rule can lead to large macroscopic changes. While the variation in our rule is very limited the array of behaviors we can observe is vast. 
+
+**** Drawing Cellular Automata
+
+1. Pick a number between 0 and 255 inclusive. Tell it to me when I ask.
+2. Compute your rule. You write the configurations on top, and you write the base two representation of your number below. Like this for rule number 110.
+   
+   | 111 | 110 | 101 | 100 | 011 | 010 | 001 | 000 |
+   |-----+-----+-----+-----+-----+-----+-----+-----|
+   |   0 |   1 |   1 |   0 |   1 |   1 |   1 |   0 |
+3. Using your rule and your piece of graph paper start implementing your rule after coloring a single square in the middle of the top row "black" (equals 1).
+4. Drop down one row and working from left to right color in the squares based on the three squares in the row above them.
+5. The idea is something like this:
+   #+Name: fig-grid
+   #+Caption: An illustration of which three squares in the row above influence the coloring of your grid. 
+   [[file:~/gitRepos/compNeuroIntro420/rb/images/grid.png]]
+6. Do this for several rows. 
+
+*What you probably noticed*
+
+This process is tedious and mistake prone. One good reason for translating your theoretical ideas into code is so that you are not tripped up by such rote errors. Another thing to notice is that your "rule" is like a computer function. There is an input (the colors of the three squares above), processing, and an output of what color. In addition to this mechanical intuition a function can also be conceived as a set of pairs. The first element of the pair is the input, and the second element of the pair is the output.
+
+#+Name: 22-cl-png
+#+Caption: Invocation of Common Lisp Code for Generating a PNG file of Rule 22
+#+begin_src lisp :results graphics file :file "./images/r22.png" :exports both
+  (load "/home/britt/gitRepos/compNeuroIntro420/codeLib/cl/cellular-automata.lisp")
+  (in-package :CA)
+  (rule-num-to-png 22 "./images/r22.png")
+#+end_src
+
+#+Name: r22-png
+#+Caption: Rule 22
+#+RESULTS: 22-cl-png
+[[file:./images/r22.png]]
+
+*Lessons Learned*
+- Repetitive actions are hard. We (humans) make mistakes following even simple rules for a large number of repeated steps. Better to let the computer do it since that is where its strengths lie.
+- Complex global patterns can emerge from local actions. Each neuron is only responding to its immediate right and left yet global structures emerge.
+- These characteristics seem similar to brain activity. Each neuron in the brain is just one of many. Whether a neuron spikes or not is a consequence of its own state and its inputs (like the neighbors in the grid example).
+- From each neuron making a local computation, global patterns of complex activity can emerge.
+- Maybe by programming something similar to this system we can get insights into brain activity.
+
+
+\begin{cdbox}
+ There are [[file:~/gitRepos/compNeuroIntro420/codeLib/cl/cellular-automata.lisp][common lisp]], [[file:~/gitRepos/compNeuroIntro420/codeLib/rkt/ca.rkt][racket]], versions of this code. Can you write your own? Can you write code to automate your rule?
+\end{cdbox}
+
+*** More Lessons from Cellular Automata
+
+Complex entities may have simple representations if the right language for expression can be found. Concision and repeatability are by-products. 
+
+There are also more dynamic versions of this idea. The "[[https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life][Game of Life]]" is one of the more famous.
+
+Following up on the analogy to neurons, one humanity's most brilliant examples: John von Neumann, was working on a [[https://complexityexplorer.s3.amazonaws.com/supplemental_materials/5.6+Artificial+Life/The+Computer+and+The+Brain_text.pdf][book]] (see also the [[http://www.ams.org/bull/1958-64-03/S0002-9904-1958-10214-1/S0002-9904-1958-10214-1.pdf][commentary]]) about automata and the brain at the time of his death.
+
+*** Linear Algebra
+Show me the math!
+
 
 The math at the heart of neural networks and their computer implementation is *linear algebra*. For us, the section of linear algebra we are going to need is mostly limited to vectors, matrices and how to add and multiply them.
 
@@ -36,7 +103,7 @@ The math at the heart of neural networks and their computer implementation is *l
 What makes linear algebra linear?
 \end{cdbox}
 
-***** Important Objects and Operations
+**** Important Objects and Operations
   - Vectors
   - Matrices
   - Scalars
@@ -55,81 +122,43 @@ def matA : Array (Array Int8) := #[#[1,2],#[3,4]]
 
 def matB : Array (Array Int8) := #[#[3,4],#[1,2]]
 
-def addMat (m n : Array (Array Int8)) := m.zipWith n (fun rm rn => rm.zipWith rn (fun a b => a + b))
+def addMat (m n : Array (Array Int8)) :=
+  m.zipWith n
+    (fun rm rn => rm.zipWith rn
+      (fun a b => a + b))
 
 #eval addMat matA matB
 
 #+end_src
 
-  
-**** Adding Matrices                                       
-To gain some hands on familiarity with the manipulation of matrices and vectors we will try to do some hand and programming exercises for some of the fundamental operations of addition and multiplication. We will also thereby learn that some of the rules we learned for numbers (such as a * b = b * a) do not always apply in other mathematical realms.
+\begin{fcdbox}
+Can you demonstrate that matrix multiplication is not commutative?
+\end{fcdbox}
 
-There are in fact many ways to think about what a vector is. 
-
-It can be thought of as a column (or row of numbers).
-More abstractly it is an object (arrow) with magnitude and direction.
-Most abstractly it is anything that obeys the requirements of a vector space. 
+**** Thinking Abstractly
+There are in fact many ways to think about what a vector is. It can be thought of as a column (or row of numbers). More abstractly it is an object (arrow) with magnitude and direction. Most abstractly it is anything that obeys the requirements of a [[https://en.wikipedia.org/wiki/Vector_space][vector space]]. 
 
 For particular circumstances one or another of the different definitions may serve our purposes better. In application to neural networks we often just use the first definition, a column of numbers, but the second can be more helpful for developing our geometric intuitions about what various learning rules are doing and how they do it.  
 
-Similarly, we often just consider a matrix as a collection of vectors or as a rectangular (2-D) collection of numbers.
-
-**** Activity
-In your programming language of choice find the package (sometimes also called a library) that has the construct of a "vector".  Is it the same thing as the vector described above? If not, make sure you find the equivalent construct for your programming language. Make sure you can use it to create two vectors and computer their scalar product. Be prepared to demonstrate this for the class.
-
-#+Name:linalgrktdemo
-#+Caption: This demonstrates the idea for the racket programming language where the library for dealing with vector like things is called ~math/matrix~.
-#+begin_src racket :eval never
-(require math/matrix)
-(define a-mat (matrix [[1 2 3]]))
-(define b-mat (matrix [[4 5 6]]))
-;adding two vectors
-(matrix+ a-mat b-mat)
-(matrix* a-mat (matrix-transpose b-mat))
-#+end_src
-
-
-
-*Important*: many programming languages have structures called vectors that refer to their organization in memory, not their mathematical character. Don't just assumed that "vector" is what you are looking for.
-
-\begin{fcdbox}
-Make two arrays and make them the same size. Then add them. What is the \textit{size} of a matrix?
-\end{fcdbox}
-
-#+Name: lean4addmats
-#+Caption: My effort to do this in lean4.
-#+begin_src lean4 :eval never :export source
-    def matA : Array (Array Int8) := #[#[1,2],#[3,4]] 
-
-    def matB : Array (Array Int8) := #[#[3,4],#[1,2]]
-
-    def addMat (m n : Array (Array Int8)) :=
-    m.zipWith n (fun rm rn => rm.zipWith rn
-    (fun a b => a + b))
-
-    #eval addMat matA matB
-
-#+end_src
-
-
-Do the same for matrix multiplication. Note that there are particular requirements for the sizes of matrices in order that it is possible to multiply them in both directions. What is that rule?
+Similarly, we may consider a matrix as a collection of vectors or it may be more convenient to think of it as a rectangular array of numbers.
 
 \begin{cdbox}
-What is the name for the property of having A*B = B*A?
+What is the library or packge in the programming language that you will use for this course that has vectors and matrix functions?
 \end{cdbox}
-
 
 **** Common Notational Conventions for Vectors and Matrices
 
 Vectors tend to be notated as /lower case/ letters, often in bold, such
-as $\textbf{a}$. They are also occasionally represented with little
+as \textbf{a}. They are also occasionally represented with little
 arrows on top such as \( \overrightarrow{\textbf{a}} \).
 
 Matrices tend to be notated as /upper case/ letters, typically in bold,
 such as \( \mathbf{M} \).
 
 Good things to know: what is an inner product? How does it differ from a scalar product. Can you write code in your preferred language for the inner product?
+
+*** Neural Networks Redux
+
 
 *** What is a Neural Network?
 
@@ -165,10 +194,6 @@ Questions:
 One of our first efforts will be to code a /perceptron/ to solve the XOR problem. In order for this to happen you should know a bit about /Boolean/ functions and what an XOR problem actually is. 
 
 ***** Examples of Boolean Functions and How They Map onto our Neural Network Intuitions
-
-
-
-
 
 - The "AND" Operation/Function ::
   #+Name: and
@@ -223,6 +248,7 @@ Can you draw the truth tables that match each of these graphs?
 \end{cdbox}
 
 This short [[https://doi.org/10.1038/nbt1386][article]] provides a nice example of linear separability and some basics of what a neural network is. 
+
 
 **** Exercise XOR
 
@@ -290,69 +316,56 @@ The "T" in the above equation refers to the threshold. This is a user defined va
 Updating is done by \( \mathbf{w_{new}} =
 \mathbf{w_{old}} + \beta y \mathbf{x} \)
 
-IAMHERE
-# @section{You Are The Perceptron}
+**** Be The Perceptron
 
-# This is a pencil and paper exercise. Before coding it is often a good idea to try and work the basics out by hand. This may be a flow chart or a simple hand worked example. This both gives you a simple test case to compare your code against, but more importantly makes sure that you understand what you are trying to code. Let's make sure you understand how to compute the perceptron learning rule, but doing a simple case by hand.
+This is a pencil and paper exercise. Before coding it is often a good idea to try and work the basics out by hand. This may be a flow chart or a simple hand worked example. This both gives you a simple test case to compare your code against, but more importantly makes sure that you understand what you are trying to code. Let's make sure you understand how to compute the perceptron learning rule, but doing a simple case by hand.
 
-# Beginning with an input of @($ "\\begin{bmatrix}0.3 \\\\ 0.7 \\end{bmatrix}"), an initial set of weights of @($ "\\begin{bmatrix}-0.6 \\\\ 0.8 \\end{bmatrix}"), and a @bold{class} of 1. Compute the value of the new weight vector with pen and paper.
+Beginning with an input of 0.3 0.7
 
-# @subsection{A simple data set}
+And an initial set of weights of
+-0.6 0.8
 
-# For these data there are two dimensions or features (the first and second columns) and the third colum represents their @italic{class}. 
+and a class of 1.
 
-# @(racketblock (matrix [[ 0.3 0.7 1.0]
-#                       [-0.5 0.3 -1.0]
-#                       [0.7 0.3 1.0]
-#                       [-0.2 -0.8 -1.0]]))
+Compute the value of the new weight vector with pen and paper.
 
-# Using the starting weight above write code to iteratively compute a new weight from each input and it's class and using the current weight. If you can, save each updated weight so you can see how they change, but if you can't still try to use a for construct to iterate through these data and see how the weights change.
+*Next steps.* Consider this as the data matrix where the first two elements in a row are the two inputs and the third element in a row is the "class" of the output.
 
-# In broad outlines you will need to decide on a data structure. You can use a matrix as I have here, but it may be easier to just use a list to start. For example @(racket (list (list 0.3 0.7) 1.0)). The first element of the list would be the input data and the last item the desired class. You could create a list of list of such elements to capture the matrix I have displayed above. 
+\(\begin{bmatrix}
+0.3 & 0.7 & 1.0 \\
+-0.5 & 0.3 & -1.0 \\
+0.7 & 0.3 & 1.0 \\ 
+-0.2 & -0.8 & q-1.0
+\end{bmatrix} \)
 
-# This progressive updating of the weight vector is the @italic{learning}. Note that sometimes our initial weight vector classifies incorrectly. How does it do after one complete cycle through all the training examples?
+using the starting weight -0.6 0.8 try a few cycles through the data by hand and then move on to writing the perceptron rule into code so that you can automate the updating step. Racket code for some of these functions can be found [[file:~/gitRepos/compNeuroIntro420/codeLib/rkt/perceptron-rule.rkt][here]]. 
 
-# @examples[#:label "Checking our Learned Weight For One Input"
-#          #:eval percep-eval
-#          (let ([in-class -1.0])
-#            (if (= (if (>= (matrix-ref
-#                            (matrix* (row-matrix [-0.6 0.3])
-#                                     (col-matrix [1.2 2.3])) 0 0) 0.0)
-#                       1 -1) in-class) "correct" "incorrect"))]
+***** More Abstract Thinking
+Each time through the perceptron rule new weights are computed. Imagine these two weights as coordinates for the head of a vector with its base at the origin of a Cartesian plane. Imagine as you iterate that you are rotating your weight vector around an origin.
 
-# @subsection{What does it all mean? How is the Perceptron Learning?}
+The decision plane for your network is perpendicular to the vectors and is anchored at the bottom of the arrow. If you could compare this plane to the location of the data points you would see that the rule is learning to find the decision plane that puts all of one class on one side of the line and all of the other class on the other side. That is why it is limited to problems that are linearly separable.
 
-# @examples[#:label "Changing Weights as Vectors"
-#           #:eval percep-plot-eval
-#           #:no-prompt
-#           (wt-plot (one-loop-through-data my-data (col-matrix [-0.6 0.8])))]
+****** Bias is a Good Thing (at least here it is)
 
-# These functions and the @tt{my-data} are in the file @hyperlink["./../code/perceptron-rule.rkt"]{perceptron-rule.rkt}. Each time through the perceptron rule I compute the new weights and use the first position as the 'x' value and the second position as the 'y' value to plot vectors on an 'x-y' plane. You can imagine that as we iterate through the data we are rotating the vectors around an origin. The decision plane is perpendicular to the vectors and anchored at the bottom of the arrows. If you compare this to the location of the data points (which you can add to the plot by editing the functions in the linked file) you will see that the rule is learning to find the decision plane that puts all of one class on one side of the line and all of the other class on the other side. That is why it is limited to problems that are linearly separable!
+These data were selected such that the base of the vector could separate them while anchored at zero. However, for many data sets you not only need to learn what direction to point the vector, but you also need to learn where to anchor the vector. This is done by including a @bold{bias weight}. Add an extra dimension to your weight vector and your inputs. For the inputs it will just be a constant value of 1.0, but this extra, bias weight, will also be learned and allows you to achieve, effectively, a translation away from the origin to be able to separate points that are more heterogeneously scattered. 
 
-# @subsection{Bias}
 
-# These data were selected such that the base of the vector could separate them while anchored at zero. However, for many data sets you not only need to learn what direction to point the vector, but you also need to learn where to anchor the vector. This is done by including a @bold{bias weight}. Add an extra dimension to your weight vector and your inputs. For the inputs it will just be a constant value of 1.0, but this extra, bias weight, will also be learned and allows you to achieve, effectively, a translation away from the origin to be able to separate points that are more heterogeneously scattered. 
+****** Geometrical Thinking
+- What is the relation between the inner product of two vectors and the cosine of the angle between them?
+- What is the *sign* for the cosine of angles less than 90 degrees and those greater than 90 degrees?
+- How do these facts help us to answer the question above?
+- Why does this reinforce the advice to think /geometrically/ when thinking about networks and weight vectors?
 
-# @subsubsection{Geometrical Thinking}
-# @itemlist[@item{What is the relation between the inner product of two vectors and the cosine of the angle between them?}
-# @item{What is the *sign* for the cosine of angles less than 90 degrees and those greater than 90 degrees?}
-# @item{ How do these facts help us to answer the question above?}
-# @item{ Why does this reinforce the advice to think /geometrically/ when thinking about networks and weight vectors?}]
+*** The Delta Rule - Homework
 
-# @section{The Delta Rule - Homework}
+The *Delta Rule* is another simple learning rule that is a minimal variation on the perceptron rule. It is used more frequently, and it has the spirit of Hebbian learning, which we will learn more about soon. The homework asks you to write code to test and train an artificial neuron using the delta learning rule. 
 
-# The @bold{@italic{Delta Rule}} is another simple learning rule that is a minimal variation on the perceptron rule. It is used more frequently, and it has the spirit of Hebbian learning, which we will learn more about soon. The homework asks you to write code to test and train an artificial neuron using the delta learning rule. 
 
-# @itemlist[#:style 'ordered
-#           @item{For an easy start create some pseudo random linearly separable points on a a sheet of paper. Label one population as @bold{1} and the other population as @bold{-1}.}
-#           @item{For a more challenging set-up create the data programmatically using random numbers and some method that allows you to vary how close or distant the points are to the line of separation, and how many points there are to train on.}
-#           @item{The Delta Learning rule is: @($$ "\\Delta~w_i = x_i~\\eta(desired - observed)")}
-#           @item{Submit your code that has your test data in it. Start with an initial random weight and use the delta rule to learn the correct weighting to solve all your training examples. Then test on a new set of points that you did @bold{not} test on but that are classified according to the same rule. Your code should assess how well the @italic{trained} rule classifies the @italic{test} data.}]
+- For an easy start create some pseudo random linearly separable points on a a sheet of paper. Label one population as *1* and the other population as *-1*.
+- For a more challenging set-up create the data programmatically using random numbers and some method that allows you to vary how close or distant the points are to the line of separation, and how many points there are to train on.
+- The Delta Learning rule is: \( \Delta~w_i = x_i~\eta(desired - observed) \)
+- Submit your code that has your test data in it. Start with an initial random weight and use the delta rule to learn the correct weighting to solve all your training examples. Then test on a new set of points that you did not test on but that are classified according to the same rule. Your code should assess how well the trained rule classifies the test data.
 
-# I have @hyperlink["./../code/perceptron-rule.rkt"]{some code} for the perceptron that might give you some code you could adapt if you have trouble getting started. 
-
-# @generate-bibliography[#:sec-title "Perceptron Bibliography"
-#                        #:tag "ref:perceptron"]
 
 
 
@@ -370,19 +383,19 @@ IAMHERE
 #         @elem{Hopfield Recurrent Connections}
 #         @elem{@(hopfield-net)}]
 
-**** How does a network like this work?}
+# **** How does a network like this work?}
 # @itemlist[@item{Each node has a value.}
 #                @item{Each of those arrowheads has an associated weight.}
 #                @item{The line with the "x" indicates that there are no self connections.}
 #                @item{All other connections for all other units are present and go in both directions.}]
 
-**** Test your understanding:}
+# **** Test your understanding:}
 # @itemlist[#:style 'ordered @item{Tell me what the input for a network like this with four nodes should look like it terms of the linear algebra constructs we have talked about.}
 #           @item{A weight is a number associated to each connection. Tell me what the weights should look like in terms of the linear algebra constructs.}
 #           @item{How might we conceive of "running" the network for one cycle in terms
 #    of the above.}]
 
-**** A Worked Example}
+# **** A Worked Example}
 # Inputs can be thought of as vectors. Although I have drawn the network like a square that shape is really independent of the structure of data flow. Each node needs an input and each node will need a weighted contact to all the other nodes. Consider the following two input patterns and the following weight matrix.  
 #   @($$ "A = \\{1,0,1,0\\}^T")
 
@@ -409,7 +422,7 @@ IAMHERE
 
 # To understand why this is the case, ask yourself whether A or B is @bold{closer} to this test input? This will hopefully lead you to reflect on what it means, in this context, for one vector to be "closer" to another. 
 
-**** Distance Metrics}
+# **** Distance Metrics}
 # Metrics relate to measurement. For some operation to be a distance metric it should meet three intuitive requirements and one that is maybe not as obvious. To measure the distance between two things we need an operation that is binary. That is, it takes two inputs. In this case that would be our two vectors. It's result should always be @bold{Non-negative}. A negative distance would clearly be meaningless. Our output should be @bold{symmetric}. Meaning that @($"d(A,B)~d(B,A)"). The distance from Waterloo to Toronto ought to come out as the same as going from Toronto to Waterloo. Our metric should be @bold{reflexive}. The distance from anything to itself ought to be zero. Lastly, to be a distance metric, our operation must obey the @hyperlink["https://en.wikipedia.org/wiki/Triangle_inequality"]{@bold{triangle inequality}}
 
 # Now, to understand what the network did, consider your distance measure to be the number of mismatched bits. This metric is called the Hamming distance.
@@ -418,7 +431,7 @@ IAMHERE
 
 # For perceptrons we talked about how the weight vector moved the direction it pointed. Here we don't have the weight vector moving, but you can visualize what is happening as updating a point in space. When we first input our four element vector we have a location in 4-D space. We multiply the first row of our weight matrix against our column of the input vector and we see, in effect, what is the effect on our first element (node) of all the other weighted inputs coming in to it. We then "update" that location. Maybe we flip it from a 1 to a zero (or vice versa). Then we try the next row of the weight matrix to see what happens to the second element. As we change the values of our nodes we are creating new points. The sequence of points is a trajectory that we are tracing in the input space. In this simple situation here we only require one pass to reach the final location, but in other settings we might not. In that case we just keep repeating the process until we do. One of the wonderful insights that Hopfield had was that by conceptualizing this process as an "energy" he could mathematically prove that the process would always reach a resting place.
 
-**** Hebb's @hyperlink["https://en.wikipedia.org/wiki/Outer_product"]{Outer Product} Rule}
+# **** Hebb's @hyperlink["https://en.wikipedia.org/wiki/Outer_product"]{Outer Product} Rule}
 # @margin-note{Why is this learning rule called "Hebb's"? And if you don't know who Hebb is let's take a moment to figure that out.}
 
 # The strength of a change in a connection is proportionate to the product of the input and outputs, i.e. @($$ "\\Delta A[i,j] = \\eta f[j]g[i]") and @($$ "g[i] = \\sum_j~A[i,j]~f[j]") therefore, @($$ "\\vec{g} = \\mathbf{Af}"). @margin-note{Does it matter that the (\mathbf{W}) comes first?}
@@ -442,4 +455,5 @@ IAMHERE
 #    Where N is the size of the patterns, that is how many "neurons". @($ "\\mu") is an index for each of the patterns, and @($"i") and @($"j") refer to the neurons in the pattern @($ "\\mu"). Do this @bold{in code}. The computer is good   for this manual, repetitive sort of stuff.}
 #           @item{Program an @bold{asynchronous} updating rule, run your network until it stabilizes, and then show that you get back what you put in.}
 #           @item{Then do the same for at least one disrupted pattern (where you   flipped a couple of bits around.)}]
+
 
