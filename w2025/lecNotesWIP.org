@@ -1,0 +1,41 @@
+#+STARTUP: nofold hideblocks
+#+Title: P420 Working Notes
+#+author: Britt Anderson
+#+date: Winter 2025
+#+options: author:t broken-links:nil c:nil creator:nil
+#+options: d:(not "LOGBOOK") date:t e:t email:nil expand-links:t f:t
+#+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t
+#+options: tasks:t tex:t timestamp:t title:t toc:t todo:t |:t
+#+latex_class: book-noparts
+#+latex_footnote_command: \footnote{%s%s}
+#+latex_engraved_theme:
+#+latex_compiler: pdflatex
+#+latex_header: \usepackage{svg}
+#+Latex_Header: \usepackage{mdframed}
+#+latex_header: \usepackage{hyperref}
+#+latex_header: \usepackage{amsthm}
+#+latex_header_extra: \newmdenv[linecolor=red,frametitle=Class Discussion]{cdbox}
+#+latex_header_extra: \newmdenv[linecolor=red,frametitle=Further Class Discussion]{fcdbox}
+#+latex_header_extra: \newtheorem{definition}{Definition}
+#+bibliography: /home/britt/gitRepos/masterBib/bayatt.bib
+#+cite_export: csl /home/britt/gitRepos/brittsite/assets/chicago-fullnote-bibliography.csl
+
+#+begin_src elisp :export none :results silent
+  (load "/home/britt/gitRepos/compNeuroIntro420/w2025/book-noparts.el")
+#+end_src
+
+#+Include: zero.org :lines "5-"
+
+#+include: one.org :lines "32-"
+
+#+include: two.org :lines "14-"
+
+#+include: three.org :lines "15-"
+
+#+include: four.org :lines "15-"
+
+
+* Local variables :noexport:
+# local variables:
+# org-latex-pdf-process: ("pdflatex --interaction=nonstopmode %f" "biber %b" "pdflatex --interaction=nonstopmode %f" "pdflatex --interaction=nonstopmode --synctex=-1 %f")
+# end:
