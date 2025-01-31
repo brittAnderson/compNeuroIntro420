@@ -62,7 +62,7 @@ This process is tedious and mistake prone. One good reason for translating your 
 
 #+Name: 22-cl-png
 #+Caption: Invocation of Common Lisp Code for Generating a PNG file of Rule 22
-#+begin_src lisp :results graphics file :file "./images/r22.png" :exports both
+#+begin_src lisp :results graphics file :file "~/gitRepos/compNeuroIntro420/w2025/images/r22.png" :exports both
   (load "/home/britt/gitRepos/compNeuroIntro420/codeLib/cl/cellular-automata.lisp")
   (in-package :CA)
   (rule-num-to-png 22 "./images/r22.png")
