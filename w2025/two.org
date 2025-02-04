@@ -1,14 +1,20 @@
 #+STARTUP: nofold hideblocks
 #+options: toc:nil
-#+Latex_Header: \usepackage{mdframed}
-#+latex_header: \usepackage{hyperref}
-#+latex_header_extra: \newmdenv[linecolor=red,frametitle=Class Discussion]{cdbox}
-#+latex_header_extra: \newmdenv[linecolor=red,frametitle=Further Class Discussion]{fcdbox}
-#+bibliography: /home/britt/gitRepos/masterBib/bayatt.bib
-#+cite_export: csl /home/britt/gitRepos/brittsite/assets/chicago-fullnote-bibliography.csl
 #+Title: CMPS 02
 #+author: Britt Anderson
 #+date: Winter 2025
+#+latex_header: \usepackage{hyperref}
+#+latex_header: \usepackage{amsmath}
+#+latex_header: \usepackage{amsthm}
+#+LATEX_HEADER: \usepackage{mdframed}
+#+Latex_header: \usepackage{tcolorbox}
+#+Latex_header: \usepackage{svg}
+#+LATEX_HEADER: \renewenvironment{quote}{\begin{mdframed}[backgroundcolor=gray!10]}{\end{mdframed}}
+#+latex_header_extra: \newtheorem{definition}{Definition}
+#+latex_compiler: xelatex
+#+HTML_HEAD: <style> blockquote {margin-bottom: 10px; padding: 10px; background-color: #DCDCDC; border-left: 2px solid #ffeb8e; border-left-color: rgb(255, 10, 10); display: block; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 40px; margin-inline-end: 40px;} </style>
+#+bibliography: /home/britt/gitRepos/masterBib/bayatt.bib
+#+cite_export: csl /home/britt/gitRepos/brittsite/assets/chicago-fullnote-bibliography.csl
 
 
 ** Further Philosophical Digressions on Computation, Mind and Modeling
@@ -18,11 +24,9 @@
 One of the schools of thought in the domain of Philosophy of Mind , [[https://plato.stanford.edu/entries/functionalism/][functionalism]], comes up a lot in computational modeling. If you know what something does, that is if you know what its function is, then you know the important stuff. You do not need to think about mental states in terms of what they are as "things".
 Mental states serve a functional role in a cognitive system. The important thing is how they relate to the sensory input, motor output and to /each other.
 
-#+begin_src latex
-\begin{cdbox}
+#+Begin_quote
 If you accept that the mind is a computational machine, and that for all computable problems an equivalent Turing machine exits, does that require you accept that any functionally equivalent computational system, regardless of its hardware (i.e. it could be vacuum tubes or the population of China) would be a mind?
-\end{cdbox}
-#+end_src
+#+End_quote
 
 The variety of  functionalism closest to our Turing machine is probably /machine state functionalism}. 
 
@@ -40,11 +44,9 @@ Do you have refutations for these arguments?
 Here are some alternatives to a computational theory of mind. I do not understand many of them well myself. Maybe you can explain them to me.          
    - Logical Behaviorism :: Mental states are predispositions to behave. There is no internal state corresponding to belief that is mental. Belief is only a predisposition to behave in a certain way in a certain context.  We characterize people by what they are likely to do without ascribing to them associated mental states. The person who first developed this idea, Gilbert Ryle, asserts that being a mentalist is incompatible with being a realist (that is it makes you a dualist). Logical behaviorism  does not seem to be much in vogue now, but it is another take on the important issues [cite:@Schuette_2008].
    - Type-Identity Theory :: Mental states just "are" brain states.
-#+begin_src latex
-\begin{cdbox}
+#+Begin_quote
 Since our brains are different from time to time (synaptic weights change; cells die (and a few born)) does that mean we never have the same mental state twice? Since no two people have the same brain does that mean no two people ever have the same mental states?
-\end{cdbox}
-#+end_src
+#+end_quote
 
 *** Alternatives to the Turing Machine Model of Computation
 Although the Turing Machine account of computation seems to dominate examples in psychology and neuroscience this may be an artifact of the example of the Turing Test [cite:@TURING_1950] as a prominent example of evaluating machine intelligence. There are other formal theories of computation, and as stated above they are all conjectured to be equivalent.

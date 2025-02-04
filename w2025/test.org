@@ -15,6 +15,7 @@
 #+HTML_HEAD: <style> blockquote {margin-bottom: 10px; padding: 10px; background-color: #DCDCDC; border-left: 2px solid #ffeb8e; border-left-color: rgb(255, 10, 10); display: block; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 40px; margin-inline-end: 40px;} </style>
 #+LATEX_HEADER: \usepackage{mdframed}
 #+Latex_header: \usepackage{tcolorbox}
+#+latex_header: \usepackage{tikz}
 #+LATEX_HEADER: \renewenvironment{quote}{\begin{mdframed}[backgroundcolor=gray!10]}{\end{mdframed}}
 
 
@@ -30,3 +31,13 @@ Mor text and a quote:
 #+begin_quote
 Now is the time for all good men to come to the aid of their party. 
 #+end_quote
+
+#+Begin_src latex :results raw
+\begin{tikzpicture}
+    draw (-1.0,1.0)  node (A) {N1};
+    draw (1.0 , 1.0) node (B) {N2};
+    draw (-1.0 , -1.0) node (C) {N3};
+    draw (1.0 , -1.0) node (D) {N4};
+\end{tikzpicture}
+#+end_src
+

@@ -1,22 +1,25 @@
 #+STARTUP: nofold hideblocks
 #+options: toc:nil
-#+Latex_Header: \usepackage{mdframed}
-#+latex_header: \usepackage{hyperref}
-#+latex_header: \usepackage{amsthm}
-#+latex_header_extra: \newmdenv[linecolor=red,frametitle=Class Discussion]{cdbox}
-#+latex_header_extra: \newmdenv[linecolor=red,frametitle=Further Class Discussion]{fcdbox}
-#+latex_header_extra: \newtheorem{definition}{Definition}
-#+bibliography: /home/britt/gitRepos/masterBib/bayatt.bib
-#+cite_export: csl /home/britt/gitRepos/brittsite/assets/chicago-fullnote-bibliography.csl
 #+Title: CMPS 03
 #+author: Britt Anderson
 #+date: Winter 2025
+#+latex_header: \usepackage{hyperref}
+#+latex_header: \usepackage{amsmath}
+#+latex_header: \usepackage{amsthm}
+#+LATEX_HEADER: \usepackage{mdframed}
+#+Latex_header: \usepackage{tcolorbox}
+#+Latex_header: \usepackage{svg}
+#+LATEX_HEADER: \renewenvironment{quote}{\begin{mdframed}[backgroundcolor=gray!10]}{\end{mdframed}}
+#+latex_header_extra: \newtheorem{definition}{Definition}
+#+latex_compiler: xelatex
+#+HTML_HEAD: <style> blockquote {margin-bottom: 10px; padding: 10px; background-color: #DCDCDC; border-left: 2px solid #ffeb8e; border-left-color: rgb(255, 10, 10); display: block; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 40px; margin-inline-end: 40px;} </style>
+#+bibliography: /home/britt/gitRepos/masterBib/bayatt.bib
+#+cite_export: csl /home/britt/gitRepos/brittsite/assets/chicago-fullnote-bibliography.csl
 
 ** Dynamics
-
-\begin{cdbox}
+#+Begin_quote
 Why are *differential equations* an important technique for computational modelling in psychology and neuroscience?
-\end{cdbox}    
+#+end_quote
 
 Spiking neuron models rely on differential equation to capture the evolution of voltage as a function of time. Dynamics is the study of things changing over time, and neural dynamics gives us important insights into brain and neuronal activity normally and as a consequence of disease.
 
@@ -46,23 +49,21 @@ We will now review the action potential and lay the ground work for writing our 
 
 *** The Action Potential
 
- 
-\begin{fcdbox}
+#+Begin_quote 
 How is an action potential like a flush toilet?
-\end{fcdbox}
+#+end_quote
 
 
-\begin{cdbox}
-\begin{itemize}
-\item{10 minutes to brush up on what an action potential is.}
-\item{Then be able to draw one.}
-\item{What are the axes?}
-\item{What ion causes the upward deflection?}
-\item{What causes the repolarization?}
-\item{Who discovered the action potential?}
-\item{Who won the Nobel Prize for characterizing the ionic events of the action potential experimentally and building a mathematical model?}
+#+begin_quote
+- 10 minutes to brush up on what an action potential is.
+- Then be able to draw one.
+- What are the axes?
+- What ion causes the upward deflection?
+- What causes the repolarization?
+- Who discovered the action potential?
+- Who won the Nobel Prize for characterizing the ionic events of the action potential experimentally and building a mathematical model?
 \end{itemize}
-\end{cdbox}
+#+end_quote
 
 
 *** A Mathematical Aside
@@ -76,12 +77,12 @@ For example,
 \(\frac{dx}{dt}\) \(\dot{x}\) \(x{'}\) \(f{'}(x)\) are all different ways of talking about derivatives and derivatives are at the heart of differential equations. 
 
 *** Derivatives are Slopes
-\begin{cdbox}
+#+Begin_quote
 1. What is a slope?
 2. When in doubt return to definition.
 3. Deriving the definition of a derivative.
 4. What is the definition of a derivative?
-\end{cdbox}
+#+end_quote
 
 **** Your computer is a tool for exploration
 

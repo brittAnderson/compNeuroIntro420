@@ -14,18 +14,19 @@
 #+creator: Emacs 30.0.92 (Org mode 9.7.11)
 #+latex_class: article
 #+latex_class_options:
-#+latex_header:
-#+latex_header: \usepackage{svg}
-#+Latex_Header: \usepackage{mdframed}
 #+latex_header: \usepackage{hyperref}
-#+latex_header_extra: \newmdenv[linecolor=red,frametitle=Class Discussion]{cdbox}
-#+latex_header_extra: \newmdenv[linecolor=red,frametitle=Further Class Discussion]{fcdbox}
-#+description:
-#+keywords:
+#+latex_header: \usepackage{amsmath}
+#+latex_header: \usepackage{amsthm}
+#+LATEX_HEADER: \usepackage{mdframed}
+#+Latex_header: \usepackage{tcolorbox}
+#+Latex_header: \usepackage{svg}
+#+LATEX_HEADER: \renewenvironment{quote}{\begin{mdframed}[backgroundcolor=gray!10]}{\end{mdframed}}
+#+latex_header_extra: \newtheorem{definition}{Definition}
+#+latex_compiler: xelatex
+#+HTML_HEAD: <style> blockquote {margin-bottom: 10px; padding: 10px; background-color: #DCDCDC; border-left: 2px solid #ffeb8e; border-left-color: rgb(255, 10, 10); display: block; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 40px; margin-inline-end: 40px;} </style>
 #+subtitle: One
 #+latex_footnote_command: \footnote{%s%s}
 #+latex_engraved_theme:
-#+latex_compiler: pdflatex
 #+bibliography: /home/britt/gitRepos/masterBib/bayatt.bib
 #+cite_export: csl /home/britt/gitRepos/brittsite/assets/chicago-fullnote-bibliography.csl
 
@@ -142,32 +143,24 @@ The equivalent of the halting problem for the Turing machine is the reaching of 
 We have seen Turing Machines and a Lambda Calculus. They look very different. Another model of computation that I have mentioned, but not presented is [[https://plato.stanford.edu/entries/recursive-functions/][recursive function theory]]. It looks different still.
 
 
-#+begin_export latex
-\begin{cdbox}[backgroundcolor=lightgray]
+#+Begin_quote
 What does it mean for our idea that the mind is a "computer" if there are three different models of computation?
-\end{cdbox}
-#+end_export
+#+end_quote
 
 Always question assumptions: [[https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis][Church-Turing Conjecture]] . 
-#+begin_export latex
-\begin{fcdbox}[backgroundcolor=lightgray]
+
+#+Begin_quote
 1. Are Turing machines /digital?
-
 2. Is this an important distinction?
-
 3. Does this mean that analog computations are omitted?
-
 4. Would an analog paradigm be a better match to modeling mental activity?
-\end{fcdbox}
-#+end_export
+#+End_quote
 
 
 ***** Classical Computational Theory of Mind
-#+begin_export latex
-\begin{cdbox}[backgroundcolor=lightgray]
-Does a computational theory of mind mean that minds are \href{https://plato.stanford.edu/entries/multiple-realizability}{multiply realizable} ?
-\end{cdbox}
-#+end_export
+#+Begin_quote
+Does a computational theory of mind mean that minds are [[https://plato.stanford.edu/entries/multiple-realizability][multiply realizable]] ?
+#+end_quote
 
 
 
