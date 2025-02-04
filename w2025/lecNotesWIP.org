@@ -7,16 +7,19 @@
 #+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t
 #+options: tasks:t tex:t timestamp:t title:t toc:t todo:t |:t
 #+latex_class: book-noparts
-#+latex_footnote_command: \footnote{%s%s}
-#+latex_engraved_theme:
-#+latex_compiler: pdflatex
-#+latex_header: \usepackage{svg}
-#+Latex_Header: \usepackage{mdframed}
 #+latex_header: \usepackage{hyperref}
+#+latex_header: \usepackage{amsmath}
 #+latex_header: \usepackage{amsthm}
-#+latex_header_extra: \newmdenv[linecolor=red,frametitle=Class Discussion]{cdbox}
-#+latex_header_extra: \newmdenv[linecolor=red,frametitle=Further Class Discussion]{fcdbox}
+#+LATEX_HEADER: \usepackage{mdframed}
+#+Latex_header: \usepackage{tcolorbox}
+#+Latex_header: \usepackage{svg}
+#+LATEX_HEADER: \renewenvironment{quote}{\begin{mdframed}[backgroundcolor=gray!10]}{\end{mdframed}}
 #+latex_header_extra: \newtheorem{definition}{Definition}
+#+latex_compiler: xelatex
+#+HTML_HEAD: <style> blockquote {margin-bottom: 10px; padding: 10px; background-color: #DCDCDC; border-left: 2px solid #ffeb8e; border-left-color: rgb(255, 10, 10); display: block; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 40px; margin-inline-end: 40px;} </style>
+#+bibliography: /home/britt/gitRepos/masterBib/bayatt.bib
+#+cite_export: csl /home/britt/gitRepos/brittsite/assets/chicago-fullnote-bibliography.csl
+#+latex_footnote_command: \footnote{%s%s}
 #+bibliography: /home/britt/gitRepos/masterBib/bayatt.bib
 #+cite_export: csl /home/britt/gitRepos/brittsite/assets/chicago-fullnote-bibliography.csl
 
@@ -26,13 +29,13 @@
 
 #+Include: zero.org :lines "5-"
 
-#+include: one.org :lines "32-"
+#+include: one.org :lines "34-"
 
-#+include: two.org :lines "14-"
+#+include: two.org :lines "20-"
 
 #+include: three.org :lines "15-"
 
-#+include: four.org :lines "15-"
+#+include: four.org :lines "19-"
 
 
 * Local variables :noexport:
