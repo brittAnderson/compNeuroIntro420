@@ -1,0 +1,1403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-02-04 Tue 14:29 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CPMS04</title>
+<meta name="author" content="Britt Anderson" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<style> blockquote {margin-bottom: 10px; padding: 10px; background-color: #DCDCDC; border-left: 2px solid #ffeb8e; border-left-color: rgb(255, 10, 10); display: block; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 40px; margin-inline-end: 40px;} </style>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">CPMS04</h1>
+<div id="outline-container-org8fb47ed" class="outline-2">
+<h2 id="org8fb47ed"><span class="section-number-2">1.</span> Neural Networks</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Our goal here is to understand the basic mathematical objects and their notation that underlie neural networks. We want to have enough of a grasp to be able to code simple versions of them by hand. If you ever build a big model you will undoubtedly want to use the well established standard libraries, but for making design decisions, thinking about aberrant behavior, or even just conceiving the kind of network you want to build an how it will match your problem, you want a more fundamental and practical grasp of the pieces you will be putting together.
+</p>
+
+<p>
+Our distal goal is to code the Hopfield Network, and ideally the Kohonen self-organizing map, but along the way we will first learn about vectors, matrices, scalar products, the perceptron, and learning rules. 
+</p>
+</div>
+<div id="outline-container-orgc81a116" class="outline-3">
+<h3 id="orgc81a116"><span class="section-number-3">1.1.</span> John Hopfield</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+To motivate our learning, and to put a human face on the project these two links give you a glimpse of Hopfield talking about his work at the 2024 Nobel Prize lectures, and a nice long podcast that gives a slow, throurough, tutorial discussion of what it is all about. We will come back to this later, but for now start listening. There is an associated homework. 
+</p>
+</div>
+<div id="outline-container-org1249083" class="outline-4">
+<h4 id="org1249083"><span class="section-number-4">1.1.1.</span> Nobel Prize</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+<a href="https://youtu.be/8SffhDk4mdU?feature=shared">John Hopfield's Nobel Lecture</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org157ffd1" class="outline-4">
+<h4 id="org157ffd1"><span class="section-number-4">1.1.2.</span> Podcast on the Hopfield Network</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+This <a href="https://theoreticalneuroscience.no/thn22/">theoretical neuroscience podcast</a> gives a nice long look at the Hopfield Network. It works up to its creation, its abstraction, and it social impact on shaping the field of computational neuroscience. It is long, but, if you make your way through it you will have a good overview of the model before you start coding it.
+</p>
+
+
+<blockquote>
+<ul class="org-ul">
+<li>What is a neural network?</li>
+<li>What mathematics are needed to build a neural network?</li>
+<li>How can neural networks help us understand cognition?</li>
+</ul>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-org6b3b719" class="outline-3">
+<h3 id="org6b3b719"><span class="section-number-3">1.2.</span> Cellular Automata</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+\marginpar{\raggedright Match these features to facts about neurons. Extend them to what you believe will be their application in neural networks.} As a first illustration of some of the key ideas we will execute a simple cellular automata rule. What I hope to emphasize through this exercise is that whenever you can get the computer to do a repetitive task do so. It will do it much better than you. And even if it takes you days to get the program right for many task you will quickly save the time in the long run. Second, we are using a simple rule (as you will shortly see). But even though the rule is local it yields impressive global structure. And very slight tweaks in this local rule can lead to large macroscopic changes. While the variation in our rule is very limited the array of behaviors we can observe is vast. 
+</p>
+</div>
+<div id="outline-container-org11e3ad8" class="outline-4">
+<h4 id="org11e3ad8"><span class="section-number-4">1.2.1.</span> Drawing Cellular Automata</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<ol class="org-ol">
+<li>Pick a number between 0 and 255 inclusive. Tell it to me when I ask.</li>
+<li><p>
+Compute your rule. You write the configurations on top, and you write the base two representation of your number below. Like this for rule number 110.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">111</th>
+<th scope="col" class="org-right">110</th>
+<th scope="col" class="org-right">101</th>
+<th scope="col" class="org-right">100</th>
+<th scope="col" class="org-right">011</th>
+<th scope="col" class="org-right">010</th>
+<th scope="col" class="org-right">001</th>
+<th scope="col" class="org-right">000</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+</tbody>
+</table></li>
+<li>Using your rule and your piece of graph paper start implementing your rule after coloring a single square in the middle of the top row "black" (equals 1).</li>
+<li>Drop down one row and working from left to right color in the squares based on the three squares in the row above them.</li>
+<li><p>
+The idea is something like this:
+</p>
+
+<div id="org27c53a0" class="figure">
+<p><img src="file:///home/britt/gitRepos/compNeuroIntro420/rb/images/grid.png" alt="grid.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>An illustration of which three squares in the row above influence the coloring of your grid.</p>
+</div></li>
+<li>Do this for several rows.</li>
+</ol>
+
+<p>
+<b>What you probably noticed</b>
+</p>
+
+<p>
+This process is tedious and mistake prone. One good reason for translating your theoretical ideas into code is so that you are not tripped up by such rote errors. Another thing to notice is that your "rule" is like a computer function. There is an input (the colors of the three squares above), processing, and an output of what color. In addition to this mechanical intuition a function can also be conceived as a set of pairs. The first element of the pair is the input, and the second element of the pair is the output.
+</p>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>Invocation of Common Lisp Code for Generating a PNG file of Rule 22</label><pre class="src src-lisp" id="org9c5fb21">(load <span style="color: #848ea9;">"/home/britt/gitRepos/compNeuroIntro420/codeLib/cl/cellular-automata.lisp"</span>)
+(<span style="color: #56b4e9; font-weight: bold;">in-package</span> <span style="color: #0072b2;">:CA</span>)
+(rule-num-to-png 22 <span style="color: #848ea9;">"./images/r22.png"</span>)
+</pre>
+</div>
+
+
+<div id="org11bcaea" class="figure">
+<p><img src="file:///home/britt/gitRepos/compNeuroIntro420/w2025/images/r22.png" alt="r22.png" />
+</p>
+<p><span class="figure-number">Figure 2: </span>Rule 22</p>
+</div>
+
+<p>
+<b>Lessons Learned</b>
+</p>
+<ul class="org-ul">
+<li>Repetitive actions are hard. We (humans) make mistakes following even simple rules for a large number of repeated steps. Better to let the computer do it since that is where its strengths lie.</li>
+<li>Complex global patterns can emerge from local actions. Each neuron is only responding to its immediate right and left yet global structures emerge.</li>
+<li>These characteristics seem similar to brain activity. Each neuron in the brain is just one of many. Whether a neuron spikes or not is a consequence of its own state and its inputs (like the neighbors in the grid example).</li>
+<li>From each neuron making a local computation, global patterns of complex activity can emerge.</li>
+<li>Maybe by programming something similar to this system we can get insights into brain activity.</li>
+</ul>
+
+
+<blockquote>
+<p>
+There are <a href="file:///home/britt/gitRepos/compNeuroIntro420/codeLib/cl/cellular-automata.lisp">common lisp</a>, <a href="file:///home/britt/gitRepos/compNeuroIntro420/codeLib/rkt/ca.rkt">racket</a>, versions of this code. Can you write your own? Can you write code to automate your rule?
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc48d05e" class="outline-3">
+<h3 id="orgc48d05e"><span class="section-number-3">1.3.</span> More Lessons from Cellular Automata</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Complex entities may have simple representations if the right language for expression can be found. Concision and repeatability are by-products. 
+</p>
+
+<p>
+There are also more dynamic versions of this idea. The "<a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Game of Life</a>" is one of the more famous.
+</p>
+
+<p>
+Following up on the analogy to neurons, one humanity's most brilliant examples: John von Neumann, was working on a <a href="https://complexityexplorer.s3.amazonaws.com/supplemental_materials/5.6+Artificial+Life/The+Computer+and+The+Brain_text.pdf">book</a> (see also the <a href="http://www.ams.org/bull/1958-64-03/S0002-9904-1958-10214-1/S0002-9904-1958-10214-1.pdf">commentary</a>) about automata and the brain at the time of his death.
+</p>
+</div>
+</div>
+<div id="outline-container-orga72e098" class="outline-3">
+<h3 id="orga72e098"><span class="section-number-3">1.4.</span> Linear Algebra</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Show me the math!
+</p>
+
+
+<p>
+The math at the heart of neural networks and their computer implementation is <b>linear algebra</b>. For us, the section of linear algebra we are going to need is mostly limited to vectors, matrices and how to add and multiply them.
+</p>
+
+<blockquote>
+<p>
+<b>Discussion Question:</b>
+</p>
+
+<p>
+What makes linear algebra linear?
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org03d6981" class="outline-4">
+<h4 id="org03d6981"><span class="section-number-4">1.4.1.</span> Important Objects and Operations</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<ul class="org-ul">
+<li>Vectors</li>
+<li>Matrices</li>
+<li>Scalars</li>
+<li>Addition</li>
+<li>Multiplication (scalar and matrix)</li>
+<li>Transposition</li>
+<li>Inverse</li>
+</ul>
+
+<blockquote>
+<p>
+<b>Class Activity</b>
+</p>
+
+<p>
+Give a definition or description of each of these objects and operations.
+</p>
+</blockquote>
+
+
+<div class="org-src-container">
+<pre class="src src-lean">def matA : Array (Array Int8) := #[#[1,2],#[3,4]] 
+
+def matB : Array (Array Int8) := #[#[3,4],#[1,2]]
+
+def addMat (m n : Array (Array Int8)) :=
+  m.zipWith n
+    (fun rm rn =&gt; rm.zipWith rn
+      (fun a b =&gt; a + b))
+
+#eval addMat matA matB
+
+</pre>
+</div>
+
+<blockquote>
+<p>
+Can you demonstrate that matrix multiplication is not commutative?
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org5b6a6e2" class="outline-4">
+<h4 id="org5b6a6e2"><span class="section-number-4">1.4.2.</span> Thinking Abstractly</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<p>
+There are in fact many ways to think about what a vector is. It can be thought of as a column (or row of numbers). More abstractly it is an object (arrow) with magnitude and direction. Most abstractly it is anything that obeys the requirements of a <a href="https://en.wikipedia.org/wiki/Vector_space">vector space</a>. 
+</p>
+
+<p>
+For particular circumstances one or another of the different definitions may serve our purposes better. In application to neural networks we often just use the first definition, a column of numbers, but the second can be more helpful for developing our geometric intuitions about what various learning rules are doing and how they do it.  
+</p>
+
+<p>
+Similarly, we may consider a matrix as a collection of vectors or it may be more convenient to think of it as a rectangular array of numbers.
+</p>
+
+<blockquote>
+<p>
+What is the library or packge in the programming language that you will use for this course that has vectors and matrix functions?
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgaa3eb97" class="outline-4">
+<h4 id="orgaa3eb97"><span class="section-number-4">1.4.3.</span> Common Notational Conventions for Vectors and Matrices</h4>
+<div class="outline-text-4" id="text-1-4-3">
+<p>
+Vectors tend to be notated as <i>lower case</i> letters, often in bold, such
+as \textbf{a}. They are also occasionally represented with little
+arrows on top such as \( \overrightarrow{\textbf{a}} \).
+</p>
+
+<p>
+Matrices tend to be notated as <i>upper case</i> letters, typically in bold,
+such as \( \mathbf{M} \).
+</p>
+
+<p>
+Good things to know: what is an inner product? How does it differ from a scalar product. Can you write code in your preferred language for the inner product?
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9d867d9" class="outline-3">
+<h3 id="org9d867d9"><span class="section-number-3">1.5.</span> Neural Networks Redux</h3>
+</div>
+
+<div id="outline-container-org117043c" class="outline-3">
+<h3 id="org117043c"><span class="section-number-3">1.6.</span> What is a Neural Network?</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+What is a Neural Network? It is a brain inspired computational approach
+in which "neurons" compute functions of their inputs and pass on a
+<i>weighted</i> proportion to the next neuron in the chain.
+</p>
+
+
+<div id="orga033c2f" class="figure">
+<p><img src="file:///home/britt/gitRepos/compNeuroIntro420/rb/images/nn.png" alt="nn.png" />
+</p>
+<p><span class="figure-number">Figure 3: </span>Simple schematic of the basics of a neural network. This is an image for a single neuron. The input has three elements and each of these connects to the same neuron ("node 1"). The activity at those nodes is filtered by the weights, which are specific for each of the inputs. These three processed inputs are combined to generate the output from this neuron. For multiple layers this output becomes an input for the next neuron along the chain.</p>
+</div>
+</div>
+<div id="outline-container-org9d813e4" class="outline-4">
+<h4 id="org9d813e4"><span class="section-number-4">1.6.1.</span> Non-linearities</h4>
+<div class="outline-text-4" id="text-1-6-1">
+<p>
+The spiking of a biological neuron is non-linear. You will see this in both the integrate and fire and Hodgkin and Huxley models you're going to program. For our neural networks we will usually use a <i>threshold</i>. When the threshold exceeds a certain value our activity will jump (or step) to a new value.
+</p>
+
+\begin{equation}
+\mbox{if } I_1 \times w_{1,1} + I_2 \times w_{2,1} + I_3 \times w_{3,1} > \Theta \mbox{ then } Output = 1
+\end{equation}
+
+<p>
+What this equation shows is that Inputs ("I"'s) are passed to a neuron (also called a node or sometimes unit). Those inputs have something like a synapse. That is designated by the w's for weights. Those weights are how tightly the input and internal activity of our artificial neuron are coupled. The reason for all the subscripts is to try and help you see the similarity between this equation and the inner product and matrix multiplication rules you just worked on programming. The activity of the neuron is a sort of internal state, and then, based on the comparison of that activity to the threshold, you can envision the neuron spiking or not, meaning it has value 1 or 0. Mathematically, the weighted sum is fed into a threshold function that compares the value to a threshold ( \( \Theta \) ), and passes on the value 1 if it is greater than the threshold and 0 (sometimes -1) for the inactive state.
+</p>
+
+<p>
+To prepare you for the next steps in writing a simple perceptron (the earliest form of artificial neural network), you should try to answer the following questions.
+</p>
+
+<blockquote>
+<p>
+Questions:
+</p>
+<ul class="org-ul">
+<li>What, geometrically speaking, is a plane?</li>
+<li>What is a hyperplane?</li>
+<li>What is linearly separability and how does that relate to planes and hyperplanes?</li>
+</ul>
+</blockquote>
+
+<p>
+One of our first efforts will be to code a <i>perceptron</i> to solve the XOR problem. In order for this to happen you should know a bit about <i>Boolean</i> functions and what an XOR problem actually is. 
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="orgf0286fa"></a>Examples of Boolean Functions and How They Map onto our Neural Network Intuitions<br />
+<div class="outline-text-5" id="text-1-6-1-1">
+<dl class="org-dl">
+<dt>The "AND" Operation/Function</dt><dd></dd>
+</dl>
+
+<div id="org202b0ea" class="figure">
+<p><img src="my-and.png" alt="my-and.png" />
+</p>
+</div>
+
+<dl class="org-dl">
+<dt>The "OR" Operation/Function</dt><dd></dd>
+</dl>
+
+<div id="orgdfe2cab" class="figure">
+<p><img src="my-or.png" alt="my-or.png" />
+</p>
+</div>
+
+<dl class="org-dl">
+<dt>The "XOR" Operation/Function</dt><dd></dd>
+</dl>
+
+<div id="org911b048" class="figure">
+<p><img src="my-xor.png" alt="my-xor.png" />
+</p>
+</div>
+
+<blockquote>
+<p>
+Can you draw the truth tables that match each of these graphs?
+</p>
+</blockquote>
+
+<p>
+This short <a href="https://doi.org/10.1038/nbt1386">article</a> provides a nice example of linear separability and some basics of what a neural network is. 
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-orgfb8b25c" class="outline-4">
+<h4 id="orgfb8b25c"><span class="section-number-4">1.6.2.</span> Exercise XOR</h4>
+<div class="outline-text-4" id="text-1-6-2">
+<p>
+Using only <b>not</b>, <b>and</b>, and <b>or</b> operations draw the diagram that allows you to compute in two steps the <b>xor</b> operation. You will need this logic to code up a perceptron.
+</p>
+</div>
+</div>
+<div id="outline-container-org8b0fbd8" class="outline-4">
+<h4 id="org8b0fbd8"><span class="section-number-4">1.6.3.</span> Connections</h4>
+<div class="outline-text-4" id="text-1-6-3">
+<p>
+Can neural networks encode logic? Is the processing zeros and ones enough to capture the richness of human intellectual activity?
+</p>
+
+<p>
+There is a long tradition of representing human thought as the consequence of some sort of calculation of two values (true or false). If you have two values you can swap out 1's and 0's for the true and false in your calculation. They even seem to obey similar laws. The conjunction (AND) of two true things is only true when both are true. If you take T = 1, then T AND T is the same as \( 1~\times~1 \).
+</p>
+
+<p>
+We will next build up a simple threshold neural unit and try to calculate some of these truth functions with our neuron. We will build simple neurons for truth tables (like those that follow), and string them together into an argument. Then we can feed values of T and F into our network and let it calculate the XOR problem.
+</p>
+</div>
+</div>
+<div id="outline-container-org985ee34" class="outline-4">
+<h4 id="org985ee34"><span class="section-number-4">1.6.4.</span> Boolean Logic</h4>
+<div class="outline-text-4" id="text-1-6-4">
+<p>
+George Boole, Author of the <i>Laws of Thought</i>.
+</p>
+
+<p>
+<a href="https://archive.org/details/investigationofl00boolrich">https://archive.org/details/investigationofl00boolrich</a>
+<a href="https://plato.stanford.edu/entries/boole/#LifWor">https://plato.stanford.edu/entries/boole/#LifWor</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org4a4c9d9" class="outline-4">
+<h4 id="org4a4c9d9"><span class="section-number-4">1.6.5.</span> First Order Logic - Truth Tables</h4>
+<div class="outline-text-4" id="text-1-6-5">
+<p>
+An example <b>Or</b>
+</p>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">First</th>
+<th scope="col" class="org-right">Second</th>
+<th scope="col" class="org-left">Truth</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-left">nil</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">t</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-left">t</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">t</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-org07d04e1" class="outline-3">
+<h3 id="org07d04e1"><span class="section-number-3">1.7.</span> Our First Neural Network: The Perceptron</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+In many ways the Perceptron can be regarded as the first neural network ever.
+</p>
+
+<p>
+The perceptron (see Figure <a href="#orgfb1a2cd">4</a>) was the invention of a psychologist, <a href="http://dspace.library.cornell.edu/bitstream/1813/18965/2/Rosenblatt_Frank_1971.pdf">Frank Rosenblatt (pdf)</a>.  He was not a computer scientist. Though he obviously had a bit of the mathematician in him.
+</p>
+
+
+<div id="orgfb1a2cd" class="figure">
+<p><img src="file:///home/britt/gitRepos/compNeuroIntro420/rb/images/Mark_I_perceptron.jpeg" alt="Mark_I_perceptron.jpeg" />
+</p>
+<p><span class="figure-number">Figure 4: </span>The Mark I computer for computing the perceptron's activity. Details can be found on <a href="https://en.wikipedia.org/wiki/Perceptron">Wikipedia's page</a>.</p>
+</div>
+
+<p>
+For those of you interested in a very interesting, very long, reading might his 600 page <a href="https://babel.hathitrust.org/cgi/pt?id=mdp.39015039846566&amp;view=1up&amp;seq=9">Principles of Neurodynamics</a> or this more accessible <a href="https://link.springer.com/book/10.1007/978-3-642-70911-1">historical review</a>.
+</p>
+
+<p>
+But a good intuition for Rosenblatt's frame of mind with this research can be gained just from the foreword:
+</p>
+
+<blockquote>
+<p>
+For this writer, the perceptron program is not primarily concerned with the invention of devices for "artificial intelligence", but rather with investigating the physical structures and neurodynamic principles which under lie "natural intelligence". A perceptron is first and fore most a brain model, not an invention for pattern recognition. As a brain model, its utility is in enabling us to determine the physical conditions for the emergence of various psychological properties.
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org97b6003" class="outline-4">
+<h4 id="org97b6003"><span class="section-number-4">1.7.1.</span> The Perceptron Rules</h4>
+<div class="outline-text-4" id="text-1-7-1">
+<p>
+The algorithm the perceptron follows is simple enough to be done by hand. But before doing that take a minute to think what is trying to do. It is trying to go from one set of "weights" to another set of "weights". If you think of all the weights as coordinates in a Cartesian graph then you can visualize each cycle of updating as adding another point to the graph. Squint your eyes and the dots merge to a path. A path through the weight <i>space.</i> This is a dynamic process. A theme that we return to in a later Chapter (add link here).
+</p>
+
+<p>
+In short, the perceptron "rules" are the equations that characterize what a perceptron should do when it gets some input, computes and output and learns if its guess is right or wrong. It revises its behavior based on this feedback, and thus can be said to learn. A lot can be done with these simple equations.
+</p>
+
+<p>
+\( I = \sum_{i=1}^{n} w_i~x_i \)
+</p>
+
+<p>
+If \( I \ge T \) then \( y = +1 \) else if \( I < T \) then \( y = -1 \)
+</p>
+
+<p>
+If the answer was correct, then \( \beta = +1 \), else if the
+answer was incorrect then \( \beta = -1 \).
+</p>
+
+<p>
+The "T" in the above equation refers to the threshold. This is a user defined value that is usually set to zero for convenience. 
+</p>
+
+<p>
+Updating is done by \( \mathbf{w_{new}} =
+\mathbf{w_{old}} + \beta y \mathbf{x} \)
+</p>
+</div>
+</div>
+<div id="outline-container-orga4b5e99" class="outline-4">
+<h4 id="orga4b5e99"><span class="section-number-4">1.7.2.</span> Be The Perceptron</h4>
+<div class="outline-text-4" id="text-1-7-2">
+<p>
+This is a pencil and paper exercise. Before coding it is often a good idea to try and work the basics out by hand. This may be a flow chart or a simple hand worked example. This both gives you a simple test case to compare your code against, but more importantly makes sure that you understand what you are trying to code. Let's make sure you understand how to compute the perceptron learning rule, but doing a simple case by hand.
+</p>
+
+<p>
+Beginning with an input of 0.3 0.7
+</p>
+
+<p>
+And an initial set of weights of
+-0.6 0.8
+</p>
+
+<p>
+and a class of 1.
+</p>
+
+<p>
+Compute the value of the new weight vector with pen and paper.
+</p>
+
+<p>
+<b>Next steps.</b> Consider this as the data matrix where the first two elements in a row are the two inputs and the third element in a row is the "class" of the output.
+</p>
+
+<p>
+\(\begin{bmatrix}
+0.3 & 0.7 & 1.0 \\
+-0.5 & 0.3 & -1.0 \\
+0.7 & 0.3 & 1.0 \\ 
+-0.2 & -0.8 & q-1.0
+\end{bmatrix} \)
+</p>
+
+<p>
+using the starting weight -0.6 0.8 try a few cycles through the data by hand and then move on to writing the perceptron rule into code so that you can automate the updating step. Racket code for some of these functions can be found <a href="file:///home/britt/gitRepos/compNeuroIntro420/codeLib/rkt/perceptron-rule.rkt">here</a>. 
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org25a92a0"></a>More Abstract Thinking<br />
+<div class="outline-text-5" id="text-1-7-2-1">
+<p>
+Each time through the perceptron rule new weights are computed. Imagine these two weights as coordinates for the head of a vector with its base at the origin of a Cartesian plane. Imagine as you iterate that you are rotating your weight vector around an origin.
+</p>
+
+<p>
+The decision plane for your network is perpendicular to the vectors and is anchored at the bottom of the arrow. If you could compare this plane to the location of the data points you would see that the rule is learning to find the decision plane that puts all of one class on one side of the line and all of the other class on the other side. That is why it is limited to problems that are linearly separable.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="orgf728296"></a>Bias is a Good Thing (at least here it is)<br />
+<div class="outline-text-6" id="text-1-7-2-1-1">
+<p>
+These data were selected such that the base of the vector could separate them while anchored at zero. However, for many data sets you not only need to learn what direction to point the vector, but you also need to learn where to anchor the vector. This is done by including a @bold{bias weight}. Add an extra dimension to your weight vector and your inputs. For the inputs it will just be a constant value of 1.0, but this extra, bias weight, will also be learned and allows you to achieve, effectively, a translation away from the origin to be able to separate points that are more heterogeneously scattered. 
+</p>
+</div>
+</li>
+<li><a id="org7818666"></a>Geometrical Thinking<br />
+<div class="outline-text-6" id="text-1-7-2-1-2">
+<ul class="org-ul">
+<li>What is the relation between the inner product of two vectors and the cosine of the angle between them?</li>
+<li>What is the <b>sign</b> for the cosine of angles less than 90 degrees and those greater than 90 degrees?</li>
+<li>How do these facts help us to answer the question above?</li>
+<li>Why does this reinforce the advice to think <i>geometrically</i> when thinking about networks and weight vectors?</li>
+</ul>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org2c69467" class="outline-3">
+<h3 id="org2c69467"><span class="section-number-3">1.8.</span> The Delta Rule - Homework</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+The <b>Delta Rule</b> is another simple learning rule that is a minimal variation on the perceptron rule. It is used more frequently, and it has the spirit of Hebbian learning, which we will learn more about soon. The homework asks you to write code to test and train an artificial neuron using the delta learning rule. 
+</p>
+
+
+<ul class="org-ul">
+<li>For an easy start create some pseudo random linearly separable points on a a sheet of paper. Label one population as <b>1</b> and the other population as <b>-1</b>.</li>
+<li>For a more challenging set-up create the data programmatically using random numbers and some method that allows you to vary how close or distant the points are to the line of separation, and how many points there are to train on.</li>
+<li>The Delta Learning rule is: \( \Delta~w_i = x_i~\eta(desired - observed) \)</li>
+<li>Submit your code that has your test data in it. Start with an initial random weight and use the delta rule to learn the correct weighting to solve all your training examples. Then test on a new set of points that you did not test on but that are classified according to the same rule. Your code should assess how well the trained rule classifies the test data.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9120c32" class="outline-3">
+<h3 id="org9120c32"><span class="section-number-3">1.9.</span> Not all Networks are the Same: Hopfield</h3>
+<div class="outline-text-3" id="text-1-9">
+<ul class="org-ul">
+<li>Feedforward</li>
+<li>Recurrent</li>
+<li>Convolutional</li>
+<li>Multilevel</li>
+<li>Supervised</li>
+<li>Unsupervised</li>
+</ul>
+
+<p>
+The Hopfield network<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> has taught many lessons, both practical and conceptual. Hopfield showed physicists a new realm for their skills and added recurrent (i.e. feedback) connections to network design (output becomes input). He changed the focus from network architecture to that of a dynamical system. Hopfield showed that the network could remember and it could do some error correction, it could reconstruct the "right" answer from faulty input.
+</p>
+
+
+<div id="org3f75103" class="figure">
+<p><img src="images/hop.svg" alt="hop.svg" class="org-svg" />
+</p>
+<p><span class="figure-number">Figure 5: </span>Illustration of a Hopfield Network's Connection Pattern With Four Nodes</p>
+</div>
+</div>
+<div id="outline-container-org11d13f5" class="outline-4">
+<h4 id="org11d13f5"><span class="section-number-4">1.9.1.</span> How a Hopfield Network Operates</h4>
+<div class="outline-text-4" id="text-1-9-1">
+<ul class="org-ul">
+<li>Each node has a value.</li>
+<li>Each of those arrowheads has an associated weight.</li>
+<li>The line with the "x" indicates that there are no self connections.</li>
+<li>All other connections for all other units are present and go in both directions, and are typically the same in both directions.</li>
+</ul>
+
+<blockquote>
+<p>
+<b>Test Your Understanding</b>
+</p>
+
+<ul class="org-ul">
+<li>What does the input for a network like this with four nodes look like when framed in the linear algebra terms we just learned?</li>
+<li>A weight is a number associated to each connection. Tell me what the weights should look like in terms of the linear algebra constructs.</li>
+<li>How might we conceive of "running" the network for one cycle in terms of the above?</li>
+</ul>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org153b61c" class="outline-4">
+<h4 id="org153b61c"><span class="section-number-4">1.9.2.</span> A Worked Example</h4>
+<div class="outline-text-4" id="text-1-9-2">
+<p>
+Inputs can be thought of as vectors. Although I have drawn the network like a square that shape is really independent of the structure of data flow. Each node needs an input and each node will need a weighted contact to all the other nodes. Consider the following two input patterns and the following weight matrix.  
+</p>
+
+<p>
+\( \overrightarrow{a} = \left[1, 0, 1, 0\right]^T \)
+</p>
+
+<p>
+\( \overrightarrow{b} = \left[0, 1, 0, 1\right]^T \)
+</p>
+
+<p>
+\( weights =  \begin{bmatrix}
+ 0 & -3 & 3 & -3 \\
+ -3 & 0 & -3 & 3 \\
+ 3 & -3 & 0 & -3 \\
+ -3 & 3 & -3 & 0 \\
+\end{bmatrix}
+\)
+</p>
+
+<p>
+How do you compute the output? Which comes first: the matrix or the input vector and why?
+</p>
+
+
+
+<p>
+Hopfield networks use a threshold rule. This non-linearity is, at least metaphorically, like the threshold that says whether a neuron in the brain or in our integrate and fire model fires. For the Hopfield network our threshold rule says:
+</p>
+
+<p>
+\( output(t)=\begin{array}{c} 1~\mbox{if } t \geq \Theta\\
+0~\mbox{if } t < \Theta \end{array} \)
+</p>
+
+
+<p>
+&Theta; represents the value of our threshold and for now set it to zero.
+</p>
+
+<blockquote>
+<p>
+<b>In Class Activity</b>
+</p>
+
+<ul class="org-ul">
+<li>Calculate the output to each of the two input patterns.</li>
+<li>Then to test your intuition, you should guess what output you would get for an input of  \(\left[1,0,0,0\right]^T\).</li>
+<li>Calculate it.</li>
+<li>Is A or B is <b>closer</b> to this test input?</li>
+<li>What does it means, in this context, for one vector to be "closer" to another?</li>
+</ul>
+</blockquote>
+</div>
+<ol class="org-ol">
+<li><a id="orge0bd437"></a>An Aside Distance Metrics<br />
+<div class="outline-text-5" id="text-1-9-2-1">
+<p>
+Metrics relate to measurement. For some operation to be a distance metric it should meet three intuitive requirements and one that is maybe not as obvious. To measure the distance between two things we need an operation that is binary. That is, it takes two inputs. In this case that would be our two vectors. It's result should always be <b>non-negative</b>. A negative distance would clearly be meaningless. Our output should be <b>symmetric</b>. Meaning that \(d(A,B)=d(B,A)\). The distance from Waterloo to Toronto ought to come out as the same as going from Toronto to Waterloo. Our metric should be <b>reflexive</b>. The distance from anything to itself ought to be zero. Lastly, to be a distance metric, our operation must obey the <a href="https://en.wikipedia.org/wiki/Triangle_inequality">triangle inequality</a>.
+</p>
+
+<p>
+The familiar distance measure of everyday life is the Euclidean. A distance measure calculated as the number of mismatched bits is the <i>Hamming</i> distance. 
+</p>
+
+
+<p>
+For perceptrons we talked about how the weight vector moved the direction it pointed. Here we don't have the weight vector moving, but you can visualize what is happening as updating a point in space. When we first input our four element vector we have a location in 4-D space. We multiply the first row of our weight matrix against our column of the input vector and we see, in effect, what is the effect on our first element (node) of all the other weighted inputs coming in to it. We then "update" that location. Maybe we flip it from a 1 to a zero (or vice versa). Then we try the next row of the weight matrix to see what happens to the second element. As we change the values of our nodes we are creating new points. The sequence of points is a trajectory that we are tracing in the input space. In this simple situation here we only require one pass to reach the final location, but in other settings we might not. In that case we just keep repeating the process until we do. One of the wonderful insights that Hopfield had was that by conceptualizing this process as an "energy" he could mathematically prove that the process would always reach a resting place.
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org30a1df5" class="outline-4">
+<h4 id="org30a1df5"><span class="section-number-4">1.9.3.</span> Hebb's <a href="https://en.wikipedia.org/wiki/Outer_product">Outer Product</a> Rule</h4>
+<div class="outline-text-4" id="text-1-9-3">
+<blockquote>
+<p>
+<b>Ask yourself</b>
+</p>
+
+<p>
+Why is this learning rule called "Hebb's"? Who was the Hebb it is named after?
+</p>
+</blockquote>
+
+<p>
+The strength of a change in a connection is proportionate to the product of the input and outputs, i.e. \( \Delta A[i,j] = \eta f[j]g[i] \) and \( g[i] = \sum_j~A[i,j]~f[j] \) therefore, \( \vec{g} = \mathbf{Af} \).<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>
+</p>
+
+<blockquote>
+<p>
+<b>You will want to know</b>
+</p>
+
+<ul class="org-ul">
+<li>What is an outer product?</li>
+<li>How do you compute it in your programming language of choice?</li>
+</ul>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-orge04d607" class="outline-3">
+<h3 id="orge04d607"><span class="section-number-3">1.10.</span> Hopfield Homework Description: Robustness to Noise (this might take awhile).</h3>
+<div class="outline-text-3" id="text-1-10">
+<p>
+Overview of the steps to take:
+</p>
+<ul class="org-ul">
+<li>Create a small set of random data for input patterns.</li>
+<li>Generate the weights necessary to properly decode the inputs.</li>
+<li>Conceive of a way to randomly corrupt the inputs. Perhaps by flipping some bits and show that your network does correctly decode the uncorrupted inputs.</li>
+<li>Report the accuracy of the output. Explore how the length of the input vector and the number of bits your "flip" impact performance.</li>
+</ul>
+
+<p>
+More detailed instructions:
+</p>
+<ul class="org-ul">
+<li>Make the input patterns 2-d, square and of size "n".</li>
+<li>Use a bipolar system and have, roughly, equal numbers of +1s and -1s in your patterns.</li>
+<li>Make a few of them and store them in some sort of data structure.</li>
+<li>Using those patterns, compute the weight matrix with the following equation:
+\( w_{ij} =\frac{1}{N} \sum_{\mu} value^\mu_i \times value^\mu_j \)
+Where N is the size of the patterns, that is how many "neurons". \(\mu\) is an index for each of the patterns, and \(i\) and \(j\) refer to the neurons in the pattern.</li>
+<li>Program an <b>asynchronous</b> updating rule, run your network until it stabilizes, and then show that you get back what you put in.</li>
+<li>Then do the same for at least one disrupted pattern (where you flipped a couple of bits around.)</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">J J Hopfield, “Neural Networks and Physical Systems with Emergent Collective Computational Abilities.,” <i>Proceedings of the National Academy of Sciences</i> 79, no. 8 (April 1982): 2554–58, <a href="https://doi.org/10.1073/pnas.79.8.2554">https://doi.org/10.1073/pnas.79.8.2554</a>.</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Does it matter that the \(\mathbf{W}\) comes first?
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Date: Winter 2025</p>
+<p class="author">Author: Britt Anderson</p>
+<p class="date">Created: 2025-02-04 Tue 14:29</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
