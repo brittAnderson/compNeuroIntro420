@@ -1,4 +1,4 @@
- #+STARTUP: nofold hideblocks
+#+STARTUP: nofold hideblocks
 #+options: toc:nil
 #+Latex_Header: \usepackage{mdframed}
 #+latex_header: \usepackage{hyperref}
