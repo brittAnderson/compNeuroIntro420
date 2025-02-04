@@ -10,6 +10,9 @@
 *.tex
 *latex-*
 zoom-codes.txt
+.aux
+.log
+.db
 
 *.org~
 shortNotesToSelf.org
