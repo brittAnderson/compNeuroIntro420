@@ -54,7 +54,7 @@ This [[https://theoreticalneuroscience.no/thn22/][theoretical neuroscience podca
 5. The idea is something like this:
    #+Name: fig-grid
    #+Caption: An illustration of which three squares in the row above influence the coloring of your grid. 
-   [[file:~/gitRepos/compNeuroIntro420/rb/images/grid.png]]
+   [[file:./images/grid.png]]
 6. Do this for several rows. 
 
 *What you probably noticed*
@@ -63,7 +63,7 @@ This process is tedious and mistake prone. One good reason for translating your 
 
 #+Name: 22-cl-png
 #+Caption: Invocation of Common Lisp Code for Generating a PNG file of Rule 22
-#+begin_src lisp :results graphics file :file "~/gitRepos/compNeuroIntro420/w2025/images/r22.png" :exports both
+#+begin_src lisp :results graphics file :file "./images/r22.png" :exports both
   (load "/home/britt/gitRepos/compNeuroIntro420/codeLib/cl/cellular-automata.lisp")
   (in-package :CA)
   (rule-num-to-png 22 "./images/r22.png")
@@ -72,7 +72,8 @@ This process is tedious and mistake prone. One good reason for translating your 
 #+Name: r22-png
 #+Caption: Rule 22
 #+RESULTS: 22-cl-png
-[[file:~/gitRepos/compNeuroIntro420/w2025/images/r22.png]]
+[[file:./images/r22.png]]
+
 
 *Lessons Learned*
 - Repetitive actions are hard. We (humans) make mistakes following even simple rules for a large number of repeated steps. Better to let the computer do it since that is where its strengths lie.
@@ -172,7 +173,7 @@ in which "neurons" compute functions of their inputs and pass on a
 
 #+name:nn
 #+caption: Simple schematic of the basics of a neural network. This is an image for a single neuron. The input has three elements and each of these connects to the same neuron ("node 1"). The activity at those nodes is filtered by the weights, which are specific for each of the inputs. These three processed inputs are combined to generate the output from this neuron. For multiple layers this output becomes an input for the next neuron along the chain.
-[[file:~/gitRepos/compNeuroIntro420/rb/images/nn.png]]
+[[file:./images/nn.png]]
 
 
 **** Non-linearities
@@ -200,7 +201,7 @@ One of our first efforts will be to code a /perceptron/ to solve the XOR problem
 - The "AND" Operation/Function ::
   #+Name: and
   #+caption: The /and/ operation is true when both its inputs are true.
-  #+begin_src gnuplot :var data="and.txt" :file my-and.png
+  #+begin_src gnuplot :var data="and.txt" :file ./images/my-and.png
     reset
     set nokey
     set nocolorbox
@@ -211,12 +212,12 @@ One of our first efforts will be to code a /perceptron/ to solve the XOR problem
 #+end_src
 
 #+RESULTS: and
-[[file:my-and.png]]
+[[file:./images/my-and.png]]
 
 - The "OR" Operation/Function ::
   #+Name: or
   #+caption: The /or/ operation is true when either or both of its inputs are true.
-  #+begin_src gnuplot :var data="or.txt" :file my-or.png
+  #+begin_src gnuplot :var data="or.txt" :file ./images/my-or.png
     reset
     set nokey
     set nocolorbox
@@ -227,12 +228,12 @@ One of our first efforts will be to code a /perceptron/ to solve the XOR problem
 #+end_src
 
 #+RESULTS: or
-[[file:my-or.png]]
+[[file:./images/my-or.png]]
 
 - The "XOR" Operation/Function ::
   #+Name: xor
   #+caption: The /xor/ operation one and only one of its inputs are true.
-  #+begin_src gnuplot :var data="xor.txt" :file my-xor.png
+  #+begin_src gnuplot :var data="xor.txt" :file ./images/my-xor.png
     reset
     set nokey
     set nocolorbox
@@ -243,7 +244,7 @@ One of our first efforts will be to code a /perceptron/ to solve the XOR problem
 #+end_src
 
 #+RESULTS: xor
-[[file:my-xor.png]]
+[[file:./images/my-xor.png]]
 
 #+Begin_quote
 Can you draw the truth tables that match each of these graphs?

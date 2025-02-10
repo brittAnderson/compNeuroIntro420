@@ -31,7 +31,7 @@ To ground our understanding with the use of differential equations in computatio
 
 Assume you have a derivative that is equal to \( x - x^3 \) (see Figure [[xminusxcubed]]). What would it mean to "solve" this equation?
 
-#+begin_src gnuplot :file xminusxcubed.png
+#+begin_src gnuplot :file ./images/xminusxcubed.png
   reset
   set xrange[1:4]
   f(x) = x - x**3
@@ -41,7 +41,7 @@ Assume you have a derivative that is equal to \( x - x^3 \) (see Figure [[xminus
 #+Name: xminusxcubed
 #+Caption: A plot of  \( f(x) = x - x^3 \)
 #+RESULTS:
-[[file:xminusxcubed.png]]
+[[file:./images/xminusxcubed.png]]
 
 What you want is some /function/ of the variable $x$ that will equal what you get when you take its derivative. For this function that is easy enough. You simply integrate. But what if we think of $x$ as dynamic. It is not fixed. It varies with time, like the voltage inside a neuron, the air temperature, or the strength of a memory trace. Then your equation becomes, \( \frac{dx}{dt} = x - x^3 \). Integrate that.[fn:1] In this case we can find an analytical[fn:2] solution. But we don't have to do much to our equations to make such solutions very difficult or impossible. For most of the use practical use cases in computational neuroscience we do not solve these equations analytically. Rather, we use the computer to approximate their behavior. Most of the equations in neuroscience, and biology generally for that matter, are well behaved enough that we can get away with this.
 
@@ -86,7 +86,7 @@ For example,
 
 **** Your computer is a tool for exploration
 
-#+begin_src gnuplot :file twox.png
+#+begin_src gnuplot :file ./images/twox.png
   reset
   set xrange[1:5]
   f(x) = 2*x
@@ -96,9 +96,9 @@ For example,
 #+Name: slope2
 #+Caption: What is the slope of this line?
 #+RESULTS:
-[[file:twox.png]]
+[[file:./images/twox.png]]
 
-#+begin_src gnuplot :file slopecurve.png
+#+begin_src gnuplot :file ./images/slopecurve.png
     reset
     set xrange[-3:3]
     f(x) = x**3
@@ -110,7 +110,7 @@ For example,
 #+Name: slopecurve
 #+Caption: What is the slope of this curve? And what is missing from that question that you need to know to give an answer?
 #+RESULTS:
-[[file:slopecurve.png]]
+[[file:./images/slopecurve.png]]
 
 
 **** To approximate the derivative of a curve at a point draw a straight line close by

@@ -50,9 +50,9 @@ In the late 1800s Ebbinghaus, using creative, and for their time, [[https://yout
 
 #+Name: forgetting-curve
 #+caption: By The original uploader was Icez at English Wikipedia.
-file:figs/Forgetting_curve_decline.svg
+file:./images/Forgetting_curve_decline.svg.png
 
-#+begin_src gnuplot :file my-data-plot.png
+#+begin_src gnuplot :file ./images/my-data-plot.png
   reset
   set xrange[1:4]
   f(x) = exp(1.0 / x)
