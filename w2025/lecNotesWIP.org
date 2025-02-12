@@ -38,7 +38,7 @@
 #+include: four.org :lines "19-"
 
 
-* Local variables :noexport:
+* Local variables                                                  :noexport:
 # local variables:
 # org-latex-pdf-process: ("pdflatex --interaction=nonstopmode %f" "biber %b" "pdflatex --interaction=nonstopmode %f" "pdflatex --interaction=nonstopmode --synctex=-1 %f")
 # end:
