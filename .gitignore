@@ -29,3 +29,5 @@ to-dos.org
 
 .Rhistory
 junk-drawer/
+
+__pycache__/
