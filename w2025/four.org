@@ -120,36 +120,68 @@ is "close enough." If your answer isn't "close enough" then you move
 your points closer, until /in the limit/ there is an infinitesimal
 distance between them.
 
-IAMHERE add derivative definition
-#+begin_src latex
-  \begin{definition}
-      This is a test.
-      \end{definition}
+#+Name: dxdy-define
+#+begin_quote
+*Definition of a Derivative*
+
+\( \frac{dx}{dy} = \frac{f(x + \Delta x) - f(x)}{x+\Delta x - x} \)
+#+end_quote
+
+*** Digression:
+To write math for publication you will probably need to know a little bit of LaTeX. LaTeX versions can be found for all sorts of environments and operating systems. To get started try [[https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop][writing LaTeX in VS Code]]. A guide for word processor users can be found [[https://ctan.math.washington.edu/tex-archive/info/latex4wp/latex4wp.pdf][here]].
+
+****  Using Derivatives to Solve Problems With a Computer
+​What is a square root? You might want to review our earlier exercise to see how the derivative is playing a role in our solution. 
+
+*** Practice Simulating With DEs
+
+**** Frictionless Springs
+
+We want to code neurons, but to get there we should feel comfortable with the underlying tool or we won't be able to adapt it or re-use it for some new purpose. We will start with a very simple and concrete example: the frictionless spring.
+
+\( \frac{d^2 s}{dt^2} = -P~s \)
+
+
+where 's' refers to space, 't' refers to time, and 'P' is a constant, often called the spring constant, that indicates how stiff or springy the spring is. 
+
+
+Imagine that you knew this derivative. It would tell you how much space the spring head would move for a given, very small, increment of time. We could then just add this to our current position to get the new position and repeat. This method of using a derivative to iterate forward is sometimes called the [[https://en.wikipedia.org/wiki/Euler_method][Euler method]].
+
+Returning to our definition of the derivative:
+
+\( \frac{s(t + \Delta t) - s(t)}{\Delta t} = velocity \approx \frac{d s}{d t} \)
+
+But our spring equation is not given in terms of the velocity it is given in terms of the acceleration which is the second derivative. Therefore, to find our new position we need the velocity, but we only have the acceleration. However, if we knew the acceleration and the velocity we could use that to calculate the new velocity. Unfortunately we don't know the velocity, unless ... , maybe we could just assume something. Let's say it is zero because we have started our process where we have stretched the spring, and are holding it, just before letting it go. We have asserted an /initial value/.
+
+How will our velocity change with time?
+
+\( \frac{v(t + \Delta t) - v(t)}{\Delta t} = acceleration \approx \frac{d v}{d t} = \frac{d^2 s}{d t^2} \)
+
+And we have a formula for this. We can now bootstrap our simulation.
+
+Note the similarity of the two functions. You could write a helper function that was generic to this pattern of /old value + rate of change times the  time step/, and just used the pertinent values.
+
+How do we know the formula for acceleration? We were given it!
+
+#+begin_src python :session *spring* :results graphics output file :file ./images/spring.jpg :exports both
+  import localcode.spring as s
+  s.plot_spring()
 #+end_src
 
+#+Name: oscillator-plot
+#+Caption: Spring constant of 2 with a starting position of 10.
+#+RESULTS:
+[[file:./images/spring.jpg]]
 
 
 
-# *Definition 2.1* (derivative). /= _h /
+***** Now You Try
+*Damped Oscillators*
 
-# ​*** Digression: Writing Math in Documents The current standard tool for
-# nicely typeset math is LaTeX. You can use this in jupyter notebooks and
-# even some in
-# [[https://support.microsoft.com/en-us/office/linear-format-equations-using-unicodemath-and-latex-in-word-2e00618d-b1fd-49d8-8cb4-8d17f25754f8][Word]].
-# However, the most powerful way is just to write the document as a simple
-# text file with the .tex ending and use TeX post-processors. This is
-# easiest in Linux, but isn't too hard for both Windows and OSX. Here I
-# use LaTeX fragments in side an "org" file compiled by emacs using other
-# programs on my computer.
+Provide the code and a plot for the damped oscillator. It has the formula of
 
-# [[https://faculty.math.illinois.edu/\(\sim\)hildebr/tex/latex-start.html][Some
-# Resources]]
+\( \frac{d^2 s}{dt^2} = -P~s(t) - k~v(t) \)
 
-# ​**** Using Derivatives to Solve Problems With a Computer
-
-# ​***** What is a square root? :class\(\_\)exercise:
-
-# What is the *solution* to $y=x'1362$ if I tell you what $y$ is?
 
 *** Footnotes
 [fn:2] What does "analytical" mean here? 
