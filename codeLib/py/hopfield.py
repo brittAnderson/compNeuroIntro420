@@ -36,8 +36,10 @@ def hopLoop(patt,wts):
         for rw in rws:
             for cl in cls:
                 workingpatt[rw][cl] = 1.0 if np.dot(linpatt,wts[rw*len(rws) + cl]) > 0 else -1.0
-        break
-                      #          if (np.all(testpatt == inpatt)): break
+        if (np.all(workingpatt == testpatt)):
+            break
+        else:
+            testpatt = deepcopy(workingpatt)
     return(workingpatt)
 
 def hopPlot(ins,outs): 
@@ -63,3 +65,22 @@ for inp in myps:
     outps.append(op)
 
 myp = hopPlot(myps,outps)
+
+
+def testBitFlips (p,n):
+    loc2flip = list(range(0,p.size))
+    r.shuffle(loc2flip)
+    loc2flp = loc2flip[0:n]
+    cp = copy(p)
+    lcp = np.reshape(cp,(1,cp.size))
+    for i in loc2flp:
+        lcp[0,i] = lcp[0,i]*-1
+    rlcp = np.reshape(lcp,p.shape)
+    return(rlcp)
+
+# how you might test
+# myps = hopMkPatts(4,(3,3))
+# mywts = hopMkWts(myps)
+# altp0 = testBitFlips(myps[0],mywts)
+# myps[0] == altp0
+# hopLoop(altp0,mywts) == hopLoop(myps[0],mywts)
