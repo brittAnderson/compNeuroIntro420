@@ -14,6 +14,8 @@ zoom-codes.txt
 .log
 .db
 
+w2025/*.log
+
 *.org~
 shortNotesToSelf.org
 to-dos.org
