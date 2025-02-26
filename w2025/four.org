@@ -1,6 +1,6 @@
 #+STARTUP: nofold hideblocks
 #+options: toc:nil
-#+Title: CMPS 03
+#+Title: CMPS 04
 #+author: Britt Anderson
 #+date: Winter 2025
 #+latex_header: \usepackage{hyperref}
