@@ -33,3 +33,5 @@ to-dos.org
 junk-drawer/
 
 __pycache__/
+
+*.fasl
