@@ -2,7 +2,7 @@
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (ql:quickload "eazy-gnuplot" :silent t))
 
-(load #P"/home/britt/gitRepos/compNeuroIntro420/notebooks/DE_Spikes/wk3_iandf/test.lisp")
+(load "/home/britt/gitRepos/compNeuroIntro420/codeLib/cl/iandf.lisp")
 
 (setq *read-default-float-format* 'double-float)
 
@@ -205,4 +205,4 @@
     output))
 
 (defvar sim-dat (run-hh-sim (make-instance 'neuron-hh :dt 0.02 :max-t 450.0d0 :start-time 50.0d0 :stop-time 300.0d0 :injection-current 7.0d0)))
-(handh-plot "handh.png" sim-dat)
+;(handh-plot "handh.png" sim-dat)
