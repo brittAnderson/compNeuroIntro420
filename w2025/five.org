@@ -1,0 +1,91 @@
+#+STARTUP: nofold hideblocks
+#+options: toc:nil
+#+Title: CMPS 05
+#+author: Britt Anderson
+#+date: Winter 2025
+#+latex_header: \usepackage{hyperref}
+#+latex_header: \usepackage{amsmath}
+#+latex_header: \usepackage{amsthm}
+#+LATEX_HEADER: \usepackage{mdframed}
+#+Latex_header: \usepackage{tcolorbox}
+#+Latex_header: \usepackage{svg}
+#+latex_header: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \renewenvironment{quote}{\begin{mdframed}[backgroundcolor=gray!10]}{\end{mdframed}}
+#+latex_header_extra: \newtheorem{definition}{Definition}
+#+latex_compiler: xelatex
+#+HTML_HEAD: <style> blockquote {margin-bottom: 10px; padding: 10px; background-color: #DCDCDC; border-left: 2px solid #ffeb8e; border-left-color: rgb(255, 10, 10); display: block; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 40px; margin-inline-end: 40px;} </style>
+#+bibliography: /home/britt/gitRepos/masterBib/bayatt.bib
+#+cite_export: csl /home/britt/gitRepos/brittsite/assets/chicago-fullnote-bibliography.csl
+
+* Modeling Social Cognition With Agents
+
+#+begin_quote
+*Classroom Discussion*
+
+How does the computational concept of cognition differ when applied to populations instead of individuals?
+#+end_quote
+
+
+#+begin_quote
+*Classroom Activity*
+
+Classic Examples of Computational Social Psychology Research. Provide a concise summary of the problem each set out to address or explain.
+
+1. Schelling ([[https://www.tandfonline.com/doi/pdf/10.1080/0022250X.1971.9989794][pdf]])
+2. Hogeweg   ([[https://www.jstor.org/stable/pdf/4599591.pdf?refreqid=fastly-default%3A33a1cc895d16469cef99f65398f7dd6b&ab_segments=&initiator=&acceptTC=1][pdf]])
+3. Axelrod   ([[https://journals.sagepub.com/doi/epdf/10.1177/002200278002400101][pdf]])
+4. Sun       ([[https://www.cambridge.org/core/services/aop-cambridge-core/content/view/2BB4E10ACB99DF1EB8AA30B4D796D4A6/9780511610721c1_p3-26_CBO.pdf/prolegomena_to_integrating_cognitive_modeling_and_social_simulation.pdf][introductory-chapter.pdf]]) ([[https://www.cambridge.org/core/books/cognition-and-multiagent-interaction/64E9F915C690C2A3E382695C8A6E977A][book]])
+
+The links are more for context. I don´t expect you to have time to read them. You will probably want to look for other summary sources. 
+#+end_quote
+
+** Tools for Agent Based Modeling
+  There are many, but since so many of you have been using Python I decided to focus on MESA [cite:@Kazil_2020]. 
+
+
+  
+*** MESA
+  
+**** Steps to begin[fn:2]
+1. Set up a python virtual environment. I have been using the tool =uv=[fn:1].
+2. In a directory where you want to work,
+
+   #+begin_src sh :eval never
+     uv venv 
+   #+end_src
+
+   This will create a hidden subdirectory called ~.venv~. Inside there is where your python libraries will be stored.
+3. Activate the virtual environment.
+
+   =source ./.venv/bin/activate=
+4. Get the necessary libraries
+
+   #+begin_src sh :eval never
+     uv pip install mesa
+   #+end_src
+
+   Repeat for =jupyter= and =seaborn=
+5. Next start a jupyter instance with =jupyter lab=.
+
+
+**** Testing
+1. Copy the test file =schelling.ipynb= (created from the tutorial and example files provided with MESA) located in the ~codelib~ library. Pay attention closely to the first cell. You will need to edit the path to point to where your example files are stored. We are importing some of the MESA example files to make this tutorial example work.
+2. Run all cells.
+3. Play with the graphic below.
+
+
+
+**** Further Explorations
+
+#+begin_quote
+*Classroom Activity*
+
+Select one of the other basic (or advanced) examples and get your own simple version of it working.
+
+We will have one person from each group demonstrate their implementation at the end of class.
+#+end_quote
+
+* Footnotes
+[fn:2] I am doing all of these in my terminal. If you are running linux you might find it easier to initiate these commands within the terminal of VS Code. If not, you may need to install =powershell= or =WSL=. 
+
+[fn:1] [[https://docs.astral.sh/uv/getting-started/installation/][Installation instructions]].  
