@@ -36,5 +36,5 @@ __pycache__/
 
 *.fasl
 
-sandbox/
 wip/
+.venv/
