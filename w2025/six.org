@@ -321,8 +321,7 @@ psychology is devoted to determining if this optimal method of evidence
 combination is actually the way humans think.
 
 Efforts to incorporate this idea into psychology:
-[[http://www.cambridge.org/gb/knowledge/isbn/item1119492/?site_locale=en_GB][Perception
-as Bayesian Inference]]
+[[http://www.cambridge.org/gb/knowledge/isbn/item1119492/?site_locale=en_GB][Perception as Bayesian Inference]]
 
 Example of using Bayesian Inference. A classical problem associated with
 LaPlace (alot of the example here comes from the site:
@@ -421,3 +420,146 @@ everyone working with the psychopy to make a simple Posner task, the
 then we can think about doing some random walk analysis and ez diffusion
 the week after, and I can try to fit the Boolean material in there
 somewhere.
+
+** Bayes Networks[fn:1]
+
+Bayes nets are a way to graphically represent what we take to be the relational, usually causal, structure between pieces of an overall probabilistic puzzle. They are customarily represented like a graph and the edges have directions. Hence you will frequently see them referred to as *DAGs* (Directed Acyclic Graphs).
+
+Often they appear like this:
+
+#+begin_src python :results silent :exports none :session *dags*
+import networkx as nx
+from matplotlib import pyplot as plt
+}
+#+end_src
+
+#+begin_src python :results graphics file output :file Basic.png :exports results :session *dags*
+Basic = nx.DiGraph()
+
+# First row nodes
+Basic.add_nodes_from(['A', 'B', 'C'])
+# Second row nodes
+Basic.add_nodes_from(['D', 'E'])
+
+# Add edges
+Basic.add_edges_from([
+    ('A', 'D'),
+    ('B', 'E'),
+    ('B', 'D'),
+    ('C', 'E')
+])
+
+# Define positions for nodes
+pos = {
+    # First row nodes
+    'A': (0, 1),
+    'B': (1, 1),
+    'C': (2, 1),
+    # Second row nodes
+    'D': (0.5, 0),
+    'E': (1.5, 0)
+}
+
+# Create figure and axis
+plt.figure(figsize=(6, 4))
+
+# Draw the graph
+nx.draw(Basic, pos, 
+        with_labels=True,  # Show node labels
+        node_size=3000,    # Increase node size
+        node_color='skyblue',
+        font_size=15,
+        font_weight='bold',
+        arrowsize=20,      # Increase arrow size
+        width=2)           # Increase edge width
+
+# Add a title
+plt.title("Causal Bayesian Network", fontsize=16)
+
+# Show the plot
+plt.tight_layout()
+ax = plt.gca()
+ax.margins(0.20)
+plt.axis("off")
+plt.savefig("Basic.png")
+#+end_src
+
+#+Name: basic-bayes-net
+#+Caption: A simple Bayes Net. In this example there is an influence of nodes A and B on D and of B and C on E. Associated to each edge, but not shown, is a probability distribution. 
+#+RESULTS:
+[[file:Basic.png]]
+
+It is common to conflate Bayesian Statistics with Bayes Nets since they are named similarly, but in fact they are quite different. We use Bayesian statistics to infer certain things about our data, but we use Bayes Nets to represent. We may be representing our beliefs about the interrelationship about the nodes, and that the accuracy of that structure may be something we can test via /interventions/. Or we may simply be using it as a way to understand certain phenomena, such as /explaining away/.
+
+Another notion common to a Bayes Net is that of efficiency. When you have a large number of variables the joint probabilty distribution can grow to be quite large. For example in Figure [[basic-bayes-net]] we would have to represent the complete joint probability of factors A, B, C, D, \& E as \( P(A)~P(B|A)~P(C|B,A)~P(D | C,B,A)~P(E|D,C,B,A) \), but since we know the structure is simpler we can actually represent the joint probability as \( P(D|A,B)~P(E|B,C)~P(A)~P(B)~P(C) \). We have many fewer terms to estimate. The advantage of this representation increases with the number of nodes and the sparsity of dependencies. 
+
+A strong assumption of these models is the *Markov Assumption*. It says that we only ever need to go one node back. For example, it says that if you know the relation between a parent and child, then you never need worry about the grandparents since their /only/ contribution (under this assumption) is via the parent. In practice this works out well, usually, but it is not necessarily always the case. 
+
+Graphs like these allow you to read off when two variables will be independent given your knowledge of other variables. For example consider the case where you have a disease that causes two symptoms: fever and rash. We imagine a structure like Figure [[disease-bayes-net]].
+
+
+#+begin_src python :results graphics file output :file Disease.png :exports results :session *dags*
+Disease = nx.DiGraph()
+
+# First row nodes
+Disease.add_nodes_from(['Disease'])
+# Second row nodes
+Disease.add_nodes_from(['Fever', 'Rash'])
+
+# Add edges
+Disease.add_edges_from([
+    ('Disease', 'Fever'),
+    ('Disease', 'Rash')
+])
+
+# Define positions for nodes
+pos = {
+    # First row nodes
+    'Disease': (1, 1),
+    # Second row nodes
+    'Fever': (0.5, 0),
+    'Rash': (1.5, 0)
+}
+
+# Create figure and axis
+plt.figure(figsize=(6, 4))
+
+# Draw the graph
+nx.draw(Disease, pos, 
+        with_labels=True,  # Show node labels
+        node_size=3000,    # Increase node size
+        node_color='skyblue',
+        font_size=15,
+        font_weight='bold',
+        arrowsize=20,      # Increase arrow size
+        width=2)           # Increase edge width
+
+# Add a title
+plt.title("Causal Bayesian Network (Disease)", fontsize=16)
+
+# Show the plot
+plt.tight_layout()
+ax = plt.gca()
+ax.margins(0.20)
+plt.axis("off")
+plt.savefig("Disease.png")
+#+end_src
+
+
+#+Name: disease-bayes-net
+#+Caption: A Bayes Net representation of how a disease leads to two symptoms.
+#+RESULTS:
+[[file:Disease.png]]
+
+If we know the disease status then the presence of fever and rash independent. The only way they influence each other is indirectly by both being caused by the disease. However, if we do /not/ know the disease status then knowing that a person has rash increases the probability they also have fever, because our imputed probability of disease is affected by knowing the status of the rash even though the causal influence goes in the opposite direction.
+
+This is an example of *d-separation*. There are three basic cases to worry about. When two nodes are connected by a direct series of links then knowing any of the links in between them separates them and makes them independent. This is also the case when there is a common ancestor, as in the disease example. The tricky case that takes some time to think through is when the two nodes have a common descendant. It that case it is knowing the descendant that renders the ancestors independent.
+
+ToDo: add a numerical explaining away example. For now can use the one from Prof. Goldwater's slides.
+
+
+
+
+* Footnotes
+
+[fn:1] Much of the tutorial material about Bayes Nets was taken from the [[https://www.inf.ed.ac.uk/teaching/courses/cm/lectures/cm15_bayesnet.pdf][nice lecture slides (pdf)]] of Prof. [[https://homepages.inf.ed.ac.uk/sgwater/][Sharon Goldwater]] of the University of Edinburgh.  
