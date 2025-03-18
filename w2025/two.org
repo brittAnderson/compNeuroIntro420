@@ -57,4 +57,3 @@ Although the Turing Machine account of computation seems to dominate examples in
 
 [fn:1] Can you tell me what this word means in this context? 
 
-#+print_bibliography: 

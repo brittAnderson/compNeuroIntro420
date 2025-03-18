@@ -144,7 +144,7 @@ The basic terms important for understanding sets are,
 
 Other concepts can be defined from combinations of these basic ideas.
 
-* Probability as a Measure of Set Size
+** Probability as a Measure of Set Size
 :PROPERTIES:
 :CUSTOM_ID: probability-as-a-measure-of-set-size
 :END:
@@ -206,14 +206,14 @@ was useful to return to the definition of the derivative when trying to
 understand how we could numerically simulate simple differential
 equations.
 
-* Exercise Class
+*** Exercise Class
 :PROPERTIES:
 :CUSTOM_ID: exercise-class
 :END:
 By writing out all possible \(\omega\)'s, determine the probability of
 getting 2 or more heads from four flips of a fair coin.
 
-* Conditional Probability
+** Conditional Probability
 :PROPERTIES:
 :CUSTOM_ID: conditional-probability
 :END:
@@ -352,7 +352,7 @@ plot(x = p,post, type = "l")
 lines(x=p,y=prior)
 #+end_example
 
-* Humans Are Not Rational
+** Humans Are Not Rational
 :PROPERTIES:
 :CUSTOM_ID: humans-are-not-rational
 :END:
@@ -427,13 +427,10 @@ Bayes nets are a way to graphically represent what we take to be the relational,
 
 Often they appear like this:
 
-#+begin_src python :results silent :exports none :session *dags*
+#+begin_src python :results graphics file output :file ./images/Basic.png :exports results :session *dags*
 import networkx as nx
 from matplotlib import pyplot as plt
-}
-#+end_src
 
-#+begin_src python :results graphics file output :file Basic.png :exports results :session *dags*
 Basic = nx.DiGraph()
 
 # First row nodes
@@ -481,13 +478,13 @@ plt.tight_layout()
 ax = plt.gca()
 ax.margins(0.20)
 plt.axis("off")
-plt.savefig("Basic.png")
+plt.savefig("./images/Basic.png")
 #+end_src
 
 #+Name: basic-bayes-net
 #+Caption: A simple Bayes Net. In this example there is an influence of nodes A and B on D and of B and C on E. Associated to each edge, but not shown, is a probability distribution. 
 #+RESULTS:
-[[file:Basic.png]]
+[[file:./images/Basic.png]]
 
 It is common to conflate Bayesian Statistics with Bayes Nets since they are named similarly, but in fact they are quite different. We use Bayesian statistics to infer certain things about our data, but we use Bayes Nets to represent. We may be representing our beliefs about the interrelationship about the nodes, and that the accuracy of that structure may be something we can test via /interventions/. Or we may simply be using it as a way to understand certain phenomena, such as /explaining away/.
 
@@ -498,7 +495,7 @@ A strong assumption of these models is the *Markov Assumption*. It says that we 
 Graphs like these allow you to read off when two variables will be independent given your knowledge of other variables. For example consider the case where you have a disease that causes two symptoms: fever and rash. We imagine a structure like Figure [[disease-bayes-net]].
 
 
-#+begin_src python :results graphics file output :file Disease.png :exports results :session *dags*
+#+begin_src python :results graphics file output :file ./images/Disease.png :exports results :session *dags*
 Disease = nx.DiGraph()
 
 # First row nodes
@@ -549,7 +546,7 @@ plt.savefig("Disease.png")
 #+Name: disease-bayes-net
 #+Caption: A Bayes Net representation of how a disease leads to two symptoms.
 #+RESULTS:
-[[file:Disease.png]]
+[[file:./images/Disease.png]]
 
 If we know the disease status then the presence of fever and rash independent. The only way they influence each other is indirectly by both being caused by the disease. However, if we do /not/ know the disease status then knowing that a person has rash increases the probability they also have fever, because our imputed probability of disease is affected by knowing the status of the rash even though the causal influence goes in the opposite direction.
 
@@ -557,9 +554,175 @@ This is an example of *d-separation*. There are three basic cases to worry about
 
 ToDo: add a numerical explaining away example. For now can use the one from Prof. Goldwater's slides.
 
+** Tutorial Experiments with Bayes Nets and Python
+
+*** PGMPY
+    [[https://github.com/pgmpy/pgmpy][PGMPY]] is a python library that does quite a bit more than just Bayes Nets [cite:@Ankan2024]. In fact, you can use it for structural equation modeling if that is your interest. We will barely scratch the surface, but you will end up knowing that it exists, and some of the elemental aspects of how to install it and use it in a minimal instance.
+
+   
+*** Installation
+    Many python libraries have been written with particular versions of python in mind. You have to make sure that you have a python version installed that is compatible with the libraries you plan to use. PGMPY's compatabilty can be found on the [[https://pgmpy.org/started/install.html][installation page]].  One of the strength's of virutal environments is that they enable you to have multiple installed versions of python on your computer at any one time. When creating a virtual environment with =uv= you can specify which version  of python you want used for that environment, e.g. ~uv venv --python=3.10~. If after *activation* you then ~uv pip install pgmpy~ you will pull in a lot of rather large python dependencies. Be patient.
+
+    
+*** Bayesian Networks
+    [[https://pgmpy.org/models/bayesiannetwork.html][Bayesian Networks]] (the library uses the full spelling) are a class in the pgmpy library. And an empty network can be initiated by,
+
+    #+begin_src python :eval never :exports code
+      from pgmpy.models import BayesianNetwork as bn
+      G = bn()
+    #+end_src
+
+    Such a network can be grown by adding nodes or edges. In keeping with its identity as a Bayes Net the edges also carry conditional probability information.
+
+    
+
+#+begin_quote
+*Classroom Activity*
+
+The classroom activity will be to explore a simple Bayesian Network Model from the [[https://pgmpy.org/detailed_notebooks/2.%20Bayesian%20Networks.html][tutorial examples]] in the pgmpy library. As a first step explore the same networks available at [[https://www.bnlearn.com/bnrepository/]]. The library has a function to allow you rapidly import those examples. Try it. Below I show how. 
+
+#+end_quote
+
+#+begin_src python :session *dags* :exports both :results graphics file output :file ./images/cancer.png :python "/home/britt/gitRepos/compNeuroIntro420/w2025/.venv/bin/python"
+
+  from pgmpy.utils import get_example_model
+  cancer_model = get_example_model('cancer')
+  cmd = cancer_model.to_daft()
+  cmd.render()
+  cmd.savefig("cancer.png")
+#+end_src
+
+#+Name: cancer-daft
+#+Caption: This is a graphical plot of the example cancer model. Note that getting the pictures to show up can be problematic depending on which environment you choose to work in. For this example I used ~daft~. More options can be found on the Plotting Models page at the pgmpy library home page. If you use the ~nx.draw~ function you can also use matplotlib directly. 
+#+RESULTS:
+[[file:cancer.png]]
+
+#+Name: BN-example-student
+#+Caption: This is an example taken from the tutorial notebooks of the PGMPY library.
+#+begin_src python :session *student* :exports both :results graphics file output :python "/home/britt/gitRepos/compNeuroIntro420/w2025/.venv/bin/python" :file ./images/students.png
+
+    from pgmpy.models import BayesianNetwork
+    from pgmpy.factors.discrete import TabularCPD
+    
+    # Defining the model structure. We can define the network by just passing a list of edges.
+    model = BayesianNetwork([('D', 'G'), ('I', 'G'), ('G', 'L'), ('I', 'S')])
+
+    # Defining individual CPDs.
+    cpd_d = TabularCPD(variable='D', variable_card=2, values=[[0.6], [0.4]])
+    cpd_i = TabularCPD(variable='I', variable_card=2, values=[[0.7], [0.3]])
+
+    # The representation of CPD in pgmpy is a bit different than the CPD shown in the above picture. In pgmpy the colums
+    # are the evidences and rows are the states of the variable. So the grade CPD is represented like this:
+    #
+    #    +---------+---------+---------+---------+---------+
+    #    | diff    | intel_0 | intel_0 | intel_1 | intel_1 |
+    #    +---------+---------+---------+---------+---------+
+    #    | intel   | diff_0  | diff_1  | diff_0  | diff_1  |
+    #    +---------+---------+---------+---------+---------+
+    #    | grade_0 | 0.3     | 0.05    | 0.9     | 0.5     |
+    #    +---------+---------+---------+---------+---------+
+    #    | grade_1 | 0.4     | 0.25    | 0.08    | 0.3     |
+    #    +---------+---------+---------+---------+---------+
+    #    | grade_2 | 0.3     | 0.7     | 0.02    | 0.2     |
+    #    +---------+---------+---------+---------+---------+
+
+    cpd_g = TabularCPD(variable='G', variable_card=3,
+                       values=[[0.3, 0.05, 0.9,  0.5],
+                               [0.4, 0.25, 0.08, 0.3],
+                               [0.3, 0.7,  0.02, 0.2]],
+                      evidence=['I', 'D'],
+                      evidence_card=[2, 2])
+
+    cpd_l = TabularCPD(variable='L', variable_card=2,
+                       values=[[0.1, 0.4, 0.99],
+                               [0.9, 0.6, 0.01]],
+                       evidence=['G'],
+                       evidence_card=[3])
+
+    cpd_s = TabularCPD(variable='S', variable_card=2,
+                       values=[[0.95, 0.2],
+                               [0.05, 0.8]],
+                       evidence=['I'],
+                       evidence_card=[2])
+
+    # Associating the CPDs with the network
+    model.add_cpds(cpd_d, cpd_i, cpd_g, cpd_l, cpd_s)
+
+    # check_model checks for the network structure and CPDs and verifies that the CPDs are correctly
+    # defined and sum to 1.
+    model.check_model()
+    sd = model.to_daft()
+    sd.render()
+    sd.savefig("students.png")
+#+end_src
+
+#+RESULTS: BN-example-student
+[[file:students.png]]
 
 
+#+begin_src python :session *student* :exports both :results output :python "/home/britt/gitRepos/compNeuroIntro420/w2025/.venv/bin/python" :warnings False
+# CPDs can also be defined using the state names of the variables. If the state names are not provided
+# like in the previous example, pgmpy will automatically assign names as: 0, 1, 2, ....
 
-* Footnotes
+cpd_d_sn = TabularCPD(variable='D', variable_card=2, values=[[0.6], [0.4]], state_names={'D': ['Easy', 'Hard']})
+cpd_i_sn = TabularCPD(variable='I', variable_card=2, values=[[0.7], [0.3]], state_names={'I': ['Dumb', 'Intelligent']})
+cpd_g_sn = TabularCPD(variable='G', variable_card=3,
+                      values=[[0.3, 0.05, 0.9,  0.5],
+                              [0.4, 0.25, 0.08, 0.3],
+                              [0.3, 0.7,  0.02, 0.2]],
+                      evidence=['I', 'D'],
+                      evidence_card=[2, 2],
+                      state_names={'G': ['A', 'B', 'C'],
+                                   'I': ['Dumb', 'Intelligent'],
+                                   'D': ['Easy', 'Hard']})
+
+cpd_l_sn = TabularCPD(variable='L', variable_card=2,
+                      values=[[0.1, 0.4, 0.99],
+                              [0.9, 0.6, 0.01]],
+                      evidence=['G'],
+                      evidence_card=[3],
+                      state_names={'L': ['Bad', 'Good'],
+                                   'G': ['A', 'B', 'C']})
+
+cpd_s_sn = TabularCPD(variable='S', variable_card=2,
+                      values=[[0.95, 0.2],
+                              [0.05, 0.8]],
+                      evidence=['I'],
+                      evidence_card=[2],
+                      state_names={'S': ['Bad', 'Good'],
+                                   'I': ['Dumb', 'Intelligent']})
+
+# These defined CPDs can be added to the model. Since, the model already has CPDs associated to variables, it will
+# show warning that pmgpy is now replacing those CPDs with the new ones.
+model.add_cpds(cpd_d_sn, cpd_i_sn, cpd_g_sn, cpd_l_sn, cpd_s_sn)
+model.check_model()
+
+
+model.get_cpds()
+print(model.get_cpds('G'))
+
+#+end_src
+
+#+RESULTS:
+#+begin_example
+WARNING:pgmpy:Replacing existing CPD for D
+WARNING:pgmpy:Replacing existing CPD for I
+WARNING:pgmpy:Replacing existing CPD for G
+WARNING:pgmpy:Replacing existing CPD for L
+WARNING:pgmpy:Replacing existing CPD for S
++------+---------+---------+----------------+----------------+
+| I    | I(Dumb) | I(Dumb) | I(Intelligent) | I(Intelligent) |
++------+---------+---------+----------------+----------------+
+| D    | D(Easy) | D(Hard) | D(Easy)        | D(Hard)        |
++------+---------+---------+----------------+----------------+
+| G(A) | 0.3     | 0.05    | 0.9            | 0.5            |
++------+---------+---------+----------------+----------------+
+| G(B) | 0.4     | 0.25    | 0.08           | 0.3            |
++------+---------+---------+----------------+----------------+
+| G(C) | 0.3     | 0.7     | 0.02           | 0.2            |
++------+---------+---------+----------------+----------------+
+#+end_example
+
+** Footnotes
 
 [fn:1] Much of the tutorial material about Bayes Nets was taken from the [[https://www.inf.ed.ac.uk/teaching/courses/cm/lectures/cm15_bayesnet.pdf][nice lecture slides (pdf)]] of Prof. [[https://homepages.inf.ed.ac.uk/sgwater/][Sharon Goldwater]] of the University of Edinburgh.  
