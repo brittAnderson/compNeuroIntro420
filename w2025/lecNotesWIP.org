@@ -39,6 +39,7 @@
 
 #+include: five.org :lines "20-"
 
+#+include: six.org :lines "20-"
 
 * Local variables                                                  :noexport:
 # local variables:
