@@ -325,11 +325,11 @@ Efforts to incorporate this idea into psychology:
 
 Example of using Bayesian Inference. A classical problem associated with
 LaPlace (alot of the example here comes from the site:
-[[http://www.bayesian-inference.com/sunriseproblem]])
+[[https://web.archive.org/web/20150418143843/www.bayesian-inference.com/sunriseproblem][The sunrise problem in code]] and a [[https://www.freecodecamp.org/news/will-the-sun-rise-tomorrow-255afc810682/][folksy version]]).
 
 Here is some R code for demonstrating this. I can type these live.
 
-#+begin_example
+#+begin_src R :session *sunrise* :results graphics file output :file ./images/sunrise.png :exports both
 prior.successes <- 0
 prior.failures <- 0
 alpha <- prior.successes+1
@@ -350,7 +350,14 @@ successes = 10
 post <- dbeta(p, alpha + successes, beta+failures)
 plot(x = p,post, type = "l")
 lines(x=p,y=prior)
-#+end_example
+#+end_src
+
+#+Name: sunrise
+#+Caption: Simple coded example of how an event's calculated probability rises with the number of repeated observations. 
+#+RESULTS:
+[[file:./images/sunrise.png]]
+
+
 
 ** Humans Are Not Rational
 :PROPERTIES:
