@@ -38,3 +38,5 @@ __pycache__/
 
 wip/
 .venv/
+
+backpropagation-main/
