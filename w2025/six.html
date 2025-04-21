@@ -1,0 +1,1113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-03-21 Fri 08:14 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CMPS 06</title>
+<meta name="author" content="Britt Anderson" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<style> blockquote {margin-bottom: 10px; padding: 10px; background-color: #DCDCDC; border-left: 2px solid #ffeb8e; border-left-color: rgb(255, 10, 10); display: block; margin-block-start: 1em; margin-block-end: 1em; margin-inline-start: 40px; margin-inline-end: 40px;} </style>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">CMPS 06</h1>
+<div id="outline-container-org8171fee" class="outline-2">
+<h2 id="org8171fee"><span class="section-number-2">1.</span> Probability and Boolean Logic</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org2fd751e" class="outline-3">
+<h3 id="org2fd751e"><span class="section-number-3">1.1.</span> Are we optimal?</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-orgc48f5fc" class="outline-4">
+<h4 id="orgc48f5fc"><span class="section-number-4">1.1.1.</span> Ellsberg Paradox<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+Imagine that you are faced with an urn. You know that it contains 30 red marbles and 60 marbles that are either yellow or black in some combination.
+</p>
+
+<p>
+If I offered you the following bet which would you chose?
+</p>
+<ul class="org-ul">
+<li>I will pay you $100 if you draw a red marble</li>
+<li>Or I will pay you $100 if you draw a black marble.</li>
+</ul>
+
+<p>
+Consider a different bet.
+</p>
+<ul class="org-ul">
+<li>I will pay $100 for if you draw either a red or yellow marble,</li>
+<li>Or I will pay $100 for either a black or yellow marble.</li>
+</ul>
+
+<p>
+Which of these two bets would you prefer to take?
+</p>
+
+<p>
+Most people in the first scenario prefer to bet on red. This implies
+that the value of red choice is in some sense worth more to them, i.e.
+</p>
+
+<p>
+p(Red) \(>\) p(Black).
+</p>
+
+<p>
+In the second scenario, most prefer the black and
+yellow combination, i.e.
+</p>
+
+<p>
+p(Black) +p(Yellow) \(>\) p(Red) + p(Yellow),
+</p>
+
+<p>
+but since the number of yellow balls, whatever it may be, is the same,
+we can remove these (we may subtract whatever we want from one side of
+an equation as long as we subtract it from the other side as well). This
+leaves us with the conclusion that
+</p>
+
+<p>
+p(Black) \(>\) p(Red),
+</p>
+
+<p>
+contradicting
+what we apparently believed from our choice of bets in the first
+scenario.
+</p>
+
+<p>
+The usual explanation for this paradox is ambiguity aversion.<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>
+</p>
+</div>
+</div>
+<div id="outline-container-org3253dae" class="outline-4">
+<h4 id="org3253dae"><span class="section-number-4">1.1.2.</span> St. Petersburg Paradox</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+Let's try another example: A casino offers a game of chance for a single
+player in which a fair coin is tossed at each stage. The pot starts at 1
+dollar and is doubled every time a head appears. The first time a tail
+appears, the game ends and the player wins whatever is in the pot. Thus
+the player wins 1 dollar if a tail appears on the first toss, 2 dollars
+if a head appears on the first toss and a tail on the second, 4 dollars
+if a head appears on the first two tosses and a tail on the third, 8
+dollars if a head appears on the first three tosses and a tail on the
+fourth, and so on. How much would YOU pay to play this game?
+</p>
+
+<p>
+What is the expected value of playing the game? Expected value is
+closely related to the idea of an average or the mean. You weight each
+outcome by its probability. What is the outcome here?
+</p>
+
+<p>
+Your winning is \(2 \times \; \mbox{number of coin tosses} \; - 1\) and
+you have to multiply this by the probablity of each:
+\(1/2 \times \; \mbox{number of coin tosses}\).
+</p>
+
+<p>
+Put it altogether and you get:
+</p>
+
+<p>
+Expected Value of the Game
+\(= 1/2 \times 1 + 1/4 \times \;  2 + 1/8 \times \; 4 ...\) which is
+equal to infinity. Why don't we choose play this game at any cost?
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org420fe4d" class="outline-3">
+<h3 id="org420fe4d"><span class="section-number-3">1.2.</span> Some of the Mathematical Jargon of Probability</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-org0bcf3fb" class="outline-4">
+<h4 id="org0bcf3fb"><span class="section-number-4">1.2.1.</span> Probability as Counting</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+Probability theory can be thought of as measuring the size of a set.
+What is the probability that a coin in my pocket is a nickle? That
+depends on the size of the set that is the set of all coins that are in
+my pocket and how many coins are in the subset of coins that are nickles
+and that are in my pocket. Those two numbers are counting measures.
+Their ratio is a probability. Below, I briefly consider these ideas,
+sets and measures, more generally.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="set-terminology"></a>Set Terminology<br />
+<div class="outline-text-5" id="text-set-terminology">
+<p>
+Set theory is a subdivision of mathematics, and sets have allowed
+mathematicians to formalize their knowledge of many common mathematical
+concepts including probability, logic, computability, and even the
+concept of infinity (e.g. it allows us to prove that some infinities are
+bigger than others). Even though mathematical sets can be used for very
+complex exercises, they are basically an extension of our intuitive idea
+of a set gathered from real world collections (like a dining room set).
+</p>
+
+<p>
+The basic terms important for understanding sets are,
+</p>
+
+<dl class="org-dl">
+<dt>Set: </dt><dd>An unordered collection of elements</dd>
+
+<dt>Element: </dt><dd>An indivisible thing.</dd>
+
+<dt>Membership: </dt><dd>Denoted by \(\in\), it means is a member of or belongs
+to. For example, orange \(\in\) Fruit.</dd>
+
+<dt>Union: </dt><dd>Denoted by \(\cup\). Everything thrown together. For
+example
+\(\left\{1,2,3\right\} \cup \left\{3,4,5\right\} = \left\{1,2,3,4,5\right\}\).</dd>
+
+<dt>Intersection: </dt><dd>Denoted by \(\cap\). Only those elements that are in
+both sets. For example
+\(\left\{1,2,3\right\} \cap \left\{3,4,5\right\} = \left\{3\right\}\).</dd>
+
+<dt>Cardinality: </dt><dd>This is the size of a set, and it is what we use as
+our counting measure. It is usually represented using the same symbol
+used to show absolute value (\(\left |{S}\right |\)). This makes sense
+when you think of absolute value as the "size" of a number; -3 is
+still three units big, the negative sign just says which way to go on
+the number line when we lay out the units.</dd>
+</dl>
+
+<p>
+Other concepts can be defined from combinations of these basic ideas.
+</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-probability-as-a-measure-of-set-size" class="outline-3">
+<h3 id="probability-as-a-measure-of-set-size"><span class="section-number-3">1.3.</span> Probability as a Measure of Set Size</h3>
+<div class="outline-text-3" id="text-probability-as-a-measure-of-set-size">
+<p>
+Previously I mentioned the idea of a metric. A related concept is that
+of <i>measure</i>. I have used this word a number of times, and you probably
+inferred its meaning from conventional uses. A measure tells you how big
+something is. A teaspoon is a measure and there are three teaspoons in a
+tablespoon. A mathematical measure is essentially the same idea. Where
+metrics quantify distances, measures quantify size.
+</p>
+
+<p>
+Individual outcomes, the elements of our set of interest, are often
+symbolized by a lower case omega \(\omega\) while the entire set of all
+possible outcomes is symbolized by a capital omega \(\Omega\).
+</p>
+
+<p>
+Just as there is more than one kind of metric, there is more than one
+variety of measure (e.g. volume, area, Lebesgue). With sets we can often
+use the counting measure to quantify a set's size. The size of a set is
+the number of things it contains. To see how we can use this to derive a
+probability consider the trivial question: what is the probability of
+flipping a fair coin and having it land "heads."
+</p>
+
+<p>
+To answer this question we need to define a <i>probability space</i>. A
+probability space is a mathematical object that has three different
+parts. One part is the set of all possible outcomes. Another part is the
+measure that we use for quantifying the size of sets. And last we have a
+collection of all the subsets (we will call each of these subsets an
+<i>event</i>) that together comprise all the possible subsets of our set of
+all possible outcomes.
+</p>
+
+<p>
+I have simplified things somewhat. It could be worse.
+</p>
+
+<p>
+To figure out a probability, we compute the measure of our event of
+interest (the size of the subset of possible qualifying outcomes) and
+compare it to the size of the set of all possible outcomes. For the
+simple situation currently under consideration there are only two
+possible outcomes: head = H, or tail = T. The subset containing our
+event is \(\left \{ H\right\}\). It has measure 1. The measure of the
+set of all possible outcomes \(\left \{ H, T\right\}\) is two, and the
+ratio is \(1/2\), thus our probability is 0.5.
+</p>
+
+<p>
+To repeat, for the mathematician, probability is a measure on the sizes
+of sets. If that is too abstract for you then buckle up. For the
+mathematician a random variable is a function. Remember functions are
+machines for turning inputs into outputs. The functions that are random
+variables take the abstract little entities that are our outcomes and
+turn them into real numbers on the number line. We can then define
+events by reference to these numbers. For example, an event could be the
+subset of all outcomes whose value after being crunched by a random
+variable function was between two values. Things like this are
+represented by notations that look like:
+\[Prob(1 \le X < 2) = | \{ \omega \in \Omega \mbox{ s.t. } X ( \omega ) \le 1 \; \& \; X ( \omega ) < 2 \} |.\]
+All this says is that our probability of observing some random variable
+have a value between one and two is equal to the measure of the subset
+of all possible outcomes that when run through the random variable
+machine \(X\) have a value between one and two. Usually this complicated
+way of stating the obvious is not necessary, but it can be very helpful
+to return to this definition when considering complex cases just as it
+was useful to return to the definition of the derivative when trying to
+understand how we could numerically simulate simple differential
+equations.
+</p>
+</div>
+<div id="outline-container-exercise-class" class="outline-4">
+<h4 id="exercise-class"><span class="section-number-4">1.3.1.</span> Exercise Class</h4>
+<div class="outline-text-4" id="text-exercise-class">
+<p>
+By writing out all possible \(\omega\)'s, determine the probability of
+getting 2 or more heads from four flips of a fair coin.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-conditional-probability" class="outline-3">
+<h3 id="conditional-probability"><span class="section-number-3">1.4.</span> Conditional Probability</h3>
+<div class="outline-text-3" id="text-conditional-probability">
+<p>
+Tell them a little bit about the notation and what it means.
+</p>
+
+<p>
+When we say that something is conditional, we mean that it depends on
+something else. A child gets their allowance if they clean their room.
+The allowance is conditional on the clean room variable being TRUE. The
+notation for conditional probability typically uses a "pipe": "|". It is
+defined as, \[P(B|A) =  \frac{P(B\cap A)}{P(A)}.\]
+</p>
+
+<p>
+Give them the visual.
+</p>
+
+<p>
+To continue with our set based view of probability, the equation of
+conditional probability means that we compare the measure of the subset
+of outcomes that are in both subsets \(B\) and \(A\) divided by the
+measure of the subset of outcomes that belong to the subset after the
+pipe, in this case \(A\). You can also think of this visually.
+</p>
+
+<p>
+rectangle represents all possible outcomes. The event defined by \(A\)
+is the subset of outcomes for which \(A\) is true. Similarly for \(B\).
+The overlap defines their <i>joint</i> probability and the ratio of the
+measure of their intersection to the measure of \(A\) defines the
+conditional probability of \(B\) given \(A\).
+<a id="orge95cbcd"></a>
+</p>
+
+<div class="org-center">
+nil</div>
+
+<div class="org-center">
+<p>
+
+</p>
+
+<p>
+Exercise: Compute a Conditional Probability
+</p>
+</div>
+
+<p>
+Demonstrate your understanding of the formula for conditional
+probability, by computing the probability of getting two or more heads
+in four flips given that there cannot be two heads in a row. The use of
+the word "given" is a common equivalent to the the phrase "conditional
+on". It may be helpful to actually write out all the possible
+\(\omega\)s and circle the subsets defined by the events.
+</p>
+</div>
+</div>
+<div id="outline-container-bayes-rule" class="outline-3">
+<h3 id="bayes-rule"><span class="section-number-3">1.5.</span> Bayes' Rule</h3>
+<div class="outline-text-3" id="text-bayes-rule">
+<p>
+A little bit about the history? Reverend Bayes? Posthumous publication.
+</p>
+
+<p>
+Bayesian probability is commonly used in psychology and neuroscience,
+but it is used in two largely different ways. One way that Bayesian
+probability is used is to expand the types of statistical tests that are
+employed when performing data analysis. This is often referred to as
+<i>Bayesian inference</i>. The other way that Bayesian probability is used is
+as a model for how <i>rational</i> actors use information.
+</p>
+
+<p>
+In the method of <i>maximum likelihood</i> we try to figure out what is the
+most likely underlying hypothesis that would explain the data we
+observe. What we do with Bayesian probability is to expand this
+calculation to weight the possible hypotheses by how likely we thought
+they were before we observed any data.
+</p>
+
+<p>
+Imagine that you see a cloud on the horizon. It is a dark cloud, the
+kind you would normally associate with rain. How likely is it that it
+will rain? What if you are in Saudi Arabia? What if you are in Britain?
+Your answers should be very different in the two locations. Rain is much
+more likely in Britain, and therefore your <i>posterior</i> estimate of rain
+should be greater when you are in Britain, even when observing the same
+cloud. This is the intuition behind Bayesian probability. Observations
+and their implications are combined with prior estimates.
+</p>
+
+<p>
+As a formula Bayes Rule is, \[P(H|O) =  P(O|H)P(H)/P(O)
+\label{eqn:baye}\]
+</p>
+
+<p>
+where the \(O\) represents our observations and the \(H\) represents our
+hypotheses. Note that which one is on top, the \(O\) or \(H\), flips
+between the right and left hand side of the equation. We are interested
+in how our belief in the various hypotheses changes given our
+observations. To determine this we can multiply how likely the
+observations would have been assuming particular hypotheses (this term
+is sometimes called the <i>likelihood</i> and may be written
+\(\mathcal{L}(O,H)\)) by how likely they were to start with (this is
+called the <i>prior</i>). What we get out of this calculation, since it comes
+after we modify the prior, is the <i>posterior</i>.
+</p>
+
+<p>
+Frequently, one may see statements of Bayes Rule that look like
+\[P(H|O) \propto  P(O|H)P(H).\label{eqn:bayeApprx}\] Note that we do not
+have an equal sign, but a sign for "proportional to." When using Bayes
+rule in practice we are usually trying to estimate the probability of
+our hypothesis given some data. The data does not change, so the
+\(P(O)\) is the same for all estimates of the parameters of \(H\).
+Therefore, the ordering of all the posteriors does not change simply
+because we divide them all by the same constant number. Our most
+probable values for \(H\) will still be the most probable, and so we can
+often ignore the term \(P(O)\).
+</p>
+
+<p>
+Bayes' rule is basically an instruction on how to combine evidence. We
+should weight our prior beliefs by our observations. It is important to
+remember what the \(P\)'s mean in the equation. These are distributions,
+not simple numbers but functions. This means that if our prior belief is
+very concentrated, and our likelihood very broad, we should (and the
+equation determines that we will) give more weight to the prior (or vice
+verse). We wait the evidence based on its quality. Much work in
+psychology is devoted to determining if this optimal method of evidence
+combination is actually the way humans think.
+</p>
+
+<p>
+Efforts to incorporate this idea into psychology:
+<a href="http://www.cambridge.org/gb/knowledge/isbn/item1119492/?site_locale=en_GB">Perception as Bayesian Inference</a>
+</p>
+
+<p>
+Example of using Bayesian Inference. A classical problem associated with
+LaPlace (alot of the example here comes from the site:
+<a href="https://web.archive.org/web/20150418143843/www.bayesian-inference.com/sunriseproblem">The sunrise problem in code</a> and a <a href="https://www.freecodecamp.org/news/will-the-sun-rise-tomorrow-255afc810682/">folksy version</a>).
+</p>
+
+<p>
+Here is some R code for demonstrating this. I can type these live.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-R">prior.successes <span style="color: #a2cd5a;">&lt;-</span> 0
+prior.failures <span style="color: #a2cd5a;">&lt;-</span> 0
+alpha <span style="color: #a2cd5a;">&lt;-</span> prior.successes+1
+beta <span style="color: #a2cd5a;">&lt;-</span> prior.failures+1
+prior.mu <span style="color: #a2cd5a;">&lt;-</span> alpha/(alpha+beta)
+prior.mu
+successes <span style="color: #a2cd5a;">&lt;-</span> 1
+failures <span style="color: #a2cd5a;">&lt;-</span> 0
+p <span style="color: #a2cd5a;">&lt;-</span> seq(from = 0, to = 1, by = 0.01)
+p
+prior <span style="color: #a2cd5a;">&lt;-</span> dbeta(p,alpha,beta)
+plot(prior,type = <span style="color: #deb887;">"l"</span>)
+post <span style="color: #a2cd5a;">&lt;-</span> dbeta(p,alpha + successes,beta+failures)
+plot(post, type = <span style="color: #deb887;">"l"</span>)
+post.mu <span style="color: #a2cd5a;">&lt;-</span> (alpha + successes )/ (alpha + successes + beta + failures)
+post.mu
+successes = 10
+post <span style="color: #a2cd5a;">&lt;-</span> dbeta(p, alpha + successes, beta+failures)
+plot(x = p,post, type = <span style="color: #deb887;">"l"</span>)
+lines(x=p,y=prior)
+</pre>
+</div>
+
+
+<div id="org2722fc7" class="figure">
+<p><img src="./images/sunrise.png" alt="sunrise.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Simple coded example of how an event's calculated probability rises with the number of repeated observations.</p>
+</div>
+</div>
+</div>
+<div id="outline-container-humans-are-not-rational" class="outline-3">
+<h3 id="humans-are-not-rational"><span class="section-number-3">1.6.</span> Humans Are Not Rational</h3>
+<div class="outline-text-3" id="text-humans-are-not-rational">
+<p>
+A lot of recent psychological work evaluates the idea of us as ideal or
+optimal learners; that we use probability in a perfect way. But are we
+really?
+</p>
+
+<p>
+While Bayesian models are common, and there are many areas where near
+optimal behavior is observed, there are a number of observations that
+challenge the claim that humans are probabilistically sophisticated. In
+fact, we can easily be shown to be inconsistent. The Ellsberg paradox
+above is one example of this, but there are many others. One of the
+benefits of having some familiarity with the language of probability is
+that it allows one to construct probabilistic models, but another
+advantage is that it gives one the basis for constructing and evaluating
+experiments designed to test the ability of humans to reason under
+uncertainty. A famous example of this comes from the <i>conjunction
+fallacy</i>.
+</p>
+
+<div class="org-center">
+<p>
+Exercise: Conjunction Fallacy
+</p>
+</div>
+
+<p>
+Poll a group of your friends on the following question:
+</p>
+
+<p>
+"Linda is 31 years old, single, outspoken, and very bright. She majored
+in philosophy. As a student, she was deeply concerned with issues of
+discrimination and social justice, and also participated in anti-nuclear
+demonstrations."
+</p>
+
+<p>
+Which is more probable?
+</p>
+
+<ol class="org-ol">
+<li>Linda is a bank teller.</li>
+
+<li>Linda is a bank teller and is active in the feminist movement.</li>
+</ol>
+
+<p>
+Many people choose bank teller and feminist. Consider this response from
+the point of view of probability, sets, and counting. For the sets of
+all people and all occupations there is a set of events that correspond
+to bank teller and to feminist. Since not all bank tellers are feminists
+the intersection of the subsets feminist and bank teller must be no
+larger than the subset of bank teller alone. Thus, the size (measure) of
+the conjunction bank teller <i>and</i> feminist is less than bank teller by
+itself. Thus, the probability of the first statement is larger than the
+second. So why do people routinely pick the second?
+</p>
+
+<p>
+There is a large body of research following up on the observation of the
+conjunction fallacy. One popular account holds that the conjunction
+fallacy arises from humans equating the probability of an outcome with
+its <i>typicality</i>; the more typical something is, the more probable we
+estimate it to be. We feel that for someone with Linda's earlier social
+preferences, the characteristic of being a feminist is more typical, and
+so we rate it as more probable. For developing computational modeling
+skills it is not critical what the answer is to the conjunction fallacy.
+What is critical, is that it is only from our familiarity with the
+axioms of probability and what it actually means mathematically that we
+can perceive human responses as a possible fallacy. Without this
+computational vocabulary we cannot detect the paradox nor design
+experiments or models to explain it.
+</p>
+
+<p>
+At this point, I could go on to the Boolean section if time permits, but
+I am not writing that up now. Our goal for next week will be to get
+everyone working with the psychopy to make a simple Posner task, the
+then we can think about doing some random walk analysis and ez diffusion
+the week after, and I can try to fit the Boolean material in there
+somewhere.
+</p>
+</div>
+</div>
+<div id="outline-container-org6fb8480" class="outline-3">
+<h3 id="org6fb8480"><span class="section-number-3">1.7.</span> Bayes Networks<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup></h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+Bayes nets are a way to graphically represent what we take to be the relational, usually causal, structure between pieces of an overall probabilistic puzzle. They are customarily represented like a graph and the edges have directions. Hence you will frequently see them referred to as <b>DAGs</b> (Directed Acyclic Graphs).
+</p>
+
+<p>
+Often they appear like this:
+</p>
+
+
+<div id="org712d27b" class="figure">
+<p><img src="./images/Basic.png" alt="Basic.png" />
+</p>
+<p><span class="figure-number">Figure 2: </span>A simple Bayes Net. In this example there is an influence of nodes A and B on D and of B and C on E. Associated to each edge, but not shown, is a probability distribution.</p>
+</div>
+
+<p>
+It is common to conflate Bayesian Statistics with Bayes Nets since they are named similarly, but in fact they are quite different. We use Bayesian statistics to infer certain things about our data, but we use Bayes Nets to represent. We may be representing our beliefs about the interrelationship about the nodes, and that the accuracy of that structure may be something we can test via <i>interventions</i>. Or we may simply be using it as a way to understand certain phenomena, such as <i>explaining away</i>.
+</p>
+
+<p>
+Another notion common to a Bayes Net is that of efficiency. When you have a large number of variables the joint probabilty distribution can grow to be quite large. For example in Figure <a href="#org712d27b">2</a> we would have to represent the complete joint probability of factors A, B, C, D, \&amp; E as \( P(A)~P(B|A)~P(C|B,A)~P(D | C,B,A)~P(E|D,C,B,A) \), but since we know the structure is simpler we can actually represent the joint probability as \( P(D|A,B)~P(E|B,C)~P(A)~P(B)~P(C) \). We have many fewer terms to estimate. The advantage of this representation increases with the number of nodes and the sparsity of dependencies. 
+</p>
+
+<p>
+A strong assumption of these models is the <b>Markov Assumption</b>. It says that we only ever need to go one node back. For example, it says that if you know the relation between a parent and child, then you never need worry about the grandparents since their <i>only</i> contribution (under this assumption) is via the parent. In practice this works out well, usually, but it is not necessarily always the case. 
+</p>
+
+<p>
+Graphs like these allow you to read off when two variables will be independent given your knowledge of other variables. For example consider the case where you have a disease that causes two symptoms: fever and rash. We imagine a structure like Figure <a href="#orge0c9b98">3</a>.
+</p>
+
+
+
+<div id="orge0c9b98" class="figure">
+<p><img src="./images/Disease.png" alt="Disease.png" />
+</p>
+<p><span class="figure-number">Figure 3: </span>A Bayes Net representation of how a disease leads to two symptoms.</p>
+</div>
+
+<p>
+If we know the disease status then the presence of fever and rash independent. The only way they influence each other is indirectly by both being caused by the disease. However, if we do <i>not</i> know the disease status then knowing that a person has rash increases the probability they also have fever, because our imputed probability of disease is affected by knowing the status of the rash even though the causal influence goes in the opposite direction.
+</p>
+
+<p>
+This is an example of <b>d-separation</b>. There are three basic cases to worry about. When two nodes are connected by a direct series of links then knowing any of the links in between them separates them and makes them independent. This is also the case when there is a common ancestor, as in the disease example. The tricky case that takes some time to think through is when the two nodes have a common descendant. It that case it is knowing the descendant that renders the ancestors independent.
+</p>
+
+<p>
+ToDo: add a numerical explaining away example. For now can use the one from Prof. Goldwater's slides.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc5b5ffd" class="outline-3">
+<h3 id="orgc5b5ffd"><span class="section-number-3">1.8.</span> Tutorial Experiments with Bayes Nets and Python</h3>
+<div class="outline-text-3" id="text-1-8">
+</div>
+<div id="outline-container-org83a8bfc" class="outline-4">
+<h4 id="org83a8bfc"><span class="section-number-4">1.8.1.</span> PGMPY</h4>
+<div class="outline-text-4" id="text-1-8-1">
+<p>
+<a href="https://github.com/pgmpy/pgmpy">PGMPY</a> is a python library that does quite a bit more than just Bayes Nets.<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup> In fact, you can use it for structural equation modeling if that is your interest. We will barely scratch the surface, but you will end up knowing that it exists, and some of the elemental aspects of how to install it and use it in a minimal instance.
+</p>
+</div>
+</div>
+<div id="outline-container-org98c0df5" class="outline-4">
+<h4 id="org98c0df5"><span class="section-number-4">1.8.2.</span> Installation</h4>
+<div class="outline-text-4" id="text-1-8-2">
+<p>
+Many python libraries have been written with particular versions of python in mind. You have to make sure that you have a python version installed that is compatible with the libraries you plan to use. PGMPY's compatabilty can be found on the <a href="https://pgmpy.org/started/install.html">installation page</a>.  One of the strength's of virutal environments is that they enable you to have multiple installed versions of python on your computer at any one time. When creating a virtual environment with <code>uv</code> you can specify which version  of python you want used for that environment, e.g. <code>uv venv --python=3.10</code>. If after <b>activation</b> you then <code>uv pip install pgmpy</code> you will pull in a lot of rather large python dependencies. Be patient.
+</p>
+</div>
+</div>
+<div id="outline-container-org57570b1" class="outline-4">
+<h4 id="org57570b1"><span class="section-number-4">1.8.3.</span> Bayesian Networks</h4>
+<div class="outline-text-4" id="text-1-8-3">
+<p>
+<a href="https://pgmpy.org/models/bayesiannetwork.html">Bayesian Networks</a> (the library uses the full spelling) are a class in the pgmpy library. And an empty network can be initiated by,
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #00bfff;">from</span> pgmpy.models <span style="color: #00bfff;">import</span> BayesianNetwork <span style="color: #00bfff;">as</span> bn
+<span style="color: #4eee94;">G</span> = bn()
+</pre>
+</div>
+
+<p>
+Such a network can be grown by adding nodes or edges. In keeping with its identity as a Bayes Net the edges also carry conditional probability information.
+</p>
+
+
+
+<blockquote>
+<p>
+<b>Classroom Activity</b>
+</p>
+
+<p>
+The classroom activity will be to explore a simple Bayesian Network Model from the <a href="https://pgmpy.org/detailed_notebooks/2.%20Bayesian%20Networks.html">tutorial examples</a> in the pgmpy library. As a first step explore the same networks available at <a href="https://www.bnlearn.com/bnrepository/">https://www.bnlearn.com/bnrepository/</a>. The library has a function to allow you rapidly import those examples. Try it. Below I show how. 
+</p>
+</blockquote>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #00bfff;">from</span> pgmpy.utils <span style="color: #00bfff;">import</span> get_example_model
+<span style="color: #4eee94;">cancer_model</span> = get_example_model(<span style="color: #deb887;">'cancer'</span>)
+<span style="color: #4eee94;">cmd</span> = cancer_model.to_daft()
+cmd.render()
+cmd.savefig(<span style="color: #deb887;">"cancer.png"</span>)
+</pre>
+</div>
+
+
+<div id="org07a2ec4" class="figure">
+<p><img src="./images/cancer.png" alt="cancer.png" />
+</p>
+<p><span class="figure-number">Figure 4: </span>This is a graphical plot of the example cancer model. Note that getting the pictures to show up can be problematic depending on which environment you choose to work in. For this example I used <code>daft</code>. More options can be found on the Plotting Models page at the pgmpy library home page. If you use the <code>nx.draw</code> function you can also use matplotlib directly.</p>
+</div>
+
+<div class="org-src-container">
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>This is an example taken from the tutorial notebooks of the PGMPY library.</label><pre class="src src-python" id="org86ddae2">
+<span style="color: #00bfff;">from</span> pgmpy.models <span style="color: #00bfff;">import</span> BayesianNetwork
+<span style="color: #00bfff;">from</span> pgmpy.factors.discrete <span style="color: #00bfff;">import</span> TabularCPD
+
+<span style="color: #7f7f7f;"># </span><span style="color: #7f7f7f;">Defining the model structure. We can define the network by just passing a list of edges.</span>
+<span style="color: #4eee94;">model</span> = BayesianNetwork([(<span style="color: #deb887;">'D'</span>, <span style="color: #deb887;">'G'</span>), (<span style="color: #deb887;">'I'</span>, <span style="color: #deb887;">'G'</span>), (<span style="color: #deb887;">'G'</span>, <span style="color: #deb887;">'L'</span>), (<span style="color: #deb887;">'I'</span>, <span style="color: #deb887;">'S'</span>)])
+
+<span style="color: #7f7f7f;"># </span><span style="color: #7f7f7f;">Defining individual CPDs.</span>
+<span style="color: #4eee94;">cpd_d</span> = TabularCPD(variable=<span style="color: #deb887;">'D'</span>, variable_card=2, values=[[0.6], [0.4]])
+<span style="color: #4eee94;">cpd_i</span> = TabularCPD(variable=<span style="color: #deb887;">'I'</span>, variable_card=2, values=[[0.7], [0.3]])
+
+<span style="color: #7f7f7f;"># </span><span style="color: #7f7f7f;">The representation of CPD in pgmpy is a bit different than the CPD shown in the above picture. In pgmpy the colums</span>
+<span style="color: #7f7f7f;"># </span><span style="color: #7f7f7f;">are the evidences and rows are the states of the variable. So the grade CPD is represented like this:</span>
+<span style="color: #7f7f7f;">#</span>
+<span style="color: #7f7f7f;">#    </span><span style="color: #7f7f7f;">+---------+---------+---------+---------+---------+</span>
+<span style="color: #7f7f7f;">#    </span><span style="color: #7f7f7f;">| diff    | intel_0 | intel_0 | intel_1 | intel_1 |</span>
+<span style="color: #7f7f7f;">#    </span><span style="color: #7f7f7f;">+---------+---------+---------+---------+---------+</span>
+<span style="color: #7f7f7f;">#    </span><span style="color: #7f7f7f;">| intel   | diff_0  | diff_1  | diff_0  | diff_1  |</span>
+<span style="color: #7f7f7f;">#    </span><span style="color: #7f7f7f;">+---------+---------+---------+---------+---------+</span>
+<span style="color: #7f7f7f;">#    </span><span style="color: #7f7f7f;">| grade_0 | 0.3     | 0.05    | 0.9     | 0.5     |</span>
+<span style="color: #7f7f7f;">#    </span><span style="color: #7f7f7f;">+---------+---------+---------+---------+---------+</span>
+<span style="color: #7f7f7f;">#    </span><span style="color: #7f7f7f;">| grade_1 | 0.4     | 0.25    | 0.08    | 0.3     |</span>
+<span style="color: #7f7f7f;">#    </span><span style="color: #7f7f7f;">+---------+---------+---------+---------+---------+</span>
+<span style="color: #7f7f7f;">#    </span><span style="color: #7f7f7f;">| grade_2 | 0.3     | 0.7     | 0.02    | 0.2     |</span>
+<span style="color: #7f7f7f;">#    </span><span style="color: #7f7f7f;">+---------+---------+---------+---------+---------+</span>
+
+<span style="color: #4eee94;">cpd_g</span> = TabularCPD(variable=<span style="color: #deb887;">'G'</span>, variable_card=3,
+                   values=[[0.3, 0.05, 0.9,  0.5],
+                           [0.4, 0.25, 0.08, 0.3],
+                           [0.3, 0.7,  0.02, 0.2]],
+                  evidence=[<span style="color: #deb887;">'I'</span>, <span style="color: #deb887;">'D'</span>],
+                  evidence_card=[2, 2])
+
+<span style="color: #4eee94;">cpd_l</span> = TabularCPD(variable=<span style="color: #deb887;">'L'</span>, variable_card=2,
+                   values=[[0.1, 0.4, 0.99],
+                           [0.9, 0.6, 0.01]],
+                   evidence=[<span style="color: #deb887;">'G'</span>],
+                   evidence_card=[3])
+
+<span style="color: #4eee94;">cpd_s</span> = TabularCPD(variable=<span style="color: #deb887;">'S'</span>, variable_card=2,
+                   values=[[0.95, 0.2],
+                           [0.05, 0.8]],
+                   evidence=[<span style="color: #deb887;">'I'</span>],
+                   evidence_card=[2])
+
+<span style="color: #7f7f7f;"># </span><span style="color: #7f7f7f;">Associating the CPDs with the network</span>
+model.add_cpds(cpd_d, cpd_i, cpd_g, cpd_l, cpd_s)
+
+<span style="color: #7f7f7f;"># </span><span style="color: #7f7f7f;">check_model checks for the network structure and CPDs and verifies that the CPDs are correctly</span>
+<span style="color: #7f7f7f;"># </span><span style="color: #7f7f7f;">defined and sum to 1.</span>
+model.check_model()
+<span style="color: #4eee94;">sd</span> = model.to_daft()
+sd.render()
+sd.savefig(<span style="color: #deb887;">"students.png"</span>)
+</pre>
+</div>
+
+
+<div id="org4655444" class="figure">
+<p><img src="./images/students.png" alt="students.png" />
+</p>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #7f7f7f;"># </span><span style="color: #7f7f7f;">CPDs can also be defined using the state names of the variables. If the state names are not provided</span>
+<span style="color: #7f7f7f;"># </span><span style="color: #7f7f7f;">like in the previous example, pgmpy will automatically assign names as: 0, 1, 2, ....</span>
+
+<span style="color: #4eee94;">cpd_d_sn</span> = TabularCPD(variable=<span style="color: #deb887;">'D'</span>, variable_card=2, values=[[0.6], [0.4]], state_names={<span style="color: #deb887;">'D'</span>: [<span style="color: #deb887;">'Easy'</span>, <span style="color: #deb887;">'Hard'</span>]})
+<span style="color: #4eee94;">cpd_i_sn</span> = TabularCPD(variable=<span style="color: #deb887;">'I'</span>, variable_card=2, values=[[0.7], [0.3]], state_names={<span style="color: #deb887;">'I'</span>: [<span style="color: #deb887;">'Dumb'</span>, <span style="color: #deb887;">'Intelligent'</span>]})
+<span style="color: #4eee94;">cpd_g_sn</span> = TabularCPD(variable=<span style="color: #deb887;">'G'</span>, variable_card=3,
+                      values=[[0.3, 0.05, 0.9,  0.5],
+                              [0.4, 0.25, 0.08, 0.3],
+                              [0.3, 0.7,  0.02, 0.2]],
+                      evidence=[<span style="color: #deb887;">'I'</span>, <span style="color: #deb887;">'D'</span>],
+                      evidence_card=[2, 2],
+                      state_names={<span style="color: #deb887;">'G'</span>: [<span style="color: #deb887;">'A'</span>, <span style="color: #deb887;">'B'</span>, <span style="color: #deb887;">'C'</span>],
+                                   <span style="color: #deb887;">'I'</span>: [<span style="color: #deb887;">'Dumb'</span>, <span style="color: #deb887;">'Intelligent'</span>],
+                                   <span style="color: #deb887;">'D'</span>: [<span style="color: #deb887;">'Easy'</span>, <span style="color: #deb887;">'Hard'</span>]})
+
+<span style="color: #4eee94;">cpd_l_sn</span> = TabularCPD(variable=<span style="color: #deb887;">'L'</span>, variable_card=2,
+                      values=[[0.1, 0.4, 0.99],
+                              [0.9, 0.6, 0.01]],
+                      evidence=[<span style="color: #deb887;">'G'</span>],
+                      evidence_card=[3],
+                      state_names={<span style="color: #deb887;">'L'</span>: [<span style="color: #deb887;">'Bad'</span>, <span style="color: #deb887;">'Good'</span>],
+                                   <span style="color: #deb887;">'G'</span>: [<span style="color: #deb887;">'A'</span>, <span style="color: #deb887;">'B'</span>, <span style="color: #deb887;">'C'</span>]})
+
+<span style="color: #4eee94;">cpd_s_sn</span> = TabularCPD(variable=<span style="color: #deb887;">'S'</span>, variable_card=2,
+                      values=[[0.95, 0.2],
+                              [0.05, 0.8]],
+                      evidence=[<span style="color: #deb887;">'I'</span>],
+                      evidence_card=[2],
+                      state_names={<span style="color: #deb887;">'S'</span>: [<span style="color: #deb887;">'Bad'</span>, <span style="color: #deb887;">'Good'</span>],
+                                   <span style="color: #deb887;">'I'</span>: [<span style="color: #deb887;">'Dumb'</span>, <span style="color: #deb887;">'Intelligent'</span>]})
+
+<span style="color: #7f7f7f;"># </span><span style="color: #7f7f7f;">These defined CPDs can be added to the model. Since, the model already has CPDs associated to variables, it will</span>
+<span style="color: #7f7f7f;"># </span><span style="color: #7f7f7f;">show warning that pmgpy is now replacing those CPDs with the new ones.</span>
+model.add_cpds(cpd_d_sn, cpd_i_sn, cpd_g_sn, cpd_l_sn, cpd_s_sn)
+model.check_model()
+
+
+model.get_cpds()
+<span style="color: #f08080;">print</span>(model.get_cpds(<span style="color: #deb887;">'G'</span>))
+
+</pre>
+</div>
+
+<pre class="example" id="orge91b871">
+WARNING:pgmpy:Replacing existing CPD for D
+WARNING:pgmpy:Replacing existing CPD for I
+WARNING:pgmpy:Replacing existing CPD for G
+WARNING:pgmpy:Replacing existing CPD for L
+WARNING:pgmpy:Replacing existing CPD for S
++------+---------+---------+----------------+----------------+
+| I    | I(Dumb) | I(Dumb) | I(Intelligent) | I(Intelligent) |
++------+---------+---------+----------------+----------------+
+| D    | D(Easy) | D(Hard) | D(Easy)        | D(Hard)        |
++------+---------+---------+----------------+----------------+
+| G(A) | 0.3     | 0.05    | 0.9            | 0.5            |
++------+---------+---------+----------------+----------------+
+| G(B) | 0.4     | 0.25    | 0.08           | 0.3            |
++------+---------+---------+----------------+----------------+
+| G(C) | 0.3     | 0.7     | 0.02           | 0.2            |
++------+---------+---------+----------------+----------------+
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">Ivan Moscati, “Ellsberg 1961: Text, Context, Influence,” <i>Decisions in Economics and Finance</i> 47, no. 2 (May 2024): 627–53, <a href="https://doi.org/10.1007/s10203-024-00437-1">https://doi.org/10.1007/s10203-024-00437-1</a>.</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">Yoram Halevy, “Ellsberg Revisited: An Experimental Study,” <i>Econometrica</i> 75, no. 2 (March 2007): 503–36, <a href="https://doi.org/10.1111/j.1468-0262.2006.00755.x">https://doi.org/10.1111/j.1468-0262.2006.00755.x</a>.</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+Much of the tutorial material about Bayes Nets was taken from the <a href="https://www.inf.ed.ac.uk/teaching/courses/cm/lectures/cm15_bayesnet.pdf">nice lecture slides (pdf)</a> of Prof. <a href="https://homepages.inf.ed.ac.uk/sgwater/">Sharon Goldwater</a> of the University of Edinburgh.  
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">Ankur Ankan and Johannes Textor, “Pgmpy: A Python Toolkit for Bayesian Networks,” <i>Journal of Machine Learning Research</i> 25, no. 265 (2024): 1–8, <a href="http://jmlr.org/papers/v25/23-0487.html">http://jmlr.org/papers/v25/23-0487.html</a>.</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Date: Winter 2025</p>
+<p class="author">Author: Britt Anderson</p>
+<p class="date">Created: 2025-03-21 Fri 08:14</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
