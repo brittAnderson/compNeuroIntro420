@@ -154,37 +154,42 @@
 	  (* gl (- voltage-now el))))))
 
 
-(defun run-hh-sim (nps)
+(defun run-hh-sim (nps &optional (filename "hh-sim-data.txt"))
   (with-slots 
 	(dt max-t init-v injection-current injection-time) nps
-	(do*
-	 ((ts)
-	  (vs)
-	  (currs)
-	  (ms)
-	  (ns)
-	  (hs)
-	  (sim-time 0.0 (+ sim-time dt))
-	  (inj-cur 0.0
-		   (between sim-time
-			    :lower (car injection-time)
-			    :upper (cdr injection-time)
-			    :if-true injection-current))
-	  (hh-m-sim (m-infinity init-v) (update hh-m-sim (m-dot voltage hh-m-sim) dt ))
-	  (hh-n-sim (n-infinity init-v) (update hh-n-sim (n-dot voltage hh-n-sim) dt ))
-	  (hh-h-sim (h-infinity init-v) (update hh-h-sim (h-dot voltage hh-h-sim) dt ))
-	  (voltage init-v
-		   (update voltage
-			   (dvdt voltage inj-cur hh-m-sim hh-n-sim hh-h-sim nps) dt)))
-	 ((> sim-time max-t) (list (nreverse ts) (nreverse currs) (nreverse vs) 
-				   (nreverse ms) (nreverse ns) (nreverse hs)))
-	  (push sim-time ts)
-	  (push voltage vs)
-	  (push inj-cur currs)
-	  (push hh-m-sim ms)
-	  (push hh-n-sim ns)
-	  (push hh-h-sim hs)
-	  )))
+    (with-open-file (out filename
+                        :direction :output
+                        :if-exists :supersede
+                        :if-does-not-exist :create)
+      (format out "# Time Voltage~%")
+      (do*
+       ((ts)
+        (vs)
+        (currs)
+        (ms)
+        (ns)
+        (hs)
+        (sim-time 0.0 (+ sim-time dt))
+        (inj-cur 0.0
+                 (between sim-time
+                          :lower (car injection-time)
+                          :upper (cdr injection-time)
+                          :if-true injection-current))
+        (hh-m-sim (m-infinity init-v) (update hh-m-sim (m-dot voltage hh-m-sim) dt ))
+        (hh-n-sim (n-infinity init-v) (update hh-n-sim (n-dot voltage hh-n-sim) dt ))
+        (hh-h-sim (h-infinity init-v) (update hh-h-sim (h-dot voltage hh-h-sim) dt ))
+        (voltage init-v
+                 (update voltage
+                         (dvdt voltage inj-cur hh-m-sim hh-n-sim hh-h-sim nps) dt)))
+       ((> sim-time max-t) (list (nreverse ts) (nreverse currs) (nreverse vs) 
+                                 (nreverse ms) (nreverse ns) (nreverse hs)))
+        (push sim-time ts)
+        (push voltage vs)
+        (push inj-cur currs)
+        (push hh-m-sim ms)
+        (push hh-n-sim ns)
+        (push hh-h-sim hs)
+        (format out "~a ~a~%" sim-time voltage)))))
 
 (defun handh-plot (output plot-data)
   (with-plots (*standard-output* :debug nil)
@@ -203,6 +208,13 @@
 	     do (format t "~&~a ~a" times currs)))
      :with '(:lines :lw 2 :lc "red" :title "Current"))
     output))
+
+(defun gnuplot-voltage-plot (datafile outputfile)
+  (with-plots (*standard-output* :debug nil)
+    (gp-setup :output outputfile :terminal :png)
+    (plot
+     (lambda ()
+       (format t "plot \"~a\" using 1:2 with lines title 'Voltage over Time'~%" datafile)))))
 
 (defvar sim-dat (run-hh-sim (make-instance 'neuron-hh :dt 0.02 :max-t 450.0d0 :start-time 50.0d0 :stop-time 300.0d0 :injection-current 7.0d0)))
 ;(handh-plot "handh.png" sim-dat)
