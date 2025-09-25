@@ -40,3 +40,4 @@ wip/
 .venv/
 
 backpropagation-main/
+.aider*
