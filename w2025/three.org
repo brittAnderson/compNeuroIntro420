@@ -39,6 +39,9 @@ This [[https://theoreticalneuroscience.no/thn22/][theoretical neuroscience podca
 #+End_quote
 
 *** Cellular Automata
+
+[[https://iagoleal.com/posts/automata-monoids/][Blog post]] on automata found <2025-09-25 Thu>. Needs to be added.
+
 \marginpar{\raggedright Match these features to facts about neurons. Extend them to what you believe will be their application in neural networks.} As a first illustration of some of the key ideas we will execute a simple cellular automata rule. What I hope to emphasize through this exercise is that whenever you can get the computer to do a repetitive task do so. It will do it much better than you. And even if it takes you days to get the program right for many task you will quickly save the time in the long run. Second, we are using a simple rule (as you will shortly see). But even though the rule is local it yields impressive global structure. And very slight tweaks in this local rule can lead to large macroscopic changes. While the variation in our rule is very limited the array of behaviors we can observe is vast. 
 
 **** Drawing Cellular Automata
