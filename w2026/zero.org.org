@@ -1,0 +1,146 @@
+# Created 2025-09-16 Tue 11:08
+#+title: Computational Modeling for Psychology Students
+#+date: Winter 2025
+#+author: Britt Anderson
+#+pandoc_options: 
+#+pandoc_extensions: 
+#+pandoc_metadata: 
+#+pandoc_variables: 
+#+epub_chapter_level: 
+#+epub_cover: 
+#+epub_stylesheet: 
+#+epub_embed_font: 
+#+epub_meta: 
+#+epub_css: 
+#+epub_rights: 
+#+bibliography: 
+#+startup: nofold hideblocks
+* Overview of Scope and Practice
+** Identifying Details
+PSYCH420 Section 001
+Meets: Friday 8:30-11:20
+Room: EV3 1408
+** Buzzati and The Singularity
+** What will we study and how will we study it?
+
+*** The high level issues
+1. What is the difference between a mind and a brain?
+2. What is the difference between computational psychology and computational neuroscience?
+3. Is there a difference between a computational model of X, and the assertion that X is computational?
+4. What is computation?
+5. What is cognition?
+6. What does it mean to assert that cognition is computation?
+*** The concrete level issues
+1. What are the mathematical domains relevant for computational psychology and neuroscience work?
+   Not what are the software packages, but what are the areas of mathematics, and can we learn to think about them generally before we begin to program them?
+   1. Differential Equations
+   2. Linear Algebra
+   3. Logic
+   4. Abstract Algebra
+2. How do the mathematical tools inter-relate to each other and to our coding?
+3. How do the use of math and coding fit into the quest for a /theory/?
+*** Learning Implementations
+Things learned through use are the things you retain and can deploy in the future for non-classroom purposes. What does "use" mean? It can mean discuss where you have to paraphrase and explain. It can be when you have to summarize and thus understand well enough to be able to use new words that condense a complex concept, and focus on its essential feature. It can also mean an implementation. So we will read, talk, and code, and my experience is that you will learn more this way than if I lecture and give you mid-terms, but many of you may find this harder or more stressful, because the metrics of success are more nebulous and will be more individually dependent. 
+** Thinking about computation more carefully. A warm-up exercise.
+*** What are Marr's three levels and how do they relate to the question of whether cognition is computational?
+#+begin_quote
+David Marr proposed three levels of analysis for understanding cognitive systems:
+
+1. Computational Level: Defines the goal or problem the cognitive system is solving and the logic/strategy for solving it. For cognition, this means specifying what information processing task is being accomplished.
+
+2. Algorithmic Level: Describes the specific representation and algorithm used to implement the computational goal. Here, one details the precise steps and data structures used to achieve the computational objective.
+
+3. Implementation Level: Examines the physical mechanisms that actually realize the algorithm, such as neural structures in the brain.
+
+Regarding computational cognition, Marr's levels suggest cognition can be understood computationally: If cognitive processes can be systematically described at the computational and algorithmic levels, with clear input-output mappings and step-by-step information processing, this supports viewing cognition as fundamentally computational. The implementation level reveals how these computational processes are physically instantiated.
+
+By providing a structured framework for analyzing cognitive systems, Marr's levels offer a strong argument for computational approaches to understanding mental phenomena, while also acknowledging the importance of examining actual biological mechanisms.
+
+Claude_AI <2024-11-25 Mon>
+#+end_quote
+*** An opportunity to start a conversation about the value of large language models for your learning.
+**** Busy Beavers and Lean Code
+***** What is the busy beaver problem (we will come back to this; for now just illustrating a point).
+~ #+INCLUDE: "./code-related/claude-busy-beaver-inquiry.org" :lines "4-"~
+***** Code it in Lean4 ( I can't get this in the pdf properly. You should be able to find the file in the git repo).
+
+~#+INCLUDE: "./code-related/busy-beaver-two-state.lean" src lean~
+** For next week - [[https://learn.uwaterloo.ca/d2l/lms/dropbox/admin/folders_manage.d2l?ou=1103273&dst=1][Your first two homeworks]]
+*** Reading
+**** One half reads:
+https://pmc.ncbi.nlm.nih.gov/articles/PMC3006465/pdf/10867_2010_Article_9195.pdf
+**** Other half reads:
+https://plato.stanford.edu/entries/computational-mind/
+*** Expectations
+1. You will make some effort to look-up things you do not understand.
+2. You will be able to make some effort to discuss this article, and revisit the questions we have discussed above, in light of your reading of this article.
+*** You will turn in
+1. a less than one page paper in which you indicate the poster/talk you have selected from [[https://2024.ccneuro.org/poster-sessions/?view=all][here]] and why you chose this is an example of a computational approach to a psychological question, and why it resonated with you.
+2. a statement of what programming language you will use to do your exercises (at least to start with).
+   1. If you are already a pretty accomplished programmer pick something new to challenge yourself with and learn a bit more: common lisp; scheme; racket; haskell; ocaml. Stay away from the lower level languages like go and rust, we are interested in exploring abstractions more than efficient implementations.
+** Why I Assign Homework; What Am I Looking For?
+1. Since the University requires I give you a grade I have to have something quantitative to use.
+2. Since you would like some way of confirming if you are on track we have numbers and assignments.
+3. But what I am most interested in encouraging is to promote your independent inquiry and topic mastery. I find this most effectively done through conversation and practice[fn:1].
+
+[fn:1] To train by repeated exercises. 
+** Technical Expectations
+1. You need a computer. Phones and tablets will not work.
+2. You need to know how to use your computer:
+   - can you find a particular file or directory?
+   - do you know how to download a program or data and find it on your computer?
+   - do you know how to use "git" or any version control software?
+   - do you know what an IDE is and can you use it for the basics?
+     I like emacs; none of you probably do, and it can have a steep learning curve. A fairly ubiquitous and well documented IDE that is widely used in industry is [[https://code.visualstudio.com/][VS Code]] (aka Visual Studio Code). I recommend you download and use this if you do not have a strong preference, and you do not identify with [[https://youtu.be/urcL86UpqZc][this (youtube)]] guy.
+   - Can you program at a rudimentary languge in any programming language. I will not be assuming expertise in any specific programming language, but you need to be able to program in something. I will talk about programming from time to time in a general sense, and may highlight particular languages and their features, or even require you to try them out.
+3. You need to bring your computer to class. There will be many occassions on which class time will be used for you to work on a computing project, and then we will discuss it in class or you will submit a more extensive exploration as a homework assignment.
+** The projected outline of topics
+1. Computation and Cognition
+2. Models of Computation
+   - Turing Machines
+   - Lambda Calculi
+3. Differential Equations
+   - What are they and how can we use them in neuroscience (and psychology)
+   - Our examples: integrate and fire neuron and Hodgkin and Huxley neuron
+4. Linear Algebra
+   - what are matrices and vectors
+   - a glimpse of a graphical calculus (maybe)
+   - how we can use them for neural networks
+     - Hopfield
+     - Backpropagation
+     - and maybe Kohonen's Self-Organizing map
+5. Category Theory and Theory and Formally Verifiable Code
+   - rather doubt we will have time for this, but maybe
+6. Putting your knowledge to work
+   - Your project -- details to follow, but in short you, in a small group, with work on a topic where you present the idea and the background and then share with us some working simulation and code.
+** Grades
+1. Homework - should be about 60% with 10 to 12 (maybe a few more; maybe a few less) so that no one assignment is worth too much, but also so that there is always something you can be working on and thinking about.
+2. Participation - 10%. Students usually worry about this, but you shouldn't. Do you come to class? Do you participate in our discussions? Are you prepared? Do you have good questions? Are you helpful to your peers? Then you will get it all.
+3. Final Project - 30%. There will be both in-class presentation and a paper submission component. Details will follow as we get into things a bit.
+** And if we have some time left
+
+Another version
+
+#+begin_src python
+  def xcubed (x) : return (x * x * x)
+  def diff_x_cubed (x) : return (3 * x * x)
+  def get_step (guess, goal) :
+      return ((goal - (xcubed (guess))) / (diff_x_cubed (guess)))
+  def get_cube_root (goal, initial_guess, tolerance) :
+      cur_guess = initial_guess + get_step(initial_guess, goal)
+      error = abs(xcubed(cur_guess) - goal)
+      while (error > tolerance):
+          cur_guess = cur_guess + get_step(cur_guess, goal)
+          error = abs(xcubed(cur_guess) - goal)
+      return(cur_guess)
+
+  print(get_cube_root(141, 3.0, 0.01))
+#+end_src
+
+
+#+begin_src R :session *rtest* :results silent :exports nil
+  myadd <- function(a,b) {a + b}
+#+end_src
+
+#+results: 
+: Error in myadd(3, 4) : could not find function "myadd"

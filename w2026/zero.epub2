@@ -1,0 +1,252 @@
+<h1 id="overview-of-scope-and-practice">Overview of Scope and
+Practice</h1>
+<h2 id="identifying-details">Identifying Details</h2>
+<p>PSYCH420 Section 001 Meets: Friday 8:30-11:20 Room: EV3 1408</p>
+<h2 id="buzzati-and-the-singularity">Buzzati and The Singularity</h2>
+<h2 id="what-will-we-study-and-how-will-we-study-it">What will we study
+and how will we study it?</h2>
+<h3 id="the-high-level-issues">The high level issues</h3>
+<ol>
+<li>What is the difference between a mind and a brain?</li>
+<li>What is the difference between computational psychology and
+computational neuroscience?</li>
+<li>Is there a difference between a computational model of X, and the
+assertion that X is computational?</li>
+<li>What is computation?</li>
+<li>What is cognition?</li>
+<li>What does it mean to assert that cognition is computation?</li>
+</ol>
+<h3 id="the-concrete-level-issues">The concrete level issues</h3>
+<ol>
+<li>What are the mathematical domains relevant for computational
+psychology and neuroscience work? Not what are the software packages,
+but what are the areas of mathematics, and can we learn to think about
+them generally before we begin to program them?
+<ol>
+<li>Differential Equations</li>
+<li>Linear Algebra</li>
+<li>Logic</li>
+<li>Abstract Algebra</li>
+</ol></li>
+<li>How do the mathematical tools inter-relate to each other and to our
+coding?</li>
+<li>How do the use of math and coding fit into the quest for a
+<em>theory</em>?</li>
+</ol>
+<h3 id="learning-implementations">Learning Implementations</h3>
+<p>Things learned through use are the things you retain and can deploy
+in the future for non-classroom purposes. What does "use" mean? It can
+mean discuss where you have to paraphrase and explain. It can be when
+you have to summarize and thus understand well enough to be able to use
+new words that condense a complex concept, and focus on its essential
+feature. It can also mean an implementation. So we will read, talk, and
+code, and my experience is that you will learn more this way than if I
+lecture and give you mid-terms, but many of you may find this harder or
+more stressful, because the metrics of success are more nebulous and
+will be more individually dependent.</p>
+<h2
+id="thinking-about-computation-more-carefully.-a-warm-up-exercise.">Thinking
+about computation more carefully. A warm-up exercise.</h2>
+<h3
+id="what-are-marrs-three-levels-and-how-do-they-relate-to-the-question-of-whether-cognition-is-computational">What
+are Marr's three levels and how do they relate to the question of
+whether cognition is computational?</h3>
+<blockquote>
+<p>David Marr proposed three levels of analysis for understanding
+cognitive systems:</p>
+<ol>
+<li><p>Computational Level: Defines the goal or problem the cognitive
+system is solving and the logic/strategy for solving it. For cognition,
+this means specifying what information processing task is being
+accomplished.</p></li>
+<li><p>Algorithmic Level: Describes the specific representation and
+algorithm used to implement the computational goal. Here, one details
+the precise steps and data structures used to achieve the computational
+objective.</p></li>
+<li><p>Implementation Level: Examines the physical mechanisms that
+actually realize the algorithm, such as neural structures in the
+brain.</p></li>
+</ol>
+<p>Regarding computational cognition, Marr's levels suggest cognition
+can be understood computationally: If cognitive processes can be
+systematically described at the computational and algorithmic levels,
+with clear input-output mappings and step-by-step information
+processing, this supports viewing cognition as fundamentally
+computational. The implementation level reveals how these computational
+processes are physically instantiated.</p>
+<p>By providing a structured framework for analyzing cognitive systems,
+Marr's levels offer a strong argument for computational approaches to
+understanding mental phenomena, while also acknowledging the importance
+of examining actual biological mechanisms.</p>
+<p>Claude<sub>AI</sub> &lt;2024-11-25 Mon&gt;</p>
+</blockquote>
+<h3
+id="an-opportunity-to-start-a-conversation-about-the-value-of-large-language-models-for-your-learning.">An
+opportunity to start a conversation about the value of large language
+models for your learning.</h3>
+<ol>
+<li><p>Busy Beavers and Lean Code</p>
+<ol>
+<li><p>What is the busy beaver problem (we will come back to this; for
+now just illustrating a point).</p>
+<p>~ #+INCLUDE: "./code-related/claude-busy-beaver-inquiry.org" :lines
+"4-"~</p></li>
+<li><p>Code it in Lean4 ( I can't get this in the pdf properly. You
+should be able to find the file in the git repo).</p>
+<p><code>#+INCLUDE: "./code-related/busy-beaver-two-state.lean" src lean</code></p></li>
+</ol></li>
+</ol>
+<h2 id="for-next-week---your-first-two-homeworks">For next week - <a
+href="https://learn.uwaterloo.ca/d2l/lms/dropbox/admin/folders_manage.d2l?ou=1103273&amp;dst=1">Your
+first two homeworks</a></h2>
+<h3 id="reading">Reading</h3>
+<ol>
+<li><p>One half reads:</p>
+<p><a
+href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3006465/pdf/10867_2010_Article_9195.pdf">https://pmc.ncbi.nlm.nih.gov/articles/PMC3006465/pdf/10867_2010_Article_9195.pdf</a></p></li>
+<li><p>Other half reads:</p>
+<p><a
+href="https://plato.stanford.edu/entries/computational-mind/">https://plato.stanford.edu/entries/computational-mind/</a></p></li>
+</ol>
+<h3 id="expectations">Expectations</h3>
+<ol>
+<li>You will make some effort to look-up things you do not
+understand.</li>
+<li>You will be able to make some effort to discuss this article, and
+revisit the questions we have discussed above, in light of your reading
+of this article.</li>
+</ol>
+<h3 id="you-will-turn-in">You will turn in</h3>
+<ol>
+<li>a less than one page paper in which you indicate the poster/talk you
+have selected from <a
+href="https://2024.ccneuro.org/poster-sessions/?view=all">here</a> and
+why you chose this is an example of a computational approach to a
+psychological question, and why it resonated with you.</li>
+<li>a statement of what programming language you will use to do your
+exercises (at least to start with).
+<ol>
+<li>If you are already a pretty accomplished programmer pick something
+new to challenge yourself with and learn a bit more: common lisp;
+scheme; racket; haskell; ocaml. Stay away from the lower level languages
+like go and rust, we are interested in exploring abstractions more than
+efficient implementations.</li>
+</ol></li>
+</ol>
+<h2 id="why-i-assign-homework-what-am-i-looking-for">Why I Assign
+Homework; What Am I Looking For?</h2>
+<ol>
+<li>Since the University requires I give you a grade I have to have
+something quantitative to use.</li>
+<li>Since you would like some way of confirming if you are on track we
+have numbers and assignments.</li>
+<li>But what I am most interested in encouraging is to promote your
+independent inquiry and topic mastery. I find this most effectively done
+through conversation and practice<a href="#fn1" class="footnote-ref"
+id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
+</ol>
+<h2 id="technical-expectations">Technical Expectations</h2>
+<ol>
+<li>You need a computer. Phones and tablets will not work.</li>
+<li>You need to know how to use your computer:
+<ul>
+<li>can you find a particular file or directory?</li>
+<li>do you know how to download a program or data and find it on your
+computer?</li>
+<li>do you know how to use "git" or any version control software?</li>
+<li>do you know what an IDE is and can you use it for the basics? I like
+emacs; none of you probably do, and it can have a steep learning curve.
+A fairly ubiquitous and well documented IDE that is widely used in
+industry is <a href="https://code.visualstudio.com/">VS Code</a> (aka
+Visual Studio Code). I recommend you download and use this if you do not
+have a strong preference, and you do not identify with <a
+href="https://youtu.be/urcL86UpqZc">this (youtube)</a> guy.</li>
+<li>Can you program at a rudimentary languge in any programming
+language. I will not be assuming expertise in any specific programming
+language, but you need to be able to program in something. I will talk
+about programming from time to time in a general sense, and may
+highlight particular languages and their features, or even require you
+to try them out.</li>
+</ul></li>
+<li>You need to bring your computer to class. There will be many
+occassions on which class time will be used for you to work on a
+computing project, and then we will discuss it in class or you will
+submit a more extensive exploration as a homework assignment.</li>
+</ol>
+<h2 id="the-projected-outline-of-topics">The projected outline of
+topics</h2>
+<ol>
+<li>Computation and Cognition</li>
+<li>Models of Computation
+<ul>
+<li>Turing Machines</li>
+<li>Lambda Calculi</li>
+</ul></li>
+<li>Differential Equations
+<ul>
+<li>What are they and how can we use them in neuroscience (and
+psychology)</li>
+<li>Our examples: integrate and fire neuron and Hodgkin and Huxley
+neuron</li>
+</ul></li>
+<li>Linear Algebra
+<ul>
+<li>what are matrices and vectors</li>
+<li>a glimpse of a graphical calculus (maybe)</li>
+<li>how we can use them for neural networks
+<ul>
+<li>Hopfield</li>
+<li>Backpropagation</li>
+<li>and maybe Kohonen's Self-Organizing map</li>
+</ul></li>
+</ul></li>
+<li>Category Theory and Theory and Formally Verifiable Code
+<ul>
+<li>rather doubt we will have time for this, but maybe</li>
+</ul></li>
+<li>Putting your knowledge to work
+<ul>
+<li>Your project – details to follow, but in short you, in a small
+group, with work on a topic where you present the idea and the
+background and then share with us some working simulation and code.</li>
+</ul></li>
+</ol>
+<h2 id="grades">Grades</h2>
+<ol>
+<li>Homework - should be about 60% with 10 to 12 (maybe a few more;
+maybe a few less) so that no one assignment is worth too much, but also
+so that there is always something you can be working on and thinking
+about.</li>
+<li>Participation - 10%. Students usually worry about this, but you
+shouldn't. Do you come to class? Do you participate in our discussions?
+Are you prepared? Do you have good questions? Are you helpful to your
+peers? Then you will get it all.</li>
+<li>Final Project - 30%. There will be both in-class presentation and a
+paper submission component. Details will follow as we get into things a
+bit.</li>
+</ol>
+<h2 id="and-if-we-have-some-time-left">And if we have some time
+left</h2>
+<p>Another version</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> xcubed (x) : <span class="cf">return</span> (x <span class="op">*</span> x <span class="op">*</span> x)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> diff_x_cubed (x) : <span class="cf">return</span> (<span class="dv">3</span> <span class="op">*</span> x <span class="op">*</span> x)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_step (guess, goal) :</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ((goal <span class="op">-</span> (xcubed (guess))) <span class="op">/</span> (diff_x_cubed (guess)))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_cube_root (goal, initial_guess, tolerance) :</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    cur_guess <span class="op">=</span> initial_guess <span class="op">+</span> get_step(initial_guess, goal)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    error <span class="op">=</span> <span class="bu">abs</span>(xcubed(cur_guess) <span class="op">-</span> goal)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> (error <span class="op">&gt;</span> tolerance):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        cur_guess <span class="op">=</span> cur_guess <span class="op">+</span> get_step(cur_guess, goal)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        error <span class="op">=</span> <span class="bu">abs</span>(xcubed(cur_guess) <span class="op">-</span> goal)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(cur_guess)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(get_cube_root(<span class="dv">141</span>, <span class="fl">3.0</span>, <span class="fl">0.01</span>))</span></code></pre></div>
+<section id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>To train by repeated exercises.<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
