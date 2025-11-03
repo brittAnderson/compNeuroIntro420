@@ -1,0 +1,28 @@
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+options: author:t broken-links:nil c:nil creator:nil
+#+options: d:(not "LOGBOOK") date:t e:t email:nil expand-links:t f:t
+#+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t
+#+options: tasks:t tex:t timestamp:t title:t toc:t todo:t |:t
+#+title: mind-and-brain-class
+#+date: <2025-11-03 Mon>
+#+author: Britt Anderson
+#+email: britt@uwaterloo.ca
+#+language: en
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 30.2 (Org mode 9.7.11)
+#+cite_export:
+
+Notes for classroom session on Mind and Brain Section
+
+* Goal
+  I want the students to both review their basic neurophysiology knowledge, and to start to wrestle with some of the abstract ideas that we will encounter.
+
+* My Objectives
+  1. What is the action potential and how does it come about.
+  2. What are the basic anatomical constituents of a neuron?
+     - meant to get at axons, dendrites and the like.
+  3. What is a brain?
+     - Intended to set up some questions about whether a computer can think?
+     - Or how central is a "brain" to being a thinking being?
+
