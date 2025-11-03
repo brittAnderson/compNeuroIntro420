@@ -1,0 +1,138 @@
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+options: author:t broken-links:nil c:nil creator:nil
+#+options: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+options: timestamp:t title:t toc:nil todo:t |:t
+#+title: Winter 2026 PSYCH 420 
+#+date: <2024-12-31 Tue>
+#+author: Britt Anderson
+#+email: britt@uwaterloo.ca
+
+* Course number and title
+  PSYCH420 Introduction to Computational Neuroscience Methods
+  
+* Term and year of offering
+  Winter 2026
+  
+* Class days, times, building, and room number
+  Th 11:30 - 14:20 HH 2107
+  
+* Class instructor’s name, office, contact information, office hours
+  Britt Anderson, PAS 4032, x 43056, Office hours by arrangement
+  
+* Teaching assistant’s name, office, contact information, office hours (if applicable)
+  
+
+* Course description
+An introduction to the basic elements of computational modeling with an emphasis on psychology students.
+
+* Course objectives
+   1. You will understand the scope of subjects and tools that comprise computational neuroscience and computational cognitive modeling.
+   2. You will have a better understanding of theory development and how it relates to ideas about computation, programming, mind and brain.
+   3. You will have a better understanding of how programming language choice influences model and theory development.
+   4. You will learn some of the fundamental notation and concepts of the mathematical domains that form the basis of much computational modeling in neuroscience and psychology.
+   5. You will gain experience in the practical aspects of programming simple models by doing. 
+
+* Required text and/or readings
+There is no required text book. Material that might be needed outside what I present in class will be made available on line, predominantly at [[https://github.com/brittAnderson/compNeuroIntro420][the course repo on github]]. Make sure you are tracking the *W2026* branch.
+
+As all University students should have access to a computer, and a computer is required for this course, there is $0 CAD additional expense.
+
+* A general overview of the topics to be covered
+  See [[*Course objectives][Course objectives]].
+* The evaluation structure for the course including course requirements, deadlines, weight of requirements toward the final course grade
+
+#+Name: Grade Breakdown
+#+Table:
+| Category                              | Contribution |
+|---------------------------------------+--------------|
+| Participation                         |         12%. |
+| Final Project                         |         20%. |
+| Homeworks                             |          68% |
+
+It is easy to find high quality material to read or watch.
+What good then is the classroom?
+The classroom is for doing and clarifying.
+You have no way of knowing if your understanding developed from online material is complete or accurate unless you match it off against others.
+Your peers and your instructor.
+Thus, we shouldn't use class time for presenting material that can be read or watched anywhere anytime, but we should use it for testing whether your knowledge is sound, flexible, and deployable.
+We will therefore read, discuss, and collaborate.
+
+Learning math and computing, and how to use them, is not something that can be learned through observation.
+Like playing piano, or improving your golf swing, improvement comes from practice, practice, practice.
+It is not enough to merely state the principles.
+You must demonstrate that they have been internalized.
+We will therefore do small exercises in class.
+And since one of the best ways to learn is to teach, we will frequently do these exercises in small groups.
+You might find your peers description of a problematic fact more useful than mine since they are at a more similar learning level.
+You may find your own understanding grows as you have to reframe my teachings in your own words to help a fellow student grasp a difficult concept. 
+
+For these reasons class participation is important.
+It is where we will test our comprehension of important points, I will learn if a concept is not well appreciated, and you will have the chance to practice the skills you later may wish to use in your own way on your own problems.
+Each week's attendance is worth 1% of the final grade.
+
+I like to give lots of small homeworks.
+That takes the pressure of any one assignment, and means you get both frequent feedback on your performance, and you are coerced into not falling behind.
+
+The final project is meant to give you an opportunity to showcase your learning and to use the general and specific skills that you will use in the future, whether in academics or industry, for sharing complex technical material with others. 
+
+* Acceptable rules for group work (See Group Assignment Checklist)
+  Group work is the norm in post-graduate life (both academic and professional). Group work will be graded as a group. All group members will get the same grade for their group project. More details on the nature of the group project will be shared during the term. 
+* Indication of how late submission of assignments and missed assignments will be treated
+  If I know that an assignment will be late in advance, and the reason for the tardiness is beyond your reasonable control, then I probably won't take off any points for late submission. Otherwise, I may reduce the possible maximal score by 10% per week. 
+* Indication of where students are to submit assignments and pick up marked assignments
+  Assignments will be submitted in dropboxes on Learn. Submissions and Announcements are the main uses we will make of learn. All other material will be shared in class or via the github repository. 
+* Intellectual Property
+Intellectual property includes items such as:
+- Lecture content, spoken and written (and any audio/video recording thereof);
+
+- Lecture handouts, presentations, and other materials prepared for the course (e.g., PowerPoint slides);
+
+- Questions or solution sets from various types of assessments (e.g., assignments, quizzes, tests, final exams); and
+
+- Work protected by copyright (e.g., any work authored by the instructor or TA or used by the instructor or TA with permission of the copyright owner).
+
+Course materials and the intellectual property contained therein, are used to enhance a student’s educational experience. However, sharing this intellectual property without the intellectual property owner’s permission is a violation of intellectual property rights.  For this reason, it is necessary to ask the instructor, TA and/or the University of Waterloo for permission before uploading and sharing the intellectual property of others online (e.g., to an online repository).
+
+Permission from an instructor, TA or the University is also necessary before sharing the intellectual property of others from completed courses with students taking the same/similar courses in subsequent terms/years.  In many cases, instructors might be happy to allow distribution of certain materials. However, doing so without expressed permission is considered a violation of intellectual property rights.
+
+Please alert the instructor if you become aware of intellectual property belonging to others (past or present) circulating, either through the student body or online. The intellectual property rights owner deserves to know (and may have already given their consent).
+
+* Chosen/Preferred First Name
+    Do you want professors and interviewers to call you by a different first name? Take a minute now to verify or tell us your chosen/preferred first name by logging into WatIAM.
+
+Why? Starting in winter 2020, your chosen/preferred first name listed in WatIAM will be used broadly across campus (e.g., LEARN, Quest, WaterlooWorks, WatCard, etc). Note: Your legal first name will always be used on certain official documents. For more details, visit Updating Personal Information.
+
+Important notes
+
+    If you included a preferred name on your OUAC application, it will be used as your chosen/preferred name unless you make a change now.
+    If you don’t provide a chosen/preferred name, your legal first name will continue to be used.
+
+
+* Mental Health Support
+
+All of us need a support system. The faculty and staff in Arts encourage students to seek out mental health support if they are needed.
+
+** On Campus
+
+    Counselling Services:  counselling.services@uwaterloo.ca / 519-888-4567 ext. 32655
+    MATES:  one-to-one peer support program offered by the Waterloo Undergraduate Student Association (WUSA) and Counselling Services
+
+** Off campus, 24/7
+
+    Good2Talk:  Free confidential help line for post-secondary students. Phone: 1-866-925-5454
+    Grand River Hospital: Emergency care for mental health crisis. Phone: 519-749-4300 ext. 6880
+    Here 24/7: Mental Health and Crisis Service Team. Phone: 1-844-437-3247
+    OK2BME: set of support services for lesbian, gay, bisexual, transgender or questioning teens in Waterloo.  Phone: 519-884-0000 extension 213
+
+
+* Territorial Acknowledgement
+Academic freedom at the University of Waterloo
+We acknowledge that we are living and working on the traditional territory of the Attawandaron (also known as Neutral), Anishinaabe and Haudenosaunee peoples. The University of Waterloo is situated on the Haldimand Tract, the land promised to the Six Nations that includes ten kilometres on each side of the Grand River.
+
+For more information about the purpose of territorial acknowledgements, please see the CAUT Guide to Acknowledging Traditional Territory.
+Academic freedom at the University of Waterloo
+
+* Policy 33, Ethical Behaviour
+Policy 33, Ethical Behaviour states, as one of its general principles (Section 1), “The University supports academic freedom for all members of the University community. Academic freedom carries with it the duty to use that freedom in a manner consistent with the scholarly obligation to base teaching and research on an honest and ethical quest for knowledge. In the context of this policy, 'academic freedom' refers to academic activities, including teaching and scholarship, as is articulated in the principles set out in the Memorandum of Agreement between the FAUW and the University of Waterloo, 1998 (Article 6). The academic environment which fosters free debate may from time to time include the presentation or discussion of unpopular opinions or controversial material. Such material shall be dealt with as openly, respectfully and sensitively as possible.” This definition is repeated in Policies 70 and 71, and in the Memorandum of Agreement, Section 6
+
