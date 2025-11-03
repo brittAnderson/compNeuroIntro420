@@ -1,0 +1,93 @@
+#+PANDOC_OPTIONS: top-level-division:chapter number-sections:true toc:true
+#+Title: Computational Modeling for Psychology Students
+#+author: Britt Anderson
+#+date: Winter 2026
+
+Like to work something pragmatic in earlier to break up the monotony and to try and get some engagement. 
+
+* Introduction
+
+Computational modeling of cognition and its implementation in neural systems[fn:1] is not the same as programming.
+Though programming often is a prominent part of the practice.
+What else could computational modeling be?
+What are we losing when we treat our computational model as a programmatic black box.
+The plethora of programming languages suggests they are not all equivalent.
+Might our choice of programming language based on features actually influence what we can conceive for a computational model?[fn:2]
+Why then don't we spend more time considering programming language features when deciding on a programmatic implementation of our computational idea?
+
+Computational modeling is ambiguous in its commitments.
+Are we asserting the strong claim that cognition is computation?
+This requires knowing what we mean by computation.
+Or are we asserting the weaker claim that we can approximate by computational means some cognitive or neural process of which we make no assumptions concerning its computational nature?
+What would make an approximation "good enough?"
+
+A model is often used tool for simulation.
+Sometimes the code for simulation is offered as the model.
+Is that enough?
+Should a model be a tool for theory development or assessment?
+How do we weigh prediction and explanation when assessing our computational model as tool?
+
+Computational modeling is plural.
+It transcends domains: we can be interested in the cognitive or the neural; mind or brain.
+We can interest ourselves in different levels abstractly: the computional, algorithmic, and implementation.[fn:3]
+We can interest ourselves in different levels concretely: neuron, network, agent, or society.
+Levels require choices.
+Is our neuron an integrate and fire or Hodgkin-Huxley  or perceptron model?
+Is our network a feedforward system fine tuned by backpropagation or an unsupervised autoassociative network ala Hopfield?
+Even the abstractions require choices: Turing machines  or lambda calculus or automata?
+
+Computational models are practical.
+Different model forms require different tools, practical tools.
+Our program may be primarily a labor saving device, but to create a useful mapping between the realms of theories, maths, minds or brains, and code we need to know the write maths. 
+We need to be able to read the maths.
+We need to be conversant in symbols and notations.
+We need to be able to tell a matrix from a vector, to tell imperative code from functional code, and to be able to read and write both equations and programs.
+
+We need to be concerned with all the levels: mind and brain, theory, math, and code.
+We can abbreviate these as MTMC: mind → theory → math → code; the arrows indicating  an ordering on our development.
+
+* Mind and Brain
+:PROPERTIES:
+:CUSTOM_ID: mind-and-brain
+:END:
+[[file:mind-and-brain-class.org][mb-teach-guide]]
+
+** What is cognition?
+
+** What is mind?
+
+** What is a brain?
+   Can a bee think?
+   Can a computer think?
+
+   
+* Theory
+These are just place holders for now.
+#+begin_quote
+I have been wondering about the concept of explanation. I dkon't know if there is an agreed upon definition in this context. How do we know that an observation is "explained" other than that it is predicted by a theory? Of is the mathematics the same, and is explanation synonymous with post-diction? -- [[https://www.youtube.com/watch?v=jYUyd51MJDM&list=PLsSR5xGtg8fWd3sc_0tjzFj4GyRhezkTd&index=3&t=3s][Joachim Vanderkerckhove]] 
+#+end_quote
+
+Is the ability to predict the tides a theory of the tides? Is it an explanation of the tides?
+
+[[https://psycnet.apa.org/fulltext/2020-82366-001.pdf][Formalizing Verbal Theories. A tutorial by dialogue.]]
+
+[[https://journals.physiology.org/doi/epdf/10.1152/jn.00195.2021][Forms of explanation and understanding for neuroscience and artificial intelligence]]
+
+[[https://smaldino.com/wp/wp-content/uploads/2018/01/Smaldino2017-ModelsAreStupid.pdf][Models are Stupid, and We Need More of Them]]
+
+[[https://psycnet.apa.org/fulltext/2025-04988-001.pdf][Productive Explanation: A framework for evaluating explanations in psychological science]]
+
+[[https://journals.sagepub.com/doi/pdf/10.1177/1745691620969647][Theory Construction Methodology: A practical framework for building theories in psychology]]
+
+
+* Math and Code
+We will group these two by subdomains to keep the connections fresh.
+
+
+
+* Footnotes
+
+[fn:3] see David Marr's *Vision*. 
+[fn:2] The limits of my language means the limits of my world. -- Ludwig Wittgenstein (proposition 5.6 Tractatus Logico-Philosophicus) 
+
+[fn:1] which we will henceforth simply refer to as computational modeling assuming that its domain is assumed to be fixed on cognition and its abstract and neural implementations.  
