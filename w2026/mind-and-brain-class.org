@@ -25,4 +25,11 @@ Notes for classroom session on Mind and Brain Section
   3. What is a brain?
      - Intended to set up some questions about whether a computer can think?
      - Or how central is a "brain" to being a thinking being?
+  4. Our course goals: to learn to implement computational models, and to discuss whether computation is what the brain/mind is/does.
 
+     
+* Homework
+  - Read [[https://link.springer.com/content/pdf/10.1007/978-3-642-41375-9_1][Chapter 1]]. You will need to be on the campus network (or vpn) for this pdf link to work.
+    - Send in a summary of the major discussion points (1 page), and your questions (1/2 page) and your conclusions (1/2 page). In general this should be about two pages long. All I need is a name. Don't waste space on titles or appearances issues. It is the arguments that are key. We will discuss your papers next week in class.
+  - Verify you have an idea (VS Code is a popular example).
+  - Verify that you can clone a git repo. For example, following [[https://sophia-nunez.github.io/guide-to-git/docs/exercises/][these instructions]] create a practice repo on github and send me the url. Then send me a screen shot showing that you have cloned your practice repo to your own laptop. 

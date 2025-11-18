@@ -1,11 +1,85 @@
-#+PANDOC_OPTIONS: top-level-division:chapter number-sections:true toc:true
 #+Title: Computational Modeling for Psychology Students
 #+author: Britt Anderson
 #+date: Winter 2026
 
-Like to work something pragmatic in earlier to break up the monotony and to try and get some engagement. 
+* Welcome to Psych 420
 
-* Introduction
+** Introductions
+1. Who am I? 
+2. Who are you?
+   Send me an email (britt@uwaterloo.ca) right now (from your uwaterloo address) with
+   1. Your name (and any pronounciation tips).
+   2. Area of concentration,
+   3. Year of study,
+   4. Programming language you are most capable in (and your level of competency),
+   5. Reason you took this course.
+3. What you will need: A functioning computer that you know how to use.
+   What to do now:
+   - Update your operating system.
+   - Verify you know how to find a file on your computer (e.g. do you know the name of your home directory)?
+   - Confirm you know how to install software on your computer.
+   - You know (or will know by next week) what ~git~ is and how to use it, and that you will have an ~IDE~ installed.
+
+** What is computational cognitive (neuro)science?
+  1. Form teams of two (or three if odd number).
+  2. Go to the following web site: [[https://2025.ccneuro.org/poster-sessions/?view=all][2025 Posters Cognitive Computational Neuroscience meeting]].
+     1. Pick a poster.
+	Note it's label (letter-number; on the left)
+     2. Be ready with a two sentence summary.
+     3. Tell us why it is a good example of computational modelling of either mind or brain.
+     4. Why you chose it.
+
+The correct Org mode syntax for including another file starting from line 11 is:
+
+** Syllabus Review
+#+INCLUDE: "syl-2026.org" :lines "11-"
+** A look ahead -- what we will code
+   1. Turing Machine
+   2. Integrate and Fire Neuron
+   3. Hodgkin-Huxley Neuron
+   4. Perceptron
+   5. Hopfield Net
+   6. Agent Based Model
+   7. And possibly more
+      
+** What is Cognition?
+   Groups of three. No two members should be the same as the last group.
+   [[https://doi.org/10.1016/j.cub.2019.05.044][What is Cognition?]]
+   Each group gets an opinion.
+   20 minutes to read and discuss to make sure they understand.
+   Then rotate the groups so that each group has only one member/opinion.
+   15 minutes to explain the opinions to each other.
+   General discussion.
+** Is a mathematical formula a model?
+*** Forgetting Curve --- Ebbinghaus
+#+Name: forgetting-curve
+#+caption: By The original uploader was Icez at English Wikipedia.
+[[file:./images/Forgetting_curve_decline.svg.png]]
+*** A Mathematical Function
+#+begin_src haskell :results file graphics :file ./images/plot.png :exports both
+  :set -XNoImplicitPrelude
+  import Prelude
+  import Graphics.Gnuplot.Simple
+  plotFunc [PNG "./images/plot.png"] (linearScale 100 (1, 4))
+    ((\x -> exp (1.0/x)) :: Double -> Double)
+#+end_src
+
+#+Name: exponential-function
+#+Caption: Plot of \( e^{\frac{1}{x}} \).
+#+RESULTS:
+[[file:./images/plot.png]]
+*** What can we infer
+    from the similarity between Figure [[forgetting-curve]] and Figure [[exponential-function]] ?
+
+*** Generate your own plot of the exponential function.
+
+** Cognition is ... ?
+
+IAMHERE
+
+
+* Some Introductory Comments
+
 
 Computational modeling of cognition and its implementation in neural systems[fn:1] is not the same as programming.
 Though programming often is a prominent part of the practice.
@@ -64,7 +138,7 @@ We can abbreviate these as MTMC: mind → theory → math → code; the arrows i
 * Theory
 These are just place holders for now.
 #+begin_quote
-I have been wondering about the concept of explanation. I dkon't know if there is an agreed upon definition in this context. How do we know that an observation is "explained" other than that it is predicted by a theory? Of is the mathematics the same, and is explanation synonymous with post-diction? -- [[https://www.youtube.com/watch?v=jYUyd51MJDM&list=PLsSR5xGtg8fWd3sc_0tjzFj4GyRhezkTd&index=3&t=3s][Joachim Vanderkerckhove]] 
+I have been wondering about the concept of explanation. I don't know if there is an agreed upon definition in this context. How do we know that an observation is "explained" other than that it is predicted by a theory? Or is the mathematics the same, and is explanation synonymous with post-diction? -- [[https://www.youtube.com/watch?v=jYUyd51MJDM&list=PLsSR5xGtg8fWd3sc_0tjzFj4GyRhezkTd&index=3&t=3s][Joachim Vanderkerckhove]] 
 #+end_quote
 
 Is the ability to predict the tides a theory of the tides? Is it an explanation of the tides?
