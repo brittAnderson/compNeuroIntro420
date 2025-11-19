@@ -1,9 +1,19 @@
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+options: author:t broken-links:nil c:nil creator:nil
+#+options: d:(not "LOGBOOK") date:t e:t email:nil expand-links:t f:t
+#+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t
+#+options: tasks:t tex:t timestamp:t title:t toc:t todo:t |:t
 #+Title: Computational Modeling for Psychology Students
 #+author: Britt Anderson
 #+date: Winter 2026
+#+email: britt@uwaterloo.ca
+#+language: en
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 30.2 (Org mode 9.7.11)
+#+cite_export:
 
 * Welcome to Psych 420
-
 ** Introductions
 1. Who am I? 
 2. Who are you?
@@ -28,9 +38,6 @@
      2. Be ready with a two sentence summary.
      3. Tell us why it is a good example of computational modelling of either mind or brain.
      4. Why you chose it.
-
-The correct Org mode syntax for including another file starting from line 11 is:
-
 ** Syllabus Review
 #+INCLUDE: "syl-2026.org" :lines "11-"
 ** A look ahead -- what we will code
@@ -41,11 +48,16 @@ The correct Org mode syntax for including another file starting from line 11 is:
    5. Hopfield Net
    6. Agent Based Model
    7. And possibly more
-      
+** A look ahead -- what we talk about
+   1. What is cognition?
+   2. What is a cognitive model?
+   3. What is the relationship between cognition and neuroscience?
+   4. All of which will benefit from better understanding what is a theory.
 ** What is Cognition?
    Groups of three. No two members should be the same as the last group.
    [[https://doi.org/10.1016/j.cub.2019.05.044][What is Cognition?]]
-   Each group gets an opinion.
+   Each group gets an opinion (want three of four groups)
+   Brainard/Byrne/Heyes/Suddendorf
    20 minutes to read and discuss to make sure they understand.
    Then rotate the groups so that each group has only one member/opinion.
    15 minutes to explain the opinions to each other.
@@ -56,85 +68,99 @@ The correct Org mode syntax for including another file starting from line 11 is:
 #+caption: By The original uploader was Icez at English Wikipedia.
 [[file:./images/Forgetting_curve_decline.svg.png]]
 *** A Mathematical Function
-#+begin_src haskell :results file graphics :file ./images/plot.png :exports both
-  :set -XNoImplicitPrelude
-  import Prelude
-  import Graphics.Gnuplot.Simple
-  plotFunc [PNG "./images/plot.png"] (linearScale 100 (1, 4))
-    ((\x -> exp (1.0/x)) :: Double -> Double)
+#+begin_src haskell :dir . :session :results file graphics :file ./images/expdecay.png :exports both
+      import Graphics.Gnuplot.Simple
+      plotFunc [PNG "./images/expdecay.png"]
+      (linearScale 100 (1,6))
+      ((\x -> exp (1.0/x)) :: Double -> Double)
 #+end_src
 
 #+Name: exponential-function
 #+Caption: Plot of \( e^{\frac{1}{x}} \).
 #+RESULTS:
-[[file:./images/plot.png]]
+[[file:./images/expdecay.png]]
+
+
 *** What can we infer
     from the similarity between Figure [[forgetting-curve]] and Figure [[exponential-function]] ?
-
 *** Generate your own plot of the exponential function.
 
-** Cognition is ... ?
+* Warming Up: Action Potentials
+** What is an action potential?
+   1. Draw one.
+   2. Explain what ions account for the different parts of the curve.
+   3. Why is an action potential like a flush toilet?
+   4. Why did/do people use the action potential to argue that brains are like digital computers?
+   5. Who were [[https://en.wikipedia.org/wiki/A_Logical_Calculus_of_the_Ideas_Immanent_in_Nervous_Activity][McCulloch and Pitts]] and why are they relevant?
+   6. Who developed the first detailed biophysical model of the action potential and what became of them?
+   7. Why would we want to write a program to simulation a spiking neuron?
+   8. Why might we want a simpler version?
+   9. What maths are important for modeling spiking neurons?
+** Notation
+   The mathematician's interest in being concise often means that simple ideas get translated to unfamiliar symbols. \
+   Just because the notation is unfamiliar does not mean the idea is complicated. 
+   What does \( \sum_{\forall x \in \left\{ 1 , 2 , 3 \right \}} x = 6 \) mean?
 
-IAMHERE
+   Different mathematical and computational traditions have their own preferences, thus the same idea can have different notations. To a mathematician the \(\sqrt{-1} = \) =i=. To the engineer it is =j=.
+   \(\frac{dx}{dt}\) \(\dot{x}\) \(x{'}\) \(f{'}(x)\) are all different ways of talking about derivatives. 
+** Differential Equations
+   1. What is a differential equation (aka de)?
+   2. What is a derivative?
+   3. What is the *definition* of a derivative?
+   4. What is a slope of a line?
+   5. Of a curve?
+
+#+begin_src haskell :dir . :session :results file graphics :file ./images/derivExample.png :exports both
+    plotFuncs [PNG "./images/derivExample.png"] (linearScale 1000 (-3 , 3 ) )
+      [(\x -> x ** 3) :: Double -> Double
+      , (\x -> 12 * x - 16) :: Double -> Double ]
+#+end_src
+
+#+RESULTS:
+[[file:./images/derivExample.png]]
 
 
-* Some Introductory Comments
 
 
-Computational modeling of cognition and its implementation in neural systems[fn:1] is not the same as programming.
-Though programming often is a prominent part of the practice.
-What else could computational modeling be?
-What are we losing when we treat our computational model as a programmatic black box.
-The plethora of programming languages suggests they are not all equivalent.
-Might our choice of programming language based on features actually influence what we can conceive for a computational model?[fn:2]
-Why then don't we spend more time considering programming language features when deciding on a programmatic implementation of our computational idea?
 
-Computational modeling is ambiguous in its commitments.
-Are we asserting the strong claim that cognition is computation?
-This requires knowing what we mean by computation.
-Or are we asserting the weaker claim that we can approximate by computational means some cognitive or neural process of which we make no assumptions concerning its computational nature?
-What would make an approximation "good enough?"
 
-A model is often used tool for simulation.
-Sometimes the code for simulation is offered as the model.
-Is that enough?
-Should a model be a tool for theory development or assessment?
-How do we weigh prediction and explanation when assessing our computational model as tool?
 
-Computational modeling is plural.
-It transcends domains: we can be interested in the cognitive or the neural; mind or brain.
-We can interest ourselves in different levels abstractly: the computional, algorithmic, and implementation.[fn:3]
-We can interest ourselves in different levels concretely: neuron, network, agent, or society.
-Levels require choices.
-Is our neuron an integrate and fire or Hodgkin-Huxley  or perceptron model?
-Is our network a feedforward system fine tuned by backpropagation or an unsupervised autoassociative network ala Hopfield?
-Even the abstractions require choices: Turing machines  or lambda calculus or automata?
 
-Computational models are practical.
-Different model forms require different tools, practical tools.
-Our program may be primarily a labor saving device, but to create a useful mapping between the realms of theories, maths, minds or brains, and code we need to know the write maths. 
-We need to be able to read the maths.
-We need to be conversant in symbols and notations.
-We need to be able to tell a matrix from a vector, to tell imperative code from functional code, and to be able to read and write both equations and programs.
+
+
+
+
+
+* What is computation and what is its role in cognitive science?
+  [[https://link.springer.com/content/pdf/10.1007/978-3-642-41375-9_1][Chapter 1 of Physical Computation in Cognitive Science]] by Nir Fresco
+
+** What do you think?
+   1. Computational modeling of cognition and neural systems is/is-not the same as programming.
+   2. What else could computational modeling be?
+   3. What are we losing when we treat our computational model as a programmatic black box?
+   4. Is the computation that is cognitive the same as the computation that takes place in digital computers?
+   5. If so, why is there more than one programming language?
+   6. Might our choice of programming language based on features actually influence what we can conceive for a computational model?
+   7. What does it mean for something to be a model?
+   8. Is simulation good enough?
+   9. Is prediction good enough?
+   10. Do we want a model to /explain/ something? And then of course what constitutes explanation?
+** What do we need to know?
+   1. We need to know the facts of the matter, neurally and cognitively.
+   2. We need to have a clear question.
+   3. We need to have a theoretical committment that leads to clear predictions, and guides our evaluation of what to do.
+   4. Which of course means we need to know what a theory is and how to build one.
+   5. We need to know the facts of the matter mathematically and programmatically
+      1. We need to be able to read the maths.
+      2. We need to be conversant in symbols and notations.
+      3. We need to know how to express in symbols what we can say in words.
+      4. We need to know how to express in code what we can write in symbols.
 
 We need to be concerned with all the levels: mind and brain, theory, math, and code.
 We can abbreviate these as MTMC: mind → theory → math → code; the arrows indicating  an ordering on our development.
 
-* Mind and Brain
-:PROPERTIES:
-:CUSTOM_ID: mind-and-brain
-:END:
-[[file:mind-and-brain-class.org][mb-teach-guide]]
 
-** What is cognition?
-
-** What is mind?
-
-** What is a brain?
-   Can a bee think?
-   Can a computer think?
-
-   
+* 
 * Theory
 These are just place holders for now.
 #+begin_quote
@@ -164,4 +190,3 @@ We will group these two by subdomains to keep the connections fresh.
 [fn:3] see David Marr's *Vision*. 
 [fn:2] The limits of my language means the limits of my world. -- Ludwig Wittgenstein (proposition 5.6 Tractatus Logico-Philosophicus) 
 
-[fn:1] which we will henceforth simply refer to as computational modeling assuming that its domain is assumed to be fixed on cognition and its abstract and neural implementations.  
