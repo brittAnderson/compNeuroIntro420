@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 # Initial Values
 init_v = 0
 init_s = 10
-p = 2.0
+p = 20.0
 dt = 0.05
 
 

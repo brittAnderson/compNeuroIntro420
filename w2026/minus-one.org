@@ -139,7 +139,7 @@ Now let's test it:
 :load "./code/sqrt.hs"
 getCubeRoot 27 1 0.001
 getCubeRoot 8 1 0.001
-getCubeRoot 125 1 0.001
+getCubeRoot 141 1 0.001
 #+end_src
 
 #+RESULTS:
@@ -147,60 +147,41 @@ getCubeRoot 125 1 0.001
 : Ok, one module loaded.
 : 3.0000005410641766
 : 2.000004911675504
-: 5.000000000287929
+: 5.204827869200383
 
-IAMHERE
+*** Using DEs - Practicing with Springs
 
-*** Practice Simulating With DEs
+Our Hodgkin-Huxley model will be will require us to use several different equations. And though the intergrate and fire neuron only requires one, a neuron is still rather abstract as a computational entity. Therefore, we will begin our DE coding practice with a simple, idealized spring. 
 
-**** Frictionless Springs
+Our differential equation is \( \frac{d^2 position}{dt^2} = -P~position \). 
 
-We want to code neurons, but to get there we should feel comfortable with the underlying tool or we won't be able to adapt it or re-use it for some new purpose. We will start with a very simple and concrete example: the frictionless spring.
+where 'position' refers to the location in space of the unattached end of our spring (we assume one end is anchored to a wall or something), 't' refers to time, and 'P' is a constant, often called the spring constant, that indicates how springy the spring is. 
 
-\( \frac{d^2 s}{dt^2} = -P~s \)
+If we knew where the spring was now, we could use this equation to tell us where it would be a little bit into the future; just as you can use your velocity on the highway to estimate your location in the future. The smaller the time step the more accurate will be our estimate. This simple [[https://en.wikipedia.org/wiki/Euler_method][Euler method]] often works quite well for smooth functions that don't change very much.
+
+Unfortunately the spring equation is for the *second* derivative of location relative to time. This is called acceleration. Thus we need a two step process. From our current location and this equation estimate our velocity. From our present location and our velocity estimate our location. And repeat. 
+
+#+INCLUDE: "./code/Spring.hs" src haskell -n 
 
 
-where 's' refers to space, 't' refers to time, and 'P' is a constant, often called the spring constant, that indicates how stiff or springy the spring is. 
-
-
-Imagine that you knew this derivative. It would tell you how much space the spring head would move for a given, very small, increment of time. We could then just add this to our current position to get the new position and repeat. This method of using a derivative to iterate forward is sometimes called the [[https://en.wikipedia.org/wiki/Euler_method][Euler method]].
-
-Returning to our definition of the derivative:
-
-\( \frac{s(t + \Delta t) - s(t)}{\Delta t} = velocity \approx \frac{d s}{d t} \)
-
-But our spring equation is not given in terms of the velocity it is given in terms of the acceleration which is the second derivative. Therefore, to find our new position we need the velocity, but we only have the acceleration. However, if we knew the acceleration and the velocity we could use that to calculate the new velocity. Unfortunately we don't know the velocity, unless ... , maybe we could just assume something. Let's say it is zero because we have started our process where we have stretched the spring, and are holding it, just before letting it go. We have asserted an /initial value/.
-
-How will our velocity change with time?
-
-\( \frac{v(t + \Delta t) - v(t)}{\Delta t} = acceleration \approx \frac{d v}{d t} = \frac{d^2 s}{d t^2} \)
-
-And we have a formula for this. We can now bootstrap our simulation.
-
-Note the similarity of the two functions. You could write a helper function that was generic to this pattern of /old value + rate of change times the  time step/, and just used the pertinent values.
-
-How do we know the formula for acceleration? We were given it!
-
-#+begin_src python :session *spring* :results graphics output file :file ./images/spring.jpg :exports both
-  import localcode.spring as s
-  s.plot_spring()
+#+begin_src haskell :dir . :session :results file graphics :file ./images/spring.png :exports both
+    :load "./code/Spring.hs"
+    plotList [PNG "./images/spring.png"]
+      $ map (\s -> sLoc s) $ releaseSpring 2000
 #+end_src
 
-#+Name: oscillator-plot
-#+Caption: Spring constant of 2 with a starting position of 10.
+#+Name: friclessSpring
+#+Caption: Frictionless Springs Oscillate
 #+RESULTS:
-[[file:./images/spring.jpg]]
+[[file:./images/spring.png]]
 
 
+**** Now You Try with a *Damped Oscillator*
+The changes to whatever code you have for the frictionless spring should require very little alteration to work with the following DE:
 
-***** Now You Try
-*Damped Oscillators*
+\[ \frac{d^2 s}{dt^2} = -P~s(t) - k~v(t) \]
 
-Provide the code and a plot for the damped oscillator. It has the formula of
-
-\( \frac{d^2 s}{dt^2} = -P~s(t) - k~v(t) \)
-
-
+IAMHERE
 
 
 
