@@ -86,6 +86,15 @@
 *** Generate your own plot of the exponential function.
 
 * Warming Up: Action Potentials
+  Our goals:
+  1. Understand what we are trying to model: the action potential.
+  2. Learn some of the prior work.
+  3. Understand the mathematical background for an action potential.
+     1. Simple electronics.
+     2. Simple differential equations.
+  4. Make ourselves familiar with the basic notation of these two background areas.
+  5. Implement simple computational versions of spiking neurons.
+     If you cannot code it, you do not understand it. 
 ** What is an action potential?
    1. Draw one.
    2. Explain what ions account for the different parts of the curve.
@@ -107,8 +116,10 @@
    1. What is a differential equation (aka de)?
    2. What is a derivative?
    3. What is the *definition* of a derivative?
+      \( \frac{dx}{dy} = \frac{f(x + \Delta x) - f(x)}{x+\Delta x - x} \)
    4. What is a slope of a line?
    5. Of a curve?
+   6. Provide examples of phenomena in psychology or neuroscience (other than the action potential) that might be good candidates for this mathematical technique. 
 
 #+begin_src haskell :dir . :session :results file graphics :file ./images/derivExample.png :exports both
     plotFuncs [PNG "./images/derivExample.png"] (linearScale 1000 (-3 , 3 ) )
@@ -118,7 +129,76 @@
 
 #+RESULTS:
 [[file:./images/derivExample.png]]
+*** Using a DE
+    In computational neuroscience (or psychology) we don't typically " solve DEs. We use them. We use them to help us move forward in time to understand a process by virtue of what we know about its rate of change. We will see that in a couple of short examples, and then some simple scenarios for you to play with. 
+*** Using DEs to compute a square root
+#+INCLUDE: "./code/sqrt.hs" src haskell -n 
 
+Now let's test it:
+#+begin_src haskell :results output :exports both
+:load "./code/sqrt.hs"
+getCubeRoot 27 1 0.001
+getCubeRoot 8 1 0.001
+getCubeRoot 125 1 0.001
+#+end_src
+
+#+RESULTS:
+: [1 of 2] Compiling Main             ( code/sqrt.hs, interpreted )
+: Ok, one module loaded.
+: 3.0000005410641766
+: 2.000004911675504
+: 5.000000000287929
+
+IAMHERE
+
+*** Practice Simulating With DEs
+
+**** Frictionless Springs
+
+We want to code neurons, but to get there we should feel comfortable with the underlying tool or we won't be able to adapt it or re-use it for some new purpose. We will start with a very simple and concrete example: the frictionless spring.
+
+\( \frac{d^2 s}{dt^2} = -P~s \)
+
+
+where 's' refers to space, 't' refers to time, and 'P' is a constant, often called the spring constant, that indicates how stiff or springy the spring is. 
+
+
+Imagine that you knew this derivative. It would tell you how much space the spring head would move for a given, very small, increment of time. We could then just add this to our current position to get the new position and repeat. This method of using a derivative to iterate forward is sometimes called the [[https://en.wikipedia.org/wiki/Euler_method][Euler method]].
+
+Returning to our definition of the derivative:
+
+\( \frac{s(t + \Delta t) - s(t)}{\Delta t} = velocity \approx \frac{d s}{d t} \)
+
+But our spring equation is not given in terms of the velocity it is given in terms of the acceleration which is the second derivative. Therefore, to find our new position we need the velocity, but we only have the acceleration. However, if we knew the acceleration and the velocity we could use that to calculate the new velocity. Unfortunately we don't know the velocity, unless ... , maybe we could just assume something. Let's say it is zero because we have started our process where we have stretched the spring, and are holding it, just before letting it go. We have asserted an /initial value/.
+
+How will our velocity change with time?
+
+\( \frac{v(t + \Delta t) - v(t)}{\Delta t} = acceleration \approx \frac{d v}{d t} = \frac{d^2 s}{d t^2} \)
+
+And we have a formula for this. We can now bootstrap our simulation.
+
+Note the similarity of the two functions. You could write a helper function that was generic to this pattern of /old value + rate of change times the  time step/, and just used the pertinent values.
+
+How do we know the formula for acceleration? We were given it!
+
+#+begin_src python :session *spring* :results graphics output file :file ./images/spring.jpg :exports both
+  import localcode.spring as s
+  s.plot_spring()
+#+end_src
+
+#+Name: oscillator-plot
+#+Caption: Spring constant of 2 with a starting position of 10.
+#+RESULTS:
+[[file:./images/spring.jpg]]
+
+
+
+***** Now You Try
+*Damped Oscillators*
+
+Provide the code and a plot for the damped oscillator. It has the formula of
+
+\( \frac{d^2 s}{dt^2} = -P~s(t) - k~v(t) \)
 
 
 
