@@ -41,3 +41,5 @@ wip/
 
 backpropagation-main/
 .aider*
+
+*.log
