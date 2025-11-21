@@ -45,3 +45,5 @@ backpropagation-main/
 *.log
 
 library/
+
+dist-newstyle/
