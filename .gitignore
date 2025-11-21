@@ -43,3 +43,5 @@ backpropagation-main/
 .aider*
 
 *.log
+
+library/
