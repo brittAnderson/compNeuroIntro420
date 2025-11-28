@@ -1,7 +1,6 @@
 {-# LANGUAGE GADTs #-}
 
 module IandF where
-import Control.Arrow (Arrow(first))
 
 dt,maxt,initt,starttime,stoptime,cap
   ,res,threshold,spikedisplay,initv

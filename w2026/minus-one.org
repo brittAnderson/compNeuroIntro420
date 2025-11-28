@@ -129,9 +129,9 @@
 
 #+RESULTS:
 [[file:./images/derivExample.png]]
-*** Using a DE
+** Using a DE
     In computational neuroscience (or psychology) we don't typically " solve DEs. We use them. We use them to help us move forward in time to understand a process by virtue of what we know about its rate of change. We will see that in a couple of short examples, and then some simple scenarios for you to play with. 
-*** Using DEs to compute a square root
+** Using DEs to compute a square root
 #+INCLUDE: "./code/sqrt.hs" src haskell -n 
 
 Now let's test it:
@@ -149,7 +149,7 @@ getCubeRoot 141 1 0.001
 : 2.000004911675504
 : 5.204827869200383
 
-*** Using DEs - Practicing with Springs
+** Using DEs - Practicing with Springs
 
 Our Hodgkin-Huxley model will be will require us to use several different equations. And though the intergrate and fire neuron only requires one, a neuron is still rather abstract as a computational entity. Therefore, we will begin our DE coding practice with a simple, idealized spring. 
 
@@ -176,7 +176,7 @@ Unfortunately the spring equation is for the *second* derivative of location rel
 [[file:./images/spring.png]]
 
 
-**** Now You Try with a *Damped Oscillator*
+*** Now You Try with a *Damped Oscillator*
 The changes to whatever code you have for the frictionless spring should require very little alteration to work with the following DE:
 
 \[ \frac{d^2 s}{dt^2} = -P~s(t) - k~v(t) \]
@@ -185,13 +185,11 @@ The changes to whatever code you have for the frictionless spring should require
 
 
 
-
-
-*** Integrate and Fire Neuron
+** Integrate and Fire Neuron
 #+begin_quote
 Is the integrate and fire model used much in modeling in the present time? [[https://scholar.google.com/scholar?as_ylo=2020&q=%22integrate+and+fire%22+neuron&hl=en&as_sdt=7,39][answer]]
 #+end_quote
-**** Historical Notes
+*** Historical Notes
 ***** Louie La Pique
 [[https://link.springer.com/content/pdf/10.1007/s00422-007-0190-0.pdf"][Modern Commentary on Lapique's Neuron Model]]
 
@@ -208,7 +206,7 @@ Is the integrate and fire model used much in modeling in the present time? [[htt
 [[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1420429/pdf/jphysiol01990-0084.pdf]]
 #+end_quote
 
-**** Formula I and F
+*** Formula I and F
 
 \(\tau \frac{dV(t)}{dt} = -V(t) + R~I(t) \)
 
@@ -269,7 +267,7 @@ d: multiply through by R
 
 e: rearrange and define \(\tau\)
 
-**** Coding up the Integrate and Fire Neuron
+*** Coding up the Integrate and Fire Neuron
 
 Approach this with the same ideas as the spring example. You have a certain initial value, and you update that using your differential equation that relates how much voltage changes as a function of time and current voltage.
 
@@ -296,9 +294,7 @@ Unlike real neurons the Integrate and Fire neuron model does not have a natural 
 #+RESULTS:
 [[file:./images/iandf.png]]
 
-IAMHERE
-
-*** Integrate and Fire Homework
+** Integrate and Fire Homework
 
 The Integrate and Fire homework has two components. One practical and one theoretical.
 
@@ -308,6 +304,136 @@ Theoretically, look at [[https://redwood.berkeley.edu/wp-content/uploads/2018/08
 
 
 
+## Working
+** Hodgkin and Huxley Model
+*** Who were Hodgkin and Huxley
+The goal in this biological scavenger hunt is to try and develop some ideas about what makes one able to effectively contribute to computational neuroscience. As they undoubtedly did. I will divide you into small groups each targeting either Hodgkin or Huxley. Then we will mix up the groups for sharing. Then we will come back together to talk very briefly about who they were, but at somewhat greater length about what we learned about what sort of education or other experiences we should seek out if we want to contribute to this field.
+*** Biographical Sources :noexport:
+Nobel Prize biographies:
+  [[https://www.nobelprize.org/prizes/medicine/1963/hodgkin/biographical/][Hodgkin]]
+  [[https://www.nobelprize.org/prizes/medicine/1963/huxley/biographical/][Huxley]]
+
+Nice summary [[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3424716/pdf/tjp0590-2571.pdf][article (pdf)]]
+
+[[https://youtu.be/k48jXzFGMc8?si=C1oZhWaRQ0j1osb8][Video]] of the method
+ 
+*** Model Description
+Gerstner's (free) [[https://lcnwww.epfl.ch/gerstner/SPNM/node14.html#table-HH1][book's chapter]] on the HandH model.
+
+**** Comments and Steps in Coding the Hodgkin Huxley Model
+ 
+Some introductory reminders and admonitions:
+ 
+The current going in to the cell is intended to represent what an electrophysiologist would inject in their laboratory setting, or what might be changed by the input from other neurons. 
+The total current coming out of the neuron is the sum of the capacitance (due to the lipid bilayer), and the resistance (due to the ion channels).
+This is *Kirchoff's* rule implemented in the Hodgkin and Huxley model.
+
+Unlike the Integrate and Fire model, which lumps all the ionic currents together, the HandH model decomposes the conductance into three parts.
+You have a resistance /for each ion channel/.
+The rule for currents in parallel is to apply Kirchoff's and Ohm's laws realizing that they all experience the same voltage, thus the currents sum. The Hodgkin and Huxley model has components for Sodium (Na), Potassium (K), and negative anions (still lumped as "leak" l).
+
+\( \sum_i I_R(t) = \bar{g}_{Na} m^3 h l(V(t) - E_{Na}) + \bar{g}_{K} n^4 (V(t) - E_{K}) + \bar{g}_{L} (V(t) - E_{L})\)
+
+\( I_{tot} = I_r + I_C \)
+
+
+\( I_{tot} = \bar{g}_{Na} m^3 h (V(t) l- E_{Na}) + \bar{g}_{K} n^4 (V(t) - E_{K}) + \bar{g}_{L} (V(t) - E_{L}) + c~\frac{dV}{dt} \)
+
+If you rearrange terms you can get the \(\frac{dV}{dt}\) on one side of the equation by itself.
+
+\(c~\frac{dV}{dt} = I_{tot} - (\bar{g}_{Na} m^3 h (V(t) - E_{Na}) + \bar{g}_{K} n^4 (V(t) - E_{K}) + \bar{g}_{L} (V(t) - E_{L})) \)
+
+You cannot program what you don't understand. Don't start writing code too soon. Writing code won't make a poorly understood idea clearer. Though it can reveal that you don't understand what you thought you understood. It is often best to start sketching ideas on paper or a blackboard before you open up your IDE.
+
+For instance,
+
+- What are the \( \bar{g}_*\) terms?
+- What are the \( E_{*} \) terms?
+- What do m, n, and h represent?
+- Where did these equations come from?
+   
+*Remember, it is differential equations all the way down.*
+You can use the same Euler method to patiently update each of your terms and then repeatedly loop between them.
+But recognize there are DEs at multiple levels.
+Each of the /m/, /n/, and /h/ terms are also changing and regulated by a differential equation.
+They are dependent on voltage, too.
+For example, \( \dot{m} = \alpha_m (V)(1 - m) - \beta_m (V) m \).
+
+*Recognize that*
+- Each of the m, n, and h terms have their own equation of exactly the same form, but with their unique alphas and betas (that is what the subscript means).
+- What does the V in parentheses mean?
+- When the proteins of the ion channels were finally sequenced (decades later), what do you think was the number of sub-units that the sodium and potassium channels were found to have?
+
+*Initial Assumptions*
+
+If you allow \( t \rightarrow \infty \mbox{, then } \frac{dV}{dt}=? \)
+- You assume that it goes to zero; that is, you reach steady state. Then you can solve for some of the constants.
+- Where do the constants come from?
+- They come from experiments, and you use what you are given.
+- Assume the following constants - they are set to assume a resting potential of zero (instead of what and why doesn't this matter)?
+- These constants also work out to enforce a capacitance of 1.
+
+**** Constants
+Several different sets of constants are used for this model in published versions. They are all, in one sense the same, but this set amke the programming easier. For the moment, ignore the units and use these numbers.
+
+#+Name: hh-constants
+#+Caption: Constant Values to Use for our Hodgkin-Huxley Model
+| *Constant* | *Value* |
+|------------+---------|
+| ena        |     115 |
+| gna        |     120 |
+| ek         |     -12 |
+| gk         |      36 |
+| el         |    10.6 |
+| gl         |     0.3 |
+
+
+
+**Warning**
+These constants are adjusted to make the resting potential 0 and the capacitance 1.0. 
+
+**** Alpha and Beta Formulas
+
+\( \alpha_{n}(V_{m})={\frac {0.01(10-V_{m})}{\exp {\big (}{\frac{10-V_{m} \){10} \){\big )}-1} \)
+
+\( \alpha_{m}(V_{m})={\frac {0.1(25-V_{m})}{\exp {\big (}{\frac {25-V_{m} \){10} \){\big )}-1} \)
+
+\( \alpha _{h}(V_{m})=0.07\exp {\bigg (l}{\frac {-V_{m} \){20} \){\bigg )} \)
+
+\( \beta _{n}(V_{m})=0.125\exp {\bigg (l}{\frac {-V_{m} \){80} \){\bigg )} \)
+
+\( \beta _{m}(V_{m})=4\exp {\bigg (}{\frac {-V_{m} \){18} \){\bigg )} \)
+
+\( \beta_{h}(V_{m})={\frac {1}{\exp {\big (}{\frac {30-V_{m} \){10} \){\big)}+1} \)
+
+
+**** Demonstrating the Hodgkin-Huxley Model
+
+IAMHERE working on haskell handh code 
+#+INCLUDE: "./code/HandH.hs" src haskell -n 
+#+begin_src haskell :dir . :session :results file graphics :file ./images/handh.png :exports both
+
+
+#+begin_src lisp :eval never :exports both :results graphics file "./images/handh.png"
+  (load "/home/britt/gitRepos/compNeuroIntro420/codeLib/cl/hh.lisp")
+  (in-package :hh)
+  (handh-plot "./images/handh.png" sim-dat)
+#+end_src
+
+#+RESULTS:
+[[file:./images/handh.png]]
+
+**** Hodgkin and Huxley Homework
+
+Your homework will require you to write the code for a Hodgkin-Huxley Neuron and then modify it.  You will provide at least two plots in addition to your code. You will need to adapt the model to fit this paper[cite:@Hafez_2020]. These authors analyzed a series of inherited channelopathies (where ion channels are altered due to mutation) via simulation. In these conditions empirical measurements had been made on actual patients. The authors adapted the Hodgkin and Huxley model to permit them to explore the effects of such altered conductance on neuronal excitability. For this home work you will need to adapt the /n/ equation to be as follows:
+
+\( \frac{dn}{dt} = \gamma_\tau (\gamma_\alpha \alpha_n (v - \Delta V)(1 - n) - \gamma_\beta \beta_n (v- \Delta V)n) \)
+
+Then you must select one of the sets of \gamma from their [[https://link.springer.com/article/10.1007/s10827-020-00766-1/tables/1][Table 1]] and plot the neuronal activity.
+
+To start implement the new /n/ channel and set all the \gamma s to 1. This should work exactly like the old model. Generate a plot showing that it does. For the second plot generate the same plot with your altered $\gamma$ values.
+
+## End Working
 
 
 * What is computation and what is its role in cognitive science?
@@ -338,7 +464,6 @@ Theoretically, look at [[https://redwood.berkeley.edu/wp-content/uploads/2018/08
 We need to be concerned with all the levels: mind and brain, theory, math, and code.
 We can abbreviate these as MTMC: mind → theory → math → code; the arrows indicating  an ordering on our development.
 
-
 * 
 * Theory
 These are just place holders for now.
@@ -358,10 +483,8 @@ Is the ability to predict the tides a theory of the tides? Is it an explanation 
 
 [[https://journals.sagepub.com/doi/pdf/10.1177/1745691620969647][Theory Construction Methodology: A practical framework for building theories in psychology]]
 
-
 * Math and Code
 We will group these two by subdomains to keep the connections fresh.
-
 
 
 * Footnotes
