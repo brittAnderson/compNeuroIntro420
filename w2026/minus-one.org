@@ -394,35 +394,39 @@ These constants are adjusted to make the resting potential 0 and the capacitance
 
 **** Alpha and Beta Formulas
 
-\( \alpha_{n}(V_{m})={\frac {0.01(10-V_{m})}{\exp {\big (}{\frac{10-V_{m} \){10} \){\big )}-1} \)
+\[ \alpha_n(V_m) = \frac{0.01 (10 - V_m)}{\exp\left( \frac{10 - V_m}{10} \right) - 1} \]
 
-\( \alpha_{m}(V_{m})={\frac {0.1(25-V_{m})}{\exp {\big (}{\frac {25-V_{m} \){10} \){\big )}-1} \)
 
-\( \alpha _{h}(V_{m})=0.07\exp {\bigg (l}{\frac {-V_{m} \){20} \){\bigg )} \)
+\[ \alpha_m(V_m) = \frac{0.1(25 - V_m)}{\exp\left( \frac{25 - V_m}{10} \right) - 1} \]
 
-\( \beta _{n}(V_{m})=0.125\exp {\bigg (l}{\frac {-V_{m} \){80} \){\bigg )} \)
+\[ \alpha_h(V_m) = 0.07 \exp\left( \frac{-V_m}{20} \right) \]
 
-\( \beta _{m}(V_{m})=4\exp {\bigg (}{\frac {-V_{m} \){18} \){\bigg )} \)
+\[ \beta_n(V_m) = 0.125 \exp\left( \frac{-V_m}{80} \right) \]
 
-\( \beta_{h}(V_{m})={\frac {1}{\exp {\big (}{\frac {30-V_{m} \){10} \){\big)}+1} \)
+\[ \beta_m(V_m) = 4 \exp\left( \frac{-V_m}{18} \right) \]
 
+\[ \beta_h(V_m) = \frac{1}{\exp\left( \frac{30 - V_m}{10} \right) + 1} \]
 
 **** Demonstrating the Hodgkin-Huxley Model
 
-IAMHERE working on haskell handh code 
+TODO: reformat code to fit on page
 #+INCLUDE: "./code/HandH.hs" src haskell -n 
+
 #+begin_src haskell :dir . :session :results file graphics :file ./images/handh.png :exports both
-
-
-#+begin_src lisp :eval never :exports both :results graphics file "./images/handh.png"
-  (load "/home/britt/gitRepos/compNeuroIntro420/codeLib/cl/hh.lisp")
-  (in-package :hh)
-  (handh-plot "./images/handh.png" sim-dat)
+  :load ./code/HandH.hs
+    let myData = take 5000 $ iterate (updNeuron healthyNeuron pSet1 ) initialState 
+          vs = map vns myData
+          cs = map ic myData
+          ts = map neuTime myData
+          tv = zip ts vs
+          tc = zip ts cs
+    plotPaths [PNG "./images/handh.png"] [tv,tc]
 #+end_src
 
 #+RESULTS:
 [[file:./images/handh.png]]
 
+IAMHERE
 **** Hodgkin and Huxley Homework
 
 Your homework will require you to write the code for a Hodgkin-Huxley Neuron and then modify it.  You will provide at least two plots in addition to your code. You will need to adapt the model to fit this paper[cite:@Hafez_2020]. These authors analyzed a series of inherited channelopathies (where ion channels are altered due to mutation) via simulation. In these conditions empirical measurements had been made on actual patients. The authors adapted the Hodgkin and Huxley model to permit them to explore the effects of such altered conductance on neuronal excitability. For this home work you will need to adapt the /n/ equation to be as follows:
