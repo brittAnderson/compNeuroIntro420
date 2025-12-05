@@ -20,6 +20,16 @@
   (major1) == 4 && (major2) <  18 || \
   (major1) == 4 && (major2) == 18 && (minor) <= 3)
 #endif /* MIN_VERSION_base */
+/* package containers-0.8 */
+#ifndef VERSION_containers
+#define VERSION_containers "0.8"
+#endif /* VERSION_containers */
+#ifndef MIN_VERSION_containers
+#define MIN_VERSION_containers(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  8 || \
+  (major1) == 0 && (major2) == 8 && (minor) <= 0)
+#endif /* MIN_VERSION_containers */
 /* package gnuplot-0.5.7 */
 #ifndef VERSION_gnuplot
 #define VERSION_gnuplot "0.5.7"

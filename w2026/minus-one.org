@@ -304,7 +304,6 @@ Theoretically, look at [[https://redwood.berkeley.edu/wp-content/uploads/2018/08
 
 
 
-## Working
 ** Hodgkin and Huxley Model
 *** Who were Hodgkin and Huxley
 The goal in this biological scavenger hunt is to try and develop some ideas about what makes one able to effectively contribute to computational neuroscience. As they undoubtedly did. I will divide you into small groups each targeting either Hodgkin or Huxley. Then we will mix up the groups for sharing. Then we will come back together to talk very briefly about who they were, but at somewhat greater length about what we learned about what sort of education or other experiences we should seek out if we want to contribute to this field.
@@ -426,7 +425,7 @@ TODO: reformat code to fit on page
 #+RESULTS:
 [[file:./images/handh.png]]
 
-IAMHERE
+
 **** Hodgkin and Huxley Homework
 
 Your homework will require you to write the code for a Hodgkin-Huxley Neuron and then modify it.  You will provide at least two plots in addition to your code. You will need to adapt the model to fit this paper[cite:@Hafez_2020]. These authors analyzed a series of inherited channelopathies (where ion channels are altered due to mutation) via simulation. In these conditions empirical measurements had been made on actual patients. The authors adapted the Hodgkin and Huxley model to permit them to explore the effects of such altered conductance on neuronal excitability. For this home work you will need to adapt the /n/ equation to be as follows:
@@ -437,12 +436,10 @@ Then you must select one of the sets of \gamma from their [[https://link.springe
 
 To start implement the new /n/ channel and set all the \gamma s to 1. This should work exactly like the old model. Generate a plot showing that it does. For the second plot generate the same plot with your altered $\gamma$ values.
 
-## End Working
 
 
 * What is computation and what is its role in cognitive science?
   [[https://link.springer.com/content/pdf/10.1007/978-3-642-41375-9_1][Chapter 1 of Physical Computation in Cognitive Science]] by Nir Fresco
-
 ** What do you think?
    1. Computational modeling of cognition and neural systems is/is-not the same as programming.
    2. What else could computational modeling be?
@@ -468,7 +465,138 @@ To start implement the new /n/ channel and set all the \gamma s to 1. This shoul
 We need to be concerned with all the levels: mind and brain, theory, math, and code.
 We can abbreviate these as MTMC: mind → theory → math → code; the arrows indicating  an ordering on our development.
 
-* 
+** Computing in Minds and Computers
+
+One definition of whether something is computable is whether there exists a Turing Machine that can compute it. Although most of us learned the name "Turing" in the context of whether a computer has human intelligence, the so-called /Turing test/, the model of Turing computability emerged from thinking about humans computing[cite:@Turing_2004]
+
+** What is a Turing machine? Some Background and Details
+[[https://turingarchive.kings.cam.ac.uk/publications-lectures-and-talks-amtb/amt-b-12][Turing machines]] are quite simple implements. While one can build a physical Turing machine, the more usual sense of the term is for a hypothetical computer that is comprised of:
+  1. a finite alphabet,
+  2. a finite set of states,
+  3. the capacity to read and write to a single location in memory, and the ability to adjust the memory location immediately left or right or to make no move at all, and
+  4. a set of instructions (or "machine table") that translates the combination of the current state and the current symbol to a new state and one of the acceptable actions.
+
+*** Classroom Activity
+Let's develop pseudo-code for the implementing a Turing Machine
+
+** The Lambda Calculus
+  
+Another model of computation is the /lambda calculus/.
+
+The lambda calculus was developed as a theory of functions. [[https://news.stanford.edu/news/2011/october/john-mccarthy-obit-102511.html][John McCarthy]] invented the computer programming language Lisp as a theoretical exercise for working on the theory of computable functions. He felt the Turing machine was too mechanical and too awkward for this sort of theoretical work. He wanted a better tool; a better metaphor. He adopted the lambda of the lambda calculus and the ~eval~ function to take in lisp programs and execute them. Later one of his [[https://en.wikipedia.org/wiki/Steve_Russell_(computer_scientist)][collaborators]] observed that it was relatively straightforward to implement this theoretical language as a real programming language. A bit more of the history this development can be found [[https://lwn.net/Articles/778550/][here]]. To get more details see [cite/t:see @michaelson11_lambd].
+
+*** Some Details and Interesting Facts about the Lambda Calculus
+1. There is not just one lambda calculus.
+2. To have the lambda calculus you need to specify your algebra. What are the rules for reducing things (i.e. your computations), what are the allowed symbols, and what do things mean? A "lambda calculus" is a way of handling "lambda expressions."[fn:3]
+
+*** Into the Weeds
+
+*Terms* are either /simple variables/ e.g. $x$ or $y$ or /composite terms/ like \( \lambda~v~t_1 \). Having two terms next to each other \( t_1~t_2 \) means "apply" $t_1$ to $t_2$. The meaning of a term like \( \lambda~v~.~ t_1 \) is the value returned by the lambda abstraction. The meaning part is sometimes designated in writing by formulas using arrows, such as \(t_1~\rightarrow~t_2 \).[fn:2]
+
+Functions have the form \lambda <name> . <body> . Note the "dot". This separates the name from the body of expressions that it names. <body> is also an expression (note the recursion that is built in).\marginpar{\raggedright What are recursive functions?}
+
+Some "axioms" you supply, or that [[https://plato.stanford.edu/entries/church/][Alonzo Church]] did are:
+- Beta reduction
+  apply the function, e.g. (\lambda x.M) N = M[x:N] this latter is just a way of saying that you will substitute the value "N" everytime you see an "x" in whatever expression "M" is.
+- Alpha conversion
+  essentially you are just renaming variables
+- Eta reduction
+  Is a way of getting rid of things that don't change anything. If for example \(f(x) = g(x)\) then you could just save yourself some ink and write: f = g. A more technical way of saying things, that we will not go into, is that you can free yourself of free variables, that is if there is no "x" in "f" then \(f = \lambda x.(f x) \).
+  
+Your goal is often the *normal* form. A lambda term that cannot be reduced anymore. Think of it like simplifying an equation. It helps you get to the essentials, and can make it easier to compare things to see when they are the same. 
+
+The equivalent of the halting problem for the Turing machine is the reaching of a /normal form/ in the  lambda calculus. 
+
+*** Some Opportunities for Practice
+- Write the lambda expression for the identity function?
+  - But first we better decide what the identity function is?
+- Apply the identity function to itself.
+- What is the identity function in whatever language you are hoping to use?
+- An interesting lambda expression is the "self-application" expression: \( \lambda~s . (s~s) \).
+  - With pencil and paper try to:
+    - apply this to the identity,
+    - apply the identity to the self-application,
+    - apply the self-application to itself. What is its termination status?
+
+*** What are the differences?
+We have seen Turing Machines and a Lambda Calculus. They look very different. Another model of computation that I have mentioned, but not presented is [[https://plato.stanford.edu/entries/recursive-functions/][recursive function theory]]. It looks different still.
+
+
+#+Begin_quote
+What does it mean for our idea that the mind is a "computer" if there are three different models of computation?
+#+end_quote
+
+Always question assumptions: [[https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis][Church-Turing Conjecture]] . 
+
+#+Begin_quote
+1. Are Turing machines /digital?
+2. Is this an important distinction?
+3. Does this mean that analog computations are omitted?
+4. Would an analog paradigm be a better match to modeling mental activity?
+#+End_quote
+
+** Classical Computational Theory of Mind
+#+Begin_quote
+Does a computational theory of mind mean that minds are [[https://plato.stanford.edu/entries/multiple-realizability][multiply realizable]] ?
+#+end_quote
+
+The classical computational theory of mind says that in all important ways the mind is like a Turing machine. If we want to  model (or emulate) functions of mind one way would be to build a Turing machine. However, this can be a practical challenge, and one can question the insight gained from this approach. Still given the theoretical and practical prominence given to Turing computability it behooves us to know what a Turing machine truly is.
+ 
+For something to be computatble the Turing machine that computes it must halt. So, we would like to know before we run our machine whether it will halt or not. Unfortunately, the answer to the halting problem is that we cannot know in advance, and in general, whether a Turing machine will halt. Computabilty is therefore /undecidable/.
+
+** Programming a Turing Machine: the Busy Beaver
+
+In my experience the only way to really come to grips with what a Turing machine is is to program one yourself. For this exercise we will program a Turing machine to solve an elementary version of the Busy Beaver problem. This is a famous problem, because it is easy to state and woefully difficulty to answer. In fact it is [[https://jeremykun.com/2012/02/08/busy-beavers-and-the-quest-for-big-numbers/][incomputable]].
+
+The following is a slightly formatted version of the [[https://en.wikipedia.org/wiki/Turing_machine#Description][Wikipedia description of a Turing machine]].
+1. A Turing machine has n "operational" states plus a Halt state, where n is a positive integer, and one of the n states is distinguished as the starting state.
+2. The machine uses a single two-way infinite (or unbounded) tape.
+3. The tape alphabet is {0, 1}, with 0 serving as the blank symbol.
+4. The machine's transition function takes two inputs:
+   1. the current non-Halt state,
+   2. the symbol in the current tape cell,
+   3. and produces three outputs:
+      1. a symbol to write over the symbol in the current tape cell (it may be the same symbol as the symbol overwritten),
+      2. a direction to move (left or right@";" that is, shift to the tape cell one place to the left or right of the current cell), and
+      3. a state to transition into (which may be the Halt state).
+
+We will use it to guide us to write a simple instance that computes a solution to the Busy Beaver problem. A n-state Turing machine has \( (4n + 4)2n \)states. The formula is (symbols × directions × (states + 1))(symbols × states). The transition function (how to figure out where to go next may be seen as a finite look-up table. Each row of the table is a 5-tuple: (current state, current symbol, symbol to write, direction of shift, next state). Our goal with the Busy Beaver problem is to run our machine to produce as long a series of uninterrupted ones as we can and then *halt*.
+
+What it means to "run" a Turing machine is to start in the starting state with the current tape cell being any cell of a blank (all-0) "tape", and then iterate the transition function. If the Halt state is entered then the number of 1s remaining on the tape is called the machine's score. Different transition rules will give us different outputs, so we can score our machine based on its performance. 
+
+To restate in a more general way, the n-state busy beaver (BB-n) game is a contest to find an n-state Turing machine having the largest possible score — the largest number of 1s on its tape after halting. A machine that attains the largest possible score among all n-state Turing machines is called an n-state busy beaver, and a machine whose score is merely the highest so far attained (perhaps not the largest possible) is called a champion n-state machine.
+
+*** A Busy Beaver Warm-Up
+
+A simple version of the Busy Beaver problem, and one you can do by hand with pencil and paper, is the n=2 version. Create a Turing Machine with the following transition rules:
+
+Here is the transition table for our machine:
+
+| Machine Tuple In | Machine Tuple Out |
+|----------------+------------------|
+| a0             | b1r              |
+| a1             | b1l              |
+| b0             | a1l              |
+| b1             | h1r              |
+
+*** Busy Beaver Problem Demo Code
+#+INCLUDE: "./code/BusyBeaver.hs" src haskell -n 
+
+#+begin_src haskell :dir . :session :output :exports both
+:load ./code/BusyBeaver.hs
+let d = iterate updTM initialTM 
+tape $ d !! 7
+#+end_src
+
+#+RESULTS:
+: fromList [(-2,One),(-1,One),(0,One),(1,One)]
+
+**** Busy Beaver Homework
+See Dropbox on Learn
+
+
+
+
 * Theory
 These are just place holders for now.
 #+begin_quote
@@ -489,7 +617,6 @@ Is the ability to predict the tides a theory of the tides? Is it an explanation 
 
 * Math and Code
 We will group these two by subdomains to keep the connections fresh.
-
 
 * Footnotes
 
