@@ -1,0 +1,2072 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-12-12 Fri 06:49 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Computational Modeling for Psychology Students</title>
+<meta name="author" content="Britt Anderson" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Computational Modeling for Psychology Students</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgd6a7028">1. Welcome to Psych 420</a>
+<ul>
+<li><a href="#orgaec30ce">1.1. Introductions</a></li>
+<li><a href="#org5c286ec">1.2. What is computational cognitive (neuro)science?</a></li>
+<li><a href="#org4d837fa">1.3. Syllabus Review</a>
+<ul>
+<li><a href="#org39a6b2b">1.3.1. Course number and title</a></li>
+<li><a href="#org80a92be">1.3.2. Term and year of offering</a></li>
+<li><a href="#org4340e8b">1.3.3. Class days, times, building, and room number</a></li>
+<li><a href="#org9d61736">1.3.4. Class instructor’s name, office, contact information, office hours</a></li>
+<li><a href="#orgefa39a2">1.3.5. Teaching assistant’s name, office, contact information, office hours (if applicable)</a></li>
+<li><a href="#org2066186">1.3.6. Course description</a></li>
+<li><a href="#org2986711">1.3.7. Course objectives</a></li>
+<li><a href="#org1b65c9a">1.3.8. Required text and/or readings</a></li>
+<li><a href="#org07c083f">1.3.9. A general overview of the topics to be covered</a></li>
+<li><a href="#org577b77d">1.3.10. The evaluation structure for the course including course requirements, deadlines, weight of requirements toward the final course grade</a></li>
+<li><a href="#orga4babc6">1.3.11. Acceptable rules for group work (See Group Assignment Checklist)</a></li>
+<li><a href="#org23159d5">1.3.12. Indication of how late submission of assignments and missed assignments will be treated</a></li>
+<li><a href="#org74e9b65">1.3.13. Indication of where students are to submit assignments and pick up marked assignments</a></li>
+<li><a href="#org94ec472">1.3.14. Intellectual Property</a></li>
+<li><a href="#org113faff">1.3.15. Chosen/Preferred First Name</a></li>
+<li><a href="#org206fdb1">1.3.16. Mental Health Support</a></li>
+<li><a href="#org8019b21">1.3.17. Territorial Acknowledgement</a></li>
+<li><a href="#org580e5d4">1.3.18. Policy 33, Ethical Behaviour</a></li>
+</ul>
+</li>
+<li><a href="#orgac02d26">1.4. A look ahead &#x2013; what we will code</a></li>
+<li><a href="#org3a89d92">1.5. A look ahead &#x2013; what we talk about</a></li>
+<li><a href="#org8e7692a">1.6. What is Cognition?</a></li>
+<li><a href="#orgd02ae24">1.7. Is a mathematical formula a model?</a>
+<ul>
+<li><a href="#org0c0a7c3">1.7.1. Forgetting Curve &#x2014; Ebbinghaus</a></li>
+<li><a href="#org8fd21f0">1.7.2. A Mathematical Function</a></li>
+<li><a href="#org2ed388f">1.7.3. What can we infer</a></li>
+<li><a href="#orgddbb4bf">1.7.4. Generate your own plot of the exponential function.</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org1a389f3">2. Warming Up: Action Potentials</a>
+<ul>
+<li><a href="#orgfdbc61d">2.1. What is an action potential?</a></li>
+<li><a href="#org3f2aecb">2.2. Notation</a></li>
+<li><a href="#org72008be">2.3. Differential Equations</a></li>
+<li><a href="#org9b36a1d">2.4. Using a DE</a></li>
+<li><a href="#org867384d">2.5. Using DEs to compute a square root</a></li>
+<li><a href="#orge5a1ffc">2.6. Using DEs - Practicing with Springs</a>
+<ul>
+<li><a href="#org86ded7e">2.6.1. Now You Try with a <b>Damped Oscillator</b></a></li>
+</ul>
+</li>
+<li><a href="#org6e64f11">2.7. Integrate and Fire Neuron</a>
+<ul>
+<li><a href="#org07ec8a5">2.7.1. Historical Notes</a></li>
+<li><a href="#org6f3bcc6">2.7.2. Formula I and F</a></li>
+<li><a href="#orgedb4272">2.7.3. Coding up the Integrate and Fire Neuron</a></li>
+</ul>
+</li>
+<li><a href="#org5c53e87">2.8. Integrate and Fire Homework</a></li>
+<li><a href="#org952e7e8">2.9. Hodgkin and Huxley Model</a>
+<ul>
+<li><a href="#org265d3c3">2.9.1. Who were Hodgkin and Huxley</a></li>
+<li><a href="#orgcdc291a">2.9.2. Model Description</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org1042a2a">3. What is computation and what is its role in cognitive science?</a>
+<ul>
+<li><a href="#org753c9fb">3.1. What do you think?</a></li>
+<li><a href="#org741a26e">3.2. What do we need to know?</a></li>
+<li><a href="#orgf22bb96">3.3. Computing in Minds and Computers</a></li>
+<li><a href="#orgdf2d497">3.4. What is a Turing machine? Some Background and Details</a>
+<ul>
+<li><a href="#org302b280">3.4.1. Classroom Activity</a></li>
+</ul>
+</li>
+<li><a href="#org7825575">3.5. The Lambda Calculus</a>
+<ul>
+<li><a href="#org19a0532">3.5.1. Some Details and Interesting Facts about the Lambda Calculus</a></li>
+<li><a href="#org62ea1b4">3.5.2. Into the Weeds</a></li>
+<li><a href="#org7aea7d7">3.5.3. Some Opportunities for Practice</a></li>
+<li><a href="#org694aa79">3.5.4. What are the differences?</a></li>
+</ul>
+</li>
+<li><a href="#orgc120d4c">3.6. Classical Computational Theory of Mind</a></li>
+<li><a href="#orgac689c6">3.7. Programming a Turing Machine: the Busy Beaver</a>
+<ul>
+<li><a href="#org5017f8f">3.7.1. A Busy Beaver Warm-Up</a></li>
+<li><a href="#org79c4bc1">3.7.2. Busy Beaver Problem Demo Code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org36f515a">4. Theory</a></li>
+<li><a href="#orgc800508">5. Math and Code</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd6a7028" class="outline-2">
+<h2 id="orgd6a7028"><span class="section-number-2">1.</span> Welcome to Psych 420</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgaec30ce" class="outline-3">
+<h3 id="orgaec30ce"><span class="section-number-3">1.1.</span> Introductions</h3>
+<div class="outline-text-3" id="text-1-1">
+<ol class="org-ol">
+<li>Who am I?</li>
+<li>Who are you?
+Send me an email (britt@uwaterloo.ca) right now (from your uwaterloo address) with
+<ol class="org-ol">
+<li>Your name (and any pronounciation tips).</li>
+<li>Area of concentration,</li>
+<li>Year of study,</li>
+<li>Programming language you are most capable in (and your level of competency),</li>
+<li>Reason you took this course.</li>
+</ol></li>
+<li>What you will need: A functioning computer that you know how to use.
+What to do now:
+<ul class="org-ul">
+<li>Update your operating system.</li>
+<li>Verify you know how to find a file on your computer (e.g. do you know the name of your home directory)?</li>
+<li>Confirm you know how to install software on your computer.</li>
+<li>You know (or will know by next week) what <code>git</code> is and how to use it, and that you will have an <code>IDE</code> installed.</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org5c286ec" class="outline-3">
+<h3 id="org5c286ec"><span class="section-number-3">1.2.</span> What is computational cognitive (neuro)science?</h3>
+<div class="outline-text-3" id="text-1-2">
+<ol class="org-ol">
+<li>Form teams of two (or three if odd number).</li>
+<li>Go to the following web site: <a href="https://2025.ccneuro.org/poster-sessions/?view=all">2025 Posters Cognitive Computational Neuroscience meeting</a>.
+<ol class="org-ol">
+<li>Pick a poster.
+Note it's label (letter-number; on the left)</li>
+<li>Be ready with a two sentence summary.</li>
+<li>Tell us why it is a good example of computational modelling of either mind or brain.</li>
+<li>Why you chose it.</li>
+</ol></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org4d837fa" class="outline-3">
+<h3 id="org4d837fa"><span class="section-number-3">1.3.</span> Syllabus Review</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-org39a6b2b" class="outline-4">
+<h4 id="org39a6b2b"><span class="section-number-4">1.3.1.</span> Course number and title</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+PSYCH420 Introduction to Computational Neuroscience Methods
+</p>
+</div>
+</div>
+<div id="outline-container-org80a92be" class="outline-4">
+<h4 id="org80a92be"><span class="section-number-4">1.3.2.</span> Term and year of offering</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<p>
+Winter 2026
+</p>
+</div>
+</div>
+<div id="outline-container-org4340e8b" class="outline-4">
+<h4 id="org4340e8b"><span class="section-number-4">1.3.3.</span> Class days, times, building, and room number</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<p>
+Th 11:30 - 14:20 HH 2107
+</p>
+</div>
+</div>
+<div id="outline-container-org9d61736" class="outline-4">
+<h4 id="org9d61736"><span class="section-number-4">1.3.4.</span> Class instructor’s name, office, contact information, office hours</h4>
+<div class="outline-text-4" id="text-1-3-4">
+<p>
+Britt Anderson, PAS 4032, x 43056, Office hours by arrangement
+</p>
+</div>
+</div>
+<div id="outline-container-orgefa39a2" class="outline-4">
+<h4 id="orgefa39a2"><span class="section-number-4">1.3.5.</span> Teaching assistant’s name, office, contact information, office hours (if applicable)</h4>
+</div>
+
+
+<div id="outline-container-org2066186" class="outline-4">
+<h4 id="org2066186"><span class="section-number-4">1.3.6.</span> Course description</h4>
+<div class="outline-text-4" id="text-1-3-6">
+<p>
+An introduction to the basic elements of computational modeling with an emphasis on psychology students.
+</p>
+</div>
+</div>
+<div id="outline-container-org2986711" class="outline-4">
+<h4 id="org2986711"><span class="section-number-4">1.3.7.</span> Course objectives</h4>
+<div class="outline-text-4" id="text-1-3-7">
+<ol class="org-ol">
+<li>You will understand the scope of subjects and tools that comprise computational neuroscience and computational cognitive modeling.</li>
+<li>You will have a better understanding of theory development and how it relates to ideas about computation, programming, mind and brain.</li>
+<li>You will have a better understanding of how programming language choice influences model and theory development.</li>
+<li>You will learn some of the fundamental notation and concepts of the mathematical domains that form the basis of much computational modeling in neuroscience and psychology.</li>
+<li>You will gain experience in the practical aspects of programming simple models by doing.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org1b65c9a" class="outline-4">
+<h4 id="org1b65c9a"><span class="section-number-4">1.3.8.</span> Required text and/or readings</h4>
+<div class="outline-text-4" id="text-1-3-8">
+<p>
+There is no required text book. Material that might be needed outside what I present in class will be made available on line, predominantly at <a href="https://github.com/brittAnderson/compNeuroIntro420">the course repo on github</a>. Make sure you are tracking the <b>W2026</b> branch.
+</p>
+
+<p>
+As all University students should have access to a computer, and a computer is required for this course, there is $0 CAD additional expense.
+</p>
+</div>
+</div>
+<div id="outline-container-org07c083f" class="outline-4">
+<h4 id="org07c083f"><span class="section-number-4">1.3.9.</span> A general overview of the topics to be covered</h4>
+<div class="outline-text-4" id="text-1-3-9">
+<p>
+See <a href="#org2986711">Course objectives</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org577b77d" class="outline-4">
+<h4 id="org577b77d"><span class="section-number-4">1.3.10.</span> The evaluation structure for the course including course requirements, deadlines, weight of requirements toward the final course grade</h4>
+<div class="outline-text-4" id="text-1-3-10">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Category</th>
+<th scope="col" class="org-right">Contribution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Participation</td>
+<td class="org-right">12%.</td>
+</tr>
+
+<tr>
+<td class="org-left">Final Project</td>
+<td class="org-right">20%.</td>
+</tr>
+
+<tr>
+<td class="org-left">Homeworks</td>
+<td class="org-right">68%</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+It is easy to find high quality material to read or watch.
+What good then is the classroom?
+The classroom is for doing and clarifying.
+You have no way of knowing if your understanding developed from online material is complete or accurate unless you match it off against others.
+Your peers and your instructor.
+Thus, we shouldn't use class time for presenting material that can be read or watched anywhere anytime, but we should use it for testing whether your knowledge is sound, flexible, and deployable.
+We will therefore read, discuss, and collaborate.
+</p>
+
+<p>
+Learning math and computing, and how to use them, is not something that can be learned through observation.
+Like playing piano, or improving your golf swing, improvement comes from practice, practice, practice.
+It is not enough to merely state the principles.
+You must demonstrate that they have been internalized.
+We will therefore do small exercises in class.
+And since one of the best ways to learn is to teach, we will frequently do these exercises in small groups.
+You might find your peers description of a problematic fact more useful than mine since they are at a more similar learning level.
+You may find your own understanding grows as you have to reframe my teachings in your own words to help a fellow student grasp a difficult concept. 
+</p>
+
+<p>
+For these reasons class participation is important.
+It is where we will test our comprehension of important points, I will learn if a concept is not well appreciated, and you will have the chance to practice the skills you later may wish to use in your own way on your own problems.
+Each week's attendance is worth 1% of the final grade.
+</p>
+
+<p>
+I like to give lots of small homeworks.
+That takes the pressure of any one assignment, and means you get both frequent feedback on your performance, and you are coerced into not falling behind.
+</p>
+
+<p>
+The final project is meant to give you an opportunity to showcase your learning and to use the general and specific skills that you will use in the future, whether in academics or industry, for sharing complex technical material with others. 
+</p>
+</div>
+</div>
+<div id="outline-container-orga4babc6" class="outline-4">
+<h4 id="orga4babc6"><span class="section-number-4">1.3.11.</span> Acceptable rules for group work (See Group Assignment Checklist)</h4>
+<div class="outline-text-4" id="text-1-3-11">
+<p>
+Group work is the norm in post-graduate life (both academic and professional). Group work will be graded as a group. All group members will get the same grade for their group project. More details on the nature of the group project will be shared during the term. 
+</p>
+</div>
+</div>
+<div id="outline-container-org23159d5" class="outline-4">
+<h4 id="org23159d5"><span class="section-number-4">1.3.12.</span> Indication of how late submission of assignments and missed assignments will be treated</h4>
+<div class="outline-text-4" id="text-1-3-12">
+<p>
+If I know that an assignment will be late in advance, and the reason for the tardiness is beyond your reasonable control, then I probably won't take off any points for late submission. Otherwise, I may reduce the possible maximal score by 10% per week. 
+</p>
+</div>
+</div>
+<div id="outline-container-org74e9b65" class="outline-4">
+<h4 id="org74e9b65"><span class="section-number-4">1.3.13.</span> Indication of where students are to submit assignments and pick up marked assignments</h4>
+<div class="outline-text-4" id="text-1-3-13">
+<p>
+Assignments will be submitted in dropboxes on Learn. Submissions and Announcements are the main uses we will make of learn. All other material will be shared in class or via the github repository. 
+</p>
+</div>
+</div>
+<div id="outline-container-org94ec472" class="outline-4">
+<h4 id="org94ec472"><span class="section-number-4">1.3.14.</span> Intellectual Property</h4>
+<div class="outline-text-4" id="text-1-3-14">
+<p>
+Intellectual property includes items such as:
+</p>
+<ul class="org-ul">
+<li>Lecture content, spoken and written (and any audio/video recording thereof);</li>
+
+<li>Lecture handouts, presentations, and other materials prepared for the course (e.g., PowerPoint slides);</li>
+
+<li>Questions or solution sets from various types of assessments (e.g., assignments, quizzes, tests, final exams); and</li>
+
+<li>Work protected by copyright (e.g., any work authored by the instructor or TA or used by the instructor or TA with permission of the copyright owner).</li>
+</ul>
+
+<p>
+Course materials and the intellectual property contained therein, are used to enhance a student’s educational experience. However, sharing this intellectual property without the intellectual property owner’s permission is a violation of intellectual property rights.  For this reason, it is necessary to ask the instructor, TA and/or the University of Waterloo for permission before uploading and sharing the intellectual property of others online (e.g., to an online repository).
+</p>
+
+<p>
+Permission from an instructor, TA or the University is also necessary before sharing the intellectual property of others from completed courses with students taking the same/similar courses in subsequent terms/years.  In many cases, instructors might be happy to allow distribution of certain materials. However, doing so without expressed permission is considered a violation of intellectual property rights.
+</p>
+
+<p>
+Please alert the instructor if you become aware of intellectual property belonging to others (past or present) circulating, either through the student body or online. The intellectual property rights owner deserves to know (and may have already given their consent).
+</p>
+</div>
+</div>
+<div id="outline-container-org113faff" class="outline-4">
+<h4 id="org113faff"><span class="section-number-4">1.3.15.</span> Chosen/Preferred First Name</h4>
+<div class="outline-text-4" id="text-1-3-15">
+<p>
+Do you want professors and interviewers to call you by a different first name? Take a minute now to verify or tell us your chosen/preferred first name by logging into WatIAM.
+</p>
+
+<p>
+Why? Starting in winter 2020, your chosen/preferred first name listed in WatIAM will be used broadly across campus (e.g., LEARN, Quest, WaterlooWorks, WatCard, etc). Note: Your legal first name will always be used on certain official documents. For more details, visit Updating Personal Information.
+</p>
+
+<p>
+Important notes
+</p>
+
+<p>
+If you included a preferred name on your OUAC application, it will be used as your chosen/preferred name unless you make a change now.
+If you don’t provide a chosen/preferred name, your legal first name will continue to be used.
+</p>
+</div>
+</div>
+<div id="outline-container-org206fdb1" class="outline-4">
+<h4 id="org206fdb1"><span class="section-number-4">1.3.16.</span> Mental Health Support</h4>
+<div class="outline-text-4" id="text-1-3-16">
+<p>
+All of us need a support system. The faculty and staff in Arts encourage students to seek out mental health support if they are needed.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="orgbf838b9"></a>On Campus<br />
+<div class="outline-text-5" id="text-1-3-16-1">
+<p>
+Counselling Services:  counselling.services@uwaterloo.ca / 519-888-4567 ext. 32655
+MATES:  one-to-one peer support program offered by the Waterloo Undergraduate Student Association (WUSA) and Counselling Services
+</p>
+</div>
+</li>
+<li><a id="org49482f1"></a>Off campus, 24/7<br />
+<div class="outline-text-5" id="text-1-3-16-2">
+<p>
+Good2Talk:  Free confidential help line for post-secondary students. Phone: 1-866-925-5454
+Grand River Hospital: Emergency care for mental health crisis. Phone: 519-749-4300 ext. 6880
+Here 24/7: Mental Health and Crisis Service Team. Phone: 1-844-437-3247
+OK2BME: set of support services for lesbian, gay, bisexual, transgender or questioning teens in Waterloo.  Phone: 519-884-0000 extension 213
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org8019b21" class="outline-4">
+<h4 id="org8019b21"><span class="section-number-4">1.3.17.</span> Territorial Acknowledgement</h4>
+<div class="outline-text-4" id="text-1-3-17">
+<p>
+Academic freedom at the University of Waterloo
+We acknowledge that we are living and working on the traditional territory of the Attawandaron (also known as Neutral), Anishinaabe and Haudenosaunee peoples. The University of Waterloo is situated on the Haldimand Tract, the land promised to the Six Nations that includes ten kilometres on each side of the Grand River.
+</p>
+
+<p>
+For more information about the purpose of territorial acknowledgements, please see the CAUT Guide to Acknowledging Traditional Territory.
+Academic freedom at the University of Waterloo
+</p>
+</div>
+</div>
+<div id="outline-container-org580e5d4" class="outline-4">
+<h4 id="org580e5d4"><span class="section-number-4">1.3.18.</span> Policy 33, Ethical Behaviour</h4>
+<div class="outline-text-4" id="text-1-3-18">
+<p>
+Policy 33, Ethical Behaviour states, as one of its general principles (Section 1), “The University supports academic freedom for all members of the University community. Academic freedom carries with it the duty to use that freedom in a manner consistent with the scholarly obligation to base teaching and research on an honest and ethical quest for knowledge. In the context of this policy, 'academic freedom' refers to academic activities, including teaching and scholarship, as is articulated in the principles set out in the Memorandum of Agreement between the FAUW and the University of Waterloo, 1998 (Article 6). The academic environment which fosters free debate may from time to time include the presentation or discussion of unpopular opinions or controversial material. Such material shall be dealt with as openly, respectfully and sensitively as possible.” This definition is repeated in Policies 70 and 71, and in the Memorandum of Agreement, Section 6
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgac02d26" class="outline-3">
+<h3 id="orgac02d26"><span class="section-number-3">1.4.</span> A look ahead &#x2013; what we will code</h3>
+<div class="outline-text-3" id="text-1-4">
+<ol class="org-ol">
+<li>Turing Machine</li>
+<li>Integrate and Fire Neuron</li>
+<li>Hodgkin-Huxley Neuron</li>
+<li>Perceptron</li>
+<li>Hopfield Net</li>
+<li>Agent Based Model</li>
+<li>And possibly more</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org3a89d92" class="outline-3">
+<h3 id="org3a89d92"><span class="section-number-3">1.5.</span> A look ahead &#x2013; what we talk about</h3>
+<div class="outline-text-3" id="text-1-5">
+<ol class="org-ol">
+<li>What is cognition?</li>
+<li>What is a cognitive model?</li>
+<li>What is the relationship between cognition and neuroscience?</li>
+<li>All of which will benefit from better understanding what is a theory.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org8e7692a" class="outline-3">
+<h3 id="org8e7692a"><span class="section-number-3">1.6.</span> What is Cognition?</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+Groups of three. No two members should be the same as the last group.
+<a href="https://doi.org/10.1016/j.cub.2019.05.044">What is Cognition?</a>
+Each group gets an opinion (want three of four groups)
+Brainard/Byrne/Heyes/Suddendorf
+20 minutes to read and discuss to make sure they understand.
+Then rotate the groups so that each group has only one member/opinion.
+15 minutes to explain the opinions to each other.
+General discussion.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd02ae24" class="outline-3">
+<h3 id="orgd02ae24"><span class="section-number-3">1.7.</span> Is a mathematical formula a model?</h3>
+<div class="outline-text-3" id="text-1-7">
+</div>
+<div id="outline-container-org0c0a7c3" class="outline-4">
+<h4 id="org0c0a7c3"><span class="section-number-4">1.7.1.</span> Forgetting Curve &#x2014; Ebbinghaus</h4>
+<div class="outline-text-4" id="text-1-7-1">
+
+<div id="org6b81768" class="figure">
+<p><img src="./images/Forgetting_curve_decline.svg.png" alt="Forgetting_curve_decline.svg.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>By The original uploader was Icez at English Wikipedia.</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org8fd21f0" class="outline-4">
+<h4 id="org8fd21f0"><span class="section-number-4">1.7.2.</span> A Mathematical Function</h4>
+<div class="outline-text-4" id="text-1-7-2">
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #b6a0ff;">import</span> <span style="color: #6ae4b9;">Graphics.Gnuplot.Simple</span>
+<span style="color: #feacd0;">plotFunc</span> [<span style="color: #6ae4b9;">PNG</span> <span style="color: #79a8ff;">"./images/expdecay.png"</span>]
+(linearScale 100 (1,6))
+((<span style="color: #00d3d0;">\</span>x <span style="color: #00d3d0;">-&gt;</span> exp (1.0<span style="color: #00d3d0;">/</span>x)) <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span>)
+</pre>
+</div>
+
+
+<div id="org01ec143" class="figure">
+<p><img src="./images/expdecay.png" alt="expdecay.png" />
+</p>
+<p><span class="figure-number">Figure 2: </span>Plot of \( e^{\frac{1}{x}} \).</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2ed388f" class="outline-4">
+<h4 id="org2ed388f"><span class="section-number-4">1.7.3.</span> What can we infer</h4>
+<div class="outline-text-4" id="text-1-7-3">
+<p>
+from the similarity between Figure <a href="#org6b81768">1</a> and Figure <a href="#org01ec143">2</a> ?
+</p>
+</div>
+</div>
+<div id="outline-container-orgddbb4bf" class="outline-4">
+<h4 id="orgddbb4bf"><span class="section-number-4">1.7.4.</span> Generate your own plot of the exponential function.</h4>
+</div>
+</div>
+</div>
+<div id="outline-container-org1a389f3" class="outline-2">
+<h2 id="org1a389f3"><span class="section-number-2">2.</span> Warming Up: Action Potentials</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Our goals:
+</p>
+<ol class="org-ol">
+<li>Understand what we are trying to model: the action potential.</li>
+<li>Learn some of the prior work.</li>
+<li>Understand the mathematical background for an action potential.
+<ol class="org-ol">
+<li>Simple electronics.</li>
+<li>Simple differential equations.</li>
+</ol></li>
+<li>Make ourselves familiar with the basic notation of these two background areas.</li>
+<li>Implement simple computational versions of spiking neurons.
+If you cannot code it, you do not understand it.</li>
+</ol>
+</div>
+<div id="outline-container-orgfdbc61d" class="outline-3">
+<h3 id="orgfdbc61d"><span class="section-number-3">2.1.</span> What is an action potential?</h3>
+<div class="outline-text-3" id="text-2-1">
+<ol class="org-ol">
+<li>Draw one.</li>
+<li>Explain what ions account for the different parts of the curve.</li>
+<li>Why is an action potential like a flush toilet?</li>
+<li>Why did/do people use the action potential to argue that brains are like digital computers?</li>
+<li>Who were <a href="https://en.wikipedia.org/wiki/A_Logical_Calculus_of_the_Ideas_Immanent_in_Nervous_Activity">McCulloch and Pitts</a> and why are they relevant?</li>
+<li>Who developed the first detailed biophysical model of the action potential and what became of them?</li>
+<li>Why would we want to write a program to simulation a spiking neuron?</li>
+<li>Why might we want a simpler version?</li>
+<li>What maths are important for modeling spiking neurons?</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org3f2aecb" class="outline-3">
+<h3 id="org3f2aecb"><span class="section-number-3">2.2.</span> Notation</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+The mathematician's interest in being concise often means that simple ideas get translated to unfamiliar symbols. \
+Just because the notation is unfamiliar does not mean the idea is complicated. 
+What does \( \sum_{\forall x \in \left\{ 1 , 2 , 3 \right \}} x = 6 \) mean?
+</p>
+
+<p>
+Different mathematical and computational traditions have their own preferences, thus the same idea can have different notations. To a mathematician the \(\sqrt{-1} = \) <code>i</code>. To the engineer it is <code>j</code>.
+\(\frac{dx}{dt}\) \(\dot{x}\) \(x{'}\) \(f{'}(x)\) are all different ways of talking about derivatives. 
+</p>
+</div>
+</div>
+<div id="outline-container-org72008be" class="outline-3">
+<h3 id="org72008be"><span class="section-number-3">2.3.</span> Differential Equations</h3>
+<div class="outline-text-3" id="text-2-3">
+<ol class="org-ol">
+<li>What is a differential equation (aka de)?</li>
+<li>What is a derivative?</li>
+<li>What is the <b>definition</b> of a derivative?
+\( \frac{dx}{dy} = \frac{f(x + \Delta x) - f(x)}{x+\Delta x - x} \)</li>
+<li>What is a slope of a line?</li>
+<li>Of a curve?</li>
+<li>Provide examples of phenomena in psychology or neuroscience (other than the action potential) that might be good candidates for this mathematical technique.</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #feacd0;">plotFuncs</span> [<span style="color: #6ae4b9;">PNG</span> <span style="color: #79a8ff;">"./images/derivExample.png"</span>] (linearScale 1000 (<span style="color: #00d3d0;">-</span>3 , 3 ) )
+  [(<span style="color: #00d3d0;">\</span>x <span style="color: #00d3d0;">-&gt;</span> x <span style="color: #00d3d0;">**</span> 3) <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span>
+  , (<span style="color: #00d3d0;">\</span>x <span style="color: #00d3d0;">-&gt;</span> 12 <span style="color: #00d3d0;">*</span> x <span style="color: #00d3d0;">-</span> 16) <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span> ]
+</pre>
+</div>
+
+
+<div id="org28e8efe" class="figure">
+<p><img src="./images/derivExample.png" alt="derivExample.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9b36a1d" class="outline-3">
+<h3 id="org9b36a1d"><span class="section-number-3">2.4.</span> Using a DE</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+In computational neuroscience (or psychology) we don't typically " solve DEs. We use them. We use them to help us move forward in time to understand a process by virtue of what we know about its rate of change. We will see that in a couple of short examples, and then some simple scenarios for you to play with. 
+</p>
+</div>
+</div>
+<div id="outline-container-org867384d" class="outline-3">
+<h3 id="org867384d"><span class="section-number-3">2.5.</span> Using DEs to compute a square root</h3>
+<div class="outline-text-3" id="text-2-5">
+<div class="org-src-container">
+<pre class="src src-haskell"><span class="linenr"> 1: </span><span style="color: #feacd0;">xcubed</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span>
+<span class="linenr"> 2: </span><span style="color: #feacd0;">xcubed</span>  <span style="color: #00d3d0;">=</span> (<span style="color: #00d3d0;">**</span> 3)
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span><span style="color: #feacd0;">diffXCubed</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span>
+<span class="linenr"> 5: </span><span style="color: #feacd0;">diffXCubed</span> <span style="color: #00d3d0;">=</span> ( 3 <span style="color: #00d3d0;">*</span>) <span style="color: #00d3d0;">.</span> ( <span style="color: #00d3d0;">**</span> 2)
+<span class="linenr"> 6: </span>
+<span class="linenr"> 7: </span><span style="color: #feacd0;">getStep</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span>
+<span class="linenr"> 8: </span><span style="color: #feacd0;">getStep</span> guess goal <span style="color: #00d3d0;">=</span> ( goal <span style="color: #00d3d0;">-</span> xcubed guess)  <span style="color: #00d3d0;">/</span> diffXCubed guess
+<span class="linenr"> 9: </span>
+<span class="linenr">10: </span><span style="color: #feacd0;">getCubeRoot</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span> 
+<span class="linenr">11: </span><span style="color: #feacd0;">getCubeRoot</span> g i t <span style="color: #00d3d0;">=</span>
+<span class="linenr">12: </span>  <span style="color: #b6a0ff;">let</span>  cg <span style="color: #00d3d0;">=</span> i <span style="color: #00d3d0;">+</span> getStep i g
+<span class="linenr">13: </span>       myerr <span style="color: #00d3d0;">=</span> abs (xcubed cg <span style="color: #00d3d0;">-</span> g) <span style="color: #b6a0ff;">in</span>
+<span class="linenr">14: </span>    <span style="color: #b6a0ff;">if</span> myerr <span style="color: #00d3d0;">&gt;</span> t <span style="color: #b6a0ff;">then</span> getCubeRoot g cg t <span style="color: #b6a0ff;">else</span> cg
+</pre>
+</div>
+
+<p>
+Now let's test it:
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #6ae4b9;">:</span>load <span style="color: #79a8ff;">"./code/sqrt.hs"</span>
+<span style="color: #feacd0;">getCubeRoot</span> 27 1 0.001
+<span style="color: #feacd0;">getCubeRoot</span> 8 1 0.001
+<span style="color: #feacd0;">getCubeRoot</span> 141 1 0.001
+</pre>
+</div>
+
+<pre class="example">
+[1 of 2] Compiling Main             ( code/sqrt.hs, interpreted )
+Ok, one module loaded.
+3.0000005410641766
+2.000004911675504
+5.204827869200383
+</pre>
+</div>
+</div>
+<div id="outline-container-orge5a1ffc" class="outline-3">
+<h3 id="orge5a1ffc"><span class="section-number-3">2.6.</span> Using DEs - Practicing with Springs</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+Our Hodgkin-Huxley model will be will require us to use several different equations. And though the intergrate and fire neuron only requires one, a neuron is still rather abstract as a computational entity. Therefore, we will begin our DE coding practice with a simple, idealized spring. 
+</p>
+
+<p>
+Our differential equation is \( \frac{d^2 position}{dt^2} = -P~position \). 
+</p>
+
+<p>
+where 'position' refers to the location in space of the unattached end of our spring (we assume one end is anchored to a wall or something), 't' refers to time, and 'P' is a constant, often called the spring constant, that indicates how springy the spring is. 
+</p>
+
+<p>
+If we knew where the spring was now, we could use this equation to tell us where it would be a little bit into the future; just as you can use your velocity on the highway to estimate your location in the future. The smaller the time step the more accurate will be our estimate. This simple <a href="https://en.wikipedia.org/wiki/Euler_method">Euler method</a> often works quite well for smooth functions that don't change very much.
+</p>
+
+<p>
+Unfortunately the spring equation is for the <b>second</b> derivative of location relative to time. This is called acceleration. Thus we need a two step process. From our current location and this equation estimate our velocity. From our present location and our velocity estimate our location. And repeat. 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span class="linenr"> 1: </span><span style="color: #ff7f9f;">{-# LANGUAGE GADTs #-}</span>
+<span class="linenr"> 2: </span><span style="color: #b6a0ff;">module</span> <span style="color: #6ae4b9;">Spring</span> <span style="color: #b6a0ff;">where</span>
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span><span style="color: #b6a0ff;">data</span> <span style="color: #6ae4b9;">SpringState</span> <span style="color: #b6a0ff;">where</span>
+<span class="linenr"> 5: </span>  <span style="color: #6ae4b9;">SpringState</span> <span style="color: #00d3d0;">::</span> {
+<span class="linenr"> 6: </span>    sDt <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span>,
+<span class="linenr"> 7: </span>    sAccFxn <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span>,
+<span class="linenr"> 8: </span>    sVel <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span>,
+<span class="linenr"> 9: </span>    sLoc <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span> } <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">SpringState</span>
+<span class="linenr">10: </span>
+<span class="linenr">11: </span><span style="color: #b6a0ff;">instance</span> <span style="color: #6ae4b9;">Show</span> <span style="color: #6ae4b9;">SpringState</span> <span style="color: #b6a0ff;">where</span>
+<span class="linenr">12: </span>  show <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">SpringState</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">String</span>
+<span class="linenr">13: </span>  show s <span style="color: #00d3d0;">=</span> <span style="color: #79a8ff;">"SpringState { t: "</span> <span style="color: #00d3d0;">++</span> show (sDt s) <span style="color: #00d3d0;">++</span> <span style="color: #79a8ff;">"\
+<span class="linenr">14: </span>           \, v: "</span> <span style="color: #00d3d0;">++</span> show (sVel s) <span style="color: #00d3d0;">++</span> <span style="color: #79a8ff;">"\
+<span class="linenr">15: </span>           \, loc: "</span> <span style="color: #00d3d0;">++</span> show (sLoc s) <span style="color: #00d3d0;">++</span> <span style="color: #79a8ff;">" }"</span>
+<span class="linenr">16: </span>
+<span class="linenr">17: </span>
+<span class="linenr">18: </span><span style="color: #ff9f80;">{- </span><span style="color: #ff9f80;">Initial Values</span><span style="color: #ff9f80;"> -}</span>
+<span class="linenr">19: </span>
+<span class="linenr">20: </span><span style="color: #feacd0;">initV</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span>
+<span class="linenr">21: </span><span style="color: #feacd0;">initV</span> <span style="color: #00d3d0;">=</span> 0 
+<span class="linenr">22: </span><span style="color: #feacd0;">initLoc</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span>
+<span class="linenr">23: </span><span style="color: #feacd0;">initLoc</span> <span style="color: #00d3d0;">=</span> 10 
+<span class="linenr">24: </span><span style="color: #feacd0;">sprConst</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span>
+<span class="linenr">25: </span><span style="color: #feacd0;">sprConst</span> <span style="color: #00d3d0;">=</span> 2.0 
+<span class="linenr">26: </span><span style="color: #feacd0;">timeStep</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span> 
+<span class="linenr">27: </span><span style="color: #feacd0;">timeStep</span> <span style="color: #00d3d0;">=</span> 0.05 
+<span class="linenr">28: </span><span style="color: #feacd0;">dt</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span>
+<span class="linenr">29: </span><span style="color: #feacd0;">dt</span> <span style="color: #00d3d0;">=</span> timeStep
+<span class="linenr">30: </span>
+<span class="linenr">31: </span>
+<span class="linenr">32: </span><span style="color: #ff9f80;">{- </span><span style="color: #ff9f80;">Helper Functions</span><span style="color: #ff9f80;"> -}</span>
+<span class="linenr">33: </span>
+<span class="linenr">34: </span><span style="color: #feacd0;">accel</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span> 
+<span class="linenr">35: </span><span style="color: #feacd0;">accel</span> sc loc <span style="color: #00d3d0;">=</span> (<span style="color: #00d3d0;">-</span>sc) <span style="color: #00d3d0;">*</span> loc
+<span class="linenr">36: </span>
+<span class="linenr">37: </span><span style="color: #feacd0;">accWithSC</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span>
+<span class="linenr">38: </span><span style="color: #feacd0;">accWithSC</span> <span style="color: #00d3d0;">=</span> accel sprConst <span style="color: #ff9f80;">-- </span><span style="color: #ff9f80;">called currying
+<span class="linenr">39: </span></span>
+<span class="linenr">40: </span><span style="color: #feacd0;">eulerUD</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span>
+<span class="linenr">41: </span><span style="color: #feacd0;">eulerUD</span> ts roc oldval <span style="color: #00d3d0;">=</span> oldval <span style="color: #00d3d0;">+</span> roc <span style="color: #00d3d0;">*</span> ts
+<span class="linenr">42: </span>
+<span class="linenr">43: </span><span style="color: #feacd0;">springLoop</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">SpringState</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">SpringState</span>
+<span class="linenr">44: </span><span style="color: #feacd0;">springLoop</span> ss <span style="color: #00d3d0;">=</span>
+<span class="linenr">45: </span>  <span style="color: #b6a0ff;">let</span> cA <span style="color: #00d3d0;">=</span> sAccFxn ss (sLoc ss)
+<span class="linenr">46: </span>      cV <span style="color: #00d3d0;">=</span> eulerUD (sDt ss) cA (sVel ss)
+<span class="linenr">47: </span>      cL <span style="color: #00d3d0;">=</span>  eulerUD (sDt ss) cV (sLoc ss)
+<span class="linenr">48: </span>  <span style="color: #b6a0ff;">in</span> ss {sVel <span style="color: #00d3d0;">=</span> cV, sLoc <span style="color: #00d3d0;">=</span> cL}
+<span class="linenr">49: </span>
+<span class="linenr">50: </span>
+<span class="linenr">51: </span><span style="color: #feacd0;">releaseSpring</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Int</span> <span style="color: #00d3d0;">-&gt;</span> [<span style="color: #6ae4b9;">SpringState</span>]
+<span class="linenr">52: </span><span style="color: #feacd0;">releaseSpring</span> maxIter <span style="color: #00d3d0;">=</span>
+<span class="linenr">53: </span>  take maxIter (iterate springLoop
+<span class="linenr">54: </span>                (<span style="color: #6ae4b9;">SpringState</span> timeStep
+<span class="linenr">55: </span>                 accWithSC initV
+<span class="linenr">56: </span>                 initLoc)) <span style="color: #ff9f80;">-- </span><span style="color: #ff9f80;">makes use of lazy evaluation</span>
+</pre>
+</div>
+
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #6ae4b9;">:</span>load <span style="color: #79a8ff;">"./code/Spring.hs"</span>
+<span style="color: #feacd0;">plotList</span> [<span style="color: #6ae4b9;">PNG</span> <span style="color: #79a8ff;">"./images/spring.png"</span>]
+  <span style="color: #00d3d0;">$</span> map (<span style="color: #00d3d0;">\</span>s <span style="color: #00d3d0;">-&gt;</span> sLoc s) <span style="color: #00d3d0;">$</span> releaseSpring 2000
+</pre>
+</div>
+
+
+<div id="orgb1ecf26" class="figure">
+<p><img src="./images/spring.png" alt="spring.png" />
+</p>
+<p><span class="figure-number">Figure 3: </span>Frictionless Springs Oscillate</p>
+</div>
+</div>
+<div id="outline-container-org86ded7e" class="outline-4">
+<h4 id="org86ded7e"><span class="section-number-4">2.6.1.</span> Now You Try with a <b>Damped Oscillator</b></h4>
+<div class="outline-text-4" id="text-2-6-1">
+<p>
+The changes to whatever code you have for the frictionless spring should require very little alteration to work with the following DE:
+</p>
+
+<p>
+\[ \frac{d^2 s}{dt^2} = -P~s(t) - k~v(t) \]
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org6e64f11" class="outline-3">
+<h3 id="org6e64f11"><span class="section-number-3">2.7.</span> Integrate and Fire Neuron</h3>
+<div class="outline-text-3" id="text-2-7">
+<blockquote>
+<p>
+Is the integrate and fire model used much in modeling in the present time? <a href="https://scholar.google.com/scholar?as_ylo=2020&amp;q=%22integrate+and+fire%22+neuron&amp;hl=en&amp;as_sdt=7,39">answer</a>
+</p>
+</blockquote>
+</div>
+<div id="outline-container-org07ec8a5" class="outline-4">
+<h4 id="org07ec8a5"><span class="section-number-4">2.7.1.</span> Historical Notes</h4>
+<div class="outline-text-4" id="text-2-7-1">
+</div>
+<ol class="org-ol">
+<li><a id="org6718d83"></a>Louie La Pique<br />
+<div class="outline-text-6" id="text-2-7-1-0-1">
+<p>
+<a href="https://link.springer.com/content/pdf/10.1007/s00422-007-0190-0.pdf%22">Modern Commentary on Lapique's Neuron Model</a>
+</p>
+
+
+<div id="org1ce0777" class="figure">
+<p><img src="images/Lapicque_laboratoire.png" alt="Lapicque_laboratoire.png" />
+</p>
+<p><span class="figure-number">Figure 4: </span>La Pique Laboratory at the Sorbonne Paris</p>
+</div>
+
+<p>
+<a href="https://doi.org/10.1007/s00422-007-0189-6">Original Lapique Paper (translated)</a>
+<a href="https://fr.wikipedia.org/wiki/Louis_Lapicque">Brief Biographical Details of Lapicque</a>
+</p>
+</div>
+</li>
+<li><a id="org0f611d1"></a>Lord Adrian<br />
+<div class="outline-text-6" id="text-2-7-1-0-2">
+<blockquote>
+<ol class="org-ol">
+<li>When was the action potential demonstrated?</li>
+<li>What was the experimental animal used by Adrian?</li>
+</ol>
+<p>
+<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1420429/pdf/jphysiol01990-0084.pdf">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1420429/pdf/jphysiol01990-0084.pdf</a>
+</p>
+</blockquote>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org6f3bcc6" class="outline-4">
+<h4 id="org6f3bcc6"><span class="section-number-4">2.7.2.</span> Formula I and F</h4>
+<div class="outline-text-4" id="text-2-7-2">
+<p>
+\(\tau \frac{dV(t)}{dt} = -V(t) + R~I(t) \)
+</p>
+
+<p>
+Why is this the formula?
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org23cfd33"></a>Simple Electronics<br />
+<div class="outline-text-6" id="text-2-7-2-0-1">
+<p>
+The following questions are the ones we need to answer to derive our integrate and fire model.
+</p>
+
+<blockquote>
+<ol class="org-ol">
+<li>What is Ohm's Law?</li>
+<li>What is Kirchoff's Point Rule?</li>
+<li>What is Capacitance?</li>
+<li>What is the relation between current and charge?</li>
+</ol>
+</blockquote>
+</div>
+</li>
+<li><a id="orgb890f81"></a>Deriving the IandF Equation<br />
+<div class="outline-text-6" id="text-2-7-2-0-2">
+<blockquote>
+<p>
+Can you tell why, looking at the integrate and fire equation, if we don't reach the firing threshold, we see an exponential decay?
+</p>
+</blockquote>
+
+
+\begin{align*}
+I &= I_R + I_C & (a) \\
+&= I_R + C\frac{dV}{dt} & (b)\\
+&= \frac{V}{R} + C\frac{dV}{dt} & (c)\\
+RI  &= V + RC\frac{dV}{dt} & (d) \\
+\frac{1}{\tau} (RI-V)  &= \frac{dV}{dt} & (e)\\
+\end{align*}
+
+<p>
+a: Kirchoff's point rule,
+</p>
+
+<p>
+b: the relationship between current, charge, and their derivatives
+</p>
+
+<p>
+c: Ohm's law
+</p>
+
+<p>
+d: multiply through by R
+</p>
+
+<p>
+e: rearrange and define \(\tau\)
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-orgedb4272" class="outline-4">
+<h4 id="orgedb4272"><span class="section-number-4">2.7.3.</span> Coding up the Integrate and Fire Neuron</h4>
+<div class="outline-text-4" id="text-2-7-3">
+<p>
+Approach this with the same ideas as the spring example. You have a certain initial value, and you update that using your differential equation that relates how much voltage changes as a function of time and current voltage.
+</p>
+
+<p>
+Unlike real neurons the Integrate and Fire neuron model does not have a natural threshold and spiking behavior. You pick a threshold and everyone time your voltage reaches that threshold you designate a spike and reset the voltage.
+</p>
+
+<p>
+<b>Additional Activities</b> (if that goes too quickly):
+</p>
+
+<ul class="org-ul">
+<li>Add a refractory period to the Integrate and Fire model.</li>
+<li>Alter the input current</li>
+<li>Change the form of the input current</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span class="linenr"> 1: </span><span style="color: #ff7f9f;">{-# LANGUAGE GADTs #-}</span>
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #b6a0ff;">module</span> <span style="color: #6ae4b9;">IandF</span> <span style="color: #b6a0ff;">where</span>
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span>dt,maxt,initt,starttime,stoptime,cap
+<span class="linenr"> 6: </span>  ,res,threshold,spikedisplay,initv
+<span class="linenr"> 7: </span>  ,voltage,injectioncurrent
+<span class="linenr"> 8: </span>  ,tau <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span>
+<span class="linenr"> 9: </span><span style="color: #feacd0;">injectiontime,runningTime</span> <span style="color: #00d3d0;">::</span> [<span style="color: #6ae4b9;">Double</span>]
+<span class="linenr">10: </span><span style="color: #feacd0;">dt</span> <span style="color: #00d3d0;">=</span> 0.05
+<span class="linenr">11: </span><span style="color: #feacd0;">maxt</span> <span style="color: #00d3d0;">=</span> 10.0
+<span class="linenr">12: </span><span style="color: #feacd0;">initt</span> <span style="color: #00d3d0;">=</span> 0.0
+<span class="linenr">13: </span><span style="color: #feacd0;">starttime</span> <span style="color: #00d3d0;">=</span> 1.0
+<span class="linenr">14: </span><span style="color: #feacd0;">stoptime</span> <span style="color: #00d3d0;">=</span> 6.0
+<span class="linenr">15: </span><span style="color: #feacd0;">cap</span> <span style="color: #00d3d0;">=</span> 1.0
+<span class="linenr">16: </span><span style="color: #feacd0;">res</span>  <span style="color: #00d3d0;">=</span> 2.0
+<span class="linenr">17: </span><span style="color: #feacd0;">threshold</span> <span style="color: #00d3d0;">=</span> 3.0
+<span class="linenr">18: </span><span style="color: #feacd0;">spikedisplay</span> <span style="color: #00d3d0;">=</span> 8.0
+<span class="linenr">19: </span><span style="color: #feacd0;">initv</span> <span style="color: #00d3d0;">=</span> 0.0
+<span class="linenr">20: </span><span style="color: #feacd0;">voltage</span> <span style="color: #00d3d0;">=</span> initv
+<span class="linenr">21: </span><span style="color: #feacd0;">injectioncurrent</span> <span style="color: #00d3d0;">=</span> 4.3
+<span class="linenr">22: </span><span style="color: #feacd0;">injectiontime</span> <span style="color: #00d3d0;">=</span> [starttime, stoptime]
+<span class="linenr">23: </span><span style="color: #feacd0;">tau</span> <span style="color: #00d3d0;">=</span> res <span style="color: #00d3d0;">*</span> cap
+<span class="linenr">24: </span><span style="color: #feacd0;">runningTime</span> <span style="color: #00d3d0;">=</span> [0.0]
+<span class="linenr">25: </span>
+<span class="linenr">26: </span><span style="color: #b6a0ff;">data</span> <span style="color: #6ae4b9;">IandFStrut</span> <span style="color: #b6a0ff;">where</span>
+<span class="linenr">27: </span>  <span style="color: #6ae4b9;">IandFStrut</span> <span style="color: #00d3d0;">::</span> {
+<span class="linenr">28: </span>    time <span style="color: #00d3d0;">::</span> [<span style="color: #6ae4b9;">Double</span>],
+<span class="linenr">29: </span>    spikestatus <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Bool</span>,
+<span class="linenr">30: </span>    currents <span style="color: #00d3d0;">::</span> [<span style="color: #6ae4b9;">Double</span>],
+<span class="linenr">31: </span>    voltages <span style="color: #00d3d0;">::</span> [<span style="color: #6ae4b9;">Double</span>]
+<span class="linenr">32: </span>    } <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">IandFStrut</span>
+<span class="linenr">33: </span>    <span style="color: #b6a0ff;">deriving</span> <span style="color: #6ae4b9;">Show</span>
+<span class="linenr">34: </span>
+<span class="linenr">35: </span><span style="color: #b6a0ff;">instance</span> <span style="color: #6ae4b9;">Semigroup</span> <span style="color: #6ae4b9;">IandFStrut</span> <span style="color: #b6a0ff;">where</span>
+<span class="linenr">36: </span>  (<span style="color: #6ae4b9;">IandFStrut</span> t1 <span style="color: #b6a0ff;">_</span> c1 v1) <span style="color: #00d3d0;">&lt;&gt;</span> (<span style="color: #6ae4b9;">IandFStrut</span> t2 s2 c2 v2) <span style="color: #00d3d0;">=</span> 
+<span class="linenr">37: </span>      <span style="color: #6ae4b9;">IandFStrut</span> (t1 <span style="color: #00d3d0;">++</span> t2) s2 (c1 <span style="color: #00d3d0;">++</span> c2) (v1 <span style="color: #00d3d0;">++</span> v2)
+<span class="linenr">38: </span>
+<span class="linenr">39: </span><span style="color: #feacd0;">initialStrut</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">IandFStrut</span>
+<span class="linenr">40: </span><span style="color: #feacd0;">initialStrut</span> <span style="color: #00d3d0;">=</span> makeStep 0 <span style="color: #6ae4b9;">False</span> 0.0 initv
+<span class="linenr">41: </span>
+<span class="linenr">42: </span><span style="color: #feacd0;">update</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span> 
+<span class="linenr">43: </span><span style="color: #feacd0;">update</span> ov roc ts <span style="color: #00d3d0;">=</span> roc <span style="color: #00d3d0;">*</span> ts <span style="color: #00d3d0;">+</span> ov
+<span class="linenr">44: </span>
+<span class="linenr">45: </span><span style="color: #feacd0;">dvdt</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span>
+<span class="linenr">46: </span><span style="color: #feacd0;">dvdt</span> lres li lv <span style="color: #00d3d0;">=</span>
+<span class="linenr">47: </span> (1 <span style="color: #00d3d0;">/</span> tau) <span style="color: #00d3d0;">*</span> ( lres <span style="color: #00d3d0;">*</span> li <span style="color: #00d3d0;">-</span> lv )
+<span class="linenr">48: </span>
+<span class="linenr">49: </span><span style="color: #feacd0;">between</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span>
+<span class="linenr">50: </span><span style="color: #feacd0;">between</span> ct <span style="color: #00d3d0;">=</span> <span style="color: #b6a0ff;">case</span> injectiontime <span style="color: #b6a0ff;">of</span>
+<span class="linenr">51: </span>  [first,last] <span style="color: #00d3d0;">-&gt;</span>
+<span class="linenr">52: </span>    <span style="color: #b6a0ff;">if</span> ct <span style="color: #00d3d0;">&gt;=</span> first <span style="color: #00d3d0;">&amp;&amp;</span> ct <span style="color: #00d3d0;">&lt;=</span> last
+<span class="linenr">53: </span>    <span style="color: #b6a0ff;">then</span> injectioncurrent
+<span class="linenr">54: </span>    <span style="color: #b6a0ff;">else</span> 0.0
+<span class="linenr">55: </span>  badList <span style="color: #00d3d0;">-&gt;</span> error <span style="color: #79a8ff;">"Error: Expected list of two doubles"</span>
+<span class="linenr">56: </span>
+<span class="linenr">57: </span><span style="color: #feacd0;">vchoice</span> <span style="color: #00d3d0;">::</span> (<span style="color: #6ae4b9;">Double</span>, <span style="color: #6ae4b9;">Bool</span>, <span style="color: #6ae4b9;">Double</span>, <span style="color: #6ae4b9;">Double</span>) <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span>
+<span class="linenr">58: </span><span style="color: #feacd0;">vchoice</span> (cv,ss,thr,sd)
+<span class="linenr">59: </span>  <span style="color: #00d3d0;">|</span> ss <span style="color: #00d3d0;">=</span> 0.0
+<span class="linenr">60: </span>  <span style="color: #00d3d0;">|</span> cv <span style="color: #00d3d0;">&gt;</span> thr  <span style="color: #00d3d0;">&amp;&amp;</span> not ss <span style="color: #00d3d0;">=</span> sd
+<span class="linenr">61: </span>  <span style="color: #00d3d0;">|</span> otherwise <span style="color: #00d3d0;">=</span> cv
+<span class="linenr">62: </span>
+<span class="linenr">63: </span><span style="color: #feacd0;">makeStep</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Bool</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Double</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">IandFStrut</span>
+<span class="linenr">64: </span><span style="color: #feacd0;">makeStep</span> t s c v <span style="color: #00d3d0;">=</span> <span style="color: #6ae4b9;">IandFStrut</span> [t] s [c] [v]
+<span class="linenr">65: </span>
+<span class="linenr">66: </span><span style="color: #feacd0;">oneRunIandF</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">IandFStrut</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">IandFStrut</span>
+<span class="linenr">67: </span><span style="color: #feacd0;">oneRunIandF</span> inStrut <span style="color: #00d3d0;">=</span>
+<span class="linenr">68: </span>  <span style="color: #b6a0ff;">let</span> ct <span style="color: #00d3d0;">=</span> last (time inStrut)
+<span class="linenr">69: </span>      cv <span style="color: #00d3d0;">=</span> last (voltages inStrut)
+<span class="linenr">70: </span>      ci <span style="color: #00d3d0;">=</span> between ct
+<span class="linenr">71: </span>      nv  <span style="color: #00d3d0;">=</span> vchoice (update cv (dvdt res ci cv) dt
+<span class="linenr">72: </span>                    , spikestatus inStrut
+<span class="linenr">73: </span>                    , threshold, spikedisplay)
+<span class="linenr">74: </span>      nextstep <span style="color: #00d3d0;">=</span> makeStep (ct <span style="color: #00d3d0;">+</span> dt) 
+<span class="linenr">75: </span>        (abs (nv <span style="color: #00d3d0;">-</span> spikedisplay) <span style="color: #00d3d0;">&lt;</span> threshold)
+<span class="linenr">76: </span>        ci
+<span class="linenr">77: </span>        nv
+<span class="linenr">78: </span>  <span style="color: #b6a0ff;">in</span> (inStrut <span style="color: #00d3d0;">&lt;&gt;</span> nextstep)
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #6ae4b9;">:</span>load <span style="color: #00d3d0;">./</span>code<span style="color: #00d3d0;">/</span>IandF.hs
+  <span style="color: #b6a0ff;">let</span> run200 <span style="color: #00d3d0;">=</span> iterate oneRunIandF initialStrut <span style="color: #00d3d0;">!!</span> 200
+        vs <span style="color: #00d3d0;">=</span> voltages run200
+        cs <span style="color: #00d3d0;">=</span> currents run200
+        ts <span style="color: #00d3d0;">=</span> time run200
+        tv <span style="color: #00d3d0;">=</span> zip ts vs
+        tc <span style="color: #00d3d0;">=</span> zip ts cs
+  plotPaths [<span style="color: #6ae4b9;">PNG</span> <span style="color: #79a8ff;">"./images/iandf.png"</span>] [tv,tc]
+</pre>
+</div>
+
+
+<div id="org187ab78" class="figure">
+<p><img src="./images/iandf.png" alt="iandf.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org5c53e87" class="outline-3">
+<h3 id="org5c53e87"><span class="section-number-3">2.8.</span> Integrate and Fire Homework</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+The Integrate and Fire homework has two components. One practical and one theoretical.
+</p>
+
+<p>
+Practically, submit an integrate and fire program. Do something to show that you had something to do with the coding and you understand what is happening.
+</p>
+
+<p>
+Theoretically, look at <a href="https://redwood.berkeley.edu/wp-content/uploads/2018/08/mainen-sejnowski.pdf">this article (pdf)</a> and tell me how you feel our integrate and fire model compares to these actual real world spiking data when both are give constant input. What are the implications for using the integrate and fire model as a model of neuronal function? 
+</p>
+</div>
+</div>
+<div id="outline-container-org952e7e8" class="outline-3">
+<h3 id="org952e7e8"><span class="section-number-3">2.9.</span> Hodgkin and Huxley Model</h3>
+<div class="outline-text-3" id="text-2-9">
+</div>
+<div id="outline-container-org265d3c3" class="outline-4">
+<h4 id="org265d3c3"><span class="section-number-4">2.9.1.</span> Who were Hodgkin and Huxley</h4>
+<div class="outline-text-4" id="text-2-9-1">
+<p>
+The goal in this biological scavenger hunt is to try and develop some ideas about what makes one able to effectively contribute to computational neuroscience. As they undoubtedly did. I will divide you into small groups each targeting either Hodgkin or Huxley. Then we will mix up the groups for sharing. Then we will come back together to talk very briefly about who they were, but at somewhat greater length about what we learned about what sort of education or other experiences we should seek out if we want to contribute to this field.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcdc291a" class="outline-4">
+<h4 id="orgcdc291a"><span class="section-number-4">2.9.2.</span> Model Description</h4>
+<div class="outline-text-4" id="text-2-9-2">
+<p>
+Gerstner's (free) <a href="https://lcnwww.epfl.ch/gerstner/SPNM/node14.html#table-HH1">book's chapter</a> on the HandH model.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org1013aa8"></a>Comments and Steps in Coding the Hodgkin Huxley Model<br />
+<div class="outline-text-5" id="text-2-9-2-1">
+<p>
+Some introductory reminders and admonitions:
+</p>
+
+<p>
+The current going in to the cell is intended to represent what an electrophysiologist would inject in their laboratory setting, or what might be changed by the input from other neurons. 
+The total current coming out of the neuron is the sum of the capacitance (due to the lipid bilayer), and the resistance (due to the ion channels).
+This is <b>Kirchoff's</b> rule implemented in the Hodgkin and Huxley model.
+</p>
+
+<p>
+Unlike the Integrate and Fire model, which lumps all the ionic currents together, the HandH model decomposes the conductance into three parts.
+You have a resistance <i>for each ion channel</i>.
+The rule for currents in parallel is to apply Kirchoff's and Ohm's laws realizing that they all experience the same voltage, thus the currents sum. The Hodgkin and Huxley model has components for Sodium (Na), Potassium (K), and negative anions (still lumped as "leak" l).
+</p>
+
+<p>
+\( \sum_i I_R(t) = \bar{g}_{Na} m^3 h l(V(t) - E_{Na}) + \bar{g}_{K} n^4 (V(t) - E_{K}) + \bar{g}_{L} (V(t) - E_{L})\)
+</p>
+
+<p>
+\( I_{tot} = I_r + I_C \)
+</p>
+
+
+<p>
+\( I_{tot} = \bar{g}_{Na} m^3 h (V(t) l- E_{Na}) + \bar{g}_{K} n^4 (V(t) - E_{K}) + \bar{g}_{L} (V(t) - E_{L}) + c~\frac{dV}{dt} \)
+</p>
+
+<p>
+If you rearrange terms you can get the \(\frac{dV}{dt}\) on one side of the equation by itself.
+</p>
+
+<p>
+\(c~\frac{dV}{dt} = I_{tot} - (\bar{g}_{Na} m^3 h (V(t) - E_{Na}) + \bar{g}_{K} n^4 (V(t) - E_{K}) + \bar{g}_{L} (V(t) - E_{L})) \)
+</p>
+
+<p>
+You cannot program what you don't understand. Don't start writing code too soon. Writing code won't make a poorly understood idea clearer. Though it can reveal that you don't understand what you thought you understood. It is often best to start sketching ideas on paper or a blackboard before you open up your IDE.
+</p>
+
+<p>
+For instance,
+</p>
+
+<ul class="org-ul">
+<li>What are the \( \bar{g}_*\) terms?</li>
+<li>What are the \( E_{*} \) terms?</li>
+<li>What do m, n, and h represent?</li>
+<li>Where did these equations come from?</li>
+</ul>
+
+<p>
+<b>Remember, it is differential equations all the way down.</b>
+You can use the same Euler method to patiently update each of your terms and then repeatedly loop between them.
+But recognize there are DEs at multiple levels.
+Each of the <i>m</i>, <i>n</i>, and <i>h</i> terms are also changing and regulated by a differential equation.
+They are dependent on voltage, too.
+For example, \( \dot{m} = \alpha_m (V)(1 - m) - \beta_m (V) m \).
+</p>
+
+<p>
+<b>Recognize that</b>
+</p>
+<ul class="org-ul">
+<li>Each of the m, n, and h terms have their own equation of exactly the same form, but with their unique alphas and betas (that is what the subscript means).</li>
+<li>What does the V in parentheses mean?</li>
+<li>When the proteins of the ion channels were finally sequenced (decades later), what do you think was the number of sub-units that the sodium and potassium channels were found to have?</li>
+</ul>
+
+<p>
+<b>Initial Assumptions</b>
+</p>
+
+<p>
+If you allow \( t \rightarrow \infty \mbox{, then } \frac{dV}{dt}=? \)
+</p>
+<ul class="org-ul">
+<li>You assume that it goes to zero; that is, you reach steady state. Then you can solve for some of the constants.</li>
+<li>Where do the constants come from?</li>
+<li>They come from experiments, and you use what you are given.</li>
+<li>Assume the following constants - they are set to assume a resting potential of zero (instead of what and why doesn't this matter)?</li>
+<li>These constants also work out to enforce a capacitance of 1.</li>
+</ul>
+</div>
+</li>
+<li><a id="orgda59c45"></a>Constants<br />
+<div class="outline-text-5" id="text-2-9-2-2">
+<p>
+Several different sets of constants are used for this model in published versions. They are all, in one sense the same, but this set amke the programming easier. For the moment, ignore the units and use these numbers.
+</p>
+
+<table id="org9feca5a" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 1:</span> Constant Values to Use for our Hodgkin-Huxley Model</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left"><b>Constant</b></th>
+<th scope="col" class="org-right"><b>Value</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">ena</td>
+<td class="org-right">115</td>
+</tr>
+
+<tr>
+<td class="org-left">gna</td>
+<td class="org-right">120</td>
+</tr>
+
+<tr>
+<td class="org-left">ek</td>
+<td class="org-right">-12</td>
+</tr>
+
+<tr>
+<td class="org-left">gk</td>
+<td class="org-right">36</td>
+</tr>
+
+<tr>
+<td class="org-left">el</td>
+<td class="org-right">10.6</td>
+</tr>
+
+<tr>
+<td class="org-left">gl</td>
+<td class="org-right">0.3</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<p>
+<b><b>Warning</b></b>
+These constants are adjusted to make the resting potential 0 and the capacitance 1.0. 
+</p>
+</div>
+</li>
+<li><a id="org61bbe3e"></a>Alpha and Beta Formulas<br />
+<div class="outline-text-5" id="text-2-9-2-3">
+<p>
+\[ \alpha_n(V_m) = \frac{0.01 (10 - V_m)}{\exp\left( \frac{10 - V_m}{10} \right) - 1} \]
+</p>
+
+
+<p>
+\[ \alpha_m(V_m) = \frac{0.1(25 - V_m)}{\exp\left( \frac{25 - V_m}{10} \right) - 1} \]
+</p>
+
+<p>
+\[ \alpha_h(V_m) = 0.07 \exp\left( \frac{-V_m}{20} \right) \]
+</p>
+
+<p>
+\[ \beta_n(V_m) = 0.125 \exp\left( \frac{-V_m}{80} \right) \]
+</p>
+
+<p>
+\[ \beta_m(V_m) = 4 \exp\left( \frac{-V_m}{18} \right) \]
+</p>
+
+<p>
+\[ \beta_h(V_m) = \frac{1}{\exp\left( \frac{30 - V_m}{10} \right) + 1} \]
+</p>
+</div>
+</li>
+<li><a id="org34014f6"></a>Demonstrating the Hodgkin-Huxley Model<br />
+<div class="outline-text-5" id="text-2-9-2-4">
+<p>
+TODO: reformat code to fit on page
+</p>
+<div class="org-src-container">
+<pre class="src src-haskell"><span class="linenr">  1: </span><span style="color: #ff7f9f;">{-# LANGUAGE GADTs #-}</span>
+<span class="linenr">  2: </span>
+<span class="linenr">  3: </span><span style="color: #b6a0ff;">module</span> <span style="color: #6ae4b9;">HandH</span> <span style="color: #b6a0ff;">where</span>
+<span class="linenr">  4: </span><span style="color: #b6a0ff;">import</span> <span style="color: #6ae4b9;">Data.Maybe</span> (fromMaybe)
+<span class="linenr">  5: </span>
+<span class="linenr">  6: </span><span style="color: #b6a0ff;">data</span> <span style="color: #6ae4b9;">SimParameters</span> <span style="color: #b6a0ff;">where</span>
+<span class="linenr">  7: </span>  <span style="color: #6ae4b9;">SimParameters</span> <span style="color: #00d3d0;">::</span> {
+<span class="linenr">  8: </span>    dt <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr">  9: </span>    maxT <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 10: </span>    initT <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 11: </span>    startTime <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 12: </span>    stopTime <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 13: </span>    capacitance <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 14: </span>    resistance <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 15: </span>    initialVoltage <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 16: </span>    injectionCurrent <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 17: </span>    tau <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>
+<span class="linenr"> 18: </span>    } <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">SimParameters</span>
+<span class="linenr"> 19: </span>  <span style="color: #b6a0ff;">deriving</span> <span style="color: #6ae4b9;">Show</span>
+<span class="linenr"> 20: </span>
+<span class="linenr"> 21: </span><span style="color: #b6a0ff;">data</span> <span style="color: #6ae4b9;">NeuronState</span> <span style="color: #b6a0ff;">where</span>
+<span class="linenr"> 22: </span>  <span style="color: #6ae4b9;">NeuronState</span> <span style="color: #00d3d0;">::</span> {
+<span class="linenr"> 23: </span>    vns <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>
+<span class="linenr"> 24: </span>    , ic  <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>
+<span class="linenr"> 25: </span>    , neuTime <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>
+<span class="linenr"> 26: </span>    , mns <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Maybe</span> <span style="color: #6ae4b9;">Float</span>
+<span class="linenr"> 27: </span>    , nns <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Maybe</span> <span style="color: #6ae4b9;">Float</span>
+<span class="linenr"> 28: </span>    , hns <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Maybe</span> <span style="color: #6ae4b9;">Float</span>
+<span class="linenr"> 29: </span>  } <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">NeuronState</span>
+<span class="linenr"> 30: </span>  <span style="color: #b6a0ff;">deriving</span> <span style="color: #6ae4b9;">Show</span>
+<span class="linenr"> 31: </span>
+<span class="linenr"> 32: </span><span style="color: #b6a0ff;">data</span> <span style="color: #6ae4b9;">NeuronParams</span> <span style="color: #b6a0ff;">where</span>
+<span class="linenr"> 33: </span>  <span style="color: #6ae4b9;">NeuronParams</span> <span style="color: #00d3d0;">::</span> {
+<span class="linenr"> 34: </span>    ena <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 35: </span>    gna <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 36: </span>    ek  <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 37: </span>    gk  <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 38: </span>    el  <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 39: </span>    gl  <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span>
+<span class="linenr"> 40: </span>    } <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">NeuronParams</span>
+<span class="linenr"> 41: </span>  <span style="color: #b6a0ff;">deriving</span> <span style="color: #6ae4b9;">Show</span>
+<span class="linenr"> 42: </span>
+<span class="linenr"> 43: </span><span style="color: #b6a0ff;">data</span> <span style="color: #6ae4b9;">NeuronDynamics</span> <span style="color: #b6a0ff;">where</span>
+<span class="linenr"> 44: </span>  <span style="color: #6ae4b9;">NeuronDynamics</span> <span style="color: #00d3d0;">::</span> {
+<span class="linenr"> 45: </span>    alphaN <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 46: </span>    alphaM <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 47: </span>    alphaH <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 48: </span>    betaN  <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 49: </span>    betaM  <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 50: </span>    betaH  <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 51: </span>    mdot   <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 52: </span>    ndot   <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 53: </span>    hdot   <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 54: </span>    minf   <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 55: </span>    ninf   <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span>,
+<span class="linenr"> 56: </span>    hinf   <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span>
+<span class="linenr"> 57: </span>    } <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">NeuronDynamics</span>
+<span class="linenr"> 58: </span>
+<span class="linenr"> 59: </span><span style="color: #b6a0ff;">data</span> <span style="color: #6ae4b9;">Neuron</span> <span style="color: #b6a0ff;">where</span>
+<span class="linenr"> 60: </span>  <span style="color: #6ae4b9;">Neuron</span> <span style="color: #00d3d0;">::</span> {parameters <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">NeuronParams</span>,
+<span class="linenr"> 61: </span>             equations  <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">NeuronDynamics</span>
+<span class="linenr"> 62: </span>            } <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Neuron</span>
+<span class="linenr"> 63: </span>
+<span class="linenr"> 64: </span><span style="color: #feacd0;">dotDynamics</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span>
+<span class="linenr"> 65: </span>               (<span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span>) <span style="color: #00d3d0;">-&gt;</span>
+<span class="linenr"> 66: </span>               (<span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span>) <span style="color: #00d3d0;">-&gt;</span>
+<span class="linenr"> 67: </span>               <span style="color: #6ae4b9;">Float</span>            
+<span class="linenr"> 68: </span><span style="color: #feacd0;">dotDynamics</span> volt  chan alphaf betaf <span style="color: #00d3d0;">=</span>
+<span class="linenr"> 69: </span>  alphaf volt <span style="color: #00d3d0;">*</span> (1 <span style="color: #00d3d0;">-</span> chan) <span style="color: #00d3d0;">-</span> betaf volt <span style="color: #00d3d0;">*</span> chan
+<span class="linenr"> 70: </span>
+<span class="linenr"> 71: </span><span style="color: #feacd0;">dotInfinity</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span>
+<span class="linenr"> 72: </span>               (<span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span>) <span style="color: #00d3d0;">-&gt;</span>
+<span class="linenr"> 73: </span>               (<span style="color: #6ae4b9;">Float</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Float</span>) <span style="color: #00d3d0;">-&gt;</span>
+<span class="linenr"> 74: </span>               <span style="color: #6ae4b9;">Float</span>
+<span class="linenr"> 75: </span><span style="color: #feacd0;">dotInfinity</span> v alphaf betaf <span style="color: #00d3d0;">=</span> alphaf v <span style="color: #00d3d0;">/</span> (alphaf v <span style="color: #00d3d0;">+</span> betaf v)
+<span class="linenr"> 76: </span>
+<span class="linenr"> 77: </span><span style="color: #feacd0;">pSet1</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">SimParameters</span>
+<span class="linenr"> 78: </span><span style="color: #feacd0;">pSet1</span> <span style="color: #00d3d0;">=</span> <span style="color: #6ae4b9;">SimParameters</span> 0.05 300.0 0.0 100.0 150.0 1.0 2.0 0.0 20.0  (resistance pSet1 <span style="color: #00d3d0;">*</span> capacitance pSet1)
+<span class="linenr"> 79: </span>
+<span class="linenr"> 80: </span><span style="color: #feacd0;">pSet2</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">SimParameters</span>
+<span class="linenr"> 81: </span><span style="color: #feacd0;">pSet2</span> <span style="color: #00d3d0;">=</span> <span style="color: #6ae4b9;">SimParameters</span> 0.05 300.0 0.0 10.0 50.0 1.0 2.0 0.0 0.0  (resistance pSet2 <span style="color: #00d3d0;">*</span> capacitance pSet2)
+<span class="linenr"> 82: </span>
+<span class="linenr"> 83: </span><span style="color: #feacd0;">healthyParams</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">NeuronParams</span>
+<span class="linenr"> 84: </span><span style="color: #feacd0;">healthyParams</span> <span style="color: #00d3d0;">=</span> <span style="color: #6ae4b9;">NeuronParams</span> 115 120 (<span style="color: #00d3d0;">-</span>12) 36 10.6 0.3
+<span class="linenr"> 85: </span>
+<span class="linenr"> 86: </span><span style="color: #feacd0;">healthyDynamics</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">NeuronDynamics</span>
+<span class="linenr"> 87: </span><span style="color: #feacd0;">healthyDynamics</span> <span style="color: #00d3d0;">=</span> <span style="color: #6ae4b9;">NeuronDynamics</span> {
+<span class="linenr"> 88: </span>  alphaN <span style="color: #00d3d0;">=</span> <span style="color: #00d3d0;">\</span>v <span style="color: #00d3d0;">-&gt;</span> (0.1<span style="color: #00d3d0;">-</span>0.01<span style="color: #00d3d0;">*</span>v)<span style="color: #00d3d0;">/</span>(exp(1<span style="color: #00d3d0;">-</span>0.1<span style="color: #00d3d0;">*</span>v) <span style="color: #00d3d0;">-</span> 1),
+<span class="linenr"> 89: </span>  alphaM <span style="color: #00d3d0;">=</span> <span style="color: #00d3d0;">\</span>v <span style="color: #00d3d0;">-&gt;</span> (2.5<span style="color: #00d3d0;">-</span>0.1<span style="color: #00d3d0;">*</span>v)<span style="color: #00d3d0;">/</span>(exp(2.5<span style="color: #00d3d0;">-</span>0.1<span style="color: #00d3d0;">*</span>v) <span style="color: #00d3d0;">-</span> 1),
+<span class="linenr"> 90: </span>  alphaH <span style="color: #00d3d0;">=</span> <span style="color: #00d3d0;">\</span>v <span style="color: #00d3d0;">-&gt;</span>  0.07<span style="color: #00d3d0;">*</span>exp((<span style="color: #00d3d0;">-</span>v)<span style="color: #00d3d0;">/</span>20),
+<span class="linenr"> 91: </span>  betaN  <span style="color: #00d3d0;">=</span> <span style="color: #00d3d0;">\</span>v <span style="color: #00d3d0;">-&gt;</span>  0.125 <span style="color: #00d3d0;">*</span> exp((<span style="color: #00d3d0;">-</span>v)<span style="color: #00d3d0;">/</span>80),
+<span class="linenr"> 92: </span>  betaM  <span style="color: #00d3d0;">=</span> <span style="color: #00d3d0;">\</span>v <span style="color: #00d3d0;">-&gt;</span>  4<span style="color: #00d3d0;">*</span>exp((<span style="color: #00d3d0;">-</span>v)<span style="color: #00d3d0;">/</span>18),
+<span class="linenr"> 93: </span>  betaH  <span style="color: #00d3d0;">=</span> <span style="color: #00d3d0;">\</span>v <span style="color: #00d3d0;">-&gt;</span>  1<span style="color: #00d3d0;">/</span>(exp(3<span style="color: #00d3d0;">-</span>0.1<span style="color: #00d3d0;">*</span>v)<span style="color: #00d3d0;">+</span>1),
+<span class="linenr"> 94: </span>  mdot   <span style="color: #00d3d0;">=</span> <span style="color: #00d3d0;">\</span>v c <span style="color: #00d3d0;">-&gt;</span> dotDynamics v c (alphaM healthyDynamics)
+<span class="linenr"> 95: </span>                       (betaM healthyDynamics),
+<span class="linenr"> 96: </span>  ndot   <span style="color: #00d3d0;">=</span> <span style="color: #00d3d0;">\</span>v c <span style="color: #00d3d0;">-&gt;</span> dotDynamics v c (alphaN healthyDynamics)
+<span class="linenr"> 97: </span>                       (betaN healthyDynamics),
+<span class="linenr"> 98: </span>  hdot   <span style="color: #00d3d0;">=</span> <span style="color: #00d3d0;">\</span>v c <span style="color: #00d3d0;">-&gt;</span> dotDynamics v c (alphaH healthyDynamics)
+<span class="linenr"> 99: </span>                       (betaH healthyDynamics),
+<span class="linenr">100: </span>  minf   <span style="color: #00d3d0;">=</span> <span style="color: #00d3d0;">\</span>v <span style="color: #00d3d0;">-&gt;</span> dotInfinity v (alphaM healthyDynamics)
+<span class="linenr">101: </span>                 (betaM healthyDynamics),
+<span class="linenr">102: </span>  ninf   <span style="color: #00d3d0;">=</span> <span style="color: #00d3d0;">\</span>v <span style="color: #00d3d0;">-&gt;</span> dotInfinity v (alphaN healthyDynamics)
+<span class="linenr">103: </span>                 (betaN healthyDynamics),
+<span class="linenr">104: </span>  hinf  <span style="color: #00d3d0;">=</span>  <span style="color: #00d3d0;">\</span>v <span style="color: #00d3d0;">-&gt;</span> dotInfinity v (alphaH healthyDynamics)
+<span class="linenr">105: </span>                 (betaH healthyDynamics)
+<span class="linenr">106: </span>  }
+<span class="linenr">107: </span>
+<span class="linenr">108: </span><span style="color: #feacd0;">healthyNeuron</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Neuron</span>
+<span class="linenr">109: </span><span style="color: #feacd0;">healthyNeuron</span> <span style="color: #00d3d0;">=</span> <span style="color: #6ae4b9;">Neuron</span> healthyParams healthyDynamics
+<span class="linenr">110: </span>
+<span class="linenr">111: </span><span style="color: #feacd0;">initialState</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">NeuronState</span>
+<span class="linenr">112: </span><span style="color: #feacd0;">initialState</span> <span style="color: #00d3d0;">=</span> <span style="color: #6ae4b9;">NeuronState</span> (initialVoltage pSet1) (injectionCurrent pSet1) (initT pSet1) <span style="color: #6ae4b9;">Nothing</span> <span style="color: #6ae4b9;">Nothing</span> <span style="color: #6ae4b9;">Nothing</span>
+<span class="linenr">113: </span>
+<span class="linenr">114: </span><span style="color: #feacd0;">updNeuron</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Neuron</span>  <span style="color: #00d3d0;">-&gt;</span>  <span style="color: #6ae4b9;">SimParameters</span>  <span style="color: #00d3d0;">-&gt;</span>  <span style="color: #6ae4b9;">NeuronState</span> <span style="color: #00d3d0;">-&gt;</span>  <span style="color: #6ae4b9;">NeuronState</span>
+<span class="linenr">115: </span><span style="color: #feacd0;">updNeuron</span> neuin spin nsin <span style="color: #00d3d0;">=</span> 
+<span class="linenr">116: </span>  <span style="color: #b6a0ff;">let</span> eqneuin <span style="color: #00d3d0;">=</span> equations neuin
+<span class="linenr">117: </span>      voltagein <span style="color: #00d3d0;">=</span> vns nsin
+<span class="linenr">118: </span>      nparamsin <span style="color: #00d3d0;">=</span> parameters neuin
+<span class="linenr">119: </span>      outi <span style="color: #00d3d0;">=</span> ic nsin
+<span class="linenr">120: </span>      mnew <span style="color: #00d3d0;">=</span> fromMaybe 0.0 (<span style="color: #b6a0ff;">case</span> mns nsin <span style="color: #b6a0ff;">of</span>
+<span class="linenr">121: </span>                              <span style="color: #6ae4b9;">Nothing</span> <span style="color: #00d3d0;">-&gt;</span>  <span style="color: #6ae4b9;">Just</span> <span style="color: #00d3d0;">$</span> minf eqneuin  voltagein
+<span class="linenr">122: </span>                              <span style="color: #6ae4b9;">Just</span> x  <span style="color: #00d3d0;">-&gt;</span>  <span style="color: #6ae4b9;">Just</span> <span style="color: #00d3d0;">$</span> x <span style="color: #00d3d0;">+</span> mdot eqneuin  voltagein x <span style="color: #00d3d0;">*</span> dt spin)
+<span class="linenr">123: </span>      nnew <span style="color: #00d3d0;">=</span> fromMaybe 0.0 (<span style="color: #b6a0ff;">case</span> nns nsin <span style="color: #b6a0ff;">of</span>
+<span class="linenr">124: </span>                              <span style="color: #6ae4b9;">Nothing</span> <span style="color: #00d3d0;">-&gt;</span>  <span style="color: #6ae4b9;">Just</span> <span style="color: #00d3d0;">$</span> ninf eqneuin  voltagein
+<span class="linenr">125: </span>                              <span style="color: #6ae4b9;">Just</span> x  <span style="color: #00d3d0;">-&gt;</span>  <span style="color: #6ae4b9;">Just</span> <span style="color: #00d3d0;">$</span> x <span style="color: #00d3d0;">+</span> ndot eqneuin voltagein x <span style="color: #00d3d0;">*</span> dt spin )
+<span class="linenr">126: </span>      hnew <span style="color: #00d3d0;">=</span> fromMaybe 0.0 (<span style="color: #b6a0ff;">case</span> hns nsin <span style="color: #b6a0ff;">of</span> 
+<span class="linenr">127: </span>                              <span style="color: #6ae4b9;">Nothing</span> <span style="color: #00d3d0;">-&gt;</span>  <span style="color: #6ae4b9;">Just</span> <span style="color: #00d3d0;">$</span> hinf eqneuin voltagein
+<span class="linenr">128: </span>                              <span style="color: #6ae4b9;">Just</span> x  <span style="color: #00d3d0;">-&gt;</span>  <span style="color: #6ae4b9;">Just</span> <span style="color: #00d3d0;">$</span> x <span style="color: #00d3d0;">+</span> hdot eqneuin voltagein x <span style="color: #00d3d0;">*</span> dt spin)
+<span class="linenr">129: </span>      dvdt <span style="color: #00d3d0;">=</span> outi <span style="color: #00d3d0;">-</span>
+<span class="linenr">130: </span>        (gna nparamsin <span style="color: #00d3d0;">*</span> mnew <span style="color: #00d3d0;">^</span> 3 <span style="color: #00d3d0;">*</span> hnew <span style="color: #00d3d0;">*</span>
+<span class="linenr">131: </span>          (voltagein <span style="color: #00d3d0;">-</span> ena nparamsin) <span style="color: #00d3d0;">+</span>
+<span class="linenr">132: </span>          gk nparamsin <span style="color: #00d3d0;">*</span> nnew <span style="color: #00d3d0;">^</span> 4 <span style="color: #00d3d0;">*</span>
+<span class="linenr">133: </span>          (voltagein <span style="color: #00d3d0;">-</span> ek nparamsin) <span style="color: #00d3d0;">+</span>
+<span class="linenr">134: </span>          gl nparamsin <span style="color: #00d3d0;">*</span>
+<span class="linenr">135: </span>          (voltagein <span style="color: #00d3d0;">-</span> el nparamsin))
+<span class="linenr">136: </span>  <span style="color: #b6a0ff;">in</span>
+<span class="linenr">137: </span>    nsin {vns <span style="color: #00d3d0;">=</span> voltagein <span style="color: #00d3d0;">+</span> dvdt <span style="color: #00d3d0;">*</span> dt spin
+<span class="linenr">138: </span>         , ic <span style="color: #00d3d0;">=</span> <span style="color: #b6a0ff;">if</span> (neuTime nsin  <span style="color: #00d3d0;">&lt;</span> stopTime spin) <span style="color: #00d3d0;">&amp;&amp;</span>
+<span class="linenr">139: </span>                   (neuTime nsin  <span style="color: #00d3d0;">&gt;</span> startTime spin)
+<span class="linenr">140: </span>                <span style="color: #b6a0ff;">then</span> injectionCurrent spin
+<span class="linenr">141: </span>                <span style="color: #b6a0ff;">else</span> 0.0
+<span class="linenr">142: </span>         , neuTime <span style="color: #00d3d0;">=</span> neuTime nsin <span style="color: #00d3d0;">+</span> dt spin 
+<span class="linenr">143: </span>         , mns <span style="color: #00d3d0;">=</span> <span style="color: #6ae4b9;">Just</span> mnew
+<span class="linenr">144: </span>         , nns <span style="color: #00d3d0;">=</span> <span style="color: #6ae4b9;">Just</span> nnew
+<span class="linenr">145: </span>         , hns <span style="color: #00d3d0;">=</span> <span style="color: #6ae4b9;">Just</span> hnew
+<span class="linenr">146: </span>         }
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #6ae4b9;">:</span>load <span style="color: #00d3d0;">./</span>code<span style="color: #00d3d0;">/</span>HandH.hs
+  <span style="color: #b6a0ff;">let</span> myData <span style="color: #00d3d0;">=</span> take 5000 <span style="color: #00d3d0;">$</span> iterate (updNeuron healthyNeuron pSet1 ) initialState 
+        vs <span style="color: #00d3d0;">=</span> map vns myData
+        cs <span style="color: #00d3d0;">=</span> map ic myData
+        ts <span style="color: #00d3d0;">=</span> map neuTime myData
+        tv <span style="color: #00d3d0;">=</span> zip ts vs
+        tc <span style="color: #00d3d0;">=</span> zip ts cs
+  plotPaths [<span style="color: #6ae4b9;">PNG</span> <span style="color: #79a8ff;">"./images/handh.png"</span>] [tv,tc]
+</pre>
+</div>
+
+
+<div id="orgd0ee1c6" class="figure">
+<p><img src="./images/handh.png" alt="handh.png" />
+</p>
+</div>
+</div>
+</li>
+<li><a id="org27c7457"></a>Hodgkin and Huxley Homework<br />
+<div class="outline-text-5" id="text-2-9-2-5">
+<p>
+Your homework will require you to write the code for a Hodgkin-Huxley Neuron and then modify it.  You will provide at least two plots in addition to your code. You will need to adapt the model to fit this paper. These authors analyzed a series of inherited channelopathies (where ion channels are altered due to mutation) via simulation. In these conditions empirical measurements had been made on actual patients. The authors adapted the Hodgkin and Huxley model to permit them to explore the effects of such altered conductance on neuronal excitability. For this home work you will need to adapt the <i>n</i> equation to be as follows:
+</p>
+
+<p>
+\( \frac{dn}{dt} = \gamma_\tau (\gamma_\alpha \alpha_n (v - \Delta V)(1 - n) - \gamma_\beta \beta_n (v- \Delta V)n) \)
+</p>
+
+<p>
+Then you must select one of the sets of &gamma; from their <a href="https://link.springer.com/article/10.1007/s10827-020-00766-1/tables/1">Table 1</a> and plot the neuronal activity.
+</p>
+
+<p>
+To start implement the new <i>n</i> channel and set all the &gamma; s to 1. This should work exactly like the old model. Generate a plot showing that it does. For the second plot generate the same plot with your altered \(\gamma\) values.
+</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org1042a2a" class="outline-2">
+<h2 id="org1042a2a"><span class="section-number-2">3.</span> What is computation and what is its role in cognitive science?</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<a href="https://link.springer.com/content/pdf/10.1007/978-3-642-41375-9_1">Chapter 1 of Physical Computation in Cognitive Science</a> by Nir Fresco
+</p>
+</div>
+<div id="outline-container-org753c9fb" class="outline-3">
+<h3 id="org753c9fb"><span class="section-number-3">3.1.</span> What do you think?</h3>
+<div class="outline-text-3" id="text-3-1">
+<ol class="org-ol">
+<li>Computational modeling of cognition and neural systems is/is-not the same as programming.</li>
+<li>What else could computational modeling be?</li>
+<li>What are we losing when we treat our computational model as a programmatic black box?</li>
+<li>Is the computation that is cognitive the same as the computation that takes place in digital computers?</li>
+<li>If so, why is there more than one programming language?</li>
+<li>Might our choice of programming language based on features actually influence what we can conceive for a computational model?</li>
+<li>What does it mean for something to be a model?</li>
+<li>Is simulation good enough?</li>
+<li>Is prediction good enough?</li>
+<li>Do we want a model to <i>explain</i> something? And then of course what constitutes explanation?</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org741a26e" class="outline-3">
+<h3 id="org741a26e"><span class="section-number-3">3.2.</span> What do we need to know?</h3>
+<div class="outline-text-3" id="text-3-2">
+<ol class="org-ol">
+<li>We need to know the facts of the matter, neurally and cognitively.</li>
+<li>We need to have a clear question.</li>
+<li>We need to have a theoretical committment that leads to clear predictions, and guides our evaluation of what to do.</li>
+<li>Which of course means we need to know what a theory is and how to build one.</li>
+<li>We need to know the facts of the matter mathematically and programmatically
+<ol class="org-ol">
+<li>We need to be able to read the maths.</li>
+<li>We need to be conversant in symbols and notations.</li>
+<li>We need to know how to express in symbols what we can say in words.</li>
+<li>We need to know how to express in code what we can write in symbols.</li>
+</ol></li>
+</ol>
+
+<p>
+We need to be concerned with all the levels: mind and brain, theory, math, and code.
+We can abbreviate these as MTMC: mind → theory → math → code; the arrows indicating  an ordering on our development.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf22bb96" class="outline-3">
+<h3 id="orgf22bb96"><span class="section-number-3">3.3.</span> Computing in Minds and Computers</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+One definition of whether something is computable is whether there exists a Turing Machine that can compute it. Although most of us learned the name "Turing" in the context of whether a computer has human intelligence, the so-called <i>Turing test</i>, the model of Turing computability emerged from thinking about humans computing
+</p>
+</div>
+</div>
+<div id="outline-container-orgdf2d497" class="outline-3">
+<h3 id="orgdf2d497"><span class="section-number-3">3.4.</span> What is a Turing machine? Some Background and Details</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+<a href="https://turingarchive.kings.cam.ac.uk/publications-lectures-and-talks-amtb/amt-b-12">Turing machines</a> are quite simple implements. While one can build a physical Turing machine, the more usual sense of the term is for a hypothetical computer that is comprised of:
+</p>
+<ol class="org-ol">
+<li>a finite alphabet,</li>
+<li>a finite set of states,</li>
+<li>the capacity to read and write to a single location in memory, and the ability to adjust the memory location immediately left or right or to make no move at all, and</li>
+<li>a set of instructions (or "machine table") that translates the combination of the current state and the current symbol to a new state and one of the acceptable actions.</li>
+</ol>
+</div>
+<div id="outline-container-org302b280" class="outline-4">
+<h4 id="org302b280"><span class="section-number-4">3.4.1.</span> Classroom Activity</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<p>
+Let's develop pseudo-code for the implementing a Turing Machine
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org7825575" class="outline-3">
+<h3 id="org7825575"><span class="section-number-3">3.5.</span> The Lambda Calculus</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+Another model of computation is the <i>lambda calculus</i>.
+</p>
+
+<p>
+The lambda calculus was developed as a theory of functions. <a href="https://news.stanford.edu/news/2011/october/john-mccarthy-obit-102511.html">John McCarthy</a> invented the computer programming language Lisp as a theoretical exercise for working on the theory of computable functions. He felt the Turing machine was too mechanical and too awkward for this sort of theoretical work. He wanted a better tool; a better metaphor. He adopted the lambda of the lambda calculus and the <code>eval</code> function to take in lisp programs and execute them. Later one of his <a href="https://en.wikipedia.org/wiki/Steve_Russell_(computer_scientist)">collaborators</a> observed that it was relatively straightforward to implement this theoretical language as a real programming language. A bit more of the history this development can be found <a href="https://lwn.net/Articles/778550/">here</a>. To get more details see.
+</p>
+</div>
+<div id="outline-container-org19a0532" class="outline-4">
+<h4 id="org19a0532"><span class="section-number-4">3.5.1.</span> Some Details and Interesting Facts about the Lambda Calculus</h4>
+<div class="outline-text-4" id="text-3-5-1">
+<ol class="org-ol">
+<li>There is not just one lambda calculus.</li>
+<li>To have the lambda calculus you need to specify your algebra. What are the rules for reducing things (i.e. your computations), what are the allowed symbols, and what do things mean? A "lambda calculus" is a way of handling "lambda expressions."<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org62ea1b4" class="outline-4">
+<h4 id="org62ea1b4"><span class="section-number-4">3.5.2.</span> Into the Weeds</h4>
+<div class="outline-text-4" id="text-3-5-2">
+<p>
+<b>Terms</b> are either <i>simple variables</i> e.g. \(x\) or \(y\) or <i>composite terms</i> like \( \lambda~v~t_1 \). Having two terms next to each other \( t_1~t_2 \) means "apply" \(t_1\) to \(t_2\). The meaning of a term like \( \lambda~v~.~ t_1 \) is the value returned by the lambda abstraction. The meaning part is sometimes designated in writing by formulas using arrows, such as \(t_1~\rightarrow~t_2 \).<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>
+</p>
+
+<p>
+Functions have the form &lambda; &lt;name&gt; . &lt;body&gt; . Note the "dot". This separates the name from the body of expressions that it names. &lt;body&gt; is also an expression (note the recursion that is built in).\marginpar{\raggedright What are recursive functions?}
+</p>
+
+<p>
+Some "axioms" you supply, or that <a href="https://plato.stanford.edu/entries/church/">Alonzo Church</a> did are:
+</p>
+<ul class="org-ul">
+<li>Beta reduction
+apply the function, e.g. (&lambda; x.M) N = M[x:N] this latter is just a way of saying that you will substitute the value "N" everytime you see an "x" in whatever expression "M" is.</li>
+<li>Alpha conversion
+essentially you are just renaming variables</li>
+<li>Eta reduction
+Is a way of getting rid of things that don't change anything. If for example \(f(x) = g(x)\) then you could just save yourself some ink and write: f = g. A more technical way of saying things, that we will not go into, is that you can free yourself of free variables, that is if there is no "x" in "f" then \(f = \lambda x.(f x) \).</li>
+</ul>
+
+<p>
+Your goal is often the <b>normal</b> form. A lambda term that cannot be reduced anymore. Think of it like simplifying an equation. It helps you get to the essentials, and can make it easier to compare things to see when they are the same. 
+</p>
+
+<p>
+The equivalent of the halting problem for the Turing machine is the reaching of a <i>normal form</i> in the  lambda calculus. 
+</p>
+</div>
+</div>
+<div id="outline-container-org7aea7d7" class="outline-4">
+<h4 id="org7aea7d7"><span class="section-number-4">3.5.3.</span> Some Opportunities for Practice</h4>
+<div class="outline-text-4" id="text-3-5-3">
+<ul class="org-ul">
+<li>Write the lambda expression for the identity function?
+<ul class="org-ul">
+<li>But first we better decide what the identity function is?</li>
+</ul></li>
+<li>Apply the identity function to itself.</li>
+<li>What is the identity function in whatever language you are hoping to use?</li>
+<li>An interesting lambda expression is the "self-application" expression: \( \lambda~s . (s~s) \).
+<ul class="org-ul">
+<li>With pencil and paper try to:
+<ul class="org-ul">
+<li>apply this to the identity,</li>
+<li>apply the identity to the self-application,</li>
+<li>apply the self-application to itself. What is its termination status?</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org694aa79" class="outline-4">
+<h4 id="org694aa79"><span class="section-number-4">3.5.4.</span> What are the differences?</h4>
+<div class="outline-text-4" id="text-3-5-4">
+<p>
+We have seen Turing Machines and a Lambda Calculus. They look very different. Another model of computation that I have mentioned, but not presented is <a href="https://plato.stanford.edu/entries/recursive-functions/">recursive function theory</a>. It looks different still.
+</p>
+
+
+<blockquote>
+<p>
+What does it mean for our idea that the mind is a "computer" if there are three different models of computation?
+</p>
+</blockquote>
+
+<p>
+Always question assumptions: <a href="https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis">Church-Turing Conjecture</a> . 
+</p>
+
+<blockquote>
+<ol class="org-ol">
+<li>Are Turing machines /digital?</li>
+<li>Is this an important distinction?</li>
+<li>Does this mean that analog computations are omitted?</li>
+<li>Would an analog paradigm be a better match to modeling mental activity?</li>
+</ol>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc120d4c" class="outline-3">
+<h3 id="orgc120d4c"><span class="section-number-3">3.6.</span> Classical Computational Theory of Mind</h3>
+<div class="outline-text-3" id="text-3-6">
+<blockquote>
+<p>
+Does a computational theory of mind mean that minds are <a href="https://plato.stanford.edu/entries/multiple-realizability">multiply realizable</a> ?
+</p>
+</blockquote>
+
+<p>
+The classical computational theory of mind says that in all important ways the mind is like a Turing machine. If we want to  model (or emulate) functions of mind one way would be to build a Turing machine. However, this can be a practical challenge, and one can question the insight gained from this approach. Still given the theoretical and practical prominence given to Turing computability it behooves us to know what a Turing machine truly is.
+</p>
+
+<p>
+For something to be computatble the Turing machine that computes it must halt. So, we would like to know before we run our machine whether it will halt or not. Unfortunately, the answer to the halting problem is that we cannot know in advance, and in general, whether a Turing machine will halt. Computabilty is therefore <i>undecidable</i>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgac689c6" class="outline-3">
+<h3 id="orgac689c6"><span class="section-number-3">3.7.</span> Programming a Turing Machine: the Busy Beaver</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+In my experience the only way to really come to grips with what a Turing machine is is to program one yourself. For this exercise we will program a Turing machine to solve an elementary version of the Busy Beaver problem. This is a famous problem, because it is easy to state and woefully difficulty to answer. In fact it is <a href="https://jeremykun.com/2012/02/08/busy-beavers-and-the-quest-for-big-numbers/">incomputable</a>.
+</p>
+
+<p>
+The following is a slightly formatted version of the <a href="https://en.wikipedia.org/wiki/Turing_machine#Description">Wikipedia description of a Turing machine</a>.
+</p>
+<ol class="org-ol">
+<li>A Turing machine has n "operational" states plus a Halt state, where n is a positive integer, and one of the n states is distinguished as the starting state.</li>
+<li>The machine uses a single two-way infinite (or unbounded) tape.</li>
+<li>The tape alphabet is {0, 1}, with 0 serving as the blank symbol.</li>
+<li>The machine's transition function takes two inputs:
+<ol class="org-ol">
+<li>the current non-Halt state,</li>
+<li>the symbol in the current tape cell,</li>
+<li>and produces three outputs:
+<ol class="org-ol">
+<li>a symbol to write over the symbol in the current tape cell (it may be the same symbol as the symbol overwritten),</li>
+<li>a direction to move (left or right@";" that is, shift to the tape cell one place to the left or right of the current cell), and</li>
+<li>a state to transition into (which may be the Halt state).</li>
+</ol></li>
+</ol></li>
+</ol>
+
+<p>
+We will use it to guide us to write a simple instance that computes a solution to the Busy Beaver problem. A n-state Turing machine has \( (4n + 4)2n \)states. The formula is (symbols × directions × (states + 1))(symbols × states). The transition function (how to figure out where to go next may be seen as a finite look-up table. Each row of the table is a 5-tuple: (current state, current symbol, symbol to write, direction of shift, next state). Our goal with the Busy Beaver problem is to run our machine to produce as long a series of uninterrupted ones as we can and then <b>halt</b>.
+</p>
+
+<p>
+What it means to "run" a Turing machine is to start in the starting state with the current tape cell being any cell of a blank (all-0) "tape", and then iterate the transition function. If the Halt state is entered then the number of 1s remaining on the tape is called the machine's score. Different transition rules will give us different outputs, so we can score our machine based on its performance. 
+</p>
+
+<p>
+To restate in a more general way, the n-state busy beaver (BB-n) game is a contest to find an n-state Turing machine having the largest possible score — the largest number of 1s on its tape after halting. A machine that attains the largest possible score among all n-state Turing machines is called an n-state busy beaver, and a machine whose score is merely the highest so far attained (perhaps not the largest possible) is called a champion n-state machine.
+</p>
+</div>
+<div id="outline-container-org5017f8f" class="outline-4">
+<h4 id="org5017f8f"><span class="section-number-4">3.7.1.</span> A Busy Beaver Warm-Up</h4>
+<div class="outline-text-4" id="text-3-7-1">
+<p>
+A simple version of the Busy Beaver problem, and one you can do by hand with pencil and paper, is the n=2 version. Create a Turing Machine with the following transition rules:
+</p>
+
+<p>
+Here is the transition table for our machine:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Machine Tuple In</th>
+<th scope="col" class="org-left">Machine Tuple Out</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">a0</td>
+<td class="org-left">b1r</td>
+</tr>
+
+<tr>
+<td class="org-left">a1</td>
+<td class="org-left">b1l</td>
+</tr>
+
+<tr>
+<td class="org-left">b0</td>
+<td class="org-left">a1l</td>
+</tr>
+
+<tr>
+<td class="org-left">b1</td>
+<td class="org-left">h1r</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org79c4bc1" class="outline-4">
+<h4 id="org79c4bc1"><span class="section-number-4">3.7.2.</span> Busy Beaver Problem Demo Code</h4>
+<div class="outline-text-4" id="text-3-7-2">
+<div class="org-src-container">
+<pre class="src src-haskell"><span class="linenr"> 1: </span><span style="color: #b6a0ff;">module</span> <span style="color: #6ae4b9;">BusyBeaver</span> <span style="color: #b6a0ff;">where</span>
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #b6a0ff;">import</span> <span style="color: #6ae4b9;">Data.Set</span> (<span style="color: #6ae4b9;">Set</span>,fromList)
+<span class="linenr"> 4: </span><span style="color: #b6a0ff;">import</span> <span style="color: #b6a0ff;">qualified</span> <span style="color: #6ae4b9;">Data.Map.Lazy</span> <span style="color: #b6a0ff;">as</span> <span style="color: #6ae4b9;">Map</span>
+<span class="linenr"> 5: </span><span style="color: #b6a0ff;">import</span> <span style="color: #6ae4b9;">Data.Map.Lazy</span> (<span style="color: #6ae4b9;">Map</span>)
+<span class="linenr"> 6: </span>
+<span class="linenr"> 7: </span><span style="color: #b6a0ff;">type</span> <span style="color: #6ae4b9;">TMState</span> <span style="color: #00d3d0;">=</span> <span style="color: #6ae4b9;">Char</span>
+<span class="linenr"> 8: </span><span style="color: #b6a0ff;">type</span> <span style="color: #6ae4b9;">Position</span> <span style="color: #00d3d0;">=</span> <span style="color: #6ae4b9;">Int</span> 
+<span class="linenr"> 9: </span><span style="color: #b6a0ff;">data</span> <span style="color: #6ae4b9;">BinNum</span> <span style="color: #00d3d0;">=</span> <span style="color: #6ae4b9;">Zero</span> <span style="color: #00d3d0;">|</span> <span style="color: #6ae4b9;">One</span> <span style="color: #b6a0ff;">deriving</span> (<span style="color: #6ae4b9;">Show</span>, <span style="color: #6ae4b9;">Eq</span>, <span style="color: #6ae4b9;">Ord</span>, <span style="color: #6ae4b9;">Enum</span>)
+<span class="linenr">10: </span><span style="color: #b6a0ff;">type</span> <span style="color: #6ae4b9;">TMTape</span> <span style="color: #00d3d0;">=</span> <span style="color: #6ae4b9;">Map</span> <span style="color: #6ae4b9;">Int</span> <span style="color: #6ae4b9;">BinNum</span>
+<span class="linenr">11: </span>
+<span class="linenr">12: </span><span style="color: #b6a0ff;">data</span> <span style="color: #6ae4b9;">TuringMachine</span> <span style="color: #00d3d0;">=</span> <span style="color: #6ae4b9;">TM</span>
+<span class="linenr">13: </span>  { state <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">TMState</span>
+<span class="linenr">14: </span>  , tape  <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">TMTape</span>
+<span class="linenr">15: </span>  , headLoc <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Int</span>} <span style="color: #b6a0ff;">deriving</span> <span style="color: #6ae4b9;">Show</span>
+<span class="linenr">16: </span>
+<span class="linenr">17: </span><span style="color: #feacd0;">testStates</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Set</span> <span style="color: #6ae4b9;">TMState</span>
+<span class="linenr">18: </span><span style="color: #feacd0;">testStates</span> <span style="color: #00d3d0;">=</span> fromList [<span style="color: #79a8ff;">'a'</span>,<span style="color: #79a8ff;">'b'</span>,<span style="color: #79a8ff;">'h'</span>]
+<span class="linenr">19: </span>
+<span class="linenr">20: </span><span style="color: #feacd0;">initialTape</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">Map</span> <span style="color: #6ae4b9;">Int</span> <span style="color: #6ae4b9;">BinNum</span>
+<span class="linenr">21: </span><span style="color: #feacd0;">initialTape</span> <span style="color: #00d3d0;">=</span> Map.empty
+<span class="linenr">22: </span>
+<span class="linenr">23: </span><span style="color: #feacd0;">defaultTapeCell</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">BinNum</span>
+<span class="linenr">24: </span><span style="color: #feacd0;">defaultTapeCell</span> <span style="color: #00d3d0;">=</span> <span style="color: #6ae4b9;">Zero</span>
+<span class="linenr">25: </span>
+<span class="linenr">26: </span><span style="color: #feacd0;">initialState</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">TMState</span>
+<span class="linenr">27: </span><span style="color: #feacd0;">initialState</span> <span style="color: #00d3d0;">=</span> <span style="color: #79a8ff;">'a'</span>
+<span class="linenr">28: </span>
+<span class="linenr">29: </span><span style="color: #feacd0;">initialTM</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">TuringMachine</span>
+<span class="linenr">30: </span><span style="color: #feacd0;">initialTM</span> <span style="color: #00d3d0;">=</span> <span style="color: #6ae4b9;">TM</span> initialState initialTape 0
+<span class="linenr">31: </span>
+<span class="linenr">32: </span><span style="color: #feacd0;">readFromTape</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">TMTape</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Int</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">BinNum</span>
+<span class="linenr">33: </span><span style="color: #feacd0;">readFromTape</span> t i <span style="color: #00d3d0;">=</span>
+<span class="linenr">34: </span>  Map.findWithDefault <span style="color: #6ae4b9;">Zero</span> i t
+<span class="linenr">35: </span>
+<span class="linenr">36: </span><span style="color: #feacd0;">writeToTape</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">BinNum</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">Int</span> <span style="color: #00d3d0;">-&gt;</span>  <span style="color: #6ae4b9;">TMTape</span> <span style="color: #00d3d0;">-&gt;</span>  <span style="color: #6ae4b9;">TMTape</span>
+<span class="linenr">37: </span><span style="color: #feacd0;">writeToTape</span> bn hl <span style="color: #00d3d0;">=</span>  Map.insert hl bn
+<span class="linenr">38: </span>
+<span class="linenr">39: </span>
+<span class="linenr">40: </span><span style="color: #feacd0;">updTM</span> <span style="color: #00d3d0;">::</span> <span style="color: #6ae4b9;">TuringMachine</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #6ae4b9;">TuringMachine</span>
+<span class="linenr">41: </span><span style="color: #feacd0;">updTM</span> tm<span style="color: #00d3d0;">@</span>(<span style="color: #6ae4b9;">TM</span> st t hl) <span style="color: #00d3d0;">=</span>
+<span class="linenr">42: </span>  <span style="color: #b6a0ff;">let</span> bn <span style="color: #00d3d0;">=</span> readFromTape t hl <span style="color: #b6a0ff;">in</span>
+<span class="linenr">43: </span>  <span style="color: #b6a0ff;">case</span> st <span style="color: #b6a0ff;">of</span>
+<span class="linenr">44: </span>    <span style="color: #79a8ff;">'a'</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #b6a0ff;">case</span> bn <span style="color: #b6a0ff;">of</span>
+<span class="linenr">45: </span>             <span style="color: #6ae4b9;">Zero</span> <span style="color: #00d3d0;">-&gt;</span> tm {state <span style="color: #00d3d0;">=</span> <span style="color: #79a8ff;">'b'</span>
+<span class="linenr">46: </span>                        , tape <span style="color: #00d3d0;">=</span> writeToTape <span style="color: #6ae4b9;">One</span>  hl t
+<span class="linenr">47: </span>                        , headLoc <span style="color: #00d3d0;">=</span>  hl <span style="color: #00d3d0;">+</span> 1}
+<span class="linenr">48: </span>             <span style="color: #6ae4b9;">One</span>  <span style="color: #00d3d0;">-&gt;</span> tm {state <span style="color: #00d3d0;">=</span> <span style="color: #79a8ff;">'b'</span>
+<span class="linenr">49: </span>                        , tape <span style="color: #00d3d0;">=</span> writeToTape <span style="color: #6ae4b9;">One</span>  hl t
+<span class="linenr">50: </span>                        , headLoc <span style="color: #00d3d0;">=</span>  hl <span style="color: #00d3d0;">-</span> 1}
+<span class="linenr">51: </span>    <span style="color: #79a8ff;">'b'</span> <span style="color: #00d3d0;">-&gt;</span> <span style="color: #b6a0ff;">case</span> bn <span style="color: #b6a0ff;">of</span>
+<span class="linenr">52: </span>             <span style="color: #6ae4b9;">Zero</span> <span style="color: #00d3d0;">-&gt;</span> tm {state <span style="color: #00d3d0;">=</span> <span style="color: #79a8ff;">'a'</span>
+<span class="linenr">53: </span>                        , tape <span style="color: #00d3d0;">=</span> writeToTape <span style="color: #6ae4b9;">One</span>  hl t
+<span class="linenr">54: </span>                        , headLoc <span style="color: #00d3d0;">=</span>  hl <span style="color: #00d3d0;">-</span> 1}
+<span class="linenr">55: </span>             <span style="color: #6ae4b9;">One</span>  <span style="color: #00d3d0;">-&gt;</span> tm {state <span style="color: #00d3d0;">=</span> <span style="color: #79a8ff;">'h'</span>
+<span class="linenr">56: </span>                        , tape <span style="color: #00d3d0;">=</span> writeToTape <span style="color: #6ae4b9;">One</span>  hl t
+<span class="linenr">57: </span>                        , headLoc <span style="color: #00d3d0;">=</span>  hl }
+<span class="linenr">58: </span>    <span style="color: #79a8ff;">'h'</span> <span style="color: #00d3d0;">-&gt;</span> tm
+<span class="linenr">59: </span>    <span style="color: #b6a0ff;">_</span> <span style="color: #00d3d0;">-&gt;</span> error <span style="color: #79a8ff;">"Entered incorrect state variable"</span> 
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-haskell"><span style="color: #6ae4b9;">:</span>load <span style="color: #00d3d0;">./</span>code<span style="color: #00d3d0;">/</span>BusyBeaver.hs
+<span style="color: #b6a0ff;">let</span> d <span style="color: #00d3d0;">=</span> iterate updTM initialTM 
+tape <span style="color: #feacd0;">$</span> d <span style="color: #00d3d0;">!!</span> 7
+</pre>
+</div>
+
+<pre class="example">
+fromList [(-2,One),(-1,One),(0,One),(1,One)]
+</pre>
+</div>
+<ol class="org-ol">
+<li><a id="org4e68dfa"></a>Busy Beaver Homework<br />
+<div class="outline-text-5" id="text-3-7-2-1">
+<p>
+See Dropbox on Learn
+</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org36f515a" class="outline-2">
+<h2 id="org36f515a"><span class="section-number-2">4.</span> Theory</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+These are just place holders for now.
+</p>
+<blockquote>
+<p>
+I have been wondering about the concept of explanation. I don't know if there is an agreed upon definition in this context. How do we know that an observation is "explained" other than that it is predicted by a theory? Or is the mathematics the same, and is explanation synonymous with post-diction? &#x2013; <a href="https://www.youtube.com/watch?v=jYUyd51MJDM&amp;list=PLsSR5xGtg8fWd3sc_0tjzFj4GyRhezkTd&amp;index=3&amp;t=3s">Joachim Vanderkerckhove</a> 
+</p>
+</blockquote>
+
+<p>
+Is the ability to predict the tides a theory of the tides? Is it an explanation of the tides?
+</p>
+
+<p>
+<a href="https://psycnet.apa.org/fulltext/2020-82366-001.pdf">Formalizing Verbal Theories. A tutorial by dialogue.</a>
+</p>
+
+<p>
+<a href="https://journals.physiology.org/doi/epdf/10.1152/jn.00195.2021">Forms of explanation and understanding for neuroscience and artificial intelligence</a>
+</p>
+
+<p>
+<a href="https://smaldino.com/wp/wp-content/uploads/2018/01/Smaldino2017-ModelsAreStupid.pdf">Models are Stupid, and We Need More of Them</a>
+</p>
+
+<p>
+<a href="https://psycnet.apa.org/fulltext/2025-04988-001.pdf">Productive Explanation: A framework for evaluating explanations in psychological science</a>
+</p>
+
+<p>
+<a href="https://journals.sagepub.com/doi/pdf/10.1177/1745691620969647">Theory Construction Methodology: A practical framework for building theories in psychology</a>
+</p>
+</div>
+</div>
+<div id="outline-container-orgc800508" class="outline-2">
+<h2 id="orgc800508"><span class="section-number-2">5.</span> Math and Code</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+We will group these two by subdomains to keep the connections fresh.
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+see David Marr's <b>Vision</b>. 
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+The limits of my language means the limits of my world. &#x2013; Ludwig Wittgenstein (proposition 5.6 Tractatus Logico-Philosophicus) 
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Date: Winter 2026</p>
+<p class="author">Author: Britt Anderson</p>
+<p class="date">Created: 2025-12-12 Fri 06:49</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
