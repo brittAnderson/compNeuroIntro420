@@ -184,7 +184,6 @@ The changes to whatever code you have for the frictionless spring should require
 
 
 
-
 ** Integrate and Fire Neuron
 #+begin_quote
 Is the integrate and fire model used much in modeling in the present time? [[https://scholar.google.com/scholar?as_ylo=2020&q=%22integrate+and+fire%22+neuron&hl=en&as_sdt=7,39][answer]]
@@ -301,7 +300,6 @@ The Integrate and Fire homework has two components. One practical and one theore
 Practically, submit an integrate and fire program. Do something to show that you had something to do with the coding and you understand what is happening.
 
 Theoretically, look at [[https://redwood.berkeley.edu/wp-content/uploads/2018/08/mainen-sejnowski.pdf][this article (pdf)]] and tell me how you feel our integrate and fire model compares to these actual real world spiking data when both are give constant input. What are the implications for using the integrate and fire model as a model of neuronal function? 
-
 
 
 ** Hodgkin and Huxley Model
@@ -436,8 +434,6 @@ Then you must select one of the sets of \gamma from their [[https://link.springe
 
 To start implement the new /n/ channel and set all the \gamma s to 1. This should work exactly like the old model. Generate a plot showing that it does. For the second plot generate the same plot with your altered $\gamma$ values.
 
-
-
 * What is computation and what is its role in cognitive science?
   [[https://link.springer.com/content/pdf/10.1007/978-3-642-41375-9_1][Chapter 1 of Physical Computation in Cognitive Science]] by Nir Fresco
 ** What do you think?
@@ -478,71 +474,6 @@ One definition of whether something is computable is whether there exists a Turi
 
 *** Classroom Activity
 Let's develop pseudo-code for the implementing a Turing Machine
-
-** The Lambda Calculus
-  
-Another model of computation is the /lambda calculus/.
-
-The lambda calculus was developed as a theory of functions. [[https://news.stanford.edu/news/2011/october/john-mccarthy-obit-102511.html][John McCarthy]] invented the computer programming language Lisp as a theoretical exercise for working on the theory of computable functions. He felt the Turing machine was too mechanical and too awkward for this sort of theoretical work. He wanted a better tool; a better metaphor. He adopted the lambda of the lambda calculus and the ~eval~ function to take in lisp programs and execute them. Later one of his [[https://en.wikipedia.org/wiki/Steve_Russell_(computer_scientist)][collaborators]] observed that it was relatively straightforward to implement this theoretical language as a real programming language. A bit more of the history this development can be found [[https://lwn.net/Articles/778550/][here]]. To get more details see [cite/t:see @michaelson11_lambd].
-
-*** Some Details and Interesting Facts about the Lambda Calculus
-1. There is not just one lambda calculus.
-2. To have the lambda calculus you need to specify your algebra. What are the rules for reducing things (i.e. your computations), what are the allowed symbols, and what do things mean? A "lambda calculus" is a way of handling "lambda expressions."[fn:3]
-
-*** Into the Weeds
-
-*Terms* are either /simple variables/ e.g. $x$ or $y$ or /composite terms/ like \( \lambda~v~t_1 \). Having two terms next to each other \( t_1~t_2 \) means "apply" $t_1$ to $t_2$. The meaning of a term like \( \lambda~v~.~ t_1 \) is the value returned by the lambda abstraction. The meaning part is sometimes designated in writing by formulas using arrows, such as \(t_1~\rightarrow~t_2 \).[fn:2]
-
-Functions have the form \lambda <name> . <body> . Note the "dot". This separates the name from the body of expressions that it names. <body> is also an expression (note the recursion that is built in).\marginpar{\raggedright What are recursive functions?}
-
-Some "axioms" you supply, or that [[https://plato.stanford.edu/entries/church/][Alonzo Church]] did are:
-- Beta reduction
-  apply the function, e.g. (\lambda x.M) N = M[x:N] this latter is just a way of saying that you will substitute the value "N" everytime you see an "x" in whatever expression "M" is.
-- Alpha conversion
-  essentially you are just renaming variables
-- Eta reduction
-  Is a way of getting rid of things that don't change anything. If for example \(f(x) = g(x)\) then you could just save yourself some ink and write: f = g. A more technical way of saying things, that we will not go into, is that you can free yourself of free variables, that is if there is no "x" in "f" then \(f = \lambda x.(f x) \).
-  
-Your goal is often the *normal* form. A lambda term that cannot be reduced anymore. Think of it like simplifying an equation. It helps you get to the essentials, and can make it easier to compare things to see when they are the same. 
-
-The equivalent of the halting problem for the Turing machine is the reaching of a /normal form/ in the  lambda calculus. 
-
-*** Some Opportunities for Practice
-- Write the lambda expression for the identity function?
-  - But first we better decide what the identity function is?
-- Apply the identity function to itself.
-- What is the identity function in whatever language you are hoping to use?
-- An interesting lambda expression is the "self-application" expression: \( \lambda~s . (s~s) \).
-  - With pencil and paper try to:
-    - apply this to the identity,
-    - apply the identity to the self-application,
-    - apply the self-application to itself. What is its termination status?
-
-*** What are the differences?
-We have seen Turing Machines and a Lambda Calculus. They look very different. Another model of computation that I have mentioned, but not presented is [[https://plato.stanford.edu/entries/recursive-functions/][recursive function theory]]. It looks different still.
-
-
-#+Begin_quote
-What does it mean for our idea that the mind is a "computer" if there are three different models of computation?
-#+end_quote
-
-Always question assumptions: [[https://en.wikipedia.org/wiki/Church%E2%80%93Turing_thesis][Church-Turing Conjecture]] . 
-
-#+Begin_quote
-1. Are Turing machines /digital?
-2. Is this an important distinction?
-3. Does this mean that analog computations are omitted?
-4. Would an analog paradigm be a better match to modeling mental activity?
-#+End_quote
-
-** Classical Computational Theory of Mind
-#+Begin_quote
-Does a computational theory of mind mean that minds are [[https://plato.stanford.edu/entries/multiple-realizability][multiply realizable]] ?
-#+end_quote
-
-The classical computational theory of mind says that in all important ways the mind is like a Turing machine. If we want to  model (or emulate) functions of mind one way would be to build a Turing machine. However, this can be a practical challenge, and one can question the insight gained from this approach. Still given the theoretical and practical prominence given to Turing computability it behooves us to know what a Turing machine truly is.
- 
-For something to be computatble the Turing machine that computes it must halt. So, we would like to know before we run our machine whether it will halt or not. Unfortunately, the answer to the halting problem is that we cannot know in advance, and in general, whether a Turing machine will halt. Computabilty is therefore /undecidable/.
 
 ** Programming a Turing Machine: the Busy Beaver
 
@@ -594,6 +525,117 @@ tape $ d !! 7
 **** Busy Beaver Homework
 See Dropbox on Learn
 
+** The Lambda Calculus
+
+Turing machines are probably the most common framework used for asserting that cognition is computation, but there are others. Another widely used construction, especially in theoretical computer science, is the *lambda calculus*. Although these two constructions appear quite different on the surface, it has been shown that any thing that can be computed in one can be computed by the other. They are equivalent. This has led to a /conjecture/ that anything computable can be computed by a Turing Machine or the Lambda Calculus (and some other additional, equivalent constructions).
+
+*** Lambda Notation Basics
+
+The lambda calculus is built entirely from functions.
+
+1) Syntax
+   1. =\x.x= means "a function that takes input x and returns x" (the identity function)
+   2. =\x.y= means "a function that takes input x and returns y" (a constant function)
+   3. Application: =(\x.x) 5= means "apply the identity function to 5", which gives us =5=
+    
+   Try evaluating these by hand:
+   1. =(\x.x) 7= evaluates to =7=
+   2. =(\x.5) 9= evaluates to =5= (the input 9 is ignored). 
+   3. =(\x.x x) 3= evaluates to =3 3= (we apply 3 to itself... which doesn't make sense, but syntactically this is what happens)
+2) The Basic Combinators
+   - I - Identity :: =I = \x.x=
+     Takes its input and returns it unchanged.
+     Example: =I 5 → 5=
+   - K - Constant (Kestrel) :: =K = \x.\y.x=
+     Takes two inputs and returns the first, ignoring the second.
+     Example: =K a b → a=
+     Think of this as "pick the first argument."
+   - S - Substitution (Starling) :: =S = \x.\y.\z.(x z)(y z)=
+     This one is trickier. It takes three inputs and applies the first to the third, then applies the second to the third, then applies those results to each other.
+     Example trace for =S K K x=:
+     1. =S K K x=
+     2. =(K x)(K x)= (by definition of S)
+     3. =x= (because K x returns a function that ignores its input and returns x, so (K x)(anything) = x)
+     Notice: we just built the identity function I from K and S!
+3) A Non-Terminating Example
+   Here's something interesting: =(\x.x x)(\x.x x)=
+
+   Try to evaluate it:
+   1. =(\x.x x)(\x.x x)=
+   2. Applying the left function to the right: =(\x.x x)(\x.x x)=
+   3. We're back where we started!
+   
+   This is an infinite loop, but we got it using only function application. No =while= loops, no recursion keyword - just functions.
+4) Write a python or R implementation of each of I, K, and S. Try running this code. Verify that:
+   - =I(5)= returns =5=
+   - =K(3)(7)= returns =3=
+   - =S(K)(K)(5)= returns =5= (it acts like the identity function)
+
+
+*** Python Implementation :noexport:
+
+Let's make these combinators concrete by implementing them in Python:
+
+#+BEGIN_SRC python :session *combi* :exports results :results output
+# The three basic combinators
+I = lambda x: x
+K = lambda x: lambda y: x
+S = lambda x: lambda y: lambda z: x(z)(y(z))
+
+# Test them out
+print("I(5) =", I(5))
+print("K(3)(7) =", K(3)(7))
+print("S(K)(K)(5) =", S(K)(K)(5))
+
+# The S(K)(K) combination gives us I
+print("S(K)(K)(42) behaves like I(42):", S(K)(K)(42))
+#+END_SRC
+
+#+RESULTS:
+: I(5) = 5
+: K(3)(7) = 3
+: S(K)(K)(5) = 5
+: S(K)(K)(42) behaves like I(42): 42
+
+** The Church-Turing Thesis
+   The three combinators (I, K, S) are sufficient to compute *anything* that your Turing machine can compute. 
+   
+   You can build:
+   - Numbers
+   - Arithmetic operations
+   - Conditional logic
+   - Recursion
+   - All computable functions
+   
+** Two Completely Different Models
+
+| Turing Machine                | Lambda Calculus              |
+|-------------------------------+------------------------------|
+| Tape, head, states            | Functions only               |
+| Symbols and movement          | Application and substitution |
+| Physical/mechanical intuition | Abstract/mathematical        |
+| *Same computational power*    | *Same computational power*   |
+
+This equivalence is one of the deepest results in computer science. It suggests that "computation" is a fundamental concept that transcends any particular implementation.
+
+** Implications
+   If anything that is computable can be computed by one of these systems,
+
+   and if thinking *is* computation,
+
+   then does that mean that all thinking could be realized by a Turing machine,
+
+   and since Turing Machines can be built from non-biological parts that any Universal Turing Machine would have all the objective *and* subjective capabilities of a human thinker?
+   
+
+** Classical Computational Theory of Mind
+#+Begin_quote
+Does a computational theory of mind mean that minds are [[https://plato.stanford.edu/entries/multiple-realizability][multiply realizable]] ?
+#+end_quote
+
+The classical computational theory of mind says that in all important ways the mind is like a Turing machine. If we want to  model (or emulate) functions of mind one way would be to build a Turing machine. However, this can be a practical challenge, and one can question the insight gained from this approach. Still given the theoretical and practical prominence given to Turing computability it behooves us to know what a Turing machine truly is.
+ 
+For something to be computatble the Turing machine that computes it must halt. So, we would like to know before we run our machine whether it will halt or not. Unfortunately, the answer to the halting problem is that we cannot know in advance, and in general, whether a Turing machine will halt. Computabilty is therefore /undecidable/.
 
 
 
