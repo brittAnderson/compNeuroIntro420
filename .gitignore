@@ -48,5 +48,7 @@ backpropagation-main/
 library/
 
 w2026/dist-newstyle/cache/
+w2026/dist-newstyle/build/
+
 
 w2026/junkdrawer/
