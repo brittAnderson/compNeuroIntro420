@@ -1,4 +1,4 @@
-module Automata () where
+module Automata (drawAutomata) where
 
 import Codec.Picture (Image, PixelRGB8 (..), generateImage, writePng)
 import Data.Array (listArray, (!))
@@ -57,7 +57,8 @@ mkGridWithRule ruleNum width height =
 
 drawAutomata :: Int -> Int -> Int -> FilePath -> IO ()
 drawAutomata ruleNum size scale path =
-  writePng path img
+  do writePng path img
+     putStr path
   where
     rawGrid = mkGridWithRule ruleNum size size
     bounds = ((0, 0), (size - 1, size - 1))
