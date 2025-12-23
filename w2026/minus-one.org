@@ -72,10 +72,10 @@
 [[file:./images/Forgetting_curve_decline.svg.png]]
 *** A Mathematical Function
 #+begin_src haskell :dir . :session :results file graphics :file ./images/expdecay.png :exports both
-      import Graphics.Gnuplot.Simple
-      plotFunc [PNG "./images/expdecay.png"]
-      (linearScale 100 (1,6))
-      ((\x -> exp (1.0/x)) :: Double -> Double)
+  import Graphics.Gnuplot.Simple
+  plotFunc [PNG "./images/expdecay.png"]
+  (linearScale 100 (1,6))
+  ((\x -> exp (1.0/x)) :: Double -> Double)
 #+end_src
 
 #+Name: exponential-function
@@ -140,15 +140,15 @@
 
 Now let's test it:
 #+begin_src haskell :results output :exports both
-:load "./code/sqrt.hs"
-getCubeRoot 27 1 0.001
-getCubeRoot 8 1 0.001
-getCubeRoot 141 1 0.001
+  import Sqrt
+  --:load "./code/sqrt.hs"
+  getCubeRoot 27 1 0.001
+  getCubeRoot 8 1 0.001
+  getCubeRoot 141 1 0.001
 #+end_src
 
 #+RESULTS:
-: [1 of 2] Compiling Main             ( code/sqrt.hs, interpreted )
-: Ok, one module loaded.
+: <interactive>:4:1-3: error: [GHC-58481] parse error on input ‘--:’
 : 3.0000005410641766
 : 2.000004911675504
 : 5.204827869200383
@@ -169,9 +169,10 @@ Unfortunately the spring equation is for the *second* derivative of location rel
 
 
 #+begin_src haskell :dir . :session :results file graphics :file ./images/spring.png :exports both
-    :load "./code/Spring.hs"
-    plotList [PNG "./images/spring.png"]
-      $ map (\s -> sLoc s) $ releaseSpring 2000
+  import Spring
+  --    :load "./code/Spring.hs"
+  plotList [PNG "./images/spring.png"]
+        $ map (\s -> sLoc s) $ releaseSpring 2000
 #+end_src
 
 #+Name: friclessSpring
@@ -284,7 +285,8 @@ Unlike real neurons the Integrate and Fire neuron model does not have a natural 
 
 #+INCLUDE: "./code/IandF.hs" src haskell -n 
 #+begin_src haskell :dir . :session :results file graphics :file ./images/iandf.png :exports both
-  :load ./code/IandF.hs
+  import IandF
+--  :load ./code/IandF.hs
     let run200 = iterate oneRunIandF initialStrut !! 200
           vs = voltages run200
           cs = currents run200
@@ -414,7 +416,8 @@ TODO: reformat code to fit on page
 #+INCLUDE: "./code/HandH.hs" src haskell -n 
 
 #+begin_src haskell :dir . :session :results file graphics :file ./images/handh.png :exports both
-  :load ./code/HandH.hs
+  import HandH
+--  :load ./code/HandH.hs
     let myData = take 5000 $ iterate (updNeuron healthyNeuron pSet1 ) initialState 
           vs = map vns myData
           cs = map ic myData
@@ -426,6 +429,8 @@ TODO: reformat code to fit on page
 
 #+RESULTS:
 [[file:./images/handh.png]]
+
+
 
 
 **** Hodgkin and Huxley Homework
@@ -518,7 +523,8 @@ Here is the transition table for our machine:
 #+INCLUDE: "./code/BusyBeaver.hs" src haskell -n 
 
 #+begin_src haskell :dir . :session :output :exports both
-:load ./code/BusyBeaver.hs
+import BusyBeaver
+--:load ./code/BusyBeaver.hs
 let d = iterate updTM initialTM 
 tape $ d !! 7
 #+end_src
@@ -660,16 +666,16 @@ IAMHERE. Need to rewrite this in haskell.
 
 #+Name: 22-cl-png
 #+Caption: Invocation of Common Lisp Code for Generating a PNG file of Rule 22
-#+begin_src lisp :results graphics file :file "./images/r22.png" :exports both
-  (load "/home/britt/gitRepos/compNeuroIntro420/codeLib/cl/cellular-automata.lisp")
-  (in-package :CA)
-  (rule-num-to-png 22 "./images/r22.png")
+#+begin_src haskell :session :results file graphics :file ./images/rule30.png :exports both
+  import Automata
+  drawAutomata 30 128 5 "./images/rule30.png"
 #+end_src
 
+
 #+Name: r22-png
-#+Caption: Rule 22
+#+Caption: Rule 30
 #+RESULTS: 22-cl-png
-[[file:./images/r22.png]]
+[[file:./images/rule30.png]]
 
 
 *Lessons Learned*
