@@ -15,23 +15,42 @@
 #+bibliography: /home/britt/gitRepos/masterBib/bayatt.bib
 #+cite_export: csl /home/britt/gitRepos/brittsite/assets/chicago-fullnote-bibliography.csl
 
-
 * Welcome to Psych 420
 ** Introductions
 1. Who am I? 
 2. Who are you?
    Send me an email (britt@uwaterloo.ca) right now (from your uwaterloo address) with
-   1. Your name (and any pronounciation tips).
-   2. Area of concentration,
-   3. Year of study,
-   4. Programming language you are most capable in (and your level of competency),
-   5. Reason you took this course.
+   1. The subject line must be exactly P420Intro; nothing more; nothing less. Capitalization matters.
+   2. Your name (and any pronounciation tips).
+   3. Area of concentration,
+   4. Year of study,
+   5. Programming language you are most capable in (and your level of competency),
+   6. Reason you took this course.
 3. What you will need: A functioning computer that you know how to use.
    What to do now:
    - Update your operating system.
    - Verify you know how to find a file on your computer (e.g. do you know the name of your home directory)?
    - Confirm you know how to install software on your computer.
    - You know (or will know by next week) what ~git~ is and how to use it, and that you will have an ~IDE~ installed.
+** What I am assuming you know or will learn on your own.
+   1. Your computer is up to date.
+   2. You know what a directory is and how to find files on your computer.
+   3. You know how to install software.
+   4. You have at least beginner level programming experience in one course.
+   5. You know what git/github are.
+*** What if you don't?
+    You will have to learn on your own or with a small group. You can consult the course notes for Psych 390 which does cover some of this material. Here is a link to the [[https://brittanderson.github.io/uwlooP390/][wiki]].
+
+*** Git Clone and Github Acct :assignment:
+    An early home work will be a screen shot of your github homepage showing you forked or cloned the course repository. And the screen shot should be done using a program and not your phone. [[https://github.com/brittAnderson/compNeuroIntro420][Course Webpage]] . That is the course content. If you want to view a web viewable form you can go to this link: [[https://brittanderson.github.io/compNeuroIntro420/][course notes]].
+
+** Some recommendations.
+   You will want an IDE. I personally use emacs. Experience has taught me that only about 3 in a 100 of you will share my opinion. Thus, I recommend VS Code if you have no other preference. It is becoming a sort of de facto standard.
+
+   
+*** IDE Installed :assignment:
+    Send me a screen shot of the IDE you intend to use installed on your laptop. *No* phone cameras. Use the screenshot functionality of your computer. 
+
 
 ** What is computational cognitive (neuro)science?
   1. Form teams of two (or three if odd number).
@@ -57,7 +76,7 @@
    3. What is the relationship between cognition and neuroscience?
    4. All of which will benefit from better understanding what is a theory.
 ** What is Cognition?
-   Groups of three. No two members should be the same as the last group.
+   Groups of three. 
    [[https://doi.org/10.1016/j.cub.2019.05.044][What is Cognition?]]
    Each group gets an opinion (want three of four groups)
    Brainard/Byrne/Heyes/Suddendorf
