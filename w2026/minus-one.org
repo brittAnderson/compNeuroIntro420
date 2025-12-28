@@ -16,7 +16,7 @@
 #+cite_export: csl /home/britt/gitRepos/brittsite/assets/chicago-fullnote-bibliography.csl
 
 * Welcome to Psych 420
-** Introductions
+** Introductions :assignment:
 1. Who am I? 
 2. Who are you?
    Send me an email (britt@uwaterloo.ca) right now (from your uwaterloo address) with
@@ -51,9 +51,8 @@
 *** IDE Installed :assignment:
     Send me a screen shot of the IDE you intend to use installed on your laptop. *No* phone cameras. Use the screenshot functionality of your computer. 
 
-
 ** What is computational cognitive (neuro)science?
-  1. Form teams of two (or three if odd number).
+  1. Form groups of two (or three if odd number).
   2. Go to the following web site: [[https://2025.ccneuro.org/poster-sessions/?view=all][2025 Posters Cognitive Computational Neuroscience meeting]].
      1. Pick a poster.
 	Note it's label (letter-number; on the left)
@@ -76,7 +75,7 @@
    3. What is the relationship between cognition and neuroscience?
    4. All of which will benefit from better understanding what is a theory.
 ** What is Cognition?
-   Groups of three. 
+   Groups of three. I prefer you not have the same people in your group as last time. We want to promote meeting people. It makes it easier for you to help each other, find people at your own learning level to study and work with, gauge your own skill level, develop informal networks that may be of use outside of this class.
    [[https://doi.org/10.1016/j.cub.2019.05.044][What is Cognition?]]
    Each group gets an opinion (want three of four groups)
    Brainard/Byrne/Heyes/Suddendorf
@@ -101,8 +100,21 @@
 #+Caption: Plot of \( e^{\frac{1}{x}} \).
 #+RESULTS:
 [[file:./images/expdecay.png]]
+**** A digression on code
+     The above example is coded in [[https://www.haskell.org/][Haskell]]. If any of you feel like python or R are getting a bit stale and you would like to learn a new language I encourage you to consider Haskell. I picked it for use here because,
+     a) I like it and want to get better at using it,
+     b) I did not think many (or any) of you would know it,
+     c) And therefore I could talk about coding a particular algorithm without ruining your opportunity to practice coding it yourself.
 
+     But what about Large Language Models (LLMs)? They are great, and you should definitely use them, *but* use them deliberately and after reflection.
+     1) Do /not/ use them to do an exercise for you. You may learn something about LLMs, but you will /not/ learn how to code that algorithm and or very much about the programming language you want to master.
+     2) /Do/ use them to help your learning and understanding.
+	- You have written some code yourself and it is not working, and you can't figure out why. Ask your llm to find the bug /and/ explain it.
+	- You want to know if your code is idiomatic. Ask your llm for a critique and comment on working code.
+     3) If you have no idea how to get started /do/ ask an LLM to architect without asking it to code.
+     4) Do /not/ live in the web/browser app. Get yourself an api key and access the llm from your chosen ide. Two tools that I use often are [[https://aider.chat/][aider]] and [[https://openrouter.ai/][openrouter]]. The latter will give you access to free models. Aider will allow you to call the llm from the terminal.
 
+     This course is not to teach you how to use LLMs or set them up, but since many of us will be making use of them we should talk about the pros and cons of particular use cases and outputs. Treat your LLM usage like a citation. Say when and where you used it.
 *** What can we infer
     from the similarity between Figure [[forgetting-curve]] and Figure [[exponential-function]] ?
 *** Generate your own plot of the exponential function.
