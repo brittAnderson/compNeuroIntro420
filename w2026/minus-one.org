@@ -107,17 +107,17 @@
      c) And therefore I could talk about coding a particular algorithm without ruining your opportunity to practice coding it yourself.
 
      But what about Large Language Models (LLMs)? They are great, and you should definitely use them, *but* use them deliberately and after reflection.
-     1) Do /not/ use them to do an exercise for you. You may learn something about LLMs, but you will /not/ learn how to code that algorithm and or very much about the programming language you want to master.
+     1) Do /not/ use them to do an exercise for you. You may learn something about LLMs, but you will /not/ learn how to code that algorithm or very much about the programming language you want to master.
      2) /Do/ use them to help your learning and understanding.
 	- You have written some code yourself and it is not working, and you can't figure out why. Ask your llm to find the bug /and/ explain it.
 	- You want to know if your code is idiomatic. Ask your llm for a critique and comment on working code.
      3) If you have no idea how to get started /do/ ask an LLM to architect without asking it to code.
-     4) Do /not/ live in the web/browser app. Get yourself an api key and access the llm from your chosen ide. Two tools that I use often are [[https://aider.chat/][aider]] and [[https://openrouter.ai/][openrouter]]. The latter will give you access to free models. Aider will allow you to call the llm from the terminal.
+     4) Do /not/ live in the web/browser app. Get yourself an api key and access the LLM from your chosen IDE. Two tools that I use often are [[https://aider.chat/][aider]] and [[https://openrouter.ai/][openrouter]]. The latter will give you access to free models. Aider will allow you to call the LLM from the terminal. In Emacs I find *gptel* extremely convenient. 
 
      This course is not to teach you how to use LLMs or set them up, but since many of us will be making use of them we should talk about the pros and cons of particular use cases and outputs. Treat your LLM usage like a citation. Say when and where you used it.
 *** What can we infer
     from the similarity between Figure [[forgetting-curve]] and Figure [[exponential-function]] ?
-*** Generate your own plot of the exponential function.
+*** Generate your own plot of the exponential function. :assignment:
 
 * Neurally Inspired Models 1: The cellular level
 ** Action Potentials
