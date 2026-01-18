@@ -693,19 +693,17 @@ This equivalence is one of the deepest results in computer science. It suggests 
 
 This process is tedious and mistake prone. One good reason for translating your theoretical ideas into code is so that you are not tripped up by such rote errors. Another thing to notice is that your "rule" is like a computer function. There is an input (the colors of the three squares above), processing, and an output of what color. In addition to this mechanical intuition a function can also be conceived as a set of pairs. The first element of the pair is the input, and the second element of the pair is the output.
 
-IAMHERE. Need to rewrite this in haskell.
-
-#+Name: 22-cl-png
-#+Caption: Invocation of Common Lisp Code for Generating a PNG file of Rule 22
+#+Name: 30-hs-png
+#+Caption: Invocation of Haskell Code for Generating a PNG file of Rule 30
 #+begin_src haskell :session :results file graphics :file ./images/rule30.png :exports both
   import Automata
   drawAutomata 30 128 5 "./images/rule30.png"
 #+end_src
 
 
-#+Name: r22-png
+#+Name: r30-png
 #+Caption: Rule 30
-#+RESULTS: 22-cl-png
+#+RESULTS: 30-hs-png
 [[file:./images/rule30.png]]
 
 
@@ -739,8 +737,6 @@ To motivate our learning, and to put a human face on the project these two links
 **** Podcast on the Hopfield Network
 This [[https://theoreticalneuroscience.no/thn22/][theoretical neuroscience podcast]] gives a nice long look at the Hopfield Network. It works up to its creation, its abstraction, and it social impact on shaping the field of computational neuroscience. It is long, but, if you make your way through it you will have a good overview of the model before you start coding it.
 
-
-
 *** Linear Algebra
 Show me the math!
 
@@ -767,6 +763,12 @@ What makes linear algebra linear?
 
 Give a definition or description of each of these objects and operations.
 #+end_quote
+
+Most programming languages have specialized functions for defining and operating on matrices. I am using lists for ease and clarity, but for programming on larger, non-trivial, instances you will want to use your languages optimized linear algebra libraries.
+
+#+begin_src haskell :sesssion :exports both
+mA = 
+#+end_src
 
 
 #+begin_src lean :eval never :export source
