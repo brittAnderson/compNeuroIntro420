@@ -100,6 +100,8 @@
 #+Caption: Plot of \( e^{\frac{1}{x}} \).
 #+RESULTS:
 [[file:./images/expdecay.png]]
+
+
 **** A digression on code
      The above example is coded in [[https://www.haskell.org/][Haskell]]. If any of you feel like python or R are getting a bit stale and you would like to learn a new language I encourage you to consider Haskell. I picked it for use here because,
      a) I like it and want to get better at using it,
@@ -172,7 +174,6 @@
 Now let's test it:
 #+begin_src haskell :results output :exports both
   import Sqrt
-  --:load "./code/sqrt.hs"
   getCubeRoot 27 1 0.001
   getCubeRoot 8 1 0.001
   getCubeRoot 141 1 0.001
@@ -183,6 +184,8 @@ Now let's test it:
 : 3.0000005410641766
 : 2.000004911675504
 : 5.204827869200383
+
+
 
 ** Using DEs - Practicing with Springs
 
@@ -766,25 +769,61 @@ Give a definition or description of each of these objects and operations.
 
 Most programming languages have specialized functions for defining and operating on matrices. I am using lists for ease and clarity, but for programming on larger, non-trivial, instances you will want to use your languages optimized linear algebra libraries.
 
-#+begin_src haskell :sesssion :exports both
-mA = 
+#+INCLUDE: "./code/MyMats.hs" src haskell -n 
+
+#+caption: Adding Two Matrices
+#+begin_src haskell :dir . :session :exports both :results output                 
+    import MyMats                                                                   
+    putStrLn $ "a = "
+    putStr $ prettyMat a
+    putStrLn $ "\nb = "
+    putStr $ prettyMat b
+    putStrLn $ "\na + b = "
+    putStr $ prettyMat $ add2SimpMats a b
 #+end_src
 
+#+RESULTS:
+: a =
+: [1,2,3]
+: [4,5,6]
+: b =
+: [-1,-2,-3]
+: [4,5,6]
+: a + b =
+: [0,0,0]
+: [8,10,12]
 
-#+begin_src lean :eval never :export source
-def matA : Array (Array Int8) := #[#[1,2],#[3,4]] 
-
-def matB : Array (Array Int8) := #[#[3,4],#[1,2]]
-
-def addMat (m n : Array (Array Int8)) :=
-  m.zipWith n
-    (fun rm rn => rm.zipWith rn
-      (fun a b => a + b))
-
-#eval addMat matA matB
-
+#+caption: Multiplying Two Matrices
+#+begin_src haskell :dir . :session :exports both :results output
+  putStrLn $ "c = "
+  putStr $ prettyMat c
+  putStrLn $ "\nd = "
+  putStr $ prettyMat d
+  putStrLn $ "\nc * d ="
+  putStr $ prettyMat $ multSimpMats c d
 #+end_src
 
+#+RESULTS:
+#+begin_example
+c =
+[1,2]
+[3,4]
+[5,6]
+d =
+[7,8,9]
+[10,11,12]
+c * d =
+[27,30,33]
+[61,68,75]
+[95,106,117]
+#+end_example
+
+Classroom Exercise
+#+begin_quote
+Can you give the answer for $$ d \cdot c$$?
+#+end_quote
+
+Classroom Exercise
 #+Begin_quote
 Can you demonstrate that matrix multiplication is not commutative?
 #+End_quote
@@ -796,6 +835,7 @@ For particular circumstances one or another of the different definitions may ser
 
 Similarly, we may consider a matrix as a collection of vectors or it may be more convenient to think of it as a rectangular array of numbers.
 
+Classroom Exercise
 #+Begin_quote
 What is the library or packge in the programming language that you will use for this course that has vectors and matrix functions?
 #+End_quote
@@ -835,8 +875,8 @@ What this equation shows is that Inputs ("I"'s) are passed to a neuron (also cal
 
 To prepare you for the next steps in writing a simple perceptron (the earliest form of artificial neural network), you should try to answer the following questions.
 
+Classroom Questions
 #+Begin_quote
-Questions:
 - What, geometrically speaking, is a plane?
 - What is a hyperplane?
 - What is linearly separability and how does that relate to planes and hyperplanes?
@@ -925,11 +965,10 @@ An example *Or*
 
 | First | Second | Truth |
 |-------+--------+-------|
-|     0 |      0 | nil   |
-|     0 |      1 | t     |
-|     1 |      0 | t     |
-|     1 |      1 | t     |
-
+|     0 |      0 | FALSE |
+|     0 |      1 | TRUE  |
+|     1 |      0 | TRUE  |
+|     1 |      1 | TRUE  |
 
 *** Our First Neural Network: The Perceptron
 
