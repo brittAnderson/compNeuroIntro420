@@ -1,0 +1,11 @@
+:set -Wall
+:set -isrc
+:module + MyLib
+:module + BusyBeaver
+:module + IandF
+:module + HandH
+:module + Spring
+:module + Sqrt
+:module + Automata
+:module + MyMats
+:module + Perceptron
