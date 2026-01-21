@@ -1,0 +1,28 @@
+module Perceptron where
+
+import MyMats as M
+
+type Value       = Integer
+type Weight a    = SimpMat a
+type Input  a    = SimpMat a
+type Threshold   = Double
+
+activity :: Num a => Weight a -> Input a -> a
+activity w i  =
+  let tempA = M.vectMult w i
+  in head (head tempA)
+
+appendBias :: Num a => Input a -> Input a
+appendBias v = [ x ++ [1] | x <- v]
+  
+iGteT :: Integer -> Threshold -> Integer
+iGteT intensity threshold 
+  | (fromInteger intensity :: Double) >= threshold  = 1
+  | (fromInteger intensity :: Double) <  threshold  = -1
+
+isCorrect :: Integer -> Integer -> Integer
+isCorrect des obs  = if des == obs then 1 else (-1)
+
+updateWeight :: Weight Integer -> Input Integer -> Integer -> Integer -> Weight Integer
+updateWeight ow inp iscorr igtet =
+  add2SimpMats ow [ map (* (iscorr * igtet)) (inp!!0)]
