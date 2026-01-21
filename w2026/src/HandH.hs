@@ -5,7 +5,7 @@ import Data.Maybe (fromMaybe)
 
 data SimParameters where
   SimParameters :: {
-    dt :: Float,
+    hhdt :: Float,
     maxT :: Float,
     initT :: Float,
     startTime :: Float,
@@ -14,7 +14,7 @@ data SimParameters where
     resistance :: Float,
     initialVoltage :: Float,
     injectionCurrent :: Float,
-    tau :: Float
+    hhtau :: Float
     } -> SimParameters
   deriving Show
 
@@ -108,8 +108,8 @@ healthyDynamics = NeuronDynamics {
 healthyNeuron :: Neuron
 healthyNeuron = Neuron healthyParams healthyDynamics
 
-initialState :: NeuronState
-initialState = NeuronState (initialVoltage pSet1) (injectionCurrent pSet1) (initT pSet1) Nothing Nothing Nothing
+hhInitialState :: NeuronState
+hhInitialState = NeuronState (initialVoltage pSet1) (injectionCurrent pSet1) (initT pSet1) Nothing Nothing Nothing
 
 updNeuron :: Neuron  ->  SimParameters  ->  NeuronState ->  NeuronState
 updNeuron neuin spin nsin = 
@@ -119,13 +119,13 @@ updNeuron neuin spin nsin =
       outi = ic nsin
       mnew = fromMaybe 0.0 (case mns nsin of
                               Nothing ->  Just $ minf eqneuin  voltagein
-                              Just x  ->  Just $ x + mdot eqneuin  voltagein x * dt spin)
+                              Just x  ->  Just $ x + mdot eqneuin  voltagein x * hhdt spin)
       nnew = fromMaybe 0.0 (case nns nsin of
                               Nothing ->  Just $ ninf eqneuin  voltagein
-                              Just x  ->  Just $ x + ndot eqneuin voltagein x * dt spin )
+                              Just x  ->  Just $ x + ndot eqneuin voltagein x * hhdt spin )
       hnew = fromMaybe 0.0 (case hns nsin of 
                               Nothing ->  Just $ hinf eqneuin voltagein
-                              Just x  ->  Just $ x + hdot eqneuin voltagein x * dt spin)
+                              Just x  ->  Just $ x + hdot eqneuin voltagein x * hhdt spin)
       dvdt = outi -
         (gna nparamsin * mnew ^ 3 * hnew *
           (voltagein - ena nparamsin) +
@@ -134,12 +134,12 @@ updNeuron neuin spin nsin =
           gl nparamsin *
           (voltagein - el nparamsin))
   in
-    nsin {vns = voltagein + dvdt * dt spin
+    nsin {vns = voltagein + dvdt * hhdt spin
          , ic = if (neuTime nsin  < stopTime spin) &&
                    (neuTime nsin  > startTime spin)
                 then injectionCurrent spin
                 else 0.0
-         , neuTime = neuTime nsin + dt spin 
+         , neuTime = neuTime nsin + hhdt spin 
          , mns = Just mnew
          , nns = Just nnew
          , hns = Just hnew

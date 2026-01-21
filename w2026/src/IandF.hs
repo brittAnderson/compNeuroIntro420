@@ -5,7 +5,7 @@ module IandF where
 dt,maxt,initt,starttime,stoptime,cap
   ,res,threshold,spikedisplay,initv
   ,voltage,injectioncurrent
-  ,tau :: Double
+  ,iandftau :: Double
 injectiontime,runningTime :: [Double]
 dt = 0.05
 maxt = 10.0
@@ -20,7 +20,7 @@ initv = 0.0
 voltage = initv
 injectioncurrent = 4.3
 injectiontime = [starttime, stoptime]
-tau = res * cap
+iandftau = res * cap
 runningTime = [0.0]
 
 data IandFStrut where
@@ -44,7 +44,7 @@ update ov roc ts = roc * ts + ov
 
 dvdt :: Double -> Double -> Double -> Double
 dvdt lres li lv =
- (1 / tau) * ( lres * li - lv )
+ (1 / iandftau) * ( lres * li - lv )
 
 between :: Double -> Double
 between ct = case injectiontime of

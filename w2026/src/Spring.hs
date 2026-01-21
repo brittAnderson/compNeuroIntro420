@@ -25,8 +25,8 @@ sprConst :: Double
 sprConst = 2.0 
 timeStep :: Double 
 timeStep = 0.05 
-dt :: Double
-dt = timeStep
+sprdt :: Double
+sprdt = timeStep
 
 
 {- Helper Functions -}

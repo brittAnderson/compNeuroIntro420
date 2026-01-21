@@ -1,31 +1,32 @@
+{-# OPTIONS_GHC -Wno-unused-matches #-}
 module MyMats where
 
-a :: SimpMat Integer
-a = [[1,2,3],[4,5,6]]
-b :: SimpMat Integer
-b = [[-1,-2,-3],[4,5,6]]
-c :: SimpMat Integer
-c = [[1,2],[3,4],[5,6]]           -- 3x2 matrix
-d :: SimpMat Integer
-d = [[7,8,9],[10,11,12]]          -- 2x3 matrix
-e :: SimpMat Integer
-e = [[1,0],[0,1]]                 -- 2x2 identity matrix
-f :: SimpMat Integer
-f = [[2,3],[4,5]]                 -- 2x2 matrix
-g :: SimpMat Integer
-g = [[1]]                         -- 1x1 matrix
-h :: SimpMat Integer
-h = [[1,2,3]]                     -- 1x3 matrix (row vector)
-i :: SimpMat Integer
-i = [[1],[2],[3]]                 -- 3x1 matrix (column vector)
-j :: SimpMat Integer
-j = [[0,0],[0,0]]                 -- 2x2 zero matrix
+mata :: SimpMat Integer
+mata = [[1,2,3],[4,5,6]]
+matb :: SimpMat Integer
+matb = [[-1,-2,-3],[4,5,6]]
+matc :: SimpMat Integer
+matc = [[1,2],[3,4],[5,6]]           -- 3x2 matrix
+matd :: SimpMat Integer
+matd = [[7,8,9],[10,11,12]]          -- 2x3 matrix
+mate :: SimpMat Integer
+mate = [[1,0],[0,1]]                 -- 2x2 identity matrix
+matf :: SimpMat Integer
+matf = [[2,3],[4,5]]                 -- 2x2 matrix
+matg :: SimpMat Integer
+matg = [[1]]                         -- 1x1 matrix
+math :: SimpMat Integer
+math = [[1,2,3]]                     -- 1x3 matrix (row vector)
+mati :: SimpMat Integer
+mati = [[1],[2],[3]]                 -- 3x1 matrix (column vector)
+matj :: SimpMat Integer
+matj = [[0,0],[0,0]]                 -- 2x2 zero matrix
 
 
 type SimpMat a = [[a]]
 
 prettyMat :: Show a => SimpMat a -> String
-prettyMat m = unlines $ map show m                                          
+prettyMat m = unlines $ map show m
 
 add2SimpMats :: Num a => SimpMat a -> SimpMat a -> SimpMat a
 add2SimpMats = zipWith (zipWith (+))
@@ -35,9 +36,14 @@ rotateLList [] = []
 rotateLList l | any null l = []
 rotateLList l = fmap head l : rotateLList (map tail l)
 
+vectMult :: Num a => SimpMat a -> SimpMat a -> SimpMat a
+vectMult v1 v2 =
+  let v1' = if length v1 == 1 then v1 else rotateLList v1
+      v2' = if length v2 == 2 then v2 else rotateLList v2
+  in multSimpMats v1' v2'
 
 multSimpMats :: Num a => SimpMat a -> SimpMat a -> SimpMat a
-multSimpMats m1 m2 
+multSimpMats m1 m2
   | null m1 || null m2 = error "Cannot multiply empty matrices"
   | cols1 /= rows2 = error $ "Dimension mismatch: " ++ show cols1 ++ " ≠ " ++ show rows2
   | otherwise = [ [dotProd row col | col <- m2Transposed ] | row <- m1 ]
