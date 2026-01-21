@@ -44,8 +44,11 @@ vectMult v1 v2 =
 
 multSimpMats :: Num a => SimpMat a -> SimpMat a -> SimpMat a
 multSimpMats m1 m2
-  | null m1 || null m2 = error "Cannot multiply empty matrices"
-  | cols1 /= rows2 = error $ "Dimension mismatch: " ++ show cols1 ++ " ≠ " ++ show rows2
+  | null m1 || null m2 =
+    error "Cannot multiply empty matrices"
+  | cols1 /= rows2 =
+    error $ "Dimension mismatch: " ++
+    show cols1 ++ " ≠ " ++ show rows2
   | otherwise = [ [dotProd row col | col <- m2Transposed ] | row <- m1 ]
   where
     cols1 = length (head m1)

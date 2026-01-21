@@ -75,10 +75,14 @@ dotInfinity :: Float ->
 dotInfinity v alphaf betaf = alphaf v / (alphaf v + betaf v)
   
 pSet1 :: SimParameters
-pSet1 = SimParameters 0.05 300.0 0.0 100.0 150.0 1.0 2.0 0.0 20.0  (resistance pSet1 * capacitance pSet1)
+pSet1 = SimParameters 0.05 300.0 0.0 100.0
+          150.0 1.0 2.0 0.0 20.0
+          (resistance pSet1 * capacitance pSet1)
 
 pSet2 :: SimParameters
-pSet2 = SimParameters 0.05 300.0 0.0 10.0 50.0 1.0 2.0 0.0 0.0  (resistance pSet2 * capacitance pSet2)
+pSet2 = SimParameters 0.05 300.0 0.0 10.0
+           50.0 1.0 2.0 0.0 0.0
+           (resistance pSet2 * capacitance pSet2)
 
 healthyParams :: NeuronParams
 healthyParams = NeuronParams 115 120 (-12) 36 10.6 0.3
@@ -109,7 +113,9 @@ healthyNeuron :: Neuron
 healthyNeuron = Neuron healthyParams healthyDynamics
 
 hhInitialState :: NeuronState
-hhInitialState = NeuronState (initialVoltage pSet1) (injectionCurrent pSet1) (initT pSet1) Nothing Nothing Nothing
+hhInitialState = NeuronState (initialVoltage pSet1)
+  (injectionCurrent pSet1)
+  (initT pSet1) Nothing Nothing Nothing
 
 updNeuron :: Neuron  ->  SimParameters  ->  NeuronState ->  NeuronState
 updNeuron neuin spin nsin = 
@@ -117,15 +123,21 @@ updNeuron neuin spin nsin =
       voltagein = vns nsin
       nparamsin = parameters neuin
       outi = ic nsin
-      mnew = fromMaybe 0.0 (case mns nsin of
-                              Nothing ->  Just $ minf eqneuin  voltagein
-                              Just x  ->  Just $ x + mdot eqneuin  voltagein x * hhdt spin)
-      nnew = fromMaybe 0.0 (case nns nsin of
-                              Nothing ->  Just $ ninf eqneuin  voltagein
-                              Just x  ->  Just $ x + ndot eqneuin voltagein x * hhdt spin )
-      hnew = fromMaybe 0.0 (case hns nsin of 
-                              Nothing ->  Just $ hinf eqneuin voltagein
-                              Just x  ->  Just $ x + hdot eqneuin voltagein x * hhdt spin)
+      mnew = fromMaybe 0.0
+        (case mns nsin of
+            Nothing ->  Just $ minf eqneuin  voltagein
+            Just x  ->  Just $ x +
+              mdot eqneuin  voltagein x * hhdt spin)
+      nnew = fromMaybe 0.0
+        (case nns nsin of
+            Nothing ->  Just $ ninf eqneuin  voltagein
+            Just x  ->  Just $ x +
+              ndot eqneuin voltagein x * hhdt spin )
+      hnew = fromMaybe 0.0
+        (case hns nsin of 
+            Nothing ->  Just $ hinf eqneuin voltagein
+            Just x  ->  Just $ x +
+              hdot eqneuin voltagein x * hhdt spin)
       dvdt = outi -
         (gna nparamsin * mnew ^ 3 * hnew *
           (voltagein - ena nparamsin) +
