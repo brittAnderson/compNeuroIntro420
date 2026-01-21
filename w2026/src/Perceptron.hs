@@ -68,7 +68,30 @@ updateWeight th inp des ow =
   in add2SimpMats ow [ map (* scalar) (head inp)]
 
 
-  
+-- used for class pencil and paper exercise  
+myin :: SimpMat Double
 myin = [[0.3,0.7]] :: SimpMat Double
+myw :: Weight Double
 myw = [[-0.6, 0.8]] :: Weight Double
+mydes :: Double
 mydes = 1 :: Double
+
+-- used for class exercise
+testData :: [(SimpMat Double, Double)]
+testData = [([[0.3  ,  0.7 ]] ,  1.0 )
+  , ([[-0.5 ,  0.3 ]] ,  -1.0 )
+  , ([[0.7  ,  0.3 ]] ,   1.0 )
+  , ([[-0.2 ,  -0.8]] ,  -1.0)]
+
+updWeight0 :: (Ord a, Num a) => (Input a, a) ->  Weight a ->  Weight a  
+updWeight0 (inp, des) = updateWeight 0 inp des
+
+testDataFs :: [Weight Double -> Weight Double]
+testDataFs = map updWeight0 testData
+
+
+oneRound :: Weight a -> [Weight a ->  Weight a] ->  [Weight a]
+oneRound = scanl (flip ($)) 
+
+checkWt :: Weight Double -> [(SimpMat Double, Double)] -> [(Double, Double)]
+checkWt w = map (\(inp,des) -> ((toNum . (output 0) . (activity w)) inp,des)) 
