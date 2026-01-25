@@ -798,11 +798,11 @@ Most programming languages have specialized functions for defining and operating
 #+caption: Multiplying Two Matrices
 #+begin_src haskell :dir . :session :exports both :results output
   putStrLn $ "c = "
-  putStr $ prettyMat c
+  putStr $ prettyMat matc
   putStrLn $ "\nd = "
-  putStr $ prettyMat d
+  putStr $ prettyMat matd
   putStrLn $ "\nc * d ="
-  putStr $ prettyMat $ multSimpMats c d
+  putStr $ prettyMat $ multSimpMats matc matd
 #+end_src
 
 #+RESULTS:
