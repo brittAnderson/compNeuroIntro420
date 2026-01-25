@@ -1128,16 +1128,29 @@ Inputs can be thought of as vectors. Although I have drawn the network like a sq
 \( \overrightarrow{b} = \left[0, 1, 0, 1\right]^T \)
 
 \( weights =  \begin{bmatrix}
- 0 & -3 & 3 & -3 \\
- -3 & 0 & -3 & 3 \\
- 3 & -3 & 0 & -3 \\
- -3 & 3 & -3 & 0 \\
+ 0 & 3 & -3 & 3 \\
+ 3 & 0 & 3 & -3 \\
+ -3 & 3 & 0 & 3 \\
+ 3 & -3 & 3 & 0 \\
 \end{bmatrix}
 \)
 
 How do you compute the output? Which comes first: the matrix or the input vector and why?
 
+#+begin_src haskell :dir . :session :exports both :results output
+  hopa = [[1],[0],[1],[0]] :: SimpMat Integer
+  hopb = [[0,1,0,1]] :: SimpMat Integer
+  outProd = multSimpMats (binary2Bipolar hopa) $ binary2Bipolar hopb
+  noSelfConnections  = zeroDiagonal outProd
+  learnRate = scalarMultiply 3 noSelfConnections
+  putStr $ prettyMat learnRate
+#+end_src
 
+#+RESULTS:
+: [0,3,-3,3]
+: [3,0,3,-3]
+: [-3,3,0,3]
+: [3,-3,3,0]
 
 Hopfield networks use a threshold rule. This non-linearity is, at least metaphorically, like the threshold that says whether a neuron in the brain or in our integrate and fire model fires. For the Hopfield network our threshold rule says:
 
@@ -1187,7 +1200,7 @@ The strength of a change in a connection is proportionate to the product of the 
 
 #+End_quote
 
-
+IAMHERE. Need to write the asynchronus version for Haskell
 *** Hopfield Homework Description: Robustness to Noise (this might take awhile).
 Overview of the steps to take:
 - Create a small set of random data for input patterns.
