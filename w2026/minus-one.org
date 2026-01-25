@@ -1138,19 +1138,21 @@ Inputs can be thought of as vectors. Although I have drawn the network like a sq
 How do you compute the output? Which comes first: the matrix or the input vector and why?
 
 #+begin_src haskell :dir . :session :exports both :results output
-  hopa = [[1],[0],[1],[0]] :: SimpMat Integer
+  hopa = [[1,0,1,0]] :: SimpMat Integer
   hopb = [[0,1,0,1]] :: SimpMat Integer
-  outProd = multSimpMats (binary2Bipolar hopa) $ binary2Bipolar hopb
-  noSelfConnections  = zeroDiagonal outProd
-  learnRate = scalarMultiply 3 noSelfConnections
+  outProda = multSimpMats (binary2Bipolar (rotateLList hopa)) $ binary2Bipolar hopa
+  outProdb = multSimpMats (binary2Bipolar (rotateLList hopb)) $ binary2Bipolar hopb
+  outProdBoth = add2SimpMats outProda outProdb
+  noSelfConnections  = zeroDiagonal outProdBoth
+  learnRate = scalarMultiply 1 noSelfConnections
   putStr $ prettyMat learnRate
 #+end_src
 
 #+RESULTS:
-: [0,3,-3,3]
-: [3,0,3,-3]
-: [-3,3,0,3]
-: [3,-3,3,0]
+: [0,-2,2,-2]
+: [-2,0,-2,2]
+: [2,-2,0,-2]
+: [-2,2,-2,0]
 
 Hopfield networks use a threshold rule. This non-linearity is, at least metaphorically, like the threshold that says whether a neuron in the brain or in our integrate and fire model fires. For the Hopfield network our threshold rule says:
 
