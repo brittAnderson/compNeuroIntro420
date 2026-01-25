@@ -446,7 +446,6 @@ These constants are adjusted to make the resting potential 0 and the capacitance
 
 **** Demonstrating the Hodgkin-Huxley Model
 
-TODO: reformat code to fit on page
 #+INCLUDE: "./src/HandH.hs" src haskell -n 
 
 #+begin_src haskell :dir . :session :results file graphics :file ./images/handh.png :exports both
