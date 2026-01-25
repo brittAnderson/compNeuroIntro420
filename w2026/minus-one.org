@@ -777,11 +777,11 @@ Most programming languages have specialized functions for defining and operating
 #+begin_src haskell :dir . :session :exports both :results output                 
     import MyMats                                                                   
     putStrLn $ "a = "
-    putStr $ prettyMat a
+    putStr $ prettyMat mata
     putStrLn $ "\nb = "
-    putStr $ prettyMat b
+    putStr $ prettyMat matb
     putStrLn $ "\na + b = "
-    putStr $ prettyMat $ add2SimpMats a b
+    putStr $ prettyMat $ add2SimpMats mata matb
 #+end_src
 
 #+RESULTS:
