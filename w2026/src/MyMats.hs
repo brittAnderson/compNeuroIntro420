@@ -56,3 +56,15 @@ multSimpMats m1 m2
     dotProd v1 v2 = sum (zipWith (*) v1 v2)
     m2Transposed = rotateLList m2
 
+binary2Bipolar :: (Ord a,Num a) => SimpMat a -> SimpMat a
+binary2Bipolar inmat =
+  [[ if x <=0 then -1 else 1  | x <- row ]  | row <- inmat ]
+
+zeroDiagonal :: Num a => [[a]] -> [[a]]
+zeroDiagonal  = zipWith zeroDiagRow [0..] 
+  where
+    zeroDiagRow i  = zipWith (\j x -> if i == j then 0 else x) [0..]
+
+scalarMultiply :: Num a => a -> SimpMat a -> SimpMat a
+scalarMultiply eta inmat =
+  [[ eta * j | j <- row ] | row <- inmat]
