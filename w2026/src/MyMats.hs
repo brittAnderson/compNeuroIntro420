@@ -39,7 +39,7 @@ rotateLList l = fmap head l : rotateLList (map tail l)
 vectMult :: Num a => SimpMat a -> SimpMat a -> SimpMat a
 vectMult v1 v2 =
   let v1' = if length v1 == 1 then v1 else rotateLList v1
-      v2' = if length v2 == 2 then v2 else rotateLList v2
+      v2' = if length v2 == 1 then rotateLList v2 else v2
   in multSimpMats v1' v2'
 
 multSimpMats :: Num a => SimpMat a -> SimpMat a -> SimpMat a
@@ -58,7 +58,7 @@ multSimpMats m1 m2
 
 binary2Bipolar :: (Ord a,Num a) => SimpMat a -> SimpMat a
 binary2Bipolar inmat =
-  [[ if x <=0 then -1 else 1  | x <- row ]  | row <- inmat ]
+  [[ if x <= 0 then -1 else 1  | x <- row ]  | row <- inmat ]
 
 zeroDiagonal :: Num a => [[a]] -> [[a]]
 zeroDiagonal  = zipWith zeroDiagRow [0..] 
@@ -68,3 +68,4 @@ zeroDiagonal  = zipWith zeroDiagRow [0..]
 scalarMultiply :: Num a => a -> SimpMat a -> SimpMat a
 scalarMultiply eta inmat =
   [[ eta * j | j <- row ] | row <- inmat]
+
