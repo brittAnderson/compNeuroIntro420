@@ -241,7 +241,8 @@ Is the integrate and fire model used much in modeling in the present time? [[htt
 #+begin_quote
 1. When was the action potential demonstrated?
 2. What was the experimental animal used by Adrian?
-[[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1420429/pdf/jphysiol01990-0084.pdf]]
+[[https://www.nobelprize.org/prizes/medicine/1932/adrian/lecture/][Adrian's Nobel Lecture]]
+[[https://www.jstor.org/stable/769841][Hodgkin's Memoir of Adrian]]
 #+end_quote
 
 *** Formula I and F
