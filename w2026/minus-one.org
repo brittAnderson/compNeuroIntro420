@@ -4,6 +4,7 @@
 #+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t
 #+options: tasks:t tex:t timestamp:t title:t toc:t todo:t |:t
 #+Latex_header: \usepackage{svg}
+#+latex_header: \usepackage{amsmath}
 #+Title: Computational Modeling for Psychology Students
 #+author: Britt Anderson
 #+date: Winter 2026
@@ -221,7 +222,24 @@ The changes to whatever code you have for the frictionless spring should require
 \[ \frac{d^2 s}{dt^2} = -P~s(t) - k~v(t) \]
 
 
+** Solving DEs
 
+   There are many well established methods for solving systems of differential equations. If you really need one you can look it up. As a psychologist /using/ a DE you will almost never have to solve, which means in this context to compute an analytical solution (analytical means using symbols). If you decide you must, just guess, and guess an exponential. Most of the differential equations we will see, and that you will see in biology or psychology, have the dependent variable present both on the left and right sides of your differential equation. The exponential is almost always in there somewhere as \( e^x \), since the derivative of \( \frac{d e^x}{dx} = e^x \).
+
+   Try this with the undamped oscillator. We know that the second derivative of how position changes with time will eventually be a function of current position so we guess that \( s(t) = e^{rt} \). Why the "r"? I know that the answer will have to be more than just \( e^x \) so I throw in "r" for now assuming I can figure out the details later. Now, we act on our guess. If
+
+   \begin{align}
+     s(t) &= e^{rt}  & \text{then}\\
+     \frac{d~s(t)}{dt} &= r~e^{rt}  & \text{and thus}\\
+     \frac{d^2 s(t)}{dt} &= r^2 e^{rt}  & \text{now plugging in our guess to our known formula we have }\\
+     r^2 e^{rt} &= -P~e^{rt}  & \text{moving the right side to the left and factoring,} \\
+     e^{rt} ( r^2 + P) &= 0  & \text{we only need to worry about the right hand side so r must be,} \\
+     r &= \pm i \sqrt{P}  & \text{ which means that are solution is,} \\
+     s(t) &= e^{it} + e^{-it}  & \text{ and, thanks to Euler's}~~e^{i\Theta} = cos \Theta + i~sin \Theta \text{ and simplifying we have,} \\
+     s(t) &= 2 cos~t
+   \end{align}
+     
+   
 
 ** Integrate and Fire Neuron
 #+begin_quote
