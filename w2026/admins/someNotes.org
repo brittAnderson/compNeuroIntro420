@@ -1,0 +1,76 @@
+#+TITLE: Curriculum Planning Notes: Future Topics
+#+DATE: 2025
+#+AUTHOR: AI Assistant
+#+OPTIONS: toc:t num:t
+
+* Context
+  Discussion regarding additional topics for the "Computational Modeling for Psychology Students" course (Psych 420), extending the current syllabus which covers Turing Machines, I&F Neurons, Hodgkin-Huxley, Perceptrons, Hopfield Nets, and Agent Based Models.
+
+* Proposed Additional Topics
+** 1. Reinforcement Learning (The Bridge to Behaviorism)
+   - *Rationale:* Connects computational modeling to the history of Psychology (Behaviorism).
+   - *Psychological Hook:* Classical Conditioning (Pavlov) and Operant Conditioning (Skinner).
+   - *Models:*
+     - Rescorla-Wagner Model (mathematically similar to Delta Rule).
+     - Temporal Difference (TD) Learning (Dopamine signaling).
+   - *Coding:* Multi-armed Bandit or Grid World.
+   - *Placement:* After Perceptrons/Delta Rule.
+
+** 2. Decision Making: Drift Diffusion Models (DDM)
+   - *Rationale:* Standard model for linking neural firing rates to behavioral RT distributions.
+   - *Psychological Hook:* Speed-Accuracy Tradeoff.
+   - *Math:* Stochastic Differential Equations (Random Walk/Noisy accumulation).
+   - *Coding:* Simulate particle drift to boundary; plot RT histograms.
+   - *Placement:* After Differential Equations.
+
+** 3. Bayesian Modeling (Rational Analysis)
+   - *Rationale:* Focus on *why* systems work (Marr's Computational Level) vs mechanistic implementation.
+   - *Psychological Hook:* Visual illusions (perception as inference), concept learning.
+   - *Math:* Bayes' Theorem: \( P(H|D) \propto P(D|H) P(H) \).
+   - *Coding:* Coin Flip learner or Cue Combination.
+   - *Placement:* Near Theory Creation.
+
+** 4. Symbolic Architectures (Language of Thought)
+   - *Rationale:* Contrasts Connectionism; history of Symbolic AI (ACT-R, SOAR).
+   - *Psychological Hook:* System 2 processing, algebra, rule-following.
+   - *Code:* Context-Free Grammar (CFG) parser in Haskell (recursion).
+   - *Placement:* Alongside Turing Machines/Lambda Calculus.
+
+* Deep Dive: Abstract Algebra & Formal Concept Analysis (FCA)
+  *User Suggestion:* Introduce Abstract Algebra via Formal Concept Analysis, comparing it to Thagard's Theory of Explanatory Coherence (TEC).
+
+** Pedagogical Strategy
+   Use FCA to introduce Abstract Algebra as a tool for *knowledge representation* rather than purely symbolic manipulation.
+
+** The "MTMC" Breakdown
+*** 1. Mind: Knowledge Organization
+    - *Concept:* Categorization (Rosch), Prototypes vs. Exemplars.
+    - *Contrast:* Fuzzy distributed vectors (Neural Nets) vs. Hierarchies/Strict definitions (Logic).
+
+*** 2. Math: Order Theory and Lattices
+    - *Formal Context:* Triple $(G, M, I)$ (Objects, Attributes, Relation).
+    - *Algebra:* Galois Connections.
+      - Derivation operators mapping sets of objects to shared attributes and vice versa.
+    - *Structure:* Concept Lattices.
+
+*** 3. Theory: The "Battle of the Models"
+    Compare **FCA** against **Thagard's Explanatory Coherence (TEC)**.
+    | Feature | Thagard's TEC | Formal Concept Analysis |
+    |---------+---------------+-------------------------|
+    | Type | Connectionist / Constraint Satisfaction | Algebraic / Structural |
+    | Logic | Probabilistic, "Soft", Dynamic | Deterministic, "Hard", Static |
+    | Mechanism | Energy minimization / Settling | Mathematical Closure |
+
+    *Assignment Idea:*
+    1. Run a dataset (e.g., medical diagnosis) through a TEC simulation (Hopfield-style).
+    2. Run the same data through FCA to generate a Lattice.
+    3. Discuss: Which explains the data better? Does the lattice reveal structural implications the network obscured?
+
+*** 4. Code: Haskell Implementation
+    Haskell is ideal for Set/List processing required for FCA.
+    - *Task:* Implement naive closure algorithms.
+    - *Visualization:* Output to Graphviz (dot) to draw Hasse Diagrams.
+
+** Strategic Value
+   - Introduces **Ontologies** and **Knowledge Graphs** (Semantic Web, RAG).
+   - Balances the course's heavy focus on Neural Networks with **Symbolic/Explainable AI (XAI)**.
