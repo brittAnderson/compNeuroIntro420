@@ -363,7 +363,6 @@ Theoretically, look at [[https://redwood.berkeley.edu/wp-content/uploads/2018/08
 
 ** Hodgkin and Huxley Model
 *** Who were Hodgkin and Huxley
-The goal in this biological scavenger hunt is to try and develop some ideas about what makes one able to effectively contribute to computational neuroscience. As they undoubtedly did. I will divide you into small groups each targeting either Hodgkin or Huxley. Then we will mix up the groups for sharing. Then we will come back together to talk very briefly about who they were, but at somewhat greater length about what we learned about what sort of education or other experiences we should seek out if we want to contribute to this field.
 *** Biographical Sources :noexport:
 Nobel Prize biographies:
   [[https://www.nobelprize.org/prizes/medicine/1963/hodgkin/biographical/][Hodgkin]]
@@ -426,11 +425,11 @@ If you allow \( t \rightarrow \infty \mbox{, then } \frac{dV}{dt}=? \)
 - You assume that it goes to zero; that is, you reach steady state. Then you can solve for some of the constants.
 - Where do the constants come from?
 - They come from experiments, and you use what you are given.
-- Assume the following constants - they are set to assume a resting potential of zero (instead of what and why doesn't this matter)?
+- Assume the following constants - they are set to assume a resting potential of **zero** not -70 mV (why doesn't this matter)?
 - These constants also work out to enforce a capacitance of 1.
 
 **** Constants
-Several different sets of constants are used for this model in published versions. They are all, in one sense the same, but this set amke the programming easier. For the moment, ignore the units and use these numbers.
+Several different sets of constants are used for this model in published versions. They are all, in one sense, the same, but this set make the programming easier. For the moment, ignore the units and use these numbers.
 
 #+Name: hh-constants
 #+Caption: Constant Values to Use for our Hodgkin-Huxley Model
