@@ -482,8 +482,20 @@ These constants are adjusted to make the resting potential 0 and the capacitance
 #+RESULTS:
 [[file:./images/handh.png]]
 
-
-
+**** More hints on programming the Hodgkin-Huxley model.
+1. Work inside out
+   By this I mean that you start with small functions that you know you will need and only later build out to chaining them altogether. It is easier to test individual functions. 
+2. Keep it working
+   This means you test your code changes frequently and often. You don't want to miss a typo that breaks your code after two hours of all sorts of other changes.
+3. Use the terminal
+   The way to test is to write your code so that you can source it (or import it) as you work and test your code in your interpreter. This is a lite-version of what is called a REPL: read-eval-print-loop. 
+4. Use git (or something)
+   By committing often you can more easily jump back to a working version if you break things horribly.
+5. Test with numbers where you know the answer. If you inject no current your voltage should not change. Because of small numerical imprecisions there may be some small non-zero numbers, especially early in your run, but you should definitely not drift off to larger positive or negative numbers.
+6. Code in a way that makes it easy to visualize variables
+   We are often better at seeing what is going on when we look at a plot rather than a long list of numbers. By writing in a style that allows you to plot your variables you may be better able to debug errors.
+7. Expect that you will misplace a decimal.
+   That is, don't get too discouraged. We all do this. At this stage I encourage you /not/ to use a large language model to help you figure out the logic of your code, but if you think you have nailed the logic and just have a small typo or syntactic error somewhere, then by all means let the eagle eye of the chat bot help you find it. The more specific you are with your prompt, the better will the chat bot be able to educate. Don't say: "Why doesn't this work?". Do say: "I think there is a bug somewhere in the xyz function. Do you see a typo or similar bug in there?"
 
 
 
