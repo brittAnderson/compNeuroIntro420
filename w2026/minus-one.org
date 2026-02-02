@@ -511,7 +511,7 @@ To start with after you have implemented the new /n/ channel function set all th
 
 
 * What is computation and what is its role in cognitive science?
-  [[https://link.springer.com/content/pdf/10.1007/978-3-642-41375-9_1][Chapter 1 of Physical Computation in Cognitive Science]] by Nir Fresco
+We will be having a discussion on this. It only works if you have read the material that we want to discus. You need to read several sections of the [[https://plato.stanford.edu/entries/computational-mind/][The Computational Theory of Mind]] *before* class. These are all of section 3, 4.4, and all of 5 and 7. Feel free to read more. Can you answer the following questions after your reading? These are the sort of things we will be discussing. 
 ** What do you think?
    1. Computational modeling of cognition and neural systems is/is-not the same as programming.
    2. What else could computational modeling be?
@@ -523,7 +523,7 @@ To start with after you have implemented the new /n/ channel function set all th
    8. Is simulation good enough?
    9. Is prediction good enough?
    10. Do we want a model to /explain/ something? And then of course what constitutes explanation?
-** What do we need to know?
+** What do we need to know? :noexport:
    1. We need to know the facts of the matter, neurally and cognitively.
    2. We need to have a clear question.
    3. We need to have a theoretical committment that leads to clear predictions, and guides our evaluation of what to do.
@@ -542,14 +542,14 @@ We can abbreviate these as MTMC: mind → theory → math → code; the arrows i
 One definition of whether something is computable is whether there exists a Turing Machine that can compute it. Although most of us learned the name "Turing" in the context of whether a computer has human intelligence, the so-called /Turing test/, the model of Turing computability emerged from thinking about humans computing[cite:@Turing_2004]
 
 ** What is a Turing machine? Some Background and Details
-[[https://turingarchive.kings.cam.ac.uk/publications-lectures-and-talks-amtb/amt-b-12][Turing machines]] are quite simple implements. While one can build a physical Turing machine, the more usual sense of the term is for a hypothetical computer that is comprised of:
+[[https://turingarchive.kings.cam.ac.uk/publications-lectures-and-talks-amtb/amt-b-12][Turing machines]] are quite simple implements. While one can build a [[https://www.youtube.com/watch?v=E3keLeMwfHY][physical Turing machine]], the more usual sense of the term is for a hypothetical computer that is comprised of:
   1. a finite alphabet,
   2. a finite set of states,
   3. the capacity to read and write to a single location in memory, and the ability to adjust the memory location immediately left or right or to make no move at all, and
   4. a set of instructions (or "machine table") that translates the combination of the current state and the current symbol to a new state and one of the acceptable actions.
 
 *** Classroom Activity
-Let's develop pseudo-code for the implementing a Turing Machine
+Let's develop pseudo-code for the implementing a Turing Machine. It may help you when you do have to program a Turing machine. 
 
 ** Programming a Turing Machine: the Busy Beaver
 
@@ -653,19 +653,19 @@ The lambda calculus is built entirely from functions.
 
 Let's make these combinators concrete by implementing them in Python:
 
-#+BEGIN_SRC python :session *combi* :exports results :results output
-# The three basic combinators
-I = lambda x: x
-K = lambda x: lambda y: x
-S = lambda x: lambda y: lambda z: x(z)(y(z))
+#+BEGIN_SRC haskell :session *lambdademo* :exports both :results output
+  :set -w
+    --The three basic combinators
 
-# Test them out
-print("I(5) =", I(5))
-print("K(3)(7) =", K(3)(7))
-print("S(K)(K)(5) =", S(K)(K)(5))
+  i = \x -> x
+  k = \x -> \y -> x
+  s = \x -> \y -> \z -> x z $ y z
 
-# The S(K)(K) combination gives us I
-print("S(K)(K)(42) behaves like I(42):", S(K)(K)(42))
+    -- # Test them out
+  putStrLn("I(5) = " ++ (show $ i 5))
+  putStrLn("K(3)(7) = " ++ (show $ k 3 7))
+  putStrLn("S(K)(K)(5) = " ++ (show $ s k k 5))
+  putStrLn("S(K)(K)(42) behaves like I(42): " ++ (show $ s k k 42))
 #+END_SRC
 
 #+RESULTS:
