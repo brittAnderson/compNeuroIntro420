@@ -606,6 +606,10 @@ See Dropbox on Learn
 
 Turing machines are probably the most common framework used for asserting that cognition is computation, but there are others. Another widely used construction, especially in theoretical computer science, is the *lambda calculus*. Although these two constructions appear quite different on the surface, it has been shown that any thing that can be computed in one can be computed by the other. They are equivalent. This has led to a /conjecture/ that anything computable can be computed by a Turing Machine or the Lambda Calculus (and some other additional, equivalent constructions).
 
+*** Why should a psychology student care?
+
+    Because if this is true: that anything computable can be computed by the lambda calculus; /and/ that the mind is basically a computation, then the mind can be computed by the lambda calculas. Everything that is mental can be accomplished by this single construct of the function and application. 
+
 *** Lambda Notation Basics
 
 The lambda calculus is built entirely from functions.
@@ -623,7 +627,7 @@ The lambda calculus is built entirely from functions.
    - I - Identity :: =I = \x.x=
      Takes its input and returns it unchanged.
      Example: =I 5 → 5=
-   - K - Constant (Kestrel) :: =K = \x.\y.x=
+   - K - Constant (Kestrel [fn:1]) :: =K = \x.\y.x=
      Takes two inputs and returns the first, ignoring the second.
      Example: =K a b → a=
      Think of this as "pick the first argument."
@@ -643,15 +647,18 @@ The lambda calculus is built entirely from functions.
    3. We're back where we started!
    
    This is an infinite loop, but we got it using only function application. No =while= loops, no recursion keyword - just functions.
+
+   Why might this be psychologically instructive? Can you think of any psychological or cognitive processes that might map on to this? Rumination? Sustained attention? Flow?
+   
 4) Write a python or R implementation of each of I, K, and S. Try running this code. Verify that:
    - =I(5)= returns =5=
    - =K(3)(7)= returns =3=
    - =S(K)(K)(5)= returns =5= (it acts like the identity function)
 
 
-*** Python Implementation :noexport:
+*** Haskell Implementation :noexport:
 
-Let's make these combinators concrete by implementing them in Python:
+Let's make these combinators concrete by implementing them in Haskell:
 
 #+BEGIN_SRC haskell :session *lambdademo* :exports both :results output
   :set -w
@@ -675,7 +682,7 @@ Let's make these combinators concrete by implementing them in Python:
 : S(K)(K)(42) behaves like I(42): 42
 
 ** The Church-Turing Thesis
-   The three combinators (I, K, S) are sufficient to compute *anything* that your Turing machine can compute. 
+   The two combinators (K, S) are sufficient to compute *anything* that your Turing machine can compute (but first, why don't I need to include I in this list?).
    
    You can build:
    - Numbers
@@ -683,7 +690,245 @@ Let's make these combinators concrete by implementing them in Python:
    - Conditional logic
    - Recursion
    - All computable functions
-   
+
+   How would you use these /things/ to make numbers?
+
+*** Church Numerals
+
+   [[https://en.wikipedia.org/wiki/Church_encoding#Church_numerals][Church numerals]] show how numbers emerge from pure function structure—nothing but lambdas.
+
+**** The Encoding
+
+A number n is represented as a function that applies some function f to an argument x exactly n times:
+
+0 = λf.λx. x
+1 = λf.λx. f x
+2 = λf.λx. f (f x)
+3 = λf.λx. f (f (f x))
+
+Big woop? or Big woop!
+
+Everything is "just" functions. Even numbers. If the brain (mind) is just a computation are numbers merely an encoding of how many times to do something?
+
+*** Computing with the Lambda Calculus
+
+Can you figure out what addition with Church Numerals looks like?
+
+**** Arithmetic emerges structurally :noexport:
+
+Addition becomes:
+
+~ADD = λm.λn.λf.λx. m f (n f x)~
+
+This says: apply f n times, then apply f m more times. No arithmetic axioms—just function composition.
+
+**** The Human Combinator Game
+
+***** Overview :noexport:
+
+Students form groups of 5-6 and physically act out combinator reductions. Each group receives a target output and must determine what input sequence and combinator arrangement produces it.
+
+***** Materials Needed :noexport:
+
+- Index cards in three colors (suggest: blue for S, red for K, yellow for I)
+- White index cards for data values (labeled a, b, c, etc.)
+- Instruction cards for each combinator role
+- Challenge cards with target problems
+- Scratch paper for groups to plan
+
+***** Setup 
+Groups of 3-6. Each group designates:
+
+- One S person (blue card)
+- One K person (red card)  
+- One I person (yellow card)
+- Two or three Data people (white cards with letters)
+
+Distribute [[file:lambda-instruction-cards.org][role instruction]] cards.
+
+***** Warmup Round :noexport:
+
+****** Evaluate I a
+
+- I person stands ready
+- Data person with "a" card approaches I
+- I takes card, holds it up, says "I returns a"
+- Result: a
+
+****** Evaluate K a b
+
+- K person stands ready
+- Data person "a" approaches, then data person "b"
+- K takes both, discards b (that person sits), holds up a
+- K says "K keeps a, discards b"
+- Result: a
+
+****** Evaluate S K I a
+
+This requires careful sequencing. Walk through slowly:
+
+1. S receives three inputs: K, I, and a
+2. S says "I distribute a to both K and I"
+3. Left pile: K applied to a (K waits for second input)
+4. Right pile: I applied to a (I returns a immediately)
+5. Now left pile (K with a) receives right pile result (a)
+6. K now has two inputs: a and a
+7. K keeps first a, discards second
+8. Result: a
+
+
+***** Challenge Rounds
+****** Round 1
+
+TARGET OUTPUT: b
+
+YOU HAVE: data values a and b
+
+TASK: Arrange combinators and data so the final 
+result is b (not a).
+
+******* HINT :noexport:
+One combinator is enough. Which one?
+What order do you feed inputs?
+
+**Solution:** K b a → b (K keeps first input)
+
+****** Round 2
+
+TARGET OUTPUT: a
+
+YOU HAVE: data values a
+
+TASK: Use at least two combinators, but still 
+end up with just a.
+
+******* HINT :noexport:
+Can you make something that "does nothing
+the long way"?
+
+**Solution:** I (I a) → I a → a, or K a b for any b they invent
+
+****** Round 3
+
+TARGET OUTPUT: a
+
+YOU HAVE: combinators S, K, I and data value a
+
+TASK: Achieve the same result as (I a) but 
+using only S and K—no I.
+
+******* HINT :noexport:
+Remember that I can be BUILT from S and K.
+The expression S K K behaves like I.
+
+**Solution:** S K K a → K a (K a) → a
+
+Groups must trace through:
+1. S gets K, K, a
+2. Left pile: K a (waiting for second input)
+3. Right pile: K a (waiting for second input)
+4. Left pile applied to right pile: (K a)(K a)
+5. K a receives (K a) as second input, discards it, returns a
+
+****** Round 4
+
+TARGET OUTPUT: b a
+
+YOU HAVE: data values a and b, which can 
+themselves act like functions
+
+TASK: Produce "b applied to a" as your result.
+
+******* HINT :noexport:
+You need something that takes two things
+and flips their order.
+
+HARDER HINT: The flip combinator can be built 
+as S (K (S I)) K, but try S K first with 
+clever data arrangement.
+
+**Solution:** This is genuinely hard. The flip combinator is:
+
+λx.λy.y x
+
+Groups may not solve this fully. That is acceptable. Discuss afterward as a class why some operations need more complex combinator arrangements.
+
+****** Round 5
+
+TARGET OUTPUT: a a
+
+YOU HAVE: data value a
+
+TASK: Duplicate your input—end with two copies 
+of a applied to each other.
+
+******* HINT :noexport:
+S can duplicate because it sends the
+third input to TWO places.
+
+EXPRESSION TO TRY: S I I a
+```
+
+**Solution:** S I I a
+1. S receives I, I, a
+2. Left: I a → a
+3. Right: I a → a
+4. Left applied to right: a a
+
+This demonstrates self-application, connecting to the ω combinator discussion.
+
+***** Debrief :noexport:
+
+- Which combinator felt most confusing to execute? (Usually S)
+- What does K "feel like" cognitively? (Selective attention? Ignoring distractions?)
+- What does S "feel like"? (Distributing context? Applying background knowledge to multiple items?)
+- Did anyone discover a shorter solution than expected?
+- Did any group get stuck in a loop or undefined state?
+
+Key point to emphasize: These three simple operations suffice for any computation. The complexity comes from arrangement, not from hidden sophisticated parts.
+
+*** Lambda Calculas Homework
+
+**** HW 1: Computational Analogy Essay
+
+Choose one psychological process from the list below (or propose your own with instructor approval):
+
+- Memory retrieval
+- Selective attention
+- Emotional regulation
+- Decision-making under uncertainty
+- Language comprehension
+- Habit formation
+- Cognitive dissonance resolution
+
+Write an essay exploring this question: **If this psychological process were built from combinator-like primitives, what might those primitives be doing?**
+
+**** HW 2:Build a Mental Operation
+Choose one simple cognitive or logical operation from this list:
+
+- **Negation** (turning true to false, or rejecting a proposition)
+- **Conjunction** (combining two things with "and")
+- **If-then** (conditional application)
+- **Comparison** (determining which of two items is greater/better/preferred)
+- **Recall cue** (using one item to retrieve an associated item)
+
+Attempt to express this operation using lambda calculus or SKI combinators.
+
+You will need a way to represent true and false for some of the choices. The standard [[https://en.wikipedia.org/wiki/Church_encoding#Church_Booleans][Church encoding]] is:
+
+TRUE  = λx.λy. x    (equivalently: K)
+FALSE = λx.λy. y    (equivalently: K I)
+
+For others the Church numerals we discussed(discussed in class). Comparison is surprisingly complex—do not be discouraged if you cannot complete it.
+
+For recall you will need a notion of pairs. Can you build a structure that holds two items and releases one when prompted?
+
+*To make you feel better*
+
+The founders of computer science—Church, Turing, Curry—struggled with these ideas for years. You are being asked to engage with material that shaped the twentieth century's understanding of mind and mechanism. Confusion is not failure. Frustration is not failure. Only disengagement is failure.
+
+IAMHERE also
+
 ** Two Completely Different Models
 
 | Turing Machine                | Lambda Calculus              |
@@ -700,9 +945,9 @@ This equivalence is one of the deepest results in computer science. It suggests 
 
    and if thinking *is* computation,
 
-   then does that mean that all thinking could be realized by a Turing machine,
+   then you can think with a Turing machine, and since Turing Machines can be built from non-biological parts then thinking is not just for people anymore.
 
-   and since Turing Machines can be built from non-biological parts that any Universal Turing Machine would have all the objective *and* subjective capabilities of a human thinker?
+   
    
 * Neurally Inspired Models 2: The network effect
 ** Neural Networks
@@ -1223,7 +1468,7 @@ Why is this learning rule called "Hebb's"? Who was the Hebb it is named after?
 
 #+end_quote
 
-The strength of a change in a connection is proportionate to the product of the input and outputs, i.e. \( \Delta A[i,j] = \eta f[j]g[i] \) and \( g[i] = \sum_j~A[i,j]~f[j] \) therefore, \( \vec{g} = \mathbf{Af} \).[fn:1]
+The strength of a change in a connection is proportionate to the product of the input and outputs, i.e. \( \Delta A[i,j] = \eta f[j]g[i] \) and \( g[i] = \sum_j~A[i,j]~f[j] \) therefore, \( \vec{g} = \mathbf{Af} \).[fn:4]
 
 #+Begin_Quote
 *You will want to know*
@@ -1250,10 +1495,6 @@ More detailed instructions:
    Where N is the size of the patterns, that is how many "neurons". $\mu$ is an index for each of the patterns, and $i$ and $j$ refer to the neurons in the pattern.
 - Program an *asynchronous* updating rule, run your network until it stabilizes, and then show that you get back what you put in.
 - Then do the same for at least one disrupted pattern (where you flipped a couple of bits around.)
-
-* Footnotes
-
-[fn:1] Does it matter that the $\mathbf{W}$ comes first?
 
 * Theory Creation in the Cognitive and Psychological Sciences
 
@@ -1294,6 +1535,8 @@ All that follows needs some re-working.
 
 * Footnotes
 
-[fn:3] see David Marr's *Vision*. 
-[fn:2] The limits of my language means the limits of my world. -- Ludwig Wittgenstein (proposition 5.6 Tractatus Logico-Philosophicus) 
+[fn:1] Why the bird names? See [[https://raymondsmullyan.com/books/to-mock-a-mockingbird-and-other-logic-puzzles/][To Mock a Mockingbird]]
+[fn:4] Does it matter that the $\mathbf{W}$ comes first?
+[fn:2] see David Marr's *Vision*. 
+[fn:3] The limits of my language means the limits of my world. -- Ludwig Wittgenstein (proposition 5.6 Tractatus Logico-Philosophicus) 
 
