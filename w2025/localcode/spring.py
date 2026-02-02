@@ -34,5 +34,8 @@ def release_spring (max_time = 15, max_iter = 3000, dt = dt, p = p, s = init_s, 
 def plot_spring() :
     plt.plot(*zip(*[(x[4],x[1]) for x in release_spring()]))
 
+def plot_spring2(datain) :
+    plt.plot(*zip(*[(x[4],x[1]) for x in datain]))
+
 
     
