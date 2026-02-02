@@ -507,7 +507,8 @@ Your homework will require you to write the code for a Hodgkin-Huxley Neuron and
 
 Then you must select one of the sets of \gamma from their [[https://link.springer.com/article/10.1007/s10827-020-00766-1/tables/1][Table 1]] and plot the neuronal activity.
 
-To start implement the new /n/ channel and set all the \gamma s to 1. This should work exactly like the old model. Generate a plot showing that it does. For the second plot generate the same plot with your altered $\gamma$ values.
+To start with after you have implemented the new /n/ channel function set all the \gamma s to 1. This should work exactly like the old model. Generate a plot showing that it does. For the second plot generate the same plot with your altered $\gamma$ values.
+
 
 * What is computation and what is its role in cognitive science?
   [[https://link.springer.com/content/pdf/10.1007/978-3-642-41375-9_1][Chapter 1 of Physical Computation in Cognitive Science]] by Nir Fresco
