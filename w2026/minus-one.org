@@ -428,6 +428,9 @@ If you allow \( t \rightarrow \infty \mbox{, then } \frac{dV}{dt}=? \)
 - Assume the following constants - they are set to assume a resting potential of **zero** not -70 mV (why doesn't this matter)?
 - These constants also work out to enforce a capacitance of 1.
 
+The "infinity" or "long time resting state" of the $m$, $n$, and $h$ values (that I refer to as $m_{inf}$ in my code and these notes)
+is of the form \( (m/n/h)_{inf}= alpha(m/n/h)(v) / (alpha(m/n/h)(v) + beta(m/n/h)(v)) \)
+
 **** Constants
 Several different sets of constants are used for this model in published versions. They are all, in one sense, the same, but this set make the programming easier. For the moment, ignore the units and use these numbers.
 
