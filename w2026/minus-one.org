@@ -611,7 +611,7 @@ Turing machines are probably the most common framework used for asserting that c
 
 *** Why should a psychology student care?
 
-    Because if this is true: that anything computable can be computed by the lambda calculus; /and/ that the mind is basically a computation, then the mind can be computed by the lambda calculas. Everything that is mental can be accomplished by this single construct of the function and application. 
+    Because if this is true: than anything computable can be computed by the lambda calculus; /and/ that the mind is basically a computation, then the mind can be computed by the lambda calculas. Everything that is mental can be accomplished by this single construct of the function and application. 
 
 *** Lambda Notation Basics
 
@@ -733,8 +733,8 @@ Students form groups of 5-6 and physically act out combinator reductions. Each g
 
 ***** Materials Needed :noexport:
 
-- Index cards in three colors (suggest: blue for S, red for K, yellow for I)
-- White index cards for data values (labeled a, b, c, etc.)
+- Index cards in three colors (suggest: green for S, red for K, yellow for I)
+- Blue index cards for data values (labeled a, b, c, etc.)
 - Instruction cards for each combinator role
 - Challenge cards with target problems
 - Scratch paper for groups to plan
@@ -742,12 +742,12 @@ Students form groups of 5-6 and physically act out combinator reductions. Each g
 ***** Setup 
 Groups of 3-6. Each group designates:
 
-- One S person (blue card)
+- One S person (green card)
 - One K person (red card)  
 - One I person (yellow card)
-- Two or three Data people (white cards with letters)
+- Two or three Data people (blue cards with letters)
 
-Distribute [[file:lambda-instruction-cards.org][role instruction]] cards.
+Distribute [[file:lambda-instruction-cards.org][role instruction]] cards. Ask each group member with a colored card to write down their "role" on the back legibly (so I can re-use them in a future year).
 
 ***** Warmup Round :noexport:
 
