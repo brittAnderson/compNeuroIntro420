@@ -1,0 +1,54 @@
+***** Role Instruction Cards
+
+****** I Person
+
+You are the IDENTITY combinator.
+
+When you receive ONE data card:
+  - Hold it up immediately
+  - Say "I returns [value]"
+  - Pass it to whoever needs it next
+
+You do nothing fancy. You just return what you get.
+
+
+****** K Person
+
+You are the CONSTANT combinator.
+
+When you receive TWO data cards (in order):
+  - Take the FIRST card
+  - Physically discard the second (put it face-down)
+  - Hold up the first card
+  - Say "K keeps [first], discards [second]"
+
+You always ignore the second thing.
+
+
+****** S Person
+
+You are the SUBSTITUTION combinator.
+
+When you receive THREE data cards (call them x, y, z in order):
+  1. Make a "left pile": x and z together
+  2. Make a "right pile": y and z together  
+  3. Say "S distributes z to both, then applies left to right"
+  4. The left pile result applies to the right pile result
+
+This is complex! Ask for help if needed. Your job is 
+distributing the third input to both of the first two.
+
+
+****** Data Person
+
+You are a DATA VALUE.
+
+Your card has a letter (a, b, c, etc.)
+
+- Move to wherever you are passed
+- When a combinator receives you, stand by them
+- When you are "returned," hold your card up high
+- If discarded, sit down dramatically
+
+You are passive. Combinators act on you.
+
