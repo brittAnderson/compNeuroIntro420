@@ -619,6 +619,10 @@ The lambda calculus is built entirely from functions.
 
 1) Syntax
    1. =\x.x= means "a function that takes input x and returns x" (the identity function)
+      How might we right this in python?
+      =def f (x): x=
+      Note that the lambda calculus version is anonymous. It does not have an f. So, we really should write
+      =(lambda x : x) (5)=
    2. =\x.y= means "a function that takes input x and returns y" (a constant function)
    3. Application: =(\x.x) 5= means "apply the identity function to 5", which gives us =5=
     
