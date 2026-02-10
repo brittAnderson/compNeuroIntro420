@@ -910,7 +910,7 @@ Choose one psychological process from the list below (or propose your own with i
 
 Write an essay exploring this question: **If this psychological process were built from combinator-like primitives, what might those primitives be doing?**
 
-**** HW 2:Build a Mental Operation
+**** HW 2:Build a Mental Operation :noexport:
 Choose one simple cognitive or logical operation from this list:
 
 - **Negation** (turning true to false, or rejecting a proposition)
