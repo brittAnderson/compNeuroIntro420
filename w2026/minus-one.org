@@ -1485,7 +1485,6 @@ The strength of a change in a connection is proportionate to the product of the 
 
 #+End_quote
 
-IAMHERE. Need to write the asynchronus version for Haskell
 *** Hopfield Homework Description: Robustness to Noise (this might take awhile).
 Overview of the steps to take:
 - Create a small set of random data for input patterns.
