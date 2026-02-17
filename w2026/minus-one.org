@@ -1317,10 +1317,10 @@ Compute the value of the new weight vector with pen and paper.
 0.3 & 0.7 & 1.0 \\
 -0.5 & 0.3 & -1.0 \\
 0.7 & 0.3 & 1.0 \\ 
--0.2 & -0.8 & q-1.0
+-0.2 & -0.8 & -1.0
 \end{bmatrix} \)
 
-using the starting weight -0.6 0.8 try a few cycles through the data by hand and then move on to writing the perceptron rule into code so that you can automate the updating step. Haskell code for some of these functions can be found [[file:src/Perceptron.hs][here]].
+using the starting weight -0.6 0.8 try a few cycles through the data by hand and then move on to writing the perceptron rule into code so that you can automate the updating step. Haskell code for some of these functions can be found [[https://github.com/brittAnderson/compNeuroIntro420/blob/9cb94028a9f1c53c49cce26b77e633cf5c9f050f/w2026/src/Perceptron.hs][here]].
 
 
 #+begin_src haskell :dir . :session :results output :exports both
@@ -1509,33 +1509,121 @@ More detailed instructions:
 I have been wondering about the concept of explanation. I don't know if there is an agreed upon definition in this context. How do we know that an observation is "explained" other than that it is predicted by a theory? Or is the mathematics the same, and is explanation synonymous with post-diction? -- [[https://www.youtube.com/watch?v=jYUyd51MJDM&list=PLsSR5xGtg8fWd3sc_0tjzFj4GyRhezkTd&index=3&t=3s][Joachim Vanderkerckhove]] 
 #+end_quote
 
-  I am not sure where to place this in the outline of topics, and I welcome feedback from the class on where you feel in the order of things it would have done you the most good.
+** Sources for the discussion :noexport:
+   can be found in this [[file:~/Nextcloud/admin/univ/teach/grad/theory/][directory]].
+   
+** What is a scientific theory?
+   And how to the notions of prediction and explanation fit into this? Is the ability to predict the tides a theory of the tides? Is it an explanation of the tides?
 
-  As we have seen there can be a lot of ambiguity in terminology, and this lack of specificity can make it very hard to understand exactly what our claims are and what sort of experimental evidence would support or refute them.
+*** What is prediction?
+    And what makes for a good/bad prediction?
 
-  Further reflection highlights that in psychology and cognitive science we are not very good at theory creation. In fact, some argue that we have a "theory crisis" in psychology [cite:@oberauer2019].
+*** What is explanation?
+    And, again, good v. bad explanations?
 
-  
-** Questions
-   1. Is there a theory crisis in psychology?
-      You might want to read [cite:@oberauer2019] first.
-   2. What should we do about it?
-      You might find these citations relevant for your discussion [cite:@guest21_how_comput_model_can_force; @rooij21_theor_befor_test; @Borsboom_2021; @naur85_progr_as_theor_build; @Eronen_2020; @Koch_2025; @Oude_Maatman_2021].
-   3. Is the ability to predict the tides a theory of the tides? Is it an explanation of the tides?
+** Classroom Activity
+   Pick anything you think is an example of a good scientific theory. Be prepared to name it and explain it and to respond to questions that critique it.
+    
+** Do we have a theory crisis in Psychology [cite:@oberauer2019]?
+   You might find these citations relevant for discussion [cite:@guest21_how_comput_model_can_force; @rooij21_theor_befor_test; @Borsboom_2021; @naur85_progr_as_theor_build; @Eronen_2020; @Koch_2025; @Oude_Maatman_2021].
+
+** Classroom Activity
+   Did you pick a psychological example? Do you agree that there is a theory crisis in Psychology?
+   
+** What are scientific theories good for? Or, in other words, why should we care?
+
+** What makes a theory a good theory?
+   Try to answer this by using positive and negative examples from the theories selected by your classmates.
+
+** What are the first steps towards building a theory?
+   - Phenomena
+   - Analogies
+   - Should we adhere to a deductive-nomological model?
+   - Do we want a /causal/ model? What do we mean, really, by A causes B and how can we assess it?
+
+** What should you do next if you think you have a theory?
+
+*** What role should a model play?
+    1. Can a model be verbal?
+    2. Is it enough to express a model in code or pseudo-code?
+    3. Is mathematics necessary?
+
+** Formal Modeling (Advocacy)
+
+*** Advantages
+1. Everything must be defined
+2. The importance of actual values cannot be avoided
+3. Inconsistencies and gaps made obvious
+4. Can be run on a computer?
+   Is this really an advantage? What are the guarantees that the code we run is a faithful implementation of our ideas?
+   It is interesting to me that the example used in the [[https://noahvandongen.com/][notes I am borrowing]] from use Einstein and Eddington's experience with solar eclipses, but this did not use a computer program. Instead it was just math.
+
+** Steps to Formalizing a Model
+- Define the phenomena (not the specific experiments, but the phenomena writ large [the larger the better]).
+- Are there levels?
+- Can you specify processes?
+- Be open to emergence.
+  Do the automata we programmed show emergence. We only specified the colors of pixels, but patterns appeared.
+- Can you find a mathematical form for your process (e.g. exponential)?
+
+** Can you now provide a good example of a psychological theory?
 
 
-All that follows needs some re-working.    
 
+** Some Interesting Reading on this Topic
+(In addition to the references listed below).
 
-[[https://psycnet.apa.org/fulltext/2020-82366-001.pdf][Formalizing Verbal Theories. A tutorial by dialogue.]]
+1. [[https://psycnet.apa.org/fulltext/2020-82366-001.pdf][Formalizing Verbal Theories. A tutorial by dialogue.]]
+2. [[https://journals.physiology.org/doi/epdf/10.1152/jn.00195.2021][Forms of explanation and understanding for neuroscience and artificial intelligence]]
+3. [[https://smaldino.com/wp/wp-content/uploads/2018/01/Smaldino2017-ModelsAreStupid.pdf][Models are Stupid, and We Need More of Them]]
+4. [[https://psycnet.apa.org/fulltext/2025-04988-001.pdf][Productive Explanation: A framework for evaluating explanations in  psychological science]]
+5. [[https://journals.sagepub.com/doi/pdf/10.1177/1745691620969647][Theory Construction Methodology: A practical framework for building theories in psychology]]
 
-[[https://journals.physiology.org/doi/epdf/10.1152/jn.00195.2021][Forms of explanation and understanding for neuroscience and artificial intelligence]]
+** Theory Homework
+In "Models are Stupid"(see link above) Smaldino write:
+   
+*Hopfield’s Model of Content-Addressable Memory*
 
-[[https://smaldino.com/wp/wp-content/uploads/2018/01/Smaldino2017-ModelsAreStupid.pdf][Models are Stupid, and We Need More of Them]]
+Memory - the ability to store information for later recall—is a
+wondrous property of neural networks that makes possible all but the
+most rudimentary forms of cognition. By the early 1980s, long-term
+potentiation—the process by which Donald Hebb’s theory that “neurons
+that fire together wire together” occurs—was relatively well
+described. It was believed that the formation of such associations was
+intrinsic to more complex forms of memory, such as that by which a
+person’s face is encoded and then later recognized, but the mechanism
+was unclear. How could a brain possibly use partial information, like
+an occluded face, to reconstruct information encoded in memory? To
+begin to answer this question, the biophysicist John Hopfield (1982)
+constructed a simple model of two-state neurons in a fully connected
+network. Edge weights were determined by a process of Hebbian learning
+assumed to have already occurred, so that a number of
+configurations(or states) of “on” and “off ” neurons were encoded in
+the network, with edges assumed to be bidirectionally symmetrical
+(i.e., undirected). Using mathematics derived from statistical
+physics, Hopfield showed firstly that in such a system, encoded states
+would be stable, and secondly that if initialized in a non-encoded
+state, the network would self-organize into the encoded state that
+most closely matched the initialized state. In other words, he had a
+model for how memory retrieval could emerge spontaneously in a simple
+neural network. This model is almost absurdly simplistic, even stupid
+in its assumptions. Neurons are either on or off, ignoring subtleties
+of firing rates or even graded activation. Directionality is also
+ignored; links between neurons are equally strong in each direction.
+Exactly how the network is presumed to first arrive in its initial
+state is left a mystery. Yet analysis of the model showed that
+something like biological neural networks could produce
+content-addressable memory. Hopfield himself later showed that the
+model’s functioning was robust to the relaxation of some of his strict
+assumptions (Hopfield, 1984), and the work has laid the foundation
+for much subsequent work in understanding the neurobiology of memory.
 
-[[https://psycnet.apa.org/fulltext/2025-04988-001.pdf][Productive Explanation: A framework for evaluating explanations in psychological science]]
+Your task is to answer the question: Does [[https://www.pnas.org/doi/abs/10.1073/pnas.79.8.2554][Hopfield]] express a theory? Make sure you address the issues of what constitutes a theory that we discussed above and that you include any relevant facts from your own Hopfield model code and experiments.
 
-[[https://journals.sagepub.com/doi/pdf/10.1177/1745691620969647][Theory Construction Methodology: A practical framework for building theories in psychology]]
+Is this a theory of memory? Are there room for others? What is missing, if anything?
+
+This is an opportunity for you to think deeply and critically about theory. A good foundation now will make you a wiser, probably more skeptical, consumer of future research so put your back into it and let me see some of your best work. Write clearly, logically, and persuasively. I will leave length up to you. I am not looking for how many words you write, but the completeness of your ideas in the development and defense of your thesis. 
+
 
 * Some references
 #+print_bibliography: 
