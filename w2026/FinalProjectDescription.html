@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-02-25 Wed 14:00 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Project Descriptions (Brief)</title>
+<meta name="author" content="Britt Anderson" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Project Descriptions (Brief)</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org0ad3574">1. Overview</a></li>
+<li><a href="#org34a8695">2. Evaluation</a></li>
+<li><a href="#orgcc9a39d">3. Project Topics</a>
+<ul>
+<li><a href="#org0aec8b4">3.1. Reinforcement Learning</a>
+<ul>
+<li><a href="#org2212be5">3.1.1. Starting References and Resources</a></li>
+</ul>
+</li>
+<li><a href="#org4f7688b">3.2. Self-organizing Maps (Kohonen Neural Networks)</a>
+<ul>
+<li><a href="#orgc68c528">3.2.1. Starting References and Resources</a></li>
+</ul>
+</li>
+<li><a href="#orgdd44a77">3.3. Morris-Lecar Networks</a>
+<ul>
+<li><a href="#org01ae2f2">3.3.1. Starting References and Resources</a></li>
+</ul>
+</li>
+<li><a href="#org43092a7">3.4. Backpropagation</a>
+<ul>
+<li><a href="#orgee5d99f">3.4.1. Starting References and Resources</a></li>
+</ul>
+</li>
+<li><a href="#orge90c51c">3.5. Agent Based Models</a>
+<ul>
+<li><a href="#orgbbb1864">3.5.1. Starting References and Resources</a></li>
+</ul>
+</li>
+<li><a href="#org7acf077">3.6. Linear Ballistic Accumulators</a>
+<ul>
+<li><a href="#org6c90cbf">3.6.1. Starting References and Resources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org3fb5837">4. Project Deliverables Summarized</a>
+<ul>
+<li><a href="#org9827ae1">4.1. Presentation</a></li>
+<li><a href="#orgeaf9d5f">4.2. Report</a></li>
+</ul>
+</li>
+<li><a href="#org2c8ee27">5. General Suggestions</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0ad3574" class="outline-2">
+<h2 id="org0ad3574"><span class="section-number-2">1.</span> Overview</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The goals of the final project are:
+</p>
+
+<ol class="org-ol">
+<li>Active learning</li>
+<li>Learning through teaching</li>
+<li>Acquiring important professional skills such as:
+<ul class="org-ul">
+<li>Presentation development</li>
+<li>Oral presentation practice</li>
+<li>Project Planning</li>
+<li>Group collaboration</li>
+<li>Technical Writing</li>
+<li>Coding Relevant to Psychology and Neuroscience Modeling</li>
+<li>Technical Knowledge</li>
+</ul></li>
+</ol>
+
+<p>
+In pursuit of these goals a fair amount of time in the last few weeks will be saved for the group project. Each of you will have been assigned by me to a group. The members of the groups will work on the project collaboratively dividing the responsibilities and workload as jointly decided.
+</p>
+
+<p>
+The deliverables will be two. First, there will be on the last course day a 1/2 hour presentation that will:
+</p>
+
+<ol class="org-ol">
+<li>Provide a general introduction to the topic. This will not only be a technical introduction, but will help us understand the history and motivation for using this tool/technique.</li>
+<li>A tutorial survey of the details. This might include the mathematical underpinnings and derivation as well as any pertinent novel notation.</li>
+<li>Practical aspects of coding the algorithm. Ideally working code written by the group will be demonstrated. This is expected to be simple and modest in scope. So, it might be appropriate in addition to the group's own code to show off libraries or software written by others and useful for more complicated or realistic demonstrations.</li>
+</ol>
+
+<p>
+The emphasis of the oral presentation is on learning. Both of us: the audience and the group presenting. This is a time to practice your presentation style and any novel ideas you have about how to give a memorable and instructive presentation. There will be no grade beyond a complete/incomplete.
+</p>
+
+<p>
+The goal of the written reports is to provide an opportunity to develop and share a more rigorous and complete idea of the same general scope, but with increased detail and space for explanations. While a written document is expected other materials may make sense as part of the submission. For example, source code is likely to be a part of all projects. In addition, images or movies of simulations and similar materials may be appropriate. That is for the group to decide.
+</p>
+</div>
+</div>
+<div id="outline-container-org34a8695" class="outline-2">
+<h2 id="org34a8695"><span class="section-number-2">2.</span> Evaluation</h2>
+<div class="outline-text-2" id="text-2">
+<ol class="org-ol">
+<li>For the oral presentation the evaluation is strictly limited to completion. However, I hope that students will look upon this as an opportunity for practice, and also will be respectful of their peers time. You will be listening much more than speaking so keep that in mind as you plan the quality of your own offering.</li>
+<li>For the written, final presentation I will be evaluating:
+<ul class="org-ul">
+<li>Clarity, completeness, and professionalism of the writing.</li>
+<li>Documentation of the topic should include appropriate citations. I don't care so much about what citation style you use as long as it is consistent and follows some professional standard.</li>
+<li>The tutorial code provided will be evaluated for style, accuracy, and the ease with which someone else (me for example) can get it working properly. That may mean the inclusion of instructions.</li>
+<li>The value of any additional materials.</li>
+<li>A general assessment of the pedagogical value of the presentation as a guide to help others understand the material. Ask yourself if your presentation would be a good guide for me as an instructor to use it as the basis for developing additional units of material to present in this course?</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgcc9a39d" class="outline-2">
+<h2 id="orgcc9a39d"><span class="section-number-2">3.</span> Project Topics</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Each group will be assigned one of the topics below. Send me your groups ordered preference list as soon as possible. I have added some starter references, but those should not be viewed as sufficient in and of themselves. It is just to give a chance to get a better sense of what the topic is about and what kind of resources you might be looking for. 
+</p>
+</div>
+<div id="outline-container-org0aec8b4" class="outline-3">
+<h3 id="org0aec8b4"><span class="section-number-3">3.1.</span> Reinforcement Learning</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+There is a "classic" textbook available on line, code as well. Reinforcement Learning is a common paradigm and mechanism for explaining a multitude of behaviors. The basic idea is that you do more of whatever it is that gives you a reward. The mapping of dopamine dynamics onto reward delivery has been heralded as one of the great successes of computational neuroscience.
+</p>
+</div>
+<div id="outline-container-org2212be5" class="outline-4">
+<h4 id="org2212be5"><span class="section-number-4">3.1.1.</span> Starting References and Resources</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<ul class="org-ul">
+<li>The canonical textbook, freely available online, is Sutton &amp; Barto's <i>Reinforcement Learning: An Introduction</i> (2nd ed.). Both the PDF and code examples are available at: <a href="http://incompleteideas.net/book/the-book-2nd.html">http://incompleteideas.net/book/the-book-2nd.html</a></li>
+<li>For the neuroscience connection, see the dopamine and reward prediction error <a href="https://www.sciencedirect.com/science/article/pii/S0022249608001181">review</a> cited below.</li>
+<li>A practical Python-focused tutorial series using OpenAI Gym (now Gymnasium) is a good hands-on complement: <a href="https://gymnasium.farama.org/">https://gymnasium.farama.org/</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org4f7688b" class="outline-3">
+<h3 id="org4f7688b"><span class="section-number-3">3.2.</span> Self-organizing Maps (Kohonen Neural Networks)</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Ever wonder how we develop those remarkable maps in the brain where there seems to be an organizational principle that puts similar things next to each other? There is an R package for Kohonen maps, and an article that describes it. For more on the idea itself there are many treatments. One possible starting point would be Kohonen himself.
+</p>
+</div>
+<div id="outline-container-orgc68c528" class="outline-4">
+<h4 id="orgc68c528"><span class="section-number-4">3.2.1.</span> Starting References and Resources</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<ul class="org-ul">
+<li>Kohonen, T. (1982). Self-organized formation of topologically correct feature maps. <i>Biological Cybernetics</i>, 43(1), 59–69. <a href="https://doi.org/10.1007/BF00337288">https://doi.org/10.1007/BF00337288</a> — the original paper.</li>
+<li>Wehrens, R., &amp; Buydens, L. M. C. (2007). Self- and super-organizing maps in R: The kohonen package. <i>Journal of Statistical Software</i>, 21(5). <a href="https://doi.org/10.18637/jss.v021.i05">https://doi.org/10.18637/jss.v021.i05</a> — the primary reference for the R <code>kohonen</code> package.</li>
+<li>The R <code>kohonen</code> package documentation and vignettes are a practical starting point for coding: <a href="https://cran.r-project.org/package=kohonen">https://cran.r-project.org/package=kohonen</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdd44a77" class="outline-3">
+<h3 id="orgdd44a77"><span class="section-number-3">3.3.</span> Morris-Lecar Networks</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+In order to gain insights into the dynamics of models of neurons it is useful to simplify them from their fully biologically realistic instances. One simplified version is the Morris-Lecar model that has fewer moving parts, but yields rich dynamics. An introduction from a textbook is available on line. Code also can be found all over the internet, and you should have code, but this might also be a good chance to look at this tool widely used by the neural dynamics community. The author of the software also has his own textbook available for download.
+</p>
+</div>
+<div id="outline-container-org01ae2f2" class="outline-4">
+<h4 id="org01ae2f2"><span class="section-number-4">3.3.1.</span> Starting References and Resources</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<ul class="org-ul">
+<li>Morris, C., &amp; Lecar, H. (1981). Voltage oscillations in the barnacle giant muscle fiber. <i>Biophysical Journal</i>, 35(1), 193–213. <a href="https://doi.org/10.1016/S0006-3495(81)84782-0">https://doi.org/10.1016/S0006-3495(81)84782-0</a> — the original paper.</li>
+<li>Rinzel, J., &amp; Ermentrout, G. B. (1998). Analysis of neural excitability and oscillations. In C. Koch &amp; I. Segev (Eds.), <i>Methods in Neuronal Modeling</i> (2nd ed., pp. 251–291). MIT Press. — a classic chapter situating Morris-Lecar in the broader landscape of neural dynamics. (I found an online copy <a href="https://www.researchgate.net/publication/237128320_Analysis_of_Neural_Excitability_and_Oscillations">here</a>)</li>
+<li>Ermentrout, B., &amp; Terman, D. (2010). <i>Mathematical Foundations of Neuroscience</i>. Springer. — Ermentrout's <a href="https://epubs.siam.org/doi/pdf/10.1137/1.9780898718195.fm?download=true">textbook</a> is freely downloadable and treats Morris-Lecar in depth; his simulation tool XPPAUT is also widely used: <a href="http://www.math.pitt.edu/~bard/xpp/xpp.html">http://www.math.pitt.edu/~bard/xpp/xpp.html</a> or <a href="https://sites.pitt.edu/~phase/bard/bardware/xpp/xpp.html">https://sites.pitt.edu/~phase/bard/bardware/xpp/xpp.html</a>.</li>
+<li>The Brian2 simulator provides a Python environment well suited to implementing Morris-Lecar networks: <a href="https://brian2.readthedocs.io/">https://brian2.readthedocs.io/</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org43092a7" class="outline-3">
+<h3 id="org43092a7"><span class="section-number-3">3.4.</span> Backpropagation</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+This is the method that revolutionized the world of neural networks. It was a means of transmitting the error to each unit in a multilayer perceptron that would allow for effective quick learning of complex problems. The derivation of the method is complicated in the details, but relatively straightforward in the broad strokes. There are many, many demonstrations of this, but writing your own code to implement the method teaches you a lot.
+</p>
+</div>
+<div id="outline-container-orgee5d99f" class="outline-4">
+<h4 id="orgee5d99f"><span class="section-number-4">3.4.1.</span> Starting References and Resources</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<ul class="org-ul">
+<li>Rumelhart, D. E., Hinton, G. E., &amp; Williams, R. J. (1986). Learning representations by back-propagating errors. <i>Nature</i>, 323, 533–536. <a href="https://doi.org/10.1038/323533a0">https://doi.org/10.1038/323533a0</a> — the landmark paper.</li>
+<li>Nielsen, M. (2015). <i>Neural Networks and Deep Learning</i>. Free online book with worked examples and code in Python: <a href="http://neuralnetworksanddeeplearning.com/">http://neuralnetworksanddeeplearning.com/</a> — an excellent and readable tutorial treatment of backpropagation from first principles.</li>
+<li>3Blue1Brown's video series "Neural Networks" on YouTube provides outstanding visual intuition for the algorithm before diving into the mathematics: <a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi">https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orge90c51c" class="outline-3">
+<h3 id="orge90c51c"><span class="section-number-3">3.5.</span> Agent Based Models</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+Agent Based Models (ABMs) allow us to simulate how complex, population-level patterns emerge from the local interactions of many individual agents, each following simple rules. They have been applied to problems ranging from the spread of disease to the emergence of social norms and collective neural dynamics.
+</p>
+</div>
+<div id="outline-container-orgbbb1864" class="outline-4">
+<h4 id="orgbbb1864"><span class="section-number-4">3.5.1.</span> Starting References and Resources</h4>
+<div class="outline-text-4" id="text-3-5-1">
+<ul class="org-ul">
+<li>Axelrod, R. (1997). <i>The Complexity of Cooperation: Agent-Based Models of Competition and Collaboration</i>. Princeton University Press. — a foundational text on ABMs in the social and behavioral sciences.</li>
+<li>NetLogo is a widely used, beginner-friendly ABM environment with an extensive model library and its own tutorial: <a href="https://ccl.northwestern.edu/netlogo/">https://ccl.northwestern.edu/netlogo/</a></li>
+<li>Mesa is the primary Python library for agent-based modeling and a natural choice if you prefer to stay in Python. Documentation and tutorials are at: <a href="https://mesa.readthedocs.io/">https://mesa.readthedocs.io/</a> and the repository is at: <a href="https://github.com/projectmesa/mesa">https://github.com/projectmesa/mesa</a></li>
+<li>The Santa Fe Institute's Complexity Explorer offers free online courses and resources that provide good conceptual grounding: <a href="https://www.complexityexplorer.org/">https://www.complexityexplorer.org/</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org7acf077" class="outline-3">
+<h3 id="org7acf077"><span class="section-number-3">3.6.</span> Linear Ballistic Accumulators</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+How do we make decisions? We accumulate evidence. That is the idea behind drift diffusion models. And they have been very big over the years, however the math is quite complex and they can be hard to fit. Linear ballistic accumulators are a simplified version. And just as we saw with integrate and fire models simple can sometimes be better, depending on your question. 
+</p>
+</div>
+<div id="outline-container-org6c90cbf" class="outline-4">
+<h4 id="org6c90cbf"><span class="section-number-4">3.6.1.</span> Starting References and Resources</h4>
+<div class="outline-text-4" id="text-3-6-1">
+<ul class="org-ul">
+<li>Brown, S. D., &amp; Heathcote, A. (2008). The simplest complete model of choice response time: Linear ballistic accumulation. <i>Cognitive Psychology</i>, 57(3), 153–178. <a href="https://doi.org/10.1016/j.cogpsych.2007.12.002">https://doi.org/10.1016/j.cogpsych.2007.12.002</a> — the paper that introduced the LBA model.</li>
+<li>Donkin, C., Brown, S. D., &amp; Heathcote, A. (2011). Drawing conclusions from choice response time models: A tutorial using the linear ballistic accumulator. <i>Journal of Mathematical Psychology</i>, 55(2), 140–151. <a href="https://doi.org/10.1016/j.jmp.2010.10.001">https://doi.org/10.1016/j.jmp.2010.10.001</a> — a tutorial-style companion paper aimed at new users.</li>
+<li>The <code>rtdists</code> R package implements the LBA and related evidence-accumulation models and is a practical starting point for coding: <a href="https://cran.r-project.org/package=rtdists">https://cran.r-project.org/package=rtdists</a></li>
+<li>PyDDM is a Python-based simulator for drift-diffusion and accumulator models that can serve as a useful reference implementation: <a href="https://pyddm.readthedocs.io/">https://pyddm.readthedocs.io/</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org3fb5837" class="outline-2">
+<h2 id="org3fb5837"><span class="section-number-2">4.</span> Project Deliverables Summarized</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org9827ae1" class="outline-3">
+<h3 id="org9827ae1"><span class="section-number-3">4.1.</span> Presentation</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+A half hour presentation during the last class session that will provide us all with an overview of your topic to include its background, importance, and application. Then you will need to walk us through how to implement and use your computational offering. Lastly, you should address how it is or could be used for better understanding mental or neural questions about the mechanisms of cognition.
+</p>
+</div>
+</div>
+<div id="outline-container-orgeaf9d5f" class="outline-3">
+<h3 id="orgeaf9d5f"><span class="section-number-3">4.2.</span> Report</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Your report should be a paper replete with the usual abstract, intro, methods, code, results of simulations, and references. Figures and analyses should be integrated into the manuscript in order to have a reproducible research project. To the extent that this is not felt to be possible you will have to justify it heavily. Tools that you might find useful include Overleaf and Quarto, though you can probably get close with Rmd/Rstudio since that now supports python. If you elect to use another language you may find they have a suitable language for this (e.g. with Racket it is Scribble).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2c8ee27" class="outline-2">
+<h2 id="org2c8ee27"><span class="section-number-2">5.</span> General Suggestions</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+I will make the groups, and I encourage each of you to find the right role for each member to make the project work efficiently. Some may be stronger writers while others are better coders. All research is collaborative with a mix of talents. Finding out how to discover that, and apportion work will be important in your future endeavors.
+</p>
+
+<p>
+We will decide together the deadline for the delivery of the final report.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: Feb 25 2026</p>
+<p class="author">Author: Britt Anderson</p>
+<p class="date">Created: 2026-02-25 Wed 14:00</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
