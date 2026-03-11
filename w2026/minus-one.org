@@ -1639,7 +1639,7 @@ As a placeholder, and in case I run out of time, I will insert some of the slide
 *** Name a psychological theory.
 ** I demand a satisfactory explanation
 *** A celestial example and a Planetary Context
-[[file:~/Nextcloud/admin/univ/teach/grad/cogSci600/planetCtx.png]]
+[[file:./images/planetCtx.png]]
 ** Thagard's Principles of Explanatory Coherence
 1. Symmetry
 2. Analogy
@@ -1649,9 +1649,9 @@ As a placeholder, and in case I run out of time, I will insert some of the slide
 6. Data Priority
 7. Explanation
 ** Taking up all the oxygen in the room
-[[file:/home/britt/Nextcloud/admin/univ/teach/grad/cogSci600/lavosier.png]]
+[[file:./images/lavosier.png]]
 ** And the network said ...
-[[file:~/Nextcloud/admin/univ/teach/grad/cogSci600/lavosierPlot.png]]
+[[file:./images/lavosierPlot.png]]
 ** From Lisp to R
 
 #+BEGIN_SRC R :eval never
@@ -1675,7 +1675,7 @@ h2 <- example_lavoisier()
 #+END_SRC
 
 ** And the network said ... (ECHO, Echo, echo ...)
-[[file:~/Nextcloud/admin/univ/teach/grad/cogSci600/rEcho.png]]
+[[file:./images/rEcho.png]]
 
 Can we do better?
 ** Formal CONTEXTS
@@ -1703,7 +1703,7 @@ Where \( a \subseteq A\mbox{, and }b \subseteq B\) with \( F:B \rightarrow A\mbo
 Note that this works for our concepts. 
 
 ** A celestial example
-[[file:~/Nextcloud/admin/univ/teach/grad/cogSci600/planetCtx.png]]
+[[file:./images/planetCtx.png]]
 
 Is the combination of Earth and Mars a concept?
 \begin{eqnarray}
@@ -1714,10 +1714,10 @@ A'' &=& \{Earth,~Mars\}
 
 ** Jacob's Ladder
 *** A Planetary Lattice
-[[file:~/Nextcloud/admin/univ/teach/grad/cogSci600/planetLattice.png]]
+[[file:./images/planetLattice.png]]
 
 *** The Context
-[[file:~/Nextcloud/admin/univ/teach/grad/cogSci600/planetCtx.png]]
+[[file:./images/planetCtx.png]]
 
 
 #+begin_src R :exports none :session *rfca*  :results silent
@@ -1797,7 +1797,7 @@ list(fc_lavoisier_combined$implications)[[1]][14:16]
 Implications reveal logical dependencies: if evidence supports certain hypotheses, what other hypotheses must also be supported?
 
 ** The Lavoisier Concept Lattice
-#+BEGIN_SRC R :exports results :session *rfca* :results graphics file :file lvll.png
+#+BEGIN_SRC R :exports results :session *rfca* :results graphics file :file ./images/lvll.png
   png("lvll.png", width=800, height=600, res=150)
   fc_lavoisier_combined$concepts$plot()
   dev.off()
@@ -1806,7 +1806,7 @@ Implications reveal logical dependencies: if evidence supports certain hypothese
 
 #+Caption: "The lattice structure reveals the hierarchical organization of explanatory relationships."
 #+RESULTS:
-[[file:lvll.png]]
+[[file:images/lvll.png]]
 
 
 * Reasons to Prefer FCA
