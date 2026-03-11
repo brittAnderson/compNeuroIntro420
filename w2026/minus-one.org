@@ -1623,6 +1623,264 @@ Is this a theory of memory? Are there room for others? What is missing, if anyth
 
 This is an opportunity for you to think deeply and critically about theory. A good foundation now will make you a wiser, probably more skeptical, consumer of future research so put your back into it and let me see some of your best work. Write clearly, logically, and persuasively. I will leave length up to you. I am not looking for how many words you write, but the completeness of your ideas in the development and defense of your thesis. 
 
+* Algebraic Psychology
+
+This section, still to be written, will present some of the mathematics of abstract algebra (not as hard as it sounds), and then show how that can be used to approach a cognitive modeling problem. The example problem we will use is a comparison of /formal concept analysis/ with [[https://en.wikipedia.org/wiki/Paul_Thagard][Paul Thagard's]] /Theory of Explanatory Coherence/ [cite:@Thagard_1989].
+
+As a placeholder, and in case I run out of time, I will insert some of the slides I will be using March 12, 2026 for a lecture in CogSci 600.
+
+
+** Opening Questions
+*** What is a theory?
+*** Name a psychological theory.
+** I demand a satisfactory explanation
+*** A celestial example and a Planetary Context
+[[file:planetCtx.png]]
+
+** Thagard's Principles of Explanatory Coherence
+1. Symmetry
+2. Analogy
+3. Contradiction
+4. Competition
+5. Acceptability
+6. Data Priority
+7. Explanation
+** Taking up all the oxygen in the room
+[[file:lavosier.png]]
+** And the network said ...
+[[file:lavosierPlot.png]]
+** From Lisp to R
+#+BEGIN_SRC R :eval never
+# ECHO Model in R
+# Ported from Paul Thagard's MacLisp implementation
+echo_env <- new.env()
+echo_env$min_activation <- -1.0
+echo_env$max_activation <- 1.0
+create_unit <- function(name, activation = echo_env$default_activation) {
+  unit <- list(
+    name = name,
+    activation = activation,
+    new_activation = activation,
+  )
+weight_of_link_between <- function(unit1_name, unit2_name) {
+  exp_unit <- get_unit(exp)
+  exp_unit$explains <- unique(c(exp_unit$explains, explanandum))
+}
+# Run Lavoisier example
+h2 <- example_lavoisier()
+#+END_SRC
+
+** And the network said ... (ECHO, Echo, echo ...)
+[[file:rEcho.png]]
+
+Can we do better?
+** Formal CONTEXTS
+- A set of objects (we'll denote with \(G\) by convention).
+- A set of attributes (we'll denote with \(M\) by convention).
+- And a relation (\(R\)) between these two sets.
+- It is often convenient to present this as a matrix (as we did for the planets).
+** Formal CONCEPTS
+- Sets of objects that all share the same attributes.
+- Sets of attributes that are all possesed by the same objects.
+- Both with nothing left out.
+- That is, for \(A \subseteq G\) and \(B \subseteq M\) if we define the following (') operations thusly:
+  \begin{eqnarray}
+  A' &=& \{ m \in M~|~\forall g \in A~gRm\} \\
+  B' &=& \{ g \in G~|~\forall m \in B~gRm\} \\
+  \mbox{then, } A'' &=& A \mbox{, defines a concept.} 
+  \end{eqnarray}
+** A Romantic Connection
+#+BEGIN_EXPORT latex
+\begin{definition}[Galois Connection]
+$a \leq F(b) \iff G(a) \geq b$
+\end{definition}
+#+END_EXPORT
+Where \( a \subseteq A\mbox{, and }b \subseteq B\) with \( F:B \rightarrow A\mbox{, and }G:A \rightarrow B \) bijective and monotonic functions.
+
+Note that this works for our concepts. 
+
+** A celestial example
+[[file:planetCtx.png]]
+
+Is the combination of Earth and Mars a concept?
+#+Begin_export LaTeX
+\pause \begin{eqnarray}
+A &=& \{ Earth,~Mars\}\\
+A' &=& \{small,~near,~moon\}\\
+A'' &=& \{Earth,~Mars\}
+\end{eqnarray}
+#+end_export
+
+** Jacob's Ladder
+*** A Planetary Lattice
+[[file:planetLattice.png]]
+
+*** The Context
+[[file:planetCtx.png]]
+
+#+begin_src R :exports none :session *rfca*  :results silent
+source("/home/britt/gitRepos/fcateq/code/echo/R/lavOxy.R")
+library(hasseDiagram)
+#+end_src
+
+
+** From ECHO to FCA: The Lavoisier Context
+#+BEGIN_SRC R :exports results :results output :session *rfca*
+# Display the Lavoisier explanatory matrix
+print("Lavoisier vs Phlogiston Explanatory Context:")
+print(lavoisier_matrix)
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+[1] "Lavoisier vs Phlogiston Explanatory Context:"
+OH1 OH2 OH3 OH4 OH5 OH6 PH1 PH2 PH3 PH4 PH5 PH6
+E1   1   1   1   0   0   0   1   1   1   0   0   0
+E2   0   0   0   0   0   0   1   0   1   1   0   0
+E3   1   0   1   0   0   0   0   0   0   0   0   0
+E4   1   0   1   1   0   0   0   0   0   0   0   0
+E5   1   0   0   0   1   0   0   0   0   0   1   1
+E6   1   0   0   1   1   0   0   0   0   0   0   0
+E7   1   0   0   0   1   0   0   0   0   0   0   0
+E8   1   0   0   0   0   1   0   0   0   0   0   0
+#+end_example
+
+Evidence E1-E8 as objects, hypotheses OH1-OH6 (Oxygen) and PH1-PH6 (Phlogiston) as attributes.
+A value of 1 means the hypothesis explains the evidence.
+
+** Sample Formal Concepts
+
+#+BEGIN_SRC R :exports results :results output :session *rfca*
+# Show first few concepts from the combined analysis
+fc_lavoisier_combined$concepts$to_list()[1:5]
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+[[1]]
+({E1, E2, E3, E4, E5, E6, E7, E8}, {})
+
+[[2]]
+({E1, E2}, {PH1, PH3})
+
+[[3]]
+({E2}, {PH1, PH3, PH4})
+
+[[4]]
+({E1, E3, E4, E5, E6, E7, E8}, {OH1})
+
+[[5]]
+({E8}, {OH1, OH6})
+#+end_example
+
+Each concept shows:
+- *Extent*: Set of evidence explained together
+- *Intent*: Set of hypotheses that explain exactly that evidence
+
+** Implications in the Lavoisier Context  
+#+BEGIN_SRC R :exports results :results output :session *rfca*
+# Display key implications
+print("Key implications discovered:")
+list(fc_lavoisier_combined$implications)[[1]][14:16]
+#+END_SRC
+
+#+RESULTS:
+: [1] "Key implications discovered:"
+: Implication set with 3 implications.
+: Rule 1: {OH1, OH4, OH6} -> {OH2, OH3, OH5, PH1, PH2, PH3, PH4, PH5, PH6}
+: Rule 2: {OH1, OH4, OH5, PH5, PH6} -> {OH2, OH3, OH6, PH1, PH2, PH3, PH4}
+: Rule 3: {OH1, OH3, OH6} -> {OH2, OH4, OH5, PH1, PH2, PH3, PH4, PH5, PH6}
+
+
+Implications reveal logical dependencies: if evidence supports certain hypotheses, what other hypotheses must also be supported?
+
+** The Lavoisier Concept Lattice
+#+BEGIN_SRC R :exports results :session *rfca* :results graphics file :file lvll.png
+  png("lvll.png", width=800, height=600, res=150)
+  fc_lavoisier_combined$concepts$plot()
+  dev.off()
+  "lvll.png"
+#+END_SRC
+
+#+ATTR_LATEX: :width 0.6\textwidth
+#+Caption: "The lattice structure reveals the hierarchical organization of explanatory relationships."
+#+RESULTS:
+[[file:lvll.png]]
+
+
+* Reasons to Prefer FCA
+** Data Processing Inequality
+#+BEGIN_EXPORT latex
+\begin{theorem}[Data Processing Inequality]
+For random variables $X$, $Y$, and $Z$ that form a Markov chain $X \to Y \to Z$, we have:
+$$I(X;Z) \leq I(X;Y)$$
+where $I(X;Y)$ denotes the mutual information between $X$ and $Y$.
+\end{theorem}
+
+\vspace{0.5cm}
+
+In our context: Information cannot be gained by processing data through additional theoretical layers.
+#+END_EXPORT
+** Formal Contexts are Chu Spaces
+#+BEGIN_EXPORT latex
+\begin{definition}[Chu Space]
+A Chu space over a set $K$ is a triple $(A, r, X)$ where:
+\begin{itemize}
+\item $A$ and $X$ are sets (called \emph{points} and \emph{states} respectively)
+\item $r: A \times X \to K$ is a function (the \emph{evaluation map})
+\end{itemize}
+The Chu space defines a duality via:
+$$a^\perp = \{x \in X \mid r(a,x) = 0\}$$
+$$x^\perp = \{a \in A \mid r(a,x) = 0\}$$
+\end{definition}
+
+\vspace{0.3cm}
+
+Formal contexts are Chu spaces over $\{0,1\}$ where objects are points, attributes are states, and the incidence relation is the evaluation map.
+#+END_EXPORT
+** Chu Spaces are *-autonomous categories
+#+BEGIN_EXPORT latex
+In the category of Chu spaces, every object $A$ has a dual $A^*$ such that:
+$$A^{**} \cong A$$
+
+The *-autonomous structure provides:
+\begin{itemize}
+\item \textbf{Duality}: Each Chu space has a canonical dual
+\item \textbf{Internal Hom}: $[A,B] = A^* \otimes B$ 
+\item \textbf{Self-duality}: The category is equivalent to its own opposite
+\end{itemize}
+
+\vspace{0.3cm}
+
+This categorical framework unifies logic, geometry, and computation through the lens of duality.
+#+END_EXPORT
+
+** Unifying Logic, Geometry, and Computation
+#+BEGIN_EXPORT latex
+\textbf{Logic:} Chu spaces model linear logic's multiplicative fragment, where $A \multimap B \equiv A^* \otimes B$
+\vspace{0.3cm}
+\textbf{Geometry:} Stone duality connects topological spaces with Boolean algebras via Chu construction
+\vspace{0.3cm}
+\textbf{Computation:} Game semantics emerges naturally—strategies are morphisms in Chu categories
+\vspace{0.3cm}
+\textbf{Cognition:} Formal concepts capture the duality between extension (objects) and intension (properties)
+#+END_EXPORT
+
+
+
+* But wait! There's more!
+
+** I probably ran out of time so come talk to me\footnote{Because I actually don't know that much about most of what I am talking about. If you know more, or want to dive deeper into something we talked about today, I would love to work with you.}
+
+- Monoids
+- Monoidal Categories
+- Monoidal and Comonoidal Objects
+- Hypergraphs
+- Categories of Hypergraphs
+- Connections to Other Areas of Cognition
+
+*** Bibliography and Other Readings
+[cite/n:@Thagard_1989; @Wille_2005; @tull2020monoidalcategoriesformalconcept; @lopez2021chuareyou; @oberauer2019; @Davey_2002]
 
 * Final Projects
 (also available as a pdf on learn)
