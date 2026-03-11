@@ -1512,7 +1512,7 @@ I have been wondering about the concept of explanation. I don't know if there is
    can be found in this [[file:~/Nextcloud/admin/univ/teach/grad/theory/][directory]].
    
 ** What is a scientific theory?
-   And how to the notions of prediction and explanation fit into this? Is the ability to predict the tides a theory of the tides? Is it an explanation of the tides?
+   And how do the notions of prediction and explanation fit into this? Is the ability to predict the tides a theory of the tides? Is it an explanation of the tides?
 
 *** What is prediction?
     And what makes for a good/bad prediction?
