@@ -1524,7 +1524,7 @@ I have been wondering about the concept of explanation. I don't know if there is
    Pick anything you think is an example of a good scientific theory. Be prepared to name it and explain it and to respond to questions that critique it.
     
 ** Do we have a theory crisis in Psychology [cite:@oberauer2019]?
-   You might find these citations relevant for discussion [cite:@guest21_how_comput_model_can_force; @rooij21_theor_befor_test; @Borsboom_2021; @naur85_progr_as_theor_build; @Eronen_2020; @Koch_2025; @Oude_Maatman_2021].
+   You might find these citations relevant for discussion [cite:@guest21_how_comput_model_can_force; @rooij21_theor_befor_test; @Borsboom_2021; @naur85_progr_as_theor_build; @Eronen_2020; @Koch_2025; @Oude_Maatman_2021; @Sanbonmatsu_2025].
 
 ** Classroom Activity
    Did you pick a psychological example? Do you agree that there is a theory crisis in Psychology?
