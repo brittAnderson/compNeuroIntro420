@@ -4,7 +4,11 @@
 #+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t
 #+options: tasks:t tex:t timestamp:t title:t toc:t todo:t |:t
 #+Latex_header: \usepackage{svg}
+#+latex_header: \usepackage{amssymb}
 #+latex_header: \usepackage{amsmath}
+#+latex_header: \usepackage{amsthm}
+#+latex_header: \newtheorem{definition}{Definition}
+#+latex_header: \newtheorem{theorem}{Theorem}
 #+Title: Computational Modeling for Psychology Students
 #+author: Britt Anderson
 #+date: Winter 2026
@@ -1635,8 +1639,7 @@ As a placeholder, and in case I run out of time, I will insert some of the slide
 *** Name a psychological theory.
 ** I demand a satisfactory explanation
 *** A celestial example and a Planetary Context
-[[file:planetCtx.png]]
-
+[[file:~/Nextcloud/admin/univ/teach/grad/cogSci600/planetCtx.png]]
 ** Thagard's Principles of Explanatory Coherence
 1. Symmetry
 2. Analogy
@@ -1646,10 +1649,11 @@ As a placeholder, and in case I run out of time, I will insert some of the slide
 6. Data Priority
 7. Explanation
 ** Taking up all the oxygen in the room
-[[file:lavosier.png]]
+[[file:/home/britt/Nextcloud/admin/univ/teach/grad/cogSci600/lavosier.png]]
 ** And the network said ...
-[[file:lavosierPlot.png]]
+[[file:~/Nextcloud/admin/univ/teach/grad/cogSci600/lavosierPlot.png]]
 ** From Lisp to R
+
 #+BEGIN_SRC R :eval never
 # ECHO Model in R
 # Ported from Paul Thagard's MacLisp implementation
@@ -1671,7 +1675,7 @@ h2 <- example_lavoisier()
 #+END_SRC
 
 ** And the network said ... (ECHO, Echo, echo ...)
-[[file:rEcho.png]]
+[[file:~/Nextcloud/admin/univ/teach/grad/cogSci600/rEcho.png]]
 
 Can we do better?
 ** Formal CONTEXTS
@@ -1690,33 +1694,31 @@ Can we do better?
   \mbox{then, } A'' &=& A \mbox{, defines a concept.} 
   \end{eqnarray}
 ** A Romantic Connection
-#+BEGIN_EXPORT latex
 \begin{definition}[Galois Connection]
 $a \leq F(b) \iff G(a) \geq b$
 \end{definition}
-#+END_EXPORT
+
 Where \( a \subseteq A\mbox{, and }b \subseteq B\) with \( F:B \rightarrow A\mbox{, and }G:A \rightarrow B \) bijective and monotonic functions.
 
 Note that this works for our concepts. 
 
 ** A celestial example
-[[file:planetCtx.png]]
+[[file:~/Nextcloud/admin/univ/teach/grad/cogSci600/planetCtx.png]]
 
 Is the combination of Earth and Mars a concept?
-#+Begin_export LaTeX
-\pause \begin{eqnarray}
+\begin{eqnarray}
 A &=& \{ Earth,~Mars\}\\
 A' &=& \{small,~near,~moon\}\\
 A'' &=& \{Earth,~Mars\}
 \end{eqnarray}
-#+end_export
 
 ** Jacob's Ladder
 *** A Planetary Lattice
-[[file:planetLattice.png]]
+[[file:~/Nextcloud/admin/univ/teach/grad/cogSci600/planetLattice.png]]
 
 *** The Context
-[[file:planetCtx.png]]
+[[file:~/Nextcloud/admin/univ/teach/grad/cogSci600/planetCtx.png]]
+
 
 #+begin_src R :exports none :session *rfca*  :results silent
 source("/home/britt/gitRepos/fcateq/code/echo/R/lavOxy.R")
@@ -1802,7 +1804,6 @@ Implications reveal logical dependencies: if evidence supports certain hypothese
   "lvll.png"
 #+END_SRC
 
-#+ATTR_LATEX: :width 0.6\textwidth
 #+Caption: "The lattice structure reveals the hierarchical organization of explanatory relationships."
 #+RESULTS:
 [[file:lvll.png]]
@@ -1810,19 +1811,15 @@ Implications reveal logical dependencies: if evidence supports certain hypothese
 
 * Reasons to Prefer FCA
 ** Data Processing Inequality
-#+BEGIN_EXPORT latex
 \begin{theorem}[Data Processing Inequality]
 For random variables $X$, $Y$, and $Z$ that form a Markov chain $X \to Y \to Z$, we have:
 $$I(X;Z) \leq I(X;Y)$$
 where $I(X;Y)$ denotes the mutual information between $X$ and $Y$.
 \end{theorem}
 
-\vspace{0.5cm}
-
 In our context: Information cannot be gained by processing data through additional theoretical layers.
-#+END_EXPORT
+
 ** Formal Contexts are Chu Spaces
-#+BEGIN_EXPORT latex
 \begin{definition}[Chu Space]
 A Chu space over a set $K$ is a triple $(A, r, X)$ where:
 \begin{itemize}
@@ -1834,43 +1831,31 @@ $$a^\perp = \{x \in X \mid r(a,x) = 0\}$$
 $$x^\perp = \{a \in A \mid r(a,x) = 0\}$$
 \end{definition}
 
-\vspace{0.3cm}
 
 Formal contexts are Chu spaces over $\{0,1\}$ where objects are points, attributes are states, and the incidence relation is the evaluation map.
-#+END_EXPORT
+
 ** Chu Spaces are *-autonomous categories
-#+BEGIN_EXPORT latex
 In the category of Chu spaces, every object $A$ has a dual $A^*$ such that:
 $$A^{**} \cong A$$
 
 The *-autonomous structure provides:
-\begin{itemize}
-\item \textbf{Duality}: Each Chu space has a canonical dual
-\item \textbf{Internal Hom}: $[A,B] = A^* \otimes B$ 
-\item \textbf{Self-duality}: The category is equivalent to its own opposite
-\end{itemize}
+- Duality: Each Chu space has a canonical dual
+- Internal Hom: $[A,B] = A^* \otimes B$ 
+- Self-duality: The category is equivalent to its own opposite
 
-\vspace{0.3cm}
 
 This categorical framework unifies logic, geometry, and computation through the lens of duality.
-#+END_EXPORT
+
 
 ** Unifying Logic, Geometry, and Computation
-#+BEGIN_EXPORT latex
-\textbf{Logic:} Chu spaces model linear logic's multiplicative fragment, where $A \multimap B \equiv A^* \otimes B$
-\vspace{0.3cm}
-\textbf{Geometry:} Stone duality connects topological spaces with Boolean algebras via Chu construction
-\vspace{0.3cm}
-\textbf{Computation:} Game semantics emerges naturally—strategies are morphisms in Chu categories
-\vspace{0.3cm}
-\textbf{Cognition:} Formal concepts capture the duality between extension (objects) and intension (properties)
-#+END_EXPORT
-
-
+- Logic: Chu spaces model linear logic's multiplicative fragment, where \(A \multimap B \equiv A^* \otimes B\)
+- Geometry: Stone duality connects topological spaces with Boolean algebras via Chu construction
+- Computation: Game semantics emerges naturally—strategies are morphisms in Chu categories
+- Cognition: Formal concepts capture the duality between extension (objects) and intension (properties)
 
 * But wait! There's more!
 
-** I probably ran out of time so come talk to me\footnote{Because I actually don't know that much about most of what I am talking about. If you know more, or want to dive deeper into something we talked about today, I would love to work with you.}
+** I probably ran out of time so come talk to me
 
 - Monoids
 - Monoidal Categories
@@ -2019,7 +2004,6 @@ https://github.com/sarahgahyun/backpropagation/tree/main
 #+print_bibliography: 
 
 * Footnotes
-
 [fn:1] Why the bird names? See [[https://raymondsmullyan.com/books/to-mock-a-mockingbird-and-other-logic-puzzles/][To Mock a Mockingbird]]
 [fn:4] Does it matter that the $\mathbf{W}$ comes first?
 [fn:2] see David Marr's *Vision*. 
