@@ -1579,7 +1579,7 @@ I have been wondering about the concept of explanation. I don't know if there is
 5. [[https://journals.sagepub.com/doi/pdf/10.1177/1745691620969647][Theory Construction Methodology: A practical framework for building theories in psychology]]
 
 ** Theory Homework
-In "Models are Stupid"(see link above) Smaldino write:
+In "Models are Stupid"(see link above) Smaldino writes:
    
 *Hopfield’s Model of Content-Addressable Memory*
 
