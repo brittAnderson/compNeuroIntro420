@@ -1,0 +1,93 @@
+#+title: Some notes for what I hope will be a good first class day
+#+author: Britt Anderson
+
+* What is a cognitive model
+** Divide class into teams of four or five each. 
+** Assign to each team a label:
+   - cognitive psychologist
+   - experimental neuroscientist
+   - computational neuroscientist
+   - philosopher of mind
+
+** Consider the following question from the point of view of your assigned role:
+   An X learns that a cue Y predicts a reward Z. What evidence would you want to see to support this claim? What would constitute an "explanation" for such a relation?
+
+** Give time for developing an answer. 
+** Review the suggestions.
+** Now consider the following.
+
+Give each scenario in turn. 
+- X = Dog; Y = Bell; Z = food.
+- X = Sunflower; Y = sun ; Z = sugar
+- X = Pea Plant ; Y = air puff ; Z = light [[https://www.nature.com/articles/srep38427][link]]
+
+** Reorganize the groups
+ 
+*** Two sets of groups
+Half of people in teams of 4. Half the people solo. Teams of four, please don't use LLMs or even an internet search. Library books are okay. Just talk it through with your group and each of you submit an answer. The other "solo" half. Please don't discuss your answer or ideas with anyone other than an llm. Answer the same questions, but in addition you will need to provide info on which LLM you used and the prompts (or even the entire chat if you want).
+
+We want to help decide ourselves how to make the most constructive use of these tools.
+
+* [[https://en.wikipedia.org/wiki/Rescorla%E2%80%93Wagner_model][Rescorla Wagner Equation]]
+
+- Which of the scenarios does this model fit?
+  \[
+  \Delta V_X^{n+1} = \alpha_X \beta (\lambda - V_{\mathrm{tot}})
+  \]
+  
+  and
+  
+  \[
+  V_X^{n+1} = V_X^n + \Delta V_X^{n+1}
+  \]
+  
+  where
+  
+  - \( \Delta V_X \) is the change in the strength, on a single trial, of the association between the CS labelled "X" and the US
+  - \( \alpha \) is the salience of X (bounded by 0 and 1)
+  - \( \beta \) is the rate parameter for the US (bounded by 0 and 1), sometimes called its association value
+  - \( \lambda \) is the maximum conditioning possible for the US
+  - \( V_X \) is the current associative strength of X
+  - \( V_{\mathrm{tot}} \) is the total associative strength of all stimuli present, that is, X plus any others
+- Is this an explanation? Is this a theory? What do we learn by changing our perspective to include equations?
+
+** What are Marr's Levels?
+   - Computational
+   - Algorithmic
+   - Implementational
+
+* LLMs
+
+** Are the a good model system for the mind? That is, does an LLM think like you do?
+
+** Are they a good tool for studying the mind?
+
+** How do we best use LLMs as a tool for our learning? How should we change our classroom experience?
+
+** First Assignment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bring pencil/pen and paper to the next class. There will be some writing that you have to turn in.
+
+
+
+
+
+# Local Variables:
+# jinx-local-words: "Implementational"
+# End:
