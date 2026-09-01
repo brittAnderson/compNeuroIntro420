@@ -99,7 +99,7 @@ To help let's take a quick look at both Rescorla-Wagner and Marr's Levels.
 
 ** LLMs
 A little prime for why I divided the assignment groups this way?
-*** Are the a good model system for the mind? That is, does an LLM think like you do?
+*** Are they a good model system for the mind? That is, does an LLM think like you do?
 *** Are they a good tool for studying the mind?
 *** How do we best use LLMs as a tool for our learning? How should we change our classroom experience?
 
@@ -156,33 +156,26 @@ The final project is meant to give you an opportunity to showcase your learning 
    2. What is a cognitive model?
    3. What is the relationship between cognition and neuroscience?
    4. All of which will benefit from better understanding what is a theory.
-** What is Cognition?
-   Groups of three. I prefer you not have the same people in your group as last time. We want to promote meeting people. It makes it easier for you to help each other, find people at your own learning level to study and work with, gauge your own skill level, develop informal networks that may be of use outside of this class.
-   [[https://doi.org/10.1016/j.cub.2019.05.044][What is Cognition?]]
-   Each group gets an opinion (want three of four groups)
-   Brainard/Byrne/Heyes/Suddendorf
-   20 minutes to read and discuss to make sure they understand.
-   Then rotate the groups so that each group has only one member/opinion.
-   15 minutes to explain the opinions to each other.
-   General discussion.
 
-* Computational Neuroscience Day 2 IAMHERE
+* Computational Neuroscience (half allowed llm use)
+  
+** What are examples of working combining cognitive, computational, and neuroscience methods?
   1. Form groups of two (or three if odd number).
-  2. Go to the following web site: [[https://2025.ccneuro.org/poster-sessions/?view=all][2025 Posters Cognitive Computational Neuroscience meeting]].
+  2. Go to the following web site: [[https://2026.ccneuro.org/poster-sessions/?view=all][2026 Posters Cognitive Computational Neuroscience meeting]].
      1. Pick a poster.
 	Note it's label (letter-number; on the left)
      2. Be ready with a two sentence summary.
      3. Tell us why it is a good example of computational modelling of either mind or brain.
      4. Why you chose it.
-
-
+*** Classroom exercise
+   Each group offers an explanation *without* llm use for : [[https://2026.ccneuro.org/poster/?id=aX1J1ByZCF][Poster to Explain]]
 ** Is a mathematical formula a model?
 *** Forgetting Curve --- Ebbinghaus
 #+Name: forgetting-curve
 #+caption: By The original uploader was Icez at English Wikipedia.
 [[file:../images/Forgetting_curve_decline.svg.png]]
 *** A Mathematical Function
-#+begin_src haskell :dir . :session :results file graphics :file ../images/expdecay.png :exports both
+#+begin_src haskell :dir . :session :cache yes :results file graphics :file ../images/expdecay.png :exports both
   import Graphics.Gnuplot.Simple
   plotFunc [PNG "../images/expdecay.png"]
   (linearScale 100 (1,6))
@@ -190,11 +183,11 @@ The final project is meant to give you an opportunity to showcase your learning 
 #+end_src
 
 #+Name: exponential-function
-#+Caption: Plot of \( e^{\frac{1}{x}} \).
+#+Caption: Plot of $e^{\frac{1}{x}}$.
 #+RESULTS:
 [[file:../images/expdecay.png]]
 
-
+BOOKMARK
 **** A digression on code
      The above example is coded in [[https://www.haskell.org/][Haskell]]. If any of you feel like python or R are getting a bit stale and you would like to learn a new language I encourage you to consider Haskell. I picked it for use here because,
      a) I like it and want to get better at using it,
@@ -238,15 +231,15 @@ The final project is meant to give you an opportunity to showcase your learning 
 ** Notation
    The mathematician's interest in being concise often means that simple ideas get translated to unfamiliar symbols. \
    Just because the notation is unfamiliar does not mean the idea is complicated. 
-   What does \( \sum_{\forall x \in \left\{ 1 , 2 , 3 \right \}} x = 6 \) mean?
+   What does $\sum_{\forall x \in \left\{ 1 , 2 , 3 \right \}} x = 6$ mean?
 
-   Different mathematical and computational traditions have their own preferences, thus the same idea can have different notations. To a mathematician the \(\sqrt{-1} = \) =i=. To the engineer it is =j=.
-   \(\frac{dx}{dt}\) \(\dot{x}\) \(x{'}\) \(f{'}(x)\) are all different ways of talking about derivatives. 
+   Different mathematical and computational traditions have their own preferences, thus the same idea can have different notations. To a mathematician the $\sqrt{-1} =$ =i=. To the engineer it is =j=.
+   $\frac{dx}{dt}$ $\dot{x}$ $x{'}$ $f{'}(x)$ are all different ways of talking about derivatives. 
 ** Differential Equations
    1. What is a differential equation (aka de)?
    2. What is a derivative?
    3. What is the *definition* of a derivative?
-      \( \frac{dx}{dy} = \frac{f(x + \Delta x) - f(x)}{x+\Delta x - x} \)
+      $\frac{dx}{dy} = \frac{f(x + \Delta x) - f(x)}{x+\Delta x - x}$
    4. What is a slope of a line?
    5. Of a curve?
    6. Provide examples of phenomena in psychology or neuroscience (other than the action potential) that might be good candidates for this mathematical technique. 
@@ -265,7 +258,8 @@ The final project is meant to give you an opportunity to showcase your learning 
 #+INCLUDE: "../src/Sqrt.hs" src haskell -n 
 
 Now let's test it:
-#+begin_src haskell :results output :exports both
+#+begin_src haskell :cache yes :results output :exports both
+  :load "../src/Sqrt.hs"
   import Sqrt
   getCubeRoot 27 1 0.001
   getCubeRoot 8 1 0.001
@@ -273,23 +267,21 @@ Now let's test it:
 #+end_src
 
 #+RESULTS:
-: <no location info>: error: [GHC-35235]
-:     Could not find module ‘Sqrt’.
-:     It is not a module in the current program, or in any known package.
-: <interactive>:4:1-11: error: [GHC-88464]
-:     Variable not in scope: getCubeRoot :: t0 -> t1 -> t2 -> t
-: <interactive>:5:1-11: error: [GHC-88464]
-:     Variable not in scope: getCubeRoot :: t0 -> t1 -> t2 -> t
-: <interactive>:6:1-11: error: [GHC-88464]
-:     Variable not in scope: getCubeRoot :: t0 -> t1 -> t2 -> t
+: [1 of 1] Compiling Sqrt             ( ../src/Sqrt.hs, interpreted )
+: Ok, one module loaded.
+: 3.0000005410641766
+: 2.000004911675504
+: 5.204827869200383
+
+
 
 
 
 ** Using DEs - Practicing with Springs
-
+u
 Our Hodgkin-Huxley model will be will require us to use several different equations. And though the intergrate and fire neuron only requires one, a neuron is still rather abstract as a computational entity. Therefore, we will begin our DE coding practice with a simple, idealized spring. 
 
-Our differential equation is \( \frac{d^2 position}{dt^2} = -P~position \). 
+Our differential equation is $\frac{d^2 position}{dt^2} = -P~position$. 
 
 where 'position' refers to the location in space of the unattached end of our spring (we assume one end is anchored to a wall or something), 't' refers to time, and 'P' is a constant, often called the spring constant, that indicates how springy the spring is. 
 
@@ -300,9 +292,9 @@ Unfortunately the spring equation is for the *second* derivative of location rel
 #+INCLUDE: "../src/Spring.hs" src haskell -n 
 
 
-#+begin_src haskell :dir . :session :results file graphics :file ../images/spring.png :exports both
+#+begin_src haskell :dir . :session :results file graphics :file ../images/spring.png :exports both :cache yes
   import Spring
-  --    :load "../src/Spring.hs"
+  :load "../src/Spring.hs"
   plotList [PNG "../images/spring.png"]
         $ map (\s -> sLoc s) $ releaseSpring 2000
 #+end_src
@@ -321,9 +313,9 @@ The changes to whatever code you have for the frictionless spring should require
 
 ** Solving DEs
 
-   There are many well established methods for solving systems of differential equations. If you really need one you can look it up. As a psychologist /using/ a DE you will almost never have to solve, which means in this context to compute an analytical solution (analytical means using symbols). If you decide you must, just guess, and guess an exponential. Most of the differential equations we will see, and that you will see in biology or psychology, have the dependent variable present both on the left and right sides of your differential equation. The exponential is almost always in there somewhere as \( e^x \), since the derivative of \( \frac{d e^x}{dx} = e^x \).
+   There are many well established methods for solving systems of differential equations. If you really need one you can look it up. As a psychologist /using/ a DE you will almost never have to solve, which means in this context to compute an analytical solution (analytical means using symbols). If you decide you must, just guess, and guess an exponential. Most of the differential equations we will see, and that you will see in biology or psychology, have the dependent variable present both on the left and right sides of your differential equation. The exponential is almost always in there somewhere as $e^x$, since the derivative of $\frac{d e^x}{dx} = e^x$.
 
-   Try this with the undamped oscillator. We know that the second derivative of how position changes with time will eventually be a function of current position so we guess that \( s(t) = e^{rt} \). Why the "r"? I know that the answer will have to be more than just \( e^x \) so I throw in "r" for now assuming I can figure out the details later. Now, we act on our guess. If
+   Try this with the undamped oscillator. We know that the second derivative of how position changes with time will eventually be a function of current position so we guess that $s(t) = e^{rt}$. Why the "r"? I know that the answer will have to be more than just $e^x$ so I throw in "r" for now assuming I can figure out the details later. Now, we act on our guess. If
 
    \begin{align}
      s(t) &= e^{rt}  & \text{then}\\
@@ -362,7 +354,7 @@ Is the integrate and fire model used much in modeling in the present time? [[htt
 
 *** Formula I and F
 
-\(\tau \frac{dV(t)}{dt} = -V(t) + R~I(t) \)
+$\tau \frac{dV(t)}{dt} = -V(t) + R~I(t)$
 
 Why is this the formula?
 ***** Simple Electronics
@@ -419,7 +411,7 @@ c: Ohm's law
 
 d: multiply through by R
 
-e: rearrange and define \(\tau\)
+e: rearrange and define $\tau$
 
 *** Coding up the Integrate and Fire Neuron
 
@@ -436,7 +428,7 @@ Unlike real neurons the Integrate and Fire neuron model does not have a natural 
 #+INCLUDE: "../src/IandF.hs" src haskell -n 
 #+begin_src haskell :dir . :session :results file graphics :file ../images/iandf.png :exports both
   import IandF
---  :load ../src/IandF.hs
+    :load ../src/IandF.hs
     let run200 = iterate oneRunIandF initialStrut !! 200
           vs = voltages run200
           cs = currents run200
@@ -484,23 +476,23 @@ Unlike the Integrate and Fire model, which lumps all the ionic currents together
 You have a resistance /for each ion channel/.
 The rule for currents in parallel is to apply Kirchoff's and Ohm's laws realizing that they all experience the same voltage, thus the currents sum. The Hodgkin and Huxley model has components for Sodium (Na), Potassium (K), and negative anions (still lumped as "leak" l).
 
-\( \sum_i I_R(t) = \bar{g}_{Na} m^3 h l(V(t) - E_{Na}) + \bar{g}_{K} n^4 (V(t) - E_{K}) + \bar{g}_{L} (V(t) - E_{L})\)
+$\sum_i I_R(t) = \bar{g}_{Na} m^3 h l(V(t) - E_{Na}) + \bar{g}_{K} n^4 (V(t) - E_{K}) + \bar{g}_{L} (V(t) - E_{L})$
 
-\( I_{tot} = I_r + I_C \)
+$I_{tot} = I_r + I_C$
 
 
-\( I_{tot} = \bar{g}_{Na} m^3 h (V(t) l- E_{Na}) + \bar{g}_{K} n^4 (V(t) - E_{K}) + \bar{g}_{L} (V(t) - E_{L}) + c~\frac{dV}{dt} \)
+$I_{tot} = \bar{g}_{Na} m^3 h (V(t) l- E_{Na}) + \bar{g}_{K} n^4 (V(t) - E_{K}) + \bar{g}_{L} (V(t) - E_{L}) + c~\frac{dV}{dt}$
 
-If you rearrange terms you can get the \(\frac{dV}{dt}\) on one side of the equation by itself.
+If you rearrange terms you can get the $\frac{dV}{dt}$ on one side of the equation by itself.
 
-\(c~\frac{dV}{dt} = I_{tot} - (\bar{g}_{Na} m^3 h (V(t) - E_{Na}) + \bar{g}_{K} n^4 (V(t) - E_{K}) + \bar{g}_{L} (V(t) - E_{L})) \)
+$c~\frac{dV}{dt} = I_{tot} - (\bar{g}_{Na} m^3 h (V(t) - E_{Na}) + \bar{g}_{K} n^4 (V(t) - E_{K}) + \bar{g}_{L} (V(t) - E_{L}))$
 
 You cannot program what you don't understand. Don't start writing code too soon. Writing code won't make a poorly understood idea clearer. Though it can reveal that you don't understand what you thought you understood. It is often best to start sketching ideas on paper or a blackboard before you open up your IDE.
 
 For instance,
 
-- What are the \( \bar{g}_*\) terms?
-- What are the \( E_{*} \) terms?
+- What are the $\bar{g}_*$ terms?
+- What are the $E_{*}$ terms?
 - What do m, n, and h represent?
 - Where did these equations come from?
    
@@ -509,7 +501,7 @@ You can use the same Euler method to patiently update each of your terms and the
 But recognize there are DEs at multiple levels.
 Each of the /m/, /n/, and /h/ terms are also changing and regulated by a differential equation.
 They are dependent on voltage, too.
-For example, \( \dot{m} = \alpha_m (V)(1 - m) - \beta_m (V) m \).
+For example, $\dot{m} = \alpha_m (V)(1 - m) - \beta_m (V) m$.
 
 *Recognize that*
 - Each of the m, n, and h terms have their own equation of exactly the same form, but with their unique alphas and betas (that is what the subscript means).
@@ -518,7 +510,7 @@ For example, \( \dot{m} = \alpha_m (V)(1 - m) - \beta_m (V) m \).
 
 *Initial Assumptions*
 
-If you allow \( t \rightarrow \infty \mbox{, then } \frac{dV}{dt}=? \)
+If you allow $t \rightarrow \infty \mbox{, then } \frac{dV}{dt}=?$
 - You assume that it goes to zero; that is, you reach steady state. Then you can solve for some of the constants.
 - Where do the constants come from?
 - They come from experiments, and you use what you are given.
@@ -526,7 +518,7 @@ If you allow \( t \rightarrow \infty \mbox{, then } \frac{dV}{dt}=? \)
 - These constants also work out to enforce a capacitance of 1.
 
 The "infinity" or "long time resting state" of the $m$, $n$, and $h$ values (that I refer to as $m_{inf}$ in my code and these notes)
-is of the form \( (m/n/h)_{inf}= alpha(m/n/h)(v) / (alpha(m/n/h)(v) + beta(m/n/h)(v)) \)
+is of the form $(m/n/h)_{inf}= alpha(m/n/h)(v) / (alpha(m/n/h)(v) + beta(m/n/h)(v))$
 
 **** Constants
 Several different sets of constants are used for this model in published versions. They are all, in one sense, the same, but this set make the programming easier. For the moment, ignore the units and use these numbers.
@@ -603,7 +595,7 @@ These constants are adjusted to make the resting potential 0 and the capacitance
 
 Your homework will require you to write the code for a Hodgkin-Huxley Neuron and then modify it.  You will provide at least two plots in addition to your code. You will need to adapt the model to fit this paper[cite:@Hafez_2020]. These authors analyzed a series of inherited channelopathies (where ion channels are altered due to mutation) via simulation. In these conditions empirical measurements had been made on actual patients. The authors adapted the Hodgkin and Huxley model to permit them to explore the effects of such altered conductance on neuronal excitability. For this home work you will need to adapt the /n/ equation to be as follows:
 
-\( \frac{dn}{dt} = \gamma_\tau (\gamma_\alpha \alpha_n (v - \Delta V)(1 - n) - \gamma_\beta \beta_n (v- \Delta V)n) \)
+$\frac{dn}{dt} = \gamma_\tau (\gamma_\alpha \alpha_n (v - \Delta V)(1 - n) - \gamma_\beta \beta_n (v- \Delta V)n)$
 
 Then you must select one of the sets of \gamma from their [[https://link.springer.com/article/10.1007/s10827-020-00766-1/tables/1][Table 1]] and plot the neuronal activity.
 
@@ -667,7 +659,7 @@ The following is a slightly formatted version of the [[https://en.wikipedia.org/
       2. a direction to move (left or right; that is, shift to the tape cell one place to the left or right of the current cell), and
       3. a state to transition into (which may be the Halt state).
 
-We will use it to guide us to write a simple instance that computes a solution to the Busy Beaver problem. A n-state Turing machine has \( (4n + 4)2n \)states. The formula is (symbols × directions × (states + 1))(symbols × states). The transition function (how to figure out where to go next may be seen as a finite look-up table. Each row of the table is a 5-tuple: (current state, current symbol, symbol to write, direction of shift, next state). Our goal with the Busy Beaver problem is to run our machine to produce as long a series of uninterrupted ones as we can and then *halt*.
+We will use it to guide us to write a simple instance that computes a solution to the Busy Beaver problem. A n-state Turing machine has $(4n + 4)2n$states. The formula is (symbols × directions × (states + 1))(symbols × states). The transition function (how to figure out where to go next may be seen as a finite look-up table. Each row of the table is a 5-tuple: (current state, current symbol, symbol to write, direction of shift, next state). Our goal with the Busy Beaver problem is to run our machine to produce as long a series of uninterrupted ones as we can and then *halt*.
 
 What it means to "run" a Turing machine is to start in the starting state with the current tape cell being any cell of a blank (all-0) "tape", and then iterate the transition function. If the Halt state is entered then the number of 1s remaining on the tape is called the machine's score. Different transition rules will give us different outputs, so we can score our machine based on its performance. 
 
@@ -691,7 +683,7 @@ Here is the transition table for our machine:
 
 #+begin_src haskell :dir . :session :output :exports both
 import BusyBeaver
---:load ../src/BusyBeaver.hs
+:load ../src/BusyBeaver.hs
 let d = iterate updTM initialTM 
 tape $ d !! 7
 #+end_src
@@ -1154,44 +1146,53 @@ Most programming languages have specialized functions for defining and operating
 
 #+caption: Adding Two Matrices
 #+begin_src haskell :dir . :session :exports both :results output                 
-    import MyMats                                                                   
-    putStrLn $ "a = "
-    putStr $ prettyMat mata
-    putStrLn $ "\nb = "
-    putStr $ prettyMat matb
-    putStrLn $ "\na + b = "
-    putStr $ prettyMat $ add2SimpMats mata matb
+  :load "../src/MyMats.hs"
+  import MyMats                                                                   
+  putStrLn $ "a = "
+  putStr $ prettyMat mata
+  putStrLn $ "\nb = "
+  putStr $ prettyMat matb
+  putStrLn $ "\na + b = "
+  putStr $ prettyMat $ add2SimpMats mata matb
 #+end_src
 
 #+RESULTS:
 #+begin_example
-<no location info>: error: [GHC-35235]
-    Could not find module ‘MyMats’.
-    It is not a module in the current program, or in any known package.
+[1 of 1] Compiling MyMats           ( ../src/MyMats.hs, interpreted )
+../src/MyMats.hs:37:22-25: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+37 | rotateLList l = fmap head l : rotateLList (map tail l)
+   |                      ^^^^
+
+../src/MyMats.hs:37:48-51: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘tail’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Replace it with 'drop' 1, or use pattern matching or 'GHC.Internal.Data.List.uncons' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+37 | rotateLList l = fmap head l : rotateLList (map tail l)
+   |                                                ^^^^
+
+../src/MyMats.hs:54:21-24: warning: [GHC-63394] [-Wx-partial]
+    In the use of ‘head’
+    (imported from Prelude, but defined in GHC.Internal.List):
+    "This is a partial function, it throws an error on empty lists. Use pattern matching, 'Data.List.uncons' or 'Data.Maybe.listToMaybe' instead. Consider refactoring to use "Data.List.NonEmpty"."
+   |
+54 |     cols1 = length (head m1)
+   |                     ^^^^
+
+Ok, one module loaded.
 a =
-<interactive>:1133:10-18: error: [GHC-88464]
-    Variable not in scope: prettyMat :: t0 -> String
-
-<interactive>:1133:20-23: error: [GHC-88464]
-    Variable not in scope: mata
+[1,2,3]
+[4,5,6]
 b =
-<interactive>:1135:10-18: error: [GHC-88464]
-    Variable not in scope: prettyMat :: t0 -> String
-
-<interactive>:1135:20-23: error: [GHC-88464]
-    Variable not in scope: matb
+[-1,-2,-3]
+[4,5,6]
 a + b =
-<interactive>:1137:10-18: error: [GHC-88464]
-    Variable not in scope: prettyMat :: a0 -> String
-
-<interactive>:1137:22-33: error: [GHC-88464]
-    Variable not in scope: add2SimpMats :: t0 -> t1 -> a0
-
-<interactive>:1137:35-38: error: [GHC-88464]
-    Variable not in scope: mata
-
-<interactive>:1137:40-43: error: [GHC-88464]
-    Variable not in scope: matb
+[0,0,0]
+[8,10,12]
 #+end_example
 #+caption: Multiplying Two Matrices
 #+begin_src haskell :dir . :session :exports both :results output
@@ -1206,28 +1207,28 @@ a + b =
 #+RESULTS:
 #+begin_example
 c =
-<interactive>:1141:10-18: error: [GHC-88464]
+<interactive>:1287:10-18: error: [GHC-88464]
     Variable not in scope: prettyMat :: t0 -> String
 
-<interactive>:1141:20-23: error: [GHC-88464]
+<interactive>:1287:20-23: error: [GHC-88464]
     Variable not in scope: matc
 d =
-<interactive>:1143:10-18: error: [GHC-88464]
+<interactive>:1289:10-18: error: [GHC-88464]
     Variable not in scope: prettyMat :: t0 -> String
 
-<interactive>:1143:20-23: error: [GHC-88464]
+<interactive>:1289:20-23: error: [GHC-88464]
     Variable not in scope: matd
 c * d =
-<interactive>:1145:10-18: error: [GHC-88464]
+<interactive>:1291:10-18: error: [GHC-88464]
     Variable not in scope: prettyMat :: a0 -> String
 
-<interactive>:1145:22-33: error: [GHC-88464]
+<interactive>:1291:22-33: error: [GHC-88464]
     Variable not in scope: multSimpMats :: t0 -> t1 -> a0
 
-<interactive>:1145:35-38: error: [GHC-88464]
+<interactive>:1291:35-38: error: [GHC-88464]
     Variable not in scope: matc
 
-<interactive>:1145:40-43: error: [GHC-88464]
+<interactive>:1291:40-43: error: [GHC-88464]
     Variable not in scope: matd
 #+end_example
 Classroom Exercise
@@ -1256,10 +1257,10 @@ What is the library or packge in the programming language that you will use for 
 
 Vectors tend to be notated as /lower case/ letters, often in bold, such
 as \textbf{a}. They are also occasionally represented with little
-arrows on top such as \( \overrightarrow{\textbf{a}} \).
+arrows on top such as $\overrightarrow{\textbf{a}}$.
 
 Matrices tend to be notated as /upper case/ letters, typically in bold,
-such as \( \mathbf{M} \).
+such as $\mathbf{M}$.
 
 Good things to know: what is an inner product? How does it differ from a scalar product. Can you write code in your preferred language for the inner product?
 
@@ -1283,7 +1284,7 @@ The spiking of a biological neuron is non-linear. You will see this in both the 
 \mbox{if } I_1 \times w_{1,1} + I_2 \times w_{2,1} + I_3 \times w_{3,1} > \Theta \mbox{ then } Output = 1
 \end{equation}
 
-What this equation shows is that Inputs ("I"'s) are passed to a neuron (also called a node or sometimes unit). Those inputs have something like a synapse. That is designated by the w's for weights. Those weights are how tightly the input and internal activity of our artificial neuron are coupled. The reason for all the subscripts is to try and help you see the similarity between this equation and the inner product and matrix multiplication rules you just worked on programming. The activity of the neuron is a sort of internal state, and then, based on the comparison of that activity to the threshold, you can envision the neuron spiking or not, meaning it has value 1 or 0. Mathematically, the weighted sum is fed into a threshold function that compares the value to a threshold ( \( \Theta \) ), and passes on the value 1 if it is greater than the threshold and 0 (sometimes -1) for the inactive state.
+What this equation shows is that Inputs ("I"'s) are passed to a neuron (also called a node or sometimes unit). Those inputs have something like a synapse. That is designated by the w's for weights. Those weights are how tightly the input and internal activity of our artificial neuron are coupled. The reason for all the subscripts is to try and help you see the similarity between this equation and the inner product and matrix multiplication rules you just worked on programming. The activity of the neuron is a sort of internal state, and then, based on the comparison of that activity to the threshold, you can envision the neuron spiking or not, meaning it has value 1 or 0. Mathematically, the weighted sum is fed into a threshold function that compares the value to a threshold ( $\Theta$ ), and passes on the value 1 if it is greater than the threshold and 0 (sometimes -1) for the inactive state.
 
 To prepare you for the next steps in writing a simple perceptron (the earliest form of artificial neural network), you should try to answer the following questions.
 
@@ -1333,7 +1334,7 @@ One of our first efforts will be to code a /perceptron/ to solve the XOR problem
 - The "XOR" Operation/Function ::
   #+Name: xor
   #+caption: The /xor/ operation one and only one of its inputs are true.
-  #+begin_src gnuplot :var data="xor.txt" :file ../images/my-xor.png
+  #+begin_src gnuplot :var data="xor.txt" :file ../images/my-xor.png :cache yes
     reset
     set nokey
     set nocolorbox
@@ -1360,7 +1361,7 @@ This short [[https://doi.org/10.1038/nbt1386][article]] provides a nice example 
 **** Connections
 Can neural networks encode logic? Is the processing zeros and ones enough to capture the richness of human intellectual activity?
 
-There is a long tradition of representing human thought as the consequence of some sort of calculation of two values (true or false). If you have two values you can swap out 1's and 0's for the true and false in your calculation. They even seem to obey similar laws. The conjunction (AND) of two true things is only true when both are true. If you take T = 1, then T AND T is the same as \( 1~\times~1 \).
+There is a long tradition of representing human thought as the consequence of some sort of calculation of two values (true or false). If you have two values you can swap out 1's and 0's for the true and false in your calculation. They even seem to obey similar laws. The conjunction (AND) of two true things is only true when both are true. If you take T = 1, then T AND T is the same as $1~\times~1$.
 
   We will next build up a simple threshold neural unit and try to calculate some of these truth functions with our neuron. We will build simple neurons for truth tables (like those that follow), and string them together into an argument. Then we can feed values of T and F into our network and let it calculate the XOR problem.
 
@@ -1406,17 +1407,17 @@ The algorithm the perceptron follows is simple enough to be done by hand. But be
 
 In short, the perceptron "rules" are the equations that characterize what a perceptron should do when it gets some input, computes and output and learns if its guess is right or wrong. It revises its behavior based on this feedback, and thus can be said to learn. A lot can be done with these simple equations.
 
-\( I = \sum_{i=1}^{n} w_i~x_i \)
+$I = \sum_{i=1}^{n} w_i~x_i$
 
-If \( I \ge T \) then \( y = +1 \) else if \( I < T \) then \( y = -1 \)
+If $I \ge T$ then $y = +1$ else if $I < T$ then $y = -1$
 
-If the answer was correct, then \( \beta = +1 \), else if the
-answer was incorrect then \( \beta = -1 \).
+If the answer was correct, then $\beta = +1$, else if the
+answer was incorrect then $\beta = -1$.
 
 The "T" in the above equation refers to the threshold. This is a user defined value that is usually set to zero for convenience. 
 
-Updating is done by \( \mathbf{w_{new}} =
-\mathbf{w_{old}} + \beta y \mathbf{x} \)
+Updating is done by $\mathbf{w_{new}} =
+\mathbf{w_{old}} + \beta y \mathbf{x}$
 
 **** Be The Perceptron
 
@@ -1431,28 +1432,28 @@ and a class of 1.
 
 Compute the value of the new weight vector with pen and paper.
 
-#+begin_src haskell :dir . :session :results output :exports both
+#+begin_src haskell :dir . :session :results output :exports both :cache yes
   updWeight0 ([[0.3,0.7]],1) [[-0.6,0.8::Double]]
 #+end_src
 
 #+RESULTS:
-: <interactive>:1148:1-10: error: [GHC-88464]
+: <interactive>:1294:1-10: error: [GHC-88464]
 :     Variable not in scope:
 :       updWeight0 :: ([[a0]], b0) -> [[Double]] -> t
 
 *Next steps.* Consider this as the data matrix where the first two elements in a row are the two inputs and the third element in a row is the "class" of the output.
 
-\(\begin{bmatrix}
+$\begin{bmatrix}
 0.3 & 0.7 & 1.0 \\
 -0.5 & 0.3 & -1.0 \\
 0.7 & 0.3 & 1.0 \\ 
 -0.2 & -0.8 & -1.0
-\end{bmatrix} \)
+\end{bmatrix}$
 
 using the starting weight -0.6 0.8 try a few cycles through the data by hand and then move on to writing the perceptron rule into code so that you can automate the updating step. Haskell code for some of these functions can be found [[https://github.com/brittAnderson/compNeuroIntro420/blob/9cb94028a9f1c53c49cce26b77e633cf5c9f050f/w2026/src/Perceptron.hs][here]].
 
 
-#+begin_src haskell :dir . :session :results output :exports both
+#+begin_src haskell :dir . :session :results output :exports both :cache yes
   :set -Wno-name-shadowing
   putStrLn $ unlines $ map show testData
   putStr "\n\n\n"
@@ -1465,41 +1466,41 @@ using the starting weight -0.6 0.8 try a few cycles through the data by hand and
 
 #+RESULTS:
 #+begin_example
-<interactive>:1152:31-38: error: [GHC-88464]
+<interactive>:1298:31-38: error: [GHC-88464]
     Variable not in scope: testData :: [a0]
 
-<interactive>:1154:16-23: error: [GHC-88464]
+<interactive>:1300:16-23: error: [GHC-88464]
     Variable not in scope: oneRound :: t0 -> t1 -> [a]
 
-<interactive>:1154:25-27: error: [GHC-88464]
+<interactive>:1300:25-27: error: [GHC-88464]
     Variable not in scope: myw
 
-<interactive>:1154:29-38: error: [GHC-88464]
+<interactive>:1300:29-38: error: [GHC-88464]
     Variable not in scope: testDataFs
-<interactive>:1155:1-7: error: [GHC-88464]
+<interactive>:1301:1-7: error: [GHC-88464]
     Variable not in scope: checkWt :: t0 -> t1 -> t
 
-<interactive>:1155:9-13: error: [GHC-88464]
+<interactive>:1301:9-13: error: [GHC-88464]
     Variable not in scope: newwt
 
-<interactive>:1155:15-22: error: [GHC-88464]
+<interactive>:1301:15-22: error: [GHC-88464]
     Variable not in scope: testData
 
-<interactive>:1157:17-24: error: [GHC-88464]
+<interactive>:1303:17-24: error: [GHC-88464]
     Variable not in scope: oneRound :: t0 -> t1 -> [a]
 
-<interactive>:1157:26-30: error: [GHC-88464]
+<interactive>:1303:26-30: error: [GHC-88464]
     Variable not in scope: newwt
 
-<interactive>:1157:32-41: error: [GHC-88464]
+<interactive>:1303:32-41: error: [GHC-88464]
     Variable not in scope: testDataFs
-<interactive>:1158:1-7: error: [GHC-88464]
+<interactive>:1304:1-7: error: [GHC-88464]
     Variable not in scope: checkWt :: t0 -> t1 -> t
 
-<interactive>:1158:9-14: error: [GHC-88464]
+<interactive>:1304:9-14: error: [GHC-88464]
     Variable not in scope: newwt2
 
-<interactive>:1158:16-23: error: [GHC-88464]
+<interactive>:1304:16-23: error: [GHC-88464]
     Variable not in scope: testData
 #+end_example
 ***** More Abstract Thinking
@@ -1525,7 +1526,7 @@ The *Delta Rule* is another simple learning rule that is a minimal variation on 
 
 - For an easy start create some pseudo random linearly separable points on a a sheet of paper. Label one population as *1* and the other population as *-1*.
 - For a more challenging set-up create the data programmatically using random numbers and some method that allows you to vary how close or distant the points are to the line of separation, and how many points there are to train on.
-- The Delta Learning rule is: \( \Delta~w_i = x_i~\eta(desired - observed) \)
+- The Delta Learning rule is: $\Delta~w_i = x_i~\eta(desired - observed)$
 - Submit your code that has your test data in it. Start with an initial random weight and use the delta rule to learn the correct weighting to solve all your training examples. Then test on a new set of points that you did not test on but that are classified according to the same rule. Your code should assess how well the trained rule classifies the test data.
 
 
@@ -1563,21 +1564,21 @@ The Hopfield network [cite:@Hopfield_1982] has taught many lessons, both practic
 
 Inputs can be thought of as vectors. Although I have drawn the network like a square that shape is really independent of the structure of data flow. Each node needs an input and each node will need a weighted contact to all the other nodes. Consider the following two input patterns and the following weight matrix.  
 
-\( \overrightarrow{a} = \left[1, 0, 1, 0\right]^T \)
+$\overrightarrow{a} = \left[1, 0, 1, 0\right]^T$
 
-\( \overrightarrow{b} = \left[0, 1, 0, 1\right]^T \)
+$\overrightarrow{b} = \left[0, 1, 0, 1\right]^T$
 
-\( weights =  \begin{bmatrix}
+$weights =  \begin{bmatrix}
  0 & 3 & -3 & 3 \\
  3 & 0 & 3 & -3 \\
  -3 & 3 & 0 & 3 \\
  3 & -3 & 3 & 0 \\
 \end{bmatrix}
-\)
+$
 
 How do you compute the output? Which comes first: the matrix or the input vector and why?
 
-#+begin_src haskell :dir . :session :exports both :results output
+#+begin_src haskell :dir . :session :exports both :results output :cache yes
   hopa = [[1,0,1,0]] :: SimpMat Integer
   hopb = [[0,1,0,1]] :: SimpMat Integer
   outProda = multSimpMats (binary2Bipolar (rotateLList hopa)) $ binary2Bipolar hopa
@@ -1590,72 +1591,72 @@ How do you compute the output? Which comes first: the matrix or the input vector
 
 #+RESULTS:
 #+begin_example
-<interactive>:1161:23-29: error: [GHC-76037]
+<interactive>:1307:23-29: error: [GHC-76037]
     Not in scope: type constructor or class ‘SimpMat’
-<interactive>:1162:23-29: error: [GHC-76037]
+<interactive>:1308:23-29: error: [GHC-76037]
     Not in scope: type constructor or class ‘SimpMat’
-<interactive>:1163:12-23: error: [GHC-88464]
+<interactive>:1309:12-23: error: [GHC-88464]
     Variable not in scope: multSimpMats :: t3 -> a0 -> b
 
-<interactive>:1163:26-39: error: [GHC-88464]
+<interactive>:1309:26-39: error: [GHC-88464]
     Variable not in scope: binary2Bipolar :: t2 -> t3
 
-<interactive>:1163:42-52: error: [GHC-88464]
+<interactive>:1309:42-52: error: [GHC-88464]
     Variable not in scope: rotateLList :: t1 -> t2
 
-<interactive>:1163:54-57: error: [GHC-88464]
+<interactive>:1309:54-57: error: [GHC-88464]
     Variable not in scope: hopa
 
-<interactive>:1163:63-76: error: [GHC-88464]
+<interactive>:1309:63-76: error: [GHC-88464]
     Variable not in scope: binary2Bipolar :: t0 -> a0
 
-<interactive>:1163:78-81: error: [GHC-88464]
+<interactive>:1309:78-81: error: [GHC-88464]
     Variable not in scope: hopa
-<interactive>:1164:12-23: error: [GHC-88464]
+<interactive>:1310:12-23: error: [GHC-88464]
     Variable not in scope: multSimpMats :: t3 -> a0 -> b
 
-<interactive>:1164:26-39: error: [GHC-88464]
+<interactive>:1310:26-39: error: [GHC-88464]
     Variable not in scope: binary2Bipolar :: t2 -> t3
 
-<interactive>:1164:42-52: error: [GHC-88464]
+<interactive>:1310:42-52: error: [GHC-88464]
     Variable not in scope: rotateLList :: t1 -> t2
 
-<interactive>:1164:54-57: error: [GHC-88464]
+<interactive>:1310:54-57: error: [GHC-88464]
     Variable not in scope: hopb
 
-<interactive>:1164:63-76: error: [GHC-88464]
+<interactive>:1310:63-76: error: [GHC-88464]
     Variable not in scope: binary2Bipolar :: t0 -> a0
 
-<interactive>:1164:78-81: error: [GHC-88464]
+<interactive>:1310:78-81: error: [GHC-88464]
     Variable not in scope: hopb
-<interactive>:1165:15-26: error: [GHC-88464]
+<interactive>:1311:15-26: error: [GHC-88464]
     Variable not in scope: add2SimpMats :: t0 -> t1 -> t
 
-<interactive>:1165:28-35: error: [GHC-88464]
+<interactive>:1311:28-35: error: [GHC-88464]
     Variable not in scope: outProda
 
-<interactive>:1165:37-44: error: [GHC-88464]
+<interactive>:1311:37-44: error: [GHC-88464]
     Variable not in scope: outProdb
-<interactive>:1166:22-33: error: [GHC-88464]
+<interactive>:1312:22-33: error: [GHC-88464]
     Variable not in scope: zeroDiagonal :: t0 -> t
 
-<interactive>:1166:35-45: error: [GHC-88464]
+<interactive>:1312:35-45: error: [GHC-88464]
     Variable not in scope: outProdBoth
-<interactive>:1167:13-26: error: [GHC-88464]
+<interactive>:1313:13-26: error: [GHC-88464]
     Variable not in scope: scalarMultiply :: t0 -> t1 -> t
 
-<interactive>:1167:30-46: error: [GHC-88464]
+<interactive>:1313:30-46: error: [GHC-88464]
     Variable not in scope: noSelfConnections
-<interactive>:1168:10-18: error: [GHC-88464]
+<interactive>:1314:10-18: error: [GHC-88464]
     Variable not in scope: prettyMat :: t0 -> String
 
-<interactive>:1168:20-28: error: [GHC-88464]
+<interactive>:1314:20-28: error: [GHC-88464]
     Variable not in scope: learnRate
 #+end_example
 Hopfield networks use a threshold rule. This non-linearity is, at least metaphorically, like the threshold that says whether a neuron in the brain or in our integrate and fire model fires. For the Hopfield network our threshold rule says:
 
-\( output(t)=\begin{array}{c} 1~\mbox{if } t \geq \Theta\\
-0~\mbox{if } t < \Theta \end{array} \)
+$output(t)=\begin{array}{c} 1~\mbox{if } t \geq \Theta\\
+0~\mbox{if } t < \Theta \end{array}$
 
 
 \Theta represents the value of our threshold and for now set it to zero.
@@ -1690,7 +1691,7 @@ Why is this learning rule called "Hebb's"? Who was the Hebb it is named after?
 
 #+end_quote
 
-The strength of a change in a connection is proportionate to the product of the input and outputs, i.e. \( \Delta A[i,j] = \eta f[j]g[i] \) and \( g[i] = \sum_j~A[i,j]~f[j] \) therefore, \( \vec{g} = \mathbf{Af} \).[fn:4]
+The strength of a change in a connection is proportionate to the product of the input and outputs, i.e. $\Delta A[i,j] = \eta f[j]g[i]$ and $g[i] = \sum_j~A[i,j]~f[j]$ therefore, $\vec{g} = \mathbf{Af}$.[fn:4]
 
 #+Begin_Quote
 *You will want to know*
@@ -1712,7 +1713,7 @@ More detailed instructions:
 - Use a bipolar system and have, roughly, equal numbers of +1s and -1s in your patterns.
 - Make a few of them and store them in some sort of data structure.
 - Using those patterns, compute the weight matrix with the following equation:
-   \( w_{ij} =\frac{1}{N} \sum_{\mu} value^\mu_i \times value^\mu_j \)
+   $w_{ij} =\frac{1}{N} \sum_{\mu} value^\mu_i \times value^\mu_j$
    Where N is the size of the patterns, that is how many "neurons". $\mu$ is an index for each of the patterns, and $i$ and $j$ refer to the neurons in the pattern.
 - Program an *asynchronous* updating rule, run your network until it stabilizes, and then show that you get back what you put in.
 - Then do the same for at least one disrupted pattern (where you flipped a couple of bits around.)
@@ -1865,7 +1866,7 @@ As a placeholder, and in case I run out of time, I will insert some of the slide
 [[file:../images/lavosierPlot.png]]
 ** From Lisp to R
 
-#+BEGIN_SRC R :eval never
+#+BEGIN_SRC R :eval never 
 # ECHO Model in R
 # Ported from Paul Thagard's MacLisp implementation
 echo_env <- new.env()
@@ -1890,15 +1891,15 @@ h2 <- example_lavoisier()
 
 Can we do better?
 ** Formal CONTEXTS
-- A set of objects (we'll denote with \(G\) by convention).
-- A set of attributes (we'll denote with \(M\) by convention).
-- And a relation (\(R\)) between these two sets.
+- A set of objects (we'll denote with $G$ by convention).
+- A set of attributes (we'll denote with $M$ by convention).
+- And a relation ($R$) between these two sets.
 - It is often convenient to present this as a matrix (as we did for the planets).
 ** Formal CONCEPTS
 - Sets of objects that all share the same attributes.
 - Sets of attributes that are all possesed by the same objects.
 - Both with nothing left out.
-- That is, for \(A \subseteq G\) and \(B \subseteq M\) if we define the following (') operations thusly:
+- That is, for $A \subseteq G$ and $B \subseteq M$ if we define the following (') operations thusly:
   \begin{eqnarray}
   A' &=& \{ m \in M~|~\forall g \in A~gRm\} \\
   B' &=& \{ g \in G~|~\forall m \in B~gRm\} \\
@@ -1909,7 +1910,7 @@ Can we do better?
 $a \leq F(b) \iff G(a) \geq b$
 \end{definition}
 
-Where \( a \subseteq A\mbox{, and }b \subseteq B\) with \( F:B \rightarrow A\mbox{, and }G:A \rightarrow B \) bijective and monotonic functions.
+Where $a \subseteq A\mbox{, and }b \subseteq B$ with $F:B \rightarrow A\mbox{, and }G:A \rightarrow B$ bijective and monotonic functions.
 
 Note that this works for our concepts. 
 
@@ -1931,14 +1932,14 @@ A'' &=& \{Earth,~Mars\}
 [[file:../images/planetCtx.png]]
 
 
-#+begin_src R :exports none :session *rfca*  :results silent
+#+begin_src R :exports none :session *rfca*  :results silent :cache yes
 source("/home/britt/gitRepos/fcateq/code/echo/R/lavOxy.R")
 library(hasseDiagram)
 #+end_src
 
 
 ** From ECHO to FCA: The Lavoisier Context
-#+BEGIN_SRC R :exports results :results output :session *rfca*
+#+BEGIN_SRC R :exports results :results output :session *rfca* :cache yes
 # Display the Lavoisier explanatory matrix
 print("Lavoisier vs Phlogiston Explanatory Context:")
 print(lavoisier_matrix)
@@ -2006,7 +2007,7 @@ list(fc_lavoisier_combined$implications)[[1]][14:16]
 Implications reveal logical dependencies: if evidence supports certain hypotheses, what other hypotheses must also be supported?
 
 ** The Lavoisier Concept Lattice
-#+BEGIN_SRC R :exports results :session *rfca* :results graphics file :file ../images/lvll.png
+#+BEGIN_SRC R :exports results :session *rfca* :results graphics file :file ../images/lvll.png :cache yes
   png("lvll.png", width=800, height=600, res=150)
   fc_lavoisier_combined$concepts$plot()
   dev.off()
@@ -2014,7 +2015,7 @@ Implications reveal logical dependencies: if evidence supports certain hypothese
 #+END_SRC
 
 #+Caption: "The lattice structure reveals the hierarchical organization of explanatory relationships."
-#+RESULTS:
+#+RESULTS[c3a61273ad102d0dcb726a9fa202d215592ad3a9]:
 [[file:../images/lvll.png]]
 
 
@@ -2057,7 +2058,7 @@ This categorical framework unifies logic, geometry, and computation through the 
 
 
 ** Unifying Logic, Geometry, and Computation
-- Logic: Chu spaces model linear logic's multiplicative fragment, where \(A \multimap B \equiv A^* \otimes B\)
+- Logic: Chu spaces model linear logic's multiplicative fragment, where $A \multimap B \equiv A^* \otimes B$
 - Geometry: Stone duality connects topological spaces with Boolean algebras via Chu construction
 - Computation: Game semantics emerges naturally—strategies are morphisms in Chu categories
 - Cognition: Formal concepts capture the duality between extension (objects) and intension (properties)
