@@ -7,13 +7,6 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      # python = pkgs.python312.withPackages (ps: with ps; [
-      #   numpy
-      #   matplotlib
-      #   tkinter
-      #   jupyter
-      #   ipykernel
-      # ]);
       python = pkgs.python3.withPackages (ps: with ps; [
         numpy matplotlib tkinter jupyter ipykernel
       ]);
@@ -28,7 +21,13 @@
       };
     in {
       devShells.${system}.default = pkgs.mkShell {
-        packages = [ python renv pkgs.tk pkgs.quarto];
+        packages = [
+          python
+          renv
+          pkgs.tk
+          pkgs.quarto
+          pkgs.pandoc
+        ];
         shellHook = ''
             export QUARTO_R=${renv}/bin/R
             export QUARTO_PYTHON=${python}/bin/python
