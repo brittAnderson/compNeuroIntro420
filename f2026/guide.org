@@ -46,7 +46,7 @@
    5. You know what git/github are.
 
 *** Git Clone and Github Acct :assignment:
-    An early home work will be a screen shot of your github homepage showing you forked or cloned the course repository. And the screen shot should be done using a program and not your phone. [[https://github.com/brittAnderson/compNeuroIntro420][Course Webpage]] . That is the course content. If you want to view a web viewable form you can go to this link: [[https://brittanderson.github.io/compNeuroIntro420/][coursge notes]].
+    An early home work will be a screen shot of your github homepage showing you forked or cloned the course repository. And the screen shot should be done using a program and not your phone. [[https://github.com/brittAnderson/compNeuroIntro420][Course Webpage]] . That is the course content. If you want to view a web viewable form you can go to this link: [[https://brittanderson.github.io/compNeuroIntro420/][course notes]].
 
 ** Some recommendations.
    You will want an IDE. I personally use emacs. Experience has taught me that only about 3 in a 100 of you will share my opinion. Thus, I recommend VS Code if you have no other preference. It is becoming a sort of de facto standard.
@@ -106,22 +106,43 @@ A little prime for why I divided the assignment groups this way?
 * Reminder
 Bring pencil/pen and paper to the next class. There will be some writing that you have to turn in.
 
-** Probably concludes the day.
+* Where will your grade come from?
+#+Name: Grade Breakdown
+#+Table:
+| Category                              | Contribution |
+|---------------------------------------+--------------|
+| Participation                         |         12%. |
+| Final Project                         |         20%. |
+| Homeworks                             |          68% |
 
-Emphasize to bring something to right with and paper to write on that you will give me.
+** Why incentivize classroom time?
+The classroom is for doing and clarifying.
+You have no way of knowing if your understanding developed from online material is complete or accurate unless you match it off against others.
+We will therefore emphasize doing, discussing, and collaborate.
 
-Leave time for questions; discussion.
+** Why is "doing" so important for this course?
+Learning math and computing, and how to use them, is not something that can be learned through observation.
+Like playing piano, or improving your golf swing, improvement comes from practice, practice, practice.
+It is not enough to merely state the principles.
+You must demonstrate that they have been internalized.
+We will therefore do small exercises in class.
+And since one of the best ways to learn is to teach, we will frequently do these exercises in small groups.
+You might find your peers description of a problematic fact more useful than mine since they are at a more similar learning level.
+You may find your own understanding grows as you have to reframe my teachings in your own words to help a fellow student grasp a difficult concept. 
 
-* Computational Neuroscience Day 2 IAMHERE
-  1. Form groups of two (or three if odd number).
-  2. Go to the following web site: [[https://2025.ccneuro.org/poster-sessions/?view=all][2025 Posters Cognitive Computational Neuroscience meeting]].
-     1. Pick a poster.
-	Note it's label (letter-number; on the left)
-     2. Be ready with a two sentence summary.
-     3. Tell us why it is a good example of computational modelling of either mind or brain.
-     4. Why you chose it.
-** Syllabus Review
-#+INCLUDE: "syl-2026.org" :lines "11-"
+This emphasizes again why class participation is important.
+It is where we will test our comprehension of important points, I will learn if a concept is not well appreciated, and you will have the chance to practice the skills you later may wish to use in your own way on your own problems.
+Each week's attendance is worth 1% of the final grade.
+
+** I find this stuff hard and am worrying about failing
+
+I like to give lots of small homeworks.
+That takes the pressure of any one assignment, and means you get both frequent feedback on your performance, and you are coerced into not falling behind.
+
+** Why have a final project?
+
+The final project is meant to give you an opportunity to showcase your learning and to use the general and specific skills that you will use in the future, whether in academics or industry, for sharing complex technical material with others. 
+
 ** A look ahead -- what we will code
    1. Turing Machine
    2. Integrate and Fire Neuron
@@ -144,15 +165,26 @@ Leave time for questions; discussion.
    Then rotate the groups so that each group has only one member/opinion.
    15 minutes to explain the opinions to each other.
    General discussion.
+
+* Computational Neuroscience Day 2 IAMHERE
+  1. Form groups of two (or three if odd number).
+  2. Go to the following web site: [[https://2025.ccneuro.org/poster-sessions/?view=all][2025 Posters Cognitive Computational Neuroscience meeting]].
+     1. Pick a poster.
+	Note it's label (letter-number; on the left)
+     2. Be ready with a two sentence summary.
+     3. Tell us why it is a good example of computational modelling of either mind or brain.
+     4. Why you chose it.
+
+
 ** Is a mathematical formula a model?
 *** Forgetting Curve --- Ebbinghaus
 #+Name: forgetting-curve
 #+caption: By The original uploader was Icez at English Wikipedia.
-[[file:./images/Forgetting_curve_decline.svg.png]]
+[[file:../images/Forgetting_curve_decline.svg.png]]
 *** A Mathematical Function
-#+begin_src haskell :dir . :session :results file graphics :file ./images/expdecay.png :exports both
+#+begin_src haskell :dir . :session :results file graphics :file ../images/expdecay.png :exports both
   import Graphics.Gnuplot.Simple
-  plotFunc [PNG "./images/expdecay.png"]
+  plotFunc [PNG "../images/expdecay.png"]
   (linearScale 100 (1,6))
   ((\x -> exp (1.0/x)) :: Double -> Double)
 #+end_src
@@ -160,7 +192,7 @@ Leave time for questions; discussion.
 #+Name: exponential-function
 #+Caption: Plot of \( e^{\frac{1}{x}} \).
 #+RESULTS:
-[[file:./images/expdecay.png]]
+[[file:../images/expdecay.png]]
 
 
 **** A digression on code
@@ -219,18 +251,18 @@ Leave time for questions; discussion.
    5. Of a curve?
    6. Provide examples of phenomena in psychology or neuroscience (other than the action potential) that might be good candidates for this mathematical technique. 
 
-#+begin_src haskell :dir . :session :results file graphics :file ./images/derivExample.png :exports both
-    plotFuncs [PNG "./images/derivExample.png"] (linearScale 1000 (-3 , 3 ) )
+#+begin_src haskell :dir . :session :results file graphics :file ../images/derivExample.png :exports both
+    plotFuncs [PNG "../images/derivExample.png"] (linearScale 1000 (-3 , 3 ) )
       [(\x -> x ** 3) :: Double -> Double
       , (\x -> 12 * x - 16) :: Double -> Double ]
 #+end_src
 
 #+RESULTS:
-[[file:./images/derivExample.png]]
+[[file:../images/derivExample.png]]
 ** Using a DE
     In computational neuroscience (or psychology) we don't typically " solve DEs. We use them. We use them to help us move forward in time to understand a process by virtue of what we know about its rate of change. We will see that in a couple of short examples, and then some simple scenarios for you to play with. 
 ** Using DEs to compute a square root
-#+INCLUDE: "./src/Sqrt.hs" src haskell -n 
+#+INCLUDE: "../src/Sqrt.hs" src haskell -n 
 
 Now let's test it:
 #+begin_src haskell :results output :exports both
@@ -241,10 +273,15 @@ Now let's test it:
 #+end_src
 
 #+RESULTS:
-: <interactive>:4:1-3: error: [GHC-58481] parse error on input ‘--:’
-: 3.0000005410641766
-: 2.000004911675504
-: 5.204827869200383
+: <no location info>: error: [GHC-35235]
+:     Could not find module ‘Sqrt’.
+:     It is not a module in the current program, or in any known package.
+: <interactive>:4:1-11: error: [GHC-88464]
+:     Variable not in scope: getCubeRoot :: t0 -> t1 -> t2 -> t
+: <interactive>:5:1-11: error: [GHC-88464]
+:     Variable not in scope: getCubeRoot :: t0 -> t1 -> t2 -> t
+: <interactive>:6:1-11: error: [GHC-88464]
+:     Variable not in scope: getCubeRoot :: t0 -> t1 -> t2 -> t
 
 
 
@@ -260,20 +297,20 @@ If we knew where the spring was now, we could use this equation to tell us where
 
 Unfortunately the spring equation is for the *second* derivative of location relative to time. This is called acceleration. Thus we need a two step process. From our current location and this equation estimate our velocity. From our present location and our velocity estimate our location. And repeat. 
 
-#+INCLUDE: "./src/Spring.hs" src haskell -n 
+#+INCLUDE: "../src/Spring.hs" src haskell -n 
 
 
-#+begin_src haskell :dir . :session :results file graphics :file ./images/spring.png :exports both
+#+begin_src haskell :dir . :session :results file graphics :file ../images/spring.png :exports both
   import Spring
-  --    :load "./src/Spring.hs"
-  plotList [PNG "./images/spring.png"]
+  --    :load "../src/Spring.hs"
+  plotList [PNG "../images/spring.png"]
         $ map (\s -> sLoc s) $ releaseSpring 2000
 #+end_src
 
 #+Name: friclessSpring
 #+Caption: Frictionless Springs Oscillate
 #+RESULTS:
-[[file:./images/spring.png]]
+[[file:../images/spring.png]]
 
 
 *** Now You Try with a *Damped Oscillator*
@@ -396,21 +433,21 @@ Unlike real neurons the Integrate and Fire neuron model does not have a natural 
 - Alter the input current
 - Change the form of the input current
 
-#+INCLUDE: "./src/IandF.hs" src haskell -n 
-#+begin_src haskell :dir . :session :results file graphics :file ./images/iandf.png :exports both
+#+INCLUDE: "../src/IandF.hs" src haskell -n 
+#+begin_src haskell :dir . :session :results file graphics :file ../images/iandf.png :exports both
   import IandF
---  :load ./src/IandF.hs
+--  :load ../src/IandF.hs
     let run200 = iterate oneRunIandF initialStrut !! 200
           vs = voltages run200
           cs = currents run200
           ts = time run200
           tv = zip ts vs
           tc = zip ts cs
-    plotPaths [PNG "./images/iandf.png"] [tv,tc]
+    plotPaths [PNG "../images/iandf.png"] [tv,tc]
 #+end_src
 
 #+RESULTS:
-[[file:./images/iandf.png]]
+[[file:../images/iandf.png]]
 
 ** Integrate and Fire Homework
 
@@ -527,9 +564,9 @@ These constants are adjusted to make the resting potential 0 and the capacitance
 
 **** Demonstrating the Hodgkin-Huxley Model
 
-#+INCLUDE: "./src/HandH.hs" src haskell -n 
+#+INCLUDE: "../src/HandH.hs" src haskell -n 
 
-#+begin_src haskell :dir . :session :results file graphics :file ./images/handh.png :exports both
+#+begin_src haskell :dir . :session :results file graphics :file ../images/handh.png :exports both
   import HandH
   let myData = take 5000 $ iterate
         (updNeuron healthyNeuron pSet1 )
@@ -539,11 +576,11 @@ These constants are adjusted to make the resting potential 0 and the capacitance
       ts = map neuTime myData
       tv = zip ts vs
       tc = zip ts cs
-      plotPaths [PNG "./images/handh.png"] [tv,tc]
+      plotPaths [PNG "../images/handh.png"] [tv,tc]
 #+end_src
 
 #+RESULTS:
-[[file:./images/handh.png]]
+[[file:../images/handh.png]]
 
 **** More hints on programming the Hodgkin-Huxley model.
 1. Work inside out
@@ -627,7 +664,7 @@ The following is a slightly formatted version of the [[https://en.wikipedia.org/
    2. the symbol in the current tape cell,
    3. and produces three outputs:
       1. a symbol to write over the symbol in the current tape cell (it may be the same symbol as the symbol overwritten),
-      2. a direction to move (left or right@";" that is, shift to the tape cell one place to the left or right of the current cell), and
+      2. a direction to move (left or right; that is, shift to the tape cell one place to the left or right of the current cell), and
       3. a state to transition into (which may be the Halt state).
 
 We will use it to guide us to write a simple instance that computes a solution to the Busy Beaver problem. A n-state Turing machine has \( (4n + 4)2n \)states. The formula is (symbols × directions × (states + 1))(symbols × states). The transition function (how to figure out where to go next may be seen as a finite look-up table. Each row of the table is a 5-tuple: (current state, current symbol, symbol to write, direction of shift, next state). Our goal with the Busy Beaver problem is to run our machine to produce as long a series of uninterrupted ones as we can and then *halt*.
@@ -650,17 +687,16 @@ Here is the transition table for our machine:
 | b1             | h1r              |
 
 *** Busy Beaver Problem Demo Code
-#+INCLUDE: "./src/BusyBeaver.hs" src haskell -n 
+#+INCLUDE: "../src/BusyBeaver.hs" src haskell -n 
 
 #+begin_src haskell :dir . :session :output :exports both
 import BusyBeaver
---:load ./src/BusyBeaver.hs
+--:load ../src/BusyBeaver.hs
 let d = iterate updTM initialTM 
 tape $ d !! 7
 #+end_src
 
 #+RESULTS:
-: fromList [(-2,One),(-1,One),(0,One),(1,One)]
 
 **** Busy Beaver Homework
 See Dropbox on Learn
@@ -1034,7 +1070,7 @@ This equivalence is one of the deepest results in computer science. It suggests 
 5. The idea is something like this:
    #+Name: fig-grid
    #+Caption: An illustration of which three squares in the row above influence the coloring of your grid. 
-   [[file:./images/grid.png]]
+   [[file:../images/grid.png]]
 6. Do this for several rows. 
 
 *What you probably noticed*
@@ -1043,16 +1079,16 @@ This process is tedious and mistake prone. One good reason for translating your 
 
 #+Name: 30-hs-png
 #+Caption: Invocation of Haskell Code for Generating a PNG file of Rule 30
-#+begin_src haskell :session :results file graphics :file ./images/rule30.png :exports both
+#+begin_src haskell :session :results file graphics :file ../images/rule30.png :exports both
   import Automata
-  drawAutomata 30 128 5 "./images/rule30.png"
+  drawAutomata 30 128 5 "../images/rule30.png"
 #+end_src
 
 
 #+Name: r30-png
 #+Caption: Rule 30
 #+RESULTS: 30-hs-png
-[[file:./images/rule30.png]]
+[[file:../images/rule30.png]]
 
 
 *Lessons Learned*
@@ -1114,7 +1150,7 @@ Give a definition or description of each of these objects and operations.
 
 Most programming languages have specialized functions for defining and operating on matrices. I am using lists for ease and clarity, but for programming on larger, non-trivial, instances you will want to use your languages optimized linear algebra libraries.
 
-#+INCLUDE: "./src/MyMats.hs" src haskell -n 
+#+INCLUDE: "../src/MyMats.hs" src haskell -n 
 
 #+caption: Adding Two Matrices
 #+begin_src haskell :dir . :session :exports both :results output                 
@@ -1128,16 +1164,35 @@ Most programming languages have specialized functions for defining and operating
 #+end_src
 
 #+RESULTS:
-: a =
-: [1,2,3]
-: [4,5,6]
-: b =
-: [-1,-2,-3]
-: [4,5,6]
-: a + b =
-: [0,0,0]
-: [8,10,12]
+#+begin_example
+<no location info>: error: [GHC-35235]
+    Could not find module ‘MyMats’.
+    It is not a module in the current program, or in any known package.
+a =
+<interactive>:1133:10-18: error: [GHC-88464]
+    Variable not in scope: prettyMat :: t0 -> String
 
+<interactive>:1133:20-23: error: [GHC-88464]
+    Variable not in scope: mata
+b =
+<interactive>:1135:10-18: error: [GHC-88464]
+    Variable not in scope: prettyMat :: t0 -> String
+
+<interactive>:1135:20-23: error: [GHC-88464]
+    Variable not in scope: matb
+a + b =
+<interactive>:1137:10-18: error: [GHC-88464]
+    Variable not in scope: prettyMat :: a0 -> String
+
+<interactive>:1137:22-33: error: [GHC-88464]
+    Variable not in scope: add2SimpMats :: t0 -> t1 -> a0
+
+<interactive>:1137:35-38: error: [GHC-88464]
+    Variable not in scope: mata
+
+<interactive>:1137:40-43: error: [GHC-88464]
+    Variable not in scope: matb
+#+end_example
 #+caption: Multiplying Two Matrices
 #+begin_src haskell :dir . :session :exports both :results output
   putStrLn $ "c = "
@@ -1151,18 +1206,30 @@ Most programming languages have specialized functions for defining and operating
 #+RESULTS:
 #+begin_example
 c =
-[1,2]
-[3,4]
-[5,6]
-d =
-[7,8,9]
-[10,11,12]
-c * d =
-[27,30,33]
-[61,68,75]
-[95,106,117]
-#+end_example
+<interactive>:1141:10-18: error: [GHC-88464]
+    Variable not in scope: prettyMat :: t0 -> String
 
+<interactive>:1141:20-23: error: [GHC-88464]
+    Variable not in scope: matc
+d =
+<interactive>:1143:10-18: error: [GHC-88464]
+    Variable not in scope: prettyMat :: t0 -> String
+
+<interactive>:1143:20-23: error: [GHC-88464]
+    Variable not in scope: matd
+c * d =
+<interactive>:1145:10-18: error: [GHC-88464]
+    Variable not in scope: prettyMat :: a0 -> String
+
+<interactive>:1145:22-33: error: [GHC-88464]
+    Variable not in scope: multSimpMats :: t0 -> t1 -> a0
+
+<interactive>:1145:35-38: error: [GHC-88464]
+    Variable not in scope: matc
+
+<interactive>:1145:40-43: error: [GHC-88464]
+    Variable not in scope: matd
+#+end_example
 Classroom Exercise
 #+begin_quote
 Can you give the answer for $$ d \cdot c$$?
@@ -1206,7 +1273,7 @@ in which "neurons" compute functions of their inputs and pass on a
 
 #+name:nn
 #+caption: Simple schematic of the basics of a neural network. This is an image for a single neuron. The input has three elements and each of these connects to the same neuron ("node 1"). The activity at those nodes is filtered by the weights, which are specific for each of the inputs. These three processed inputs are combined to generate the output from this neuron. For multiple layers this output becomes an input for the next neuron along the chain.
-[[file:./images/nn.png]]
+[[file:../images/nn.png]]
 
 
 **** Non-linearities
@@ -1234,7 +1301,7 @@ One of our first efforts will be to code a /perceptron/ to solve the XOR problem
 - The "AND" Operation/Function ::
   #+Name: and
   #+caption: The /and/ operation is true when both its inputs are true.
-  #+begin_src gnuplot :var data="and.txt" :file ./images/my-and.png
+  #+begin_src gnuplot :var data="and.txt" :file ../images/my-and.png
     reset
     set nokey
     set nocolorbox
@@ -1245,12 +1312,12 @@ One of our first efforts will be to code a /perceptron/ to solve the XOR problem
 #+end_src
 
 #+RESULTS: and
-[[file:./images/my-and.png]]
+[[file:../images/my-and.png]]
 
 - The "OR" Operation/Function ::
   #+Name: or
   #+caption: The /or/ operation is true when either or both of its inputs are true.
-  #+begin_src gnuplot :var data="or.txt" :file ./images/my-or.png
+  #+begin_src gnuplot :var data="or.txt" :file ../images/my-or.png
     reset
     set nokey
     set nocolorbox
@@ -1261,12 +1328,12 @@ One of our first efforts will be to code a /perceptron/ to solve the XOR problem
 #+end_src
 
 #+RESULTS: or
-[[file:./images/my-or.png]]
+[[file:../images/my-or.png]]
 
 - The "XOR" Operation/Function ::
   #+Name: xor
   #+caption: The /xor/ operation one and only one of its inputs are true.
-  #+begin_src gnuplot :var data="xor.txt" :file ./images/my-xor.png
+  #+begin_src gnuplot :var data="xor.txt" :file ../images/my-xor.png
     reset
     set nokey
     set nocolorbox
@@ -1277,7 +1344,7 @@ One of our first efforts will be to code a /perceptron/ to solve the XOR problem
 #+end_src
 
 #+RESULTS: xor
-[[file:./images/my-xor.png]]
+[[file:../images/my-xor.png]]
 
 #+Begin_quote
 Can you draw the truth tables that match each of these graphs?
@@ -1323,7 +1390,7 @@ The perceptron (see Figure [[mark1]]) was the invention of a psychologist, [[htt
 
 #+Name: mark1
 #+caption: The Mark I computer for computing the perceptron's activity. Details can be found on [[https://en.wikipedia.org/wiki/Perceptron][Wikipedia's page]].
-[[file:./images/Mark_I_perceptron.jpeg]]
+[[file:../images/Mark_I_perceptron.jpeg]]
 
 For those of you interested in a very interesting, very long, reading might his 600 page [[https://babel.hathitrust.org/cgi/pt?id=mdp.39015039846566&view=1up&seq=9][Principles of Neurodynamics]] or this more accessible [[https://link.springer.com/book/10.1007/978-3-642-70911-1][historical review]].
 
@@ -1369,7 +1436,9 @@ Compute the value of the new weight vector with pen and paper.
 #+end_src
 
 #+RESULTS:
-: [[-0.3,1.5]]
+: <interactive>:1148:1-10: error: [GHC-88464]
+:     Variable not in scope:
+:       updWeight0 :: ([[a0]], b0) -> [[Double]] -> t
 
 *Next steps.* Consider this as the data matrix where the first two elements in a row are the two inputs and the third element in a row is the "class" of the output.
 
@@ -1395,16 +1464,44 @@ using the starting weight -0.6 0.8 try a few cycles through the data by hand and
 #+end_src
 
 #+RESULTS:
-: ([[0.3,0.7]],1.0)
-: ([[-0.5,0.3]],-1.0)
-: ([[0.7,0.3]],1.0)
-: ([[-0.2,-0.8]],-1.0)
-: 
-: [(1.0,1.0),(1.0,-1.0),(1.0,1.0),(-1.0,-1.0)]
-: 
-: [(1.0,1.0),(-1.0,-1.0),(1.0,1.0),(-1.0,-1.0)]
+#+begin_example
+<interactive>:1152:31-38: error: [GHC-88464]
+    Variable not in scope: testData :: [a0]
 
+<interactive>:1154:16-23: error: [GHC-88464]
+    Variable not in scope: oneRound :: t0 -> t1 -> [a]
 
+<interactive>:1154:25-27: error: [GHC-88464]
+    Variable not in scope: myw
+
+<interactive>:1154:29-38: error: [GHC-88464]
+    Variable not in scope: testDataFs
+<interactive>:1155:1-7: error: [GHC-88464]
+    Variable not in scope: checkWt :: t0 -> t1 -> t
+
+<interactive>:1155:9-13: error: [GHC-88464]
+    Variable not in scope: newwt
+
+<interactive>:1155:15-22: error: [GHC-88464]
+    Variable not in scope: testData
+
+<interactive>:1157:17-24: error: [GHC-88464]
+    Variable not in scope: oneRound :: t0 -> t1 -> [a]
+
+<interactive>:1157:26-30: error: [GHC-88464]
+    Variable not in scope: newwt
+
+<interactive>:1157:32-41: error: [GHC-88464]
+    Variable not in scope: testDataFs
+<interactive>:1158:1-7: error: [GHC-88464]
+    Variable not in scope: checkWt :: t0 -> t1 -> t
+
+<interactive>:1158:9-14: error: [GHC-88464]
+    Variable not in scope: newwt2
+
+<interactive>:1158:16-23: error: [GHC-88464]
+    Variable not in scope: testData
+#+end_example
 ***** More Abstract Thinking
 Each time through the perceptron rule new weights are computed. Imagine these two weights as coordinates for the head of a vector with its base at the origin of a Cartesian plane. Imagine as you iterate that you are rotating your weight vector around an origin.
 
@@ -1412,7 +1509,7 @@ The decision plane for your network is perpendicular to the vectors and is ancho
 
 ****** Bias is a Good Thing (at least here it is)
 
-These data were selected such that the base of the vector could separate them while anchored at zero. However, for many data sets you not only need to learn what direction to point the vector, but you also need to learn where to anchor the vector. This is done by including a @bold{bias weight}. Add an extra dimension to your weight vector and your inputs. For the inputs it will just be a constant value of 1.0, but this extra, bias weight, will also be learned and allows you to achieve, effectively, a translation away from the origin to be able to separate points that are more heterogeneously scattered. 
+These data were selected such that the base of the vector could separate them while anchored at zero. However, for many data sets you not only need to learn what direction to point the vector, but you also need to learn where to anchor the vector. This is done by including a *bias weight*. Add an extra dimension to your weight vector and your inputs. For the inputs it will just be a constant value of 1.0, but this extra, bias weight, will also be learned and allows you to achieve, effectively, a translation away from the origin to be able to separate points that are more heterogeneously scattered. 
 
 
 ****** Geometrical Thinking
@@ -1492,11 +1589,69 @@ How do you compute the output? Which comes first: the matrix or the input vector
 #+end_src
 
 #+RESULTS:
-: [0,-2,2,-2]
-: [-2,0,-2,2]
-: [2,-2,0,-2]
-: [-2,2,-2,0]
+#+begin_example
+<interactive>:1161:23-29: error: [GHC-76037]
+    Not in scope: type constructor or class ‘SimpMat’
+<interactive>:1162:23-29: error: [GHC-76037]
+    Not in scope: type constructor or class ‘SimpMat’
+<interactive>:1163:12-23: error: [GHC-88464]
+    Variable not in scope: multSimpMats :: t3 -> a0 -> b
 
+<interactive>:1163:26-39: error: [GHC-88464]
+    Variable not in scope: binary2Bipolar :: t2 -> t3
+
+<interactive>:1163:42-52: error: [GHC-88464]
+    Variable not in scope: rotateLList :: t1 -> t2
+
+<interactive>:1163:54-57: error: [GHC-88464]
+    Variable not in scope: hopa
+
+<interactive>:1163:63-76: error: [GHC-88464]
+    Variable not in scope: binary2Bipolar :: t0 -> a0
+
+<interactive>:1163:78-81: error: [GHC-88464]
+    Variable not in scope: hopa
+<interactive>:1164:12-23: error: [GHC-88464]
+    Variable not in scope: multSimpMats :: t3 -> a0 -> b
+
+<interactive>:1164:26-39: error: [GHC-88464]
+    Variable not in scope: binary2Bipolar :: t2 -> t3
+
+<interactive>:1164:42-52: error: [GHC-88464]
+    Variable not in scope: rotateLList :: t1 -> t2
+
+<interactive>:1164:54-57: error: [GHC-88464]
+    Variable not in scope: hopb
+
+<interactive>:1164:63-76: error: [GHC-88464]
+    Variable not in scope: binary2Bipolar :: t0 -> a0
+
+<interactive>:1164:78-81: error: [GHC-88464]
+    Variable not in scope: hopb
+<interactive>:1165:15-26: error: [GHC-88464]
+    Variable not in scope: add2SimpMats :: t0 -> t1 -> t
+
+<interactive>:1165:28-35: error: [GHC-88464]
+    Variable not in scope: outProda
+
+<interactive>:1165:37-44: error: [GHC-88464]
+    Variable not in scope: outProdb
+<interactive>:1166:22-33: error: [GHC-88464]
+    Variable not in scope: zeroDiagonal :: t0 -> t
+
+<interactive>:1166:35-45: error: [GHC-88464]
+    Variable not in scope: outProdBoth
+<interactive>:1167:13-26: error: [GHC-88464]
+    Variable not in scope: scalarMultiply :: t0 -> t1 -> t
+
+<interactive>:1167:30-46: error: [GHC-88464]
+    Variable not in scope: noSelfConnections
+<interactive>:1168:10-18: error: [GHC-88464]
+    Variable not in scope: prettyMat :: t0 -> String
+
+<interactive>:1168:20-28: error: [GHC-88464]
+    Variable not in scope: learnRate
+#+end_example
 Hopfield networks use a threshold rule. This non-linearity is, at least metaphorically, like the threshold that says whether a neuron in the brain or in our integrate and fire model fires. For the Hopfield network our threshold rule says:
 
 \( output(t)=\begin{array}{c} 1~\mbox{if } t \geq \Theta\\
@@ -1695,7 +1850,7 @@ As a placeholder, and in case I run out of time, I will insert some of the slide
 *** Name a psychological theory.
 ** I demand a satisfactory explanation
 *** A celestial example and a Planetary Context
-[[file:./images/planetCtx.png]]
+[[file:../images/planetCtx.png]]
 ** Thagard's Principles of Explanatory Coherence
 1. Symmetry
 2. Analogy
@@ -1705,9 +1860,9 @@ As a placeholder, and in case I run out of time, I will insert some of the slide
 6. Data Priority
 7. Explanation
 ** Taking up all the oxygen in the room
-[[file:./images/lavosier.png]]
+[[file:../images/lavosier.png]]
 ** And the network said ...
-[[file:./images/lavosierPlot.png]]
+[[file:../images/lavosierPlot.png]]
 ** From Lisp to R
 
 #+BEGIN_SRC R :eval never
@@ -1731,7 +1886,7 @@ h2 <- example_lavoisier()
 #+END_SRC
 
 ** And the network said ... (ECHO, Echo, echo ...)
-[[file:./images/rEcho.png]]
+[[file:../images/rEcho.png]]
 
 Can we do better?
 ** Formal CONTEXTS
@@ -1759,7 +1914,7 @@ Where \( a \subseteq A\mbox{, and }b \subseteq B\) with \( F:B \rightarrow A\mbo
 Note that this works for our concepts. 
 
 ** A celestial example
-[[file:./images/planetCtx.png]]
+[[file:../images/planetCtx.png]]
 
 Is the combination of Earth and Mars a concept?
 \begin{eqnarray}
@@ -1770,10 +1925,10 @@ A'' &=& \{Earth,~Mars\}
 
 ** Jacob's Ladder
 *** A Planetary Lattice
-[[file:./images/planetLattice.png]]
+[[file:../images/planetLattice.png]]
 
 *** The Context
-[[file:./images/planetCtx.png]]
+[[file:../images/planetCtx.png]]
 
 
 #+begin_src R :exports none :session *rfca*  :results silent
@@ -1792,7 +1947,7 @@ print(lavoisier_matrix)
 #+RESULTS:
 #+begin_example
 [1] "Lavoisier vs Phlogiston Explanatory Context:"
-OH1 OH2 OH3 OH4 OH5 OH6 PH1 PH2 PH3 PH4 PH5 PH6
+   OH1 OH2 OH3 OH4 OH5 OH6 PH1 PH2 PH3 PH4 PH5 PH6
 E1   1   1   1   0   0   0   1   1   1   0   0   0
 E2   0   0   0   0   0   0   1   0   1   1   0   0
 E3   1   0   1   0   0   0   0   0   0   0   0   0
@@ -1802,7 +1957,6 @@ E6   1   0   0   1   1   0   0   0   0   0   0   0
 E7   1   0   0   0   1   0   0   0   0   0   0   0
 E8   1   0   0   0   0   1   0   0   0   0   0   0
 #+end_example
-
 Evidence E1-E8 as objects, hypotheses OH1-OH6 (Oxygen) and PH1-PH6 (Phlogiston) as attributes.
 A value of 1 means the hypothesis explains the evidence.
 
@@ -1830,7 +1984,6 @@ fc_lavoisier_combined$concepts$to_list()[1:5]
 [[5]]
 ({E8}, {OH1, OH6})
 #+end_example
-
 Each concept shows:
 - *Extent*: Set of evidence explained together
 - *Intent*: Set of hypotheses that explain exactly that evidence
@@ -1853,7 +2006,7 @@ list(fc_lavoisier_combined$implications)[[1]][14:16]
 Implications reveal logical dependencies: if evidence supports certain hypotheses, what other hypotheses must also be supported?
 
 ** The Lavoisier Concept Lattice
-#+BEGIN_SRC R :exports results :session *rfca* :results graphics file :file ./images/lvll.png
+#+BEGIN_SRC R :exports results :session *rfca* :results graphics file :file ../images/lvll.png
   png("lvll.png", width=800, height=600, res=150)
   fc_lavoisier_combined$concepts$plot()
   dev.off()
@@ -1862,7 +2015,7 @@ Implications reveal logical dependencies: if evidence supports certain hypothese
 
 #+Caption: "The lattice structure reveals the hierarchical organization of explanatory relationships."
 #+RESULTS:
-[[file:images/lvll.png]]
+[[file:../images/lvll.png]]
 
 
 * Reasons to Prefer FCA
