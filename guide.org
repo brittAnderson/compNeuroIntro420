@@ -16,6 +16,7 @@
 #+language: en
 #+select_tags: export
 #+exclude_tags: noexport
+#+export_file_name: index.html
 #+creator: Emacs 30.2 (Org mode 9.7.11)
 #+bibliography: /home/britt/gitRepos/masterBib/bayatt.bib
 #+cite_export: csl /home/britt/gitRepos/brittsite/assets/chicago-fullnote-bibliography.csl
