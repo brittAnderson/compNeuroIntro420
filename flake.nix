@@ -22,6 +22,8 @@
           ggplot2
           knitr
           rmarkdown
+          fcaR
+          ggraph
         ];
       };
     in {
