@@ -7,12 +7,15 @@
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      python = pkgs.python312.withPackages (ps: with ps; [
-        numpy
-        matplotlib
-        tkinter
-        jupyter
-        ipykernel
+      # python = pkgs.python312.withPackages (ps: with ps; [
+      #   numpy
+      #   matplotlib
+      #   tkinter
+      #   jupyter
+      #   ipykernel
+      # ]);
+      python = pkgs.python3.withPackages (ps: with ps; [
+        numpy matplotlib tkinter jupyter ipykernel
       ]);
       renv = pkgs.rWrapper.override {
         packages = with pkgs.rPackages; [
