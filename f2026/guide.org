@@ -244,7 +244,7 @@ BOOKMARK
    5. Of a curve?
    6. Provide examples of phenomena in psychology or neuroscience (other than the action potential) that might be good candidates for this mathematical technique. 
 
-#+begin_src haskell :dir . :session :results file graphics :file ../images/derivExample.png :exports both
+#+begin_src haskell :dir . :session :results file graphics :file ../images/derivExample.png :exports both :cache yes
     plotFuncs [PNG "../images/derivExample.png"] (linearScale 1000 (-3 , 3 ) )
       [(\x -> x ** 3) :: Double -> Double
       , (\x -> 12 * x - 16) :: Double -> Double ]
@@ -426,7 +426,7 @@ Unlike real neurons the Integrate and Fire neuron model does not have a natural 
 - Change the form of the input current
 
 #+INCLUDE: "../src/IandF.hs" src haskell -n 
-#+begin_src haskell :dir . :session :results file graphics :file ../images/iandf.png :exports both
+#+begin_src haskell :dir . :session :results file graphics :file ../images/iandf.png :exports both :cache yes
   import IandF
     :load ../src/IandF.hs
     let run200 = iterate oneRunIandF initialStrut !! 200
@@ -558,7 +558,7 @@ These constants are adjusted to make the resting potential 0 and the capacitance
 
 #+INCLUDE: "../src/HandH.hs" src haskell -n 
 
-#+begin_src haskell :dir . :session :results file graphics :file ../images/handh.png :exports both
+#+begin_src haskell :dir . :session :results file graphics :file ../images/handh.png :exports both :cache yes
   import HandH
   let myData = take 5000 $ iterate
         (updNeuron healthyNeuron pSet1 )
@@ -681,7 +681,7 @@ Here is the transition table for our machine:
 *** Busy Beaver Problem Demo Code
 #+INCLUDE: "../src/BusyBeaver.hs" src haskell -n 
 
-#+begin_src haskell :dir . :session :output :exports both
+#+begin_src haskell :dir . :session :output :exports both :cache yes
 import BusyBeaver
 :load ../src/BusyBeaver.hs
 let d = iterate updTM initialTM 
@@ -755,7 +755,7 @@ The lambda calculus is built entirely from functions.
 
 Let's make these combinators concrete by implementing them in Haskell:
 
-#+BEGIN_SRC haskell :session *lambdademo* :exports both :results output
+#+BEGIN_SRC haskell :session *lambdademo* :exports both :results output :cache yes
   :set -w
     --The three basic combinators
 
@@ -1071,7 +1071,7 @@ This process is tedious and mistake prone. One good reason for translating your 
 
 #+Name: 30-hs-png
 #+Caption: Invocation of Haskell Code for Generating a PNG file of Rule 30
-#+begin_src haskell :session :results file graphics :file ../images/rule30.png :exports both
+#+begin_src haskell :session :results file graphics :file ../images/rule30.png :exports  both :cache yes
   import Automata
   drawAutomata 30 128 5 "../images/rule30.png"
 #+end_src
@@ -1145,7 +1145,7 @@ Most programming languages have specialized functions for defining and operating
 #+INCLUDE: "../src/MyMats.hs" src haskell -n 
 
 #+caption: Adding Two Matrices
-#+begin_src haskell :dir . :session :exports both :results output                 
+#+begin_src haskell :dir . :session :exports both :results output :cache yes
   :load "../src/MyMats.hs"
   import MyMats                                                                   
   putStrLn $ "a = "
@@ -1195,7 +1195,7 @@ a + b =
 [8,10,12]
 #+end_example
 #+caption: Multiplying Two Matrices
-#+begin_src haskell :dir . :session :exports both :results output
+#+begin_src haskell :dir . :session :exports both :results output :cache yes
   putStrLn $ "c = "
   putStr $ prettyMat matc
   putStrLn $ "\nd = "
@@ -1302,7 +1302,7 @@ One of our first efforts will be to code a /perceptron/ to solve the XOR problem
 - The "AND" Operation/Function ::
   #+Name: and
   #+caption: The /and/ operation is true when both its inputs are true.
-  #+begin_src gnuplot :var data="and.txt" :file ../images/my-and.png
+  #+begin_src gnuplot :var data="and.txt" :file ../images/my-and.png :cache yes
     reset
     set nokey
     set nocolorbox
@@ -1318,7 +1318,7 @@ One of our first efforts will be to code a /perceptron/ to solve the XOR problem
 - The "OR" Operation/Function ::
   #+Name: or
   #+caption: The /or/ operation is true when either or both of its inputs are true.
-  #+begin_src gnuplot :var data="or.txt" :file ../images/my-or.png
+  #+begin_src gnuplot :var data="or.txt" :file ../images/my-or.png :cache yes
     reset
     set nokey
     set nocolorbox
@@ -1963,7 +1963,7 @@ A value of 1 means the hypothesis explains the evidence.
 
 ** Sample Formal Concepts
 
-#+BEGIN_SRC R :exports results :results output :session *rfca*
+#+BEGIN_SRC R :exports results :results output :session *rfca* :cache yes
 # Show first few concepts from the combined analysis
 fc_lavoisier_combined$concepts$to_list()[1:5]
 #+END_SRC
@@ -1990,7 +1990,7 @@ Each concept shows:
 - *Intent*: Set of hypotheses that explain exactly that evidence
 
 ** Implications in the Lavoisier Context  
-#+BEGIN_SRC R :exports results :results output :session *rfca*
+#+BEGIN_SRC R :exports results :results output :session *rfca* :cache yes
 # Display key implications
 print("Key implications discovered:")
 list(fc_lavoisier_combined$implications)[[1]][14:16]
