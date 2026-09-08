@@ -1,7 +1,7 @@
 {-# LANGUAGE InstanceSigs #-}
 module Perceptron where
 
-import MyMats as M
+import MyMats
 
 -- | A new custom type that can only be Positive (1) or Negative (-1).
 data Bipolar = Pos | Neg
@@ -39,7 +39,7 @@ type Threshold a = a
 
 activity :: Num a => Weight a -> Input a -> a
 activity w i  =
-  let tempA = M.vectMult w i
+  let tempA = vectMult w i
   in head (head tempA)
 
 appendBias :: Num a => Input a -> Input a

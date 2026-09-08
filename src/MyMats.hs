@@ -33,8 +33,9 @@ add2SimpMats = zipWith (zipWith (+))
 
 rotateLList :: SimpMat a -> SimpMat a
 rotateLList [] = []
-rotateLList l | any null l = []
-rotateLList l = fmap head l : rotateLList (map tail l)
+rotateLList l
+  | any null l = []
+  | otherwise = fmap head l : rotateLList (map tail l)
 
 vectMult :: Num a => SimpMat a -> SimpMat a -> SimpMat a
 vectMult v1 v2 =
