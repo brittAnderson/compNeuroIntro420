@@ -253,7 +253,7 @@ The final project is meant to give you an opportunity to showcase your learning 
      Make a reference implementation. That is make it good, before you make it fast.
 
 ** That which you cannot code, you do not understand.
-
+IAMHERE Sept 8
 ** What is an action potential?
    1. Draw one.
    2. Explain what ions account for the different parts of the curve.
