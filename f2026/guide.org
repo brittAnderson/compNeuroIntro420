@@ -159,7 +159,7 @@ The final project is meant to give you an opportunity to showcase your learning 
 
 * Computational Neuroscience (half allowed llm use)
   
-** What are examples of working combining cognitive, computational, and neuroscience methods?
+** What are examples of research combining cognitive, computational, and neuroscience methods?
   1. Form groups of two (or three if odd number).
   2. Go to the following web site: [[https://2026.ccneuro.org/poster-sessions/?view=all][2026 Posters Cognitive Computational Neuroscience meeting]].
      1. Pick a poster.
@@ -187,7 +187,6 @@ The final project is meant to give you an opportunity to showcase your learning 
 #+RESULTS:
 [[file:./images/expdecay.png]]
 
-BOOKMARK
 **** A digression on code
      The above example is coded in [[https://www.haskell.org/][Haskell]]. If any of you feel like python or R are getting a bit stale and you would like to learn a new language I encourage you to consider Haskell. I picked it for use here because,
      a) I like it and want to get better at using it,
@@ -2219,3 +2218,7 @@ https://github.com/sarahgahyun/backpropagation/tree/main
 [fn:2] see David Marr's *Vision*. 
 [fn:3] The limits of my language means the limits of my world. -- Ludwig Wittgenstein (proposition 5.6 Tractatus Logico-Philosophicus) 
 
+
+# Local Variables:
+# jinx-local-words: "homeworks"
+# End:
