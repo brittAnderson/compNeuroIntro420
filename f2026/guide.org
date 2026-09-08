@@ -157,17 +157,17 @@ The final project is meant to give you an opportunity to showcase your learning 
    3. What is the relationship between cognition and neuroscience?
    4. All of which will benefit from better understanding what is a theory.
 
-* Computational Neuroscience (half allowed llm use)
+* Computational Neuroscience 
   
 ** What are examples of research combining cognitive, computational, and neuroscience methods?
-  1. Form groups of two (or three if odd number).
+  1. Form groups of two (or three if odd number) (even numbers allowed llm use;odd numbers any resources, including on line, but *not* llm).
   2. Go to the following web site: [[https://2026.ccneuro.org/poster-sessions/?view=all][2026 Posters Cognitive Computational Neuroscience meeting]].
      1. Pick a poster.
 	Note it's label (letter-number; on the left)
      2. Be ready with a two sentence summary.
      3. Tell us why it is a good example of computational modeling of either mind or brain.
      4. Why you chose it.
-*** Classroom exercise
+*** Evaluating Academic Work :exercise:
    Each group offers an explanation *without* llm use for : [[https://2026.ccneuro.org/poster/?id=aX1J1ByZCF][Poster to Explain]]
 ** Is a mathematical formula a model?
    Yes or No? If yes, what makes it so? Are all equations models? If no, why not? What else is needed to supplement the equation? 
@@ -189,35 +189,71 @@ The final project is meant to give you an opportunity to showcase your learning 
 [[file:./images/expdecay.png]]
 
 **** A digression on code
-     The above example is coded in [[https://www.haskell.org/][Haskell]]. If any of you feel like python or R are getting a bit stale and you would like to learn a new language I encourage you to consider Haskell. I picked it for use here because,
-     a) I like it and want to get better at using it,
-     b) I did not think many (or any) of you would know it,
-     c) And therefore I could talk about coding a particular algorithm without ruining your opportunity to practice coding it yourself.
+     The above example is coded in [[https://www.haskell.org/][Haskell]]. 
+     a) What makes Haskell different from other programming languages?
+     b) When might it be a good/bad choice?
+     c) Do you need to learn to write code?
+	Why or why not?
+     d) Regardless of your answer, how do we get LLMs to support us? Or should we not use LLMs at all?
 
-     But what about Large Language Models (LLMs)? They are great, and you should definitely use them, *but* use them deliberately and after reflection.
-     1) Do /not/ use them to do an exercise for you. You may learn something about LLMs, but you will /not/ learn how to code that algorithm or very much about the programming language you want to master.
-     2) /Do/ use them to help your learning and understanding.
-	- You have written some code yourself and it is not working, and you can't figure out why. Ask your llm to find the bug /and/ explain it.
-	- You want to know if your code is idiomatic. Ask your llm for a critique and comment on working code.
-     3) If you have no idea how to get started /do/ ask an LLM to architect without asking it to code.
-     4) Do /not/ live in the web/browser app. Get yourself an api key and access the LLM from your chosen IDE. Two tools that I use often are [[https://aider.chat/][aider]] and [[https://openrouter.ai/][openrouter]]. The latter will give you access to free models. Aider will allow you to call the LLM from the terminal. In Emacs I find *gptel* extremely convenient. 
+**** Programming Exponential Decay :exercise:
+     Compute the numbers needed for a plot of exponential decay. Plot the exponential decay. Be prepared to come to the front and show us your code; your plot; and the tools you needed to get it to run. 
+     Groups of 2 or 3.
+     Programming languages:
+     1) Python
+     2) R
+     3) Javascript
 
-     This course is not to teach you how to use LLMs or set them up, but since many of us will be making use of them we should talk about the pros and cons of particular use cases and outputs. Treat your LLM usage like a citation. Say when and where you used it.
+**** Same Exercise as Homework with one of these languages /that I will assign/. I expect you will use an LLM. See the Learn Dropbox for additional instructions. 
+     1) Common Lisp
+     2) Go
+     3) Rust
+     4) Lean4
+     5) Typescript
+     6) Ruby
+     7) Ocaml
+     8) APL (or any variant of APL you can get to work)
+     9) Prolog
+
+
 *** What can we infer
     from the similarity between Figure [[forgetting-curve]] and Figure [[exponential-function]] ?
-*** Generate your own plot of the exponential function. :assignment:
+*** Generate your own plot of the exponential function. :exercise:
+    This can be done in class, but it is not homework and is not graded. It is just something you can do to work on your skills. 
+** Reprise
+   1. What does COMPUTATIONAL cognitive neuroscience/science/psychology mean?
+   2. What are our first impressions of what research in the field looks like?
+   3. What are our early impressions about the use of LLM for
+      - answering conceptual questions?
+      - coding implementations?
 
 * Neurally Inspired Models 1: The cellular level
-** Action Potentials
-  Our goals:
-  1. Understand what we are trying to model: the action potential.
-  2. Learn some of the prior work.
-  3. Understand the mathematical background for an action potential.
+  
+  What is the mathematical tool?
+
+  Differential Equations.
+
+  But first, let's understand the phenomena where we intend to use them.
+  
+  Our Process:
+  1. Before modeling, understand what we are trying to model.
+     In this case, the action potential.
+  2. Review prior work.
+     Let's discuss what this means.
+  3. How do we hope to benefit from using a computational model?
+  4. The above should drive our focus to particular mathematical tools.
+     I will argue that we should be led to use differential equations here. You should be prepared to tell me why that is the right choice (or not; as long as you have principled arguments).
+
+     For this example we need to extend the process just described.
+
+     Understand what we are modeling and what we are using to model with.
      1. Simple electronics.
      2. Simple differential equations.
-  4. Make ourselves familiar with the basic notation of these two background areas.
-  5. Implement simple computational versions of spiking neurons.
-     If you cannot code it, you do not understand it. 
+  5. Implement simple computational versions.
+     Make a reference implementation. That is make it good, before you make it fast.
+
+** That which you cannot code, you do not understand.
+
 ** What is an action potential?
    1. Draw one.
    2. Explain what ions account for the different parts of the curve.
