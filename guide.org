@@ -9,6 +9,11 @@
 #+latex_header: \usepackage{amsthm}
 #+latex_header: \newtheorem{definition}{Definition}
 #+latex_header: \newtheorem{theorem}{Theorem}
+# CSS for HTML export styling
+#+html_head: <style> .theorem { margin: 1em 0; padding: 1em; background: #f4f4f4; border-left: 4px solid #333; } </style>
+#+html_head: <style> .theorem-title { font-weight: bold; margin-bottom: 0.5em; display: block; } </style>
+#+html_head: <style> .definition { margin: 1em 0; padding: 1em; background: #f4f4f4; border-left: 4px solid #333; } </style>
+#+html_head: <style> .definition-title { font-weight: bold; margin-bottom: 0.5em; display: block; } </style>
 #+Title: Computational Modeling for Psychology Students
 #+author: Britt Anderson
 #+date: Fall 2026
@@ -212,7 +217,7 @@ The final project is meant to give you an opportunity to showcase your learning 
      3) Javascript
 
 **** Same Exercise as Homework with one of these languages /that I will assign/. I expect you will use an LLM. See the Learn Dropbox for additional instructions. 
-     1) Common Lisp
+     1) Racket (common lisp is okay too, but may be harder to install)
      2) Go
      3) Rust
      4) Lean4
@@ -226,7 +231,7 @@ The final project is meant to give you an opportunity to showcase your learning 
 *** What can we infer
     from the similarity between Figure [[forgetting-curve]] and Figure [[exponential-function]] ?
 *** Generate your own plot of the exponential function. :exercise:
-    This can be done in class, but it is not homework and is not graded. It is just something you can do to work on your skills. 
+    This can be done in class. It is not homework and is not graded. It is just something you can do to work on your skills. 
 ** Reprise
    1. What does COMPUTATIONAL cognitive neuroscience/science/psychology mean?
    2. What are our first impressions of what research in the field looks like?
@@ -260,7 +265,8 @@ The final project is meant to give you an opportunity to showcase your learning 
      Make a reference implementation. That is make it good, before you make it fast.
 
 ** That which you cannot code, you do not understand.
-IAMHERE Sept 8
+   My rephrasing of Richard Feynman's "I don't understand anything I can't build."
+
 ** What is an action potential?
    1. Draw one.
    2. Explain what ions account for the different parts of the curve.
@@ -278,7 +284,8 @@ IAMHERE Sept 8
 
    Different mathematical and computational traditions have their own preferences, thus the same idea can have different notations. To a mathematician the $\sqrt{-1} =$ =i=. To the engineer it is =j=.
    $\frac{dx}{dt}$ $\dot{x}$ $x{'}$ $f{'}(x)$ are all different ways of talking about derivatives. 
-** Differential Equations
+** Differential Equations :exercise:
+   We want to discuss these questions. I will give you a few minutes. You can either work alone. Talk to a neighbor. Use an LLM (if you do, note which one and your prompts). To get us rolling try to come up with your best succinct answer to the first two questions. I will call on several of you, and we will vote on the best one. 
    1. What is a differential equation (aka de)?
    2. What is a derivative?
    3. What is the *definition* of a derivative?
@@ -311,13 +318,19 @@ Now let's test it:
 #+end_src
 
 #+RESULTS:
+: /home/britt/gitRepos/compNeuroIntro420
+: [1 of 1] Compiling Sqrt             ( src/Sqrt.hs, interpreted )
+: Ok, one module loaded.
+: 3.0000005410641766
+: 2.000004911675504
+: 5.204827869200383
 
+*** Your turn :assignment:
+    Working on your own on in any group $\le$ 3 members produce code in any other language than Haskell to compute the fourth root (quartic). You are to implement the method I demonstrate to compute it, not simply to call a pre-built function that does it. 
 
+** Using DEs - Practicing with Springs :exercise:
 
-
-** Using DEs - Practicing with Springs
-u
-Our Hodgkin-Huxley model will be will require us to use several different equations. And though the intergrate and fire neuron only requires one, a neuron is still rather abstract as a computational entity. Therefore, we will begin our DE coding practice with a simple, idealized spring. 
+Our Hodgkin-Huxley model will be will require us to use several different equations. And though the integrate and fire neuron only requires one, a neuron is still rather abstract as a computational entity. Therefore, we will begin our DE coding practice with a simple, idealized spring. 
 
 Our differential equation is $\frac{d^2 position}{dt^2} = -P~position$. 
 
@@ -342,11 +355,17 @@ Unfortunately the spring equation is for the *second* derivative of location rel
 [[file:./images/spring.png]]
 
 
-*** Now You Try with a *Damped Oscillator*
+*** Now You Try with a *Damped Oscillator* :homework:
 The changes to whatever code you have for the frictionless spring should require very little alteration to work with the following DE:
 
 \[ \frac{d^2 s}{dt^2} = -P~s(t) - k~v(t) \]
 
+**** Optional Classroom follow-up
+Adapt your code to run in a browser applet that allows users to change the constants themselves and see the effects on the curves. See how far you can get on this by vibe coding. Check the code the the model wrote and see if you can understand how it compares to yours. We will want to review models and prompts.
+
+***** What can you do with the University's Copilot :noexport:
+lookup in copilot dir
+IAMHERE
 
 ** Solving DEs
 
@@ -1837,9 +1856,12 @@ Can we do better?
   \mbox{then, } A'' &=& A \mbox{, defines a concept.} 
   \end{eqnarray}
 ** A Romantic Connection
-\begin{definition}[Galois Connection]
+#+attr_latex: :options [Galois Connection]
+#+begin_definition
+@@html:<span class="definition-title">Definition: Galois Connection</span>@@
 $a \leq F(b) \iff G(a) \geq b$
-\end{definition}
+#+end_definition
+
 
 Where $a \subseteq A\mbox{, and }b \subseteq B$ with $F:B \rightarrow A\mbox{, and }G:A \rightarrow B$ bijective and monotonic functions.
 
@@ -1952,25 +1974,29 @@ Implications reveal logical dependencies: if evidence supports certain hypothese
 
 * Reasons to Prefer FCA
 ** Data Processing Inequality
-\begin{theorem}[Data Processing Inequality]
+#+attr_latex: :options [Data Processing Inequality]
+#+begin_theorem
+# Inline HTML export block for the title (ignored by the LaTeX exporter)
+@@html:<span class="theorem-title">Theorem: Data Processing Inequality</span>@@
+
 For random variables $X$, $Y$, and $Z$ that form a Markov chain $X \to Y \to Z$, we have:
 $$I(X;Z) \leq I(X;Y)$$
 where $I(X;Y)$ denotes the mutual information between $X$ and $Y$.
-\end{theorem}
+#+end_theorem
 
 In our context: Information cannot be gained by processing data through additional theoretical layers.
 
 ** Formal Contexts are Chu Spaces
-\begin{definition}[Chu Space]
+#+attr_latex: :options [Chu Space]
+#+begin_definition
+@@html:<span class="definition-title">Definition: Chu Space</span>@@
 A Chu space over a set $K$ is a triple $(A, r, X)$ where:
-\begin{itemize}
-\item $A$ and $X$ are sets (called \emph{points} and \emph{states} respectively)
-\item $r: A \times X \to K$ is a function (the \emph{evaluation map})
-\end{itemize}
+  - $A$ and $X$ are sets (called /points/ and /states/ respectively)
+  - $r$: A \times X \to K$ is a function (the /evaluation map/)
 The Chu space defines a duality via:
 $$a^\perp = \{x \in X \mid r(a,x) = 0\}$$
 $$x^\perp = \{a \in A \mid r(a,x) = 0\}$$
-\end{definition}
+#+end_definition
 
 
 Formal contexts are Chu spaces over $\{0,1\}$ where objects are points, attributes are states, and the incidence relation is the evaluation map.
