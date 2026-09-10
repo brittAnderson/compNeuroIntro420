@@ -1,1 +1,1 @@
-/home/britt/gitRepos/compNeuroIntro420/w2025/localcode/spring.py
+../../w2025/localcode/spring.py
