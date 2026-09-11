@@ -179,7 +179,7 @@ The final project is meant to give you an opportunity to showcase your learning 
 *** Forgetting Curve --- Ebbinghaus
 #+Name: forgetting-curve
 #+caption: The original uploader was Icez at English Wikipedia.
-[[file:../images/Forgetting_curve_decline.svg.png]]
+[[file:./images/Forgetting_curve_decline.svg.png]]
 
 #+begin_src haskell :session :cache no :results silent :exports nil
 :set -i(locate-dominating-file-equivalent)
