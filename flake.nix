@@ -27,6 +27,7 @@
           pkgs.tk
           pkgs.quarto
           pkgs.pandoc
+          pkgs.racket
         ];
         shellHook = ''
             export QUARTO_R=${renv}/bin/R
