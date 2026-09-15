@@ -1,0 +1,30 @@
+#+options: toc:nil 
+#+options: latex-use-sans:nil
+#+latex_class: article
+#+latex_class_options: [10pt,a5paper]
+#+latex_header: \usepackage[margin=0.5in]{geometry}
+#+latex_header: \pagestyle{empty}
+#+latex_header_extra:
+#+latex_class_pre:
+#+latex_engraved_theme:
+#+latex_compiler: lualatex
+
+\vspace{-1cm}
+* Name
+\vspace{1.5cm}
+
+* Helps on pronunciation
+\vspace{1.5cm}
+
+* Year/Concentration
+\vspace{1.5cm}
+
+* Reason for taking the course
+\vspace{1.5cm}
+
+* Any Programming Experience
+
+
+
+
+
