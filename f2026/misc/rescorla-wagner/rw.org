@@ -1,0 +1,22 @@
+#+options: toc:nil
+* Rescorla Wagner (wikipedia is a good source)
+
+  \[
+  \Delta V_X^{n+1} = \alpha_X \beta (\lambda - V_{\mathrm{tot}})
+  \]
+  
+  and
+  
+  \[
+  V_X^{n+1} = V_X^n + \Delta V_X^{n+1}
+  \]
+  
+  where
+  
+  - \( \Delta V_X \) is the change in the strength, on a single trial, of the association between the CS labelled "X" and the US
+  - \( \alpha \) is the salience of X (bounded by 0 and 1)
+  - \( \beta \) is the rate parameter for the US (bounded by 0 and 1), sometimes called its association value
+  - \( \lambda \) is the maximum conditioning possible for the US
+  - \( V_X \) is the current associative strength of X
+  - \( V_{\mathrm{tot}} \) is the total associative strength of all stimuli present, that is, X plus any others
+
