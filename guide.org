@@ -1,4 +1,8 @@
-+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+Title: Computational Modeling for Psychology Students
+#+author: Britt Anderson
+#+date: Fall 2026
+#+email: britt@uwaterloo.ca
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
 #+options: author:t broken-links:nil c:nil creator:nil
 #+options: d:(not "LOGBOOK") date:t e:t email:nil expand-links:t f:t
 #+options: inline:t num:t p:nil pri:nil prop:nil stat:t tags:t
@@ -14,10 +18,6 @@
 #+html_head: <style> .theorem-title { font-weight: bold; margin-bottom: 0.5em; display: block; } </style>
 #+html_head: <style> .definition { margin: 1em 0; padding: 1em; background: #f4f4f4; border-left: 4px solid #333; } </style>
 #+html_head: <style> .definition-title { font-weight: bold; margin-bottom: 0.5em; display: block; } </style>
-#+Title: Computational Modeling for Psychology Students
-#+author: Britt Anderson
-#+date: Fall 2026
-#+email: britt@uwaterloo.ca
 #+language: en
 #+select_tags: export
 #+exclude_tags: noexport
@@ -162,8 +162,15 @@ The final project is meant to give you an opportunity to showcase your learning 
    3. What is the relationship between cognition and neuroscience?
    4. All of which will benefit from better understanding what is a theory.
 
+* Day 1 ended here :noexport:
+
 * Computational Neuroscience 
-  
+
+** Slime assignment 
+*** Slime                                                          :noexport:
+[[file:f2026/misc/slime-mold/slime-mold_test.pdf]]
+
+
 ** What are examples of research combining cognitive, computational, and neuroscience methods?
   1. Form groups of two (or three if odd number) (even numbers allowed llm use;odd numbers any resources, including on line, but *not* llm).
   2. Go to the following web site: [[https://2026.ccneuro.org/poster-sessions/?view=all][2026 Posters Cognitive Computational Neuroscience meeting]].
@@ -173,6 +180,7 @@ The final project is meant to give you an opportunity to showcase your learning 
      3. Tell us why it is a good example of computational modeling of either mind or brain.
      4. Why you chose it.
 *** Evaluating Academic Work :exercise:
+**** Exercise :noexport:
    Each group offers an explanation *without* llm use for : [[https://2026.ccneuro.org/poster/?id=aX1J1ByZCF][Poster to Explain]]
 ** Is a mathematical formula a model?
    Yes or No? If yes, what makes it so? Are all equations models? If no, why not? What else is needed to supplement the equation? 
@@ -181,7 +189,7 @@ The final project is meant to give you an opportunity to showcase your learning 
 #+caption: The original uploader was Icez at English Wikipedia.
 [[file:./images/Forgetting_curve_decline.svg.png]]
 
-#+begin_src haskell :session :cache no :results silent :exports nil
+#+begin_src haskell :session :cache no :results silent :exports none
 :set -i(locate-dominating-file-equivalent)
 #+end_src
 
@@ -216,7 +224,7 @@ The final project is meant to give you an opportunity to showcase your learning 
      2) R
      3) Javascript
 
-**** Same Exercise as Homework with one of these languages /that I will assign/. I expect you will use an LLM. See the Learn Dropbox for additional instructions. 
+**** Same Exercise as Homework with one of these languages /that I will assign/. For this exercise you are supposed to use an LLM. See the Learn Dropbox for additional instructions. 
      1) Racket (common lisp is okay too, but may be harder to install)
      2) Go
      3) Rust
@@ -227,11 +235,11 @@ The final project is meant to give you an opportunity to showcase your learning 
      8) APL (or any variant of APL you can get to work)
      9) Prolog
 
+It is possible to fail at generating the code, and still get full credit. The purpose of this exercise is to learn about using LLMs to generate code: which one(s) should we use, how should we use them, what do we need to know to use them well, how do we know we can trust what they give us?	
 
 *** What can we infer
     from the similarity between Figure [[forgetting-curve]] and Figure [[exponential-function]] ?
-*** Generate your own plot of the exponential function. :exercise:
-    This can be done in class. It is not homework and is not graded. It is just something you can do to work on your skills. 
+
 ** Reprise
    1. What does COMPUTATIONAL cognitive neuroscience/science/psychology mean?
    2. What are our first impressions of what research in the field looks like?
@@ -328,6 +336,8 @@ Now let's test it:
 *** Your turn :assignment:
     Working on your own on in any group $\le$ 3 members produce code in any other language than Haskell to compute the fourth root (quartic). You are to implement the method I demonstrate to compute it, not simply to call a pre-built function that does it. 
 
+IAMHERE -- revising
+    
 ** Using DEs - Practicing with Springs :exercise:
 
 Our Hodgkin-Huxley model will be will require us to use several different equations. And though the integrate and fire neuron only requires one, a neuron is still rather abstract as a computational entity. Therefore, we will begin our DE coding practice with a simple, idealized spring. 
@@ -1961,7 +1971,7 @@ Implications reveal logical dependencies: if evidence supports certain hypothese
 
 ** The Lavoisier Concept Lattice
 #+BEGIN_SRC R :exports results :session *rfca* :results graphics file :file ./images/lvll.png :cache no
-  png("lvll.png", width=800, height=600, res=150)
+  png("./images/lvll.png", width=800, height=600, res=150)
   fc_lavoisier_combined$concepts$plot()
   dev.off()
   "lvll.png"
