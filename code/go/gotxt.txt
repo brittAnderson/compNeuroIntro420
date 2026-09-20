@@ -1,0 +1,21 @@
+I used GO code 
+the LLM used was Copilot
+to  run this you would need to download "Go" from the internent and have go inslatted on vscode. 
+to download go from the web you can type in 
+            macOS
+            brew install go
+
+            Linux
+            sudo apt install golang-go
+
+make sure the following files are in the same folder 
+            decay.go, go.mod, go.sum
+
+to get go.mod type into the terminal "go mod init decay.go"
+to get go.sum type into the terminal "go mod tidy" (Go uses gonum plot, and this should install the right plot mechanisms if not you can type in "go get gonum.org/v1/plot/...")
+
+you run the program by typing "go run decay.go" and it will create add a png in your folder
+
+
+many prompts were used to refine the code, but the main one was "please code me a decay exponential graph using GO"
+I tired to connect the graphs axes  at (0,0) but apperently GO uses Gonum Plot and it is unable to connect the axes
