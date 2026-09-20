@@ -27,6 +27,7 @@
           pkgs.tk
           pkgs.quarto
           pkgs.pandoc
+          pkgs.go
           pkgs.racket
         ];
         shellHook = ''
