@@ -208,6 +208,7 @@ The final project is meant to give you an opportunity to showcase your learning 
 
 
 
+
 **** A digression on code
      The above example is coded in [[https://www.haskell.org/][Haskell]]. 
      a) What makes Haskell different from other programming languages?
@@ -242,6 +243,7 @@ It is possible to fail at generating the code, and still get full credit. The pu
 
 ** Reprise
    1. What does COMPUTATIONAL cognitive neuroscience/science/psychology mean?
+      1. Consider checking out [[https://www.sciencedirect.com/science/article/pii/S0960982219306141?via%3Dihub][Bain, What is Cognition?]]
    2. What are our first impressions of what research in the field looks like?
    3. What are our early impressions about the use of LLM for
       - answering conceptual questions?
@@ -281,6 +283,7 @@ It is possible to fail at generating the code, and still get full credit. The pu
    3. Why is an action potential like a flush toilet?
    4. Why did/do people use the action potential to argue that brains are like digital computers?
    5. Who were [[https://en.wikipedia.org/wiki/A_Logical_Calculus_of_the_Ideas_Immanent_in_Nervous_Activity][McCulloch and Pitts]] and why are they relevant?
+      [[https://link.springer.com/article/10.1007/BF02478259][A logical calculus]]
    6. Who developed the first detailed biophysical model of the action potential and what became of them?
    7. Why would we want to write a program to simulation a spiking neuron?
    8. Why might we want a simpler version?
@@ -336,7 +339,7 @@ Now let's test it:
 *** Your turn :assignment:
     Working on your own on in any group $\le$ 3 members produce code in any other language than Haskell to compute the fourth root (quartic). You are to implement the method I demonstrate to compute it, not simply to call a pre-built function that does it. 
 
-IAMHERE -- revising
+
     
 ** Using DEs - Practicing with Springs :exercise:
 
