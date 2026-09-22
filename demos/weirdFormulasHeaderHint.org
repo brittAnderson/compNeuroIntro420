@@ -1,0 +1,77 @@
+#+options: latex-use-sans:nil toc:nil title:nil
+#+latex_class: article
+#+latex_class_options:
+#+latex_header: \usepackage{amsmath,amssymb}
+#+latex_header_extra:
+#+latex_class_pre:
+#+description:
+#+keywords:
+#+subtitle:
+#+latex_footnote_command: \footnote{%s%s}
+#+latex_engraved_theme:
+#+latex_compiler: lualatex
+#+date: \today
+
+*** Basic Numbers & Arithmetic
+**** 1. The Number 0
+
+\[\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x - \sum_{k=0}^{\infty} \frac{1}{k!}\]
+
+**** 2. The Number 1
+
+\[\prod_{p \text{ prime}} \left(1 - \frac{1}{p^2}\right)^{-1} \cdot \frac{6}{\pi^2}\]
+
+**** 3. The Number 1 (Euler's Identity variant)
+
+\[-\exp(i\pi)\]
+
+
+**** 4. The Number 2 (Set Theory / Peano)
+
+\[\vert{}\{\emptyset, \{\emptyset\}\}\vert{}\]
+
+**** 5. Simple Addition (\(x + y\))
+
+\[(x \oplus y) + 2(x \land y)\]
+
+**** 6. Multiplying a Number by 2
+
+\[\int_0^x 2 \, dt\]
+
+**** 7. Taking the Average of Two Numbers (\(a\) and \(b\))
+
+\[\arg\min_x \left( (x - a)^2 + (x - b)^2 \right)\]
+
+**** 8. A Constant Function (\(f(x) = 1\))
+
+\[\frac{d}{dx}\left(x + \sin^2(x) + \cos^2(x)\right) - 1\]
+
+**** 9. Absolute Value (\(\vert{}x\vert{}\))
+
+\[\sqrt{x^2}\]
+
+**** 10. Counting How Many Items Match a Condition
+
+\[\sum_{i=1}^N \mathbb{I}(x_i > 0) \quad \text{where } \mathbb{I}(A) = \begin{cases} 1 & \text{if } A \text{ is true} \\ 0 & \text{otherwise} \end{cases}\]
+
+**** 11. Normalizing Data into Percentages (Softmax)
+
+\[p_i = \frac{e^{z_i}}{\sum_{j=1}^K e^{z_j}}\]
+
+**** 12. Normal Distribution / Bell Curve
+
+\[f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2}\]
+
+**** 13. Swapping Two Variables (\(a\) and \(b\))
+
+\[\begin{bmatrix} a \\ b \end{bmatrix} \leftarrow \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} \begin{bmatrix} a \\ b \end{bmatrix}\]
+
+**** 14. Checking if \(x\) is Even or Odd
+
+\[x \pmod 2 \equiv 0\]
+
+
+**** 15. The Identity Matrix Operations
+
+\[\det(I_n) = 1^n\]
+

@@ -1,0 +1,76 @@
+#+options: latex-use-sans:nil toc:nil title:nil
+#+latex_class: article
+#+latex_class_options:
+#+latex_header: \usepackage{amsmath,amssymb}
+#+latex_header_extra:
+#+latex_class_pre:
+#+description:
+#+keywords:
+#+subtitle:
+#+latex_footnote_command: \footnote{%s%s}
+#+latex_engraved_theme:
+#+latex_compiler: lualatex
+#+date: \today
+
+*** Basic Numbers & Arithmetic
+**** What Number?
+
+\[\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x - \sum_{k=0}^{\infty} \frac{1}{k!}\]
+
+**** What Number?
+
+\[\prod_{p \text{ prime}} \left(1 - \frac{1}{p^2}\right)^{-1} \cdot \frac{6}{\pi^2}\]
+
+**** What Number?  Hint: Euler's Identity variant
+
+\[-\exp(i\pi)\]
+
+**** What Number Hint: (Set Theory / Peano)
+
+\[\vert{}\{\emptyset, \{\emptyset\}\}\vert{}\]
+
+****  What Simple Operation? 
+
+\[(x \oplus y) + 2(x \land y)\]
+
+**** What Number Are We Multiplying By?
+
+\[\int_0^x 2 \, dt\]
+
+**** What Operation?
+
+\[\arg\min_x \left( (x - a)^2 + (x - b)^2 \right)\]
+
+**** What Function?
+
+\[\frac{d}{dx}\left(x + \sin^2(x) + \cos^2(x)\right) - 1\]
+
+**** We Know This Better As What?
+
+\[\sqrt{x^2}\]
+
+**** What Are We Doing Here?
+
+\[\sum_{i=1}^N \mathbb{I}(x_i > 0) \quad \text{where } \mathbb{I}(A) = \begin{cases} 1 & \text{if } A \text{ is true} \\ 0 & \text{otherwise} \end{cases}\]
+
+**** What Are We Doing Hint: Softmax
+
+\[p_i = \frac{e^{z_i}}{\sum_{j=1}^K e^{z_j}}\]
+
+**** What Do We Normally Call This?
+
+\[f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2}\]
+
+**** What Are We Doing To a And b?
+
+\[\begin{bmatrix} a \\ b \end{bmatrix} \leftarrow \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} \begin{bmatrix} a \\ b \end{bmatrix}\]
+
+**** Checking What Exactly?
+
+\[x \pmod 2 \equiv 0\]
+
+
+**** 15. How Is This Like The Number 1? Hint: Matrices
+
+\[\det(I_n) = 1^n\]
+
