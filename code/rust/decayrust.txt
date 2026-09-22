@@ -1,0 +1,378 @@
+I used Rust code
+
+the LLM used was Claude
+
+to run this you would need to download "Rust" from the internet and have cargo installed
+
+to download rust from the web you can type in
+
+macOS / Linux
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+Windows
+download and run rustup-init.exe from https://rustup.rs
+
+make sure the following files are in the same folder structure
+
+Cargo.toml, src/main.rs
+
+to get Cargo.toml and the src folder set up you can type into the terminal "cargo new exp_decay"
+
+then add the plotting library by typing "cargo add plotters" (this installs the plotters crate, which is the closest thing Rust has to ggplot2/gonum plot)
+
+you run the program by typing "cargo run" and it will create a png (exponential_decay.png) in your folder
+
+many prompts were used to refine the code, but the main one was "replicate this R/ggplot2 exponential decay code in rust"
+
+TRANSCRIPT:
+> ME:
+replicate this in rust: # Parameters
+y0 <- 2.7        # initial value
+lambda <- 1    # decay rate
+t <- seq(1, 6, by = .01)  # time points
+
+# Compute decay
+y <- y0 * exp(-lambda * t)
+
+# Put into a data frame for ggplot
+df <- data.frame(time = t, value = y)
+
+# Plot
+ggplot(df, aes(x = time, y = value)) +
+  geom_line(color = "blue", linewidth = 1) +
+  labs(
+    title = "Exponential Decay",
+    x = "Time",
+    y = "Value") +
+  theme_minimal()
+
+> CLAUDE:
+Rust doesn't have `ggplot2`, but the `plotters` crate is the standard equivalent for this kind of plot. Here's a direct translation:
+
+**`Cargo.toml`**
+```toml
+[package]
+name = "exp_decay"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+plotters = "0.3"
+```
+
+**`src/main.rs`**
+```rust
+use plotters::prelude::*;
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // Parameters
+    let y0: f64 = 2.7;      // initial value
+    let lambda: f64 = 1.0;  // decay rate
+
+    // Time points: seq(1, 6, by = .01)
+    let t: Vec<f64> = (0..)
+        .map(|i| 1.0 + i as f64 * 0.01)
+        .take_while(|&x| x <= 6.0 + 1e-9)
+        .collect();
+
+    // Compute decay: y = y0 * exp(-lambda * t)
+    let y: Vec<f64> = t.iter().map(|&ti| y0 * (-lambda * ti).exp()).collect();
+
+    // Combine into (x, y) pairs, like the data frame
+    let data: Vec<(f64, f64)> = t.iter().cloned().zip(y.iter().cloned()).collect();
+
+    // Plot
+    let root = BitMapBackend::new("exponential_decay.png", (800, 600)).into_drawing_area();
+    root.fill(&WHITE)?;
+
+    let y_max = y.iter().cloned().fold(f64::MIN, f64::max);
+
+    let mut chart = ChartBuilder::on(&root)
+        .caption("Exponential Decay", ("sans-serif", 30))
+        .margin(20)
+        .x_label_area_size(40)
+        .y_label_area_size(50)
+        .build_cartesian_2d(1.0f64..6.0f64, 0.0f64..(y_max * 1.05))?;
+
+    chart
+        .configure_mesh()
+        .x_desc("Time")
+        .y_desc("Value")
+        .draw()?;
+
+    chart.draw_series(LineSeries::new(data, &BLUE))?
+        .label("value");
+
+    root.present()?;
+    println!("Plot saved to exponential_decay.png");
+
+    Ok(())
+}
+```
+
+Run with:
+```bash
+cargo run
+```
+
+This produces `exponential_decay.png` with a blue line, matching your R plot's title and axis labels.
+
+**Notes on the translation:**
+- `seq(1, 6, by = .01)` in R → generated manually since Rust has no built-in `seq`; the `take_while` guards against floating-point overshoot at the boundary.
+- `exp(-lambda * t)` → Rust's `f64` has `.exp()` as a method rather than a free function.
+- `theme_minimal()` has no direct equivalent — `plotters`' default mesh/style is the closest analog; you can customize line styles, fonts, and colors further via `LineSeries` and `ChartBuilder` options if you want a closer visual match.
+
+> ME:
+write an explanation of the code in the style of this https://github.com/brittAnderson/compNeuroIntro420/blob/f2026/code/go/gotxt.txt
+
+> CLAUDE:
+Got it — that file is a short, informal, student-written setup note (not a code walkthrough), with a casual tone, lowercase sentences, practical setup steps, and a disclosure of what LLM was used and the main prompt. Here's the Rust equivalent in that style:
+
+---
+
+```
+I used Rust code
+
+the LLM used was Claude
+
+to run this you would need to download "Rust" from the internet and have cargo installed
+
+to download rust from the web you can type in
+
+macOS / Linux
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+Windows
+download and run rustup-init.exe from https://rustup.rs
+
+make sure the following files are in the same folder structure
+
+Cargo.toml, src/main.rs
+
+to get Cargo.toml and the src folder set up you can type into the terminal "cargo new exp_decay"
+
+then add the plotting library by typing "cargo add plotters" (this installs the plotters crate, which is the closest thing Rust has to ggplot2/gonum plot)
+
+you run the program by typing "cargo run" and it will create a png (exponential_decay.png) in your folder
+
+many prompts were used to refine the code, but the main one was "replicate this R/ggplot2 exponential decay code in rust"
+
+unlike ggplot2, plotters does not have a built in "theme_minimal", so the plot style was approximated manually using the ChartBuilder mesh settings instead
+```
+
+---
+
+Want me to keep this exact tone/format but tuck it in as a `readme.txt` alongside the Rust code, matching how his `go/gotxt.txt` sits next to `decay.go`?
+
+> ME:
+explain the rust code to me so i understand the general principles so i can discuss and explain it later, as someone who doesn't use rust
+
+> CLAUDE:
+Let's walk through this like you're translating concepts from a language you know (R) into a new one, rather than learning Rust syntax by rote.
+
+## 1. Rust needs a "main" entry point — R doesn't
+
+In R, you can just run a script top to bottom. Rust is a **compiled language** — before anything runs, the whole program gets translated into machine code, and it needs to know exactly where to *start*. That's what `fn main()` is:
+
+```rust
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    ...
+}
+```
+
+- `fn` = "function" (like `function()` in R)
+- `main` = the special name Rust looks for as the starting point
+- Everything else in the program happens *inside* this function
+
+## 2. The weird `Result<(), Box<dyn std::error::Error>>` part
+
+This is the one Rust-specific idea worth understanding conceptually, because it reflects Rust's whole philosophy: **Rust forces you to handle the possibility of failure explicitly**, rather than letting errors silently happen or crash later.
+
+In R, if something fails (a file can't be written, say), you often just get a runtime error wherever it happens. Rust instead makes functions that *might* fail return a `Result` — basically a box that contains either:
+- "it worked, here's nothing/something" (`Ok`), or
+- "it failed, here's why" (`Err`)
+
+The `?` you see scattered through the code (e.g. `root.fill(&WHITE)?;`) means "if this step failed, stop here and report the error; otherwise, keep going." Think of it as automatic, mandatory error-checking after every risky operation — like if every R function call automatically included a `tryCatch` that stops the script and tells you what went wrong.
+
+**General principle to explain:** Rust trades a bit of verbosity for a guarantee — the compiler won't let you accidentally ignore an error. That's a core part of why Rust is used where reliability really matters.
+
+## 3. Variables and typing — declared and locked in
+
+```rust
+let y0: f64 = 2.7;
+let lambda: f64 = 1.0;
+```
+
+- `let` declares a variable (like `y0 <- 2.7` in R)
+- `f64` explicitly says "this is a 64-bit floating point number" — R lets you not think about number types at all; Rust wants you to be explicit, and once a variable is created, its type doesn't change.
+
+**General principle:** Rust is *statically typed* — every variable's type is fixed and checked before the program even runs, which catches a whole category of bugs at compile time rather than while running.
+
+## 4. Building the sequence of time points (R's `seq()`)
+
+R:
+```r
+t <- seq(1, 6, by = .01)
+```
+
+Rust doesn't have a built-in `seq()`, so it's built manually using an iterator:
+
+```rust
+let t: Vec<f64> = (0..)
+    .map(|i| 1.0 + i as f64 * 0.01)
+    .take_while(|&x| x <= 6.0 + 1e-9)
+    .collect();
+```
+
+Read this as a pipeline, similar in spirit to a chain of `purrr`/`dplyr` operations in R:
+- `(0..)` = "start counting integers from 0, forever" (like an infinite index)
+- `.map(...)` = "for each index i, turn it into a time value: 1.0 + i×0.01" — this is exactly like `sapply()` or `purrr::map()` in R, transforming each element
+- `.take_while(...)` = "keep going only while the value is ≤ 6" — this is what turns the infinite sequence into a finite one, i.e., it stops once we've reached 6
+- `.collect()` = gather all these values into an actual list (a `Vec`, Rust's version of an R vector)
+
+**General principle:** Rust encourages building data through *chains of transformations on iterators* rather than pre-allocating a range and looping — conceptually similar to functional-style R (`purrr`), just more explicit about each step.
+
+## 5. Computing the decay (basically identical logic to R)
+
+```rust
+let y: Vec<f64> = t.iter().map(|&ti| y0 * (-lambda * ti).exp()).collect();
+```
+
+This is a direct translation of R's `y0 * exp(-lambda * t)`, just spelled out as "for each time value in t, compute y0 × e^(−λ×t)". `.exp()` is a method Rust attaches directly to numbers, instead of `exp()` being a free-standing function like in R.
+
+## 6. Combining x and y into pairs (R's `data.frame`)
+
+```rust
+let data: Vec<(f64, f64)> = t.iter().cloned().zip(y.iter().cloned()).collect();
+```
+
+R's `data.frame(time = t, value = y)` creates a table with a `time` column and `value` column. Rust doesn't have a built-in table/dataframe type in its standard library, so instead we just pair each time value with its matching decay value: `.zip()` does exactly what it sounds like — zips two lists together element-by-element into (x, y) pairs.
+
+**General principle to explain if asked:** Rust's core language is deliberately minimal — things like dataframes, plotting, and statistics aren't built in; you pull in external "crates" (packages) like `plotters` to get that functionality, similar to how base R doesn't include `ggplot2` and you load it separately.
+
+## 7. The plotting section — this is the `ggplot2` equivalent
+
+```rust
+let root = BitMapBackend::new("exponential_decay.png", (800, 600)).into_drawing_area();
+root.fill(&WHITE)?;
+```
+
+This sets up a blank canvas — an 800×600 pixel image file — and fills the background white. There's no direct R equivalent step because `ggsave()` handles this invisibly; here it's explicit.
+
+```rust
+let mut chart = ChartBuilder::on(&root)
+    .caption("Exponential Decay", ("sans-serif", 30))
+    .margin(20)
+    .x_label_area_size(40)
+    .y_label_area_size(50)
+    .build_cartesian_2d(1.0f64..6.0f64, 0.0f64..(y_max * 1.05))?;
+```
+
+This is the direct equivalent of `ggplot(df, aes(x=time, y=value)) + labs(title=...)` — it sets up the coordinate system, title, and axis ranges. `build_cartesian_2d(x_range, y_range)` is where you're explicitly setting `xlim`/`ylim`, which in `ggplot2` happens more implicitly (auto-scaled) unless you specify it.
+
+```rust
+chart.configure_mesh().x_desc("Time").y_desc("Value").draw()?;
+```
+
+This draws the gridlines and axis labels — like `theme_minimal()` + `labs(x=..., y=...)` combined.
+
+```rust
+chart.draw_series(LineSeries::new(data, &BLUE))?;
+```
+
+This is your `geom_line(color = "blue")` — it takes the (x,y) data pairs and draws a connected line through them.
+
+## The big-picture summary you can give when discussing it
+
+> "Rust doesn't have a plotting package as high-level as ggplot2, so a lot of what ggplot2 does automatically (scaling axes, drawing gridlines, saving the file) has to be done as explicit steps using a crate called `plotters`. The actual math — computing exponential decay — is identical in logic to the R code, just written using Rust's `map`/`iter` style instead of R's vectorized operations. The biggest conceptual difference isn't the math, it's that Rust forces explicit type declarations and explicit error-handling (`Result`, `?`) everywhere, reflecting its focus on catching mistakes at compile-time rather than at runtime."
+
+That one paragraph is probably your best "explain it to someone who doesn't use Rust" soundbite if you get asked to summarize it live.
+
+> ME:
+what is rust usually used for?
+
+> CLAUDE:
+Rust is a systems programming language, and it's generally reached for when you need C/C++-level performance and control but want stronger guarantees against the bugs that plague those languages (memory leaks, buffer overflows, data races). Here's where it actually shows up:
+
+## Core use cases
+
+**Systems-level software**
+- Operating system components (parts of Windows, Linux, and Android now include Rust code; the Linux kernel started accepting Rust for driver code)
+- Embedded systems and firmware (where you're programming directly on hardware with tight memory/resource constraints)
+
+**Performance-critical infrastructure**
+- Web browsers' engines — Firefox's rendering engine (Servo) was Rust's original flagship use case, and parts of Chrome now use Rust too
+- Databases and data infrastructure (e.g., parts of Discord's backend, some of Dropbox's storage systems)
+
+**Command-line tools**
+- A lot of modern CLI tools are written in Rust for speed and reliability (e.g., `ripgrep`, `fd`, parts of the tools underlying `cargo` itself)
+
+**WebAssembly (WASM)**
+- Rust compiles well to WebAssembly, so it's popular for performance-sensitive code that needs to run in a browser (e.g., parts of Figma's rendering engine)
+
+**Blockchain/crypto infrastructure**
+- Several blockchain platforms (Solana, Polkadot) are built in Rust, partly because of its safety guarantees around concurrent/parallel code handling money-critical logic
+
+**Networking and backend services**
+- Increasingly used for high-throughput servers and network services where both speed and reliability matter (companies like Cloudflare, AWS, and Meta use it in parts of their infrastructure)
+
+## Why it gets chosen over C/C++ specifically
+
+The single biggest selling point is **memory safety without a garbage collector**. C/C++ give you full control over memory but make it easy to introduce bugs (use-after-free, buffer overflows, race conditions) that can cause crashes or security vulnerabilities. Languages like Python or R avoid this by using a garbage collector (automatic memory cleanup) — but that adds runtime overhead and unpredictability. Rust's compiler enforces memory-safety rules *at compile time* (this is the "ownership and borrowing" system, closely related to the mandatory error-handling — `Result`/`?` — you saw in the decay code), so you get C-like speed with much stronger safety guarantees, at the cost of a steeper learning curve and more upfront rigidity when writing code.
+
+## Where it's a poor fit (relevant contrast to what you're doing)
+
+It's rarely the right choice for quick data analysis, scripting, or plotting — which is why your R/ggplot2 workflow is a much more natural fit for this course's actual work. Rust's strengths (compile-time safety, raw performance, low-level control) mostly matter when you're building infrastructure meant to run fast, reliably, and repeatedly — not for exploratory one-off statistical work.
+
+> ME:
+if i needed to changes the variables, how would i do that?
+
+> CLAUDE: 
+In this code, the variables you'd actually want to tweak are all declared near the top of `main()`:
+
+```rust
+let y0: f64 = 2.7;      // initial value
+let lambda: f64 = 1.0;  // decay rate
+```
+
+and the time range is set here:
+
+```rust
+let t: Vec<f64> = (0..)
+    .map(|i| 1.0 + i as f64 * 0.01)   // <- start value (1.0) and step size (0.01)
+    .take_while(|&x| x <= 6.0 + 1e-9) // <- end value (6.0)
+    .collect();
+```
+
+## To change things
+
+**Initial value / decay rate** — just edit the numbers directly:
+```rust
+let y0: f64 = 100.0;    // was 2.7
+let lambda: f64 = 0.3;  // was 1.0
+```
+
+**Time range** (this mirrors `seq(from, to, by)` in R) — edit the three numbers in the `map`/`take_while`:
+```rust
+let t: Vec<f64> = (0..)
+    .map(|i| 0.0 + i as f64 * 0.5)    // start = 0.0, step = 0.5
+    .take_while(|&x| x <= 20.0 + 1e-9) // end = 20.0
+    .collect();
+```
+(the `+ 1e-9` is just a small safety buffer against floating-point rounding — leave that as is)
+
+**Plot appearance** — line color and axis title text live in the plotting section:
+```rust
+chart.draw_series(LineSeries::new(data, &RED))?;  // was &BLUE
+```
+(other built-in color names from `plotters`: `RED`, `GREEN`, `BLACK`, `CYAN`, `MAGENTA`, etc. — or you can specify custom RGB with `RGBColor(r, g, b)`)
+
+## After any edit
+
+Since Rust is compiled (not interpreted like R), you don't just "re-run" the script — you have to rebuild it. But `cargo run` handles both steps for you automatically:
+
+```bash
+cargo run
+```
+
+This recompiles the changed code *and* runs it in one command, overwriting `exponential_decay.png` with the new plot. You don't need to run a separate "compile" step manually — `cargo run` is the one command you'll use every time you make a change.
