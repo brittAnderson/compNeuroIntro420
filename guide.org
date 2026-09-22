@@ -287,7 +287,7 @@ It is possible to fail at generating the code, and still get full credit. The pu
    6. Who developed the first detailed biophysical model of the action potential and what became of them?
    7. Why would we want to write a program to simulation a spiking neuron?
    8. Why might we want a simpler version?
-   9. What maths are important for modeling spiking neurons?
+   9. What math is important for modeling spiking neurons?
 ** Notation
    The mathematician's interest in being concise often means that simple ideas get translated to unfamiliar symbols. \
    Just because the notation is unfamiliar does not mean the idea is complicated. 
@@ -295,6 +295,72 @@ It is possible to fail at generating the code, and still get full credit. The pu
 
    Different mathematical and computational traditions have their own preferences, thus the same idea can have different notations. To a mathematician the $\sqrt{-1} =$ =i=. To the engineer it is =j=.
    $\frac{dx}{dt}$ $\dot{x}$ $x{'}$ $f{'}(x)$ are all different ways of talking about derivatives. 
+*** Notation Scavenger Hunt :exercise:
+**** Basic Numbers & Arithmetic
+***** What Number?
+
+\[\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x - \sum_{k=0}^{\infty} \frac{1}{k!}\]
+
+***** What Number?
+
+\[\prod_{p \text{ prime}} \left(1 - \frac{1}{p^2}\right)^{-1} \cdot \frac{6}{\pi^2}\]
+
+***** What Number?  Hint: Euler's Identity variant
+
+\[-\exp(i\pi)\]
+
+***** What Number Hint: (Set Theory / Peano)
+
+\[\vert{}\{\emptyset, \{\emptyset\}\}\vert{}\]
+
+*****  What Simple Operation? 
+
+\[(x \oplus y) + 2(x \land y)\]
+
+***** What Number Are We Multiplying By?
+
+\[\int_0^x 2 \, dt\]
+
+***** What Operation?
+
+\[\arg\min_x \left( (x - a)^2 + (x - b)^2 \right)\]
+
+***** What Function?
+
+\[\frac{d}{dx}\left(x + \sin^2(x) + \cos^2(x)\right) - 1\]
+
+***** We Know This Better As What?
+
+\[\sqrt{x^2}\]
+
+***** What Are We Doing Here?
+
+\[\sum_{i=1}^N \mathbb{I}(x_i > 0) \quad \text{where } \mathbb{I}(A) = \begin{cases} 1 & \text{if } A \text{ is true} \\ 0 & \text{otherwise} \end{cases}\]
+
+***** What Are We Doing Hint: Softmax
+
+\[p_i = \frac{e^{z_i}}{\sum_{j=1}^K e^{z_j}}\]
+
+***** What Do We Normally Call This?
+
+\[f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2}\]
+
+***** What Are We Doing To a And b?
+
+\[\begin{bmatrix} a \\ b \end{bmatrix} \leftarrow \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} \begin{bmatrix} a \\ b \end{bmatrix}\]
+
+***** Checking What Exactly?
+
+\[x \pmod 2 \equiv 0\]
+
+
+***** 15. How Is This Like The Number 1? Hint: Matrices
+
+\[\det(I_n) = 1^n\]
+
+
+**** Basic Numbers (solutions) :noexport:
+     
 ** Differential Equations :exercise:
    We want to discuss these questions. I will give you a few minutes. You can either work alone. Talk to a neighbor. Use an LLM (if you do, note which one and your prompts). To get us rolling try to come up with your best succinct answer to the first two questions. I will call on several of you, and we will vote on the best one. 
    1. What is a differential equation (aka de)?
