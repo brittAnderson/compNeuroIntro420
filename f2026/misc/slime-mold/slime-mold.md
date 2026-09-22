@@ -113,7 +113,7 @@ To answer "does the slime mold think?" do you have to decide if **the computatio
 
 - The **top two rows are trivial.** A thermostat passes.
 - **Acquisition** is *learning*. Is the sunflower learning? No. The dog and slime mold? Yes.
-- **Representation** —  this is where we assume people live and where cognition is defined. But then don't we have to grant the pea plant and slime mold cognitive status?gs, one word.)*
+- **Representation** —  this is where we assume people live and where cognition is defined. But then don't we have to grant the pea plant and slime mold cognitive status?
 
 ## The Assignment
 
