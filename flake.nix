@@ -32,6 +32,16 @@
           pkgs.rustc
           pkgs.cargo
         ];
+
+        nativeBuildInputs = [
+          pkgs.pkg-config
+        ];
+
+        buildInputs = [
+          pkgs.fontconfig
+          pkgs.freetype
+        ];
+        
         shellHook = ''
             export QUARTO_R=${renv}/bin/R
             export QUARTO_PYTHON=${python}/bin/python
