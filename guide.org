@@ -363,12 +363,12 @@ It is possible to fail at generating the code, and still get full credit. The pu
      
 ** Differential Equations :exercise:
    We want to discuss these questions. I will give you a few minutes. You can either work alone. Talk to a neighbor. Use an LLM (if you do, note which one and your prompts). To get us rolling try to come up with your best succinct answer to the first two questions. I will call on several of you, and we will vote on the best one. 
-   1. What is a differential equation (aka de)?
-   2. What is a derivative?
-   3. What is the *definition* of a derivative?
+   1. What is a slope of a line?
+   2. What is the slope of a curve?
+   3. What is a derivative?
+   4. What is the *definition* of a derivative?
       $\frac{dx}{dy} = \frac{f(x + \Delta x) - f(x)}{x+\Delta x - x}$
-   4. What is a slope of a line?
-   5. Of a curve?
+   5. What is a differential equation (aka de)?
    6. Provide examples of phenomena in psychology or neuroscience (other than the action potential) that might be good candidates for this mathematical technique. 
 
 #+begin_src haskell :session  :results file graphics :file ./images/derivExample.png :exports both :cache no
@@ -402,12 +402,12 @@ Now let's test it:
 : 2.000004911675504
 : 5.204827869200383
 
-*** Your turn :assignment:
+*** Your turn :assignment:in-class:
     Working on your own on in any group $\le$ 3 members produce code in any other language than Haskell to compute the fourth root (quartic). You are to implement the method I demonstrate to compute it, not simply to call a pre-built function that does it. 
 
 
     
-** Using DEs - Practicing with Springs :exercise:
+** Using DEs - Practicing with Springs :homework:
 
 Our Hodgkin-Huxley model will be will require us to use several different equations. And though the integrate and fire neuron only requires one, a neuron is still rather abstract as a computational entity. Therefore, we will begin our DE coding practice with a simple, idealized spring. 
 
@@ -434,17 +434,17 @@ Unfortunately the spring equation is for the *second* derivative of location rel
 [[file:./images/spring.png]]
 
 
-*** Now You Try with a *Damped Oscillator* :homework:
+*** Try with a *Damped Oscillator*                                 :homework:
 The changes to whatever code you have for the frictionless spring should require very little alteration to work with the following DE:
 
 \[ \frac{d^2 s}{dt^2} = -P~s(t) - k~v(t) \]
 
-**** Optional Classroom follow-up
+***  Classroom follow-up                                           :noexport:
 Adapt your code to run in a browser applet that allows users to change the constants themselves and see the effects on the curves. See how far you can get on this by vibe coding. Check the code the the model wrote and see if you can understand how it compares to yours. We will want to review models and prompts.
 
-***** What can you do with the University's Copilot :noexport:
-lookup in copilot dir
-IAMHERE
+*** What can you do with the University's Copilot                  :noexport:
+lookup in copilot [[file:src/copilot/][dir]]
+[[https://copilot.cloud.microsoft/chat/conversation/4227ee5d-8a94-40d5-9c13-67a8c45c4d08?fromcode=cmmm35wux52&lhredirected=1&es=AutoSignIn&redirfrom=cosmicRingCookie][oscillator-chat-copilot]]
 
 ** Solving DEs
 
