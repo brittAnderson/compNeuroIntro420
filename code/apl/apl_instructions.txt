@@ -1,0 +1,64 @@
+======================================================================
+ASSIGNMENT SUBMISSION: EXPONENTIAL DECAY PLOT
+======================================================================
+
+1. LANGUAGE USED:
+   - Language: APL (Group 8)
+   - Environment: Dyalog APL
+
+2. FILES INCLUDED:
+   - expDecay8.apl  (Source code file)
+   - apl.instructions.txt (Documentation & Execution instructions)
+
+3. REQUIRED TOOLS TO RUN:
+   - Dyalog APL (Unicode edition, Version 18.0 or newer)
+   - Download link: https://www.dyalog.com/download-zone-express.htm
+
+----------------------------------------------------------------------
+INSTRUCTIONS TO RUN THE PROGRAM (derived from Gemini)
+----------------------------------------------------------------------
+
+To run this program in Dyalog APL:
+
+1. Open Dyalog APL.
+2. Copy and paste the 3 lines from `expDecay8.apl` directly into 
+   the Dyalog session prompt and press Enter:
+
+   x ← 0.1 × ⍳100
+   y ← *(-2 × x)
+   ]Plot x y
+
+3. A pop-up window displaying the exponential decay graph will appear.
+----------------------------------------------------------------------
+LLM CONSULTATION & DIAGNOSIS DOCUMENTATION
+----------------------------------------------------------------------
+- LLMs Consulted: ChatGPT, Gemini
+- Prompts Used:
+
+ChatGPT
+  1. "i gotta do this assignment. here is the details, the language im assigned to is APL"
+  2. "yes can you just help me with the APL code now, i can do the rest myself"
+  3. "it says "dyalog APL/w-64"
+  4. "omg ok no more mental gymnastics. the x and y variables are working. whats next?"
+  5. "i clicked enter and nothing comes up"
+  6. "alright, ]plot x y worked"
+  7. "ok so i typed .dyalog manually and saved it under all files. in my folder it says type is "APA dyalog source" which should be what was needed. however when i try to open the file, it says "there was an error ("TRANSLATION ERROR") with the specified file"
+  8. "oh yeah its a load of gibberish"
+  9. "i did that and it did open in dyalog with the code, however, now its not running?"
+  10. "yah no theres no option to run it. aslo the other file we saved opened dyalog, but it still looks like a different app? it had different features in this app it opened."
+
+Gemini
+  1. "can you help me with this assignment. ive got the code already. i cant get it run properly after saving the file."
+  2. "i need a separate file with the source code. that code you pasted is literally what i just gave you. i already know that works."
+  3. "all that did was save that code as an APL file. how do i actually run it???????"
+  4. "i only have dyalog apl program window installed. when i try to open the file it says "is not a ws."
+  5. "ok listen. i need to give the source code and then instructions on how to run it."
+  6. "for the source code how come just writing this wasnt enough? it worked in the workspace? "x ← 0.1 × ⍳100 y ← *(-2 × x)]Plot x y""
+
+======================================================================
+LLM DIAGNOSIS & REFLECTION:
+- The LLM initially used `]Plot x y`. While this works when typed manually into Dyalog's workspace, it does not work when opening from a saved script file.
+- "This demonstrates a common LLM limitation in APL: generating interactive REPL convenience commands instead of headless, file-executable code." (This sentence is written by Gemini, I understand this only roughly). 
+
+My takeaway is that the code works if a person copy-pastes the code or types it, instead of it working right off the bat. That is gist of the code ChatGPT initially gave me. I tried to troubleshoot in Gemini, it gave me another code but it led me back to the same 3-line code I had originally saying "Let's address why that error happened and why your 3-line code actually WAS working all along." 
+LLMs are very frustrating for me and I would not use it to write code for me (and then be done with it). It's okay to use as a starting point, but not to use for finality. I believe it's useful to troubleshoot or find some small technical issues. 
