@@ -6,7 +6,11 @@
   outputs = { self, nixpkgs }:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfreePredicate = pkg:
+          builtins.elem (nixpkgs.lib.getName pkg) [ "dyalog" ];
+      };
       python = pkgs.python3.withPackages (ps: with ps; [
         numpy matplotlib tkinter jupyter ipykernel
       ]);
@@ -31,6 +35,7 @@
           pkgs.racket
           pkgs.rustc
           pkgs.cargo
+          (pkgs.dyalog.override { acceptLicense = true; })
         ];
 
         nativeBuildInputs = [
