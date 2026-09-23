@@ -1,0 +1,41 @@
+
+## python code
+import matplotlib.pyplot as plt
+import numpy as np
+
+x1 = np.linspace(-4, -0.01, 200)
+x2 = np.linspace(0.01, 4, 200)
+
+fig = plt.figure(figsize=(10, 5))
+plt.plot(x1, np.exp(1/x1), color='C0')
+plt.plot(x2, np.exp(1/x2), color='C0')
+plt.ylim(0, 4)
+plt.axvline(0, color='gray', linestyle='--', alpha=0.5)
+plt.show()
+
+;; Racket Code
+#lang racket
+(require plot)
+
+(plot (list (function (lambda (x) (exp (/ 1 x))) -4 -0.01)
+            (function (lambda (x) (exp (/ 1 x))) 0.01 4))
+      #:y-min 0
+      #:y-max 4)
+
+
+Prompts used:
+# python
+"How to generate a graph of a function in python"
+- I then edited the code to have the function I wanted
+- However, this lead to an usually looking graph, as the asymptote graphing behavior was incorrect
+"Here's my code, why does the graph look incorrect"
+- It spit back out the reasoning for the error, and split the function into two parts to alleviate the error, resulting in the code above.
+
+;; Racket
+"Can you generate a graph of e^(1/x) in racket with bounds of -4 to 4 in the x axis, and 0-4 in the y-axis?"
+- I got the working code instantly, and it looked correct.
+
+
+Discussion:
+I personally like using Claude the most as it has deeper understanding of the languages I'm using, but at the level I (and most people in this course) are coding at, any LLM should do just fine. If you ask Waterloo, we should be using Copilot.
+I personally enjoy using them more as a learning tool, where I prompt it to code what I need after I learn the how the functions are used. However, I understand that its capabilities are much greater and can be used to code much more complex tasks quickly, often at the cost of the prompter understanding the code it produces. 
