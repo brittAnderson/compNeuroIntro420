@@ -65,3 +65,5 @@ result
 src/copilot/
 
 /target/
+
+code/apl/aplcore
