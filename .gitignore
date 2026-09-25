@@ -67,3 +67,5 @@ src/copilot/
 /target/
 
 code/apl/aplcore
+
+code/typescript/node_modules
