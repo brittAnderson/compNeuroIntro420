@@ -1,0 +1,78 @@
+I used SWI-Prolog.
+the LLM I used for this assignment was Microsoft Copilot.
+you can download SWI-Prolog from its website under the 'download' tab; go to 'SWI-Prolog' > 'development release' > download according to laptop model. 
+ 
+Create a .txt file and paste the following information below 
+
+decay(K, T, Y) :-
+    Y is exp(-K * T).
+
+plot_2d(K) :-
+    MaxY = 10,
+
+    % Draw graph from top to bottom
+    forall(
+        between(0, MaxY, Row0),
+        (
+            Row is MaxY - Row0,
+            Label is Row / 10,
+            format('~1f |', [Label]),
+
+            forall(
+                between(0, 15, T),
+                (
+                    decay(K, T, Y),
+                    Pos is round(Y * 10),
+                    (Pos =:= Row -> write('*')
+                    ; write(' '))
+                )
+            ),
+            nl
+        )
+    ),
+
+    write('    +---------------'), nl,
+    write('     0123456789012345'), nl.
+
+
+you will save this as decay.pl under the Prolog section in your saved folders .
+you will open this in Prolog: 
+['C:/Users/YourName/Documents/Prolog/decay.pl']. 
+you will see: true. in response 
+
+run the graph: 
+?- plot_2d(0.3).
+
+this is the expected output: 
+
+1.0 |*               
+0.9 |                
+0.8 |                
+0.7 | *              
+0.6 |                
+0.5 |  *             
+0.4 |   *            
+0.3 |    *           
+0.2 |     **         
+0.1 |       ***      
+0.0 |          ******
+    +---------------
+     0123456789012345
+
+These were the main prompts I used to get this:
+- "how would you code exponential decay using prolog?"
+- "how do i create decay.pl?" 
+- "can you make the code look like a graph?"
+
+SWI-Prolog does not function in the same way Python or R does; I could not graph a neat, tidy graph about exponential decay on it 
+because it primarily works as logic programming and uses English text. You would otherwise need an external program. It is good for 
+complex rules, logic and reasoning problems, but is probably not great for things like this -- Python or R would be preferable. This was 
+the closest I could personally get to coding exponential decay. 
+
+instructions for downloading my file exponentialdecay.txt 
+change it to exponentialdecay.pl when running on Prolog 
+type in 
+?- [exponentialdecay].
+to open it to show the graph upon download as LEARN won't let me upload the .pl file 
+
+
