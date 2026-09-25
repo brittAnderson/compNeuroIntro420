@@ -91,7 +91,7 @@ What you will be submitting -- 1/2 to one page (max) essay addressing:
 
 To help let's take a quick look at both Rescorla-Wagner and Marr's Levels. 
 
-* [[https://en.wikipedia.org/wiki/Rescorla%E2%80%93Wagner_model][Rescorla Wagner Equation]]
+** [[https://en.wikipedia.org/wiki/Rescorla%E2%80%93Wagner_model][Rescorla Wagner Equation]]
 
   [[file:rw.pdf]]
   
@@ -108,7 +108,7 @@ A little prime for why I divided the assignment groups this way?
 *** Are they a good tool for studying the mind?
 *** How do we best use LLMs as a tool for our learning? How should we change our classroom experience?
 
-* Reminder
+** Reminder
 Bring pencil/pen and paper to the next class. There will be some writing that you have to turn in.
 
 * Where will your grade come from?
@@ -163,13 +163,10 @@ The final project is meant to give you an opportunity to showcase your learning 
    4. All of which will benefit from better understanding what is a theory.
 
 * Day 1 ended here :noexport:
-
 * Computational Neuroscience 
-
 ** Slime assignment 
 *** Slime                                                          :noexport:
 [[file:f2026/misc/slime-mold/slime-mold_test.pdf]]
-
 
 ** What are examples of research combining cognitive, computational, and neuroscience methods?
   1. Form groups of two (or three if odd number) (even numbers allowed llm use;odd numbers any resources, including on line, but *not* llm).
@@ -206,9 +203,6 @@ The final project is meant to give you an opportunity to showcase your learning 
 #+RESULTS:
 [[file:./images/expdecay.png]]
 
-
-
-
 **** A digression on code
      The above example is coded in [[https://www.haskell.org/][Haskell]]. 
      a) What makes Haskell different from other programming languages?
@@ -238,9 +232,21 @@ The final project is meant to give you an opportunity to showcase your learning 
 
 It is possible to fail at generating the code, and still get full credit. The purpose of this exercise is to learn about using LLMs to generate code: which one(s) should we use, how should we use them, what do we need to know to use them well, how do we know we can trust what they give us?	
 
-*** What can we infer
-    from the similarity between Figure [[forgetting-curve]] and Figure [[exponential-function]] ?
+*** More on the fitting curves to Ebbinghaus Data
+    What can we infer from the similarity between Figure [[forgetting-curve]] and Figure [[exponential-function]] ?
 
+    What equations did Ebbinghaus fit to his own data? And what have other suggested?
+
+    You can find the answers here: [[https://doi.org/10.1371/journal.pone.0120644][Replication and Analysis of Ebbinghaus' Forgetting Curve]].
+
+    Programming one of the alternatives and compare the plot to your exponential. See how close you can get.
+
+    What is the difference between a power function and an exponential function?
+
+    How might we reconcile the exponential and power function versions? An answer might be [[https://doi.org/10.3758/s13423-011-0076-y][here]].
+
+    Once again, what is the difference between curve fitting and a mathematical (or computational) model?
+    
 ** Reprise
    1. What does COMPUTATIONAL cognitive neuroscience/science/psychology mean?
       1. Consider checking out [[https://www.sciencedirect.com/science/article/pii/S0960982219306141?via%3Dihub][Bain, What is Cognition?]]
@@ -742,7 +748,6 @@ Then you must select one of the sets of \gamma from their [[https://link.springe
 
 To start with after you have implemented the new /n/ channel function set all the \gamma s to 1. This should work exactly like the old model. Generate a plot showing that it does. For the second plot generate the same plot with your altered $\gamma$ values.
 
-
 * What is computation and what is its role in cognitive science?
 We will be having a discussion on this. It only works if you have read the material that we want to discus. You need to read several sections of the [[https://plato.stanford.edu/entries/computational-mind/][The Computational Theory of Mind]] *before* class. These are all of section 3, 4.4, and all of 5 and 7. Feel free to read more. Can you answer the following questions after your reading? These are the sort of things we will be discussing. 
 ** What do you think?
@@ -1191,7 +1196,6 @@ This equivalence is one of the deepest results in computer science. It suggests 
 
    then you can think with a Turing machine, and since Turing Machines can be built from non-biological parts then thinking is not just for people anymore.
 
-   
    
 * Neurally Inspired Models 2: The network effect
 ** Neural Networks
@@ -2049,7 +2053,6 @@ Implications reveal logical dependencies: if evidence supports certain hypothese
 #+Caption: "The lattice structure reveals the hierarchical organization of explanatory relationships."
 #+RESULTS[c3a61273ad102d0dcb726a9fa202d215592ad3a9]:
 [[file:./images/lvll.png]]
-
 
 * Reasons to Prefer FCA
 ** Data Processing Inequality
