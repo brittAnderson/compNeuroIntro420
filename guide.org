@@ -245,6 +245,8 @@ It is possible to fail at generating the code, and still get full credit. The pu
 
     How might we reconcile the exponential and power function versions? An answer might be [[https://doi.org/10.3758/s13423-011-0076-y][here]].
 
+    Want to play with Ebbinghaus' original data? Load the =HistData= R package. Package description is [[https://cran.r-project.org/web/packages/HistData/HistData.pdf][here (pdf)]].
+
     Once again, what is the difference between curve fitting and a mathematical (or computational) model?
     
 ** Reprise
