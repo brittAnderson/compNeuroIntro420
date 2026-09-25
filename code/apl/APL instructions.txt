@@ -1,0 +1,18 @@
+LLM used: Copilot
+Language: APL
+To Run:
+1. Install Dyalog APL from https://www.dyalog.com/download-zone.htm
+2. Open Dyalog APL
+3. Paste the code
+4. Press enter after each line
+5. Execute 
+
+Prompts used:
+1. Change this Haskell code to Dyalog APL
+import Graphics.Gnuplot.Simple
+plotFunc [PNG "./images/expdecay.png"]
+(linearScale 100 (1,6))
+((\x -> exp (1.0/x)) :: Double -> Double)
+2. How do I download APL
+3. How do I run this code in Dyalog APL
+4. How do I plot this in Dyalog APL
