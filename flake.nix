@@ -33,6 +33,14 @@
           pkgs.pandoc
           pkgs.go
           pkgs.racket
+          pkgs.ruby
+          pkgs.ocaml
+          pkgs.swi-prolog
+          pkgs.nodejs_22
+          pkgs.typescript
+          pkgs.tsx
+          pkgs.pnpm
+          pkgs.pkg-config
           pkgs.rustc
           pkgs.cargo
           (pkgs.dyalog.override { acceptLicense = true; })
@@ -50,6 +58,7 @@
         shellHook = ''
             export QUARTO_R=${renv}/bin/R
             export QUARTO_PYTHON=${python}/bin/python
+            export 
               '';       
       };
     };
