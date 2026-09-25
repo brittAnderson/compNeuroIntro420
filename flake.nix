@@ -14,6 +14,17 @@
       python = pkgs.python3.withPackages (ps: with ps; [
         numpy matplotlib tkinter jupyter ipykernel
       ]);
+
+      histData_1_1 = pkgs.rPackages.HistData.overrideAttrs (oldAttrs: rec {
+        version = "1.1-0";
+        src = pkgs.fetchFromGitHub {
+          owner = "friendly";
+          repo = "HistData";
+          rev = "master";
+          hash = "sha256-zzrzREWCO/Ci1N2dq79FrZcyEU3FYPRkp6SUxEvZy6M=";
+        };
+      });
+      
       renv = pkgs.rWrapper.override {
         packages = with pkgs.rPackages; [
           ggplot2
@@ -21,6 +32,7 @@
           rmarkdown
           fcaR
           ggraph
+          histData_1_1
         ];
       };
     in {
