@@ -368,7 +368,7 @@ It is possible to fail at generating the code, and still get full credit. The pu
 
 
 **** Basic Numbers (solutions) :noexport:
-     
+     [[file:demos/weirdFormulasAlt.pdf][Solutions with explanations]]     
 ** Differential Equations :exercise:
    We want to discuss these questions. I will give you a few minutes. You can either work alone. Talk to a neighbor. Use an LLM (if you do, note which one and your prompts). To get us rolling try to come up with your best succinct answer to the first two questions. I will call on several of you, and we will vote on the best one. 
    1. What is a slope of a line?
