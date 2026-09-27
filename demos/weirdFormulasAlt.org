@@ -1,3 +1,6 @@
+#+options: toc:nil
+#+Latex_Header: \usepackage{amsmath,amssymb}
+
 *** Basic Numbers & Arithmetic
 **** 1. The Number 0
 
