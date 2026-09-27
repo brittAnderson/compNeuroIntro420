@@ -6,6 +6,11 @@
 .#test.lisp
 
 *.bbl
+*.aux
+*.bcf
+*.blg
+*.toc
+*.out
 *.synctex
 *.tex
 *latex-*
