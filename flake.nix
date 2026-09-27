@@ -70,7 +70,6 @@
         shellHook = ''
             export QUARTO_R=${renv}/bin/R
             export QUARTO_PYTHON=${python}/bin/python
-            export 
               '';       
       };
     };
