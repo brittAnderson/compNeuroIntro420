@@ -390,7 +390,7 @@ It is possible to fail at generating the code, and still get full credit. The pu
 
 ** Using a DE
     In computational neuroscience (or psychology) we don't typically " solve DEs. We use them. We use them to help us move forward in time to understand a process by virtue of what we know about its rate of change. We will see that in a couple of short examples, and then some simple scenarios for you to play with. 
-** Using DEs to compute a square root
+** Using DEs to compute a cube root
 #+INCLUDE: "./src/Sqrt.hs" src haskell -n 
 
 Now let's test it:
@@ -410,7 +410,7 @@ Now let's test it:
 : 2.000004911675504
 : 5.204827869200383
 
-*** Your turn :assignment:in-class:
+*** Your turn :assignment: 
     Working on your own on in any group $\le$ 3 members produce code in any other language than Haskell to compute the fourth root (quartic). You are to implement the method I demonstrate to compute it, not simply to call a pre-built function that does it. 
 
 
