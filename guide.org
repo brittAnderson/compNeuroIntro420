@@ -500,7 +500,7 @@ Is the integrate and fire model used much in modeling in the present time? [[htt
 $\tau \frac{dV(t)}{dt} = -V(t) + R~I(t)$
 
 Why is this the formula?
-***** Simple Electronics
+***** Simple Electronics :class_exercise:
 The following questions are the ones we need to answer to derive our integrate and fire model.
 
 #+begin_quote
@@ -545,6 +545,10 @@ I &= I_R + I_C & (a) \\
 RI  &= V + RC\frac{dV}{dt} & (d) \\
 \frac{1}{\tau} (RI-V)  &= \frac{dV}{dt} & (e)\\
 \end{align*}
+
+Which of our principles, or rules, are we using at each step?
+
+***** Legend :noexport:
 
 a: Kirchoff's point rule,
 
@@ -2045,7 +2049,7 @@ list(fc_lavoisier_combined$implications)[[1]][14:16]
 Implications reveal logical dependencies: if evidence supports certain hypotheses, what other hypotheses must also be supported?
 
 ** The Lavoisier Concept Lattice
-#+BEGIN_SRC R :exports results :session *rfca* :results graphics file :file ./images/lvll.png :cache no
+#+BEGIN_SRC R :exports results :session *rfca* :results graphics file :file ./images/lvll.png :cache yes
   png("./images/lvll.png", width=800, height=600, res=150)
   fc_lavoisier_combined$concepts$plot()
   dev.off()
