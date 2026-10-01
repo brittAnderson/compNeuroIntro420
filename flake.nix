@@ -12,7 +12,7 @@
           builtins.elem (nixpkgs.lib.getName pkg) [ "dyalog" ];
       };
       python = pkgs.python3.withPackages (ps: with ps; [
-        numpy matplotlib tkinter jupyter ipykernel
+        numpy matplotlib tkinter jupyter ipykernel scipy
       ]);
 
       histData_1_1 = pkgs.rPackages.HistData.overrideAttrs (oldAttrs: rec {
