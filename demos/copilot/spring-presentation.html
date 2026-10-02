@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+
+<title>Spring Oscillator Demo</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css">
+
+<style>
+
+body {
+    background: white;
+}
+
+.reveal h1,
+.reveal h2 {
+    color: #1f4e79;
+}
+
+.demo-container {
+    text-align: center;
+}
+
+#springCanvas {
+    border: 1px solid #888;
+    background: white;
+    max-width: 100%;
+}
+
+input[type="range"] {
+    width: 500px;
+    max-width: 90%;
+}
+
+.math {
+    font-size: 1.5em;
+    margin: 20px;
+}
+
+.note {
+    font-size: 0.6em;
+    color: #555;
+}
+
+.demo-controls {
+    font-size: 0.7em;
+    margin: 0 0 10px 0;
+}
+
+.demo-controls button {
+    font-size: 0.9em;
+    padding: 4px 14px;
+    margin-left: 12px;
+    cursor: pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- Slide 1 -->
+
+<section>
+    <h1>Spring Oscillators</h1>
+    <h3>Using Derivatives to Model Motion</h3>
+
+    <p>
+        A simple numerical simulation built from a differential equation.
+    </p>
+</section>
+
+<!-- Slide 2 -->
+
+<section>
+    <h2>What Is An Oscillator?</h2>
+
+    <ul>
+        <li>A mass attached to a spring moves back and forth.</li>
+        <li>The farther it stretches, the stronger the restoring force.</li>
+        <li>This creates repeating motion called oscillation.</li>
+        <li>Many real systems behave this way.</li>
+    </ul>
+</section>
+
+<!-- Slide 3 -->
+
+<section>
+    <h2>Derivatives Describe Change</h2>
+
+    <p>Position changes according to velocity:</p>
+
+    <div class="math">
+        dx/dt = v
+    </div>
+
+    <p>Velocity changes according to acceleration:</p>
+
+    <div class="math">
+        dv/dt = a
+    </div>
+
+    <p>
+        We will approximate these derivatives with small numerical steps.
+    </p>
+</section>
+
+<!-- Slide 4 -->
+
+<section>
+
+    <h2>Hooke's Law</h2>
+
+    <div class="math">
+        a = -kx
+    </div>
+
+    <ul>
+        <li>k is the spring constant.</li>
+        <li>Higher k means a stiffer spring.</li>
+        <li>The negative sign pulls the spring toward equilibrium.</li>
+    </ul>
+
+    <p class="note">
+        Strictly F = -kx, so a = -(k/m)x. We take the mass m = 1.
+    </p>
+
+</section>
+
+<!-- Slide 5 -->
+
+<section>
+
+    <h2>Euler Method</h2>
+
+<pre><code>
+velocity = velocity + acceleration * dt
+
+position = position + velocity * dt
+</code></pre>
+
+    <p>
+        Repeating these updates produces a simulation
+        of the differential equation.
+    </p>
+
+    <p class="note">
+        Updating velocity first (then using the new velocity for position)
+        is "semi-implicit" Euler. It keeps the oscillation from slowly growing,
+        which plain Euler would do.
+    </p>
+
+</section>
+
+<!-- Slide 6 -->
+
+<section>
+
+<h2>Interactive Oscillator Demo</h2>
+
+<div class="demo-container" data-prevent-swipe>
+
+<div class="demo-controls">
+    k = <strong id="kValue">1.0</strong>
+    &nbsp;&nbsp; period T = 2&pi;/&radic;k = <strong id="periodValue">6.28</strong> s
+    <button id="resetBtn" type="button">Reset</button>
+</div>
+
+<input
+    id="slider"
+    type="range"
+    min="0.1"
+    max="10"
+    step="0.1"
+    value="1.0">
+
+<br><br>
+
+<canvas
+    id="springCanvas"
+    width="900"
+    height="400">
+</canvas>
+
+</div>
+
+</section>
+
+<!-- Slide 7 -->
+
+<section>
+
+<h2>What Should We Observe?</h2>
+
+<ul>
+    <li>Small k produces slow oscillations.</li>
+    <li>Large k produces rapid oscillations.</li>
+    <li>Stronger restoring forces change velocity more quickly.</li>
+    <li>The graph shows how the differential equation behaves.</li>
+</ul>
+
+</section>
+
+<!-- Slide 8 -->
+
+<section>
+
+<h2>Why This Matters</h2>
+
+<ul>
+    <li>Physics simulations</li>
+    <li>Engineering models</li>
+    <li>Biological systems</li>
+    <li>Economics and feedback systems</li>
+    <li>Computer animation and games</li>
+</ul>
+
+</section>
+
+<!-- Slide 9 -->
+
+<section>
+
+<h1>Takeaway</h1>
+
+<p>
+A differential equation can become
+a working simulation through
+small numerical updates.
+</p>
+
+<p>
+Mathematics → Code → Visualization
+</p>
+
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+
+<script>
+
+Reveal.initialize({
+    hash: true,
+    controls: true,
+    progress: true,
+    center: true
+});
+
+/* ---------------- Oscillator simulation ---------------- */
+
+const canvas  = document.getElementById("springCanvas");
+const ctx     = canvas.getContext("2d");
+const slider  = document.getElementById("slider");
+const kLabel  = document.getElementById("kValue");
+const tLabel  = document.getElementById("periodValue");
+const resetBtn = document.getElementById("resetBtn");
+
+const X0 = 1.0;          // initial displacement (model units)
+const DT = 0.005;        // physics time step (s)
+const TRACE_SECONDS = 12; // time window shown on the graph
+
+let k = parseFloat(slider.value);
+let x, v, t, trace;
+
+function reset() {
+    x = X0;
+    v = 0;
+    t = 0;
+    trace = [];
+}
+
+function updateLabels() {
+    kLabel.textContent = k.toFixed(1);
+    tLabel.textContent = (2 * Math.PI / Math.sqrt(k)).toFixed(2);
+}
+
+// Semi-implicit Euler, exactly as on the Euler slide
+function step(dt) {
+    const a = -k * x;
+    v = v + a * dt;
+    x = x + v * dt;
+    t = t + dt;
+}
+
+slider.addEventListener("input", () => {
+    k = parseFloat(slider.value);
+    updateLabels();
+});
+
+resetBtn.addEventListener("click", reset);
+
+/* ---------------- Drawing ---------------- */
+
+const W = canvas.width;
+const H = canvas.height;
+
+// Left panel: spring + mass (horizontal)
+const springLeft = 20;
+const restX      = 190;   // equilibrium position of mass centre (px)
+const pxPerUnit  = 90;    // horizontal scale for the mass
+const massSize   = 50;
+const panelSplit = 340;
+
+// Right panel: x(t) graph
+const gLeft   = panelSplit + 40;
+const gRight  = W - 20;
+const gMid    = H / 2;
+const gAmp    = 140;      // px per unit displacement
+
+function drawSpring(x1, x2, y) {
+    const coils = 12;
+    const lead = 15;
+    const amp = 14;
+    const len = x2 - x1 - 2 * lead;
+
+    ctx.beginPath();
+    ctx.moveTo(x1, y);
+    ctx.lineTo(x1 + lead, y);
+    for (let i = 0; i <= coils * 2; i++) {
+        const px = x1 + lead + (len * i) / (coils * 2);
+        const py = y + (i === 0 || i === coils * 2 ? 0 : (i % 2 ? -amp : amp));
+        ctx.lineTo(px, py);
+    }
+    ctx.lineTo(x2, y);
+    ctx.strokeStyle = "#444";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+}
+
+function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    /* --- left panel --- */
+    const y = H / 2;
+
+    // wall
+    ctx.fillStyle = "#999";
+    ctx.fillRect(springLeft - 12, y - 60, 12, 120);
+
+    // floor
+    ctx.strokeStyle = "#bbb";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(springLeft, y + massSize / 2 + 1);
+    ctx.lineTo(panelSplit - 10, y + massSize / 2 + 1);
+    ctx.stroke();
+
+    // equilibrium marker
+    ctx.setLineDash([5, 5]);
+    ctx.strokeStyle = "#1f4e79";
+    ctx.beginPath();
+    ctx.moveTo(restX, y - 70);
+    ctx.lineTo(restX, y + 70);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    const massX = restX + x * pxPerUnit;
+    drawSpring(springLeft, massX - massSize / 2, y);
+
+    ctx.fillStyle = "#1f4e79";
+    ctx.fillRect(massX - massSize / 2, y - massSize / 2, massSize, massSize);
+
+    ctx.fillStyle = "#333";
+    ctx.font = "16px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("x = " + x.toFixed(2), massX, y - massSize / 2 - 10);
+    ctx.fillText("equilibrium", restX, y + 90);
+
+    /* --- divider --- */
+    ctx.strokeStyle = "#ddd";
+    ctx.beginPath();
+    ctx.moveTo(panelSplit, 10);
+    ctx.lineTo(panelSplit, H - 10);
+    ctx.stroke();
+
+    /* --- right panel: x(t) --- */
+    ctx.strokeStyle = "#888";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(gLeft, gMid);
+    ctx.lineTo(gRight, gMid);          // time axis
+    ctx.moveTo(gLeft, gMid - gAmp - 20);
+    ctx.lineTo(gLeft, gMid + gAmp + 20); // x axis
+    ctx.stroke();
+
+    ctx.fillStyle = "#333";
+    ctx.textAlign = "left";
+    ctx.fillText("x(t)", gLeft + 6, gMid - gAmp - 22);
+    ctx.textAlign = "right";
+    ctx.fillText("t", gRight, gMid - 8);
+
+    if (trace.length > 1) {
+        const tStart = Math.max(0, t - TRACE_SECONDS);
+        ctx.strokeStyle = "#c0392b";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        let first = true;
+        for (const p of trace) {
+            if (p.t < tStart) continue;
+            const px = gLeft + ((p.t - tStart) / TRACE_SECONDS) * (gRight - gLeft);
+            const py = gMid - p.x * gAmp;
+            if (first) { ctx.moveTo(px, py); first = false; }
+            else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+    }
+}
+
+/* ---------------- Main loop ---------------- */
+
+let lastTime = null;
+
+function frame(now) {
+    if (lastTime === null) lastTime = now;
+    // cap elapsed time so a hidden tab doesn't cause a huge jump
+    let elapsed = Math.min((now - lastTime) / 1000, 0.1);
+    lastTime = now;
+
+    // fixed-step integration, independent of frame rate
+    while (elapsed > 0) {
+        const h = Math.min(DT, elapsed);
+        step(h);
+        elapsed -= h;
+    }
+
+    trace.push({ t: t, x: x });
+    // drop points that have scrolled off the graph
+    while (trace.length && trace[0].t < t - TRACE_SECONDS - 1) trace.shift();
+
+    draw();
+    requestAnimationFrame(frame);
+}
+
+// restart the motion each time the demo slide is shown
+Reveal.on("slidechanged", (event) => {
+    if (event.currentSlide.querySelector("#springCanvas")) reset();
+});
+
+reset();
+updateLabels();
+requestAnimationFrame(frame);
+
+</script>
+
+</body>
+</html>

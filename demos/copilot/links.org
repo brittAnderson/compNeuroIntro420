@@ -1,0 +1,2 @@
+- DE
+  [[https://m365.cloud.microsoft/chat/conversation/7eea0fe8-b460-4c58-afbe-4082c225b022?auth=2&home=1&from=PortalHome&client-request-id=f42f2471-6bfe-47c2-bbce-2f78ec132c50&origindomain=microsoft365&redirfrom=cosmicRingCookie][spring demo]]
