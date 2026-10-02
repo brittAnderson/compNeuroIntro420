@@ -451,7 +451,7 @@ The changes to whatever code you have for the frictionless spring should require
 Adapt your code to run in a browser applet that allows users to change the constants themselves and see the effects on the curves. See how far you can get on this by vibe coding. Check the code the the model wrote and see if you can understand how it compares to yours. We will want to review models and prompts.
 
 *** What can you do with the University's Copilot                  :noexport:
-lookup in copilot [[file:src/copilot/][dir]]
+lookup in copilot [[file:demos/copilot/][demos/copilot]]
 [[https://copilot.cloud.microsoft/chat/conversation/4227ee5d-8a94-40d5-9c13-67a8c45c4d08?fromcode=cmmm35wux52&lhredirected=1&es=AutoSignIn&redirfrom=cosmicRingCookie][oscillator-chat-copilot]]
 
 ** Solving DEs
