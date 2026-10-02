@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Spring Oscillator</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    text-align: center;
+}
+
+canvas {
+    border: 1px solid black;
+    margin-top: 20px;
+}
+
+.controls {
+    margin: 20px;
+}
+</style>
+
+</head>
+<body>
+
+<h1>Spring Oscillator</h1>
+
+<p>
+This simulation models the differential equation:
+<br>
+<strong>d²x/dt² = -k·x</strong>
+</p>
+
+<div class="controls">
+    <label for="kSlider">
+        Spring Constant (k):
+        <span id="kValue">1.0</span>
+    </label>
+    <br><br>
+
+    <input
+        type="range"
+        id="kSlider"
+        min="0.1"
+        max="10"
+        step="0.1"
+        value="1.0"
+        style="width:400px;">
+</div>
+
+<canvas id="graph" width="800" height="400"></canvas>
+
+<script>
+
+const canvas = document.getElementById("graph");
+const ctx = canvas.getContext("2d");
+
+const slider = document.getElementById("kSlider");
+const kValue = document.getElementById("kValue");
+
+const dt = 0.02;
+const tMax = 20;
+
+function simulate(k) {
+
+    let x = 1.0;  // position
+    let v = 0.0;  // velocity
+
+    const points = [];
+
+    for (let t = 0; t <= tMax; t += dt) {
+
+        // Hooke's Law acceleration
+        let a = -k * x;
+
+        // Euler updates
+        v = v + a * dt;
+        x = x + v * dt;
+
+        points.push({t, x});
+    }
+
+    return points;
+}
+
+function drawGraph(points) {
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const w = canvas.width;
+    const h = canvas.height;
+
+    // Axes
+    ctx.strokeStyle = "#888";
+    ctx.lineWidth = 1;
+
+    ctx.beginPath();
+    ctx.moveTo(40, h/2);
+    ctx.lineTo(w-20, h/2);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(40, 20);
+    ctx.lineTo(40, h-20);
+    ctx.stroke();
+
+    // Oscillation curve
+    ctx.strokeStyle = "blue";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+
+    const xScale = (w - 60) / tMax;
+    const yScale = 100;
+
+    points.forEach((p, i) => {
+
+        const px = 40 + p.t * xScale;
+        const py = h/2 - p.x * yScale;
+
+        if (i === 0)
+            ctx.moveTo(px, py);
+        else
+            ctx.lineTo(px, py);
+    });
+
+    ctx.stroke();
+
+    // Labels
+    ctx.fillStyle = "black";
+    ctx.fillText("Time", w - 40, h/2 + 20);
+    ctx.fillText("Position", 5, 20);
+}
+
+function update() {
+    const k = parseFloat(slider.value);
+    kValue.textContent = k.toFixed(1);
+
+    const points = simulate(k);
+    drawGraph(points);
+}
+
+slider.addEventListener("input", update);
+
+update();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<title>Spring Oscillator Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css">
+
+<style>
+.reveal h1,
+.reveal h2 {
+    color: #1f4e79;
+}
+
+.demo-container {
+    text-align: center;
+}
+
+#springCanvas {
+    border: 1px solid #888;
+    background: white;
+}
+
+input[type="range"] {
+    width: 500px;
+}
+
+.math {
+    font-size: 1.5em;
+    margin: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- Slide 1 -->
+<section>
+    <h1>Spring Oscillators</h1>
+    <h3>Using Derivatives to Model Motion</h3>
+    <p>A simple numerical simulation built from a differential equation.</p>
+</section>
+
+<!-- Slide 2 -->
+<section>
+    <h2>What Is An Oscillator?</h2>
+    <ul>
+        <li>A mass attached to a spring moves back and forth.</li>
+        <li>The farther it stretches, the stronger the restoring force.</li>
+        <li>This creates repeating motion called oscillation.</li>
+        <li>Many real systems behave this way.</li>
+    </ul>
+</section>
+
+<!-- Slide 3 -->
+<section>
+    <h2>Derivatives Describe Change</h2>
+    <p>Position changes according to velocity:</p>
+    <div class="math">dx/dt = v</div>
+    <p>Velocity changes according to acceleration:</p>
+    <div class="math">dv/dt = a</div>
+    <p>We will approximate these derivatives with small numerical steps.</p>
+</section>
+
+<!-- Slide 4 -->
+<section>
+    <h2>Hooke's Law</h2>
+    <div class="math">F = -kx &nbsp;&nbsp;⇒&nbsp;&nbsp; a = -(k/m)x</div>
+    <ul>
+        <li>k is the spring constant.</li>
+        <li>Higher k means a stiffer spring.</li>
+        <li>The negative sign pulls the spring toward equilibrium.</li>
+        <li>We set m = 1, so a = -kx.</li>
+    </ul>
+</section>
+
+<!-- Slide 5 -->
+<section>
+    <h2>Semi-implicit (Symplectic) Euler</h2>
+<pre><code>velocity = velocity + acceleration * dt
+position = position + velocity * dt   // uses the NEW velocity
+</code></pre>
+    <p>Repeating these updates produces a simulation of the differential equation.</p>
+    <p style="font-size:0.7em">
+        Plain (explicit) Euler would use the <em>old</em> velocity for the position update.
+        For a spring, that version gains energy every step and the oscillation grows.
+    </p>
+    <aside class="notes">
+        Order matters. Updating v first and then x with the new v is symplectic Euler,
+        which keeps energy bounded. Swap the two lines and the amplitude grows.
+        Good moment to have students try it.
+    </aside>
+</section>
+
+<!-- Slide 6 -->
+<section>
+    <h2>Interactive Oscillator Demo</h2>
+    <p>Move the slider to change the spring constant k.</p>
+    <div class="demo-container">
+        <p>k = <strong id="kValue">1.0</strong></p>
+        <input id="slider" type="range" min="0.1" max="10" step="0.1" value="1.0">
+        <br><br>
+        <canvas id="springCanvas" width="900" height="400"></canvas>
+    </div>
+</section>
+
+<!-- Slide 7 -->
+<section>
+    <h2>What Should We Observe?</h2>
+    <ul>
+        <li>Small k produces slow oscillations.</li>
+        <li>Large k produces rapid oscillations.</li>
+        <li>Stronger restoring forces change velocity more quickly.</li>
+        <li>The graph shows how the differential equation behaves.</li>
+    </ul>
+</section>
+
+<!-- Slide 8 -->
+<section>
+    <h2>Why This Matters</h2>
+    <ul>
+        <li>Physics simulations</li>
+        <li>Engineering models</li>
+        <li>Biological systems</li>
+        <li>Economics and feedback systems</li>
+        <li>Computer animation and games</li>
+    </ul>
+</section>
+
+<!-- Slide 9 -->
+<section>
+    <h1>Takeaway</h1>
+    <p>A differential equation can become a working simulation through small numerical updates.</p>
+    <p>Mathematics → Code → Visualization</p>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+
+<script>
+Reveal.initialize({
+    hash: true,
+    slideNumber: true,
+    plugins: [ RevealNotes ]
+});
+</script>
+
+<script>
+const canvas = document.getElementById("springCanvas");
+const ctx = canvas.getContext("2d");
+const slider = document.getElementById("slider");
+const kValue = document.getElementById("kValue");
+
+const dt = 0.02;
+const tMax = 20;
+
+function simulate(k) {
+    let x = 1.0;
+    let v = 0.0;
+    const nSteps = Math.round(tMax / dt);
+    const points = [{ t: 0, x: x }];
+
+    for (let i = 1; i <= nSteps; i++) {
+        const a = -k * x;      // m = 1
+        v = v + a * dt;        // update velocity first
+        x = x + v * dt;        // then position, using the new velocity
+        points.push({ t: i * dt, x: x });
+    }
+    return points;
+}
+
+function drawGraph(points) {
+    const width = canvas.width;
+    const height = canvas.height;
+
+    ctx.clearRect(0, 0, width, height);
+
+    ctx.strokeStyle = "#cccccc";
+    ctx.lineWidth = 1;
+
+    // x axis
+    ctx.beginPath();
+    ctx.moveTo(50, height / 2);
+    ctx.lineTo(width - 20, height / 2);
+    ctx.stroke();
+
+    // y axis
+    ctx.beginPath();
+    ctx.moveTo(50, 20);
+    ctx.lineTo(50, height - 20);
+    ctx.stroke();
+
+    ctx.fillStyle = "black";
+    ctx.font = "16px Arial";
+    ctx.fillText("Position", 5, 20);
+    ctx.fillText("Time", width - 50, height / 2 + 20);
+
+    ctx.strokeStyle = "#0a5cff";
+    ctx.lineWidth = 3;
+
+    const xScale = (width - 70) / tMax;
+    const yScale = 120;
+
+    ctx.beginPath();
+    points.forEach((p, i) => {
+        const px = 50 + p.t * xScale;
+        const py = height / 2 - p.x * yScale;
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+    });
+    ctx.stroke();
+}
+
+function updateSimulation() {
+    const k = parseFloat(slider.value);
+    kValue.textContent = k.toFixed(1);
+    drawGraph(simulate(k));
+}
+
+slider.addEventListener("input", updateSimulation);
+updateSimulation();
+</script>
+
+</body>
+</html>
