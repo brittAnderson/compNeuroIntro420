@@ -2065,15 +2065,12 @@ list(fc_lavoisier_combined$implications)[[1]][14:16]
 Implications reveal logical dependencies: if evidence supports certain hypotheses, what other hypotheses must also be supported?
 
 ** The Lavoisier Concept Lattice
-#+BEGIN_SRC R :exports results :session *rfca* :results graphics file :file ./images/lvll.png :cache yes
-  png("./images/lvll.png", width=800, height=600, res=150)
+#+BEGIN_SRC R :exports results :session *rfca* :results graphics file :file ./images/lvll.png :width 800 :height 600 :res 150 :cache yes
   fc_lavoisier_combined$concepts$plot()
-  dev.off()
-  "lvll.png"
 #+END_SRC
 
 #+Caption: "The lattice structure reveals the hierarchical organization of explanatory relationships."
-#+RESULTS[c3a61273ad102d0dcb726a9fa202d215592ad3a9]:
+#+RESULTS[7ae11edffdc5ec246bccc0fb7ba1997a61881b40]:
 [[file:./images/lvll.png]]
 
 * Reasons to Prefer FCA
