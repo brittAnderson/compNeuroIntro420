@@ -42,19 +42,26 @@
    - Confirm you know how to install software on your computer.
    - You know (or will know by next week) what ~git~ is and how to use it, and that you will have an ~IDE~ installed.
 * Learning Objectives
+** From the Course Outline:
+   1. You will understand the scope of subjects and tools that comprise computational neuroscience and computational cognitive modeling.
+   2. You will program a few different versions of a spiking neuron. This will introduce us to how differential equations may be used in computational modeling We will also look at how some of the tools developed for studying differential equations can be brought to bear on neural models.
+   3. You will program a few simple examples of a few different types of neural networks. We will use these to introduce us to some of the ways that linear algebra is used in computational modeling, and how some of the tools of analyzing linear systems can be brought to bear on neural and cognitive models.
+   4. Have an informed opinion on what is it meant by a "computational model" whether it is correct to consider the mind as such. You will program a simple Turing machine.
+   5. You will compare the symbolic and computational approaches to brain and mind modeling by implementing a simple logic in code. 
+   6. Interleaved throughout all these exercises you will develop an informed perspective on what is meant by a theory and a model, and what might be the benefits from a computational characterization.
 ** General
-   1. Learn background material on methods and notation to begin to use computational methods for modeling brain and mind.
-   2. The specific domain content will change quickly in the years to come. Thus, I target general approaches for,
+   1. The specific domain content will change quickly in the years to come. Thus, I target general approaches for,
       1. acquiring computational knowledge,
       2. evaluating claims that rely on it,
       3. developing intuition about whether a claim is sensible,
       4. how to test it,
       5. learn how to learn new tools you will need in the future to extend your knowledge and conduct (or even just read about) this sort of material in the future.
-   3. Gain experience in reading the computational neuroscience literature.
-   4. Practice writing in a technical and academic style your evaluation of computational cognitive science material. 
-   5. Become proficient in the basics and fundamentals of a programming language like python or R.
-   6. Learn to use LLMs as an adjunct to learning and not a substitute.
-** Specific early objectives
+   2. Gain experience in reading the computational neuroscience literature.
+   3. Practice writing in a technical and academic style your evaluation of computational cognitive science material. 
+   4. Become proficient in the basics and fundamentals of a programming language like python or R.
+   5. Learn to use LLMs as an adjunct to learning and not a substitute.
+** Some recommendations.
+*** Things to help you early on
    Take a look at [[https://github.com/brittAnderson/uwlooP390]] and [[https://brittanderson.github.io/uwlooP390/]]
    Things you absolutely should be able to do.
    1. Verify our laptop's operating system is up to date.
@@ -64,8 +71,7 @@
    5. Know what git/github are.
       Git Clone and Github Acct :assignment:
       An early home work will be a screen shot of your github homepage showing you forked or cloned the course repository. And the screen shot should be done using a program and not your phone. [[https://github.com/brittAnderson/compNeuroIntro420][Course Webpage]] . That is the course content. If you want to view a web viewable form you can go to this link: [[https://brittanderson.github.io/compNeuroIntro420/][course notes]].
-** Some recommendations.
-   You will want an IDE. I personally use emacs. Experience has taught me that only about 3 in a 100 of you will share my opinion. Thus, I recommend VS Code if you have no other preference. It is becoming a sort of de facto standard.
+   6. You will want an IDE. I personally use emacs. Experience has taught me that only about 3 in a 100 of you will share my opinion. Thus, I recommend VS Code if you have no other preference. It is becoming a sort of de facto standard.
 * What is a cognitive model
 ** Divide class into teams of four or five each. 
 ** Assign to each team a label:

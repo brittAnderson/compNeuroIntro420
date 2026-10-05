@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-10-02 Fri 10:22 -->
+<!-- 2026-10-05 Mon 09:51 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Computational Modeling for Psychology Students</title>
@@ -238,270 +238,274 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge535440">1. Welcome to Psych 420</a></li>
-<li><a href="#org5eb4a09">2. Introductions&nbsp;&nbsp;&nbsp<span class="tag"><span class="assignment">assignment</span></span></a></li>
-<li><a href="#orgd0f291a">3. Learning Objectives</a>
+<li><a href="#orgb04f28b">1. Welcome to Psych 420</a></li>
+<li><a href="#orgf3ec4ec">2. Introductions&nbsp;&nbsp;&nbsp<span class="tag"><span class="assignment">assignment</span></span></a></li>
+<li><a href="#org2fdf88d">3. Learning Objectives</a>
 <ul>
-<li><a href="#org9798a3b">3.1. General</a></li>
-<li><a href="#orgd215fda">3.2. Specific early objectives</a></li>
-<li><a href="#orgd6a1cb2">3.3. Some recommendations.</a></li>
-</ul>
-</li>
-<li><a href="#orgc77778a">4. What is a cognitive model</a>
+<li><a href="#org64e5cac">3.1. From the Course Outline:</a></li>
+<li><a href="#orgf604794">3.2. General</a></li>
+<li><a href="#org85ca5f1">3.3. Some recommendations.</a>
 <ul>
-<li><a href="#orgb6aab17">4.1. Divide class into teams of four or five each.</a></li>
-<li><a href="#orge146474">4.2. Assign to each team a label:</a></li>
-<li><a href="#org2923e49">4.3. Consider the following question from the point of view of your assigned role:</a></li>
-<li><a href="#org4f57141">4.4. Give time for developing an answer.</a></li>
-<li><a href="#orge108faf">4.5. Review the suggestions.</a></li>
-<li><a href="#org786c1d4">4.6. Now consider the following.</a></li>
-<li><a href="#orgbadce73">4.7. Reorganize the groups</a>
-<ul>
-<li><a href="#org7eb30ef">4.7.1. Two sets of groups</a></li>
-</ul>
-</li>
-<li><a href="#org0050a2a">4.8. Rescorla Wagner Equation</a></li>
-<li><a href="#orgbd3239c">4.9. What are Marr's Levels?</a></li>
-<li><a href="#orgb2d1f6f">4.10. LLMs</a>
-<ul>
-<li><a href="#org114c486">4.10.1. Are they a good model system for the mind? That is, does an LLM think like you do?</a></li>
-<li><a href="#org8709296">4.10.2. Are they a good tool for studying the mind?</a></li>
-<li><a href="#orga9d9866">4.10.3. How do we best use LLMs as a tool for our learning? How should we change our classroom experience?</a></li>
-</ul>
-</li>
-<li><a href="#orgfbfeeb0">4.11. Reminder</a></li>
-</ul>
-</li>
-<li><a href="#org6a9293a">5. Where will your grade come from?</a>
-<ul>
-<li><a href="#orgaaa2369">5.1. Why incentivize classroom time?</a></li>
-<li><a href="#org609328d">5.2. Why is "doing" so important for this course?</a></li>
-<li><a href="#org79bee48">5.3. I find this stuff hard and am worrying about failing</a></li>
-<li><a href="#orga0d60ac">5.4. Why have a final project?</a></li>
-<li><a href="#orged8ae0a">5.5. A look ahead &ndash; what we will code</a></li>
-<li><a href="#orgab4b02f">5.6. A look ahead &ndash; what we talk about</a></li>
-</ul>
-</li>
-<li><a href="#org4c1bf82">6. Computational Neuroscience</a>
-<ul>
-<li><a href="#org97a8fc3">6.1. Slime assignment</a></li>
-<li><a href="#org0f670a3">6.2. What are examples of research combining cognitive, computational, and neuroscience methods?</a>
-<ul>
-<li><a href="#org88de43f">6.2.1. Evaluating Academic Work&nbsp;&nbsp;&nbsp<span class="tag"><span class="exercise">exercise</span></span></a></li>
-</ul>
-</li>
-<li><a href="#orgabb9811">6.3. Is a mathematical formula a model?</a>
-<ul>
-<li><a href="#org09d9121">6.3.1. Forgetting Curve &mdash; Ebbinghaus</a></li>
-<li><a href="#org10bdeee">6.3.2. A Mathematical Function</a></li>
-<li><a href="#orge2f58d4">6.3.3. More on the fitting curves to Ebbinghaus Data</a></li>
-</ul>
-</li>
-<li><a href="#org261f1b2">6.4. Reprise</a></li>
-</ul>
-</li>
-<li><a href="#orgb818884">7. Neurally Inspired Models 1: The cellular level</a>
-<ul>
-<li><a href="#org17f963c">7.1. That which you cannot code, you do not understand.</a></li>
-<li><a href="#org53aa463">7.2. What is an action potential?</a></li>
-<li><a href="#orgcef970c">7.3. Notation</a>
-<ul>
-<li><a href="#orgb298a13">7.3.1. Notation Scavenger Hunt&nbsp;&nbsp;&nbsp<span class="tag"><span class="exercise">exercise</span></span></a></li>
-</ul>
-</li>
-<li><a href="#orgf7e244f">7.4. Differential Equations&nbsp;&nbsp;&nbsp<span class="tag"><span class="exercise">exercise</span></span></a></li>
-<li><a href="#orge7c0265">7.5. Using a DE</a></li>
-<li><a href="#orgf355c24">7.6. Using DEs to compute a cube root</a>
-<ul>
-<li><a href="#org43d729f">7.6.1. Your turn&nbsp;&nbsp;&nbsp<span class="tag"><span class="assignment">assignment</span></span></a></li>
-</ul>
-</li>
-<li><a href="#org1490009">7.7. Using DEs - Practicing with Springs&nbsp;&nbsp;&nbsp<span class="tag"><span class="homework">homework</span></span></a>
-<ul>
-<li><a href="#org39cc881">7.7.1. Try with a <b>Damped Oscillator</b>&nbsp;&nbsp;&nbsp<span class="tag"><span class="homework">homework</span></span></a></li>
-</ul>
-</li>
-<li><a href="#orgaf394b1">7.8. Solving DEs</a></li>
-<li><a href="#org75dc302">7.9. Integrate and Fire Neuron</a>
-<ul>
-<li><a href="#orgba4a05e">7.9.1. Historical Notes</a></li>
-<li><a href="#org6f332bf">7.9.2. Formula I and F</a></li>
-<li><a href="#org8691b6e">7.9.3. Coding up the Integrate and Fire Neuron</a></li>
-</ul>
-</li>
-<li><a href="#orga4c0989">7.10. Integrate and Fire Homework</a></li>
-<li><a href="#org3dce57a">7.11. Hodgkin and Huxley Model</a>
-<ul>
-<li><a href="#org238c448">7.11.1. Who were Hodgkin and Huxley</a></li>
-<li><a href="#org4efd913">7.11.2. Model Description</a></li>
+<li><a href="#orgf8f3937">3.3.1. Things to help you early on</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org13b5c1f">8. What is computation and what is its role in cognitive science?</a>
+<li><a href="#org38b7d7d">4. What is a cognitive model</a>
 <ul>
-<li><a href="#org98e6ba0">8.1. What do you think?</a></li>
-<li><a href="#orge721956">8.2. Computing in Minds and Computers</a></li>
-<li><a href="#orgf0d3783">8.3. What is a Turing machine? Some Background and Details</a>
+<li><a href="#org62e2b45">4.1. Divide class into teams of four or five each.</a></li>
+<li><a href="#org23a2b4a">4.2. Assign to each team a label:</a></li>
+<li><a href="#org95d3dc2">4.3. Consider the following question from the point of view of your assigned role:</a></li>
+<li><a href="#org2a761ad">4.4. Give time for developing an answer.</a></li>
+<li><a href="#orge549e4f">4.5. Review the suggestions.</a></li>
+<li><a href="#orgbe5aede">4.6. Now consider the following.</a></li>
+<li><a href="#orgf576a96">4.7. Reorganize the groups</a>
 <ul>
-<li><a href="#org4638ff3">8.3.1. Classroom Activity</a></li>
+<li><a href="#orgd2f821b">4.7.1. Two sets of groups</a></li>
 </ul>
 </li>
-<li><a href="#org6b31b69">8.4. Programming a Turing Machine: the Busy Beaver</a>
+<li><a href="#org344228a">4.8. Rescorla Wagner Equation</a></li>
+<li><a href="#orgeffee35">4.9. What are Marr's Levels?</a></li>
+<li><a href="#org459d36c">4.10. LLMs</a>
 <ul>
-<li><a href="#org8edb051">8.4.1. A Busy Beaver Warm-Up</a></li>
-<li><a href="#org2fe0eb2">8.4.2. Busy Beaver Problem Demo Code</a></li>
+<li><a href="#orgb8aa235">4.10.1. Are they a good model system for the mind? That is, does an LLM think like you do?</a></li>
+<li><a href="#orgd0b2399">4.10.2. Are they a good tool for studying the mind?</a></li>
+<li><a href="#orge91ec57">4.10.3. How do we best use LLMs as a tool for our learning? How should we change our classroom experience?</a></li>
 </ul>
 </li>
-<li><a href="#org9b073b9">8.5. The Lambda Calculus</a>
-<ul>
-<li><a href="#orgc474b71">8.5.1. Why should a psychology student care?</a></li>
-<li><a href="#org52b772c">8.5.2. Lambda Notation Basics</a></li>
+<li><a href="#org2cc68ca">4.11. Reminder</a></li>
 </ul>
 </li>
-<li><a href="#org601409d">8.6. The Church-Turing Thesis</a>
+<li><a href="#orgb1b5b08">5. Where will your grade come from?</a>
 <ul>
-<li><a href="#orgc9b0e77">8.6.1. Church Numerals</a></li>
-<li><a href="#org3ecc6a9">8.6.2. Computing with the Lambda Calculus</a></li>
-<li><a href="#org408bad0">8.6.3. Lambda Calculas Homework</a></li>
+<li><a href="#org6f2cf1f">5.1. Why incentivize classroom time?</a></li>
+<li><a href="#org6d004e4">5.2. Why is "doing" so important for this course?</a></li>
+<li><a href="#org6ac0b48">5.3. I find this stuff hard and am worrying about failing</a></li>
+<li><a href="#org7563ab0">5.4. Why have a final project?</a></li>
+<li><a href="#org31b9f1f">5.5. A look ahead &ndash; what we will code</a></li>
+<li><a href="#org3523cb8">5.6. A look ahead &ndash; what we talk about</a></li>
 </ul>
 </li>
-<li><a href="#org8255d12">8.7. Two Completely Different Models</a></li>
-<li><a href="#orga698f1a">8.8. Implications</a></li>
+<li><a href="#org89837c2">6. Computational Neuroscience</a>
+<ul>
+<li><a href="#org77983fb">6.1. Slime assignment</a></li>
+<li><a href="#orgd846e68">6.2. What are examples of research combining cognitive, computational, and neuroscience methods?</a>
+<ul>
+<li><a href="#orgfac60ec">6.2.1. Evaluating Academic Work&nbsp;&nbsp;&nbsp<span class="tag"><span class="exercise">exercise</span></span></a></li>
 </ul>
 </li>
-<li><a href="#org0be7c8f">9. Neurally Inspired Models 2: The network effect</a>
+<li><a href="#orgea7ac6b">6.3. Is a mathematical formula a model?</a>
 <ul>
-<li><a href="#orgbeea522">9.1. Neural Networks</a>
-<ul>
-<li><a href="#org0e44432">9.1.1. Cellular Automata</a></li>
-<li><a href="#org0b5f8cb">9.1.2. More Lessons from Cellular Automata</a></li>
-<li><a href="#org62015d9">9.1.3. John Hopfield</a></li>
-<li><a href="#org686a5b2">9.1.4. Linear Algebra</a></li>
-<li><a href="#org818f31e">9.1.5. Neural Networks Redux</a></li>
-<li><a href="#orgc1bd429">9.1.6. What is a Neural Network?</a></li>
-<li><a href="#org535a9b0">9.1.7. Our First Neural Network: The Perceptron</a></li>
-<li><a href="#org45448fc">9.1.8. The Delta Rule - Homework</a></li>
-<li><a href="#org4abdc8a">9.1.9. Not all Networks are the Same: Hopfield</a></li>
-<li><a href="#orgc79c0c6">9.1.10. Hopfield Homework Description: Robustness to Noise (this might take awhile).</a></li>
+<li><a href="#org7892712">6.3.1. Forgetting Curve &mdash; Ebbinghaus</a></li>
+<li><a href="#org8dd0a56">6.3.2. A Mathematical Function</a></li>
+<li><a href="#orgcebfa45">6.3.3. More on the fitting curves to Ebbinghaus Data</a></li>
 </ul>
 </li>
+<li><a href="#orgd0defd5">6.4. Reprise</a></li>
 </ul>
 </li>
-<li><a href="#orgdd9bd2d">10. Theory Creation in the Cognitive and Psychological Sciences</a>
+<li><a href="#org4728240">7. Neurally Inspired Models 1: The cellular level</a>
 <ul>
-<li><a href="#org86113fc">10.1. What is a scientific theory?</a>
+<li><a href="#org7533d18">7.1. That which you cannot code, you do not understand.</a></li>
+<li><a href="#orgae6f4ef">7.2. What is an action potential?</a></li>
+<li><a href="#org8a61be3">7.3. Notation</a>
 <ul>
-<li><a href="#org83664ac">10.1.1. What is prediction?</a></li>
-<li><a href="#orgaeec54d">10.1.2. What is explanation?</a></li>
+<li><a href="#org1a831e1">7.3.1. Notation Scavenger Hunt&nbsp;&nbsp;&nbsp<span class="tag"><span class="exercise">exercise</span></span></a></li>
 </ul>
 </li>
-<li><a href="#orgb6b46dc">10.2. Classroom Activity</a></li>
-<li><a href="#orgdcca64b">10.3. Do we have a theory crisis in Psychology?</a></li>
-<li><a href="#orgef23513">10.4. Classroom Activity</a></li>
-<li><a href="#org697b263">10.5. What are scientific theories good for? Or, in other words, why should we care?</a></li>
-<li><a href="#org32ef2ad">10.6. What makes a theory a good theory?</a></li>
-<li><a href="#org1accff5">10.7. What are the first steps towards building a theory?</a></li>
-<li><a href="#orgc3a061c">10.8. What should you do next if you think you have a theory?</a>
+<li><a href="#orgb5d0808">7.4. Differential Equations&nbsp;&nbsp;&nbsp<span class="tag"><span class="exercise">exercise</span></span></a></li>
+<li><a href="#org967c38d">7.5. Using a DE</a></li>
+<li><a href="#orgb26838d">7.6. Using DEs to compute a cube root</a>
 <ul>
-<li><a href="#org61c003b">10.8.1. What role should a model play?</a></li>
+<li><a href="#org2bd5278">7.6.1. Your turn&nbsp;&nbsp;&nbsp<span class="tag"><span class="assignment">assignment</span></span></a></li>
 </ul>
 </li>
-<li><a href="#orgca1db55">10.9. Formal Modeling (Advocacy)</a>
+<li><a href="#org8ccff1b">7.7. Using DEs - Practicing with Springs&nbsp;&nbsp;&nbsp<span class="tag"><span class="homework">homework</span></span></a>
 <ul>
-<li><a href="#org76bb144">10.9.1. Advantages</a></li>
+<li><a href="#orgbb56aa5">7.7.1. Try with a <b>Damped Oscillator</b>&nbsp;&nbsp;&nbsp<span class="tag"><span class="homework">homework</span></span></a></li>
 </ul>
 </li>
-<li><a href="#org38cb503">10.10. Steps to Formalizing a Model</a></li>
-<li><a href="#org8807bc4">10.11. Can you now provide a good example of a psychological theory?</a></li>
-<li><a href="#org53d7db4">10.12. Some Interesting Reading on this Topic</a></li>
-<li><a href="#orgcf45421">10.13. Theory Homework</a></li>
+<li><a href="#org98eaf85">7.8. Solving DEs</a></li>
+<li><a href="#orgaf4325c">7.9. Integrate and Fire Neuron</a>
+<ul>
+<li><a href="#org88a9c46">7.9.1. Historical Notes</a></li>
+<li><a href="#org8e6912f">7.9.2. Formula I and F</a></li>
+<li><a href="#org0c8d491">7.9.3. Coding up the Integrate and Fire Neuron</a></li>
 </ul>
 </li>
-<li><a href="#org91a0e81">11. Algebraic Psychology</a>
+<li><a href="#orgdce6f46">7.10. Integrate and Fire Homework</a></li>
+<li><a href="#org4224afb">7.11. Hodgkin and Huxley Model</a>
 <ul>
-<li><a href="#orgf5bd859">11.1. Opening Questions</a>
-<ul>
-<li><a href="#orge6de9f6">11.1.1. What is a theory?</a></li>
-<li><a href="#org841720b">11.1.2. Name a psychological theory.</a></li>
-</ul>
-</li>
-<li><a href="#orgf1b80d6">11.2. I demand a satisfactory explanation</a>
-<ul>
-<li><a href="#org5cdd552">11.2.1. A celestial example and a Planetary Context</a></li>
-</ul>
-</li>
-<li><a href="#org64ef235">11.3. Thagard's Principles of Explanatory Coherence</a></li>
-<li><a href="#org96ed019">11.4. Taking up all the oxygen in the room</a></li>
-<li><a href="#org5676e5e">11.5. And the network said ..</a></li>
-<li><a href="#org5acd06d">11.6. From Lisp to R</a></li>
-<li><a href="#org9753d70">11.7. And the network said &hellip; (ECHO, Echo, echo &hellip;)</a></li>
-<li><a href="#org7320ed8">11.8. Formal CONTEXTS</a></li>
-<li><a href="#org1828b5a">11.9. Formal CONCEPTS</a></li>
-<li><a href="#org7c2c1d7">11.10. A Romantic Connection</a></li>
-<li><a href="#orgd7a7fbe">11.11. A celestial example</a></li>
-<li><a href="#org4db5296">11.12. Jacob's Ladder</a>
-<ul>
-<li><a href="#org7449ded">11.12.1. A Planetary Lattice</a></li>
-<li><a href="#orgf56a946">11.12.2. The Context</a></li>
-</ul>
-</li>
-<li><a href="#org9ad448b">11.13. From ECHO to FCA: The Lavoisier Context</a></li>
-<li><a href="#org12ee9c0">11.14. Sample Formal Concepts</a></li>
-<li><a href="#org1dc4844">11.15. Implications in the Lavoisier Context</a></li>
-<li><a href="#orgf0a604f">11.16. The Lavoisier Concept Lattice</a></li>
-</ul>
-</li>
-<li><a href="#org676f448">12. Reasons to Prefer FCA</a>
-<ul>
-<li><a href="#org5c8dbf1">12.1. Data Processing Inequality</a></li>
-<li><a href="#org3a5a08e">12.2. Formal Contexts are Chu Spaces</a></li>
-<li><a href="#org553ae6c">12.3. Chu Spaces are *-autonomous categories</a></li>
-<li><a href="#org181774e">12.4. Unifying Logic, Geometry, and Computation</a></li>
-</ul>
-</li>
-<li><a href="#org8de1617">13. But wait! There's more!</a>
-<ul>
-<li><a href="#org2009cd7">13.1. I probably ran out of time so come talk to me</a>
-<ul>
-<li><a href="#orgef5ba21">13.1.1. Bibliography and Other Readings</a></li>
+<li><a href="#org09bd08f">7.11.1. Who were Hodgkin and Huxley</a></li>
+<li><a href="#org598b361">7.11.2. Model Description</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org2255ac1">14. Final Projects</a>
+<li><a href="#orgb5e4078">8. What is computation and what is its role in cognitive science?</a>
 <ul>
-<li><a href="#orgc7ecbea">14.1. Overview</a></li>
-<li><a href="#orgfe006c9">14.2. Evaluation</a></li>
-<li><a href="#orgf1c0cb6">14.3. Project Topics</a>
+<li><a href="#orgae340e8">8.1. What do you think?</a></li>
+<li><a href="#org2db044e">8.2. Computing in Minds and Computers</a></li>
+<li><a href="#org4ac43ec">8.3. What is a Turing machine? Some Background and Details</a>
 <ul>
-<li><a href="#orge4acfec">14.3.1. Reinforcement Learning</a></li>
-<li><a href="#org171cc72">14.3.2. Self-organizing Maps (Kohonen Neural Networks)</a></li>
-<li><a href="#org909b01f">14.3.3. Morris-Lecar Networks</a></li>
-<li><a href="#org8f2bd32">14.3.4. Backpropagation</a></li>
-<li><a href="#orgffa5568">14.3.5. Agent Based Models</a></li>
-<li><a href="#org8255c47">14.3.6. Linear Ballistic Accumulators</a></li>
+<li><a href="#org196ae5d">8.3.1. Classroom Activity</a></li>
 </ul>
 </li>
-<li><a href="#org4beb27e">14.4. Project Deliverables Summarized</a>
+<li><a href="#orgb1af415">8.4. Programming a Turing Machine: the Busy Beaver</a>
 <ul>
-<li><a href="#orgbb6f287">14.4.1. Presentation</a></li>
-<li><a href="#org6264aae">14.4.2. Report</a></li>
+<li><a href="#orgcf72d66">8.4.1. A Busy Beaver Warm-Up</a></li>
+<li><a href="#org5781eee">8.4.2. Busy Beaver Problem Demo Code</a></li>
 </ul>
 </li>
-<li><a href="#org72d1cf1">14.5. General Suggestions</a></li>
-<li><a href="#orgc16310b">14.6. Some Examples from Last Year</a></li>
+<li><a href="#org1da239c">8.5. The Lambda Calculus</a>
+<ul>
+<li><a href="#org5eb3105">8.5.1. Why should a psychology student care?</a></li>
+<li><a href="#org8c6fb10">8.5.2. Lambda Notation Basics</a></li>
 </ul>
 </li>
-<li><a href="#org07f68b1">15. Some references</a></li>
+<li><a href="#orgc77d808">8.6. The Church-Turing Thesis</a>
+<ul>
+<li><a href="#org4cc5740">8.6.1. Church Numerals</a></li>
+<li><a href="#org72a6b11">8.6.2. Computing with the Lambda Calculus</a></li>
+<li><a href="#orga501f36">8.6.3. Lambda Calculas Homework</a></li>
+</ul>
+</li>
+<li><a href="#org94c0594">8.7. Two Completely Different Models</a></li>
+<li><a href="#org4251275">8.8. Implications</a></li>
+</ul>
+</li>
+<li><a href="#org01cc58c">9. Neurally Inspired Models 2: The network effect</a>
+<ul>
+<li><a href="#org71d192e">9.1. Neural Networks</a>
+<ul>
+<li><a href="#orgf9b3efb">9.1.1. Cellular Automata</a></li>
+<li><a href="#org4436eba">9.1.2. More Lessons from Cellular Automata</a></li>
+<li><a href="#orgc658328">9.1.3. John Hopfield</a></li>
+<li><a href="#orgd89ef54">9.1.4. Linear Algebra</a></li>
+<li><a href="#org70fa705">9.1.5. Neural Networks Redux</a></li>
+<li><a href="#org6cd75b6">9.1.6. What is a Neural Network?</a></li>
+<li><a href="#orgbdef8d2">9.1.7. Our First Neural Network: The Perceptron</a></li>
+<li><a href="#orgb9ec004">9.1.8. The Delta Rule - Homework</a></li>
+<li><a href="#org5f1c538">9.1.9. Not all Networks are the Same: Hopfield</a></li>
+<li><a href="#orge9b7dda">9.1.10. Hopfield Homework Description: Robustness to Noise (this might take awhile).</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org7faf701">10. Theory Creation in the Cognitive and Psychological Sciences</a>
+<ul>
+<li><a href="#orge983c08">10.1. What is a scientific theory?</a>
+<ul>
+<li><a href="#org076db32">10.1.1. What is prediction?</a></li>
+<li><a href="#orgd3fcb5c">10.1.2. What is explanation?</a></li>
+</ul>
+</li>
+<li><a href="#org4c032fa">10.2. Classroom Activity</a></li>
+<li><a href="#org7381d7c">10.3. Do we have a theory crisis in Psychology?</a></li>
+<li><a href="#org3de8dde">10.4. Classroom Activity</a></li>
+<li><a href="#org1766ae9">10.5. What are scientific theories good for? Or, in other words, why should we care?</a></li>
+<li><a href="#orgf91eaa5">10.6. What makes a theory a good theory?</a></li>
+<li><a href="#org6e6b93f">10.7. What are the first steps towards building a theory?</a></li>
+<li><a href="#org4f879f4">10.8. What should you do next if you think you have a theory?</a>
+<ul>
+<li><a href="#org96bf6d3">10.8.1. What role should a model play?</a></li>
+</ul>
+</li>
+<li><a href="#orge42bc2e">10.9. Formal Modeling (Advocacy)</a>
+<ul>
+<li><a href="#org4a45cd3">10.9.1. Advantages</a></li>
+</ul>
+</li>
+<li><a href="#org320aebf">10.10. Steps to Formalizing a Model</a></li>
+<li><a href="#orgbcd60e3">10.11. Can you now provide a good example of a psychological theory?</a></li>
+<li><a href="#orgebbdf17">10.12. Some Interesting Reading on this Topic</a></li>
+<li><a href="#orgeb750e8">10.13. Theory Homework</a></li>
+</ul>
+</li>
+<li><a href="#orga9b8ada">11. Algebraic Psychology</a>
+<ul>
+<li><a href="#org15073ae">11.1. Opening Questions</a>
+<ul>
+<li><a href="#org122a8c4">11.1.1. What is a theory?</a></li>
+<li><a href="#org821d3c9">11.1.2. Name a psychological theory.</a></li>
+</ul>
+</li>
+<li><a href="#orgd611037">11.2. I demand a satisfactory explanation</a>
+<ul>
+<li><a href="#org93a2aeb">11.2.1. A celestial example and a Planetary Context</a></li>
+</ul>
+</li>
+<li><a href="#org91d256c">11.3. Thagard's Principles of Explanatory Coherence</a></li>
+<li><a href="#org96e6c4b">11.4. Taking up all the oxygen in the room</a></li>
+<li><a href="#org3b5160f">11.5. And the network said ..</a></li>
+<li><a href="#org760b3f5">11.6. From Lisp to R</a></li>
+<li><a href="#orga29b273">11.7. And the network said &hellip; (ECHO, Echo, echo &hellip;)</a></li>
+<li><a href="#orgc533a3d">11.8. Formal CONTEXTS</a></li>
+<li><a href="#org5a6ef89">11.9. Formal CONCEPTS</a></li>
+<li><a href="#org7b56e6f">11.10. A Romantic Connection</a></li>
+<li><a href="#orgb7ac7b1">11.11. A celestial example</a></li>
+<li><a href="#org4c6dc7f">11.12. Jacob's Ladder</a>
+<ul>
+<li><a href="#orgdd4c0d8">11.12.1. A Planetary Lattice</a></li>
+<li><a href="#org3fa77ff">11.12.2. The Context</a></li>
+</ul>
+</li>
+<li><a href="#org707164c">11.13. From ECHO to FCA: The Lavoisier Context</a></li>
+<li><a href="#orgdef0573">11.14. Sample Formal Concepts</a></li>
+<li><a href="#org76374f7">11.15. Implications in the Lavoisier Context</a></li>
+<li><a href="#orgc78b990">11.16. The Lavoisier Concept Lattice</a></li>
+</ul>
+</li>
+<li><a href="#org4e46798">12. Reasons to Prefer FCA</a>
+<ul>
+<li><a href="#org2284a03">12.1. Data Processing Inequality</a></li>
+<li><a href="#orga3df901">12.2. Formal Contexts are Chu Spaces</a></li>
+<li><a href="#orgb10722e">12.3. Chu Spaces are *-autonomous categories</a></li>
+<li><a href="#org64b1a3e">12.4. Unifying Logic, Geometry, and Computation</a></li>
+</ul>
+</li>
+<li><a href="#org8e29cb5">13. But wait! There's more!</a>
+<ul>
+<li><a href="#orgd2b7fd8">13.1. I probably ran out of time so come talk to me</a>
+<ul>
+<li><a href="#orgc91a512">13.1.1. Bibliography and Other Readings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org0cfd3ad">14. Final Projects</a>
+<ul>
+<li><a href="#org2248658">14.1. Overview</a></li>
+<li><a href="#orgdf8a8aa">14.2. Evaluation</a></li>
+<li><a href="#org3bdfaec">14.3. Project Topics</a>
+<ul>
+<li><a href="#org1f95416">14.3.1. Reinforcement Learning</a></li>
+<li><a href="#org3b7b159">14.3.2. Self-organizing Maps (Kohonen Neural Networks)</a></li>
+<li><a href="#org4409ac5">14.3.3. Morris-Lecar Networks</a></li>
+<li><a href="#org4a0aa7f">14.3.4. Backpropagation</a></li>
+<li><a href="#org547169c">14.3.5. Agent Based Models</a></li>
+<li><a href="#orgd471856">14.3.6. Linear Ballistic Accumulators</a></li>
+</ul>
+</li>
+<li><a href="#orga91475a">14.4. Project Deliverables Summarized</a>
+<ul>
+<li><a href="#org423aea1">14.4.1. Presentation</a></li>
+<li><a href="#org1636693">14.4.2. Report</a></li>
+</ul>
+</li>
+<li><a href="#org42198f4">14.5. General Suggestions</a></li>
+<li><a href="#org3d8673f">14.6. Some Examples from Last Year</a></li>
+</ul>
+</li>
+<li><a href="#org5abc84a">15. Some references</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge535440" class="outline-2">
-<h2 id="orge535440"><span class="section-number-2">1.</span> Welcome to Psych 420</h2>
+<div id="outline-container-orgb04f28b" class="outline-2">
+<h2 id="orgb04f28b"><span class="section-number-2">1.</span> Welcome to Psych 420</h2>
 </div>
-<div id="outline-container-org5eb4a09" class="outline-2">
-<h2 id="org5eb4a09"><span class="section-number-2">2.</span> Introductions&nbsp;&nbsp;&nbsp<span class="tag"><span class="assignment">assignment</span></span></h2>
+<div id="outline-container-orgf3ec4ec" class="outline-2">
+<h2 id="orgf3ec4ec"><span class="section-number-2">2.</span> Introductions&nbsp;&nbsp;&nbsp<span class="tag"><span class="assignment">assignment</span></span></h2>
 <div class="outline-text-2" id="text-2">
 <ol class="org-ol">
 <li>Who am I?</li>
@@ -525,15 +529,27 @@ What to do now:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgd0f291a" class="outline-2">
-<h2 id="orgd0f291a"><span class="section-number-2">3.</span> Learning Objectives</h2>
+<div id="outline-container-org2fdf88d" class="outline-2">
+<h2 id="org2fdf88d"><span class="section-number-2">3.</span> Learning Objectives</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org9798a3b" class="outline-3">
-<h3 id="org9798a3b"><span class="section-number-3">3.1.</span> General</h3>
+<div id="outline-container-org64e5cac" class="outline-3">
+<h3 id="org64e5cac"><span class="section-number-3">3.1.</span> From the Course Outline:</h3>
 <div class="outline-text-3" id="text-3-1">
 <ol class="org-ol">
-<li>Learn background material on methods and notation to begin to use computational methods for modeling brain and mind.</li>
+<li>You will understand the scope of subjects and tools that comprise computational neuroscience and computational cognitive modeling.</li>
+<li>You will program a few different versions of a spiking neuron. This will introduce us to how differential equations may be used in computational modeling We will also look at how some of the tools developed for studying differential equations can be brought to bear on neural models.</li>
+<li>You will program a few simple examples of a few different types of neural networks. We will use these to introduce us to some of the ways that linear algebra is used in computational modeling, and how some of the tools of analyzing linear systems can be brought to bear on neural and cognitive models.</li>
+<li>Have an informed opinion on what is it meant by a "computational model" whether it is correct to consider the mind as such. You will program a simple Turing machine.</li>
+<li>You will compare the symbolic and computational approaches to brain and mind modeling by implementing a simple logic in code.</li>
+<li>Interleaved throughout all these exercises you will develop an informed perspective on what is meant by a theory and a model, and what might be the benefits from a computational characterization.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgf604794" class="outline-3">
+<h3 id="orgf604794"><span class="section-number-3">3.2.</span> General</h3>
+<div class="outline-text-3" id="text-3-2">
+<ol class="org-ol">
 <li>The specific domain content will change quickly in the years to come. Thus, I target general approaches for,
 <ol class="org-ol">
 <li>acquiring computational knowledge,</li>
@@ -549,9 +565,13 @@ What to do now:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgd215fda" class="outline-3">
-<h3 id="orgd215fda"><span class="section-number-3">3.2.</span> Specific early objectives</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-org85ca5f1" class="outline-3">
+<h3 id="org85ca5f1"><span class="section-number-3">3.3.</span> Some recommendations.</h3>
+<div class="outline-text-3" id="text-3-3">
+</div>
+<div id="outline-container-orgf8f3937" class="outline-4">
+<h4 id="orgf8f3937"><span class="section-number-4">3.3.1.</span> Things to help you early on</h4>
+<div class="outline-text-4" id="text-3-3-1">
 <p>
 Take a look at <a href="https://github.com/brittAnderson/uwlooP390">https://github.com/brittAnderson/uwlooP390</a> and <a href="https://brittanderson.github.io/uwlooP390/">https://brittanderson.github.io/uwlooP390/</a>
 Things you absolutely should be able to do.
@@ -564,27 +584,21 @@ Things you absolutely should be able to do.
 <li>Know what git/github are.
 Git Clone and Github Acct :assignment:
 An early home work will be a screen shot of your github homepage showing you forked or cloned the course repository. And the screen shot should be done using a program and not your phone. <a href="https://github.com/brittAnderson/compNeuroIntro420">Course Webpage</a> . That is the course content. If you want to view a web viewable form you can go to this link: <a href="https://brittanderson.github.io/compNeuroIntro420/">course notes</a>.</li>
+<li>You will want an IDE. I personally use emacs. Experience has taught me that only about 3 in a 100 of you will share my opinion. Thus, I recommend VS Code if you have no other preference. It is becoming a sort of de facto standard.</li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orgd6a1cb2" class="outline-3">
-<h3 id="orgd6a1cb2"><span class="section-number-3">3.3.</span> Some recommendations.</h3>
-<div class="outline-text-3" id="text-3-3">
-<p>
-You will want an IDE. I personally use emacs. Experience has taught me that only about 3 in a 100 of you will share my opinion. Thus, I recommend VS Code if you have no other preference. It is becoming a sort of de facto standard.
-</p>
 </div>
 </div>
-</div>
-<div id="outline-container-orgc77778a" class="outline-2">
-<h2 id="orgc77778a"><span class="section-number-2">4.</span> What is a cognitive model</h2>
+<div id="outline-container-org38b7d7d" class="outline-2">
+<h2 id="org38b7d7d"><span class="section-number-2">4.</span> What is a cognitive model</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgb6aab17" class="outline-3">
-<h3 id="orgb6aab17"><span class="section-number-3">4.1.</span> Divide class into teams of four or five each.</h3>
+<div id="outline-container-org62e2b45" class="outline-3">
+<h3 id="org62e2b45"><span class="section-number-3">4.1.</span> Divide class into teams of four or five each.</h3>
 </div>
-<div id="outline-container-orge146474" class="outline-3">
-<h3 id="orge146474"><span class="section-number-3">4.2.</span> Assign to each team a label:</h3>
+<div id="outline-container-org23a2b4a" class="outline-3">
+<h3 id="org23a2b4a"><span class="section-number-3">4.2.</span> Assign to each team a label:</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li>cognitive psychologist</li>
@@ -594,22 +608,22 @@ You will want an IDE. I personally use emacs. Experience has taught me that only
 </ul>
 </div>
 </div>
-<div id="outline-container-org2923e49" class="outline-3">
-<h3 id="org2923e49"><span class="section-number-3">4.3.</span> Consider the following question from the point of view of your assigned role:</h3>
+<div id="outline-container-org95d3dc2" class="outline-3">
+<h3 id="org95d3dc2"><span class="section-number-3">4.3.</span> Consider the following question from the point of view of your assigned role:</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 An X learns that a cue Y predicts a reward Z. What evidence would you want to see to support this claim? What would constitute an "explanation" for such a relation?
 </p>
 </div>
 </div>
-<div id="outline-container-org4f57141" class="outline-3">
-<h3 id="org4f57141"><span class="section-number-3">4.4.</span> Give time for developing an answer.</h3>
+<div id="outline-container-org2a761ad" class="outline-3">
+<h3 id="org2a761ad"><span class="section-number-3">4.4.</span> Give time for developing an answer.</h3>
 </div>
-<div id="outline-container-orge108faf" class="outline-3">
-<h3 id="orge108faf"><span class="section-number-3">4.5.</span> Review the suggestions.</h3>
+<div id="outline-container-orge549e4f" class="outline-3">
+<h3 id="orge549e4f"><span class="section-number-3">4.5.</span> Review the suggestions.</h3>
 </div>
-<div id="outline-container-org786c1d4" class="outline-3">
-<h3 id="org786c1d4"><span class="section-number-3">4.6.</span> Now consider the following.</h3>
+<div id="outline-container-orgbe5aede" class="outline-3">
+<h3 id="orgbe5aede"><span class="section-number-3">4.6.</span> Now consider the following.</h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 Give each scenario in turn. 
@@ -621,12 +635,12 @@ Give each scenario in turn.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbadce73" class="outline-3">
-<h3 id="orgbadce73"><span class="section-number-3">4.7.</span> Reorganize the groups</h3>
+<div id="outline-container-orgf576a96" class="outline-3">
+<h3 id="orgf576a96"><span class="section-number-3">4.7.</span> Reorganize the groups</h3>
 <div class="outline-text-3" id="text-4-7">
 </div>
-<div id="outline-container-org7eb30ef" class="outline-4">
-<h4 id="org7eb30ef"><span class="section-number-4">4.7.1.</span> Two sets of groups</h4>
+<div id="outline-container-orgd2f821b" class="outline-4">
+<h4 id="orgd2f821b"><span class="section-number-4">4.7.1.</span> Two sets of groups</h4>
 <div class="outline-text-4" id="text-4-7-1">
 <p>
 Half of people in teams of 4. Half the people solo. Teams of four, please don't use LLMs or even an internet search. Library books are okay. Just talk it through with your group and each of you submit an answer. The other "solo" half. Please don't discuss your answer or ideas with anyone other than an llm. Answer the same questions, but in addition you will need to provide info on which LLM you used and the prompts (or even the entire chat if you want).
@@ -652,8 +666,8 @@ To help let's take a quick look at both Rescorla-Wagner and Marr's Levels.
 </div>
 </div>
 </div>
-<div id="outline-container-org0050a2a" class="outline-3">
-<h3 id="org0050a2a"><span class="section-number-3">4.8.</span> <a href="https://en.wikipedia.org/wiki/Rescorla%E2%80%93Wagner_model">Rescorla Wagner Equation</a></h3>
+<div id="outline-container-org344228a" class="outline-3">
+<h3 id="org344228a"><span class="section-number-3">4.8.</span> <a href="https://en.wikipedia.org/wiki/Rescorla%E2%80%93Wagner_model">Rescorla Wagner Equation</a></h3>
 <div class="outline-text-3" id="text-4-8">
 <p>
 <a href="rw.pdf">rw.pdf</a>
@@ -664,8 +678,8 @@ To help let's take a quick look at both Rescorla-Wagner and Marr's Levels.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbd3239c" class="outline-3">
-<h3 id="orgbd3239c"><span class="section-number-3">4.9.</span> What are Marr's Levels?</h3>
+<div id="outline-container-orgeffee35" class="outline-3">
+<h3 id="orgeffee35"><span class="section-number-3">4.9.</span> What are Marr's Levels?</h3>
 <div class="outline-text-3" id="text-4-9">
 <ul class="org-ul">
 <li>Computational</li>
@@ -674,25 +688,25 @@ To help let's take a quick look at both Rescorla-Wagner and Marr's Levels.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb2d1f6f" class="outline-3">
-<h3 id="orgb2d1f6f"><span class="section-number-3">4.10.</span> LLMs</h3>
+<div id="outline-container-org459d36c" class="outline-3">
+<h3 id="org459d36c"><span class="section-number-3">4.10.</span> LLMs</h3>
 <div class="outline-text-3" id="text-4-10">
 <p>
 A little prime for why I divided the assignment groups this way?
 </p>
 </div>
-<div id="outline-container-org114c486" class="outline-4">
-<h4 id="org114c486"><span class="section-number-4">4.10.1.</span> Are they a good model system for the mind? That is, does an LLM think like you do?</h4>
+<div id="outline-container-orgb8aa235" class="outline-4">
+<h4 id="orgb8aa235"><span class="section-number-4">4.10.1.</span> Are they a good model system for the mind? That is, does an LLM think like you do?</h4>
 </div>
-<div id="outline-container-org8709296" class="outline-4">
-<h4 id="org8709296"><span class="section-number-4">4.10.2.</span> Are they a good tool for studying the mind?</h4>
+<div id="outline-container-orgd0b2399" class="outline-4">
+<h4 id="orgd0b2399"><span class="section-number-4">4.10.2.</span> Are they a good tool for studying the mind?</h4>
 </div>
-<div id="outline-container-orga9d9866" class="outline-4">
-<h4 id="orga9d9866"><span class="section-number-4">4.10.3.</span> How do we best use LLMs as a tool for our learning? How should we change our classroom experience?</h4>
+<div id="outline-container-orge91ec57" class="outline-4">
+<h4 id="orge91ec57"><span class="section-number-4">4.10.3.</span> How do we best use LLMs as a tool for our learning? How should we change our classroom experience?</h4>
 </div>
 </div>
-<div id="outline-container-orgfbfeeb0" class="outline-3">
-<h3 id="orgfbfeeb0"><span class="section-number-3">4.11.</span> Reminder</h3>
+<div id="outline-container-org2cc68ca" class="outline-3">
+<h3 id="org2cc68ca"><span class="section-number-3">4.11.</span> Reminder</h3>
 <div class="outline-text-3" id="text-4-11">
 <p>
 Bring pencil/pen and paper to the next class. There will be some writing that you have to turn in.
@@ -700,8 +714,8 @@ Bring pencil/pen and paper to the next class. There will be some writing that yo
 </div>
 </div>
 </div>
-<div id="outline-container-org6a9293a" class="outline-2">
-<h2 id="org6a9293a"><span class="section-number-2">5.</span> Where will your grade come from?</h2>
+<div id="outline-container-orgb1b5b08" class="outline-2">
+<h2 id="orgb1b5b08"><span class="section-number-2">5.</span> Where will your grade come from?</h2>
 <div class="outline-text-2" id="text-5">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -735,8 +749,8 @@ Bring pencil/pen and paper to the next class. There will be some writing that yo
 </tbody>
 </table>
 </div>
-<div id="outline-container-orgaaa2369" class="outline-3">
-<h3 id="orgaaa2369"><span class="section-number-3">5.1.</span> Why incentivize classroom time?</h3>
+<div id="outline-container-org6f2cf1f" class="outline-3">
+<h3 id="org6f2cf1f"><span class="section-number-3">5.1.</span> Why incentivize classroom time?</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 The classroom is for doing and clarifying.
@@ -745,8 +759,8 @@ We will therefore emphasize doing, discussing, and collaborate.
 </p>
 </div>
 </div>
-<div id="outline-container-org609328d" class="outline-3">
-<h3 id="org609328d"><span class="section-number-3">5.2.</span> Why is "doing" so important for this course?</h3>
+<div id="outline-container-org6d004e4" class="outline-3">
+<h3 id="org6d004e4"><span class="section-number-3">5.2.</span> Why is "doing" so important for this course?</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 Learning math and computing, and how to use them, is not something that can be learned through observation.
@@ -766,8 +780,8 @@ Each week's attendance is worth 1% of the final grade.
 </p>
 </div>
 </div>
-<div id="outline-container-org79bee48" class="outline-3">
-<h3 id="org79bee48"><span class="section-number-3">5.3.</span> I find this stuff hard and am worrying about failing</h3>
+<div id="outline-container-org6ac0b48" class="outline-3">
+<h3 id="org6ac0b48"><span class="section-number-3">5.3.</span> I find this stuff hard and am worrying about failing</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 I like to give lots of small homeworks.
@@ -775,16 +789,16 @@ That takes the pressure of any one assignment, and means you get both frequent f
 </p>
 </div>
 </div>
-<div id="outline-container-orga0d60ac" class="outline-3">
-<h3 id="orga0d60ac"><span class="section-number-3">5.4.</span> Why have a final project?</h3>
+<div id="outline-container-org7563ab0" class="outline-3">
+<h3 id="org7563ab0"><span class="section-number-3">5.4.</span> Why have a final project?</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 The final project is meant to give you an opportunity to showcase your learning and to use the general and specific skills that you will use in the future, whether in academics or industry, for sharing complex technical material with others. 
 </p>
 </div>
 </div>
-<div id="outline-container-orged8ae0a" class="outline-3">
-<h3 id="orged8ae0a"><span class="section-number-3">5.5.</span> A look ahead &ndash; what we will code</h3>
+<div id="outline-container-org31b9f1f" class="outline-3">
+<h3 id="org31b9f1f"><span class="section-number-3">5.5.</span> A look ahead &ndash; what we will code</h3>
 <div class="outline-text-3" id="text-5-5">
 <ol class="org-ol">
 <li>Turing Machine</li>
@@ -797,8 +811,8 @@ The final project is meant to give you an opportunity to showcase your learning 
 </ol>
 </div>
 </div>
-<div id="outline-container-orgab4b02f" class="outline-3">
-<h3 id="orgab4b02f"><span class="section-number-3">5.6.</span> A look ahead &ndash; what we talk about</h3>
+<div id="outline-container-org3523cb8" class="outline-3">
+<h3 id="org3523cb8"><span class="section-number-3">5.6.</span> A look ahead &ndash; what we talk about</h3>
 <div class="outline-text-3" id="text-5-6">
 <ol class="org-ol">
 <li>What is cognition?</li>
@@ -809,15 +823,15 @@ The final project is meant to give you an opportunity to showcase your learning 
 </div>
 </div>
 </div>
-<div id="outline-container-org4c1bf82" class="outline-2">
-<h2 id="org4c1bf82"><span class="section-number-2">6.</span> Computational Neuroscience</h2>
+<div id="outline-container-org89837c2" class="outline-2">
+<h2 id="org89837c2"><span class="section-number-2">6.</span> Computational Neuroscience</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org97a8fc3" class="outline-3">
-<h3 id="org97a8fc3"><span class="section-number-3">6.1.</span> Slime assignment</h3>
+<div id="outline-container-org77983fb" class="outline-3">
+<h3 id="org77983fb"><span class="section-number-3">6.1.</span> Slime assignment</h3>
 </div>
-<div id="outline-container-org0f670a3" class="outline-3">
-<h3 id="org0f670a3"><span class="section-number-3">6.2.</span> What are examples of research combining cognitive, computational, and neuroscience methods?</h3>
+<div id="outline-container-orgd846e68" class="outline-3">
+<h3 id="orgd846e68"><span class="section-number-3">6.2.</span> What are examples of research combining cognitive, computational, and neuroscience methods?</h3>
 <div class="outline-text-3" id="text-6-2">
 <ol class="org-ol">
 <li>Form groups of two (or three if odd number) (even numbers allowed llm use;odd numbers any resources, including on line, but <b>not</b> llm).</li>
@@ -831,30 +845,30 @@ Note it's label (letter-number; on the left)</li>
 </ol></li>
 </ol>
 </div>
-<div id="outline-container-org88de43f" class="outline-4">
-<h4 id="org88de43f"><span class="section-number-4">6.2.1.</span> Evaluating Academic Work&nbsp;&nbsp;&nbsp<span class="tag"><span class="exercise">exercise</span></span></h4>
+<div id="outline-container-orgfac60ec" class="outline-4">
+<h4 id="orgfac60ec"><span class="section-number-4">6.2.1.</span> Evaluating Academic Work&nbsp;&nbsp;&nbsp<span class="tag"><span class="exercise">exercise</span></span></h4>
 </div>
 </div>
-<div id="outline-container-orgabb9811" class="outline-3">
-<h3 id="orgabb9811"><span class="section-number-3">6.3.</span> Is a mathematical formula a model?</h3>
+<div id="outline-container-orgea7ac6b" class="outline-3">
+<h3 id="orgea7ac6b"><span class="section-number-3">6.3.</span> Is a mathematical formula a model?</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 Yes or No? If yes, what makes it so? Are all equations models? If no, why not? What else is needed to supplement the equation? 
 </p>
 </div>
-<div id="outline-container-org09d9121" class="outline-4">
-<h4 id="org09d9121"><span class="section-number-4">6.3.1.</span> Forgetting Curve &mdash; Ebbinghaus</h4>
+<div id="outline-container-org7892712" class="outline-4">
+<h4 id="org7892712"><span class="section-number-4">6.3.1.</span> Forgetting Curve &mdash; Ebbinghaus</h4>
 <div class="outline-text-4" id="text-6-3-1">
 
-<div id="org75092ce" class="figure">
+<div id="orgbe6fd09" class="figure">
 <p><img src="./images/Forgetting_curve_decline.svg.png" alt="Forgetting_curve_decline.svg.png" />
 </p>
 <p><span class="figure-number">Figure 1: </span>The original uploader was Icez at English Wikipedia.</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org10bdeee" class="outline-4">
-<h4 id="org10bdeee"><span class="section-number-4">6.3.2.</span> A Mathematical Function</h4>
+<div id="outline-container-org8dd0a56" class="outline-4">
+<h4 id="org8dd0a56"><span class="section-number-4">6.3.2.</span> A Mathematical Function</h4>
 <div class="outline-text-4" id="text-6-3-2">
 <div class="org-src-container">
 <pre class="src src-haskell"><code><span style="color: #ff6f9f;">import</span> <span style="color: #79a8ff;">Graphics.Gnuplot.Simple</span>
@@ -865,14 +879,14 @@ Yes or No? If yes, what makes it so? Are all equations models? If no, why not? W
 </div>
 
 
-<div id="orgf67bee3" class="figure">
+<div id="orge6d60f2" class="figure">
 <p><img src="./images/expdecay.png" alt="expdecay.png" />
 </p>
 <p><span class="figure-number">Figure 2: </span>Plot of \(e^{\frac{1}{x}}\).</p>
 </div>
 </div>
 <ol class="org-ol">
-<li><a id="org368a97d"></a>A digression on code<br />
+<li><a id="orgbd4eb2b"></a>A digression on code<br />
 <div class="outline-text-5" id="text-6-3-2-1">
 <p>
 The above example is coded in <a href="https://www.haskell.org/">Haskell</a>. 
@@ -886,7 +900,7 @@ Why or why not?</li>
 </ol>
 </div>
 </li>
-<li><a id="org6c8041d"></a>Programming Exponential Decay&nbsp;&nbsp;&nbsp<span class="tag"><span class="exercise">exercise</span></span><br />
+<li><a id="org29b4e11"></a>Programming Exponential Decay&nbsp;&nbsp;&nbsp<span class="tag"><span class="exercise">exercise</span></span><br />
 <div class="outline-text-5" id="text-6-3-2-2">
 <p>
 Compute the numbers needed for a plot of exponential decay. Plot the exponential decay. Be prepared to come to the front and show us your code; your plot; and the tools you needed to get it to run. 
@@ -900,7 +914,7 @@ Programming languages:
 </ol>
 </div>
 </li>
-<li><a id="org3cfaa7b"></a>Same Exercise as Homework with one of these languages <i>that I will assign</i>. For this exercise you are supposed to use an LLM. See the Learn Dropbox for additional instructions.<br />
+<li><a id="orgb3f3000"></a>Same Exercise as Homework with one of these languages <i>that I will assign</i>. For this exercise you are supposed to use an LLM. See the Learn Dropbox for additional instructions.<br />
 <div class="outline-text-5" id="text-6-3-2-3">
 <ol class="org-ol">
 <li>Racket (common lisp is okay too, but may be harder to install)</li>
@@ -921,11 +935,11 @@ It is possible to fail at generating the code, and still get full credit. The pu
 </li>
 </ol>
 </div>
-<div id="outline-container-orge2f58d4" class="outline-4">
-<h4 id="orge2f58d4"><span class="section-number-4">6.3.3.</span> More on the fitting curves to Ebbinghaus Data</h4>
+<div id="outline-container-orgcebfa45" class="outline-4">
+<h4 id="orgcebfa45"><span class="section-number-4">6.3.3.</span> More on the fitting curves to Ebbinghaus Data</h4>
 <div class="outline-text-4" id="text-6-3-3">
 <p>
-What can we infer from the similarity between Figure <a href="#org75092ce">1</a> and Figure <a href="#orgf67bee3">2</a> ?
+What can we infer from the similarity between Figure <a href="#orgbe6fd09">1</a> and Figure <a href="#orge6d60f2">2</a> ?
 </p>
 
 <p>
@@ -958,8 +972,8 @@ Once again, what is the difference between curve fitting and a mathematical (or 
 </div>
 </div>
 </div>
-<div id="outline-container-org261f1b2" class="outline-3">
-<h3 id="org261f1b2"><span class="section-number-3">6.4.</span> Reprise</h3>
+<div id="outline-container-orgd0defd5" class="outline-3">
+<h3 id="orgd0defd5"><span class="section-number-3">6.4.</span> Reprise</h3>
 <div class="outline-text-3" id="text-6-4">
 <ol class="org-ol">
 <li>What does COMPUTATIONAL cognitive neuroscience/science/psychology mean?
@@ -976,8 +990,8 @@ Once again, what is the difference between curve fitting and a mathematical (or 
 </div>
 </div>
 </div>
-<div id="outline-container-orgb818884" class="outline-2">
-<h2 id="orgb818884"><span class="section-number-2">7.</span> Neurally Inspired Models 1: The cellular level</h2>
+<div id="outline-container-org4728240" class="outline-2">
+<h2 id="org4728240"><span class="section-number-2">7.</span> Neurally Inspired Models 1: The cellular level</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 What is the mathematical tool?
@@ -1020,16 +1034,16 @@ Understand what we are modeling and what we are using to model with.
 Make a reference implementation. That is make it good, before you make it fast.</li>
 </ol>
 </div>
-<div id="outline-container-org17f963c" class="outline-3">
-<h3 id="org17f963c"><span class="section-number-3">7.1.</span> That which you cannot code, you do not understand.</h3>
+<div id="outline-container-org7533d18" class="outline-3">
+<h3 id="org7533d18"><span class="section-number-3">7.1.</span> That which you cannot code, you do not understand.</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 My rephrasing of Richard Feynman's "I don't understand anything I can't build."
 </p>
 </div>
 </div>
-<div id="outline-container-org53aa463" class="outline-3">
-<h3 id="org53aa463"><span class="section-number-3">7.2.</span> What is an action potential?</h3>
+<div id="outline-container-orgae6f4ef" class="outline-3">
+<h3 id="orgae6f4ef"><span class="section-number-3">7.2.</span> What is an action potential?</h3>
 <div class="outline-text-3" id="text-7-2">
 <ol class="org-ol">
 <li>Draw one.</li>
@@ -1045,8 +1059,8 @@ My rephrasing of Richard Feynman's "I don't understand anything I can't build."
 </ol>
 </div>
 </div>
-<div id="outline-container-orgcef970c" class="outline-3">
-<h3 id="orgcef970c"><span class="section-number-3">7.3.</span> Notation</h3>
+<div id="outline-container-org8a61be3" class="outline-3">
+<h3 id="org8a61be3"><span class="section-number-3">7.3.</span> Notation</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 The mathematician's interest in being concise often means that simple ideas get translated to unfamiliar symbols. \
@@ -1059,112 +1073,112 @@ Different mathematical and computational traditions have their own preferences, 
 \(\frac{dx}{dt}\) \(\dot{x}\) \(x{'}\) \(f{'}(x)\) are all different ways of talking about derivatives. 
 </p>
 </div>
-<div id="outline-container-orgb298a13" class="outline-4">
-<h4 id="orgb298a13"><span class="section-number-4">7.3.1.</span> Notation Scavenger Hunt&nbsp;&nbsp;&nbsp<span class="tag"><span class="exercise">exercise</span></span></h4>
+<div id="outline-container-org1a831e1" class="outline-4">
+<h4 id="org1a831e1"><span class="section-number-4">7.3.1.</span> Notation Scavenger Hunt&nbsp;&nbsp;&nbsp<span class="tag"><span class="exercise">exercise</span></span></h4>
 <div class="outline-text-4" id="text-7-3-1">
 </div>
 <ol class="org-ol">
-<li><a id="orgc380c8f"></a>Basic Numbers &amp; Arithmetic<br />
+<li><a id="orgd171035"></a>Basic Numbers &amp; Arithmetic<br />
 <ol class="org-ol">
-<li><a id="org1fcbb8f"></a>What Number?<br />
+<li><a id="org1282f6b"></a>What Number?<br />
 <div class="outline-text-6" id="text-7-3-1-1-1">
 <p>
 \[\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x - \sum_{k=0}^{\infty} \frac{1}{k!}\]
 </p>
 </div>
 </li>
-<li><a id="org17af6dd"></a>What Number?<br />
+<li><a id="orgd11058c"></a>What Number?<br />
 <div class="outline-text-6" id="text-7-3-1-1-2">
 <p>
 \[\prod_{p \text{ prime}} \left(1 - \frac{1}{p^2}\right)^{-1} \cdot \frac{6}{\pi^2}\]
 </p>
 </div>
 </li>
-<li><a id="org49ad7b8"></a>What Number?  Hint: Euler's Identity variant<br />
+<li><a id="orga790bc5"></a>What Number?  Hint: Euler's Identity variant<br />
 <div class="outline-text-6" id="text-7-3-1-1-3">
 <p>
 \[-\exp(i\pi)\]
 </p>
 </div>
 </li>
-<li><a id="orgf7b0675"></a>What Number Hint: (Set Theory / Peano)<br />
+<li><a id="orgfa4397c"></a>What Number Hint: (Set Theory / Peano)<br />
 <div class="outline-text-6" id="text-7-3-1-1-4">
 <p>
 \[\vert{}\{\emptyset, \{\emptyset\}\}\vert{}\]
 </p>
 </div>
 </li>
-<li><a id="orgb1586dc"></a>What Simple Operation?<br />
+<li><a id="org256af44"></a>What Simple Operation?<br />
 <div class="outline-text-6" id="text-7-3-1-1-5">
 <p>
 \[(x \oplus y) + 2(x \land y)\]
 </p>
 </div>
 </li>
-<li><a id="orge54e246"></a>What Number Are We Multiplying By?<br />
+<li><a id="org44d4492"></a>What Number Are We Multiplying By?<br />
 <div class="outline-text-6" id="text-7-3-1-1-6">
 <p>
 \[\int_0^x 2 \, dt\]
 </p>
 </div>
 </li>
-<li><a id="orgb0bfd11"></a>What Operation?<br />
+<li><a id="org3218596"></a>What Operation?<br />
 <div class="outline-text-6" id="text-7-3-1-1-7">
 <p>
 \[\arg\min_x \left( (x - a)^2 + (x - b)^2 \right)\]
 </p>
 </div>
 </li>
-<li><a id="org5bbf7aa"></a>What Function?<br />
+<li><a id="org33bba9b"></a>What Function?<br />
 <div class="outline-text-6" id="text-7-3-1-1-8">
 <p>
 \[\frac{d}{dx}\left(x + \sin^2(x) + \cos^2(x)\right) - 1\]
 </p>
 </div>
 </li>
-<li><a id="orgaa5fd65"></a>We Know This Better As What?<br />
+<li><a id="org79a47f6"></a>We Know This Better As What?<br />
 <div class="outline-text-6" id="text-7-3-1-1-9">
 <p>
 \[\sqrt{x^2}\]
 </p>
 </div>
 </li>
-<li><a id="org82e17aa"></a>What Are We Doing Here?<br />
+<li><a id="org0aca7c5"></a>What Are We Doing Here?<br />
 <div class="outline-text-6" id="text-7-3-1-1-10">
 <p>
 \[\sum_{i=1}^N \mathbb{I}(x_i > 0) \quad \text{where } \mathbb{I}(A) = \begin{cases} 1 & \text{if } A \text{ is true} \\ 0 & \text{otherwise} \end{cases}\]
 </p>
 </div>
 </li>
-<li><a id="org6c0d49d"></a>What Are We Doing Hint: Softmax<br />
+<li><a id="org5d588ba"></a>What Are We Doing Hint: Softmax<br />
 <div class="outline-text-6" id="text-7-3-1-1-11">
 <p>
 \[p_i = \frac{e^{z_i}}{\sum_{j=1}^K e^{z_j}}\]
 </p>
 </div>
 </li>
-<li><a id="org193e081"></a>What Do We Normally Call This?<br />
+<li><a id="org5dfecd3"></a>What Do We Normally Call This?<br />
 <div class="outline-text-6" id="text-7-3-1-1-12">
 <p>
 \[f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2}\]
 </p>
 </div>
 </li>
-<li><a id="org79097a9"></a>What Are We Doing To a And b?<br />
+<li><a id="orgc3eea1b"></a>What Are We Doing To a And b?<br />
 <div class="outline-text-6" id="text-7-3-1-1-13">
 <p>
 \[\begin{bmatrix} a \\ b \end{bmatrix} \leftarrow \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix} \begin{bmatrix} a \\ b \end{bmatrix}\]
 </p>
 </div>
 </li>
-<li><a id="org4ab459e"></a>Checking What Exactly?<br />
+<li><a id="org160efd7"></a>Checking What Exactly?<br />
 <div class="outline-text-6" id="text-7-3-1-1-14">
 <p>
 \[x \pmod 2 \equiv 0\]
 </p>
 </div>
 </li>
-<li><a id="org2251c5d"></a>15. How Is This Like The Number 1? Hint: Matrices<br />
+<li><a id="org2dffcab"></a>15. How Is This Like The Number 1? Hint: Matrices<br />
 <div class="outline-text-6" id="text-7-3-1-1-15">
 <p>
 \[\det(I_n) = 1^n\]
@@ -1176,8 +1190,8 @@ Different mathematical and computational traditions have their own preferences, 
 </ol>
 </div>
 </div>
-<div id="outline-container-orgf7e244f" class="outline-3">
-<h3 id="orgf7e244f"><span class="section-number-3">7.4.</span> Differential Equations&nbsp;&nbsp;&nbsp<span class="tag"><span class="exercise">exercise</span></span></h3>
+<div id="outline-container-orgb5d0808" class="outline-3">
+<h3 id="orgb5d0808"><span class="section-number-3">7.4.</span> Differential Equations&nbsp;&nbsp;&nbsp<span class="tag"><span class="exercise">exercise</span></span></h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 We want to discuss these questions. I will give you a few minutes. You can either work alone. Talk to a neighbor. Use an LLM (if you do, note which one and your prompts). To get us rolling try to come up with your best succinct answer to the first two questions. I will call on several of you, and we will vote on the best one. 
@@ -1200,22 +1214,22 @@ We want to discuss these questions. I will give you a few minutes. You can eithe
 </div>
 
 
-<div id="org987b9c6" class="figure">
+<div id="orgf9bf123" class="figure">
 <p><img src="./images/derivExample.png" alt="derivExample.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orge7c0265" class="outline-3">
-<h3 id="orge7c0265"><span class="section-number-3">7.5.</span> Using a DE</h3>
+<div id="outline-container-org967c38d" class="outline-3">
+<h3 id="org967c38d"><span class="section-number-3">7.5.</span> Using a DE</h3>
 <div class="outline-text-3" id="text-7-5">
 <p>
 In computational neuroscience (or psychology) we don't typically " solve DEs. We use them. We use them to help us move forward in time to understand a process by virtue of what we know about its rate of change. We will see that in a couple of short examples, and then some simple scenarios for you to play with. 
 </p>
 </div>
 </div>
-<div id="outline-container-orgf355c24" class="outline-3">
-<h3 id="orgf355c24"><span class="section-number-3">7.6.</span> Using DEs to compute a cube root</h3>
+<div id="outline-container-orgb26838d" class="outline-3">
+<h3 id="orgb26838d"><span class="section-number-3">7.6.</span> Using DEs to compute a cube root</h3>
 <div class="outline-text-3" id="text-7-6">
 <div class="org-src-container">
 <pre class="src src-haskell"><code><span class="linenr"> 1: </span><span style="color: #ff6f9f;">module</span> <span style="color: #79a8ff;">Sqrt</span> <span style="color: #ff6f9f;">where</span>
@@ -1258,8 +1272,8 @@ Ok, one module loaded.
 5.204827869200383
 </pre>
 </div>
-<div id="outline-container-org43d729f" class="outline-4">
-<h4 id="org43d729f"><span class="section-number-4">7.6.1.</span> Your turn&nbsp;&nbsp;&nbsp<span class="tag"><span class="assignment">assignment</span></span></h4>
+<div id="outline-container-org2bd5278" class="outline-4">
+<h4 id="org2bd5278"><span class="section-number-4">7.6.1.</span> Your turn&nbsp;&nbsp;&nbsp<span class="tag"><span class="assignment">assignment</span></span></h4>
 <div class="outline-text-4" id="text-7-6-1">
 <p>
 Working on your own on in any group \(\le\) 3 members produce code in any other language than Haskell to compute the fourth root (quartic). You are to implement the method I demonstrate to compute it, not simply to call a pre-built function that does it. 
@@ -1267,8 +1281,8 @@ Working on your own on in any group \(\le\) 3 members produce code in any other 
 </div>
 </div>
 </div>
-<div id="outline-container-org1490009" class="outline-3">
-<h3 id="org1490009"><span class="section-number-3">7.7.</span> Using DEs - Practicing with Springs&nbsp;&nbsp;&nbsp<span class="tag"><span class="homework">homework</span></span></h3>
+<div id="outline-container-org8ccff1b" class="outline-3">
+<h3 id="org8ccff1b"><span class="section-number-3">7.7.</span> Using DEs - Practicing with Springs&nbsp;&nbsp;&nbsp<span class="tag"><span class="homework">homework</span></span></h3>
 <div class="outline-text-3" id="text-7-7">
 <p>
 Our Hodgkin-Huxley model will be will require us to use several different equations. And though the integrate and fire neuron only requires one, a neuron is still rather abstract as a computational entity. Therefore, we will begin our DE coding practice with a simple, idealized spring. 
@@ -1359,14 +1373,14 @@ Unfortunately the spring equation is for the <b>second</b> derivative of locatio
 </div>
 
 
-<div id="org27261a9" class="figure">
+<div id="org879785a" class="figure">
 <p><img src="./images/spring.png" alt="spring.png" />
 </p>
 <p><span class="figure-number">Figure 3: </span>Frictionless Springs Oscillate</p>
 </div>
 </div>
-<div id="outline-container-org39cc881" class="outline-4">
-<h4 id="org39cc881"><span class="section-number-4">7.7.1.</span> Try with a <b>Damped Oscillator</b>&nbsp;&nbsp;&nbsp<span class="tag"><span class="homework">homework</span></span></h4>
+<div id="outline-container-orgbb56aa5" class="outline-4">
+<h4 id="orgbb56aa5"><span class="section-number-4">7.7.1.</span> Try with a <b>Damped Oscillator</b>&nbsp;&nbsp;&nbsp<span class="tag"><span class="homework">homework</span></span></h4>
 <div class="outline-text-4" id="text-7-7-1">
 <p>
 The changes to whatever code you have for the frictionless spring should require very little alteration to work with the following DE:
@@ -1378,8 +1392,8 @@ The changes to whatever code you have for the frictionless spring should require
 </div>
 </div>
 </div>
-<div id="outline-container-orgaf394b1" class="outline-3">
-<h3 id="orgaf394b1"><span class="section-number-3">7.8.</span> Solving DEs</h3>
+<div id="outline-container-org98eaf85" class="outline-3">
+<h3 id="org98eaf85"><span class="section-number-3">7.8.</span> Solving DEs</h3>
 <div class="outline-text-3" id="text-7-8">
 <p>
 There are many well established methods for solving systems of differential equations. If you really need one you can look it up. As a psychologist <i>using</i> a DE you will almost never have to solve, which means in this context to compute an analytical solution (analytical means using symbols). If you decide you must, just guess, and guess an exponential. Most of the differential equations we will see, and that you will see in biology or psychology, have the dependent variable present both on the left and right sides of your differential equation. The exponential is almost always in there somewhere as \(e^x\), since the derivative of \(\frac{d e^x}{dx} = e^x\).
@@ -1401,8 +1415,8 @@ Try this with the undamped oscillator. We know that the second derivative of how
 \end{align}
 </div>
 </div>
-<div id="outline-container-org75dc302" class="outline-3">
-<h3 id="org75dc302"><span class="section-number-3">7.9.</span> Integrate and Fire Neuron</h3>
+<div id="outline-container-orgaf4325c" class="outline-3">
+<h3 id="orgaf4325c"><span class="section-number-3">7.9.</span> Integrate and Fire Neuron</h3>
 <div class="outline-text-3" id="text-7-9">
 <blockquote>
 <p>
@@ -1410,19 +1424,19 @@ Is the integrate and fire model used much in modeling in the present time? <a hr
 </p>
 </blockquote>
 </div>
-<div id="outline-container-orgba4a05e" class="outline-4">
-<h4 id="orgba4a05e"><span class="section-number-4">7.9.1.</span> Historical Notes</h4>
+<div id="outline-container-org88a9c46" class="outline-4">
+<h4 id="org88a9c46"><span class="section-number-4">7.9.1.</span> Historical Notes</h4>
 <div class="outline-text-4" id="text-7-9-1">
 </div>
 <ol class="org-ol">
-<li><a id="org25cbb97"></a>Louie La Pique<br />
+<li><a id="orgb3d5639"></a>Louie La Pique<br />
 <div class="outline-text-6" id="text-7-9-1-0-1">
 <p>
 <a href="https://link.springer.com/article/10.1007/s00422-007-0190-0">Modern Commentary on Lapique's Neuron Model</a>
 </p>
 
 
-<div id="orga222478" class="figure">
+<div id="orgcdc8f41" class="figure">
 <p><img src="images/Lapicque_laboratoire.png" alt="Lapicque_laboratoire.png" />
 </p>
 <p><span class="figure-number">Figure 4: </span>La Pique Laboratory at the Sorbonne Paris</p>
@@ -1434,7 +1448,7 @@ Is the integrate and fire model used much in modeling in the present time? <a hr
 </p>
 </div>
 </li>
-<li><a id="org958b3dc"></a>Lord Adrian<br />
+<li><a id="orgebe36bb"></a>Lord Adrian<br />
 <div class="outline-text-6" id="text-7-9-1-0-2">
 <blockquote>
 <ol class="org-ol">
@@ -1450,8 +1464,8 @@ Is the integrate and fire model used much in modeling in the present time? <a hr
 </li>
 </ol>
 </div>
-<div id="outline-container-org6f332bf" class="outline-4">
-<h4 id="org6f332bf"><span class="section-number-4">7.9.2.</span> Formula I and F</h4>
+<div id="outline-container-org8e6912f" class="outline-4">
+<h4 id="org8e6912f"><span class="section-number-4">7.9.2.</span> Formula I and F</h4>
 <div class="outline-text-4" id="text-7-9-2">
 <p>
 \(\tau \frac{dV(t)}{dt} = -V(t) + R~I(t)\)
@@ -1462,7 +1476,7 @@ Why is this the formula?
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="org71c29b1"></a>Simple Electronics&nbsp;&nbsp;&nbsp<span class="tag"><span class="class_exercise">class_exercise</span></span><br />
+<li><a id="orgc12b5c8"></a>Simple Electronics&nbsp;&nbsp;&nbsp<span class="tag"><span class="class_exercise">class_exercise</span></span><br />
 <div class="outline-text-6" id="text-7-9-2-0-1">
 <p>
 The following questions are the ones we need to answer to derive our integrate and fire model.
@@ -1478,7 +1492,7 @@ The following questions are the ones we need to answer to derive our integrate a
 </blockquote>
 </div>
 </li>
-<li><a id="orgd4f3dd2"></a>Deriving the IandF Equation<br />
+<li><a id="orgbe3cf24"></a>Deriving the IandF Equation<br />
 <div class="outline-text-6" id="text-7-9-2-0-2">
 <blockquote>
 <p>
@@ -1502,8 +1516,8 @@ Which of our principles, or rules, are we using at each step?
 </li>
 </ol>
 </div>
-<div id="outline-container-org8691b6e" class="outline-4">
-<h4 id="org8691b6e"><span class="section-number-4">7.9.3.</span> Coding up the Integrate and Fire Neuron</h4>
+<div id="outline-container-org0c8d491" class="outline-4">
+<h4 id="org0c8d491"><span class="section-number-4">7.9.3.</span> Coding up the Integrate and Fire Neuron</h4>
 <div class="outline-text-4" id="text-7-9-3">
 <p>
 Approach this with the same ideas as the spring example. You have a certain initial value, and you update that using your differential equation that relates how much voltage changes as a function of time and current voltage.
@@ -1618,15 +1632,15 @@ Unlike real neurons the Integrate and Fire neuron model does not have a natural 
 </div>
 
 
-<div id="org9c5181f" class="figure">
+<div id="org8b9d3fc" class="figure">
 <p><img src="./images/iandf.png" alt="iandf.png" />
 </p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orga4c0989" class="outline-3">
-<h3 id="orga4c0989"><span class="section-number-3">7.10.</span> Integrate and Fire Homework</h3>
+<div id="outline-container-orgdce6f46" class="outline-3">
+<h3 id="orgdce6f46"><span class="section-number-3">7.10.</span> Integrate and Fire Homework</h3>
 <div class="outline-text-3" id="text-7-10">
 <p>
 The Integrate and Fire homework has two components. One practical and one theoretical.
@@ -1641,22 +1655,22 @@ Theoretically, look at <a href="https://redwood.berkeley.edu/wp-content/uploads/
 </p>
 </div>
 </div>
-<div id="outline-container-org3dce57a" class="outline-3">
-<h3 id="org3dce57a"><span class="section-number-3">7.11.</span> Hodgkin and Huxley Model</h3>
+<div id="outline-container-org4224afb" class="outline-3">
+<h3 id="org4224afb"><span class="section-number-3">7.11.</span> Hodgkin and Huxley Model</h3>
 <div class="outline-text-3" id="text-7-11">
 </div>
-<div id="outline-container-org238c448" class="outline-4">
-<h4 id="org238c448"><span class="section-number-4">7.11.1.</span> Who were Hodgkin and Huxley</h4>
+<div id="outline-container-org09bd08f" class="outline-4">
+<h4 id="org09bd08f"><span class="section-number-4">7.11.1.</span> Who were Hodgkin and Huxley</h4>
 </div>
-<div id="outline-container-org4efd913" class="outline-4">
-<h4 id="org4efd913"><span class="section-number-4">7.11.2.</span> Model Description</h4>
+<div id="outline-container-org598b361" class="outline-4">
+<h4 id="org598b361"><span class="section-number-4">7.11.2.</span> Model Description</h4>
 <div class="outline-text-4" id="text-7-11-2">
 <p>
 Gerstner's (free) <a href="https://lcnwww.epfl.ch/gerstner/SPNM/node14.html#table-HH1">book's chapter</a> on the HandH model.
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="org82452bf"></a>Comments and Steps in Coding the Hodgkin Huxley Model<br />
+<li><a id="orgf047b13"></a>Comments and Steps in Coding the Hodgkin Huxley Model<br />
 <div class="outline-text-5" id="text-7-11-2-1">
 <p>
 Some introductory reminders and admonitions:
@@ -1749,13 +1763,13 @@ is of the form \((m/n/h)_{inf}= alpha(m/n/h)(v) / (alpha(m/n/h)(v) + beta(m/n/h)
 </p>
 </div>
 </li>
-<li><a id="org2a052ac"></a>Constants<br />
+<li><a id="org4f613e1"></a>Constants<br />
 <div class="outline-text-5" id="text-7-11-2-2">
 <p>
 Several different sets of constants are used for this model in published versions. They are all, in one sense, the same, but this set make the programming easier. For the moment, ignore the units and use these numbers.
 </p>
 
-<table id="org3c48388" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="org563be31" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 1:</span> Constant Values to Use for our Hodgkin-Huxley Model</caption>
 
 <colgroup>
@@ -1810,7 +1824,7 @@ These constants are adjusted to make the resting potential 0 and the capacitance
 </p>
 </div>
 </li>
-<li><a id="org182489e"></a>Alpha and Beta Formulas<br />
+<li><a id="org41f79dc"></a>Alpha and Beta Formulas<br />
 <div class="outline-text-5" id="text-7-11-2-3">
 <p>
 \[ \alpha_n(V_m) = \frac{0.01 (10 - V_m)}{\exp\left( \frac{10 - V_m}{10} \right) - 1} \]
@@ -1838,7 +1852,7 @@ These constants are adjusted to make the resting potential 0 and the capacitance
 </p>
 </div>
 </li>
-<li><a id="org48b52ec"></a>Demonstrating the Hodgkin-Huxley Model<br />
+<li><a id="org7752146"></a>Demonstrating the Hodgkin-Huxley Model<br />
 <div class="outline-text-5" id="text-7-11-2-4">
 <div class="org-src-container">
 <pre class="src src-haskell"><code><span class="linenr">  1: </span><span style="color: #ff6740;">{-# LANGUAGE GADTs #-}</span>
@@ -2017,13 +2031,13 @@ These constants are adjusted to make the resting potential 0 and the capacitance
 </div>
 
 
-<div id="org2769fe5" class="figure">
+<div id="org45cd17e" class="figure">
 <p><img src="./images/handh.png" alt="handh.png" />
 </p>
 </div>
 </div>
 </li>
-<li><a id="org387b047"></a>More hints on programming the Hodgkin-Huxley model.<br />
+<li><a id="orgd127b61"></a>More hints on programming the Hodgkin-Huxley model.<br />
 <div class="outline-text-5" id="text-7-11-2-5">
 <ol class="org-ol">
 <li>Work inside out
@@ -2042,7 +2056,7 @@ That is, don't get too discouraged. We all do this. At this stage I encourage yo
 </ol>
 </div>
 </li>
-<li><a id="org550f2a3"></a>Hodgkin and Huxley Homework<br />
+<li><a id="org671ac9e"></a>Hodgkin and Huxley Homework<br />
 <div class="outline-text-5" id="text-7-11-2-6">
 <p>
 Your homework will require you to write the code for a Hodgkin-Huxley Neuron and then modify it.  You will provide at least two plots in addition to your code. You will need to adapt the model to fit this paper.<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup> These authors analyzed a series of inherited channelopathies (where ion channels are altered due to mutation) via simulation. In these conditions empirical measurements had been made on actual patients. The authors adapted the Hodgkin and Huxley model to permit them to explore the effects of such altered conductance on neuronal excitability. For this home work you will need to adapt the <i>n</i> equation to be as follows:
@@ -2065,15 +2079,15 @@ To start with after you have implemented the new <i>n</i> channel function set a
 </div>
 </div>
 </div>
-<div id="outline-container-org13b5c1f" class="outline-2">
-<h2 id="org13b5c1f"><span class="section-number-2">8.</span> What is computation and what is its role in cognitive science?</h2>
+<div id="outline-container-orgb5e4078" class="outline-2">
+<h2 id="orgb5e4078"><span class="section-number-2">8.</span> What is computation and what is its role in cognitive science?</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 We will be having a discussion on this. It only works if you have read the material that we want to discus. You need to read several sections of the <a href="https://plato.stanford.edu/entries/computational-mind/">The Computational Theory of Mind</a> <b>before</b> class. These are all of section 3, 4.4, and all of 5 and 7. Feel free to read more. Can you answer the following questions after your reading? These are the sort of things we will be discussing. 
 </p>
 </div>
-<div id="outline-container-org98e6ba0" class="outline-3">
-<h3 id="org98e6ba0"><span class="section-number-3">8.1.</span> What do you think?</h3>
+<div id="outline-container-orgae340e8" class="outline-3">
+<h3 id="orgae340e8"><span class="section-number-3">8.1.</span> What do you think?</h3>
 <div class="outline-text-3" id="text-8-1">
 <ol class="org-ol">
 <li>Computational modeling of cognition and neural systems is/is-not the same as programming.</li>
@@ -2089,16 +2103,16 @@ We will be having a discussion on this. It only works if you have read the mater
 </ol>
 </div>
 </div>
-<div id="outline-container-orge721956" class="outline-3">
-<h3 id="orge721956"><span class="section-number-3">8.2.</span> Computing in Minds and Computers</h3>
+<div id="outline-container-org2db044e" class="outline-3">
+<h3 id="org2db044e"><span class="section-number-3">8.2.</span> Computing in Minds and Computers</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 One definition of whether something is computable is whether there exists a Turing Machine that can compute it. Although most of us learned the name "Turing" in the context of whether a computer has human intelligence, the so-called <i>Turing test</i>, the model of Turing computability emerged from thinking about humans computing<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>
 </p>
 </div>
 </div>
-<div id="outline-container-orgf0d3783" class="outline-3">
-<h3 id="orgf0d3783"><span class="section-number-3">8.3.</span> What is a Turing machine? Some Background and Details</h3>
+<div id="outline-container-org4ac43ec" class="outline-3">
+<h3 id="org4ac43ec"><span class="section-number-3">8.3.</span> What is a Turing machine? Some Background and Details</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
 <a href="https://turingarchive.kings.cam.ac.uk/publications-lectures-and-talks-amtb/amt-b-12">Turing machines</a> are quite simple implements. While one can build a <a href="https://www.youtube.com/watch?v=E3keLeMwfHY">physical Turing machine</a>, the more usual sense of the term is for a hypothetical computer that is comprised of:
@@ -2110,8 +2124,8 @@ One definition of whether something is computable is whether there exists a Turi
 <li>a set of instructions (or "machine table") that translates the combination of the current state and the current symbol to a new state and one of the acceptable actions.</li>
 </ol>
 </div>
-<div id="outline-container-org4638ff3" class="outline-4">
-<h4 id="org4638ff3"><span class="section-number-4">8.3.1.</span> Classroom Activity</h4>
+<div id="outline-container-org196ae5d" class="outline-4">
+<h4 id="org196ae5d"><span class="section-number-4">8.3.1.</span> Classroom Activity</h4>
 <div class="outline-text-4" id="text-8-3-1">
 <p>
 Let's develop pseudo-code for the implementing a Turing Machine. It may help you when you do have to program a Turing machine. 
@@ -2119,8 +2133,8 @@ Let's develop pseudo-code for the implementing a Turing Machine. It may help you
 </div>
 </div>
 </div>
-<div id="outline-container-org6b31b69" class="outline-3">
-<h3 id="org6b31b69"><span class="section-number-3">8.4.</span> Programming a Turing Machine: the Busy Beaver</h3>
+<div id="outline-container-orgb1af415" class="outline-3">
+<h3 id="orgb1af415"><span class="section-number-3">8.4.</span> Programming a Turing Machine: the Busy Beaver</h3>
 <div class="outline-text-3" id="text-8-4">
 <p>
 In my experience the only way to really come to grips with what a Turing machine is is to program one yourself. For this exercise we will program a Turing machine to solve an elementary version of the Busy Beaver problem. This is a famous problem, because it is easy to state and woefully difficulty to answer. In fact it is <a href="https://jeremykun.com/2012/02/08/busy-beavers-and-the-quest-for-big-numbers/">incomputable</a>.
@@ -2158,8 +2172,8 @@ What it means to "run" a Turing machine is to start in the starting state with t
 To restate in a more general way, the n-state busy beaver (BB-n) game is a contest to find an n-state Turing machine having the largest possible score — the largest number of 1s on its tape after halting. A machine that attains the largest possible score among all n-state Turing machines is called an n-state busy beaver, and a machine whose score is merely the highest so far attained (perhaps not the largest possible) is called a champion n-state machine.
 </p>
 </div>
-<div id="outline-container-org8edb051" class="outline-4">
-<h4 id="org8edb051"><span class="section-number-4">8.4.1.</span> A Busy Beaver Warm-Up</h4>
+<div id="outline-container-orgcf72d66" class="outline-4">
+<h4 id="orgcf72d66"><span class="section-number-4">8.4.1.</span> A Busy Beaver Warm-Up</h4>
 <div class="outline-text-4" id="text-8-4-1">
 <p>
 A simple version of the Busy Beaver problem, and one you can do by hand with pencil and paper, is the n=2 version. Create a Turing Machine with the following transition rules:
@@ -2207,8 +2221,8 @@ Here is the transition table for our machine:
 </table>
 </div>
 </div>
-<div id="outline-container-org2fe0eb2" class="outline-4">
-<h4 id="org2fe0eb2"><span class="section-number-4">8.4.2.</span> Busy Beaver Problem Demo Code</h4>
+<div id="outline-container-org5781eee" class="outline-4">
+<h4 id="org5781eee"><span class="section-number-4">8.4.2.</span> Busy Beaver Problem Demo Code</h4>
 <div class="outline-text-4" id="text-8-4-2">
 <div class="org-src-container">
 <pre class="src src-haskell"><code><span class="linenr"> 1: </span><span style="color: #ff6f9f;">module</span> <span style="color: #79a8ff;">BusyBeaver</span> <span style="color: #ff6f9f;">where</span>
@@ -2284,7 +2298,7 @@ fromList [(-2,One),(-1,One),(0,One),(1,One)]
 </pre>
 </div>
 <ol class="org-ol">
-<li><a id="org50c80b3"></a>Busy Beaver Homework<br />
+<li><a id="orgdc1c2cc"></a>Busy Beaver Homework<br />
 <div class="outline-text-5" id="text-8-4-2-1">
 <p>
 See Dropbox on Learn
@@ -2294,23 +2308,23 @@ See Dropbox on Learn
 </ol>
 </div>
 </div>
-<div id="outline-container-org9b073b9" class="outline-3">
-<h3 id="org9b073b9"><span class="section-number-3">8.5.</span> The Lambda Calculus</h3>
+<div id="outline-container-org1da239c" class="outline-3">
+<h3 id="org1da239c"><span class="section-number-3">8.5.</span> The Lambda Calculus</h3>
 <div class="outline-text-3" id="text-8-5">
 <p>
 Turing machines are probably the most common framework used for asserting that cognition is computation, but there are others. Another widely used construction, especially in theoretical computer science, is the <b>lambda calculus</b>. Although these two constructions appear quite different on the surface, it has been shown that any thing that can be computed in one can be computed by the other. They are equivalent. This has led to a <i>conjecture</i> that anything computable can be computed by a Turing Machine or the Lambda Calculus (and some other additional, equivalent constructions).
 </p>
 </div>
-<div id="outline-container-orgc474b71" class="outline-4">
-<h4 id="orgc474b71"><span class="section-number-4">8.5.1.</span> Why should a psychology student care?</h4>
+<div id="outline-container-org5eb3105" class="outline-4">
+<h4 id="org5eb3105"><span class="section-number-4">8.5.1.</span> Why should a psychology student care?</h4>
 <div class="outline-text-4" id="text-8-5-1">
 <p>
 Because if this is true: than anything computable can be computed by the lambda calculus; <i>and</i> that the mind is basically a computation, then the mind can be computed by the lambda calculas. Everything that is mental can be accomplished by this single construct of the function and application. 
 </p>
 </div>
 </div>
-<div id="outline-container-org52b772c" class="outline-4">
-<h4 id="org52b772c"><span class="section-number-4">8.5.2.</span> Lambda Notation Basics</h4>
+<div id="outline-container-org8c6fb10" class="outline-4">
+<h4 id="org8c6fb10"><span class="section-number-4">8.5.2.</span> Lambda Notation Basics</h4>
 <div class="outline-text-4" id="text-8-5-2">
 <p>
 The lambda calculus is built entirely from functions.
@@ -2393,8 +2407,8 @@ Why might this be psychologically instructive? Can you think of any psychologica
 </div>
 </div>
 </div>
-<div id="outline-container-org601409d" class="outline-3">
-<h3 id="org601409d"><span class="section-number-3">8.6.</span> The Church-Turing Thesis</h3>
+<div id="outline-container-orgc77d808" class="outline-3">
+<h3 id="orgc77d808"><span class="section-number-3">8.6.</span> The Church-Turing Thesis</h3>
 <div class="outline-text-3" id="text-8-6">
 <p>
 The two combinators (K, S) are sufficient to compute <b>anything</b> that your Turing machine can compute (but first, why don't I need to include I in this list?).
@@ -2415,15 +2429,15 @@ You can build:
 How would you use these <i>things</i> to make numbers?
 </p>
 </div>
-<div id="outline-container-orgc9b0e77" class="outline-4">
-<h4 id="orgc9b0e77"><span class="section-number-4">8.6.1.</span> Church Numerals</h4>
+<div id="outline-container-org4cc5740" class="outline-4">
+<h4 id="org4cc5740"><span class="section-number-4">8.6.1.</span> Church Numerals</h4>
 <div class="outline-text-4" id="text-8-6-1">
 <p>
 <a href="https://en.wikipedia.org/wiki/Church_encoding#Church_numerals">Church numerals</a> show how numbers emerge from pure function structure—nothing but lambdas.
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="orgae24ee8"></a>The Encoding<br />
+<li><a id="org00b7ec4"></a>The Encoding<br />
 <div class="outline-text-5" id="text-8-6-1-1">
 <p>
 A number n is represented as a function that applies some function f to an argument x exactly n times:
@@ -2447,17 +2461,17 @@ Everything is "just" functions. Even numbers. If the brain (mind) is just a comp
 </li>
 </ol>
 </div>
-<div id="outline-container-org3ecc6a9" class="outline-4">
-<h4 id="org3ecc6a9"><span class="section-number-4">8.6.2.</span> Computing with the Lambda Calculus</h4>
+<div id="outline-container-org72a6b11" class="outline-4">
+<h4 id="org72a6b11"><span class="section-number-4">8.6.2.</span> Computing with the Lambda Calculus</h4>
 <div class="outline-text-4" id="text-8-6-2">
 <p>
 Can you figure out what addition with Church Numerals looks like?
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="org43eb1d1"></a>The Human Combinator Game<br />
+<li><a id="org2356b78"></a>The Human Combinator Game<br />
 <ol class="org-ol">
-<li><a id="org1535a44"></a>Setup<br />
+<li><a id="org3176088"></a>Setup<br />
 <div class="outline-text-6" id="text-8-6-2-1-1">
 <p>
 Groups of 3-6. Each group designates:
@@ -2475,9 +2489,9 @@ Distribute <a href="lambda-instruction-cards.html">role instruction</a> cards. A
 </p>
 </div>
 </li>
-<li><a id="org1d21197"></a>Challenge Rounds<br />
+<li><a id="org2443e04"></a>Challenge Rounds<br />
 <ol class="org-ol">
-<li><a id="org76b53bb"></a>Round 1<br />
+<li><a id="org6228c9d"></a>Round 1<br />
 <div class="outline-text-7" id="text-8-6-2-1-2-1">
 <p>
 TARGET OUTPUT: b
@@ -2493,7 +2507,7 @@ result is b (not a).
 </p>
 </div>
 </li>
-<li><a id="org1f7032c"></a>Round 2<br />
+<li><a id="org338fe17"></a>Round 2<br />
 <div class="outline-text-7" id="text-8-6-2-1-2-2">
 <p>
 TARGET OUTPUT: a
@@ -2509,7 +2523,7 @@ end up with just a.
 </p>
 </div>
 </li>
-<li><a id="org42d69ad"></a>Round 3<br />
+<li><a id="orgf8b2475"></a>Round 3<br />
 <div class="outline-text-7" id="text-8-6-2-1-2-3">
 <p>
 TARGET OUTPUT: a
@@ -2525,7 +2539,7 @@ using only S and K—no I.
 </p>
 </div>
 </li>
-<li><a id="org8da471d"></a>Round 4<br />
+<li><a id="org7ea4b55"></a>Round 4<br />
 <div class="outline-text-7" id="text-8-6-2-1-2-4">
 <p>
 TARGET OUTPUT: b a
@@ -2541,7 +2555,7 @@ TASK: Produce "b applied to a" as your result.
 </p>
 </div>
 </li>
-<li><a id="org149d187"></a>Round 5<br />
+<li><a id="orgbf2f47f"></a>Round 5<br />
 <div class="outline-text-7" id="text-8-6-2-1-2-5">
 <p>
 TARGET OUTPUT: a a
@@ -2563,12 +2577,12 @@ of a applied to each other.
 </li>
 </ol>
 </div>
-<div id="outline-container-org408bad0" class="outline-4">
-<h4 id="org408bad0"><span class="section-number-4">8.6.3.</span> Lambda Calculas Homework</h4>
+<div id="outline-container-orga501f36" class="outline-4">
+<h4 id="orga501f36"><span class="section-number-4">8.6.3.</span> Lambda Calculas Homework</h4>
 <div class="outline-text-4" id="text-8-6-3">
 </div>
 <ol class="org-ol">
-<li><a id="orgef6ac13"></a>HW 1: Computational Analogy Essay<br />
+<li><a id="org23d0878"></a>HW 1: Computational Analogy Essay<br />
 <div class="outline-text-5" id="text-8-6-3-1">
 <p>
 Choose one psychological process from the list below (or propose your own with instructor approval):
@@ -2592,8 +2606,8 @@ Write an essay exploring this question: <b><b>If this psychological process were
 </ol>
 </div>
 </div>
-<div id="outline-container-org8255d12" class="outline-3">
-<h3 id="org8255d12"><span class="section-number-3">8.7.</span> Two Completely Different Models</h3>
+<div id="outline-container-org94c0594" class="outline-3">
+<h3 id="org94c0594"><span class="section-number-3">8.7.</span> Two Completely Different Models</h3>
 <div class="outline-text-3" id="text-8-7">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -2637,8 +2651,8 @@ This equivalence is one of the deepest results in computer science. It suggests 
 </p>
 </div>
 </div>
-<div id="outline-container-orga698f1a" class="outline-3">
-<h3 id="orga698f1a"><span class="section-number-3">8.8.</span> Implications</h3>
+<div id="outline-container-org4251275" class="outline-3">
+<h3 id="org4251275"><span class="section-number-3">8.8.</span> Implications</h3>
 <div class="outline-text-3" id="text-8-8">
 <p>
 If anything that is computable can be computed by one of these systems,
@@ -2654,12 +2668,12 @@ then you can think with a Turing machine, and since Turing Machines can be built
 </div>
 </div>
 </div>
-<div id="outline-container-org0be7c8f" class="outline-2">
-<h2 id="org0be7c8f"><span class="section-number-2">9.</span> Neurally Inspired Models 2: The network effect</h2>
+<div id="outline-container-org01cc58c" class="outline-2">
+<h2 id="org01cc58c"><span class="section-number-2">9.</span> Neurally Inspired Models 2: The network effect</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-orgbeea522" class="outline-3">
-<h3 id="orgbeea522"><span class="section-number-3">9.1.</span> Neural Networks</h3>
+<div id="outline-container-org71d192e" class="outline-3">
+<h3 id="org71d192e"><span class="section-number-3">9.1.</span> Neural Networks</h3>
 <div class="outline-text-3" id="text-9-1">
 <ul class="org-ul">
 <li>What is a neural network?</li>
@@ -2667,12 +2681,12 @@ then you can think with a Turing machine, and since Turing Machines can be built
 <li>How can neural networks help us understand cognition?</li>
 </ul>
 </div>
-<div id="outline-container-org0e44432" class="outline-4">
-<h4 id="org0e44432"><span class="section-number-4">9.1.1.</span> Cellular Automata</h4>
+<div id="outline-container-orgf9b3efb" class="outline-4">
+<h4 id="orgf9b3efb"><span class="section-number-4">9.1.1.</span> Cellular Automata</h4>
 <div class="outline-text-4" id="text-9-1-1">
 </div>
 <ol class="org-ol">
-<li><a id="orgb486056"></a>Drawing Exercise<br />
+<li><a id="orgd84ca3f"></a>Drawing Exercise<br />
 <div class="outline-text-5" id="text-9-1-1-1">
 <ol class="org-ol">
 <li>Pick a number between 0 and 255 inclusive. Tell it to me when I ask.</li>
@@ -2731,7 +2745,7 @@ Compute your rule. You write the configurations on top, and you write the base t
 The idea is something like this:
 </p>
 
-<div id="org56f23cd" class="figure">
+<div id="orgb28495f" class="figure">
 <p><img src="./images/grid.png" alt="grid.png" />
 </p>
 <p><span class="figure-number">Figure 5: </span>An illustration of which three squares in the row above influence the coloring of your grid.</p>
@@ -2748,13 +2762,13 @@ This process is tedious and mistake prone. One good reason for translating your 
 </p>
 
 <div class="org-src-container">
-<label class="org-src-name"><span class="listing-number">Listing 1: </span>Invocation of Haskell Code for Generating a PNG file of Rule 30</label><pre class="src src-haskell" id="org06929b9"><code><span style="color: #79a8ff;">:</span>load <span style="color: #6ae4b9;">./</span>src<span style="color: #6ae4b9;">/</span>Automata.hs
+<label class="org-src-name"><span class="listing-number">Listing 1: </span>Invocation of Haskell Code for Generating a PNG file of Rule 30</label><pre class="src src-haskell" id="org3120587"><code><span style="color: #79a8ff;">:</span>load <span style="color: #6ae4b9;">./</span>src<span style="color: #6ae4b9;">/</span>Automata.hs
 <span style="color: #4ae2ff;">drawAutomata</span> 30 128 5 <span style="color: #00d3d0;">"./images/rule30.png"</span>
 </code></pre>
 </div>
 
 
-<div id="orgc840b83" class="figure">
+<div id="org0fb0c7f" class="figure">
 <p><img src="./images/rule30.png" alt="rule30.png" />
 </p>
 <p><span class="figure-number">Figure 6: </span>Rule 30</p>
@@ -2788,8 +2802,8 @@ There are <a href="file:///home/britt/gitRepos/compNeuroIntro420/codeLib/cl/cell
 </li>
 </ol>
 </div>
-<div id="outline-container-org0b5f8cb" class="outline-4">
-<h4 id="org0b5f8cb"><span class="section-number-4">9.1.2.</span> More Lessons from Cellular Automata</h4>
+<div id="outline-container-org4436eba" class="outline-4">
+<h4 id="org4436eba"><span class="section-number-4">9.1.2.</span> More Lessons from Cellular Automata</h4>
 <div class="outline-text-4" id="text-9-1-2">
 <p>
 Complex entities may have simple representations if the right language for expression can be found. Concision and repeatability are by-products. 
@@ -2804,22 +2818,22 @@ Following up on the analogy to neurons, one humanity's most brilliant examples: 
 </p>
 </div>
 </div>
-<div id="outline-container-org62015d9" class="outline-4">
-<h4 id="org62015d9"><span class="section-number-4">9.1.3.</span> John Hopfield</h4>
+<div id="outline-container-orgc658328" class="outline-4">
+<h4 id="orgc658328"><span class="section-number-4">9.1.3.</span> John Hopfield</h4>
 <div class="outline-text-4" id="text-9-1-3">
 <p>
 To motivate our learning, and to put a human face on the project these two links give you a glimpse of Hopfield talking about his work at the 2024 Nobel Prize lectures, and a nice long podcast that gives a slow, throurough, tutorial discussion of what it is all about. We will come back to this later, but for now start listening. There is an associated homework. 
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="orge4bcb38"></a>Nobel Prize<br />
+<li><a id="orgefba6e6"></a>Nobel Prize<br />
 <div class="outline-text-5" id="text-9-1-3-1">
 <p>
 <a href="https://youtu.be/8SffhDk4mdU?feature=shared">John Hopfield's Nobel Lecture</a>
 </p>
 </div>
 </li>
-<li><a id="org09ca0c4"></a>Podcast on the Hopfield Network<br />
+<li><a id="orgc622889"></a>Podcast on the Hopfield Network<br />
 <div class="outline-text-5" id="text-9-1-3-2">
 <p>
 This <a href="https://theoreticalneuroscience.no/thn22/">theoretical neuroscience podcast</a> gives a nice long look at the Hopfield Network. It works up to its creation, its abstraction, and it social impact on shaping the field of computational neuroscience. It is long, but, if you make your way through it you will have a good overview of the model before you start coding it.
@@ -2828,8 +2842,8 @@ This <a href="https://theoreticalneuroscience.no/thn22/">theoretical neuroscienc
 </li>
 </ol>
 </div>
-<div id="outline-container-org686a5b2" class="outline-4">
-<h4 id="org686a5b2"><span class="section-number-4">9.1.4.</span> Linear Algebra</h4>
+<div id="outline-container-orgd89ef54" class="outline-4">
+<h4 id="orgd89ef54"><span class="section-number-4">9.1.4.</span> Linear Algebra</h4>
 <div class="outline-text-4" id="text-9-1-4">
 <p>
 Show me the math!
@@ -2851,7 +2865,7 @@ What makes linear algebra linear?
 </blockquote>
 </div>
 <ol class="org-ol">
-<li><a id="org0593184"></a>Important Objects and Operations<br />
+<li><a id="orgefe890b"></a>Important Objects and Operations<br />
 <div class="outline-text-5" id="text-9-1-4-1">
 <ul class="org-ul">
 <li>Vectors</li>
@@ -2964,7 +2978,7 @@ putStr <span style="color: #4ae2ff;">$</span> prettyMat <span style="color: #6ae
 </code></pre>
 </div>
 
-<pre class="example" id="org1749135">
+<pre class="example" id="org8c039d6">
 [1 of 1] Compiling MyMats           ( src/MyMats.hs, interpreted )
 Ok, one module loaded.
 a =
@@ -2977,7 +2991,7 @@ a + b =
 [0,0,0]
 [8,10,12]
 </pre>
-<pre class="example" id="org0964e73">
+<pre class="example" id="orgca8550a">
 c =
 [1,2]
 [3,4]
@@ -3009,7 +3023,7 @@ Can you demonstrate that matrix multiplication is not commutative?
 </blockquote>
 </div>
 </li>
-<li><a id="org730b55c"></a>Thinking Abstractly<br />
+<li><a id="orgdc681cc"></a>Thinking Abstractly<br />
 <div class="outline-text-5" id="text-9-1-4-2">
 <p>
 There are in fact many ways to think about what a vector is. It can be thought of as a column (or row of numbers). More abstractly it is an object (arrow) with magnitude and direction. Most abstractly it is anything that obeys the requirements of a <a href="https://en.wikipedia.org/wiki/Vector_space">vector space</a>. 
@@ -3033,7 +3047,7 @@ What is the library or packge in the programming language that you will use for 
 </blockquote>
 </div>
 </li>
-<li><a id="org56c98d1"></a>Common Notational Conventions for Vectors and Matrices<br />
+<li><a id="orgd7eb432"></a>Common Notational Conventions for Vectors and Matrices<br />
 <div class="outline-text-5" id="text-9-1-4-3">
 <p>
 Vectors tend to be notated as <i>lower case</i> letters, often in bold, such
@@ -3053,12 +3067,12 @@ Good things to know: what is an inner product? How does it differ from a scalar 
 </li>
 </ol>
 </div>
-<div id="outline-container-org818f31e" class="outline-4">
-<h4 id="org818f31e"><span class="section-number-4">9.1.5.</span> Neural Networks Redux</h4>
+<div id="outline-container-org70fa705" class="outline-4">
+<h4 id="org70fa705"><span class="section-number-4">9.1.5.</span> Neural Networks Redux</h4>
 </div>
 
-<div id="outline-container-orgc1bd429" class="outline-4">
-<h4 id="orgc1bd429"><span class="section-number-4">9.1.6.</span> What is a Neural Network?</h4>
+<div id="outline-container-org6cd75b6" class="outline-4">
+<h4 id="org6cd75b6"><span class="section-number-4">9.1.6.</span> What is a Neural Network?</h4>
 <div class="outline-text-4" id="text-9-1-6">
 <p>
 What is a Neural Network? It is a brain inspired computational approach
@@ -3067,14 +3081,14 @@ in which "neurons" compute functions of their inputs and pass on a
 </p>
 
 
-<div id="org8789dfd" class="figure">
+<div id="org3b15533" class="figure">
 <p><img src="./images/nn.png" alt="nn.png" />
 </p>
 <p><span class="figure-number">Figure 7: </span>Simple schematic of the basics of a neural network. This is an image for a single neuron. The input has three elements and each of these connects to the same neuron ("node 1"). The activity at those nodes is filtered by the weights, which are specific for each of the inputs. These three processed inputs are combined to generate the output from this neuron. For multiple layers this output becomes an input for the next neuron along the chain.</p>
 </div>
 </div>
 <ol class="org-ol">
-<li><a id="org9f4b23d"></a>Non-linearities<br />
+<li><a id="orgd2623a4"></a>Non-linearities<br />
 <div class="outline-text-5" id="text-9-1-6-1">
 <p>
 The spiking of a biological neuron is non-linear. You will see this in both the integrate and fire and Hodgkin and Huxley models you're going to program. For our neural networks we will usually use a <i>threshold</i>. When the threshold exceeds a certain value our activity will jump (or step) to a new value.
@@ -3108,13 +3122,13 @@ One of our first efforts will be to code a <i>perceptron</i> to solve the XOR pr
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="org404df35"></a>Examples of Boolean Functions and How They Map onto our Neural Network Intuitions<br />
+<li><a id="orgf75c1e1"></a>Examples of Boolean Functions and How They Map onto our Neural Network Intuitions<br />
 <div class="outline-text-6" id="text-9-1-6-1-1">
 <dl class="org-dl">
 <dt>The "AND" Operation/Function</dt><dd></dd>
 </dl>
 
-<div id="orgbf05776" class="figure">
+<div id="org3645cfd" class="figure">
 <p><img src="./images/my-and.png" alt="my-and.png" />
 </p>
 </div>
@@ -3123,7 +3137,7 @@ One of our first efforts will be to code a <i>perceptron</i> to solve the XOR pr
 <dt>The "OR" Operation/Function</dt><dd></dd>
 </dl>
 
-<div id="org551e2e5" class="figure">
+<div id="org494c1f9" class="figure">
 <p><img src="./images/my-or.png" alt="my-or.png" />
 </p>
 </div>
@@ -3132,7 +3146,7 @@ One of our first efforts will be to code a <i>perceptron</i> to solve the XOR pr
 <dt>The "XOR" Operation/Function</dt><dd></dd>
 </dl>
 
-<div id="org92206d9" class="figure">
+<div id="orgec31360" class="figure">
 <p><img src="./images/my-xor.png" alt="my-xor.png" />
 </p>
 </div>
@@ -3150,14 +3164,14 @@ This short <a href="https://doi.org/10.1038/nbt1386">article</a> provides a nice
 </li>
 </ol>
 </li>
-<li><a id="org681d831"></a>Exercise XOR<br />
+<li><a id="org70a34b8"></a>Exercise XOR<br />
 <div class="outline-text-5" id="text-9-1-6-2">
 <p>
 Using only <b>not</b>, <b>and</b>, and <b>or</b> operations draw the diagram that allows you to compute in two steps the <b>xor</b> operation. You will need this logic to code up a perceptron.
 </p>
 </div>
 </li>
-<li><a id="org5c4d0ce"></a>Connections<br />
+<li><a id="orgd28d3ec"></a>Connections<br />
 <div class="outline-text-5" id="text-9-1-6-3">
 <p>
 Can neural networks encode logic? Is the processing zeros and ones enough to capture the richness of human intellectual activity?
@@ -3172,7 +3186,7 @@ We will next build up a simple threshold neural unit and try to calculate some o
 </p>
 </div>
 </li>
-<li><a id="orgf2b5e71"></a>Boolean Logic<br />
+<li><a id="orgb20f24a"></a>Boolean Logic<br />
 <div class="outline-text-5" id="text-9-1-6-4">
 <p>
 George Boole, Author of the <i>Laws of Thought</i>.
@@ -3184,7 +3198,7 @@ George Boole, Author of the <i>Laws of Thought</i>.
 </p>
 </div>
 </li>
-<li><a id="orga402a05"></a>First Order Logic - Truth Tables<br />
+<li><a id="org08fe39a"></a>First Order Logic - Truth Tables<br />
 <div class="outline-text-5" id="text-9-1-6-5">
 <p>
 An example <b>Or</b>
@@ -3238,19 +3252,19 @@ An example <b>Or</b>
 </li>
 </ol>
 </div>
-<div id="outline-container-org535a9b0" class="outline-4">
-<h4 id="org535a9b0"><span class="section-number-4">9.1.7.</span> Our First Neural Network: The Perceptron</h4>
+<div id="outline-container-orgbdef8d2" class="outline-4">
+<h4 id="orgbdef8d2"><span class="section-number-4">9.1.7.</span> Our First Neural Network: The Perceptron</h4>
 <div class="outline-text-4" id="text-9-1-7">
 <p>
 In many ways the Perceptron can be regarded as the first neural network ever.
 </p>
 
 <p>
-The perceptron (see Figure <a href="#org7392207">8</a>) was the invention of a psychologist, <a href="http://dspace.library.cornell.edu/bitstream/1813/18965/2/Rosenblatt_Frank_1971.pdf">Frank Rosenblatt (pdf)</a>.  He was not a computer scientist. Though he obviously had a bit of the mathematician in him.
+The perceptron (see Figure <a href="#org97be816">8</a>) was the invention of a psychologist, <a href="http://dspace.library.cornell.edu/bitstream/1813/18965/2/Rosenblatt_Frank_1971.pdf">Frank Rosenblatt (pdf)</a>.  He was not a computer scientist. Though he obviously had a bit of the mathematician in him.
 </p>
 
 
-<div id="org7392207" class="figure">
+<div id="org97be816" class="figure">
 <p><img src="./images/Mark_I_perceptron.jpeg" alt="Mark_I_perceptron.jpeg" />
 </p>
 <p><span class="figure-number">Figure 8: </span>The Mark I computer for computing the perceptron's activity. Details can be found on <a href="https://en.wikipedia.org/wiki/Perceptron">Wikipedia's page</a>.</p>
@@ -3271,7 +3285,7 @@ For this writer, the perceptron program is not primarily concerned with the inve
 </blockquote>
 </div>
 <ol class="org-ol">
-<li><a id="org59979c0"></a>The Perceptron Rules<br />
+<li><a id="org3aa849d"></a>The Perceptron Rules<br />
 <div class="outline-text-5" id="text-9-1-7-1">
 <p>
 The algorithm the perceptron follows is simple enough to be done by hand. But before doing that take a minute to think what is trying to do. It is trying to go from one set of "weights" to another set of "weights". If you think of all the weights as coordinates in a Cartesian graph then you can visualize each cycle of updating as adding another point to the graph. Squint your eyes and the dots merge to a path. A path through the weight <i>space.</i> This is a dynamic process. A theme that we return to in a later Chapter (add link here).
@@ -3304,7 +3318,7 @@ Updating is done by \(\mathbf{w_{new}} =
 </p>
 </div>
 </li>
-<li><a id="orgdcd1ec1"></a>Be The Perceptron<br />
+<li><a id="orgd488960"></a>Be The Perceptron<br />
 <div class="outline-text-5" id="text-9-1-7-2">
 <p>
 This is a pencil and paper exercise. Before coding it is often a good idea to try and work the basics out by hand. This may be a flow chart or a simple hand worked example. This both gives you a simple test case to compare your code against, but more importantly makes sure that you understand what you are trying to code. Let's make sure you understand how to compute the perceptron learning rule, but doing a simple case by hand.
@@ -3386,7 +3400,7 @@ putStrLn <span style="color: #4ae2ff;">$</span> unlines <span style="color: #6ae
 </pre>
 </div>
 <ol class="org-ol">
-<li><a id="org277b570"></a>More Abstract Thinking<br />
+<li><a id="org4dace4f"></a>More Abstract Thinking<br />
 <div class="outline-text-6" id="text-9-1-7-2-1">
 <p>
 Each time through the perceptron rule new weights are computed. Imagine these two weights as coordinates for the head of a vector with its base at the origin of a Cartesian plane. Imagine as you iterate that you are rotating your weight vector around an origin.
@@ -3397,14 +3411,14 @@ The decision plane for your network is perpendicular to the vectors and is ancho
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="org578e6a2"></a>Bias is a Good Thing (at least here it is)<br />
+<li><a id="orgfc1c534"></a>Bias is a Good Thing (at least here it is)<br />
 <div class="outline-text-7" id="text-9-1-7-2-1-1">
 <p>
 These data were selected such that the base of the vector could separate them while anchored at zero. However, for many data sets you not only need to learn what direction to point the vector, but you also need to learn where to anchor the vector. This is done by including a <b>bias weight</b>. Add an extra dimension to your weight vector and your inputs. For the inputs it will just be a constant value of 1.0, but this extra, bias weight, will also be learned and allows you to achieve, effectively, a translation away from the origin to be able to separate points that are more heterogeneously scattered. 
 </p>
 </div>
 </li>
-<li><a id="orgf447822"></a>Geometrical Thinking<br />
+<li><a id="org9acddee"></a>Geometrical Thinking<br />
 <div class="outline-text-7" id="text-9-1-7-2-1-2">
 <ul class="org-ul">
 <li>What is the relation between the inner product of two vectors and the cosine of the angle between them?</li>
@@ -3420,8 +3434,8 @@ These data were selected such that the base of the vector could separate them wh
 </li>
 </ol>
 </div>
-<div id="outline-container-org45448fc" class="outline-4">
-<h4 id="org45448fc"><span class="section-number-4">9.1.8.</span> The Delta Rule - Homework</h4>
+<div id="outline-container-orgb9ec004" class="outline-4">
+<h4 id="orgb9ec004"><span class="section-number-4">9.1.8.</span> The Delta Rule - Homework</h4>
 <div class="outline-text-4" id="text-9-1-8">
 <p>
 The <b>Delta Rule</b> is another simple learning rule that is a minimal variation on the perceptron rule. It is used more frequently, and it has the spirit of Hebbian learning, which we will learn more about soon. The homework asks you to write code to test and train an artificial neuron using the delta learning rule. 
@@ -3436,8 +3450,8 @@ The <b>Delta Rule</b> is another simple learning rule that is a minimal variatio
 </ul>
 </div>
 </div>
-<div id="outline-container-org4abdc8a" class="outline-4">
-<h4 id="org4abdc8a"><span class="section-number-4">9.1.9.</span> Not all Networks are the Same: Hopfield</h4>
+<div id="outline-container-org5f1c538" class="outline-4">
+<h4 id="org5f1c538"><span class="section-number-4">9.1.9.</span> Not all Networks are the Same: Hopfield</h4>
 <div class="outline-text-4" id="text-9-1-9">
 <ul class="org-ul">
 <li>Feedforward</li>
@@ -3453,14 +3467,14 @@ The Hopfield network<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-ba
 </p>
 
 
-<div id="orge52a091" class="figure">
+<div id="orgaf08f49" class="figure">
 <p><img src="images/hop.svg" alt="hop.svg" class="org-svg" />
 </p>
 <p><span class="figure-number">Figure 9: </span>Illustration of a Hopfield Network's Connection Pattern With Four Nodes</p>
 </div>
 </div>
 <ol class="org-ol">
-<li><a id="org03fed1a"></a>How a Hopfield Network Operates<br />
+<li><a id="org0828034"></a>How a Hopfield Network Operates<br />
 <div class="outline-text-5" id="text-9-1-9-1">
 <ul class="org-ul">
 <li>Each node has a value.</li>
@@ -3482,7 +3496,7 @@ The Hopfield network<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-ba
 </blockquote>
 </div>
 </li>
-<li><a id="org5811d09"></a>A Worked Example<br />
+<li><a id="org96a7a95"></a>A Worked Example<br />
 <div class="outline-text-5" id="text-9-1-9-2">
 <p>
 Inputs can be thought of as vectors. Although I have drawn the network like a square that shape is really independent of the structure of data flow. Each node needs an input and each node will need a weighted contact to all the other nodes. Consider the following two input patterns and the following weight matrix.  
@@ -3559,7 +3573,7 @@ Hopfield networks use a threshold rule. This non-linearity is, at least metaphor
 </blockquote>
 </div>
 <ol class="org-ol">
-<li><a id="orgbacf039"></a>An Aside Distance Metrics<br />
+<li><a id="org9e17673"></a>An Aside Distance Metrics<br />
 <div class="outline-text-6" id="text-9-1-9-2-1">
 <p>
 Metrics relate to measurement. For some operation to be a distance metric it should meet three intuitive requirements and one that is maybe not as obvious. To measure the distance between two things we need an operation that is binary. That is, it takes two inputs. In this case that would be our two vectors. It's result should always be <b>non-negative</b>. A negative distance would clearly be meaningless. Our output should be <b>symmetric</b>. Meaning that \(d(A,B)=d(B,A)\). The distance from Waterloo to Toronto ought to come out as the same as going from Toronto to Waterloo. Our metric should be <b>reflexive</b>. The distance from anything to itself ought to be zero. Lastly, to be a distance metric, our operation must obey the <a href="https://en.wikipedia.org/wiki/Triangle_inequality">triangle inequality</a>.
@@ -3577,7 +3591,7 @@ For perceptrons we talked about how the weight vector moved the direction it poi
 </li>
 </ol>
 </li>
-<li><a id="org98af3d7"></a>Hebb's <a href="https://en.wikipedia.org/wiki/Outer_product">Outer Product</a> Rule<br />
+<li><a id="org1406135"></a>Hebb's <a href="https://en.wikipedia.org/wiki/Outer_product">Outer Product</a> Rule<br />
 <div class="outline-text-5" id="text-9-1-9-3">
 <blockquote>
 <p>
@@ -3607,8 +3621,8 @@ The strength of a change in a connection is proportionate to the product of the 
 </li>
 </ol>
 </div>
-<div id="outline-container-orgc79c0c6" class="outline-4">
-<h4 id="orgc79c0c6"><span class="section-number-4">9.1.10.</span> Hopfield Homework Description: Robustness to Noise (this might take awhile).</h4>
+<div id="outline-container-orge9b7dda" class="outline-4">
+<h4 id="orge9b7dda"><span class="section-number-4">9.1.10.</span> Hopfield Homework Description: Robustness to Noise (this might take awhile).</h4>
 <div class="outline-text-4" id="text-9-1-10">
 <p>
 Overview of the steps to take:
@@ -3637,8 +3651,8 @@ Where N is the size of the patterns, that is how many "neurons". \(\mu\) is an i
 </div>
 </div>
 </div>
-<div id="outline-container-orgdd9bd2d" class="outline-2">
-<h2 id="orgdd9bd2d"><span class="section-number-2">10.</span> Theory Creation in the Cognitive and Psychological Sciences</h2>
+<div id="outline-container-org7faf701" class="outline-2">
+<h2 id="org7faf701"><span class="section-number-2">10.</span> Theory Creation in the Cognitive and Psychological Sciences</h2>
 <div class="outline-text-2" id="text-10">
 <blockquote>
 <p>
@@ -3646,23 +3660,23 @@ I have been wondering about the concept of explanation. I don't know if there is
 </p>
 </blockquote>
 </div>
-<div id="outline-container-org86113fc" class="outline-3">
-<h3 id="org86113fc"><span class="section-number-3">10.1.</span> What is a scientific theory?</h3>
+<div id="outline-container-orge983c08" class="outline-3">
+<h3 id="orge983c08"><span class="section-number-3">10.1.</span> What is a scientific theory?</h3>
 <div class="outline-text-3" id="text-10-1">
 <p>
 And how do the notions of prediction and explanation fit into this? Is the ability to predict the tides a theory of the tides? Is it an explanation of the tides?
 </p>
 </div>
-<div id="outline-container-org83664ac" class="outline-4">
-<h4 id="org83664ac"><span class="section-number-4">10.1.1.</span> What is prediction?</h4>
+<div id="outline-container-org076db32" class="outline-4">
+<h4 id="org076db32"><span class="section-number-4">10.1.1.</span> What is prediction?</h4>
 <div class="outline-text-4" id="text-10-1-1">
 <p>
 And what makes for a good/bad prediction?
 </p>
 </div>
 </div>
-<div id="outline-container-orgaeec54d" class="outline-4">
-<h4 id="orgaeec54d"><span class="section-number-4">10.1.2.</span> What is explanation?</h4>
+<div id="outline-container-orgd3fcb5c" class="outline-4">
+<h4 id="orgd3fcb5c"><span class="section-number-4">10.1.2.</span> What is explanation?</h4>
 <div class="outline-text-4" id="text-10-1-2">
 <p>
 And, again, good v. bad explanations?
@@ -3670,44 +3684,44 @@ And, again, good v. bad explanations?
 </div>
 </div>
 </div>
-<div id="outline-container-orgb6b46dc" class="outline-3">
-<h3 id="orgb6b46dc"><span class="section-number-3">10.2.</span> Classroom Activity</h3>
+<div id="outline-container-org4c032fa" class="outline-3">
+<h3 id="org4c032fa"><span class="section-number-3">10.2.</span> Classroom Activity</h3>
 <div class="outline-text-3" id="text-10-2">
 <p>
 Pick anything you think is an example of a good scientific theory. Be prepared to name it and explain it and to respond to questions that critique it.
 </p>
 </div>
 </div>
-<div id="outline-container-orgdcca64b" class="outline-3">
-<h3 id="orgdcca64b"><span class="section-number-3">10.3.</span> Do we have a theory crisis in Psychology?<sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup></h3>
+<div id="outline-container-org7381d7c" class="outline-3">
+<h3 id="org7381d7c"><span class="section-number-3">10.3.</span> Do we have a theory crisis in Psychology?<sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup></h3>
 <div class="outline-text-3" id="text-10-3">
 <p>
 You might find these citations relevant for discussion.<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup>
 </p>
 </div>
 </div>
-<div id="outline-container-orgef23513" class="outline-3">
-<h3 id="orgef23513"><span class="section-number-3">10.4.</span> Classroom Activity</h3>
+<div id="outline-container-org3de8dde" class="outline-3">
+<h3 id="org3de8dde"><span class="section-number-3">10.4.</span> Classroom Activity</h3>
 <div class="outline-text-3" id="text-10-4">
 <p>
 Did you pick a psychological example? Do you agree that there is a theory crisis in Psychology?
 </p>
 </div>
 </div>
-<div id="outline-container-org697b263" class="outline-3">
-<h3 id="org697b263"><span class="section-number-3">10.5.</span> What are scientific theories good for? Or, in other words, why should we care?</h3>
+<div id="outline-container-org1766ae9" class="outline-3">
+<h3 id="org1766ae9"><span class="section-number-3">10.5.</span> What are scientific theories good for? Or, in other words, why should we care?</h3>
 </div>
 
-<div id="outline-container-org32ef2ad" class="outline-3">
-<h3 id="org32ef2ad"><span class="section-number-3">10.6.</span> What makes a theory a good theory?</h3>
+<div id="outline-container-orgf91eaa5" class="outline-3">
+<h3 id="orgf91eaa5"><span class="section-number-3">10.6.</span> What makes a theory a good theory?</h3>
 <div class="outline-text-3" id="text-10-6">
 <p>
 Try to answer this by using positive and negative examples from the theories selected by your classmates.
 </p>
 </div>
 </div>
-<div id="outline-container-org1accff5" class="outline-3">
-<h3 id="org1accff5"><span class="section-number-3">10.7.</span> What are the first steps towards building a theory?</h3>
+<div id="outline-container-org6e6b93f" class="outline-3">
+<h3 id="org6e6b93f"><span class="section-number-3">10.7.</span> What are the first steps towards building a theory?</h3>
 <div class="outline-text-3" id="text-10-7">
 <ul class="org-ul">
 <li>Phenomena</li>
@@ -3717,12 +3731,12 @@ Try to answer this by using positive and negative examples from the theories sel
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc3a061c" class="outline-3">
-<h3 id="orgc3a061c"><span class="section-number-3">10.8.</span> What should you do next if you think you have a theory?</h3>
+<div id="outline-container-org4f879f4" class="outline-3">
+<h3 id="org4f879f4"><span class="section-number-3">10.8.</span> What should you do next if you think you have a theory?</h3>
 <div class="outline-text-3" id="text-10-8">
 </div>
-<div id="outline-container-org61c003b" class="outline-4">
-<h4 id="org61c003b"><span class="section-number-4">10.8.1.</span> What role should a model play?</h4>
+<div id="outline-container-org96bf6d3" class="outline-4">
+<h4 id="org96bf6d3"><span class="section-number-4">10.8.1.</span> What role should a model play?</h4>
 <div class="outline-text-4" id="text-10-8-1">
 <ol class="org-ol">
 <li>Can a model be verbal?</li>
@@ -3732,12 +3746,12 @@ Try to answer this by using positive and negative examples from the theories sel
 </div>
 </div>
 </div>
-<div id="outline-container-orgca1db55" class="outline-3">
-<h3 id="orgca1db55"><span class="section-number-3">10.9.</span> Formal Modeling (Advocacy)</h3>
+<div id="outline-container-orge42bc2e" class="outline-3">
+<h3 id="orge42bc2e"><span class="section-number-3">10.9.</span> Formal Modeling (Advocacy)</h3>
 <div class="outline-text-3" id="text-10-9">
 </div>
-<div id="outline-container-org76bb144" class="outline-4">
-<h4 id="org76bb144"><span class="section-number-4">10.9.1.</span> Advantages</h4>
+<div id="outline-container-org4a45cd3" class="outline-4">
+<h4 id="org4a45cd3"><span class="section-number-4">10.9.1.</span> Advantages</h4>
 <div class="outline-text-4" id="text-10-9-1">
 <ol class="org-ol">
 <li>Everything must be defined</li>
@@ -3750,8 +3764,8 @@ It is interesting to me that the example used in the <a href="https://noahvandon
 </div>
 </div>
 </div>
-<div id="outline-container-org38cb503" class="outline-3">
-<h3 id="org38cb503"><span class="section-number-3">10.10.</span> Steps to Formalizing a Model</h3>
+<div id="outline-container-org320aebf" class="outline-3">
+<h3 id="org320aebf"><span class="section-number-3">10.10.</span> Steps to Formalizing a Model</h3>
 <div class="outline-text-3" id="text-10-10">
 <ul class="org-ul">
 <li>Define the phenomena (not the specific experiments, but the phenomena writ large [the larger the better]).</li>
@@ -3763,14 +3777,14 @@ Do the automata we programmed show emergence. We only specified the colors of pi
 </ul>
 </div>
 </div>
-<div id="outline-container-org8807bc4" class="outline-3">
-<h3 id="org8807bc4"><span class="section-number-3">10.11.</span> Can you now provide a good example of a psychological theory?</h3>
+<div id="outline-container-orgbcd60e3" class="outline-3">
+<h3 id="orgbcd60e3"><span class="section-number-3">10.11.</span> Can you now provide a good example of a psychological theory?</h3>
 </div>
 
 
 
-<div id="outline-container-org53d7db4" class="outline-3">
-<h3 id="org53d7db4"><span class="section-number-3">10.12.</span> Some Interesting Reading on this Topic</h3>
+<div id="outline-container-orgebbdf17" class="outline-3">
+<h3 id="orgebbdf17"><span class="section-number-3">10.12.</span> Some Interesting Reading on this Topic</h3>
 <div class="outline-text-3" id="text-10-12">
 <p>
 (In addition to the references listed below).
@@ -3785,8 +3799,8 @@ Do the automata we programmed show emergence. We only specified the colors of pi
 </ol>
 </div>
 </div>
-<div id="outline-container-orgcf45421" class="outline-3">
-<h3 id="orgcf45421"><span class="section-number-3">10.13.</span> Theory Homework</h3>
+<div id="outline-container-orgeb750e8" class="outline-3">
+<h3 id="orgeb750e8"><span class="section-number-3">10.13.</span> Theory Homework</h3>
 <div class="outline-text-3" id="text-10-13">
 <p>
 In "Models are Stupid"(see link above) Smaldino writes:
@@ -3846,8 +3860,8 @@ This is an opportunity for you to think deeply and critically about theory. A go
 </div>
 </div>
 </div>
-<div id="outline-container-org91a0e81" class="outline-2">
-<h2 id="org91a0e81"><span class="section-number-2">11.</span> Algebraic Psychology</h2>
+<div id="outline-container-orga9b8ada" class="outline-2">
+<h2 id="orga9b8ada"><span class="section-number-2">11.</span> Algebraic Psychology</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 This section, still to be written, will present some of the mathematics of abstract algebra (not as hard as it sounds), and then show how that can be used to approach a cognitive modeling problem. The example problem we will use is a comparison of <i>formal concept analysis</i> with <a href="https://en.wikipedia.org/wiki/Paul_Thagard">Paul Thagard's</a> <i>Theory of Explanatory Coherence</i>.<sup><a id="fnr.8" class="footref" href="#fn.8" role="doc-backlink">8</a></sup>
@@ -3857,34 +3871,34 @@ This section, still to be written, will present some of the mathematics of abstr
 As a placeholder, and in case I run out of time, I will insert some of the slides I will be using March 12, 2026 for a lecture in CogSci 600.
 </p>
 </div>
-<div id="outline-container-orgf5bd859" class="outline-3">
-<h3 id="orgf5bd859"><span class="section-number-3">11.1.</span> Opening Questions</h3>
+<div id="outline-container-org15073ae" class="outline-3">
+<h3 id="org15073ae"><span class="section-number-3">11.1.</span> Opening Questions</h3>
 <div class="outline-text-3" id="text-11-1">
 </div>
-<div id="outline-container-orge6de9f6" class="outline-4">
-<h4 id="orge6de9f6"><span class="section-number-4">11.1.1.</span> What is a theory?</h4>
+<div id="outline-container-org122a8c4" class="outline-4">
+<h4 id="org122a8c4"><span class="section-number-4">11.1.1.</span> What is a theory?</h4>
 </div>
-<div id="outline-container-org841720b" class="outline-4">
-<h4 id="org841720b"><span class="section-number-4">11.1.2.</span> Name a psychological theory.</h4>
+<div id="outline-container-org821d3c9" class="outline-4">
+<h4 id="org821d3c9"><span class="section-number-4">11.1.2.</span> Name a psychological theory.</h4>
 </div>
 </div>
-<div id="outline-container-orgf1b80d6" class="outline-3">
-<h3 id="orgf1b80d6"><span class="section-number-3">11.2.</span> I demand a satisfactory explanation</h3>
+<div id="outline-container-orgd611037" class="outline-3">
+<h3 id="orgd611037"><span class="section-number-3">11.2.</span> I demand a satisfactory explanation</h3>
 <div class="outline-text-3" id="text-11-2">
 </div>
-<div id="outline-container-org5cdd552" class="outline-4">
-<h4 id="org5cdd552"><span class="section-number-4">11.2.1.</span> A celestial example and a Planetary Context</h4>
+<div id="outline-container-org93a2aeb" class="outline-4">
+<h4 id="org93a2aeb"><span class="section-number-4">11.2.1.</span> A celestial example and a Planetary Context</h4>
 <div class="outline-text-4" id="text-11-2-1">
 
-<div id="orgba5c6d4" class="figure">
+<div id="org3067e9a" class="figure">
 <p><img src="./images/planetCtx.png" alt="planetCtx.png" />
 </p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org64ef235" class="outline-3">
-<h3 id="org64ef235"><span class="section-number-3">11.3.</span> Thagard's Principles of Explanatory Coherence</h3>
+<div id="outline-container-org91d256c" class="outline-3">
+<h3 id="org91d256c"><span class="section-number-3">11.3.</span> Thagard's Principles of Explanatory Coherence</h3>
 <div class="outline-text-3" id="text-11-3">
 <ol class="org-ol">
 <li>Symmetry</li>
@@ -3897,28 +3911,28 @@ As a placeholder, and in case I run out of time, I will insert some of the slide
 </ol>
 </div>
 </div>
-<div id="outline-container-org96ed019" class="outline-3">
-<h3 id="org96ed019"><span class="section-number-3">11.4.</span> Taking up all the oxygen in the room</h3>
+<div id="outline-container-org96e6c4b" class="outline-3">
+<h3 id="org96e6c4b"><span class="section-number-3">11.4.</span> Taking up all the oxygen in the room</h3>
 <div class="outline-text-3" id="text-11-4">
 
-<div id="org4f1c2f3" class="figure">
+<div id="org92c877e" class="figure">
 <p><img src="./images/lavosier.png" alt="lavosier.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org5676e5e" class="outline-3">
-<h3 id="org5676e5e"><span class="section-number-3">11.5.</span> And the network said ..</h3>
+<div id="outline-container-org3b5160f" class="outline-3">
+<h3 id="org3b5160f"><span class="section-number-3">11.5.</span> And the network said ..</h3>
 <div class="outline-text-3" id="text-11-5">
 
-<div id="org74e3ea7" class="figure">
+<div id="org1675304" class="figure">
 <p><img src="../images/lavosierPlot.png" alt="lavosierPlot.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org5acd06d" class="outline-3">
-<h3 id="org5acd06d"><span class="section-number-3">11.6.</span> From Lisp to R</h3>
+<div id="outline-container-org760b3f5" class="outline-3">
+<h3 id="org760b3f5"><span class="section-number-3">11.6.</span> From Lisp to R</h3>
 <div class="outline-text-3" id="text-11-6">
 <div class="org-src-container">
 <pre class="src src-R"><code><span style="color: #ff9070;"># </span><span style="color: #ff9070;">ECHO Model in R
@@ -3942,11 +3956,11 @@ echo_env$max_activation <span style="color: #88ca9f;">&lt;-</span> 1.0
 </div>
 </div>
 </div>
-<div id="outline-container-org9753d70" class="outline-3">
-<h3 id="org9753d70"><span class="section-number-3">11.7.</span> And the network said &hellip; (ECHO, Echo, echo &hellip;)</h3>
+<div id="outline-container-orga29b273" class="outline-3">
+<h3 id="orga29b273"><span class="section-number-3">11.7.</span> And the network said &hellip; (ECHO, Echo, echo &hellip;)</h3>
 <div class="outline-text-3" id="text-11-7">
 
-<div id="orgedbfddd" class="figure">
+<div id="org38e0ad3" class="figure">
 <p><img src="./images/rEcho.png" alt="rEcho.png" />
 </p>
 </div>
@@ -3956,8 +3970,8 @@ Can we do better?
 </p>
 </div>
 </div>
-<div id="outline-container-org7320ed8" class="outline-3">
-<h3 id="org7320ed8"><span class="section-number-3">11.8.</span> Formal CONTEXTS</h3>
+<div id="outline-container-orgc533a3d" class="outline-3">
+<h3 id="orgc533a3d"><span class="section-number-3">11.8.</span> Formal CONTEXTS</h3>
 <div class="outline-text-3" id="text-11-8">
 <ul class="org-ul">
 <li>A set of objects (we'll denote with \(G\) by convention).</li>
@@ -3967,8 +3981,8 @@ Can we do better?
 </ul>
 </div>
 </div>
-<div id="outline-container-org1828b5a" class="outline-3">
-<h3 id="org1828b5a"><span class="section-number-3">11.9.</span> Formal CONCEPTS</h3>
+<div id="outline-container-org5a6ef89" class="outline-3">
+<h3 id="org5a6ef89"><span class="section-number-3">11.9.</span> Formal CONCEPTS</h3>
 <div class="outline-text-3" id="text-11-9">
 <ul class="org-ul">
 <li>Sets of objects that all share the same attributes.</li>
@@ -3985,10 +3999,10 @@ B' &=& \{ g \in G~|~\forall m \in B~gRm\} \\
 </ul>
 </div>
 </div>
-<div id="outline-container-org7c2c1d7" class="outline-3">
-<h3 id="org7c2c1d7"><span class="section-number-3">11.10.</span> A Romantic Connection</h3>
+<div id="outline-container-org7b56e6f" class="outline-3">
+<h3 id="org7b56e6f"><span class="section-number-3">11.10.</span> A Romantic Connection</h3>
 <div class="outline-text-3" id="text-11-10">
-<div class="definition" id="org59cdea5">
+<div class="definition" id="org3a64e41">
 <p>
 <span class="definition-title">Definition: Galois Connection</span>
 \(a \leq F(b) \iff G(a) \geq b\)
@@ -4006,11 +4020,11 @@ Note that this works for our concepts.
 </p>
 </div>
 </div>
-<div id="outline-container-orgd7a7fbe" class="outline-3">
-<h3 id="orgd7a7fbe"><span class="section-number-3">11.11.</span> A celestial example</h3>
+<div id="outline-container-orgb7ac7b1" class="outline-3">
+<h3 id="orgb7ac7b1"><span class="section-number-3">11.11.</span> A celestial example</h3>
 <div class="outline-text-3" id="text-11-11">
 
-<div id="orgda28986" class="figure">
+<div id="org2708d54" class="figure">
 <p><img src="./images/planetCtx.png" alt="planetCtx.png" />
 </p>
 </div>
@@ -4025,35 +4039,35 @@ A'' &=& \{Earth,~Mars\}
 \end{eqnarray}
 </div>
 </div>
-<div id="outline-container-org4db5296" class="outline-3">
-<h3 id="org4db5296"><span class="section-number-3">11.12.</span> Jacob's Ladder</h3>
+<div id="outline-container-org4c6dc7f" class="outline-3">
+<h3 id="org4c6dc7f"><span class="section-number-3">11.12.</span> Jacob's Ladder</h3>
 <div class="outline-text-3" id="text-11-12">
 </div>
-<div id="outline-container-org7449ded" class="outline-4">
-<h4 id="org7449ded"><span class="section-number-4">11.12.1.</span> A Planetary Lattice</h4>
+<div id="outline-container-orgdd4c0d8" class="outline-4">
+<h4 id="orgdd4c0d8"><span class="section-number-4">11.12.1.</span> A Planetary Lattice</h4>
 <div class="outline-text-4" id="text-11-12-1">
 
-<div id="org1de9b3c" class="figure">
+<div id="org33987d7" class="figure">
 <p><img src="./images/planetLattice.png" alt="planetLattice.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf56a946" class="outline-4">
-<h4 id="orgf56a946"><span class="section-number-4">11.12.2.</span> The Context</h4>
+<div id="outline-container-org3fa77ff" class="outline-4">
+<h4 id="org3fa77ff"><span class="section-number-4">11.12.2.</span> The Context</h4>
 <div class="outline-text-4" id="text-11-12-2">
 
-<div id="org6993f30" class="figure">
+<div id="orgbb96ccf" class="figure">
 <p><img src="./images/planetCtx.png" alt="planetCtx.png" />
 </p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org9ad448b" class="outline-3">
-<h3 id="org9ad448b"><span class="section-number-3">11.13.</span> From ECHO to FCA: The Lavoisier Context</h3>
+<div id="outline-container-org707164c" class="outline-3">
+<h3 id="org707164c"><span class="section-number-3">11.13.</span> From ECHO to FCA: The Lavoisier Context</h3>
 <div class="outline-text-3" id="text-11-13">
-<pre class="example" id="orgd88cb19">
+<pre class="example" id="orgb3f5844">
 [1] "Lavoisier vs Phlogiston Explanatory Context:"
    OH1 OH2 OH3 OH4 OH5 OH6 PH1 PH2 PH3 PH4 PH5 PH6
 E1   1   1   1   0   0   0   1   1   1   0   0   0
@@ -4071,10 +4085,10 @@ A value of 1 means the hypothesis explains the evidence.
 </p>
 </div>
 </div>
-<div id="outline-container-org12ee9c0" class="outline-3">
-<h3 id="org12ee9c0"><span class="section-number-3">11.14.</span> Sample Formal Concepts</h3>
+<div id="outline-container-orgdef0573" class="outline-3">
+<h3 id="orgdef0573"><span class="section-number-3">11.14.</span> Sample Formal Concepts</h3>
 <div class="outline-text-3" id="text-11-14">
-<pre class="example" id="orgf2ab26a">
+<pre class="example" id="orga064f9e">
 [[1]]
 ({E1, E2, E3, E4, E5, E6, E7, E8}, {})
 
@@ -4099,8 +4113,8 @@ Each concept shows:
 </ul>
 </div>
 </div>
-<div id="outline-container-org1dc4844" class="outline-3">
-<h3 id="org1dc4844"><span class="section-number-3">11.15.</span> Implications in the Lavoisier Context</h3>
+<div id="outline-container-org76374f7" class="outline-3">
+<h3 id="org76374f7"><span class="section-number-3">11.15.</span> Implications in the Lavoisier Context</h3>
 <div class="outline-text-3" id="text-11-15">
 <pre class="example">
 [1] "Key implications discovered:"
@@ -4116,11 +4130,11 @@ Implications reveal logical dependencies: if evidence supports certain hypothese
 </p>
 </div>
 </div>
-<div id="outline-container-orgf0a604f" class="outline-3">
-<h3 id="orgf0a604f"><span class="section-number-3">11.16.</span> The Lavoisier Concept Lattice</h3>
+<div id="outline-container-orgc78b990" class="outline-3">
+<h3 id="orgc78b990"><span class="section-number-3">11.16.</span> The Lavoisier Concept Lattice</h3>
 <div class="outline-text-3" id="text-11-16">
 
-<div id="org55b3564" class="figure">
+<div id="org6df5bab" class="figure">
 <p><img src="./images/lvll.png" alt="lvll.png" />
 </p>
 <p><span class="figure-number">Figure 10: </span>"The lattice structure reveals the hierarchical organization of explanatory relationships."</p>
@@ -4128,14 +4142,14 @@ Implications reveal logical dependencies: if evidence supports certain hypothese
 </div>
 </div>
 </div>
-<div id="outline-container-org676f448" class="outline-2">
-<h2 id="org676f448"><span class="section-number-2">12.</span> Reasons to Prefer FCA</h2>
+<div id="outline-container-org4e46798" class="outline-2">
+<h2 id="org4e46798"><span class="section-number-2">12.</span> Reasons to Prefer FCA</h2>
 <div class="outline-text-2" id="text-12">
 </div>
-<div id="outline-container-org5c8dbf1" class="outline-3">
-<h3 id="org5c8dbf1"><span class="section-number-3">12.1.</span> Data Processing Inequality</h3>
+<div id="outline-container-org2284a03" class="outline-3">
+<h3 id="org2284a03"><span class="section-number-3">12.1.</span> Data Processing Inequality</h3>
 <div class="outline-text-3" id="text-12-1">
-<div class="theorem" id="org5bfbf19">
+<div class="theorem" id="org515a47e">
 <p>
 <span class="theorem-title">Theorem: Data Processing Inequality</span>
 </p>
@@ -4153,10 +4167,10 @@ In our context: Information cannot be gained by processing data through addition
 </p>
 </div>
 </div>
-<div id="outline-container-org3a5a08e" class="outline-3">
-<h3 id="org3a5a08e"><span class="section-number-3">12.2.</span> Formal Contexts are Chu Spaces</h3>
+<div id="outline-container-orga3df901" class="outline-3">
+<h3 id="orga3df901"><span class="section-number-3">12.2.</span> Formal Contexts are Chu Spaces</h3>
 <div class="outline-text-3" id="text-12-2">
-<div class="definition" id="org9d0fb59">
+<div class="definition" id="org2e97543">
 <p>
 <span class="definition-title">Definition: Chu Space</span>
 A Chu space over a set \(K\) is a triple \((A, r, X)\) where:
@@ -4179,8 +4193,8 @@ Formal contexts are Chu spaces over \(\{0,1\}\) where objects are points, attrib
 </p>
 </div>
 </div>
-<div id="outline-container-org553ae6c" class="outline-3">
-<h3 id="org553ae6c"><span class="section-number-3">12.3.</span> Chu Spaces are *-autonomous categories</h3>
+<div id="outline-container-orgb10722e" class="outline-3">
+<h3 id="orgb10722e"><span class="section-number-3">12.3.</span> Chu Spaces are *-autonomous categories</h3>
 <div class="outline-text-3" id="text-12-3">
 <p>
 In the category of Chu spaces, every object \(A\) has a dual \(A^*\) such that:
@@ -4202,8 +4216,8 @@ This categorical framework unifies logic, geometry, and computation through the 
 </p>
 </div>
 </div>
-<div id="outline-container-org181774e" class="outline-3">
-<h3 id="org181774e"><span class="section-number-3">12.4.</span> Unifying Logic, Geometry, and Computation</h3>
+<div id="outline-container-org64b1a3e" class="outline-3">
+<h3 id="org64b1a3e"><span class="section-number-3">12.4.</span> Unifying Logic, Geometry, and Computation</h3>
 <div class="outline-text-3" id="text-12-4">
 <ul class="org-ul">
 <li>Logic: Chu spaces model linear logic's multiplicative fragment, where \(A \multimap B \equiv A^* \otimes B\)</li>
@@ -4214,12 +4228,12 @@ This categorical framework unifies logic, geometry, and computation through the 
 </div>
 </div>
 </div>
-<div id="outline-container-org8de1617" class="outline-2">
-<h2 id="org8de1617"><span class="section-number-2">13.</span> But wait! There's more!</h2>
+<div id="outline-container-org8e29cb5" class="outline-2">
+<h2 id="org8e29cb5"><span class="section-number-2">13.</span> But wait! There's more!</h2>
 <div class="outline-text-2" id="text-13">
 </div>
-<div id="outline-container-org2009cd7" class="outline-3">
-<h3 id="org2009cd7"><span class="section-number-3">13.1.</span> I probably ran out of time so come talk to me</h3>
+<div id="outline-container-orgd2b7fd8" class="outline-3">
+<h3 id="orgd2b7fd8"><span class="section-number-3">13.1.</span> I probably ran out of time so come talk to me</h3>
 <div class="outline-text-3" id="text-13-1">
 <ul class="org-ul">
 <li>Monoids</li>
@@ -4230,8 +4244,8 @@ This categorical framework unifies logic, geometry, and computation through the 
 <li>Connections to Other Areas of Cognition</li>
 </ul>
 </div>
-<div id="outline-container-orgef5ba21" class="outline-4">
-<h4 id="orgef5ba21"><span class="section-number-4">13.1.1.</span> Bibliography and Other Readings</h4>
+<div id="outline-container-orgc91a512" class="outline-4">
+<h4 id="orgc91a512"><span class="section-number-4">13.1.1.</span> Bibliography and Other Readings</h4>
 <div class="outline-text-4" id="text-13-1-1">
 <p>
 
@@ -4240,15 +4254,15 @@ This categorical framework unifies logic, geometry, and computation through the 
 </div>
 </div>
 </div>
-<div id="outline-container-org2255ac1" class="outline-2">
-<h2 id="org2255ac1"><span class="section-number-2">14.</span> Final Projects</h2>
+<div id="outline-container-org0cfd3ad" class="outline-2">
+<h2 id="org0cfd3ad"><span class="section-number-2">14.</span> Final Projects</h2>
 <div class="outline-text-2" id="text-14">
 <p>
 (also available as a pdf on learn)
 </p>
 </div>
-<div id="outline-container-orgc7ecbea" class="outline-3">
-<h3 id="orgc7ecbea"><span class="section-number-3">14.1.</span> Overview</h3>
+<div id="outline-container-org2248658" class="outline-3">
+<h3 id="org2248658"><span class="section-number-3">14.1.</span> Overview</h3>
 <div class="outline-text-3" id="text-14-1">
 <p>
 The goals of the final project are:
@@ -4292,8 +4306,8 @@ The goal of the written reports is to provide an opportunity to develop and shar
 </p>
 </div>
 </div>
-<div id="outline-container-orgfe006c9" class="outline-3">
-<h3 id="orgfe006c9"><span class="section-number-3">14.2.</span> Evaluation</h3>
+<div id="outline-container-orgdf8a8aa" class="outline-3">
+<h3 id="orgdf8a8aa"><span class="section-number-3">14.2.</span> Evaluation</h3>
 <div class="outline-text-3" id="text-14-2">
 <ol class="org-ol">
 <li>For the oral presentation the evaluation is strictly limited to completion. However, I hope that students will look upon this as an opportunity for practice, and also will be respectful of their peers time. You will be listening much more than speaking so keep that in mind as you plan the quality of your own offering.</li>
@@ -4308,22 +4322,22 @@ The goal of the written reports is to provide an opportunity to develop and shar
 </ol>
 </div>
 </div>
-<div id="outline-container-orgf1c0cb6" class="outline-3">
-<h3 id="orgf1c0cb6"><span class="section-number-3">14.3.</span> Project Topics</h3>
+<div id="outline-container-org3bdfaec" class="outline-3">
+<h3 id="org3bdfaec"><span class="section-number-3">14.3.</span> Project Topics</h3>
 <div class="outline-text-3" id="text-14-3">
 <p>
 Each group will be assigned one of the topics below. Send me your groups ordered preference list as soon as possible. I have added some starter references, but those should not be viewed as sufficient in and of themselves. It is just to give a chance to get a better sense of what the topic is about and what kind of resources you might be looking for. 
 </p>
 </div>
-<div id="outline-container-orge4acfec" class="outline-4">
-<h4 id="orge4acfec"><span class="section-number-4">14.3.1.</span> Reinforcement Learning</h4>
+<div id="outline-container-org1f95416" class="outline-4">
+<h4 id="org1f95416"><span class="section-number-4">14.3.1.</span> Reinforcement Learning</h4>
 <div class="outline-text-4" id="text-14-3-1">
 <p>
 There is a "classic" textbook available on line, code as well. Reinforcement Learning is a common paradigm and mechanism for explaining a multitude of behaviors. The basic idea is that you do more of whatever it is that gives you a reward. The mapping of dopamine dynamics onto reward delivery has been heralded as one of the great successes of computational neuroscience.
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="org0fdfb34"></a>Starting References and Resources<br />
+<li><a id="orgf58ddf5"></a>Starting References and Resources<br />
 <div class="outline-text-5" id="text-14-3-1-1">
 <ul class="org-ul">
 <li>The canonical textbook, freely available online, is Sutton &amp; Barto's <i>Reinforcement Learning: An Introduction</i> (2nd ed.). Both the PDF and code examples are available at: <a href="http://incompleteideas.net/book/the-book-2nd.html">http://incompleteideas.net/book/the-book-2nd.html</a></li>
@@ -4334,15 +4348,15 @@ There is a "classic" textbook available on line, code as well. Reinforcement Lea
 </li>
 </ol>
 </div>
-<div id="outline-container-org171cc72" class="outline-4">
-<h4 id="org171cc72"><span class="section-number-4">14.3.2.</span> Self-organizing Maps (Kohonen Neural Networks)</h4>
+<div id="outline-container-org3b7b159" class="outline-4">
+<h4 id="org3b7b159"><span class="section-number-4">14.3.2.</span> Self-organizing Maps (Kohonen Neural Networks)</h4>
 <div class="outline-text-4" id="text-14-3-2">
 <p>
 Ever wonder how we develop those remarkable maps in the brain where there seems to be an organizational principle that puts similar things next to each other? There is an R package for Kohonen maps, and an article that describes it. For more on the idea itself there are many treatments. One possible starting point would be Kohonen himself.
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="orgf06b36b"></a>Starting References and Resources<br />
+<li><a id="org3cd8996"></a>Starting References and Resources<br />
 <div class="outline-text-5" id="text-14-3-2-1">
 <ul class="org-ul">
 <li>Kohonen, T. (1982). Self-organized formation of topologically correct feature maps. <i>Biological Cybernetics</i>, 43(1), 59–69. <a href="https://doi.org/10.1007/BF00337288">https://doi.org/10.1007/BF00337288</a> — the original paper.</li>
@@ -4353,15 +4367,15 @@ Ever wonder how we develop those remarkable maps in the brain where there seems 
 </li>
 </ol>
 </div>
-<div id="outline-container-org909b01f" class="outline-4">
-<h4 id="org909b01f"><span class="section-number-4">14.3.3.</span> Morris-Lecar Networks</h4>
+<div id="outline-container-org4409ac5" class="outline-4">
+<h4 id="org4409ac5"><span class="section-number-4">14.3.3.</span> Morris-Lecar Networks</h4>
 <div class="outline-text-4" id="text-14-3-3">
 <p>
 In order to gain insights into the dynamics of models of neurons it is useful to simplify them from their fully biologically realistic instances. One simplified version is the Morris-Lecar model that has fewer moving parts, but yields rich dynamics. An introduction from a textbook is available on line. Code also can be found all over the internet, and you should have code, but this might also be a good chance to look at this tool widely used by the neural dynamics community. The author of the software also has his own textbook available for download.
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="orgff4686f"></a>Starting References and Resources<br />
+<li><a id="orgcbc54d9"></a>Starting References and Resources<br />
 <div class="outline-text-5" id="text-14-3-3-1">
 <ul class="org-ul">
 <li>Morris, C., &amp; Lecar, H. (1981). Voltage oscillations in the barnacle giant muscle fiber. <i>Biophysical Journal</i>, 35(1), 193–213. <a href="https://doi.org/10.1016/S0006-3495(81)84782-0">https://doi.org/10.1016/S0006-3495(81)84782-0</a> — the original paper.</li>
@@ -4373,15 +4387,15 @@ In order to gain insights into the dynamics of models of neurons it is useful to
 </li>
 </ol>
 </div>
-<div id="outline-container-org8f2bd32" class="outline-4">
-<h4 id="org8f2bd32"><span class="section-number-4">14.3.4.</span> Backpropagation</h4>
+<div id="outline-container-org4a0aa7f" class="outline-4">
+<h4 id="org4a0aa7f"><span class="section-number-4">14.3.4.</span> Backpropagation</h4>
 <div class="outline-text-4" id="text-14-3-4">
 <p>
 This is the method that revolutionized the world of neural networks. It was a means of transmitting the error to each unit in a multilayer perceptron that would allow for effective quick learning of complex problems. The derivation of the method is complicated in the details, but relatively straightforward in the broad strokes. There are many, many demonstrations of this, but writing your own code to implement the method teaches you a lot.
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="org4aae7d1"></a>Starting References and Resources<br />
+<li><a id="org59dc066"></a>Starting References and Resources<br />
 <div class="outline-text-5" id="text-14-3-4-1">
 <ul class="org-ul">
 <li>Rumelhart, D. E., Hinton, G. E., &amp; Williams, R. J. (1986). Learning representations by back-propagating errors. <i>Nature</i>, 323, 533–536. <a href="https://doi.org/10.1038/323533a0">https://doi.org/10.1038/323533a0</a> — the landmark paper.</li>
@@ -4392,15 +4406,15 @@ This is the method that revolutionized the world of neural networks. It was a me
 </li>
 </ol>
 </div>
-<div id="outline-container-orgffa5568" class="outline-4">
-<h4 id="orgffa5568"><span class="section-number-4">14.3.5.</span> Agent Based Models</h4>
+<div id="outline-container-org547169c" class="outline-4">
+<h4 id="org547169c"><span class="section-number-4">14.3.5.</span> Agent Based Models</h4>
 <div class="outline-text-4" id="text-14-3-5">
 <p>
 Agent Based Models (ABMs) allow us to simulate how complex, population-level patterns emerge from the local interactions of many individual agents, each following simple rules. They have been applied to problems ranging from the spread of disease to the emergence of social norms and collective neural dynamics.
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="orge5f69ce"></a>Starting References and Resources<br />
+<li><a id="org6f45c82"></a>Starting References and Resources<br />
 <div class="outline-text-5" id="text-14-3-5-1">
 <ul class="org-ul">
 <li>Axelrod, R. (1997). <i>The Complexity of Cooperation: Agent-Based Models of Competition and Collaboration</i>. Princeton University Press. — a foundational text on ABMs in the social and behavioral sciences.</li>
@@ -4412,15 +4426,15 @@ Agent Based Models (ABMs) allow us to simulate how complex, population-level pat
 </li>
 </ol>
 </div>
-<div id="outline-container-org8255c47" class="outline-4">
-<h4 id="org8255c47"><span class="section-number-4">14.3.6.</span> Linear Ballistic Accumulators</h4>
+<div id="outline-container-orgd471856" class="outline-4">
+<h4 id="orgd471856"><span class="section-number-4">14.3.6.</span> Linear Ballistic Accumulators</h4>
 <div class="outline-text-4" id="text-14-3-6">
 <p>
 How do we make decisions? We accumulate evidence. That is the idea behind drift diffusion models. And they have been very big over the years, however the math is quite complex and they can be hard to fit. Linear ballistic accumulators are a simplified version. And just as we saw with integrate and fire models simple can sometimes be better, depending on your question. 
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="org58aeccc"></a>Starting References and Resources<br />
+<li><a id="orgc78fe7d"></a>Starting References and Resources<br />
 <div class="outline-text-5" id="text-14-3-6-1">
 <ul class="org-ul">
 <li>Brown, S. D., &amp; Heathcote, A. (2008). The simplest complete model of choice response time: Linear ballistic accumulation. <i>Cognitive Psychology</i>, 57(3), 153–178. <a href="https://doi.org/10.1016/j.cogpsych.2007.12.002">https://doi.org/10.1016/j.cogpsych.2007.12.002</a> — the paper that introduced the LBA model.</li>
@@ -4433,20 +4447,20 @@ How do we make decisions? We accumulate evidence. That is the idea behind drift 
 </ol>
 </div>
 </div>
-<div id="outline-container-org4beb27e" class="outline-3">
-<h3 id="org4beb27e"><span class="section-number-3">14.4.</span> Project Deliverables Summarized</h3>
+<div id="outline-container-orga91475a" class="outline-3">
+<h3 id="orga91475a"><span class="section-number-3">14.4.</span> Project Deliverables Summarized</h3>
 <div class="outline-text-3" id="text-14-4">
 </div>
-<div id="outline-container-orgbb6f287" class="outline-4">
-<h4 id="orgbb6f287"><span class="section-number-4">14.4.1.</span> Presentation</h4>
+<div id="outline-container-org423aea1" class="outline-4">
+<h4 id="org423aea1"><span class="section-number-4">14.4.1.</span> Presentation</h4>
 <div class="outline-text-4" id="text-14-4-1">
 <p>
 A half hour presentation during the last class session that will provide us all with an overview of your topic to include its background, importance, and application. Then you will need to walk us through how to implement and use your computational offering. Lastly, you should address how it is or could be used for better understanding mental or neural questions about the mechanisms of cognition.
 </p>
 </div>
 </div>
-<div id="outline-container-org6264aae" class="outline-4">
-<h4 id="org6264aae"><span class="section-number-4">14.4.2.</span> Report</h4>
+<div id="outline-container-org1636693" class="outline-4">
+<h4 id="org1636693"><span class="section-number-4">14.4.2.</span> Report</h4>
 <div class="outline-text-4" id="text-14-4-2">
 <p>
 Your report should be a paper replete with the usual abstract, intro, methods, code, results of simulations, and references. Figures and analyses should be integrated into the manuscript in order to have a reproducible research project. To the extent that this is not felt to be possible you will have to justify it heavily. Tools that you might find useful include Overleaf and Quarto, though you can probably get close with Rmd/Rstudio since that now supports python. If you elect to use another language you may find they have a suitable language for this (e.g. with Racket it is Scribble).
@@ -4454,8 +4468,8 @@ Your report should be a paper replete with the usual abstract, intro, methods, c
 </div>
 </div>
 </div>
-<div id="outline-container-org72d1cf1" class="outline-3">
-<h3 id="org72d1cf1"><span class="section-number-3">14.5.</span> General Suggestions</h3>
+<div id="outline-container-org42198f4" class="outline-3">
+<h3 id="org42198f4"><span class="section-number-3">14.5.</span> General Suggestions</h3>
 <div class="outline-text-3" id="text-14-5">
 <p>
 I will make the groups, and I encourage each of you to find the right role for each member to make the project work efficiently. Some may be stronger writers while others are better coders. All research is collaborative with a mix of talents. Finding out how to discover that, and apportion work will be important in your future endeavors.
@@ -4466,8 +4480,8 @@ We will decide together the deadline for the delivery of the final report.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc16310b" class="outline-3">
-<h3 id="orgc16310b"><span class="section-number-3">14.6.</span> Some Examples from Last Year</h3>
+<div id="outline-container-org3d8673f" class="outline-3">
+<h3 id="org3d8673f"><span class="section-number-3">14.6.</span> Some Examples from Last Year</h3>
 <div class="outline-text-3" id="text-14-6">
 <p>
 <a href="file:///home/britt/Desktop/PSYCH420 Backpropagation Report-3.pdf">file:///home/britt/Desktop/PSYCH420 Backpropagation Report-3.pdf</a>
@@ -4487,8 +4501,8 @@ We will decide together the deadline for the delivery of the final report.
 </div>
 </div>
 </div>
-<div id="outline-container-org07f68b1" class="outline-2">
-<h2 id="org07f68b1"><span class="section-number-2">15.</span> Some references</h2>
+<div id="outline-container-org5abc84a" class="outline-2">
+<h2 id="org5abc84a"><span class="section-number-2">15.</span> Some references</h2>
 <div class="outline-text-2" id="text-15">
 <div class="csl-bib-body">
   <div class="csl-entry">Borsboom, Denny, Han L. J. van der Maas, Jonas Dalege, Rogier A. Kievit, and Brian D. Haig. “Theory Construction Methodology: A Practical Framework for Building Theories in Psychology.” <i>Perspectives on Psychological Science</i> 16, no. 4 (February 2021): 756–66. <a href="https://doi.org/10.1177/1745691620969647">https://doi.org/10.1177/1745691620969647</a>.</div>
@@ -4541,7 +4555,7 @@ Does it matter that the \(\mathbf{W}\) comes first?
 <div id="postamble" class="status">
 <p class="date">Date: Fall 2026</p>
 <p class="author">Author: Britt Anderson</p>
-<p class="date">Created: 2026-10-02 Fri 10:22</p>
+<p class="date">Created: 2026-10-05 Mon 09:51</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
