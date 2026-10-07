@@ -1,0 +1,48 @@
+* Quiz Questions
+1. Which one began his career in biology and zoology, but was advised to learn as much math and physics as possible?
+   1. Alan Hodgkin
+2. As an undergraduate Hodgkin started "amateurish" experiments on the nerves of what animal?
+   1. Frog
+3. Later on he spent a summer at a Marine Biological Laboratory learning to disect the axons of which sea creature and why?
+   1. Squid. Size.
+4. The ability of Hodgkin and Huxley to do their work was supported indirectly by another great in the history of the action potential. He took some of their teaching load and facilitated a grant from the Rockefeller Foundation. Who was this benevolent figure?
+   1. Lord Adrian
+5. According to the Nobel Prize website what were Hodgkin's two favorite recreations?
+   1. Traveling and fishing.
+6. Andrew Huxley had a famous half-brother. Who was he? Name one book that he wrote (you might have had to read it in a high school English class).
+   1. Aldous Huxley. Brave New World.
+7. Hodgkin and Huxley worked primarily at this eminent English University. Name it.
+   1. Cambridge.
+8. Which one began his career thinking he would be a physicist, but because the rules required him to take one other science picked physiology?
+   1. Andrew Huxley.
+9. How many year was the formal collaboration of Hodgkin and Huxley?
+   1. 7. 1939, and then 1946 - 1952.
+10. In which year did they share the Nobel Prize and who else was also named?
+    1. 1963. Sir John Eccles.
+    2. From which of the three did I receive a hand written letter?
+11. Did they work on Squid Giant Axons or Giant Squid Axons?
+    1. Squid giant axons.
+12. One of their early experiments was trying to measure the viscosity of the axoplasm. What was the method?
+    1. Time the passage of mercury droplets.
+    2. How did the experiments work out?
+       1. They didn't. They were a bust. The mercury just stayed at the surface.
+13. What interrupted their first batch of measuring the cellular potential with a capillary electrode?
+    1. Hitler's invasion of Poland.
+14. What was their key technique?
+    1. [[https://physiologicinstruments.com/blogs/news/voltage-clamp-explained][Voltage clamp]].
+15. Which one of them is credited with first suggesting the $m^3$, $n^4$, and $h$ terms?
+    1. Hodgkin credited Huxley.
+16. Careful. This is a trick question. How many currents does the Hodgkin-Huxley model use?
+    1. 4. Don't forget capacitance.
+17. How many weeks did it take for Hodgkin and Huxley to calculate the curves for these two figures using their mathematical model?
+    [[file:~/gitRepos/compNeuroIntro420/images/handhCurveAddingMachine.png]]
+    1. 6 weeks.
+* Tie Breakers
+1. Huxley's grandfather was nicknamed "Darwin's Bulldog." Who was he, and what word did he coin?
+   1. Thomas Henry Huxley. Agnostic
+2. Which one had a father-in-law that also won the Nobel Prize?
+   1. Hodgkin. Father-in-law was Rous.
+3. The giant axon was, surprisingly, only recognized as a nerve fibre in 1936. What did scientists think it was before than?
+   1. A blood vessel.
+4. Who actually turned the crank on the calculator, and roughly how long would the same simulation take on your laptop?
+   1. Huxley. Milliseconds.
