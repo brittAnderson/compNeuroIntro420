@@ -38,6 +38,8 @@
     in {
       devShells.${system}.default = pkgs.mkShell {
         packages = [
+          (pkgs.haskellPackages.ghcWithPackages (hp: [ hp.gnuplot hp.JuicyPixels]))
+          pkgs.gnuplot
           python
           renv
           pkgs.tk
