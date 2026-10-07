@@ -24,6 +24,7 @@
 #+creator: Emacs 30.2 (Org mode 9.7.11)
 #+bibliography: /home/britt/gitRepos/masterBib/bayatt.bib
 #+cite_export: csl /home/britt/gitRepos/brittsite/assets/chicago-fullnote-bibliography.csl
+#+PROPERTY: header-args:haskell+ :eval no-export
 
 * Welcome to Psych 420
 * Introductions                                                  :assignment:
@@ -202,16 +203,14 @@ The final project is meant to give you an opportunity to showcase your learning 
 #+caption: The original uploader was Icez at English Wikipedia.
 [[file:./images/Forgetting_curve_decline.svg.png]]
 
-#+begin_src haskell :session :cache no :results silent :exports none
-:set -i(locate-dominating-file-equivalent)
-#+end_src
-
 *** A Mathematical Function
-#+begin_src haskell :session :cache no :results file graphics :file ./images/expdecay.png :exports both
+#+begin_src haskell :session  :results file graphics :file ./images/expdecay.png :exports both
   import Graphics.Gnuplot.Simple
-  plotFunc [PNG "./images/expdecay.png"]
-  (linearScale 100 (1,6))
-  ((\x -> exp (1.0/x)) :: Double -> Double)
+  :{
+  plotFunc [PNG "./images/expdecay.png"] 
+           (linearScale 100 (1,6))
+           ((\x -> exp (1.0/x)) :: Double -> Double)
+  :}
 #+end_src
 
 #+Name: exponential-function
@@ -395,10 +394,13 @@ It is possible to fail at generating the code, and still get full credit. The pu
    5. What is a differential equation (aka de)?
    6. Provide examples of phenomena in psychology or neuroscience (other than the action potential) that might be good candidates for this mathematical technique. 
 
-#+begin_src haskell :session  :results file graphics :file ./images/derivExample.png :exports both :cache no
-    plotFuncs [PNG "./images/derivExample.png"] (linearScale 1000 (-3 , 3 ) )
-      [(\x -> x ** 3) :: Double -> Double
-      , (\x -> 12 * x - 16) :: Double -> Double ]
+
+#+begin_src haskell :session :results file graphics :file ./images/derivExample.png :exports both 
+  :{
+  plotFuncs [PNG "./images/derivExample.png"] (linearScale 1000 (-3 , 3 ) )
+            [(\x -> x ** 3) :: Double -> Double
+            , (\x -> 12 * x - 16) :: Double -> Double ]
+  :}
 #+end_src
 
 #+RESULTS:
@@ -410,7 +412,7 @@ It is possible to fail at generating the code, and still get full credit. The pu
 #+INCLUDE: "./src/Sqrt.hs" src haskell -n 
 
 Now let's test it:
-#+begin_src haskell :session  :cache no :results output :exports both
+#+begin_src haskell :session  :results output :exports both
   :! pwd
   :load "./src/Sqrt.hs"
   getCubeRoot 27 1 0.001
@@ -446,17 +448,18 @@ Unfortunately the spring equation is for the *second* derivative of location rel
 #+INCLUDE: "./src/Spring.hs" src haskell -n 
 
 
-#+begin_src haskell :session  :results file graphics :file ./images/spring.png :exports both :cache no
+#+begin_src haskell :session  :results file graphics :file ./images/spring.png :exports both
   :load "./src/Spring.hs"
+  :{
   plotList [PNG "./images/spring.png"]
         $ map (\s -> sLoc s) $ releaseSpring 2000
+  :}
 #+end_src
 
 #+Name: friclessSpring
 #+Caption: Frictionless Springs Oscillate
 #+RESULTS:
 [[file:./images/spring.png]]
-
 
 *** Try with a *Damped Oscillator*                                 :homework:
 The changes to whatever code you have for the frictionless spring should require very little alteration to work with the following DE:
@@ -590,20 +593,22 @@ Unlike real neurons the Integrate and Fire neuron model does not have a natural 
 
 #+INCLUDE: "./src/IandF.hs" src haskell -n 
 
-#+begin_src haskell :session  :results file graphics :file ./images/iandf.png :exports both :cache yes
+#+begin_src haskell :session  :results file graphics :file ./images/iandf.png :exports both
   :load ./src/IandF.hs
-   let run200 = iterate oneRunIandF initialStrut !! 200
-          vs = voltages run200
-          cs = currents run200
-          ts = time run200
-          tv = zip ts vs
-          tc = zip ts cs
-   plotPaths [PNG "./images/iandf.png"] [tv,tc]
+  import Graphics.Gnuplot.Simple
+  :{
+  let run200 = iterate oneRunIandF initialStrut !! 200
+      vs = voltages run200
+      cs = currents run200
+      ts = time run200
+      tv = zip ts vs
+      tc = zip ts cs
+  :}
+  plotPaths [PNG "./images/iandf.png"] [tv,tc]
 #+end_src
 
-#+RESULTS[dd5377738ec68af521597a2074a806e67bf498bf]:
+#+RESULTS:
 [[file:./images/iandf.png]]
-
 
 
 ** Integrate and Fire Homework
@@ -623,7 +628,57 @@ Nobel Prize biographies:
   [[https://www.nobelprize.org/prizes/medicine/1963/huxley/biographical/][Huxley]]
 
 Nice summary [[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3424716/pdf/tjp0590-2571.pdf][article (pdf)]]
+*** HandH Trivial Pursuit :noexport:
+**** Quiz Questions
+1. Which one began his career in biology and zoology, but was advised to learn as much math and physics as possible?
+   1. Alan Hodgkin
+2. As an undergraduate Hodgkin started "amateurish" experiments on the nerves of what animal?
+   1. Frog
+3. Later on he spent a summer at a Marine Biological Laboratory learning to disect the axons of which sea creature and why?
+   1. Squid. Size.
+4. The ability of Hodgkin and Huxley to do their work was supported indirectly by another great in the history of the action potential. He took some of their teaching load and facilitated a grant from the Rockefeller Foundation. Who was this benevolent figure?
+   1. Lord Adrian
+5. According to the Nobel Prize website what were Hodgkin's two favorite recreations?
+   1. Traveling and fishing.
+6. Andrew Huxley had a famous half-brother. Who was he? Name one book that he wrote (you might have had to read it in a high school English class).
+   1. Aldous Huxley. Brave New World.
+7. Hodgkin and Huxley worked primarily at this eminent English University. Name it.
+   1. Cambridge.
+8. Which one began his career thinking he would be a physicist, but because the rules required him to take one other science picked physiology?
+   1. Andrew Huxley.
+9. How many year was the formal collaboration of Hodgkin and Huxley?
+   1. 7. 1939, and then 1946 - 1952.
+10. In which year did they share the Nobel Prize and who else was also named?
+    1. 1963. Sir John Eccles.
+    2. From which of the three did I receive a hand written letter?
+11. Did they work on Squid Giant Axons or Giant Squid Axons?
+    1. Squid giant axons.
+12. One of their early experiments was trying to measure the viscosity of the axoplasm. What was the method?
+    1. Time the passage of mercury droplets.
+    2. How did the experiments work out?
+       1. They didn't. They were a bust. The mercury just stayed at the surface.
+13. What interrupted their first batch of measuring the cellular potential with a capillary electrode?
+    1. Hitler's invasion of Poland.
+14. What was their key technique?
+    1. [[https://physiologicinstruments.com/blogs/news/voltage-clamp-explained][Voltage clamp]].
+15. Which one of them is credited with first suggesting the $m^3$, $n^4$, and $h$ terms?
+    1. Hodgkin credited Huxley.
+16. Careful. This is a trick question. How many currents does the Hodgkin-Huxley model use?
+    1. 4. Don't forget capacitance.
+17. How many weeks did it take for Hodgkin and Huxley to calculate the curves for these two figures using their mathematical model?
+    [[file:~/gitRepos/compNeuroIntro420/images/handhCurveAddingMachine.png]]
+    1. 6 weeks.
+**** Tie Breakers
+1. Huxley's grandfather was nicknamed "Darwin's Bulldog." Who was he, and what word did he coin?
+   1. Thomas Henry Huxley. Agnostic
+2. Which one had a father-in-law that also won the Nobel Prize?
+   1. Hodgkin. Father-in-law was Rous.
+3. The giant axon was, surprisingly, only recognized as a nerve fibre in 1936. What did scientists think it was before than?
+   1. A blood vessel.
+4. Who actually turned the crank on the calculator, and roughly how long would the same simulation take on your laptop?
+   1. Huxley. Milliseconds.
 
+*** Methodology
 [[https://youtu.be/k48jXzFGMc8?si=C1oZhWaRQ0j1osb8][Video]] of the method
  
 *** Model Description
@@ -723,24 +778,22 @@ These constants are adjusted to make the resting potential 0 and the capacitance
 
 #+INCLUDE: "./src/HandH.hs" src haskell -n 
 
-#+begin_src haskell :session  :results file graphics :file ./images/handh.png :exports both :cache yes
+#+begin_src haskell :session  :results file graphics :file ./images/handh.png :exports both
   :load ./src/HandH.hs
-   let myData = take 5000 $ iterate
-         (updNeuron healthyNeuron pSet1 )
-         initialState 
-       vs = map vns myData
-       cs = map ic myData
-       ts = map neuTime myData
-       tv = zip ts vs
-       tc = zip ts cs
-       plotPaths [PNG "./images/handh.png"] [tv,tc]
+  import Graphics.Gnuplot.Simple
+  :{
+    let myData = take 5000 $ iterate (updNeuron healthyNeuron pSet1 ) hhInitialState 
+        vs = map vns myData
+        cs = map ic myData
+        ts = map neuTime myData
+        tv = zip ts vs
+        tc = zip ts cs
+  :}
+  plotPaths [PNG "./images/handh.png"] [tv,tc]
 #+end_src
 
-#+RESULTS[45cce560bd120a655b9c792ab5fb8b29af0ff7f3]:
+#+RESULTS:
 [[file:./images/handh.png]]
-
-
-
 
 
 **** More hints on programming the Hodgkin-Huxley model.
@@ -1246,7 +1299,7 @@ This process is tedious and mistake prone. One good reason for translating your 
 
 #+Name: 30-hs-png
 #+Caption: Invocation of Haskell Code for Generating a PNG file of Rule 30
-#+begin_src haskell :session  :results file graphics :file ./images/rule30.png :exports  both :cache no
+#+begin_src haskell :session  :results file graphics :file ./images/rule30.png :exports  both
   :load ./src/Automata.hs
   drawAutomata 30 128 5 "./images/rule30.png"
 #+end_src
@@ -1255,13 +1308,6 @@ This process is tedious and mistake prone. One good reason for translating your 
 #+Caption: Rule 30
 #+RESULTS: 30-hs-png
 [[file:./images/rule30.png]]
-
-
-
-
-
-
-
 
 *Lessons Learned*
 - Repetitive actions are hard. We (humans) make mistakes following even simple rules for a large number of repeated steps. Better to let the computer do it since that is where its strengths lie.
