@@ -25,6 +25,9 @@
 #+bibliography: /home/britt/gitRepos/masterBib/bayatt.bib
 #+cite_export: csl /home/britt/gitRepos/brittsite/assets/chicago-fullnote-bibliography.csl
 #+PROPERTY: header-args:haskell+ :eval no-export
+#+PROPERTY: header-args:R+ :eval no-export
+#+PROPERTY: header-args:sh+ :eval no-export
+#+PROPERTY: header-args:gnuplot+ :eval no-export
 
 * Welcome to Psych 420
 * Introductions                                                  :assignment:
@@ -622,7 +625,7 @@ Theoretically, look at [[https://redwood.berkeley.edu/wp-content/uploads/2018/08
 
 ** Hodgkin and Huxley Model
 *** Who were Hodgkin and Huxley
-*** Biographical Sources :noexport:
+*** Biographical Sources 
 Nobel Prize biographies:
   [[https://www.nobelprize.org/prizes/medicine/1963/hodgkin/biographical/][Hodgkin]]
   [[https://www.nobelprize.org/prizes/medicine/1963/huxley/biographical/][Huxley]]
