@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Integrate & Fire Neuron</title>
+    <!-- Load Plotly.js for the graphs -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #2c3e50;
+        }
+        .student-info {
+            font-style: italic;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .controls {
+            display: flex;
+            gap: 40px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .control-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        input[type=range] {
+            width: 100%;
+        }
+        .val-display {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        #plot {
+            width: 100%;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Interactive Leaky Integrate & Fire</h1>
+        <div class="student-info">Mathura Murugesan | PSYCH 420 | Dr. Britt Anderson</div>
+    </div>
+
+    <div class="controls">
+        <div class="control-group">
+            <label for="threshSlider">Voltage Threshold: <span id="threshVal" class="val-display">1.0</span></label>
+            <input type="range" id="threshSlider" min="0.1" max="2.0" step="0.05" value="1.0">
+            <small>Controls how much voltage is needed to trigger a spike.</small>
+        </div>
+        <div class="control-group">
+            <label for="currentSlider">Injected Current (Stimulus): <span id="currentVal" class="val-display">1.5</span></label>
+            <input type="range" id="currentSlider" min="0.0" max="3.0" step="0.1" value="1.5">
+            <small>Controls the strength of the stimulus applied from 2s to 12s.</small>
+        </div>
+    </div>
+
+    <div id="plot"></div>
+</div>
+
+<script>
+    // ---------------------------------------------------------
+    // 1. Core Parameters (Matching your Python script)
+    // ---------------------------------------------------------
+    const dt = 0.01;
+    const t_max = 20.0;
+    const n_steps = Math.floor(t_max / dt);
+    const tau = 5.0;
+    const v_rest = 0.0;
+    const v_reset = 0.0;
+    const v_spike_peak = 1.5; // Visual spike peak
+
+    // Generate time array once
+    const t = new Float32Array(n_steps);
+    for(let i = 0; i < n_steps; i++) {
+        t[i] = i * dt;
+    }
+
+    // ---------------------------------------------------------
+    // 2. The Simulation Function
+    // ---------------------------------------------------------
+    function runSimulation(stimulusCurrent, threshold) {
+        let V = new Float32Array(n_steps);
+        let I_ext = new Float32Array(n_steps);
+        V[0] = v_rest;
+
+        for (let i = 0; i < n_steps - 1; i++) {
+            // Apply current pulse only between 2s and 12s
+            if (t[i] >= 2.0 && t[i] <= 12.0) {
+                I_ext[i] = stimulusCurrent;
+            } else {
+                I_ext[i] = 0.0;
+            }
+
+            // Differential Equation: dV/dt = (I - (V - V_rest)) / tau
+            let dV = (I_ext[i] - (V[i] - v_rest)) / tau;
+            
+            // Forward Euler Update
+            V[i + 1] = V[i] + dV * dt;
+
+            // Threshold / Spiking check
+            if (V[i + 1] >= threshold) {
+                V[i] = v_spike_peak; // Draw the tall spike
+                V[i + 1] = v_reset;  // Instantly reset
+            }
+        }
+        
+        // Ensure last current step is matched for the plot
+        I_ext[n_steps-1] = (t[n_steps-1] >= 2.0 && t[n_steps-1] <= 12.0) ? stimulusCurrent : 0.0;
+
+        return { V: V, I_ext: I_ext };
+    }
+
+    // ---------------------------------------------------------
+    // 3. Plotting Function (Plotly.js)
+    // ---------------------------------------------------------
+    function updatePlot() {
+        // Read slider values
+        const currentVal = parseFloat(document.getElementById('currentSlider').value);
+        const threshVal = parseFloat(document.getElementById('threshSlider').value);
+        
+        // Update text displays
+        document.getElementById('currentVal').innerText = currentVal.toFixed(2);
+        document.getElementById('threshVal').innerText = threshVal.toFixed(2);
+
+        // Run math
+        const simData = runSimulation(currentVal, threshVal);
+
+        // Define Voltage Trace
+        const traceV = {
+            x: Array.from(t),
+            y: Array.from(simData.V),
+            mode: 'lines',
+            name: 'Membrane Voltage',
+            line: {color: 'blue'}
+        };
+
+        // Define Threshold Line
+        const traceThresh = {
+            x: [0, t_max],
+            y: [threshVal, threshVal],
+            mode: 'lines',
+            name: 'Threshold',
+            line: {color: 'red', dash: 'dash'}
+        };
+
+        // Define Current Trace
+        const traceI = {
+            x: Array.from(t),
+            y: Array.from(simData.I_ext),
+            mode: 'lines',
+            name: 'Injected Current',
+            line: {color: 'magenta'},
+            xaxis: 'x',
+            yaxis: 'y2'
+        };
+
+        const layout = {
+            grid: {rows: 2, columns: 1, pattern: 'independent'},
+            yaxis: {title: 'Voltage', domain: [0.55, 1], range: [-0.2, 1.8]},
+            yaxis2: {title: 'Current', domain: [0, 0.45], range: [-0.2, 3.5]},
+            xaxis: {title: 'Time (s)'},
+            showlegend: true,
+            margin: {l: 50, r: 20, t: 30, b: 50}
+        };
+
+        Plotly.newPlot('plot', [traceV, traceThresh, traceI], layout);
+    }
+
+    // ---------------------------------------------------------
+    // 4. Event Listeners
+    // ---------------------------------------------------------
+    // Update the plot instantly whenever a slider is moved
+    document.getElementById('currentSlider').addEventListener('input', updatePlot);
+    document.getElementById('threshSlider').addEventListener('input', updatePlot);
+
+    // Initial plot render
+    updatePlot();
+</script>
+
+</body>
+</html>

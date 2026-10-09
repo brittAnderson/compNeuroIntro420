@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Integrate-and-Fire Neuron Simulation</title>
+  <!-- Load Chart.js for rendering graphs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .controls {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    .control-group {
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    label {
+      font-weight: bold;
+    }
+    input[type=range] {
+      width: 60%;
+    }
+    canvas {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Integrate-and-Fire Neuron Model</h1>
+
+  <div class="controls">
+    <div class="control-group">
+      <label for="currentSlider">Input Current (cur): <span id="currentVal">2.0</span></label>
+      <input type="range" id="currentSlider" min="0" max="10" step="0.1" value="2.0">
+    </div>
+
+    <div class="control-group">
+      <label for="thresSlider">Threshold Voltage (thres): <span id="thresVal">3.0</span></label>
+      <input type="range" id="thresSlider" min="0.5" max="10" step="0.1" value="3.0">
+    </div>
+  </div>
+
+  <canvas id="neuronChart"></canvas>
+
+  <script>
+    // Constants from your R script
+    const tau = 0.2;
+    const dt = 0.01;
+    const rest = 0;
+    const t_max = 10.0;
+    const num_steps = t_max / dt;
+
+    // Canvas & Chart setup
+    const ctx = document.getElementById('neuronChart').getContext('2d');
+    let neuronChart;
+
+    function runSimulation(cur, thres) {
+      let v = 1.0; // Starting voltage
+      const voltageHistory = [];
+      const timeAxis = [];
+
+      for (let i = 0; i < num_steps; i++) {
+        let t = i * dt;
+        let dV = (-v + (2.0 * cur)) / tau; // Using R = 2.0
+        v = v + (dV * dt);
+
+        voltageHistory.push(v);
+        timeAxis.push(t.toFixed(2));
+
+        // Threshold check
+        if (v >= thres) {
+          v = rest;
+        }
+      }
+
+      return { timeAxis, voltageHistory };
+    }
+
+    function updatePlot() {
+      const cur = parseFloat(document.getElementById('currentSlider').value);
+      const thres = parseFloat(document.getElementById('thresSlider').value);
+
+      document.getElementById('currentVal').textContent = cur.toFixed(1);
+      document.getElementById('thresVal').textContent = thres.toFixed(1);
+
+      const { timeAxis, voltageHistory } = runSimulation(cur, thres);
+
+      if (neuronChart) {
+        neuronChart.data.labels = timeAxis;
+        neuronChart.data.datasets[0].data = voltageHistory;
+        neuronChart.update();
+      } else {
+        neuronChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: timeAxis,
+            datasets: [{
+              label: 'Membrane Voltage (V)',
+              data: voltageHistory,
+              borderColor: 'purple',
+              borderWidth: 2,
+              pointRadius: 0,
+              fill: false
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              x: { title: { display: true, text: 'Time (seconds)' } },
+              y: { title: { display: true, text: 'Voltage (V)' }, min: 0 }
+            }
+          }
+        });
+      }
+    }
+
+    // Event listeners for interactive sliders
+    document.getElementById('currentSlider').addEventListener('input', updatePlot);
+    document.getElementById('thresSlider').addEventListener('input', updatePlot);
+
+    // Initial run
+    updatePlot();
+  </script>
+</body>
+</html>

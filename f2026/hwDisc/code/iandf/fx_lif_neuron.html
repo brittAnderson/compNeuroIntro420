@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leaky integrate-and-fire neuron</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F3F6F8;
+    --sheet: #FFFFFF;
+    --grid: #DCE5EC;
+    --axis: #8A97A3;
+    --ink: #1D3B5E;
+    --threshold: #B5383A;
+    --current: #2F7D6B;
+    --muted: #5C6873;
+    --text: #1A242E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #151B21;
+      --sheet: #1C242C;
+      --grid: #2B3640;
+      --axis: #6E7C88;
+      --ink: #8DB8E8;
+      --threshold: #E2706F;
+      --current: #6CC3AE;
+      --muted: #9AA6B1;
+      --text: #E4EAEF;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--text);
+    font-family: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 20px 48px;
+  }
+  h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  .lede {
+    margin: 0 0 24px;
+    color: var(--muted);
+    max-width: 66ch;
+  }
+  .recording {
+    background: var(--sheet);
+    border: 1px solid var(--grid);
+    border-radius: 6px;
+    padding: 12px;
+  }
+  canvas {
+    display: block;
+    width: 100%;
+    height: 440px;
+  }
+  .controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 24px;
+  }
+  .control label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .control output {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  .control.current output { color: var(--current); }
+  .control.threshold output { color: var(--threshold); }
+  input[type="range"] {
+    width: 100%;
+    accent-color: var(--ink);
+  }
+  .control.current input { accent-color: var(--current); }
+  .control.threshold input { accent-color: var(--threshold); }
+  input[type="range"]:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 4px;
+  }
+  .hint {
+    font-size: 0.875rem;
+    color: var(--muted);
+    margin: 4px 0 0;
+  }
+  .readout {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--grid);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 40px;
+  }
+  .readout div { min-width: 140px; }
+  .readout span {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+  .readout strong {
+    font-size: 1.25rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .status {
+    margin: 16px 0 0;
+    max-width: 66ch;
+  }
+  .fixed {
+    margin-top: 28px;
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+  @media (max-width: 640px) {
+    .controls { grid-template-columns: 1fr; }
+    canvas { height: 360px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Leaky integrate-and-fire neuron</h1>
+  <p class="lede">Membrane voltage (top) in response to an injected current pulse (bottom). Change the current or the threshold and the trace is recomputed with Euler's method, using the same model as the Python script.</p>
+
+  <div class="recording">
+    <canvas id="plot" aria-label="Voltage and current traces over time" role="img"></canvas>
+  </div>
+
+  <div class="controls">
+    <div class="control current">
+      <label for="current">Input current, I <output id="currentOut" for="current">5.0</output></label>
+      <input id="current" type="range" min="0" max="10" step="0.1" value="5">
+      <p class="hint">Applied until t = 5.5, then switched off.</p>
+    </div>
+    <div class="control threshold">
+      <label for="threshold">Threshold <output id="thresholdOut" for="threshold">3.0</output></label>
+      <input id="threshold" type="range" min="0.5" max="9.5" step="0.1" value="3">
+      <p class="hint">Voltage at which the neuron spikes and resets to rest.</p>
+    </div>
+  </div>
+
+  <div class="readout">
+    <div><span>Spikes</span><strong id="spikeCount">0</strong></div>
+    <div><span>Interspike interval</span><strong id="isi">n/a</strong></div>
+    <div><span>Voltage at input off</span><strong id="vOff">0.00</strong></div>
+  </div>
+  <p class="status" id="status"></p>
+
+  <p class="fixed">Fixed values: DT = 0.01, 1050 steps, rest = 0, reset = rest, &tau; = 1, R = 1, drawn spike height = 10, input off at t = 5.5.</p>
+</main>
+
+<script>
+  // Model values, matching the Python script
+  const DT = 0.01;
+  const STEPS = 1050;
+  const rest = 0;
+  const tau = 1;
+  const R = 1;
+  const resetPotential = rest;
+  const spikePeak = 10;
+  const inputOffTime = 5.5;
+
+  const currentInput = document.getElementById("current");
+  const thresholdInput = document.getElementById("threshold");
+  const canvas = document.getElementById("plot");
+  const ctx = canvas.getContext("2d");
+
+  function current(t, Ion) {
+    return t < inputOffTime ? Ion : 0;
+  }
+
+  function simulate(Ion, threshold) {
+    let v = 0;
+    const vs = [v];
+    const Is = [current(0, Ion)];
+    const spikeTimes = [];
+    let vOff = null;
+    for (let step = 0; step < STEPS - 1; step++) {
+      const t = step * DT;
+      const I = current(t, Ion);
+      if (vOff === null && t >= inputOffTime) vOff = v;
+      v += (DT / tau) * (-(v - rest) + R * I);
+      if (v >= threshold) {
+        vs.push(spikePeak); // recorded for plotting only
+        spikeTimes.push((step + 1) * DT);
+        v = resetPotential;
+      } else {
+        vs.push(v);
+      }
+      Is.push(current((step + 1) * DT, Ion));
+    }
+    return { vs, Is, spikeTimes, vOff };
+  }
+
+  function cssVar(name) {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  }
+
+  function draw(result, threshold, Ion) {
+    const dpr = window.devicePixelRatio || 1;
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+
+    const colors = {
+      grid: cssVar("--grid"), axis: cssVar("--axis"), ink: cssVar("--ink"),
+      threshold: cssVar("--threshold"), current: cssVar("--current"), muted: cssVar("--muted")
+    };
+    const font = '12px "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif';
+
+    const left = 48, right = 14, top = 10, bottom = 34, gap = 26;
+    const plotW = w - left - right;
+    const totalH = h - top - bottom - gap;
+    const vH = totalH * 0.72;
+    const iH = totalH - vH;
+    const vTop = top, iTop = top + vH + gap;
+    const tMax = (STEPS - 1) * DT;
+
+    const xOf = t => left + (t / tMax) * plotW;
+    const vMin = -0.5, vMax = 11;
+    const yV = v => vTop + vH - ((v - vMin) / (vMax - vMin)) * vH;
+    const iMin = 0, iMax = 10.5;
+    const yI = i => iTop + iH - ((i - iMin) / (iMax - iMin)) * iH;
+
+    ctx.font = font;
+    ctx.lineWidth = 1;
+
+    // Grid and time ticks
+    ctx.strokeStyle = colors.grid;
+    ctx.fillStyle = colors.muted;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "top";
+    for (let t = 0; t <= tMax + 1e-9; t += 1) {
+      const x = Math.round(xOf(t)) + 0.5;
+      ctx.beginPath();
+      ctx.moveTo(x, vTop); ctx.lineTo(x, vTop + vH);
+      ctx.moveTo(x, iTop); ctx.lineTo(x, iTop + iH);
+      ctx.stroke();
+      ctx.fillText(String(t), x, iTop + iH + 6);
+    }
+    ctx.fillText("time", left + plotW / 2, iTop + iH + 20);
+
+    // Voltage gridlines and labels
+    ctx.textAlign = "right";
+    ctx.textBaseline = "middle";
+    for (let v = 0; v <= 10; v += 2) {
+      const y = Math.round(yV(v)) + 0.5;
+      ctx.strokeStyle = colors.grid;
+      ctx.beginPath(); ctx.moveTo(left, y); ctx.lineTo(left + plotW, y); ctx.stroke();
+      ctx.fillText(String(v), left - 8, y);
+    }
+    // Current gridlines and labels
+    for (let i = 0; i <= 10; i += 5) {
+      const y = Math.round(yI(i)) + 0.5;
+      ctx.strokeStyle = colors.grid;
+      ctx.beginPath(); ctx.moveTo(left, y); ctx.lineTo(left + plotW, y); ctx.stroke();
+      ctx.fillText(String(i), left - 8, y);
+    }
+
+    // Axis titles
+    ctx.save();
+    ctx.translate(12, vTop + vH / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.textAlign = "center";
+    ctx.fillText("voltage", 0, 0);
+    ctx.restore();
+    ctx.save();
+    ctx.translate(12, iTop + iH / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.textAlign = "center";
+    ctx.fillText("current", 0, 0);
+    ctx.restore();
+
+    // Input-off marker across both panels
+    ctx.strokeStyle = colors.axis;
+    ctx.setLineDash([4, 4]);
+    const xOff = Math.round(xOf(inputOffTime)) + 0.5;
+    ctx.beginPath();
+    ctx.moveTo(xOff, vTop); ctx.lineTo(xOff, vTop + vH);
+    ctx.moveTo(xOff, iTop); ctx.lineTo(xOff, iTop + iH);
+    ctx.stroke();
+    ctx.fillStyle = colors.muted;
+    ctx.textAlign = "left";
+    ctx.textBaseline = "top";
+    ctx.fillText("input off", xOff + 6, vTop + 2);
+
+    // Threshold line
+    ctx.strokeStyle = colors.threshold;
+    ctx.setLineDash([6, 4]);
+    const yTh = Math.round(yV(threshold)) + 0.5;
+    ctx.beginPath(); ctx.moveTo(left, yTh); ctx.lineTo(left + plotW, yTh); ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = colors.threshold;
+    ctx.textAlign = "right";
+    ctx.textBaseline = "bottom";
+    ctx.fillText("threshold", left + plotW - 4, yTh - 3);
+
+    // Voltage trace
+    ctx.strokeStyle = colors.ink;
+    ctx.lineWidth = 1.6;
+    ctx.lineJoin = "round";
+    ctx.beginPath();
+    result.vs.forEach((v, k) => {
+      const x = xOf(k * DT), y = yV(v);
+      if (k === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+
+    // Current trace
+    ctx.strokeStyle = colors.current;
+    ctx.beginPath();
+    result.Is.forEach((i, k) => {
+      const x = xOf(k * DT), y = yI(i);
+      if (k === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+
+    // Panel frames
+    ctx.strokeStyle = colors.axis;
+    ctx.lineWidth = 1;
+    ctx.strokeRect(left + 0.5, vTop + 0.5, plotW - 1, vH - 1);
+    ctx.strokeRect(left + 0.5, iTop + 0.5, plotW - 1, iH - 1);
+  }
+
+  function update() {
+    const Ion = parseFloat(currentInput.value);
+    const threshold = parseFloat(thresholdInput.value);
+    document.getElementById("currentOut").textContent = Ion.toFixed(1);
+    document.getElementById("thresholdOut").textContent = threshold.toFixed(1);
+
+    const result = simulate(Ion, threshold);
+    draw(result, threshold, Ion);
+
+    const n = result.spikeTimes.length;
+    document.getElementById("spikeCount").textContent = n;
+    if (n >= 2) {
+      const isi = (result.spikeTimes[n - 1] - result.spikeTimes[0]) / (n - 1);
+      document.getElementById("isi").textContent = isi.toFixed(2);
+    } else {
+      document.getElementById("isi").textContent = "n/a";
+    }
+    document.getElementById("vOff").textContent = result.vOff.toFixed(2);
+
+    const steady = rest + R * Ion;
+    let message;
+    if (steady < threshold) {
+      message = "R\u00B7I (" + steady.toFixed(1) + ") is below threshold, so the neuron never fires. The voltage levels off at R\u00B7I while the current is on, then decays back to rest.";
+    } else if (steady === threshold) {
+      message = "R\u00B7I equals the threshold. The voltage approaches it but never quite reaches it, so the neuron does not fire.";
+    } else if (n === 0) {
+      message = "R\u00B7I (" + steady.toFixed(1) + ") is above threshold, but the voltage climbs so slowly near threshold that the pulse ends before the first spike. Raise the current or lower the threshold to see firing.";
+    } else {
+      message = "R\u00B7I (" + steady.toFixed(1) + ") is above threshold, so the neuron fires repeatedly while the current is on. After the input switches off, the voltage decays exponentially toward rest.";
+    }
+    document.getElementById("status").textContent = message;
+  }
+
+  currentInput.addEventListener("input", update);
+  thresholdInput.addEventListener("input", update);
+  window.addEventListener("resize", update);
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", update);
+  update();
+</script>
+</body>
+</html>

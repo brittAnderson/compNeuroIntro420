@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Integrate-and-Fire Neuron Presentation</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+.custom-slider{width:420px;height:12px;border-radius:20px;appearance:none;-webkit-appearance:none;outline:none}
+.custom-slider::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:32px;height:32px;border-radius:50%;background:#8bb6e8;border:none;cursor:pointer}
+.custom-slider::-moz-range-thumb{width:32px;height:32px;border-radius:50%;background:#8bb6e8;border:none}
+canvas{background:white;border-radius:8px}
+</style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+<section><h1>Integrate-and-Fire Neuron</h1><p>Interactive Reveal.js presentation based on your Python model.</p></section>
+<section><h2>Model Overview</h2><ul><li>Current integrates over time.</li><li>Voltage rises toward threshold.</li><li>Spike occurs at threshold.</li><li>Voltage resets after firing.</li></ul></section>
+<section><h2>Parameters</h2><p>k = 4.0, R = 2.0, C = 1.0, dt = 0.05 s</p><p>Current applied from 1 s to 6 s.</p></section>
+<section><h2>Interactive Simulation</h2>
+<p>Current: <span id="currentValue">4.3</span></p>
+<input id="currentSlider" class="custom-slider" type="range" min="0" max="10" step="0.1" value="4.3">
+<p>Threshold: <span id="thresholdValue">2.0</span></p>
+<input id="thresholdSlider" class="custom-slider" type="range" min="0.5" max="8" step="0.1" value="2.0">
+<br><br><canvas id="chart" width="900" height="400"></canvas></section>
+<section><h2>Equation</h2><p>dV/dt = (1/τ)(RI - kV)</p><p>When V reaches threshold, a spike is displayed and voltage resets.</p></section>
+<section><h2>Conclusions</h2><ul><li>More current increases firing rate.</li><li>Higher threshold decreases firing frequency.</li><li>The spring term kV creates leakage.</li></ul></section>
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script>
+Reveal.initialize();
+let chart;
+function updateSlider(slider){const p=((slider.value-slider.min)/(slider.max-slider.min))*100;slider.style.background=`linear-gradient(to right,#8bb6e8 0%,#8bb6e8 ${p}%,#3e3e3e ${p}%,#3e3e3e 100%)`;}
+function simulate(){
+const k=4.0,dt=0.05,tmax=10,start=1.0,stop=6.0,res=2.0,cap=1.0,tau=res*cap,initv=0.0,spike=8.0;
+const amp=parseFloat(currentSlider.value); const thresh=parseFloat(thresholdSlider.value);
+currentValue.textContent=amp.toFixed(1); thresholdValue.textContent=thresh.toFixed(1);
+let V=initv,time=[],voltage=[],current=[];
+for(let t=0;t<tmax;t+=dt){let I=(t>=start&&t<=stop)?amp:0; let dVdt=(1/tau)*(res*I-k*V); V=V+dVdt*dt; if(V>=thresh){voltage.push(spike);V=initv;} else voltage.push(V); current.push(I); time.push(t.toFixed(2));}
+if(chart) chart.destroy();
+chart=new Chart(document.getElementById('chart'),{type:'line',data:{labels:time,datasets:[{label:'Voltage',data:voltage,borderColor:'hotpink',pointRadius:0,borderWidth:3},{label:'Current',data:current,borderColor:'teal',pointRadius:0,borderWidth:2}]},options:{animation:false,responsive:false}});
+}
+currentSlider.addEventListener('input',()=>{updateSlider(currentSlider);simulate();});
+thresholdSlider.addEventListener('input',()=>{updateSlider(thresholdSlider);simulate();});
+updateSlider(currentSlider);updateSlider(thresholdSlider);simulate();
+</script></body></html>
