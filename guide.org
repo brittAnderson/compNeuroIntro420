@@ -515,6 +515,8 @@ Is the integrate and fire model used much in modeling in the present time? [[htt
 2. What was the experimental animal used by Adrian?
 [[https://www.nobelprize.org/prizes/medicine/1932/adrian/lecture/][Adrian's Nobel Lecture]]
 [[https://www.jstor.org/stable/769841][Hodgkin's Memoir of Adrian]]
+[[https://link.springer.com/chapter/10.1007/978-1-4613-3039-4_2][Historical Recollections of a co-worker]]
+[[https://www.thetransmitter.org/history-of-neuroscience/the-neural-code-at-100/][The Action Potential Celebrates Its 100th Birthday]]
 #+end_quote
 
 *** Formula I and F
