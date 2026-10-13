@@ -829,19 +829,22 @@ Then you must select one of the sets of \gamma from their [[https://link.springe
 To start with after you have implemented the new /n/ channel function set all the \gamma s to 1. This should work exactly like the old model. Generate a plot showing that it does. For the second plot generate the same plot with your altered $\gamma$ values.
 
 * What is computation and what is its role in cognitive science?
-We will be having a discussion on this. It only works if you have read the material that we want to discus. You need to read several sections of the [[https://plato.stanford.edu/entries/computational-mind/][The Computational Theory of Mind]] *before* class. These are all of section 3, 4.4, and all of 5 and 7. Feel free to read more. Can you answer the following questions after your reading? These are the sort of things we will be discussing. 
+We will be having a discussion on this. It only works if you have read some prepatory material. To that end there are groups of four created with each person reading one of the assignments. We will spend class time for the groups to share with each other the material they read. The readings come the Stanford Encyclopedia of Philosophy. This is a great, free, on-line resource. We will be reading parts of the entry on the [[https://plato.stanford.edu/entries/computational-mind/][The Computational Theory of Mind]]. The sections to read are all of section 3, 4.4, and all of 5 and 7. Feel free to read more, but at least read the one that you are supposed to read for your group. Reading technical material for comprehension is something that requires practice.
+
+Questions that will follow your group conferences are along the following lines: 
 ** What do you think?
-   1. Computational modeling of cognition and neural systems is/is-not the same as programming.
+   1. Computational modeling of cognition and neural systems is/is-not the same as computer programming?
    2. What else could computational modeling be?
    3. What are we losing when we treat our computational model as a programmatic black box?
    4. Is the computation that is cognitive the same as the computation that takes place in digital computers?
    5. If so, why is there more than one programming language?
-   6. Might our choice of programming language based on features actually influence what we can conceive for a computational model?
+   6. Should our choice of programming language be based on features actually influence what we can conceive for a computational model?
    7. What does it mean for something to be a model?
    8. Is simulation good enough?
    9. Is prediction good enough?
    10. Do we want a model to /explain/ something? And then of course what constitutes explanation?
-** What do we need to know? :noexport:
+** What do we need to know and what should we think about when considering questions like this? To span the levels from mind to brain via theory, math, and code[fn:5]
+One of the ways to test your comprehension of a technical reading is to see if you can use it to reason about some related ideas. Understanding is more that simply remembering what was written. That is why many of the questions above are on programming implications. Can we apply our knowledge to new, but related, content? To do this, 
    1. We need to know the facts of the matter, neurally and cognitively.
    2. We need to have a clear question.
    3. We need to have a theoretical committment that leads to clear predictions, and guides our evaluation of what to do.
@@ -851,9 +854,6 @@ We will be having a discussion on this. It only works if you have read the mater
       2. We need to be conversant in symbols and notations.
       3. We need to know how to express in symbols what we can say in words.
       4. We need to know how to express in code what we can write in symbols.
-
-We need to be concerned with all the levels: mind and brain, theory, math, and code.
-We can abbreviate these as MTMC: mind → theory → math → code; the arrows indicating  an ordering on our development.
 
 ** Computing in Minds and Computers
 
@@ -2323,6 +2323,9 @@ https://github.com/sarahgahyun/backpropagation/tree/main
 #+print_bibliography: 
 
 * Footnotes
+
+[fn:5] We can abbreviate this trajectory as MTMC: mind → theory → math → code; the arrows indicating  an ordering on our development. I hope to do something with this idea some day. For now, it is mostly a [[https://brittanderson.github.io/mtmc/][blog]] of interesting quotes.
+ 
 [fn:1] Why the bird names? See [[https://raymondsmullyan.com/books/to-mock-a-mockingbird-and-other-logic-puzzles/][To Mock a Mockingbird]]
 [fn:4] Does it matter that the $\mathbf{W}$ comes first?
 [fn:2] see David Marr's *Vision*. 
