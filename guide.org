@@ -847,7 +847,7 @@ Questions that will follow your group conferences are along the following lines:
 One of the ways to test your comprehension of a technical reading is to see if you can use it to reason about some related ideas. Understanding is more that simply remembering what was written. That is why many of the questions above are on programming implications. Can we apply our knowledge to new, but related, content? To do this, 
    1. We need to know the facts of the matter, neurally and cognitively.
    2. We need to have a clear question.
-   3. We need to have a theoretical committment that leads to clear predictions, and guides our evaluation of what to do.
+   3. We need to have a theoretical commitment that leads to clear predictions, and guides our evaluation of what to do.
    4. Which of course means we need to know what a theory is and how to build one.
    5. We need to know the facts of the matter mathematically and programmatically
       1. We need to be able to read the maths.
