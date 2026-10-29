@@ -1024,7 +1024,18 @@ In other words, his [Schönfinkel's] goal is to create a general framework for o
      This is why in computer science the lambda calculus is often more useful than the Turing Machine construction.
      
      /Why might this be psychologically instructive? Can you think of any psychological or cognitive processes that might map on to this? Rumination? Sustained attention? Flow?/
-   
+
+#+begin_quote
+My intention is not to claim that combinatory logic is the solution to mental
+representation—it would be pretty lucky if logicians of the early 19th century happened
+to hit on the right theory of how a biological system works. Rather, I see combinatory
+logic as a metaphor with some of the right properties. I will refer to the more general
+form of the theory as like Combinatory-Logic, or LCL, and describe some of its core
+components.[fn:7] -- Piantadosi[cite:@Piantadosi_2020]
+#+end_quote
+
+
+
 **** Write a python or R implementation of each of I, K, and S. Try running this code. Verify that... :classroom_activity:
      - =I(5)= returns =5=
      - =K(3)(7)= returns =3=
@@ -1172,6 +1183,11 @@ All three agree at Marr's computational level: same input-output mapping. They d
 **** Why this is psychology and not a puzzle
 
 Boolean concepts are a standard stimulus class in category learning. Shepard, Hovland and Jenkins[cite:@Shepard_1961] studied six types of classification over three binary features.  Feldman[cite:@Feldman_2000] argued that difficulty tracks minimal Boolean formula length, which is a program-length account of the same data. Nosofsky[cite:@Nosofsky_1994]  replicated and extended the SHJ study. The Part C experiment is a toy version of Feldman-style complexity: ask how deep the shortest program for a concept is, then ask whether that predicts which concepts people find hard. Piantadosi, Tenenbaum and Goodman [cite:@Piantadosi_2016] push this into a full compositional model of Boolean concept learning.
+
+
+#+begin_quote
+The LCL can be thought of as a new metaphor—a sub-meaningful symbolic-dynamical system- that gives rise straightforwardly to the types of structures, representations, and algorithms that permeate cognitive science, and that is implementable directly in neural architectures. In spanning these levels, it avoids dodging questions about meaning -- Piantadosi
+#+end_quote
 
 ***** Lambda v. Turing
 We discussed some objections to the classical computational theory of mind. Do the same objections apply to the lambda calculus as to the Turing machine. 
@@ -2251,6 +2267,8 @@ We will decide together the deadline for the delivery of the final report.
 #+print_bibliography: 
 
 * Footnotes
+
+[fn:7] https://github.com/piantado/pychuriso 
 [fn:6]
 Example trace for =S K K x=:
 	  1. =S K K x=
