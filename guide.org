@@ -934,13 +934,14 @@ But there are other models of computation, and considering them may help us appr
 
 *** Why should a psychology student care?
 
-    Because if we accept that the mind is a Turing Machine, then it is also true what the mind compute can be formalized by the lambda calculus. As we will see shortly, there is another computational language of combinatory logic. Any expression in the lambda calculus has a formalization it terms of combinators. So, now we can select a formalization of computation that suits our questions. Why might one choose combinators? It has been argued that they are close to the notions of compilation that comes up in programming languages when we want to make our statements in the language become something executable by the machine. Our choice of a Turing Machine drives us in the direction of state and sequential actions:rules if you will, and that has been a long running theme in cognitive science. The lambda calculus leads us to a functionalist perspective where we care more about the pairing of inputs and outputs rather than the grinding of the gears of the machine in between.
+    Because if we accept that the mind is a Turing Machine, then it is also true what the mind compute can be formalized by the lambda calculus. As we will see shortly, there is another computational language of combinatory logic. Any expression in the lambda calculus has a formalization it terms of combinators. So, now we can select a formalization of computation that suits our questions. Why might one choose combinators? It has been argued that they are close to the notions of compilation that comes up in programming languages when we want to make our statements in the language become something executable by the machine. Our choice of a Turing Machine drives us in the direction of state and sequential actions:rules if you will, and that has been a long running theme in cognitive science. The lambda calculus leads us to a functionalist perspective where we think about the pairing of inputs and outputs, but to express a lambda is to give a method. Maybe that is what we want to think about?
+
+    Two notions of functions: rules or pairings. Which of these most aligns with the TM and lambda calculus approaches? Which of these is more like behaviorism? Which of these do you find the better framework? As a bonus, which of these is extensional and which is intensional? 
 
 *** How Does It All Relate to Marr? :classroom_discussion:
     1. What, again, are Marr's levels?
     2. What level should we be thinking about when we think of the computational theory of mind?
     3. What level is the lambda calculus at?
-
 
 *** What Are We Committing To When We Say "Cognition is Computation"? :classroom_discussion:
 
@@ -1183,7 +1184,6 @@ This equivalence is one of the deepest results in computer science. It suggests 
    and if thinking *is* computation,
 
    then you can think with a Turing machine, and since Turing Machines can be built from non-biological parts then thinking is not just for people anymore.
-
 
 *** Lambda Calculus Homework
 
@@ -2128,7 +2128,6 @@ This categorical framework unifies logic, geometry, and computation through the 
 
 * Final Projects
 (also available as a pdf on learn)
-
 ** Overview
 
 The goals of the final project are:
@@ -2157,7 +2156,6 @@ The emphasis of the oral presentation is on learning. Both of us: the audience a
 The goal of the written reports is to provide an opportunity to develop and share a more rigorous and complete idea of the same general scope, but with increased detail and space for explanations. While a written document is expected other materials may make sense as part of the submission. For example, source code is likely to be a part of all projects. In addition, images or movies of simulations and similar materials may be appropriate. That is for the group to decide.
 
 ** Evaluation
-
 1. For the oral presentation the evaluation is strictly limited to completion. However, I hope that students will look upon this as an opportunity for practice, and also will be respectful of their peers time. You will be listening much more than speaking so keep that in mind as you plan the quality of your own offering.
 2. For the written, final presentation I will be evaluating:
    - Clarity, completeness, and professionalism of the writing.
@@ -2170,6 +2168,13 @@ The goal of the written reports is to provide an opportunity to develop and shar
 
 Each group will be assigned one of the topics below. Send me your groups ordered preference list as soon as possible. I have added some starter references, but those should not be viewed as sufficient in and of themselves. It is just to give a chance to get a better sense of what the topic is about and what kind of resources you might be looking for. 
 
+*** Production Rules
+    Some of the classic cognitive architectures such as SOAR and ACT-R use production systems. They have a long history in cognitive neuroscience. What are they? Why are they suggested to be a good fit? What are some of the common software packages and who would we use them?
+
+**** Starting References and Resources
+- https://soar.eecs.umich.edu/soar_manual/ The Soar user manual
+- https://wires.onlinelibrary.wiley.com/doi/full/10.1002/wcs.1488 An online article describing the system
+  
 *** Reinforcement Learning
 
 There is a "classic" textbook available on line, code as well. Reinforcement Learning is a common paradigm and mechanism for explaining a multitude of behaviors. The basic idea is that you do more of whatever it is that gives you a reward. The mapping of dopamine dynamics onto reward delivery has been heralded as one of the great successes of computational neuroscience.
@@ -2179,37 +2184,6 @@ There is a "classic" textbook available on line, code as well. Reinforcement Lea
 - The canonical textbook, freely available online, is Sutton & Barto's /Reinforcement Learning: An Introduction/ (2nd ed.). Both the PDF and code examples are available at: http://incompleteideas.net/book/the-book-2nd.html
 - For the neuroscience connection, see the dopamine and reward prediction error [[https://www.sciencedirect.com/science/article/pii/S0022249608001181][review]] cited below.
 - A practical Python-focused tutorial series using OpenAI Gym (now Gymnasium) is a good hands-on complement: https://gymnasium.farama.org/
-
-*** Self-organizing Maps (Kohonen Neural Networks)
-
-Ever wonder how we develop those remarkable maps in the brain where there seems to be an organizational principle that puts similar things next to each other? There is an R package for Kohonen maps, and an article that describes it. For more on the idea itself there are many treatments. One possible starting point would be Kohonen himself.
-
-**** Starting References and Resources
-
-- Kohonen, T. (1982). Self-organized formation of topologically correct feature maps. /Biological Cybernetics/, 43(1), 59–69. https://doi.org/10.1007/BF00337288 — the original paper.
-- Wehrens, R., & Buydens, L. M. C. (2007). Self- and super-organizing maps in R: The kohonen package. /Journal of Statistical Software/, 21(5). https://doi.org/10.18637/jss.v021.i05 — the primary reference for the R =kohonen= package.
-- The R =kohonen= package documentation and vignettes are a practical starting point for coding: https://cran.r-project.org/package=kohonen
-
-*** Morris-Lecar Networks
-
-In order to gain insights into the dynamics of models of neurons it is useful to simplify them from their fully biologically realistic instances. One simplified version is the Morris-Lecar model that has fewer moving parts, but yields rich dynamics. An introduction from a textbook is available on line. Code also can be found all over the internet, and you should have code, but this might also be a good chance to look at this tool widely used by the neural dynamics community. The author of the software also has his own textbook available for download.
-
-**** Starting References and Resources
-
-- Morris, C., & Lecar, H. (1981). Voltage oscillations in the barnacle giant muscle fiber. /Biophysical Journal/, 35(1), 193–213. https://doi.org/10.1016/S0006-3495(81)84782-0 — the original paper.
-- Rinzel, J., & Ermentrout, G. B. (1998). Analysis of neural excitability and oscillations. In C. Koch & I. Segev (Eds.), /Methods in Neuronal Modeling/ (2nd ed., pp. 251–291). MIT Press. — a classic chapter situating Morris-Lecar in the broader landscape of neural dynamics. (I found an online copy [[https://www.researchgate.net/publication/237128320_Analysis_of_Neural_Excitability_and_Oscillations][here]])
-- Ermentrout, B., & Terman, D. (2010). /Mathematical Foundations of Neuroscience/. Springer. — Ermentrout's [[https://epubs.siam.org/doi/pdf/10.1137/1.9780898718195.fm?download=true][textbook]] is freely downloadable and treats Morris-Lecar in depth; his simulation tool XPPAUT is also widely used: http://www.math.pitt.edu/~bard/xpp/xpp.html or https://sites.pitt.edu/~phase/bard/bardware/xpp/xpp.html.
-- The Brian2 simulator provides a Python environment well suited to implementing Morris-Lecar networks: https://brian2.readthedocs.io/
-
-*** Backpropagation
-
-This is the method that revolutionized the world of neural networks. It was a means of transmitting the error to each unit in a multilayer perceptron that would allow for effective quick learning of complex problems. The derivation of the method is complicated in the details, but relatively straightforward in the broad strokes. There are many, many demonstrations of this, but writing your own code to implement the method teaches you a lot.
-
-**** Starting References and Resources
-
-- Rumelhart, D. E., Hinton, G. E., & Williams, R. J. (1986). Learning representations by back-propagating errors. /Nature/, 323, 533–536. https://doi.org/10.1038/323533a0 — the landmark paper.
-- Nielsen, M. (2015). /Neural Networks and Deep Learning/. Free online book with worked examples and code in Python: http://neuralnetworksanddeeplearning.com/ — an excellent and readable tutorial treatment of backpropagation from first principles.
-- 3Blue1Brown's video series "Neural Networks" on YouTube provides outstanding visual intuition for the algorithm before diving into the mathematics: https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi
 
 *** Agent Based Models
 
@@ -2222,16 +2196,32 @@ Agent Based Models (ABMs) allow us to simulate how complex, population-level pat
 - Mesa is the primary Python library for agent-based modeling and a natural choice if you prefer to stay in Python. Documentation and tutorials are at: https://mesa.readthedocs.io/ and the repository is at: https://github.com/projectmesa/mesa
 - The Santa Fe Institute's Complexity Explorer offers free online courses and resources that provide good conceptual grounding: https://www.complexityexplorer.org/
 
-*** Linear Ballistic Accumulators
+*** Cognitive Architectures Built on Spiking Neural Networks
 
-How do we make decisions? We accumulate evidence. That is the idea behind drift diffusion models. And they have been very big over the years, however the math is quite complex and they can be hard to fit. Linear ballistic accumulators are a simplified version. And just as we saw with integrate and fire models simple can sometimes be better, depending on your question. 
+In an effort to establish neural verisimilitude, some cognitive architectures ride on top of software implementing the computation by spiking neural networks. Two well know examples are Nengo (invented by UWaterloo CTN director Chris Eliasmith) and Leabra. How do they work? How could we use them, both practically and conceptually?
 
 **** Starting References and Resources
+- https://github.com/nengo/nengo
+- https://github.com/emer/leabra
 
-- Brown, S. D., & Heathcote, A. (2008). The simplest complete model of choice response time: Linear ballistic accumulation. /Cognitive Psychology/, 57(3), 153–178. https://doi.org/10.1016/j.cogpsych.2007.12.002 — the paper that introduced the LBA model.
-- Donkin, C., Brown, S. D., & Heathcote, A. (2011). Drawing conclusions from choice response time models: A tutorial using the linear ballistic accumulator. /Journal of Mathematical Psychology/, 55(2), 140–151. https://doi.org/10.1016/j.jmp.2010.10.001 — a tutorial-style companion paper aimed at new users.
-- The =rtdists= R package implements the LBA and related evidence-accumulation models and is a practical starting point for coding: https://cran.r-project.org/package=rtdists
-- PyDDM is a Python-based simulator for drift-diffusion and accumulator models that can serve as a useful reference implementation: https://pyddm.readthedocs.io/
+*** Dynamical Systems Approach to Neural and Cognitive Modeling
+As we saw in our Hodgkin Huxley models, there is a natural view of neural activity that sees it as changing over time, and sees the nature of that change as the key thing we should be focusing on in our modeling.
+
+**** Starting References and Resources
+- https://doi.org/10.1111/phc3.12695
+*** Causal Models for Cognition
+    What causes what? There is actually a mathematics of this that can be used to model areas of cognition such as development or reasoning.
+**** Starting References and Resources
+- https://www.tandfonline.com/doi/epdf/10.1080/26939169.2022.2128118?needAccess=true
+- https://www.researchgate.net/profile/David-Lagnado/publication/264247776_Causality_in_Thought/links/55b20e5708ae092e965013dd/Causality-in-Thought.pdf?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6InB1YmxpY2F0aW9uIiwicGFnZSI6InB1YmxpY2F0aW9uIn19
+- https://arxiv.org/pdf/2002.06060
+
+
+
+
+
+
+
 
 ** Project Deliverables Summarized
 
@@ -2249,15 +2239,6 @@ I will make the groups, and I encourage each of you to find the right role for e
 
 We will decide together the deadline for the delivery of the final report.
 
-** Some Examples from Last Year
-
-[[file:~/Desktop/PSYCH420 Backpropagation Report-3.pdf]]
-
-https://github.com/sarahgahyun/backpropagation/tree/main
-
-[[file:~/Desktop/PSYCH 420 Final Report.pdf]]
-
-[[https://colab.research.google.com/drive/1ZbZ2MCkY9Wal8BprVKcyaNC1Cl34Wbqu?usp=sharing]]
 
 * Some references
 #+print_bibliography: 
