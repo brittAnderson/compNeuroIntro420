@@ -206,6 +206,7 @@ The final project is meant to give you an opportunity to showcase your learning 
 #+caption: The original uploader was Icez at English Wikipedia.
 [[file:./images/Forgetting_curve_decline.svg.png]]
 *** A Mathematical Function
+<<first-lambda>>
 #+begin_src haskell :session  :results file graphics :file ./images/expdecay.png :exports both
   import Graphics.Gnuplot.Simple
   :{
@@ -936,7 +937,7 @@ But there are other models of computation, and considering them may help us appr
 
     Because if we accept that the mind is a Turing Machine, then it is also true what the mind compute can be formalized by the lambda calculus. As we will see shortly, there is another computational language of combinatory logic. Any expression in the lambda calculus has a formalization it terms of combinators. So, now we can select a formalization of computation that suits our questions. Why might one choose combinators? It has been argued that they are close to the notions of compilation that comes up in programming languages when we want to make our statements in the language become something executable by the machine. Our choice of a Turing Machine drives us in the direction of state and sequential actions:rules if you will, and that has been a long running theme in cognitive science. The lambda calculus leads us to a functionalist perspective where we think about the pairing of inputs and outputs, but to express a lambda is to give a method. Maybe that is what we want to think about?
 
-    Two notions of functions: rules or pairings. Which of these most aligns with the TM and lambda calculus approaches? Which of these is more like behaviorism? Which of these do you find the better framework? As a bonus, which of these is extensional and which is intensional? 
+    Two notions of functions: rules or pairings. Which of these most aligns with the TM and lambda calculus approaches? Which of these is more like behaviorism? Which of these do you find the better framework? As a bonus, which of these [[https://plato.stanford.edu/entries/lambda-calculus/#Non-Extensionality][is extensional and which is intensional?]] 
 
 *** How Does It All Relate to Marr? :classroom_discussion:
     1. What, again, are Marr's levels?
@@ -964,7 +965,13 @@ The lambda calculus is built entirely from functions.
 	        accWithSC :: Double -> Double
 	        accWithSC = accel sprConst -- called currying
       #+end_src
-      =(lambda x : x) (5)=
+
+      #+name: python-lambda-example
+      #+Caption: A λ function in python
+      #+begin_src python :eval never
+      (lambda x : x) (5)
+      #+end_src
+
    2. =\x.y= means "a function that takes input x and returns y" (a constant function)
       What will =(lambda x : 3)(5)= return. What if we give it a different input?
    3. Application: =(\x.x) 5= means "apply the identity function to 5", which gives us =5=
@@ -982,7 +989,7 @@ The lambda calculus is built entirely from functions.
 
 *** Same, but Different: Combinators
 **** History
-      Actually invented before the lambda calculus, twice in fact. Once by [[https://writings.stephenwolfram.com/2020/12/where-did-combinators-come-from-hunting-the-story-of-moses-schonfinkel/][Schönfinkel]] and once by Curry.
+      Actually invented before the lambda calculus, twice in fact. Once by [[https://writings.stephenwolfram.com/2020/12/where-did-combinators-come-from-hunting-the-story-of-moses-schonfinkel/][Schönfinkel]] and once by [[https://people.uleth.ca/~jonathan.seldin/CURRY.pdf][Curry]].
       #+begin_quote
       Turing machines have taken the limelight as models of computation—with combinators, hard to understand as they are, being mentioned at most only in obscure footnotes.  -- Wolfram
 #+end_quote
