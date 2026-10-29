@@ -183,7 +183,6 @@ The final project is meant to give you an opportunity to showcase your learning 
    3. What is the relationship between cognition and neuroscience?
    4. All of which will benefit from better understanding what is a theory.
 
-* Day 1 ended here :noexport:
 * Computational Neuroscience 
 ** Slime assignment 
 *** Slime                                                          :noexport:
