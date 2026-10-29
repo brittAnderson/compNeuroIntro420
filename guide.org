@@ -24,6 +24,7 @@
 #+creator: Emacs 30.2 (Org mode 9.7.11)
 #+bibliography: /home/britt/gitRepos/masterBib/bayatt.bib
 #+cite_export: csl /home/britt/gitRepos/brittsite/assets/chicago-fullnote-bibliography.csl
+#+options: broken-links:mark
 #+PROPERTY: header-args:haskell+ :eval no-export
 #+PROPERTY: header-args:R+ :eval no-export
 #+PROPERTY: header-args:sh+ :eval no-export
@@ -205,7 +206,6 @@ The final project is meant to give you an opportunity to showcase your learning 
 #+Name: forgetting-curve
 #+caption: The original uploader was Icez at English Wikipedia.
 [[file:./images/Forgetting_curve_decline.svg.png]]
-
 *** A Mathematical Function
 #+begin_src haskell :session  :results file graphics :file ./images/expdecay.png :exports both
   import Graphics.Gnuplot.Simple
@@ -926,64 +926,102 @@ Here is the transition table for our machine:
 See Dropbox on Learn
 
 ** The Lambda Calculus
+*** How did we get here?
+Computational approaches to neuroscience and psychology have both large and small questions. Both can be hard. Coding the Hodgkin Huxley model is challenging, but the difficulty is in the details. What is the right formalism to modeling cognition is a philosophical question and a scientific question.
 
-Turing machines are probably the most common framework used for asserting that cognition is computation, but there are others. Another widely used construction, especially in theoretical computer science, is the *lambda calculus*. Although these two constructions appear quite different on the surface, it has been shown that any thing that can be computed in one can be computed by the other. They are equivalent. This has led to a /conjecture/ that anything computable can be computed by a Turing Machine or the Lambda Calculus (and some other additional, equivalent constructions).
+After having worked our way through some of the debate on the meaning of terms like "cognition" we have come to "computation." Turing machines are probably the most common framework used for asserting that cognition is computation. They are relatively easy to describe and implement for simple cases. That is why debates around classical computational theories of mind usually are framed by the slogan, "the mind is a Turing machine."
+
+But there are other models of computation, and considering them may help us appreciate different aspects of the debate, or find a more convenient metaphor for considering certain aspects of cognition. The *lambda calculus* says that instead of state machines (the TM account) we should view computation through the lens of functions, and that includes the important notion of *compositionality*.  Although these two constructions appear quite different on the surface, it has been shown that any thing that can be computed in one can be [[church-turing][computed by the other]]. They are equivalent. 
 
 *** Why should a psychology student care?
 
-    Because if this is true: than anything computable can be computed by the lambda calculus; /and/ that the mind is basically a computation, then the mind can be computed by the lambda calculas. Everything that is mental can be accomplished by this single construct of the function and application. 
+    Because if we accept that the mind is a Turing Machine, then it is also true what the mind compute can be formalized by the lambda calculus. As we will see shortly, there is another computational language of combinatory logic. Any expression in the lambda calculus has a formalization it terms of combinators. So, now we can select a formalization of computation that suits our questions. Why might one choose combinators? It has been argued that they are close to the notions of compilation that comes up in programming languages when we want to make our statements in the language become something executable by the machine. Our choice of a Turing Machine drives us in the direction of state and sequential actions:rules if you will, and that has been a long running theme in cognitive science. The lambda calculus leads us to a functionalist perspective where we care more about the pairing of inputs and outputs rather than the grinding of the gears of the machine in between.
 
+*** How Does It All Relate to Marr? :classroom_discussion:
+    1. What, again, are Marr's levels?
+    2. What level should we be thinking about when we think of the computational theory of mind?
+    3. What level is the lambda calculus at?
+
+*** What Are We Committing To When We Say "Cognition is Computation"? :classroom_discussion:
 *** Lambda Notation Basics
 
 The lambda calculus is built entirely from functions.
 
-1) Syntax
+**** Syntax
    1. =\x.x= means "a function that takes input x and returns x" (the identity function)
+      Where have you seen [[first-lambda][this notation]] before?
       How might we right this in python?
-      =def f (x): x=
-      Note that the lambda calculus version is anonymous. It does not have an f. So, we really should write
+      Note that the function is anonymous.
+      What is currying? And how does it relate to the lambda calculus?
+      #+name: curry-example
+      #+Caption: from [[file:src/Spring.hs]]
+      #+begin_src haskell :eval never
+		accel :: Double -> Double -> Double 
+	        accel sc loc = (-sc) * loc
+
+	        accWithSC :: Double -> Double
+	        accWithSC = accel sprConst -- called currying
+      #+end_src
       =(lambda x : x) (5)=
    2. =\x.y= means "a function that takes input x and returns y" (a constant function)
+      What will =(lambda x : 3)(5)= return. What if we give it a different input?
    3. Application: =(\x.x) 5= means "apply the identity function to 5", which gives us =5=
-    
+**** Test yourself
+
    Try evaluating these by hand:
-   1. =(\x.x) 7= evaluates to =7=
-   2. =(\x.5) 9= evaluates to =5= (the input 9 is ignored). 
-   3. =(\x.x x) 3= evaluates to =3 3= (we apply 3 to itself... which doesn't make sense, but syntactically this is what happens)
-2) The Basic Combinators
-   - I - Identity :: =I = \x.x=
-     Takes its input and returns it unchanged.
-     Example: =I 5 → 5=
-   - K - Constant (Kestrel [fn:1]) :: =K = \x.\y.x=
-     Takes two inputs and returns the first, ignoring the second.
-     Example: =K a b → a=
-     Think of this as "pick the first argument."
-   - S - Substitution (Starling) :: =S = \x.\y.\z.(x z)(y z)=
-     This one is trickier. It takes three inputs and applies the first to the third, then applies the second to the third, then applies those results to each other.
-     Example trace for =S K K x=:
-     1. =S K K x=
-     2. =(K x)(K x)= (by definition of S)
-     3. =x= (because K x returns a function that ignores its input and returns x, so (K x)(anything) = x)
-     Notice: we just built the identity function I from K and S!
-3) A Non-Terminating Example
-   Here's something interesting: =(\x.x x)(\x.x x)=
+   1. =(\x.x) 7= 
+   2. =(\x.5) 9= 
+   3. =(\x.x x) 3=  <<fxn:a>> 
 
-   Try to evaluate it:
-   1. =(\x.x x)(\x.x x)=
-   2. Applying the left function to the right: =(\x.x x)(\x.x x)=
-   3. We're back where we started!
+***** Answers :noexport:
+  1. 7
+  2. 5
+  3. Error, at least in python, although in the pure lambda calculus you can write this and it is syntactically allowed.
+
+*** Same, but Different: Combinators
+**** History
+      Actually invented before the lambda calculus, twice in fact. Once by [[https://writings.stephenwolfram.com/2020/12/where-did-combinators-come-from-hunting-the-story-of-moses-schonfinkel/][Schönfinkel]] and once by Curry.
+      #+begin_quote
+      Turing machines have taken the limelight as models of computation—with combinators, hard to understand as they are, being mentioned at most only in obscure footnotes.  -- Wolfram
+#+end_quote
+
+      #+Caption: A beautiful calculus for a generative mind
+#+begin_quote
+In other words, his [Schönfinkel's] goal is to create a general framework for operating on arbitrary symbolic expressions independent of their interpretation. -- [[https://writings.stephenwolfram.com/2020/12/combinators-and-the-story-of-computation/][Wolfram]]
+#+end_quote
+      
+**** Short Summary
+     A /combinator/ combines other functions or values without using variables.
    
-   This is an infinite loop, but we got it using only function application. No =while= loops, no recursion keyword - just functions.
-
-   Why might this be psychologically instructive? Can you think of any psychological or cognitive processes that might map on to this? Rumination? Sustained attention? Flow?
+     1. The Basic Combinators
+	- I - Identity :: =I = \x.x=
+	  Takes its input and returns it unchanged.
+	- K - Constant (Kestrel [fn:1]) :: =K = \x.\y.x=
+	  Takes two inputs and returns the first, ignoring the second.
+	  Example: =K a b → a=
+	  Think of this as "pick the first argument."
+	- S - Substitution (Starling) :: =S = \x.\y.\z.(x z)(y z)=
+	  This one is trickier. It takes three inputs and applies the first to the third, then applies the second to the third, then applies those results to each other.
+	  *Question* =SKK= is equal to another of the combinators. Which is it?[fn:6]
+     2. A Non-Terminating Example
+     Here's something interesting: =(\x.x x)(\x.x x)=. Compare to [[fxn:a]]
+     Try to evaluate it:
+          1. =(\x.x x)(\x.x x)=
+	  2. Applying the left function to the right: =(\x.x x)(\x.x x)=
+	  3. We're back where we started!
    
-4) Write a python or R implementation of each of I, K, and S. Try running this code. Verify that:
-   - =I(5)= returns =5=
-   - =K(3)(7)= returns =3=
-   - =S(K)(K)(5)= returns =5= (it acts like the identity function)
+     This is an infinite loop, but we got it using only function application. No =while= loops, no recursion keyword - just functions.
 
+     This is why in computer science the lambda calculus is often more useful than the Turing Machine construction.
+     
+     /Why might this be psychologically instructive? Can you think of any psychological or cognitive processes that might map on to this? Rumination? Sustained attention? Flow?/
+   
+**** Write a python or R implementation of each of I, K, and S. Try running this code. Verify that... :classroom_activity:
+     - =I(5)= returns =5=
+     - =K(3)(7)= returns =3=
+     - =S(K)(K)(5)= returns =5= (it acts like the identity function)
 
-*** Haskell Implementation :noexport:
+***** Haskell Implementation                                       :noexport:
 
 Let's make these combinators concrete by implementing them in Haskell:
 
@@ -1003,15 +1041,13 @@ Let's make these combinators concrete by implementing them in Haskell:
 #+END_SRC
 
 #+RESULTS:
-: /home/britt
 : I(5) = 5
 : K(3)(7) = 3
 : S(K)(K)(5) = 5
 : S(K)(K)(42) behaves like I(42): 42
 
-
-** The Church-Turing Thesis
-   The two combinators (K, S) are sufficient to compute *anything* that your Turing machine can compute (but first, why don't I need to include I in this list?).
+*** The Church-Turing Thesis
+   <<church-turing>>The two combinators (K, S) are sufficient to compute *anything* that your Turing machine can compute (but first, why don't I need to include I in this list?).
    
    You can build:
    - Numbers
@@ -1022,10 +1058,12 @@ Let's make these combinators concrete by implementing them in Haskell:
 
    How would you use these /things/ to make numbers?
 
+****    Why would you want to convert things (statements, combinators) to numbers? :classroom_discussion:
+***** Some thoughts                                                :noexport:
+We know how to do arithmetic. If you can convert statements, and combinators, and such into numbers then logic and ultimately thinking just becomes math. Maybe that means we are "just math".
+
 *** Church Numerals
-
-   [[https://en.wikipedia.org/wiki/Church_encoding#Church_numerals][Church numerals]] show how numbers emerge from pure function structure—nothing but lambdas.
-
+[[https://en.wikipedia.org/wiki/Church_encoding#Church_numerals][Church numerals]] show how numbers emerge from pure function structure—nothing but lambdas.
 **** The Encoding
 
 A number n is represented as a function that applies some function f to an argument x exactly n times:
@@ -1035,188 +1073,68 @@ A number n is represented as a function that applies some function f to an argum
 2 = λf.λx. f (f x)
 3 = λf.λx. f (f (f x))
 
-Big woop? or Big woop!
-
-Everything is "just" functions. Even numbers. If the brain (mind) is just a computation are numbers merely an encoding of how many times to do something?
-
 *** Computing with the Lambda Calculus
-
-Can you figure out what addition with Church Numerals looks like?
-
+**** Can you figure out what addition with Church Numerals looks like? :classroom_exercise:
 **** Arithmetic emerges structurally :noexport:
+     #+BEGIN_SRC haskell :session  :exports code :results silent :cache no
+       type ChNum = (Int -> Int) -> Int -> Int
+         deriving Show
+       zero :: ChNum
+       zero = \f -> \ x -> x
+       one :: ChNum
+       one = \f -> \ x -> f x
+       two :: ChNum
+       two = \ f -> \ x -> f $ f x
+       plus :: ChNum -> ChNum -> ChNum
+       plus = \ m -> \ n -> \ f -> \ x -> m f $ n f x
+       toNum :: ChNum -> Int
+       toNum cn = cn (+1) 0
+     #+end_src
 
-Addition becomes:
+       #+begin_src haskell :session :exports both :results output :cache no
+	 toNum $ plus two one
+       #+end_src
 
-~ADD = λm.λn.λf.λx. m f (n f x)~
-
+       #+RESULTS:
+       : 3
 This says: apply f n times, then apply f m more times. No arithmetic axioms—just function composition.
+*** Logic with Combinators :classroom_exercise:
+Using the combinators we have, come up with a combinator definition for TRUE and FALSE. The idea here is to see =TRUE= and =FALSE= as functions and not as values.
 
-**** The Human Combinator Game
+#+begin_src haskell :session :exports code :results silent :cache no
+  true = \ t -> \ f -> t
+  true_c = k
+  false = \t -> \f -> f
+  false_c = k $ i 
+#+end_src
 
-***** Overview :noexport:
+How would you write NOT?
+First, you have to keep in mind that you are writing a function. What type of value does it start with, and what type of value does it end with?
 
-Students form groups of 5-6 and physically act out combinator reductions. Each group receives a target output and must determine what input sequence and combinator arrangement produces it.
+#+begin_src haskell :session :exports code :results output :cache no
+  not = \ b -> b false true  
+  putStrLn $ "not true is " <> not true "yes" "no"
+  putStrLn $ "not false is " <> not false "yes" "no"
+#+end_src
 
-***** Materials Needed :noexport:
+#+RESULTS:
+: not true is no
+: not false is yes
 
-- Index cards in three colors (suggest: green for S, red for K, yellow for I)
-- Blue index cards for data values (labeled a, b, c, etc.)
-- Instruction cards for each combinator role
-- Challenge cards with target problems
-- Scratch paper for groups to plan
+**** Bonus Exercise :classroom_exercise:
+It is possible to translate all the boolean functions into a combinator equivalent, but I found this tricky and confusing, so I assumed most of you would too. Since it is the "meta" level idea of alternative framings that I most want to emphasize, I didn't feel push the parallel too far with specifics would be helpful, but if you want to try, be my guest. Here is a warm up problem.
 
-***** Setup 
-Groups of 3-6. Each group designates:
+Let's define a new combinator =b= (as in Bluebird) for function composition. This means if we have two functions =f= and =g= then =composition f g x = f ( g (x))=. So, you want to write ~b f g x~ and show that it reduces to =f (g (x))=. I will tell you that ~b = S ( K S) K~ you need to apply the combinators step by step to prove that ~b f g x = S ( K S ) K f g x = f ( g (x))~. You should note that since the combinators associate to the left this is the same as ((((S ( K S ) K) f) g) x)
 
-- One S person (green card)
-- One K person (red card)  
-- One I person (yellow card)
-- Two or three Data people (blue cards with letters)
+***** Answer :noexport:
+1. ~((((S ( K S ) K) f) g) x) = (S ( K S) K f) g x~
+2. ~(K S f) (K f) g x = S (K f ) g x~
+3. ~(K f x) (g x) = f ( g (x))~
 
-Distribute [[file:lambda-instruction-cards.org][role instruction]] cards. Ask each group member with a colored card to write down their "role" on the back legibly (so I can re-use them in a future year).
+**** Boolean Functions :classroom_exercise:
+Write the AND and OR functions for our functional definitions of true and false. 
 
-***** Warmup Round :noexport:
-
-****** Evaluate I a
-
-- I person stands ready
-- Data person with "a" card approaches I
-- I takes card, holds it up, says "I returns a"
-- Result: a
-
-****** Evaluate K a b
-
-- K person stands ready
-- Data person "a" approaches, then data person "b"
-- K takes both, discards b (that person sits), holds up a
-- K says "K keeps a, discards b"
-- Result: a
-
-****** Evaluate S K I a
-
-This requires careful sequencing. Walk through slowly:
-
-1. S receives three inputs: K, I, and a
-2. S says "I distribute a to both K and I"
-3. Left pile: K applied to a (K waits for second input)
-4. Right pile: I applied to a (I returns a immediately)
-5. Now left pile (K with a) receives right pile result (a)
-6. K now has two inputs: a and a
-7. K keeps first a, discards second
-8. Result: a
-
-
-***** Challenge Rounds
-****** Round 1
-
-TARGET OUTPUT: b
-
-YOU HAVE: data values a and b
-
-TASK: Arrange combinators and data so the final 
-result is b (not a).
-
-******* HINT :noexport:
-One combinator is enough. Which one?
-What order do you feed inputs?
-
-**Solution:** K b a → b (K keeps first input)
-
-****** Round 2
-
-TARGET OUTPUT: a
-
-YOU HAVE: data values a
-
-TASK: Use at least two combinators, but still 
-end up with just a.
-
-******* HINT :noexport:
-Can you make something that "does nothing
-the long way"?
-
-**Solution:** I (I a) → I a → a, or K a b for any b they invent
-
-****** Round 3
-
-TARGET OUTPUT: a
-
-YOU HAVE: combinators S, K, I and data value a
-
-TASK: Achieve the same result as (I a) but 
-using only S and K—no I.
-
-******* HINT :noexport:
-Remember that I can be BUILT from S and K.
-The expression S K K behaves like I.
-
-**Solution:** S K K a → K a (K a) → a
-
-Groups must trace through:
-1. S gets K, K, a
-2. Left pile: K a (waiting for second input)
-3. Right pile: K a (waiting for second input)
-4. Left pile applied to right pile: (K a)(K a)
-5. K a receives (K a) as second input, discards it, returns a
-
-****** Round 4
-
-TARGET OUTPUT: b a
-
-YOU HAVE: data values a and b, which can 
-themselves act like functions
-
-TASK: Produce "b applied to a" as your result.
-
-******* HINT :noexport:
-You need something that takes two things
-and flips their order.
-
-HARDER HINT: The flip combinator can be built 
-as S (K (S I)) K, but try S K first with 
-clever data arrangement.
-
-**Solution:** This is genuinely hard. The flip combinator is:
-
-λx.λy.y x
-
-Groups may not solve this fully. That is acceptable. Discuss afterward as a class why some operations need more complex combinator arrangements.
-
-****** Round 5
-
-TARGET OUTPUT: a a
-
-YOU HAVE: data value a
-
-TASK: Duplicate your input—end with two copies 
-of a applied to each other.
-
-******* HINT :noexport:
-S can duplicate because it sends the
-third input to TWO places.
-
-EXPRESSION TO TRY: S I I a
-```
-
-**Solution:** S I I a
-1. S receives I, I, a
-2. Left: I a → a
-3. Right: I a → a
-4. Left applied to right: a a
-
-This demonstrates self-application, connecting to the ω combinator discussion.
-
-***** Debrief :noexport:
-
-- Which combinator felt most confusing to execute? (Usually S)
-- What does K "feel like" cognitively? (Selective attention? Ignoring distractions?)
-- What does S "feel like"? (Distributing context? Applying background knowledge to multiple items?)
-- Did anyone discover a shorter solution than expected?
-- Did any group get stuck in a loop or undefined state?
-
-Key point to emphasize: These three simple operations suffice for any computation. The complexity comes from arrangement, not from hidden sophisticated parts.
-
-*** Lambda Calculas Homework
+*** Lambda Calculus Homework
 
 **** HW 1: Computational Analogy Essay
 
@@ -1256,9 +1174,10 @@ For recall you will need a notion of pairs. Can you build a structure that holds
 
 The founders of computer science—Church, Turing, Curry—struggled with these ideas for years. You are being asked to engage with material that shaped the twentieth century's understanding of mind and mechanism. Confusion is not failure. Frustration is not failure. Only disengagement is failure.
 
-IAMHERE also
-
 ** Two Completely Different Models
+
+*** Lambda v. Turing
+     We discussed some objections to the classical computational theory of mind. Do the same objections apply to the lambda calculus as to the Turing machine. 
 
 | Turing Machine                | Lambda Calculus              |
 |-------------------------------+------------------------------|
@@ -2323,6 +2242,13 @@ https://github.com/sarahgahyun/backpropagation/tree/main
 #+print_bibliography: 
 
 * Footnotes
+[fn:6]
+Example trace for =S K K x=:
+	  1. =S K K x=
+	  2. =(K x)(K x)= (by definition of S)
+	  3. =x= (because K x returns a function that ignores its input and returns x, so (K x)(anything) = x)
+
+ 
 
 [fn:5] We can abbreviate this trajectory as MTMC: mind → theory → math → code; the arrows indicating  an ordering on our development. I hope to do something with this idea some day. For now, it is mostly a [[https://brittanderson.github.io/mtmc/][blog]] of interesting quotes.
  
@@ -2333,5 +2259,5 @@ https://github.com/sarahgahyun/backpropagation/tree/main
 
 
 # Local Variables:
-# jinx-local-words: "homeworks"
+# jinx-local-words: "Combinators compositionality computable homeworks"
 # End:
