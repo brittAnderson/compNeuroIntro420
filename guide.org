@@ -1259,11 +1259,9 @@ The founders of computer science—Church, Turing, Curry—struggled with these 
    #+Name: fig-grid
    #+Caption: An illustration of which three squares in the row above influence the coloring of your grid. 
    [[file:./images/grid.png]]
-6. Do this for several rows. 
+6. Do this for several rows.
 
-*What you probably noticed*
-
-This process is tedious and mistake prone. One good reason for translating your theoretical ideas into code is so that you are not tripped up by such rote errors. Another thing to notice is that your "rule" is like a computer function. There is an input (the colors of the three squares above), processing, and an output of what color. In addition to this mechanical intuition a function can also be conceived as a set of pairs. The first element of the pair is the input, and the second element of the pair is the output.
+**** Results
 
 #+Name: 30-hs-png
 #+Caption: Invocation of Haskell Code for Generating a PNG file of Rule 30
@@ -1277,6 +1275,10 @@ This process is tedious and mistake prone. One good reason for translating your 
 #+RESULTS: 30-hs-png
 [[file:./images/rule30.png]]
 
+***** What you probably noticed                                    :noexport:
+
+This process is tedious and mistake prone. One good reason for translating your theoretical ideas into code is so that you are not tripped up by such rote errors. Another thing to notice is that your "rule" is like a computer function. There is an input (the colors of the three squares above), processing, and an output of what color. In addition to this mechanical intuition a function can also be conceived as a set of pairs. The first element of the pair is the input, and the second element of the pair is the output.
+
 *Lessons Learned*
 - Repetitive actions are hard. We (humans) make mistakes following even simple rules for a large number of repeated steps. Better to let the computer do it since that is where its strengths lie.
 - Complex global patterns can emerge from local actions. Each neuron is only responding to its immediate right and left yet global structures emerge.
@@ -1284,41 +1286,46 @@ This process is tedious and mistake prone. One good reason for translating your 
 - From each neuron making a local computation, global patterns of complex activity can emerge.
 - Maybe by programming something similar to this system we can get insights into brain activity.
 
-
-#+Begin_quote
- There are [[file:~/gitRepos/compNeuroIntro420/codeLib/cl/cellular-automata.lisp][common lisp]], [[file:~/gitRepos/compNeuroIntro420/codeLib/rkt/ca.rkt][racket]], versions of this code. Can you write your own? Can you write code to automate your rule?
-#+End_quote
-
-*** More Lessons from Cellular Automata
+**** How is an Automata Like a Brain (like a Mind)? :classdiscussion:
+**** More Lessons from Cellular Automata
 
 Complex entities may have simple representations if the right language for expression can be found. Concision and repeatability are by-products. 
 
 There are also more dynamic versions of this idea. The "[[https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life][Game of Life]]" is one of the more famous.
 
-Following up on the analogy to neurons, one humanity's most brilliant examples: John von Neumann, was working on a [[https://complexityexplorer.s3.amazonaws.com/supplemental_materials/5.6+Artificial+Life/The+Computer+and+The+Brain_text.pdf][book]] (see also the [[http://www.ams.org/bull/1958-64-03/S0002-9904-1958-10214-1/S0002-9904-1958-10214-1.pdf][commentary]]) about automata and the brain at the time of his death.
-
-
-*** John Hopfield
-To motivate our learning, and to put a human face on the project these two links give you a glimpse of Hopfield talking about his work at the 2024 Nobel Prize lectures, and a nice long podcast that gives a slow, throurough, tutorial discussion of what it is all about. We will come back to this later, but for now start listening. There is an associated homework. 
-
-**** Nobel Prize
-[[https://youtu.be/8SffhDk4mdU?feature=shared][John Hopfield's Nobel Lecture]]
-
-**** Podcast on the Hopfield Network
-This [[https://theoreticalneuroscience.no/thn22/][theoretical neuroscience podcast]] gives a nice long look at the Hopfield Network. It works up to its creation, its abstraction, and it social impact on shaping the field of computational neuroscience. It is long, but, if you make your way through it you will have a good overview of the model before you start coding it.
+Following up on the analogy to neurons, one humanity's most brilliant examples: John von Neumann, was working on a [[https://complexityexplorer.s3.amazonaws.com/supplemental_materials/5.6+Artificial+Life/The+Computer+and+The+Brain_text.pdf][book]] (see also the [[http://www.ams.org/bull/1958-64-03/S0002-9904-1958-10214-1/S0002-9904-1958-10214-1.pdf][commentary]]) about automata and the brain by the inventor of Information Theory, Claude Shannon.
+***** von Neumann Trivia
+****** Questions
+1. In what country was von Neumann born?
+2. At what age had von Neumann mastered calculus?
+3. How old was he when he started university?
+4. How old was I when I started university?
+5. How many PhD degrees did he have?
+6. What two universities did he attend for his two simultaneous degrees?
+7. Did he play a musical instrument, and if so which one?
+8. Famously, when he was at the Institute for Advanced Studies he annoyed his office next-door neighbor by playing his records too loudly. Who was the neighbor?
+9. What was the name of the early digital computer that he helped design and build? Bonus: what University?
+10. von Neumann was an American citizen?
+****** Answers :noexport:
+1. Hungry
+2. 8
+3. 15
+4. 16
+5. 1; he earned a PhD in Math and a Bachelors of Chemical Engineering
+6. University of Budapest, and the ETHZ (a university in Switzerland). Mostly stayed in Zurich to attend classes, and just returned to Budapest to take exams (which he aced).
+7. Piano, but he apparently never really mastered it.
+8. Albert Einstein.
+9. Eniac; UPenn
+10. Naturalized 1937.
+**** What is Automata Theory and how does it relate to neural networks? :classdiscussion:
 
 *** Linear Algebra
 Show me the math!
 
-
 The math at the heart of neural networks and their computer implementation is *linear algebra*. For us, the section of linear algebra we are going to need is mostly limited to vectors, matrices and how to add and multiply them.
 
-#+begin_quote
-*Discussion Question:*
-
-What makes linear algebra linear?
-#+end_quote
-
+**** What makes linear algebra linear? :classdiscussion:
+\(T(s~a + t~b) = s~Ta + t*Tb\)
 **** Important Objects and Operations
   - Vectors
   - Matrices
@@ -1410,8 +1417,6 @@ Matrices tend to be notated as /upper case/ letters, typically in bold,
 such as $\mathbf{M}$.
 
 Good things to know: what is an inner product? How does it differ from a scalar product. Can you write code in your preferred language for the inner product?
-
-*** Neural Networks Redux
 
 *** What is a Neural Network?
 
@@ -1511,7 +1516,6 @@ Can neural networks encode logic? Is the processing zeros and ones enough to cap
 There is a long tradition of representing human thought as the consequence of some sort of calculation of two values (true or false). If you have two values you can swap out 1's and 0's for the true and false in your calculation. They even seem to obey similar laws. The conjunction (AND) of two true things is only true when both are true. If you take T = 1, then T AND T is the same as $1~\times~1$.
 
   We will next build up a simple threshold neural unit and try to calculate some of these truth functions with our neuron. We will build simple neurons for truth tables (like those that follow), and string them together into an argument. Then we can feed values of T and F into our network and let it calculate the XOR problem.
-
 
 **** Boolean Logic
 George Boole, Author of the /Laws of Thought/.
@@ -1655,7 +1659,6 @@ The *Delta Rule* is another simple learning rule that is a minimal variation on 
 - The Delta Learning rule is: $\Delta~w_i = x_i~\eta(desired - observed)$
 - Submit your code that has your test data in it. Start with an initial random weight and use the delta rule to learn the correct weighting to solve all your training examples. Then test on a new set of points that you did not test on but that are classified according to the same rule. Your code should assess how well the trained rule classifies the test data.
 
-
 *** Not all Networks are the Same: Hopfield
 
 - Feedforward
@@ -1670,7 +1673,6 @@ The Hopfield network [cite:@Hopfield_1982] has taught many lessons, both practic
 #+Name: hopfield-image
 #+Caption: Illustration of a Hopfield Network's Connection Pattern With Four Nodes
 [[file:images/hop.svg]]
-
 
 **** How a Hopfield Network Operates
 - Each node has a value.
@@ -1769,6 +1771,16 @@ The strength of a change in a connection is proportionate to the product of the 
 - How do you compute it in your programming language of choice?
 
 #+End_quote
+
+*** John Hopfield
+To motivate our learning, and to put a human face on the project these two links give you a glimpse of Hopfield talking about his work at the 2024 Nobel Prize lectures, and a nice long podcast that gives a slow, thorough, tutorial discussion of what it is all about. We will come back to this later, but for now start listening. There is an associated homework. 
+
+**** Nobel Prize
+[[https://youtu.be/8SffhDk4mdU?feature=shared][John Hopfield's Nobel Lecture]]
+
+**** Podcast on the Hopfield Network
+This [[https://theoreticalneuroscience.no/thn22/][theoretical neuroscience podcast]] gives a nice long look at the Hopfield Network. It works up to its creation, its abstraction, and it social impact on shaping the field of computational neuroscience. It is long, but, if you make your way through it you will have a good overview of the model before you start coding it.
+
 
 *** Hopfield Homework Description: Robustness to Noise (this might take awhile).
 Overview of the steps to take:
@@ -2136,7 +2148,6 @@ This categorical framework unifies logic, geometry, and computation through the 
 - Cognition: Formal concepts capture the duality between extension (objects) and intension (properties)
 
 * But wait! There's more!
-
 ** I probably ran out of time so come talk to me
 
 - Monoids
@@ -2226,12 +2237,17 @@ In an effort to establish neural verisimilitude, some cognitive architectures ri
 **** Starting References and Resources
 - https://github.com/nengo/nengo
 - https://github.com/emer/leabra
+- https://compneuro.uwaterloo.ca/files/Eliasmith.Anderson.2003.Neural.Engineering.Full.Book.pdf
+- https://www.emersim.org/
+- https://book.compcogneuro.org/
 
 *** Dynamical Systems Approach to Neural and Cognitive Modeling
 As we saw in our Hodgkin Huxley models, there is a natural view of neural activity that sees it as changing over time, and sees the nature of that change as the key thing we should be focusing on in our modeling.
 
 **** Starting References and Resources
 - https://doi.org/10.1111/phc3.12695
+- https://link.springer.com/chapter/10.1007/978-3-031-69188-1_3#Sec2
+
 *** Causal Models for Cognition
     What causes what? There is actually a mathematics of this that can be used to model areas of cognition such as development or reasoning.
 **** Starting References and Resources
@@ -2245,9 +2261,7 @@ As we saw in our Hodgkin Huxley models, there is a natural view of neural activi
 
 
 
-
 ** Project Deliverables Summarized
-
 *** Presentation
 
 A half hour presentation during the last class session that will provide us all with an overview of your topic to include its background, importance, and application. Then you will need to walk us through how to implement and use your computational offering. Lastly, you should address how it is or could be used for better understanding mental or neural questions about the mechanisms of cognition.
@@ -2261,7 +2275,6 @@ Your report should be a paper replete with the usual abstract, intro, methods, c
 I will make the groups, and I encourage each of you to find the right role for each member to make the project work efficiently. Some may be stronger writers while others are better coders. All research is collaborative with a mix of talents. Finding out how to discover that, and apportion work will be important in your future endeavors.
 
 We will decide together the deadline for the delivery of the final report.
-
 
 * Some references
 #+print_bibliography: 
