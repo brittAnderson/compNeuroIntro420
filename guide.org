@@ -2255,10 +2255,15 @@ As we saw in our Hodgkin Huxley models, there is a natural view of neural activi
 - https://www.researchgate.net/profile/David-Lagnado/publication/264247776_Causality_in_Thought/links/55b20e5708ae092e965013dd/Causality-in-Thought.pdf?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6InB1YmxpY2F0aW9uIiwicGFnZSI6InB1YmxpY2F0aW9uIn19
 - https://arxiv.org/pdf/2002.06060
 
+*** Large Language Models and Systematicity
+    Systematicity has been proposed as a problem for connectionist neural networks for 40 years. Now some people have said they solved it with an LLM. Is this a successful refutation? Do we still need symbolic architectures? And for that matter, what is systematicity and why should we care?
 
-
-
-
+    
+**** Starting References and Resources
+- https://www.nature.com/articles/s41586-023-06668-3.pdf
+- https://direct.mit.edu/tacl/article/doi/10.1162/TACL.a.743/137423/Fodor-and-Pylyshyn-s-Systematicity-Challenge-Still
+- https://github.com/MichaelGoodale/mlc-reply
+  
 
 
 ** Project Deliverables Summarized
