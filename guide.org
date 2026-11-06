@@ -1410,7 +1410,7 @@ What is the library or packge in the programming language that you will use for 
 **** Common Notational Conventions for Vectors and Matrices
 
 Vectors tend to be notated as /lower case/ letters, often in bold, such
-as \textbf{a}. They are also occasionally represented with little
+as $\textbf{a}$. They are also occasionally represented with little
 arrows on top such as $\overrightarrow{\textbf{a}}$.
 
 Matrices tend to be notated as /upper case/ letters, typically in bold,
