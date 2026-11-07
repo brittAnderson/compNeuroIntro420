@@ -1,0 +1,53 @@
+#+options: latex-use-sans:nil
+#+latex_class: article
+#+latex_class_options:
+#+latex_header:
+#+latex_header_extra:
+#+latex_class_pre:
+#+description:
+#+keywords:
+#+subtitle:
+#+latex_footnote_command: \footnote{%s%s}
+#+latex_engraved_theme:
+#+latex_compiler: lualatex
+#+date: \today
+#+Title: Linear Algebra HW
+#+author: Britt
+
+* Purpose
+To make sure you are familiar with how to use your programming language of choice (python or R) to perform the basic matrix and vector operations you will need for our neural network exercises.
+
+Optionally: you can also, if you choose, submit answers to a couple of additional question to test your conceptual knowledge about the basic mechanics of a single perceptron node computes its output.
+
+* Homework
+
+You need to submit a code file. It should do the following:
+
+1. Create  3 x 2, 2 x 3, and (two) 2 x 2 matrices.
+2. It should be possible to add two of your for matrices. Write the code that adds the two eligible matrices together.
+3. Create the transpose of your 3 x 2 matrix.
+4. Add the transpose to the other of your three matrices that is permissible.
+5. Find the two matrices that when multiplied together will leave you with a 3 x 3 matrix. Write the code that multiples them.
+6. Create a column vector of dimension three, and a row vector of the same dimension. Take their "dot" product.
+
+I should be able to load your R (or python) file into my environment and run ~source~ (or ~import~) and it should do all the above. 
+
+* Optional
+1. Submit an image (could be drawn on a tablet or a photo of a piece of paper or whiteboard) of how you could compute the XOR function from a series of Boolean gates. That is the collection of things like AND, OR, NOT, NAND. You are trying to write the wiring diagram. What inputs go where, to which gates, how are the gates organized, if you put in every combination of 0, 1 would you produce the correct truth table?
+
+   | Input_1 | Input_2 | XOR |
+   |---------+---------+-----|
+   |       0 |       0 |   0 |
+   |       1 |       0 |   1 |
+   |       0 |       1 |   1 |
+   |       1 |       1 |   0 |
+
+2. Show that you understand how the math of a perceptron neuron would work. Assume your node has three weights: one for input 1, input 2, and a bias weight. You need to guess three weights and a threshold so that when you give the following inputs the output of node is correct for the AND truth table.
+
+   | Input 1 | Input 2 | Bias Input | AND |
+   |---------+---------+------------+-----|
+   |       0 |       0 |          1 |   0 |
+   |       1 |       0 |          1 |   0 |
+   |       0 |       1 |          1 |   0 |
+   |       1 |       1 |          1 |   1 |
+
