@@ -1525,7 +1525,7 @@ This short [[https://doi.org/10.1038/nbt1386][article]] provides a nice example 
 
 Truth tables are a common way of presenting the boolean functions. You have columns for each of the inputs or variables, and as many rows as you will need to show every combination of inputs, and one more column for the output. Let's say the number of columns is $n + 1$. For this many columns you will need $2^n$ rows. Can you see why? An example,
 
-An example *Or*
+***** An example *Or*
 
 
 | First | Second | Truth |
@@ -1535,6 +1535,9 @@ An example *Or*
 |     1 |      0 | TRUE  |
 |     1 |      1 | TRUE  |
 
+#+BEGIN_EXPORT html
+<div style="height: 40px;"></div>
+#+END_EXPORT
 ***** Which one is this?
 
 
@@ -1544,7 +1547,9 @@ An example *Or*
 |  1 |  0 |       1 |
 |  0 |  1 |       1 |
 |  1 |  1 |       0 |
-
+#+BEGIN_EXPORT html
+<div style="height: 40px;"></div>
+#+END_EXPORT
 ***** Automata :class_question:
 
 How do truth tables relate to the rules of our automata?
@@ -1574,8 +1579,7 @@ George Boole, Author of the /Laws of Thought/.
 
 There is a long tradition of representing human thought as the consequence of some sort of calculation of two values (true or false). If you have two values you can swap out 1's and 0's for the true and false in your calculation. They even seem to obey similar laws. The conjunction (AND) of two true things is only true when both are true. If you take T = 1, then T AND T is the same as $1~\times~1$.
 
-  We will next build up a simple threshold neural unit and try to calculate some of these truth functions with our neuron. We will build simple neurons for truth tables (like those that follow), and string them together into an argument. Then we can feed values of T and F into our network and let it calculate the XOR problem.
-
+We have just seen how a simple threshold neural unit can function like a logic gate. We have also seen how we can string them together to get more complicated functions (like the XOR). But do we have to do all this manually? Or can we design nodes that can learn the correct weights all on their own?
 
 *** Our First Neural Network: The Perceptron
 
