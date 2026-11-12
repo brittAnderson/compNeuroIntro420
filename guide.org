@@ -1602,9 +1602,9 @@ For this writer, the perceptron program is not primarily concerned with the inve
 
 
 **** The Perceptron Rules
-The algorithm the perceptron follows is simple enough to be done by hand. But before doing that take a minute to think what is trying to do. It is trying to go from one set of "weights" to another set of "weights". If you think of all the weights as coordinates in a Cartesian graph then you can visualize each cycle of updating as adding another point to the graph. Squint your eyes and the dots merge to a path. A path through the weight /space./ This is a dynamic process. A theme that we return to in a later Chapter (add link here).
+The algorithm the perceptron follows is simple enough to be done by hand. So, let's do it. 
 
-In short, the perceptron "rules" are the equations that characterize what a perceptron should do when it gets some input, computes and output and learns if its guess is right or wrong. It revises its behavior based on this feedback, and thus can be said to learn. A lot can be done with these simple equations.
+In short, the perceptron "rules" are the equations that characterize what a perceptron should do when it gets some input, computes an output and learns if its guess is right or wrong. It revises its behavior based on this feedback, and thus can be said to learn. A lot can be done with these simple equations.
 
 $I = \sum_{i=1}^{n} w_i~x_i$
 
@@ -1655,7 +1655,7 @@ $\begin{bmatrix}
 -0.2 & -0.8 & -1.0
 \end{bmatrix}$
 
-using the starting weight -0.6 0.8 try a few cycles through the data by hand and then move on to writing the perceptron rule into code so that you can automate the updating step. Haskell code for some of these functions can be found [[https://github.com/brittAnderson/compNeuroIntro420/blob/9cb94028a9f1c53c49cce26b77e633cf5c9f050f/w2026/src/Perceptron.hs][here]].
+using the starting weight -0.6 0.8 try a few cycles through the data by hand.  Shortly, I will have you move on to writing the perceptron rule into code so that you can automate the updating step. Haskell code for some of these functions can be found [[https://github.com/brittAnderson/compNeuroIntro420/blob/9cb94028a9f1c53c49cce26b77e633cf5c9f050f/w2026/src/Perceptron.hs][here]].
 
 
 #+begin_src haskell  :session :results output :exports both :cache no
@@ -1679,9 +1679,10 @@ using the starting weight -0.6 0.8 try a few cycles through the data by hand and
 : 
 : [(1.0,1.0),(-1.0,-1.0),(1.0,1.0),(-1.0,-1.0)]
 
-
+But before we begin coding let's think what the unit is trying to do. It is trying to go from one set of "weights" to another set of "weights". If you think of all the weights as coordinates in a Cartesian graph then you can visualize each cycle of updating as adding another point to the graph. Squint your eyes and the dots merge to a path. The algorithm charts a path through the weight /space./ This is a dynamic process. 
 
 ***** More Abstract Thinking
+
 Each time through the perceptron rule new weights are computed. Imagine these two weights as coordinates for the head of a vector with its base at the origin of a Cartesian plane. Imagine as you iterate that you are rotating your weight vector around an origin.
 
 The decision plane for your network is perpendicular to the vectors and is anchored at the bottom of the arrow. If you could compare this plane to the location of the data points you would see that the rule is learning to find the decision plane that puts all of one class on one side of the line and all of the other class on the other side. That is why it is limited to problems that are linearly separable.
@@ -1760,7 +1761,7 @@ c^2 &= a^2 + b^2 - 2ab\cos\theta \\[1.0em]
 
 *** The Delta Rule - Homework
 
-The *Delta Rule* is another simple learning rule that is a minimal variation on the perceptron rule. It is used more frequently, and it has the spirit of Hebbian learning, which we will learn more about soon. The homework asks you to write code to test and train an artificial neuron using the delta learning rule. 
+The *Delta Rule* is another simple learning rule that is a minimal variation on the perceptron rule. It is used more frequently, and it has the spirit of [[https://watermark02.silverchair.com/rsbm.1996.0012.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAlwwggJYBgkqhkiG9w0BBwagggJJMIICRQIBADCCAj4GCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMz3Sx2kdfqf699mFjAgEQgIICD7Gr2qodSN0x6dJMHC9U2EimrwSmNqhwPCxayBDF3Peqbqj-TOYl9D5LOqHhj9czZg5yLVJZ0yUZKPZ9e_jXJrmbEJRj-IeuGWQ2618vm8Jij6OocJKkvGqi5dYLKI-aTxd-XH2FroYuh43P7dosKfTOhW-Fky8Lwn74T0Gm2PJricHumlAwH4QEdRpC6P9C5e24PTg0SLLOicN8BArj0DlObHBt9p9EnC8dT5qnwrAu1LLj7IlsKcuMVPXMZPGzP4wSmlg4T3KblFXZF9mwdAjK_cVOggQzfOHiE8I8Q4-P6TJBBxas1IQ85ttznx5mo9pZze4a1KxVuc0-K8eMWY6yghQyyCYSzFc50Wb3rTEUwQjXblV97kOJOYIk2LkEDC-KZpE5jbETXYsdmgDz2VZ2zWG31b2A2yk5Jp1FYyDUaq5rF3ASiUG-L0r_iig9OBa5MDx3TOvxY8eX7JfmirHVkGw1AWf2ulV80X_rVLaiIUnXwhyJ8nflmwgUR6j9UdQ0C_1CbrSwWXQfpA9Gu0GvjVBpFYQcSU2wCY9m0SbPG4Vg_WA-8Id-jqqpb8KEdD-3Lu-gSIqxdMTagGCRaPuAtUYnhs5el8N11uoLGtEkjc83V0zzxbIr-1lJFdnY6EIEmrjLLdoeWL_IoWt7zYIETA1Eh1IDzbTw5BXO5iVRsFVFqPyiLFxk6ebpI3uw][Hebbian learning]], which we will learn more about soon. The homework asks you to write code to test and train an artificial neuron using the delta learning rule. 
 
 
 - For an easy start create some pseudo random linearly separable points on a a sheet of paper. Label one population as *1* and the other population as *-1*.
