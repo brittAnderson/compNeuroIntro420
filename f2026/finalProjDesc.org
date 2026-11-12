@@ -1,0 +1,132 @@
+#+TITLE: Project Descriptions (Brief)
+#+AUTHOR: Britt Anderson
+#+DATE: 11/12/2026
+#+Options: toc:nil
+
+* Overview
+
+The goals of the final project are:
+
+1. Active learning
+2. Learning through teaching
+3. Acquiring important professional skills such as:
+   - Presentation development
+   - Oral presentation practice
+   - Project Planning
+   - Group collaboration
+   - Technical Writing
+   - Coding Relevant to Psychology and Neuroscience Modeling
+   - Technical Knowledge
+
+In pursuit of these goals a fair amount of time in the last few weeks will be saved for the group project. Each of you will have been assigned by me to a group. The members of the groups will work on the project collaboratively dividing the responsibilities and workload as jointly decided.
+
+The deliverables will be two. First, there will be on the last course day a roughly 20 minute presentation that will:
+
+1. Provide a general introduction to the topic. This will not only be a technical introduction, but will help us understand the history and motivation for using this tool/technique.
+2. A tutorial survey of the details. This might include the mathematical underpinnings and derivation as well as any pertinent novel notation.
+3. Practical aspects of coding the algorithm. Ideally working code written by the group will be demonstrated. This is expected to be simple and modest in scope. So, it might be appropriate in addition to the group's own code to show off libraries or software written by others and useful for more complicated or realistic demonstrations.
+
+The emphasis of the oral presentation is on learning. Both of us: the audience and the group presenting. This is a time to practice your presentation style and any novel ideas you have about how to give a memorable and instructive presentation. There will be no grade beyond a complete/incomplete.
+
+The goal of the written reports is to provide an opportunity to develop and share a more rigorous and complete idea of the same general scope, but with increased detail and space for explanations. While a written document is required, other materials may make sense as part of the submission. For example, source code is likely to be a part of all projects. In addition, images or movies of simulations and similar materials may be appropriate. That is for the group to decide.
+
+* Evaluation
+
+1. For the oral presentation the evaluation is strictly limited to completion. However, I hope that students will look upon this as an opportunity for practice, and also will be respectful of their peers time. You will be listening much more than speaking so keep that in mind as you plan the quality of your own offering.
+2. For the written, final presentation I will be evaluating:
+   - Clarity, completeness, and professionalism of the writing.
+   - Documentation of the topic should include appropriate citations. I don't care so much about what citation style you use as long as it is consistent and follows some professional standard.
+   - The tutorial code provided will be evaluated for style, accuracy, and the ease with which someone else (me for example) can get it working properly. That may mean the inclusion of instructions.
+   - The value of any additional materials.
+   - A general assessment of the pedagogical value of the presentation as a guide to help others understand the material. Ask yourself if your presentation would be a good guide for me as an instructor to use it as the basis for developing additional units of material to present in this course?
+
+* Project Topics
+
+Each group will be assigned one of the topics below. Send me your groups ordered preference list as soon as possible. I have added some starter references, but those should not be viewed as sufficient in and of themselves. It is just to give a chance to get a better sense of what the topic is about and what kind of resources you might be looking for. 
+
+
+** Production Rules
+    Some of the classic cognitive architectures such as SOAR and ACT-R use production systems. They have a long history in cognitive neuroscience. What are they? Why are they suggested to be a good fit? What are some of the common software packages and who would we use them?
+
+*** Starting References and Resources
+- https://soar.eecs.umich.edu/soar_manual/ The Soar user manual
+- https://wires.onlinelibrary.wiley.com/doi/full/10.1002/wcs.1488 An online article describing the system
+  
+** Reinforcement Learning
+
+There is a "classic" textbook available on line, code as well. Reinforcement Learning is a common paradigm and mechanism for explaining a multitude of behaviors. The basic idea is that you do more of whatever it is that gives you a reward. The mapping of dopamine dynamics onto reward delivery has been heralded as one of the great successes of computational neuroscience.
+
+*** Starting References and Resources
+
+- The canonical textbook, freely available online, is Sutton & Barto's /Reinforcement Learning: An Introduction/ (2nd ed.). Both the PDF and code examples are available at: http://incompleteideas.net/book/the-book-2nd.html
+- For the neuroscience connection, see the dopamine and reward prediction error [[https://www.sciencedirect.com/science/article/pii/S0022249608001181][review]] cited below.
+- A practical Python-focused tutorial series using OpenAI Gym (now Gymnasium) is a good hands-on complement: https://gymnasium.farama.org/
+
+** Agent Based Models
+
+Agent Based Models (ABMs) allow us to simulate how complex, population-level patterns emerge from the local interactions of many individual agents, each following simple rules. They have been applied to problems ranging from the spread of disease to the emergence of social norms and collective neural dynamics.
+
+*** Starting References and Resources
+
+- Axelrod, R. (1997). /The Complexity of Cooperation: Agent-Based Models of Competition and Collaboration/. Princeton University Press. — a foundational text on ABMs in the social and behavioral sciences.
+- NetLogo is a widely used, beginner-friendly ABM environment with an extensive model library and its own tutorial: https://ccl.northwestern.edu/netlogo/
+- Mesa is the primary Python library for agent-based modeling and a natural choice if you prefer to stay in Python. Documentation and tutorials are at: https://mesa.readthedocs.io/ and the repository is at: https://github.com/projectmesa/mesa
+- The Santa Fe Institute's Complexity Explorer offers free online courses and resources that provide good conceptual grounding: https://www.complexityexplorer.org/
+
+** Cognitive Architectures Built on Spiking Neural Networks
+
+In an effort to establish neural verisimilitude, some cognitive architectures ride on top of software implementing the computation by spiking neural networks. Two well know examples are Nengo (invented by UWaterloo CTN director Chris Eliasmith) and Leabra. How do they work? How could we use them, both practically and conceptually?
+
+*** Starting References and Resources
+- https://github.com/nengo/nengo
+- https://github.com/emer/leabra
+- https://compneuro.uwaterloo.ca/files/Eliasmith.Anderson.2003.Neural.Engineering.Full.Book.pdf
+- https://www.emersim.org/
+- https://book.compcogneuro.org/
+
+** Dynamical Systems Approach to Neural and Cognitive Modeling
+As we saw in our Hodgkin Huxley models, there is a natural view of neural activity that sees it as changing over time, and sees the nature of that change as the key thing we should be focusing on in our modeling.
+
+*** Starting References and Resources
+- https://doi.org/10.1111/phc3.12695
+- https://link.springer.com/chapter/10.1007/978-3-031-69188-1_3#Sec2
+
+** Causal Models for Cognition
+    What causes what? There is actually a mathematics of this that can be used to model areas of cognition such as development or reasoning.
+*** Starting References and Resources
+- https://www.tandfonline.com/doi/epdf/10.1080/26939169.2022.2128118?needAccess=true
+- https://www.researchgate.net/profile/David-Lagnado/publication/264247776_Causality_in_Thought/links/55b20e5708ae092e965013dd/Causality-in-Thought.pdf?_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6InB1YmxpY2F0aW9uIiwicGFnZSI6InB1YmxpY2F0aW9uIn19
+- https://arxiv.org/pdf/2002.06060
+
+** Large Language Models and Systematicity
+    Systematicity has been proposed as a problem for connectionist neural networks for 40 years. Now some people have said they solved it with an LLM. Is this a successful refutation? Do we still need symbolic architectures? And for that matter, what is systematicity and why should we care?
+
+    
+*** Starting References and Resources
+- https://www.nature.com/articles/s41586-023-06668-3.pdf
+- https://direct.mit.edu/tacl/article/doi/10.1162/TACL.a.743/137423/Fodor-and-Pylyshyn-s-Systematicity-Challenge-Still
+- https://github.com/MichaelGoodale/mlc-reply
+  
+
+
+
+
+* Project Deliverables Summarized
+
+** Presentation
+
+A roughly 20 minute presentation during the last class session that will provide us all with an overview of your topic to include its background, importance, and application. Then you will need to walk us through how to implement and use your computational offering. Lastly, you should address how it is or could be used for better understanding mental or neural questions about the mechanisms of cognition.
+
+** Report
+
+Your report should be a paper replete with the usual abstract, intro, methods, code, results of simulations, and references. Figures and analyses should be integrated into the manuscript in order to have a reproducible research project. To the extent that this is not felt to be possible you will have to justify it heavily. Tools that you might find useful include Overleaf and Quarto, though you can probably get close with Rmd/Rstudio since that now supports python. If you elect to use another language you may find they have a suitable language for this (e.g. with Racket it is Scribble).
+
+* General Suggestions
+
+I will make the groups, and I encourage each of you to find the right role for each member to make the project work efficiently. Some may be stronger writers while others are better coders. All research is collaborative with a mix of talents. Finding out how to discover that, and apportion work will be important in your future endeavors.
+
+We will decide together the deadline for the delivery of the final report.
+
+
+
+
