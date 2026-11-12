@@ -1768,6 +1768,7 @@ The *Delta Rule* is another simple learning rule that is a minimal variation on 
 - For a more challenging set-up create the data programmatically using random numbers and some method that allows you to vary how close or distant the points are to the line of separation, and how many points there are to train on.
 - The Delta Learning rule is: $\Delta~w_i = x_i~\eta(desired - observed)$
 - Submit your code that has your test data in it. Start with an initial random weight and use the delta rule to learn the correct weighting to solve all your training examples. Then test on a new set of points that you did not test on but that are classified according to the same rule. Your code should assess how well the trained rule classifies the test data.
+- If you have the time and interest, create a visualization that shows how the decision plane moves as the unit learns.
 
 *** Not all Networks are the Same: Hopfield
 
