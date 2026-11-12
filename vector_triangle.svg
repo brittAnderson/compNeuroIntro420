@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-11-09T16:11:38.146869</dc:date>
+    <dc:date>2026-11-12T11:16:46.907133</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -38,7 +38,7 @@ L 310.605957 278.967941
 L 310.976805 276.203432 
 L 88.748562 352.395973 
 L 87.939438 350.036027 
-" clip-path="url(#pf463acc99c)" style="fill: #0000ff"/>
+" clip-path="url(#p3be9bb3258)" style="fill: #0000ff"/>
    </g>
    <g id="Quiver_2">
     <path d="M 87.176023 350.778009 
@@ -49,7 +49,7 @@ L 187.260017 98.097744
 L 185.362055 96.053785 
 L 89.511977 351.653991 
 L 87.176023 350.778009 
-" clip-path="url(#pf463acc99c)" style="fill: #ff0000"/>
+" clip-path="url(#p3be9bb3258)" style="fill: #ff0000"/>
    </g>
    <g id="Quiver_3">
     <path d="M 320.176949 272.107437 
@@ -60,13 +60,13 @@ L 198.431519 93.079402
 L 195.67638 93.514424 
 L 322.207051 270.657363 
 L 320.176949 272.107437 
-" clip-path="url(#pf463acc99c)" style="fill: #228b22"/>
+" clip-path="url(#p3be9bb3258)" style="fill: #228b22"/>
    </g>
    <g id="patch_2">
     <path d="M 126.103135 338.270011 
 C 124.192991 332.698757 121.073276 327.618692 116.968402 323.395243 
 C 112.863528 319.171793 107.874339 315.908716 102.359724 313.840735 
-" clip-path="url(#pf463acc99c)" style="fill: none; stroke: #000000; stroke-width: 1.2; stroke-linejoin: miter"/>
+" clip-path="url(#p3be9bb3258)" style="fill: none; stroke: #000000; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <!-- $\theta$ -->
@@ -196,7 +196,7 @@ z
    </g>
    <g id="PathCollection_1">
     <defs>
-     <path id="m7233ed1fc3" d="M 0 3 
+     <path id="mb0d5706b3b" d="M 0 3 
 C 0.795609 3 1.55874 2.683901 2.12132 2.12132 
 C 2.683901 1.55874 3 0.795609 3 0 
 C 3 -0.795609 2.683901 -1.55874 2.12132 -2.12132 
@@ -208,14 +208,14 @@ C -1.55874 2.683901 -0.795609 3 0 3
 z
 " style="stroke: #000000"/>
     </defs>
-    <g clip-path="url(#pf463acc99c)">
-     <use xlink:href="#m7233ed1fc3" x="88.344" y="351.216" style="stroke: #000000"/>
+    <g clip-path="url(#p3be9bb3258)">
+     <use xlink:href="#mb0d5706b3b" x="88.344" y="351.216" style="stroke: #000000"/>
     </g>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="pf463acc99c">
+  <clipPath id="p3be9bb3258">
    <rect x="55.08" y="51.84" width="332.64" height="332.64"/>
   </clipPath>
  </defs>
