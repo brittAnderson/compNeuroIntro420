@@ -1505,20 +1505,6 @@ Can you draw the truth tables that match each of these graphs?
 
 This short [[https://doi.org/10.1038/nbt1386][article]] provides a nice example of linear separability and some basics of what a neural network is. 
 
-***** Truth Tables
-
-Truth tables are a common way of presenting the boolean functions. You have columns for each of the inputs or variables, and as many rows as you will need to show every combination of inputs, and one more column for the output. Let's say the number of columns is $n + 1$. For this many columns you will need $2^n$ rows. Can you see why? An example,
-
-| I1 | I2 | Outcome |
-|----+----+---------|
-|  0 |  0 |       1 |
-|  1 |  0 |       1 |
-|  0 |  1 |       1 |
-|  1 |  1 |       0 |
-
-Do you see which Boolean operation this is?
-
-
 **** Exercise XOR
 
   Using only *not*, *and*, and *or* operations draw the diagram that allows you to compute in two steps the *xor* operation. You will need this logic to code up a perceptron.
@@ -1535,23 +1521,10 @@ Do you see which Boolean operation this is?
 6. Your objective is to connect your members together such that when I tell your Input_1 and Input_2 people what their inputs are they will pass this to the next person in your groups chain. Those people will evaluate their inputs based on their truth table and pass their output forward.
 7. When we compare the original input to the final output we should be able to see that you have implemented the XOR function.
 
-
-**** Doing it Perceptron Style
-
-**** Connections
-Can neural networks encode logic? Is the processing zeros and ones enough to capture the richness of human intellectual activity?
-
-There is a long tradition of representing human thought as the consequence of some sort of calculation of two values (true or false). If you have two values you can swap out 1's and 0's for the true and false in your calculation. They even seem to obey similar laws. The conjunction (AND) of two true things is only true when both are true. If you take T = 1, then T AND T is the same as $1~\times~1$.
-
-  We will next build up a simple threshold neural unit and try to calculate some of these truth functions with our neuron. We will build simple neurons for truth tables (like those that follow), and string them together into an argument. Then we can feed values of T and F into our network and let it calculate the XOR problem.
-
-**** Boolean Logic
-George Boole, Author of the /Laws of Thought/.
-
-[[https://archive.org/details/investigationofl00boolrich]]
-[[https://plato.stanford.edu/entries/boole/#LifWor]]
-
 ****  First Order Logic - Truth Tables
+
+Truth tables are a common way of presenting the boolean functions. You have columns for each of the inputs or variables, and as many rows as you will need to show every combination of inputs, and one more column for the output. Let's say the number of columns is $n + 1$. For this many columns you will need $2^n$ rows. Can you see why? An example,
+
 An example *Or*
 
 
@@ -1561,6 +1534,48 @@ An example *Or*
 |     0 |      1 | TRUE  |
 |     1 |      0 | TRUE  |
 |     1 |      1 | TRUE  |
+
+***** Which one is this?
+
+
+| I1 | I2 | Outcome |
+|----+----+---------|
+|  0 |  0 |       1 |
+|  1 |  0 |       1 |
+|  0 |  1 |       1 |
+|  1 |  1 |       0 |
+
+***** Automata :class_question:
+
+How do truth tables relate to the rules of our automata?
+
+
+**** Truth Tables by the Numbers.
+
+Can neural networks encode logic? Is the processing zeros and ones enough to capture the richness of human intellectual activity?
+
+I presented this equation above as an example of a neuron like calculation.
+
+\begin{equation}
+\mbox{if } I_1 \times w_{1,1} + I_2 \times w_{2,1} + I_3 \times w_{3,1} > \Theta \mbox{ then } Output = 1
+\end{equation}
+
+***** From Truth Table to Perceptron :classroom_exercise:
+
+Can you make an AND gate by finding a set of values for the $w's$. Assume $I_3$ is always fixed at one (it is called a bias and will be explained more shortly).
+
+Next, make an OR gate. You will need a different set of $w's$ 
+
+**** Boolean Logic
+George Boole, Author of the /Laws of Thought/.
+
+[[https://archive.org/details/investigationofl00boolrich]]
+[[https://plato.stanford.edu/entries/boole/#LifWor]]
+
+There is a long tradition of representing human thought as the consequence of some sort of calculation of two values (true or false). If you have two values you can swap out 1's and 0's for the true and false in your calculation. They even seem to obey similar laws. The conjunction (AND) of two true things is only true when both are true. If you take T = 1, then T AND T is the same as $1~\times~1$.
+
+  We will next build up a simple threshold neural unit and try to calculate some of these truth functions with our neuron. We will build simple neurons for truth tables (like those that follow), and string them together into an argument. Then we can feed values of T and F into our network and let it calculate the XOR problem.
+
 
 *** Our First Neural Network: The Perceptron
 
@@ -2393,5 +2408,5 @@ Example trace for =S K K x=:
 
 
 # Local Variables:
-# jinx-local-words: "Combinators compositionality computable homeworks perceptron"
+# jinx-local-words: "Combinators automata compositionality computable homeworks perceptron"
 # End:
