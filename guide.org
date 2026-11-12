@@ -1404,7 +1404,7 @@ Similarly, we may consider a matrix as a collection of vectors or it may be more
 
 Classroom Exercise
 #+Begin_quote
-What is the library or packge in the programming language that you will use for this course that has vectors and matrix functions?
+What is the library or package in the programming language that you will use for this course that has vectors and matrix functions?
 #+End_quote
 
 **** Common Notational Conventions for Vectors and Matrices
