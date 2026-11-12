@@ -1505,10 +1505,38 @@ Can you draw the truth tables that match each of these graphs?
 
 This short [[https://doi.org/10.1038/nbt1386][article]] provides a nice example of linear separability and some basics of what a neural network is. 
 
+***** Truth Tables
+
+Truth tables are a common way of presenting the boolean functions. You have columns for each of the inputs or variables, and as many rows as you will need to show every combination of inputs, and one more column for the output. Let's say the number of columns is $n + 1$. For this many columns you will need $2^n$ rows. Can you see why? An example,
+
+| I1 | I2 | Outcome |
+|----+----+---------|
+|  0 |  0 |       1 |
+|  1 |  0 |       1 |
+|  0 |  1 |       1 |
+|  1 |  1 |       0 |
+
+Do you see which Boolean operation this is?
+
 
 **** Exercise XOR
 
   Using only *not*, *and*, and *or* operations draw the diagram that allows you to compute in two steps the *xor* operation. You will need this logic to code up a perceptron.
+
+  This was given as an optional homework. Here is another take on this same idea.
+  
+**** Alternate XOR :classroom_activity:
+
+1. Each group gets an "AND" and two "NOR" cards.
+2. On the back of each of these fill in the appropriate truth table.
+3. On your own piece of paper construct the truth table for the XOR function.
+4. As a group pick five of your members. Designate each of them to be either Input_1, Input_2, AND, NOR_1, and NOR_2.
+5. Construct your "wiring" diagram. Who does Input_1 talk to? Input_2, and so on.
+6. Your objective is to connect your members together such that when I tell your Input_1 and Input_2 people what their inputs are they will pass this to the next person in your groups chain. Those people will evaluate their inputs based on their truth table and pass their output forward.
+7. When we compare the original input to the final output we should be able to see that you have implemented the XOR function.
+
+
+**** Doing it Perceptron Style
 
 **** Connections
 Can neural networks encode logic? Is the processing zeros and ones enough to capture the richness of human intellectual activity?
@@ -2365,5 +2393,5 @@ Example trace for =S K K x=:
 
 
 # Local Variables:
-# jinx-local-words: "Combinators compositionality computable homeworks"
+# jinx-local-words: "Combinators compositionality computable homeworks perceptron"
 # End:
