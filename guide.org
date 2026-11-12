@@ -29,6 +29,7 @@
 #+PROPERTY: header-args:R+ :eval no-export
 #+PROPERTY: header-args:sh+ :eval no-export
 #+PROPERTY: header-args:gnuplot+ :eval no-export
+#+PROPERTY: header-args:python+ :eval no-export
 
 * Welcome to Psych 420
 * Introductions                                                  :assignment:
