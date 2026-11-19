@@ -38,5 +38,5 @@ updateInputRand rndSeed wtMat input =
   let ridx = fst (genSchedule (length (head input)) (mkStdGen rndSeed)) in
     updateInput1Rnd wtMat ridx input
 -- this is where it would be necessary to recurse with the newStdGen until convergence --
--- would also need to right the function to handle a list or matrix of multiple inputs. 
+-- would also need to write the function to handle a list or matrix of multiple inputs. 
   
