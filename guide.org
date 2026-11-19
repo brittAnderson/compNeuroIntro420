@@ -1803,21 +1803,21 @@ The Hopfield network [cite:@Hopfield_1982] has taught many lessons, both practic
 
 Inputs can be thought of as vectors. Although I have drawn the network like a square that shape is really independent of the structure of data flow. Each node needs an input and each node will need a weighted contact to all the other nodes. Consider the following two input patterns and the following weight matrix.  
 
-$\overrightarrow{a} = \left[1, 0, 1, 0\right]^T$
+\(\overrightarrow{a} = \left[1, 0, 1, 0\right]^T\)
 
-$\overrightarrow{b} = \left[0, 1, 0, 1\right]^T$
+\( \overrightarrow{b} = \left[0, 1, 0, 1\right]^T \)
 
-$weights =  \begin{bmatrix}
- 0 & 3 & -3 & 3 \\
- 3 & 0 & 3 & -3 \\
- -3 & 3 & 0 & 3 \\
- 3 & -3 & 3 & 0 \\
-\end{bmatrix}
-$
+weights = $\hspace{0.5cm}$ 
+\( \begin{bmatrix}
+1 &  & 0 &  & 1 &  & 0 \\
+0 &  & 1 &  & 0 &  & 1 \\
+1 &  & 0 &  & 1 &  & 0 \\
+0 &  & 1 &  & 0 &  & 1 \\
+\end{bmatrix} \)
 
 How do you compute the output? Which comes first: the matrix or the input vector and why?
 
-#+begin_src haskell  :session :exports both :results output :cache no
+#+begin_src haskell  :session :exports none :results output :cache no
   hopa = [[1,0,1,0]] :: SimpMat Integer
   hopb = [[0,1,0,1]] :: SimpMat Integer
   outProda = multSimpMats (binary2Bipolar (rotateLList hopa)) $ binary2Bipolar hopa
@@ -1827,12 +1827,6 @@ How do you compute the output? Which comes first: the matrix or the input vector
   learnRate = scalarMultiply 1 noSelfConnections
   putStr $ prettyMat learnRate
 #+end_src
-
-#+RESULTS:
-: [0,-2,2,-2]
-: [-2,0,-2,2]
-: [2,-2,0,-2]
-: [-2,2,-2,0]
 
 
 Hopfield networks use a threshold rule. This non-linearity is, at least metaphorically, like the threshold that says whether a neuron in the brain or in our integrate and fire model fires. For the Hopfield network our threshold rule says:
@@ -1883,6 +1877,130 @@ The strength of a change in a connection is proportionate to the product of the 
 
 #+End_quote
 
+**** Make your own weight matrix
+Why is this matrix the "right" matrix for these two vectors?
+
+\(\overrightarrow{a} = \left[1, 0, 1, 0\right]^T\)
+
+\( \overrightarrow{b} = \left[0, 1, 0, 1\right]^T \)
+
+weights = $\hspace{0.5cm}$ 
+\( \begin{bmatrix}
+1 &  & 0 &  & 1 &  & 0 \\
+0 &  & 1 &  & 0 &  & 1 \\
+1 &  & 0 &  & 1 &  & 0 \\
+0 &  & 1 &  & 0 &  & 1 \\
+\end{bmatrix} \)
+
+#+begin_src R :exports both :results output 
+  a <- matrix(c(1,0,1,0), nrow = 4)
+  b <- matrix(c(0,1,0,1), nrow = 4)
+
+  #we want the units that fire together to be positive
+
+  aouter <- a %*% t(a)
+  bouter <- b %*% t(b)
+
+  aouter
+
+  bouter
+
+  aouter + bouter
+#+end_src
+
+#+RESULTS:
+#+begin_example
+     [,1] [,2] [,3] [,4]
+[1,]    1    0    1    0
+[2,]    0    0    0    0
+[3,]    1    0    1    0
+[4,]    0    0    0    0
+     [,1] [,2] [,3] [,4]
+[1,]    0    0    0    0
+[2,]    0    1    0    1
+[3,]    0    0    0    0
+[4,]    0    1    0    1
+     [,1] [,2] [,3] [,4]
+[1,]    1    0    1    0
+[2,]    0    1    0    1
+[3,]    1    0    1    0
+[4,]    0    1    0    1
+#+end_example
+*** Proving Facts About Neural Networks
+
+*Hopfield proved that you can prove things in computational neuroscience.*
+
+**** Can you prove that all finite Hopfield Networks will settle to a stable solution?
+
+***** Setup
+Let $s_i \in \{-1,+1\}$ for $i = 1,\dots,N$, with symmetric weights and no
+self-connections,
+\begin{equation}
+  w_{ij} = w_{ji}, \qquad w_{ii} = 0 .
+\end{equation}
+Define the local field at unit $k$ as
+\begin{equation}
+  h_k = \sum_{j} w_{kj}\, s_j - \theta_k ,
+\end{equation}
+and the asynchronous update of a single unit $k$ as
+\begin{equation}
+  s_k' =
+  \begin{cases}
+    \operatorname{sgn}(h_k) & h_k \neq 0,\\[2pt]
+    s_k & h_k = 0,
+  \end{cases}
+\end{equation}
+with $s_j' = s_j$ for all $j \neq k$.
+
+***** Define an Energy Function
+What is an energy function?
+
+\begin{equation}
+  E(\mathbf{s}) = -\frac{1}{2}\sum_{i}\sum_{j} w_{ij}\, s_i s_j
+                  + \sum_{i} \theta_i s_i .
+\end{equation}
+
+***** What happens to the Energy when a unit flips from +1 to -1 and vice versa?
+
+Try to figure this out yourself.
+
+Separate the terms of $E$ that involve your unit that flipped (call it $s_k$) from those that do not:
+\begin{align}
+  E &= \underbrace{-\frac{1}{2}\sum_{i\neq k}\sum_{j\neq k} w_{ij}\, s_i s_j
+        + \sum_{i\neq k}\theta_i s_i}_{C_k\ \text{(no dependence on } s_k)}
+     \;-\; \frac{1}{2}\sum_{j\neq k} w_{kj}\, s_k s_j
+     \;-\; \frac{1}{2}\sum_{i\neq k} w_{ik}\, s_i s_k
+     \;+\; \theta_k s_k .
+\end{align}
+
+
+Because $w_{ik} = w_{ji}$ by symmetry, the two middle sums are equal, and the
+factor $\tfrac{1}{2}$ cancels. Since $w_{kk}=0$, the sum over $j \neq k$ may be
+written as a sum over all $j$:
+\begin{align}
+  E &= C_k - s_k \sum_{j} w_{kj}\, s_j + \theta_k s_k \\
+    &= C_k - s_k \Big(\sum_{j} w_{kj}\, s_j - \theta_k\Big) \\
+    &= C_k - s_k\, h_k .
+\end{align}
+
+So, what is the answer?
+
+Can a network visit the same location of the energy space twice?
+
+Only $s_k$ changes, so $C_k$ is identical before and after, and
+\begin{equation}
+  \Delta E = E' - E = -(s_k' - s_k)\, h_k .
+\end{equation}
+Suppose the update actually flips the unit, so $s_k' = \operatorname{sgn}(h_k) = -s_k$.
+Then $s_k' - s_k = 2\operatorname{sgn}(h_k)$, and
+\begin{equation}
+  \Delta E = -2\operatorname{sgn}(h_k)\, h_k = -2\,|h_k| < 0 .
+\end{equation}
+
+If your network has finitely many units does the Energy space?
+
+Can you conclude that every Hopfield network decides on an answer?
+
 *** John Hopfield
 To motivate our learning, and to put a human face on the project these two links give you a glimpse of Hopfield talking about his work at the 2024 Nobel Prize lectures, and a nice long podcast that gives a slow, thorough, tutorial discussion of what it is all about. We will come back to this later, but for now start listening. There is an associated homework. 
 
@@ -1909,6 +2027,22 @@ More detailed instructions:
    Where N is the size of the patterns, that is how many "neurons". $\mu$ is an index for each of the patterns, and $i$ and $j$ refer to the neurons in the pattern.
 - Program an *asynchronous* updating rule, run your network until it stabilizes, and then show that you get back what you put in.
 - Then do the same for at least one disrupted pattern (where you flipped a couple of bits around.)
+
+
+**** An example
+
+#+INCLUDE: "./src/hopfield.py" src python -n
+
+
+#+begin_src python :results output graphics file :file hopPlot.png :exports results
+  import sys
+  sys.path.insert(0, './src')
+  from hopfield import *
+  hopPlot(myps,outps)                          
+#+end_src
+
+#+RESULTS:
+[[file:hopPlot.png]]
 
 * Theory Creation in the Cognitive and Psychological Sciences
 
