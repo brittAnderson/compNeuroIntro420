@@ -33,6 +33,8 @@
           fcaR
           ggraph
           histData_1_1
+          shiny
+          pracma
         ];
       };
     in {
